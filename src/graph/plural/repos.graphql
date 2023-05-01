@@ -1,13 +1,50 @@
-fragment Repo on Repository {
+fragment Publisher on Publisher {
   id
   name
+  phone
+  avatar
   description
-  documentation
-  icon
+  backgroundColor
+}
+
+fragment MinRepo on Repository {
+  category
+  community {
+    discord
+    slack
+    homepage
+    gitUrl
+    twitter
+  }
   darkIcon
+  description
+  # gitUrl
+  # homepage
+  icon
+  id
+  # license {
+  #   name
+  #   url
+  # }
+  # mainBranch
+  name
   private
+  publisher {
+    ...Publisher
+  }
+  # readme
   tags {
     tag
+  }
+  trending
+  verified
+}
+
+fragment FullRepo on Repository {
+  ...minRepo
+  readme
+  recipes {
+    ...Recipe
   }
 }
 
@@ -15,8 +52,14 @@ query Repos {
   repositories(first: 5000) {
     edges {
       node {
-        ...Repo
+        ...MinRepo
       }
     }
+  }
+}
+
+query Repo($name: String) {
+  repository(name: $name) {
+    ...FullRepo
   }
 }

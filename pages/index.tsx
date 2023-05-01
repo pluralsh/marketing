@@ -6,17 +6,23 @@ import {
 } from '@src/generated/graphqlDirectus'
 
 export default function Index({ events, ...props }) {
+  console.log('props', props)
+
   return (
     <div>
       <div className="flex flex-col gap-x-medium gap-y-xlarge ">
         <h1 className="hero1 mb-medium w-full md:w-3/4">Events</h1>
         <p className="text-marketing-white">This is some paragraph textzz</p>
         <div className="flex flex-col">
-          {events.map((event) => (
-            <div className="rounded-md bg-fill-one p-medium">
-              {event.name}, {Date(event.start_date)}
-            </div>
-          ))}
+          {events.map((event) => {
+            const startDate = new Date(event.start_date)
+
+            return (
+              <div className="rounded-md bg-fill-one p-medium">
+                {event.name}, {startDate}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

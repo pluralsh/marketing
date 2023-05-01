@@ -4952,6 +4952,15 @@ export type ZoomMeeting = {
   password?: Maybe<Scalars['String']>;
 };
 
+export type ArtifactFragment = { __typename?: 'Artifact', id?: string | null, name?: string | null, blob?: string | null, type?: ArtifactType | null, platform?: ArtifactPlatform | null, arch?: string | null, filesize?: number | null, sha?: string | null, readme?: string | null, insertedAt?: Date | null, updatedAt?: Date | null };
+
+export type ListArtifactsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type ListArtifactsQuery = { __typename?: 'RootQueryType', repository?: { __typename?: 'Repository', artifacts?: Array<{ __typename?: 'Artifact', id?: string | null, name?: string | null, blob?: string | null, type?: ArtifactType | null, platform?: ArtifactPlatform | null, arch?: string | null, filesize?: number | null, sha?: string | null, readme?: string | null, insertedAt?: Date | null, updatedAt?: Date | null } | null> | null } | null };
+
 export type RecipeFragment = { __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null };
 
 export type RecipesQueryVariables = Exact<{
@@ -4961,13 +4970,47 @@ export type RecipesQueryVariables = Exact<{
 
 export type RecipesQuery = { __typename?: 'RootQueryType', recipes?: { __typename?: 'RecipeConnection', edges?: Array<{ __typename?: 'RecipeEdge', node?: { __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null } | null> | null } | null };
 
-export type RepoFragment = { __typename?: 'Repository', id: string, name: string, description?: string | null, documentation?: string | null, icon?: string | null, darkIcon?: string | null, private?: boolean | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null };
+export type PublisherFragment = { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null };
+
+export type RepoFragment = { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null };
 
 export type ReposQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, description?: string | null, documentation?: string | null, icon?: string | null, darkIcon?: string | null, private?: boolean | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null } | null } | null> | null } | null };
+export type ReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null } | null } | null> | null } | null };
 
+export type RepoQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type RepoQuery = { __typename?: 'RootQueryType', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null } | null };
+
+export const ArtifactFragmentDoc = gql`
+    fragment Artifact on Artifact {
+  id
+  name
+  blob
+  type
+  platform
+  arch
+  filesize
+  sha
+  readme
+  insertedAt
+  updatedAt
+}
+    `;
+export const PublisherFragmentDoc = gql`
+    fragment Publisher on Publisher {
+  id
+  name
+  phone
+  avatar
+  description
+  backgroundColor
+}
+    `;
 export const RecipeFragmentDoc = gql`
     fragment Recipe on Recipe {
   name
@@ -4993,18 +5036,77 @@ export const RecipeFragmentDoc = gql`
     `;
 export const RepoFragmentDoc = gql`
     fragment Repo on Repository {
-  id
-  name
-  description
-  documentation
-  icon
+  category
+  community {
+    discord
+    slack
+    homepage
+    gitUrl
+    twitter
+  }
   darkIcon
+  description
+  gitUrl
+  icon
+  id
+  license {
+    name
+    url
+  }
+  name
   private
+  publisher {
+    ...Publisher
+  }
+  readme
   tags {
     tag
   }
+  trending
+  verified
+  recipes {
+    ...Recipe
+  }
 }
-    `;
+    ${PublisherFragmentDoc}
+${RecipeFragmentDoc}`;
+export const ListArtifactsDocument = gql`
+    query ListArtifacts($id: ID!) {
+  repository(id: $id) {
+    artifacts {
+      ...Artifact
+    }
+  }
+}
+    ${ArtifactFragmentDoc}`;
+
+/**
+ * __useListArtifactsQuery__
+ *
+ * To run a query within a React component, call `useListArtifactsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListArtifactsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListArtifactsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useListArtifactsQuery(baseOptions: Apollo.QueryHookOptions<ListArtifactsQuery, ListArtifactsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ListArtifactsQuery, ListArtifactsQueryVariables>(ListArtifactsDocument, options);
+      }
+export function useListArtifactsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ListArtifactsQuery, ListArtifactsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ListArtifactsQuery, ListArtifactsQueryVariables>(ListArtifactsDocument, options);
+        }
+export type ListArtifactsQueryHookResult = ReturnType<typeof useListArtifactsQuery>;
+export type ListArtifactsLazyQueryHookResult = ReturnType<typeof useListArtifactsLazyQuery>;
+export type ListArtifactsQueryResult = Apollo.QueryResult<ListArtifactsQuery, ListArtifactsQueryVariables>;
 export const RecipesDocument = gql`
     query Recipes($repoName: String!) {
   recipes(repositoryName: $repoName, first: 500) {
@@ -5082,3 +5184,42 @@ export function useReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Repo
 export type ReposQueryHookResult = ReturnType<typeof useReposQuery>;
 export type ReposLazyQueryHookResult = ReturnType<typeof useReposLazyQuery>;
 export type ReposQueryResult = Apollo.QueryResult<ReposQuery, ReposQueryVariables>;
+export const RepoDocument = gql`
+    query Repo($name: String) {
+  repository(name: $name) {
+    ...Repo
+    recipes {
+      ...Recipe
+    }
+  }
+}
+    ${RepoFragmentDoc}
+${RecipeFragmentDoc}`;
+
+/**
+ * __useRepoQuery__
+ *
+ * To run a query within a React component, call `useRepoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRepoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRepoQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useRepoQuery(baseOptions?: Apollo.QueryHookOptions<RepoQuery, RepoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RepoQuery, RepoQueryVariables>(RepoDocument, options);
+      }
+export function useRepoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RepoQuery, RepoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RepoQuery, RepoQueryVariables>(RepoDocument, options);
+        }
+export type RepoQueryHookResult = ReturnType<typeof useRepoQuery>;
+export type RepoLazyQueryHookResult = ReturnType<typeof useRepoLazyQuery>;
+export type RepoQueryResult = Apollo.QueryResult<RepoQuery, RepoQueryVariables>;

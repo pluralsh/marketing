@@ -1,9 +1,11 @@
 import capitalize from 'lodash/capitalize'
 import memoizeOne from 'memoize-one'
+import ResponseCache from 'next/dist/server/response-cache'
 
 import client from '../apollo-client'
 import {
-  type RecipeFragment,
+  // type RecipeFragment,
+  type Recipe,
   type RepoFragment,
   ReposDocument,
   type ReposQuery,
@@ -14,7 +16,6 @@ const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']
 
 export type Repo = Exclude<RepoFragment, null | undefined> & {
   displayName?: string
-  recipes?: (RecipeFragment | undefined | null)[]
 }
 
 export const reposCache: {
@@ -65,7 +66,7 @@ const normalizeRepos = memoizeOne(
     data?.repositories?.edges?.flatMap((edge) => {
       const repo = edge?.node
 
-      return repo && !inRemoveList(repo.name)
+      return repo && !inRemoveList(repo.name) && !repo.private
         ? {
             ...repo,
             displayName:
@@ -93,4 +94,19 @@ export async function getRepos(): Promise<Repo[]> {
   }
 
   throw new Error('No repos found')
+}
+
+export async function getRepo(repoName): Promise<Repo & { recipes: Recipe[] }> {
+  let repos
+
+  try {
+    repos = (await getRepos()) || reposCache
+  } catch (e) {
+    repos = ResponseCache
+    if (!repos) {
+      throw new Error('No repos found')
+    }
+  }
+
+  return repos.find((r) => r.name === repoName)
 }

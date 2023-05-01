@@ -24,7 +24,6 @@ import '@src/styles/globals.css'
 import { BreakpointProvider } from '@src/components/Breakpoints'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import ExternalScripts from '@src/components/ExternalScripts'
-import { FullNav } from '@src/components/FullNav'
 import {
   GITHUB_DATA_URL,
   getGithubDataServer,
@@ -39,7 +38,6 @@ import {
   ContentContainer,
   PageGrid,
   SideCarContainer,
-  SideNavContainer,
 } from '@src/components/PageGrid'
 import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
@@ -53,19 +51,11 @@ import {
 import { NavDataProvider } from '@src/contexts/NavDataContext'
 import { ReposProvider } from '@src/contexts/ReposContext'
 import { getRepos, reposCache } from '@src/data/getRepos'
+import { type Recipe } from '@src/generated/graphqlPlural'
 import { getNavData } from '@src/NavData'
 
 import type { MarkdocNextJsPageProps } from '@markdoc/next.js'
 import type { Repo } from '@src/data/getRepos'
-
-export type MyPageProps = MarkdocNextJsPageProps & {
-  displayTitle?: string
-  metaTitle?: string
-  displayDescription?: string
-  metaDescription?: string
-  repo?: Repo | null
-  tableOfContents?: any
-}
 
 type MyAppProps = AppProps<MyPageProps | undefined> & {
   errors: Error[]
@@ -170,9 +160,6 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
         <PageHeader />
         <Page>
           <PageGrid>
-            <SideNavContainer>
-              <FullNav desktop />
-            </SideNavContainer>
             <ContentContainer>
               <MainContent
                 Component={Component}
@@ -201,17 +188,15 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
       <MarkdocContextProvider value={{ variant: 'docs' }}>
         <NavigationContextProvider value={navContextVal}>
           <SWRConfig value={swrConfig}>
-            <ReposProvider value={repos}>
-              <NavDataProvider value={navData}>
-                <BreakpointProvider>
-                  <ThemeProvider theme={honorableTheme}>
-                    <StyledThemeProvider theme={docsStyledTheme}>
-                      <FillLevelProvider value={0}>{app}</FillLevelProvider>
-                    </StyledThemeProvider>
-                  </ThemeProvider>
-                </BreakpointProvider>
-              </NavDataProvider>
-            </ReposProvider>
+            <NavDataProvider value={navData}>
+              <BreakpointProvider>
+                <ThemeProvider theme={honorableTheme}>
+                  <StyledThemeProvider theme={docsStyledTheme}>
+                    <FillLevelProvider value={0}>{app}</FillLevelProvider>
+                  </StyledThemeProvider>
+                </ThemeProvider>
+              </BreakpointProvider>
+            </NavDataProvider>
           </SWRConfig>
         </NavigationContextProvider>
       </MarkdocContextProvider>
@@ -220,7 +205,6 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
 }
 
 App.getInitialProps = async () => {
-  const { data: repos, error: reposError } = await until(() => getRepos())
   const { data: githubData, error: githubError } = await until(() =>
     getGithubDataServer()
   )
@@ -231,14 +215,10 @@ App.getInitialProps = async () => {
   }
 
   return {
-    repos: repos || reposCache.filtered,
     swrConfig: {
       fallback: swrFallback,
     },
-    errors: [
-      ...(reposError ? [reposError] : []),
-      ...(githubError ? [githubError] : []),
-    ],
+    errors: [...(githubError ? [githubError] : [])],
   }
 }
 
