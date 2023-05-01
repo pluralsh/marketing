@@ -72,7 +72,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "3.2.1",
     "@graphql-codegen/client-preset": "2.1.0",
-    "@pluralsh/eslint-config-typescript": "2.5.40",
+    "@pluralsh/eslint-config-typescript": "2.5.41",
     "@pluralsh/stylelint-config": "1.1.3",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
