@@ -21,6 +21,7 @@ import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 import '@src/styles/globals.css'
 
+import { directusClient } from '@src/apollo-client'
 import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import ExternalScripts from '@src/components/ExternalScripts'
@@ -36,8 +37,13 @@ import PageFooter from '@src/components/PageFooter'
 import { ContentContainer, PageGrid } from '@src/components/PageGrid'
 import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
-import { META_DESCRIPTION, ROOT_TITLE } from '@src/consts'
+import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
+import {
+  SiteSettingsDocument,
+  type SiteSettingsQuery,
+  type SiteSettingsQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { getNavData } from '@src/NavData'
 
 import type { Repo } from '@src/data/getRepos'
@@ -48,6 +54,7 @@ type MyAppProps = AppProps<GlobalPageProps> & {
   errors: Error[]
   repos: Repo[]
   swrConfig: ComponentProps<typeof SWRConfig>['value']
+  siteSettings: SiteSettingsQuery['site_settings']
 }
 
 export type MarkdocHeading = {
@@ -84,15 +91,25 @@ const Link = forwardRef(
   )
 )
 
-function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
+function App({
+  Component,
+  repos = [],
+  pageProps = {},
+  swrConfig,
+  siteSettings = {},
+}: MyAppProps) {
   usePosthog()
   const navData = useMemo(() => getNavData({ repos }), [repos])
   const { metaTitle, metaDescription } = pageProps
 
   const headProps = {
-    title: metaTitle || ROOT_TITLE,
-    description: metaDescription || META_DESCRIPTION,
+    title: metaTitle
+      ? `${PAGE_TITLE_PREFIX}${metaTitle}${PAGE_TITLE_SUFFIX}`
+      : ROOT_TITLE,
+    description: metaDescription || siteSettings?.og_description || '',
   }
+
+  console.log('siteSettings', siteSettings)
 
   const app = (
     <>
@@ -102,7 +119,7 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
       <DocSearchStyles />
       <PagePropsContext.Provider value={pageProps}>
         <HtmlHead {...headProps} />
-        <PageHeader />
+        <PageHeader nav={siteSettings?.main_nav?.subnav} />
         <Page>
           <PageGrid>
             <Component {...pageProps} />
@@ -148,6 +165,8 @@ App.getInitialProps = async () => {
   )
   const swrFallback = {}
 
+  const siteSettings = await getSiteSettings()
+
   if (isGithubRepoData(githubData)) {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
@@ -156,8 +175,24 @@ App.getInitialProps = async () => {
     swrConfig: {
       fallback: swrFallback,
     },
+    siteSettings,
     errors: [...(githubError ? [githubError] : [])],
   }
 }
 
 export default App
+
+const getSiteSettings = async () => {
+  const { data, error } = await directusClient.query<
+    SiteSettingsQuery,
+    SiteSettingsQueryVariables
+  >({
+    query: SiteSettingsDocument,
+  })
+
+  if (error) {
+    throw new Error(`${error.name}: ${error.message}`)
+  }
+
+  return data?.site_settings ?? {}
+}

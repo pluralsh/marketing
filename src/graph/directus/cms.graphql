@@ -1,0 +1,49 @@
+fragment Event on events {
+  id
+  name
+  start_date
+  end_date
+  fields
+}
+
+query Events {
+  events {
+    ...Event
+  }
+}
+
+fragment Link on nav_link {
+  title
+  url
+}
+
+fragment NavList on nav_list {
+  # id
+  # slug
+  link {
+    ...Link
+  }
+}
+
+fragment NavListDepth3 on nav_list {
+  ...NavList
+  subnav {
+    ...NavList
+    subnav {
+      ...NavList
+    }
+  }
+}
+
+fragment SiteSettings on site_settings {
+  main_nav {
+    ...NavListDepth3
+  }
+  og_description
+}
+
+query SiteSettings {
+  site_settings {
+    ...SiteSettings
+  }
+}

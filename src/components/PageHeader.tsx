@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { type ComponentProps, HTMLProps, useEffect, useState } from 'react'
 
 import { Button, DiscordIcon, usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
@@ -7,8 +7,10 @@ import { useRouter } from 'next/router'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
+import { type SiteSettingsFragment } from '@src/generated/graphqlDirectus'
+
 import {
-  BreakpointIsGreaterOrEqual,
+  breakpointIsGreaterOrEqual,
   mqs,
   useBreakpoint,
 } from './BreakpointProvider'
@@ -20,7 +22,9 @@ const Filler = styled.div((_) => ({
   flexGrow: 1,
 }))
 
-function PageHeaderUnstyled({ ...props }) {
+type Nav = Exclude<SiteSettingsFragment['main_nav'], null | undefined>['subnav']
+
+function PageHeaderUnstyled({ nav, ...props }: { nav: Nav }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -29,7 +33,7 @@ function PageHeaderUnstyled({ ...props }) {
   const breakpoint = useBreakpoint()
 
   useEffect(() => {
-    if (BreakpointIsGreaterOrEqual(breakpoint, 'fullHeader')) {
+    if (breakpointIsGreaterOrEqual(breakpoint, 'fullHeader')) {
       setMenuIsOpen(false)
     }
   }, [breakpoint])
@@ -44,21 +48,23 @@ function PageHeaderUnstyled({ ...props }) {
     setMenuIsOpen(false)
   })
 
+  console.log('NAV klink', nav)
+
   return (
     <header {...props}>
       <nav className="leftSection">
         <NextLink
           href="/"
-          className="flex"
+          className="flex flex-shrink-0"
           passHref
         >
           <img
             className="logo"
             alt="Plural docs"
-            src="/images/plural-docs-logo.svg"
+            src="/images/plural-logo.svg"
           />
         </NextLink>
-        <PageHeaderLinks />
+        <PageHeaderLinks nav={nav} />
       </nav>
       <Filler />
       <section className="rightSection">
@@ -141,7 +147,8 @@ const PageHeader = styled(PageHeaderUnstyled)(({ theme }) => ({
     },
   },
   '.logo': {
-    width: 162,
+    display: 'block',
+    width: 98,
     [mqs.fullHeader]: {
       // width: 216,
     },
@@ -160,6 +167,23 @@ export const MainLink = styled.a(({ theme }) => ({
     color: theme.colors['text-light'],
     textDecoration: 'none',
   },
+  '&[href]:hover': {
+    textDecoration: 'underline',
+    color: theme.colors.text,
+  },
+  padding: `${theme.spacing.xsmall}px ${theme.spacing.medium}px`,
+  [mqs.fullHeader]: {
+    padding: `${theme.spacing.small}px ${theme.spacing.medium}px`,
+  },
+}))
+
+export const SecondaryLink = styled.a(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  '&:any-link': {
+    color: theme.colors['text-light'],
+    textDecoration: 'none',
+  },
   '&:hover': {
     textDecoration: 'underline',
     color: theme.colors.text,
@@ -170,12 +194,15 @@ export const MainLink = styled.a(({ theme }) => ({
   },
 }))
 
-const PageHeaderLinks = styled(({ ...props }) => (
-  <div {...props}>
-    <MainLink href="https://plural.sh/marketplace">Marketplace</MainLink>
-    <MainLink href="https://plural.sh/community">Community</MainLink>
-  </div>
-))(({ theme }) => ({
+const PageHeaderLinks = styled(
+  ({ nav, ...props }: { nav: Nav } & ComponentProps<'div'>) => (
+    <div {...props}>
+      {nav?.map((navList) => (
+        <MainLink href={navList.link.url}>{navList?.link.title}</MainLink>
+      ))}
+    </div>
+  )
+)(({ theme }) => ({
   display: 'none',
   [mqs.fullHeader]: {
     display: 'flex',

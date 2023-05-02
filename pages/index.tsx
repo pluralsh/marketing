@@ -15,7 +15,7 @@ export default function Index({ events, ...props }) {
         <p className="text-marketing-white">This is some paragraph textzz</p>
         <div className="flex flex-col">
           {events.map((event) => {
-            const startDate = new Date(event.start_date)
+            const startDate = new Date(event.start_date).toDateString()
 
             return (
               <div className="rounded-md bg-fill-one p-medium">

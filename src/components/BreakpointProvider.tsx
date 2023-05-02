@@ -38,12 +38,4 @@ export function BreakpointProvider({ children }: PropsWithChildren) {
   )
 }
 
-export function BreakpointIsGreaterOrEqual(a: Breakpoint, b: Breakpoint) {
-  return breakpoints[a] >= breakpoints[b]
-}
-
-export function BreakpointIsLessThan(a: Breakpoint, b: Breakpoint) {
-  return breakpoints[a] < breakpoints[b]
-}
-
 export const useBreakpoint = () => useContext(BreakpointContext)

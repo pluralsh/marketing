@@ -187,10 +187,10 @@ export default function Index({
     setSearchParams({})
   }, [setSearchParams])
 
-  const handleClearFilters = useCallback(() => {
-    setSearch('')
-    handleClearTokens()
-  }, [handleClearTokens])
+  // const handleClearFilters = useCallback(() => {
+  //   setSearch('')
+  //   handleClearTokens()
+  // }, [handleClearTokens])
 
   const { repositories } = props
 

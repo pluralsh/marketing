@@ -29,3 +29,11 @@ export const mqs = Object.fromEntries(
     `@media screen and (min-width: ${val}px)`,
   ])
 ) as Record<Breakpoint, string>
+
+export function breakpointIsGreaterOrEqual(a: Breakpoint, b: Breakpoint) {
+  return breakpoints[a] >= breakpoints[b]
+}
+
+export function breakpointIsLessThan(a: Breakpoint, b: Breakpoint) {
+  return breakpoints[a] < breakpoints[b]
+}
