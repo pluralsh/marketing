@@ -21,7 +21,7 @@ import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 import '@src/styles/globals.css'
 
-import { BreakpointProvider } from '@src/components/Breakpoints'
+import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import ExternalScripts from '@src/components/ExternalScripts'
 import {
@@ -33,7 +33,7 @@ import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
 import HtmlHead from '@src/components/HtmlHead'
 import PageFooter from '@src/components/PageFooter'
-import { PageGrid } from '@src/components/PageGrid'
+import { ContentContainer, PageGrid } from '@src/components/PageGrid'
 import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
 import { META_DESCRIPTION, ROOT_TITLE } from '@src/consts'
@@ -105,9 +105,11 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
         <PageHeader />
         <Page>
           <PageGrid>
-            <Component />
+            <Component {...pageProps} />
           </PageGrid>
-          <PageFooter />
+          <ContentContainer>
+            <PageFooter />
+          </ContentContainer>
         </Page>
         <ExternalScripts />
       </PagePropsContext.Provider>

@@ -1,6 +1,7 @@
 import { type Config } from 'tailwindcss'
 import { styledTheme } from '@pluralsh/design-system'
 import mapValues from 'lodash/mapValues'
+import { breakpoints } from './src/breakpoints'
 
 const spacing = {
   ...mapValues(styledTheme.spacing, (space) => {
@@ -18,6 +19,7 @@ export default {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: mapValues(breakpoints, (bp)=> `${bp}px`),
     colors: colors,
     spacing: spacing,
     extend: {},

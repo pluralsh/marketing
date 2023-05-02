@@ -1,29 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { PropsWithChildren } from 'react'
 
-type Breakpoint =
-  | ''
-  | 'md'
-  | 'twoColumn'
-  | 'fullHeader'
-  | 'threeColumn'
-  | 'maxWidth'
+import { type Breakpoint, breakpoints } from '../breakpoints'
 
-export const breakpoints: Record<Breakpoint, number> = {
-  '': 0,
-  md: 720,
-  twoColumn: 1000,
-  fullHeader: 1000,
-  threeColumn: 1280,
-  maxWidth: 1588,
-}
-
-export const mqs = Object.fromEntries(
-  Object.entries(breakpoints).map(([key, val]) => [
-    key,
-    `@media screen and (min-width: ${val}px)`,
-  ])
-) as Record<Breakpoint, string>
+export * from '../breakpoints'
 
 export const BreakpointContext = createContext<Breakpoint>('')
 

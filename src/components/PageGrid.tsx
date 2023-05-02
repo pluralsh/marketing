@@ -1,14 +1,22 @@
 import styled from 'styled-components'
 
-import { mqs } from './Breakpoints'
+import { mqs } from './BreakpointProvider'
 
-export const PageGrid = styled.div((_p) => ({
+export const PageGrid = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
-  width: '100%',
+  width: 'auto',
   maxWidth: 1588,
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  marginLeft: theme.spacing.small,
+  marginRight: theme.spacing.small,
+  [mqs.threeColumn]: {
+    marginLeft: theme.spacing.medium,
+    marginRight: theme.spacing.medium,
+  },
+  [mqs.maxWidth]: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
   position: 'relative',
 }))
 
@@ -24,7 +32,6 @@ export const SideNavContainer = styled.div(({ theme }) => ({
 
 export const SideCarContainer = styled.div(({ theme }) => ({
   display: 'none',
-
   [mqs.threeColumn]: {
     position: 'sticky',
     marginRight: theme.spacing.large,

@@ -1,7 +1,7 @@
 import mapKeys from 'lodash/mapKeys'
 import { createGlobalStyle } from 'styled-components'
 
-import { mqs } from './Breakpoints'
+import { mqs } from './BreakpointProvider'
 
 const fillAvailable = (prop) => ({
   [`${prop} `]: '-webkit-fill-available',

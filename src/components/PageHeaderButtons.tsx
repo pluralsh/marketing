@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import styled from 'styled-components'
 
-import { mqs } from './Breakpoints'
+import { mqs } from '../breakpoints'
 
 export function SearchButton() {
   const router = useRouter()

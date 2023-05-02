@@ -68,7 +68,7 @@ export function RepoCardList({
   size?: ComponentProps<typeof RepositoryCard>['size']
 }) {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_1fr))]">
+    <div className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_1fr))] gap-medium xl:gap-xlarge">
       {repositories?.map((repository) => (
         <RepositoryCard
           key={repository.id}
@@ -194,6 +194,9 @@ export default function Index({
 
   const { repositories } = props
 
+  console.log('repos', props.repositories)
+  console.log('props', props)
+
   const sortedRepositories = (
     orderBy(
       repositories,
@@ -235,14 +238,10 @@ export default function Index({
     : sortedRepositories
 
   return (
-    <div>
-      <div className="flex flex-col gap-x-medium gap-y-xlarge ">
-        <h1 className="hero2 mb-medium w-full">
-          Explore the open-source marketplace
-        </h1>
-        <p className="hero2 mb-medium w-full">
-          Discover over 90 production-ready applications.
-        </p>
+    <div className="w-full">
+      <div className="mb-xlarge">
+        <h1 className="hero2 mb-medium">Explore the open-source marketplace</h1>
+        <p className="body1">Discover over 90 production-ready applications.</p>
       </div>
       <Button
         onClick={() => {
@@ -300,8 +299,11 @@ function SearchBar({ search, setSearch }) {
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const { data: repos, error: reposError } = await until(() => getRepos())
 
+  console.log('repos', repos)
+
   return {
     props: {
+      stuff: 'trhings',
       repositories: repos || reposCache.filtered,
       errors: [...(reposError ? [reposError] : [])],
     },

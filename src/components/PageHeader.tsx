@@ -7,7 +7,11 @@ import { useRouter } from 'next/router'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
-import { BreakpointIsGreaterOrEqual, mqs, useBreakpoint } from './Breakpoints'
+import {
+  BreakpointIsGreaterOrEqual,
+  mqs,
+  useBreakpoint,
+} from './BreakpointProvider'
 import GithubStars from './GithubStars'
 import MobileMenu from './MobileMenu'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
