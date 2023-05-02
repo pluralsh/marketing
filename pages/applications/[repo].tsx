@@ -1,10 +1,8 @@
-import path from 'path'
-
 import { InlineCode } from '@pluralsh/design-system'
-import type {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
+import {
+  type GetStaticPaths,
+  type GetStaticProps,
+  type InferGetStaticPropsType,
 } from 'next'
 
 import {
@@ -16,43 +14,15 @@ import {
 } from '@pluralsh/design-system/dist/markdoc/components'
 
 import client from '@src/apollo-client'
-import MarkdocComponent from '@src/components/MarkdocContent'
-import { getAppMetaDescription } from '@src/consts'
-import { APP_CATALOG_BASE_URL } from '@src/consts/routes'
-import { getRepos } from '@src/data/getRepos'
-import { RecipesDocument } from '@src/generated/graphql'
-import { readMdFileCached } from '@src/markdoc/mdParser'
+import { type MinRepo, getRepos } from '@src/data/getRepos'
+import {
+  type Recipe,
+  type RecipeFragment,
+  RecipesDocument,
+  type RecipesQuery,
+  type RecipesQueryVariables,
+} from '@src/generated/graphqlPlural'
 import { providerToProviderName } from '@src/utils/text'
-
-import type { MarkdocHeading, GlobalPageProps } from '../_app'
-import type {
-  RecipeFragment,
-  RecipesQuery,
-  RecipesQueryVariables,
-} from '@src/generated/graphql'
-
-function collectHeadings(node: any, sections: MarkdocHeading[] = []) {
-  if (node) {
-    if (node?.name === 'Heading') {
-      const title = node.children[0]
-
-      if (typeof title === 'string') {
-        sections.push({
-          ...node.attributes,
-          title,
-        })
-      }
-    }
-
-    if (node?.children) {
-      for (const child of node.children) {
-        collectHeadings(child, sections)
-      }
-    }
-  }
-
-  return sections as MarkdocHeading[]
-}
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -62,16 +32,8 @@ function isRecipe(
 
 export default function App({
   repo,
-  markdoc,
+  recipes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { recipes } = repo || {}
-
-  const headings = collectHeadings(markdoc?.content)
-
-  const mdHasConfig = !!headings.find((heading) =>
-    heading?.title?.match(/configuration/gi)
-  )
-
   const tabs = recipes?.filter(isRecipe).map((recipe) => ({
     key: recipe.name,
     label:
@@ -106,7 +68,7 @@ export default function App({
         We currently support {repo?.displayName} for the following providers:
       </Paragraph>
       {tabs && tabs.length > 0 && <FenceInner tabs={tabs} />}
-      {!mdHasConfig && recipeSections && recipeHasConfig && (
+      {recipeSections && recipeHasConfig && (
         <>
           <Heading level={2}>Setup Configuration</Heading>
           <List ordered={false}>
@@ -121,7 +83,6 @@ export default function App({
           </List>
         </>
       )}
-      {markdoc && <MarkdocComponent markdoc={markdoc} />}
     </div>
   )
 }
@@ -142,9 +103,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<Partial<GlobalPageProps>> = async (
-  context
-) => {
+export type AppPageProps = {
+  repo?: MinRepo | null
+  recipes?: Recipe[]
+}
+
+export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo
 
   const repos = await getRepos()
@@ -153,13 +117,6 @@ export const getStaticProps: GetStaticProps<Partial<GlobalPageProps>> = async (
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
   }
-  const mdFilePath = path.join(
-    '/pages',
-    APP_CATALOG_BASE_URL,
-    `${repoName}.mdpart`
-  )
-
-  const markdoc = await readMdFileCached(mdFilePath)
 
   const { data: recipesData, error: recipesError } = await client.query<
     RecipesQuery,
@@ -176,22 +133,16 @@ export const getStaticProps: GetStaticProps<Partial<GlobalPageProps>> = async (
   const recipes =
     recipesData?.recipes?.edges
       ?.map((edge) => edge?.node)
-      .filter((r) => r && !r?.private) || []
+      .filter((r): r is Recipe => !!r && !r?.private) || []
 
   return {
     props: {
-      ...(markdoc ? { markdoc } : {}),
-      displayTitle:
-        markdoc?.frontmatter?.title || `Installing ${thisRepo?.displayName}`,
-      displayDescription:
-        markdoc?.frontmatter?.description || thisRepo?.description,
-      metaDescription: getAppMetaDescription(thisRepo.displayName),
       repo: thisRepo
         ? {
             ...thisRepo,
-            recipes: recipes || [],
           }
         : null,
+      recipes,
     },
     revalidate: 600,
   }

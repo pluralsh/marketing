@@ -10,7 +10,7 @@ import {
   styledTheme,
 } from '@pluralsh/design-system'
 import { CssBaseline, ThemeProvider } from 'honorable'
-import type { AppProps } from 'next/app'
+import { type AppProps } from 'next/app'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -32,32 +32,19 @@ import {
 import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
 import HtmlHead from '@src/components/HtmlHead'
-import MainContent from '@src/components/MainContent'
 import PageFooter from '@src/components/PageFooter'
-import {
-  ContentContainer,
-  PageGrid,
-  SideCarContainer,
-} from '@src/components/PageGrid'
+import { PageGrid } from '@src/components/PageGrid'
 import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
-import { TableOfContents } from '@src/components/TableOfContents'
-import {
-  META_DESCRIPTION,
-  PAGE_TITLE_PREFIX,
-  PAGE_TITLE_SUFFIX,
-  ROOT_TITLE,
-} from '@src/consts'
+import { META_DESCRIPTION, ROOT_TITLE } from '@src/consts'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
-import { ReposProvider } from '@src/contexts/ReposContext'
-import { getRepos, reposCache } from '@src/data/getRepos'
-import { type Recipe } from '@src/generated/graphqlPlural'
 import { getNavData } from '@src/NavData'
 
-import type { MarkdocNextJsPageProps } from '@markdoc/next.js'
 import type { Repo } from '@src/data/getRepos'
 
-type MyAppProps = AppProps<MyPageProps | undefined> & {
+export type GlobalPageProps = { metaTitle?: string; metaDescription?: string }
+
+type MyAppProps = AppProps<GlobalPageProps> & {
   errors: Error[]
   repos: Repo[]
   swrConfig: ComponentProps<typeof SWRConfig>['value']
@@ -70,29 +57,6 @@ export type MarkdocHeading = {
 }
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
-
-function collectHeadings(node, sections: MarkdocHeading[] = []) {
-  if (node) {
-    if (node?.name === 'Heading') {
-      const title = node.children[0]
-
-      if (typeof title === 'string') {
-        sections.push({
-          ...node.attributes,
-          title,
-        })
-      }
-    }
-
-    if (node?.children) {
-      for (const child of node.children) {
-        collectHeadings(child, sections)
-      }
-    }
-  }
-
-  return sections as MarkdocHeading[]
-}
 
 const Page = styled.div(() => ({}))
 
@@ -122,32 +86,13 @@ const Link = forwardRef(
 
 function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
   usePosthog()
-  const router = useRouter()
-  const markdoc = pageProps?.markdoc
   const navData = useMemo(() => getNavData({ repos }), [repos])
   const { metaTitle, metaDescription } = pageProps
 
-  const displayTitle = pageProps?.displayTitle || markdoc?.frontmatter?.title
-  const displayDescription =
-    pageProps?.displayDescription || markdoc?.frontmatter?.description
-
   const headProps = {
-    title:
-      metaTitle || displayTitle
-        ? `${PAGE_TITLE_PREFIX}${displayTitle}${PAGE_TITLE_SUFFIX}`
-        : ROOT_TITLE,
-    description:
-      metaDescription ||
-      (router.pathname === '/'
-        ? META_DESCRIPTION
-        : markdoc?.frontmatter?.description || META_DESCRIPTION),
+    title: metaTitle || ROOT_TITLE,
+    description: metaDescription || META_DESCRIPTION,
   }
-
-  const toc = pageProps.tableOfContents
-    ? pageProps.tableOfContents
-    : pageProps?.markdoc?.content
-    ? collectHeadings(pageProps?.markdoc.content)
-    : []
 
   const app = (
     <>
@@ -160,18 +105,9 @@ function App({ Component, repos = [], pageProps = {}, swrConfig }: MyAppProps) {
         <PageHeader />
         <Page>
           <PageGrid>
-            <ContentContainer>
-              <MainContent
-                Component={Component}
-                title={displayTitle}
-                description={displayDescription}
-              />
-              <PageFooter />
-            </ContentContainer>
-            <SideCarContainer>
-              <TableOfContents toc={toc} />
-            </SideCarContainer>
+            <Component />
           </PageGrid>
+          <PageFooter />
         </Page>
         <ExternalScripts />
       </PagePropsContext.Provider>

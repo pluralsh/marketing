@@ -4972,19 +4972,21 @@ export type RecipesQuery = { __typename?: 'RootQueryType', recipes?: { __typenam
 
 export type PublisherFragment = { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null };
 
-export type RepoFragment = { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null };
+export type MinRepoFragment = { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null };
+
+export type FullRepoFragment = { __typename?: 'Repository', readme?: string | null, category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null };
 
 export type ReposQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null } | null } | null> | null } | null };
+export type ReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null } | null } | null> | null } | null };
 
 export type RepoQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type RepoQuery = { __typename?: 'RootQueryType', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, gitUrl?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, readme?: string | null, trending?: boolean | null, verified?: boolean | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null } | null };
+export type RepoQuery = { __typename?: 'RootQueryType', repository?: { __typename?: 'Repository', readme?: string | null, category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, recipes?: Array<{ __typename?: 'Recipe', name: string, description?: string | null, provider?: Provider | null, private?: boolean | null, repository?: { __typename?: 'Repository', description?: string | null } | null, recipeSections?: Array<{ __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null } | null> | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null } | null };
 
 export const ArtifactFragmentDoc = gql`
     fragment Artifact on Artifact {
@@ -5011,6 +5013,33 @@ export const PublisherFragmentDoc = gql`
   backgroundColor
 }
     `;
+export const MinRepoFragmentDoc = gql`
+    fragment MinRepo on Repository {
+  category
+  community {
+    discord
+    slack
+    homepage
+    gitUrl
+    twitter
+  }
+  darkIcon
+  description
+  icon
+  id
+  name
+  private
+  publisher {
+    ...Publisher
+  }
+  releaseStatus
+  tags {
+    tag
+  }
+  trending
+  verified
+}
+    ${PublisherFragmentDoc}`;
 export const RecipeFragmentDoc = gql`
     fragment Recipe on Recipe {
   name
@@ -5034,41 +5063,15 @@ export const RecipeFragmentDoc = gql`
   }
 }
     `;
-export const RepoFragmentDoc = gql`
-    fragment Repo on Repository {
-  category
-  community {
-    discord
-    slack
-    homepage
-    gitUrl
-    twitter
-  }
-  darkIcon
-  description
-  gitUrl
-  icon
-  id
-  license {
-    name
-    url
-  }
-  name
-  private
-  publisher {
-    ...Publisher
-  }
+export const FullRepoFragmentDoc = gql`
+    fragment FullRepo on Repository {
+  ...MinRepo
   readme
-  tags {
-    tag
-  }
-  trending
-  verified
   recipes {
     ...Recipe
   }
 }
-    ${PublisherFragmentDoc}
+    ${MinRepoFragmentDoc}
 ${RecipeFragmentDoc}`;
 export const ListArtifactsDocument = gql`
     query ListArtifacts($id: ID!) {
@@ -5151,12 +5154,12 @@ export const ReposDocument = gql`
   repositories(first: 5000) {
     edges {
       node {
-        ...Repo
+        ...MinRepo
       }
     }
   }
 }
-    ${RepoFragmentDoc}`;
+    ${MinRepoFragmentDoc}`;
 
 /**
  * __useReposQuery__
@@ -5187,14 +5190,10 @@ export type ReposQueryResult = Apollo.QueryResult<ReposQuery, ReposQueryVariable
 export const RepoDocument = gql`
     query Repo($name: String) {
   repository(name: $name) {
-    ...Repo
-    recipes {
-      ...Recipe
-    }
+    ...FullRepo
   }
 }
-    ${RepoFragmentDoc}
-${RecipeFragmentDoc}`;
+    ${FullRepoFragmentDoc}`;
 
 /**
  * __useRepoQuery__

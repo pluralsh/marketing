@@ -1,5 +1,5 @@
 import { createContext } from 'react'
 
-import type { MarkdocNextJsPageProps } from '@markdoc/next.js'
+import { type GlobalPageProps } from '@pages/_app'
 
-export const PagePropsContext = createContext<MarkdocNextJsPageProps>({})
+export const PagePropsContext = createContext<GlobalPageProps>({})

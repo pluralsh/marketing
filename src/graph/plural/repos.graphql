@@ -33,6 +33,7 @@ fragment MinRepo on Repository {
     ...Publisher
   }
   # readme
+  releaseStatus
   tags {
     tag
   }
@@ -41,7 +42,7 @@ fragment MinRepo on Repository {
 }
 
 fragment FullRepo on Repository {
-  ...minRepo
+  ...MinRepo
   readme
   recipes {
     ...Recipe

@@ -4,7 +4,7 @@ import deepFreeze from 'deep-freeze'
 
 import { APP_CATALOG_BASE_URL } from './consts/routes'
 
-import type { Repo } from './data/getRepos'
+import type { MinRepo } from './data/getRepos'
 
 export type NavMenuId = 'docs' | 'appCatalog'
 export type MenuId = NavMenuId | 'plural'
@@ -293,7 +293,7 @@ const rootNavData: NavMenu = deepFreeze([
   },
 ])
 
-export const getNavData = ({ repos }: { repos: Repo[] }): NavData => ({
+export const getNavData = ({ repos }: { repos: MinRepo[] }): NavData => ({
   docs: rootNavData,
   appCatalog: [
     {
