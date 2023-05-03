@@ -1,4 +1,4 @@
-import { type ComponentProps, useCallback, useState } from 'react'
+import { type ComponentProps, useCallback, useRef, useState } from 'react'
 
 import {
   BrowseAppsIcon,
@@ -7,54 +7,46 @@ import {
   Input,
   MagnifyingGlassIcon,
   RepositoryCard,
+  TabPanel,
 } from '@pluralsh/design-system'
 import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
-import {
-  type ReadonlyURLSearchParams,
-  useSearchParams as useNextSearchParams,
-} from 'next/navigation'
-import { useRouter } from 'next/router'
 
 import { until } from '@open-draft/until'
 import Fuse from 'fuse.js'
 import isEmpty from 'lodash/isEmpty'
 import orderBy from 'lodash/orderBy'
 import upperFirst from 'lodash/upperFirst'
+import styled from 'styled-components'
 
+import { mqs } from '@src/breakpoints'
+import MarketplaceSidebar from '@src/components/MarketplaceSidebar'
+import { MarketplaceGrid } from '@src/components/PageGrid'
 import { type Repo, getRepos, reposCache } from '@src/data/getRepos'
+import {
+  type Categories,
+  type Tags,
+  getSearchMetadata,
+} from '@src/data/getSearchMetadata'
 
-import { Subtitle } from '../src/components/Subtitle'
+import { useSearchParams } from '../src/components/hooks/useSearchParams'
+import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
 type PageProps = {
   repositories: Repo[]
+  categories: Categories
+  tags: Tags
 }
 const searchOptions = {
   keys: ['name', 'description', 'tags.tag'],
   threshold: 0.25,
 }
 
-type SetSearchParams = (
+export type SetSearchParams = (
   params:
     | ConstructorParameters<typeof URLSearchParams>[0]
     | ((params: URLSearchParams) => URLSearchParams)
 ) => void
-
-const useSearchParams = (): [ReadonlyURLSearchParams, SetSearchParams] => {
-  const router = useRouter()
-  const searchParams = useNextSearchParams()
-
-  return [
-    searchParams,
-    (p) => {
-      const oldParams = new URLSearchParams(searchParams.toString())
-      const newParams =
-        typeof p === 'function' ? p(oldParams) : new URLSearchParams(p)
-
-      router.replace({ ...router, query: newParams.toString() })
-    },
-  ]
-}
 
 export function RepoCardList({
   repositories,
@@ -68,7 +60,7 @@ export function RepoCardList({
   size?: ComponentProps<typeof RepositoryCard>['size']
 }) {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,_minmax(320px,_1fr))] gap-medium xl:gap-xlarge">
+    <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-3">
       {repositories?.map((repository) => (
         <RepositoryCard
           key={repository.id}
@@ -109,6 +101,27 @@ function FilterChip(props: ComponentProps<typeof Chip>) {
   )
 }
 
+const ContentContainer = styled.div(({ theme }) => ({
+  display: 'flex',
+  columnGap: theme.spacing.xxlarge,
+  [mqs.maxWidth]: {
+    columnGap: theme.spacing.xxxlarge,
+  },
+}))
+
+const MainContent = styled.div(({ theme: _ }) => ({
+  flexGrow: '1',
+}))
+
+const SidecarContainer = styled.div((_) => ({
+  display: 'none',
+  [mqs.lg]: {
+    display: 'block',
+    width: 248,
+    flexShrink: 0,
+  },
+}))
+
 function FilterChips({
   categories,
   handleClearToken,
@@ -123,11 +136,12 @@ function FilterChips({
 } & ComponentProps<'div'>) {
   return (
     <div
-      className="flex-wrap-wrap flex gap-small"
+      className="flex flex-wrap gap-small"
       {...props}
     >
       {categories.map((category) => (
         <FilterChip
+          key={category}
           onClick={() => handleClearToken('category', category)}
           onKeyDown={(event) =>
             (event.key === 'Enter' || event.key === ' ') &&
@@ -139,6 +153,7 @@ function FilterChips({
       ))}
       {tags.map((tag) => (
         <FilterChip
+          key={tag}
           onClick={() => handleClearToken('tag', tag)}
           onKeyDown={(event) =>
             (event.key === 'Enter' || event.key === ' ') &&
@@ -160,7 +175,26 @@ function FilterChips({
   )
 }
 
-export default function Index({
+export function clearToken({
+  key,
+  value,
+  setSearchParams,
+}: {
+  key: string
+  value: string
+  setSearchParams: SetSearchParams
+}) {
+  setSearchParams((params) => {
+    const newParams = params.getAll(key).filter((v) => v !== value)
+
+    params.delete(key)
+    newParams.forEach((p) => params.append(key, p))
+
+    return params
+  })
+}
+
+export default function Marketplace({
   ...props
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -168,17 +202,11 @@ export default function Index({
   const tags = searchParams.getAll('tag')
   const [search, setSearch] = useState('')
   const isFiltered = !isEmpty(categories) || !isEmpty(tags)
+  const tabStateRef = useRef<any>()
 
   const handleClearToken = useCallback(
     (key, value) => {
-      setSearchParams((params) => {
-        const newParams = params.getAll(key).filter((v) => v !== value)
-
-        params.delete(key)
-        newParams.forEach((p) => params.append(key, p))
-
-        return params
-      })
+      clearToken({ key, value, setSearchParams })
     },
     [setSearchParams]
   )
@@ -193,9 +221,6 @@ export default function Index({
   // }, [handleClearTokens])
 
   const { repositories } = props
-
-  console.log('repos', props.repositories)
-  console.log('props', props)
 
   const sortedRepositories = (
     orderBy(
@@ -238,43 +263,66 @@ export default function Index({
     : sortedRepositories
 
   return (
-    <div className="w-full">
-      <div className="mb-xlarge">
-        <h1 className="hero2 mb-medium">Explore the open-source marketplace</h1>
-        <p className="body1">Discover over 90 production-ready applications.</p>
+    <MarketplaceGrid>
+      <div className="my-xxlarge xxl:mb-[80px]">
+        <Heading1
+          as="h1"
+          className="mb-medium"
+        >
+          Explore the open-source marketplace
+        </Heading1>
+        <Body1 as="p">Discover over 90 production-ready applications.</Body1>
       </div>
-      <Button
-        onClick={() => {
-          setSearchParams({})
-        }}
-      />
-      <div className="flex flex-col">
-        <div>
-          <SearchBar
-            search={search}
-            setSearch={setSearch}
-          />
-          {isFiltered && (
-            <FilterChips
-              categories={categories}
-              handleClearToken={handleClearToken}
-              tags={tags}
-              handleClearTokens={handleClearTokens}
+      <ContentContainer>
+        <MainContent>
+          <div className="mb-xlarge">
+            <SearchBar
+              search={search}
+              setSearch={setSearch}
             />
-          )}
-        </div>
-        <Subtitle as="h4">Plural curated stacks</Subtitle>
-        <Subtitle as="h4">All apps</Subtitle>
+            {isFiltered && (
+              <FilterChips
+                categories={categories}
+                handleClearToken={handleClearToken}
+                tags={tags}
+                handleClearTokens={handleClearTokens}
+              />
+            )}
+          </div>
+          <TabPanel stateRef={tabStateRef}>
+            <Subtitle
+              as="h4"
+              className="mb-xlarge"
+            >
+              Plural curated stacks
+            </Subtitle>
+            <Subtitle
+              as="h4"
+              className="mb-xlarge"
+            >
+              All apps
+            </Subtitle>
 
-        <RepoCardList repositories={resultRepositories} />
-      </div>
-    </div>
+            <RepoCardList repositories={resultRepositories} />
+          </TabPanel>
+        </MainContent>
+        <SidecarContainer>
+          <MarketplaceSidebar
+            isOpen
+            categories={props.categories}
+            tags={props.tags}
+          />
+        </SidecarContainer>
+      </ContentContainer>
+    </MarketplaceGrid>
   )
 }
 
+const SearchBarWrap = styled.div(({ theme: _ }) => ({}))
+
 function SearchBar({ search, setSearch }) {
   return (
-    <div className="flex-shrink-1 flex-grow-1 flex-basis-[210px] min-w-[210px]">
+    <SearchBarWrap className="flex-shrink-1 flex-grow-1 flex-basis-[210px] mb-small  min-w-[210px]">
       <Input
         titleContent={
           <>
@@ -292,19 +340,21 @@ function SearchBar({ search, setSearch }) {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
-    </div>
+    </SearchBarWrap>
   )
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const { data: repos, error: reposError } = await until(() => getRepos())
 
-  console.log('repos', repos)
+  const { categories, tags } = await getSearchMetadata()
 
   return {
     props: {
       stuff: 'trhings',
       repositories: repos || reposCache.filtered,
+      tags: tags || [],
+      categories: categories || [],
       errors: [...(reposError ? [reposError] : [])],
     },
   }

@@ -3,8 +3,6 @@ import type { PropsWithChildren } from 'react'
 
 import { type Breakpoint, breakpoints } from '../breakpoints'
 
-export * from '../breakpoints'
-
 export const BreakpointContext = createContext<Breakpoint>('')
 
 export function BreakpointProvider({ children }: PropsWithChildren) {

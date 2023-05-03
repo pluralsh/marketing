@@ -1,21 +1,22 @@
 import { createContext, useContext } from 'react'
 
-import { useRouter } from 'next/router'
+import { type SiteSettingsFragment } from '@src/generated/graphqlDirectus'
 
-import { isAppCatalogRoute } from '../utils/text'
+type NavData = Exclude<
+  SiteSettingsFragment['main_nav'],
+  null | undefined
+>['subnav']
 
-import type { NavData } from '../NavData'
+const NavDataContext = createContext<NavData | null>(null)
 
-export const NavDataContext = createContext<NavData>({
-  docs: [],
-  appCatalog: [],
-})
-export const useNavMenu = () => {
-  const navData = useContext(NavDataContext)
-  const router = useRouter()
+export const useNavData = () => {
+  const context = useContext(NavDataContext)
 
-  return isAppCatalogRoute(router.asPath) ? navData.appCatalog : navData.docs
+  if (!context) {
+    throw Error('useNavData() must be used within a <NavDataProvider>')
+  }
+
+  return context
 }
 
-export const useNavData = () => useContext(NavDataContext)
 export const NavDataProvider = NavDataContext.Provider

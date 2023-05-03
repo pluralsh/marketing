@@ -33,8 +33,8 @@ import {
 import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
 import HtmlHead from '@src/components/HtmlHead'
+import { MaxWidthLimiter } from '@src/components/MaxWidthLimiter'
 import PageFooter from '@src/components/PageFooter'
-import { ContentContainer, PageGrid } from '@src/components/PageGrid'
 import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
@@ -44,7 +44,6 @@ import {
   type SiteSettingsQuery,
   type SiteSettingsQueryVariables,
 } from '@src/generated/graphqlDirectus'
-import { getNavData } from '@src/NavData'
 
 import type { Repo } from '@src/data/getRepos'
 
@@ -65,7 +64,9 @@ export type MarkdocHeading = {
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
 
-const Page = styled.div(() => ({}))
+const Page = styled(MaxWidthLimiter)((_) => ({
+  width: '100%',
+}))
 
 const useNavigate = () => {
   const router = useRouter()
@@ -93,13 +94,11 @@ const Link = forwardRef(
 
 function App({
   Component,
-  repos = [],
   pageProps = {},
   swrConfig,
   siteSettings = {},
 }: MyAppProps) {
   usePosthog()
-  const navData = useMemo(() => getNavData({ repos }), [repos])
   const { metaTitle, metaDescription } = pageProps
 
   const headProps = {
@@ -109,7 +108,7 @@ function App({
     description: metaDescription || siteSettings?.og_description || '',
   }
 
-  console.log('siteSettings', siteSettings)
+  const navData = siteSettings?.main_nav?.subnav || []
 
   const app = (
     <>
@@ -119,16 +118,12 @@ function App({
       <DocSearchStyles />
       <PagePropsContext.Provider value={pageProps}>
         <HtmlHead {...headProps} />
-        <PageHeader nav={siteSettings?.main_nav?.subnav} />
+        <PageHeader />
         <Page>
-          <PageGrid>
-            <Component {...pageProps} />
-          </PageGrid>
-          <ContentContainer>
-            <PageFooter />
-          </ContentContainer>
+          <Component {...pageProps} />
         </Page>
         <ExternalScripts />
+        <PageFooter />
       </PagePropsContext.Provider>
     </>
   )
@@ -182,6 +177,8 @@ App.getInitialProps = async () => {
 
 export default App
 
+let siteSettingsCache: SiteSettingsQuery['site_settings']
+
 const getSiteSettings = async () => {
   const { data, error } = await directusClient.query<
     SiteSettingsQuery,
@@ -190,9 +187,12 @@ const getSiteSettings = async () => {
     query: SiteSettingsDocument,
   })
 
-  if (error) {
+  if (data?.site_settings) {
+    siteSettingsCache = data.site_settings
+  }
+  if (error && !siteSettingsCache) {
     throw new Error(`${error.name}: ${error.message}`)
   }
 
-  return data?.site_settings ?? {}
+  return siteSettingsCache
 }

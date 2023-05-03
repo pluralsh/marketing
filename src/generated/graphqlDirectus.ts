@@ -205,6 +205,13 @@ export type Apps_Filter = {
   user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
+export type Boolean_Filter_Operators = {
+  _eq?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Scalars['Boolean']>;
+  _nnull?: InputMaybe<Scalars['Boolean']>;
+  _null?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type Count_Function_Filter_Operators = {
   count?: InputMaybe<Number_Filter_Operators>;
 };
@@ -365,6 +372,7 @@ export type Nav_Link_Filter = {
 
 export type Nav_List = {
   __typename?: 'nav_list';
+  flatten?: Maybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   link?: Maybe<Nav_Link>;
   parent_nav_list_id?: Maybe<Nav_List>;
@@ -420,6 +428,7 @@ export type Nav_List_Aggregated = {
 
 export type Nav_List_Aggregated_Count = {
   __typename?: 'nav_list_aggregated_count';
+  flatten?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   link?: Maybe<Scalars['Int']>;
   parent_nav_list_id?: Maybe<Scalars['Int']>;
@@ -436,6 +445,7 @@ export type Nav_List_Aggregated_Fields = {
 export type Nav_List_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Nav_List_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Nav_List_Filter>>>;
+  flatten?: InputMaybe<Boolean_Filter_Operators>;
   id?: InputMaybe<String_Filter_Operators>;
   link?: InputMaybe<Nav_Link_Filter>;
   parent_nav_list_id?: InputMaybe<Nav_List_Filter>;
@@ -505,18 +515,18 @@ export type EventsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type EventsQuery = { __typename?: 'Query', events: Array<{ __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, fields?: any | null }> };
 
-export type LinkFragment = { __typename?: 'nav_link', title?: string | null, url?: string | null };
+export type LinkFragment = { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null };
 
-export type NavListFragment = { __typename?: 'nav_list', link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null };
+export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type NavListDepth3Fragment = { __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null };
+export type NavListDepth3Fragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null };
+export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null };
 
 export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', subnav?: Array<{ __typename?: 'nav_list', link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', title?: string | null, url?: string | null } | null } | null } | null };
+export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
 
 export const EventFragmentDoc = gql`
     fragment Event on events {
@@ -529,12 +539,15 @@ export const EventFragmentDoc = gql`
     `;
 export const LinkFragmentDoc = gql`
     fragment Link on nav_link {
+  id
   title
   url
 }
     `;
 export const NavListFragmentDoc = gql`
     fragment NavList on nav_list {
+  id
+  flatten
   link {
     ...Link
   }
@@ -543,9 +556,9 @@ export const NavListFragmentDoc = gql`
 export const NavListDepth3FragmentDoc = gql`
     fragment NavListDepth3 on nav_list {
   ...NavList
-  subnav {
+  subnav(sort: ["sort"]) {
     ...NavList
-    subnav {
+    subnav(sort: ["sort"]) {
       ...NavList
     }
   }
@@ -553,7 +566,7 @@ export const NavListDepth3FragmentDoc = gql`
     ${NavListFragmentDoc}`;
 export const SiteSettingsFragmentDoc = gql`
     fragment SiteSettings on site_settings {
-  main_nav {
+  main_nav(sort: ["sort"]) {
     ...NavListDepth3
   }
   og_description

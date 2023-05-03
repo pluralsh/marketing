@@ -7,6 +7,14 @@ body h6 {
   margin: 0;
 }
 
+body, #__next {
+  min-height: 100%;
+}
+
+#__next {
+  min-height: 100vh;
+}
+
 *,
 *::before,
 *::after {

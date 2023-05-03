@@ -13,13 +13,15 @@ query Events {
 }
 
 fragment Link on nav_link {
+  id
   title
   url
 }
 
 fragment NavList on nav_list {
-  # id
-  # slug
+  id
+  # slug'
+  flatten
   link {
     ...Link
   }
@@ -27,16 +29,16 @@ fragment NavList on nav_list {
 
 fragment NavListDepth3 on nav_list {
   ...NavList
-  subnav {
+  subnav(sort: ["sort"]) {
     ...NavList
-    subnav {
+    subnav(sort: ["sort"]) {
       ...NavList
     }
   }
 }
 
 fragment SiteSettings on site_settings {
-  main_nav {
+  main_nav(sort: ["sort"]) {
     ...NavListDepth3
   }
   og_description

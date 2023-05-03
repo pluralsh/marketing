@@ -1,7 +1,11 @@
 import { DiscordIcon } from '@pluralsh/design-system'
 
+import isEmpty from 'lodash/isEmpty'
 import styled from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
+
+import { useNavData } from '@src/contexts/NavDataContext'
+import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
 import { FullNav } from './FullNav'
 import GithubStars from './GithubStars'
@@ -22,6 +26,44 @@ const SocialIcons = styled.div(({ theme }) => ({
   gap: theme.spacing.medium,
 }))
 
+type NavData = (
+  | (NavListFragment & {
+      subnav?: NavData | null
+    })
+  | null
+)[]
+
+function NavList({ navData }: { navData?: NavData | null }) {
+  if (!navData) {
+    return null
+  }
+
+  return (
+    <>
+      {navData.map((navItem) => {
+        if (isEmpty(navItem?.subnav)) {
+          return (
+            <MainLink
+              {...(navItem?.link?.url ? { href: navItem?.link.url } : {})}
+            >
+              {navItem?.link?.title}
+            </MainLink>
+          )
+        }
+
+        return (
+          <section className="mb-large">
+            {navItem?.link?.title ? (
+              <TopHeading>{navItem?.link?.title}</TopHeading>
+            ) : null}
+            <NavList navData={navItem?.subnav} />
+          </section>
+        )
+      })}
+    </>
+  )
+}
+
 function PluralMenuContent({
   hide: _,
   ...props
@@ -29,13 +71,11 @@ function PluralMenuContent({
   hide?: boolean
   className?: string
 }) {
+  const navData = useNavData()
+
   return (
     <div {...props}>
-      <TopHeading>Plural Menu</TopHeading>
-      <MainLink href="https://plural.sh/marketplace">Marketplace</MainLink>
-      <MainLink href="https://plural.sh/community">Community</MainLink>
-      <MainLink href="https://app.plural.sh/signup">Get started</MainLink>
-      <MainLink href="https://app.plural.sh/login">Sign in</MainLink>
+      <NavList navData={navData} />
       <SocialIcons>
         <SocialLink
           href="https://discord.gg/pluralsh"
@@ -81,9 +121,11 @@ const Content = styled.div(({ theme }) => ({
   top: 'var(--top-nav-height)',
   bottom: 0,
   paddingRight: 0,
+  paddingTop: theme.spacing.medium,
   background: theme.colors['fill-one'],
   display: 'flex',
   flexDirection: 'column',
+  overflowY: 'auto',
 }))
 
 function MobileMenu({ isOpen, setIsOpen, className }: MobileMenuProps) {

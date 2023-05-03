@@ -1,24 +1,16 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useEffect, useMemo } from 'react'
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  Button,
-  usePrevious,
-} from '@pluralsh/design-system'
-import type { ButtonProps } from 'honorable'
+import { usePrevious } from '@pluralsh/design-system'
 import { useRouter } from 'next/router'
 
 import styled from 'styled-components'
 
-import { useNavData } from '../contexts/NavDataContext'
-import { getBarePathFromPath, isAppCatalogRoute } from '../utils/text'
+import { getBarePathFromPath } from '../utils/text'
 
 import { PluralMenu } from './MobileMenu'
-import { NavPositionWrapper, SideNav } from './SideNav'
+import { NavPositionWrapper } from './SideNav'
 
-import type { MenuId } from '../NavData'
 import type { PartialBy } from '../utils/typescript'
 
 const setIsOpenStub: Dispatch<SetStateAction<boolean>> = () => {}
@@ -68,20 +60,6 @@ export const NavWrap = styled.div((_) => ({
   flexGrow: 1,
 }))
 
-function NavButton({
-  navDirection = 'back',
-  ...props
-}: { navDirection: 'forward' | 'back' } & ButtonProps) {
-  return (
-    <Button
-      tertiary
-      startIcon={
-        navDirection === 'back' ? <ArrowLeftIcon /> : <ArrowRightIcon />
-      }
-      {...props}
-    />
-  )
-}
 export function FullNav({
   desktop = true,
   isOpen,
@@ -89,74 +67,15 @@ export function FullNav({
 }: PartialBy<NavContextValue, 'setIsOpen' | 'isOpen'> & {
   desktop: boolean
 }) {
-  const [menuId, setMenuId] = useState<MenuId>('docs')
-  const navData = useNavData()
   const router = useRouter()
   const thisPath = getBarePathFromPath(router.asPath)
   const previousPath = usePrevious(thisPath)
 
-  const routeIsAppCatalog = isAppCatalogRoute(router.asPath)
-
   useEffect(() => {
     if (thisPath !== previousPath) {
-      if (setIsOpen) {
-        setIsOpen(false)
-      }
-      if (routeIsAppCatalog) {
-        setMenuId('appCatalog')
-      } else {
-        setMenuId('docs')
-      }
+      setIsOpen?.(false)
     }
-  }, [thisPath, previousPath, setIsOpen, routeIsAppCatalog])
-
-  const showNavButton = menuId === 'appCatalog' || routeIsAppCatalog || !desktop
-  let rightNavButton
-  let leftNavButton
-
-  if (!desktop) {
-    if (menuId === 'plural') {
-      rightNavButton = (
-        <NavButton
-          navDirection="forward"
-          onClick={() => setMenuId('docs')}
-        >
-          Docs menu
-        </NavButton>
-      )
-    } else if (menuId === 'docs') {
-      leftNavButton = (
-        <NavButton
-          navDirection="back"
-          onClick={() => setMenuId('plural')}
-        >
-          Plural menu
-        </NavButton>
-      )
-    }
-  }
-  if (menuId === 'appCatalog') {
-    leftNavButton = (
-      <NavButton
-        navDirection="back"
-        onClick={() => setMenuId('docs')}
-      >
-        All docs
-      </NavButton>
-    )
-  }
-  if (routeIsAppCatalog) {
-    if (menuId === 'docs') {
-      rightNavButton = (
-        <NavButton
-          navDirection="forward"
-          onClick={() => setMenuId('appCatalog')}
-        >
-          App catalog
-        </NavButton>
-      )
-    }
-  }
+  }, [thisPath, previousPath, setIsOpen])
 
   const navContextValue = useMemo(
     () => ({ setIsOpen: setIsOpen || setIsOpenStub, isOpen: !!isOpen }),
@@ -165,24 +84,8 @@ export function FullNav({
 
   const content = (
     <NavContext.Provider value={navContextValue}>
-      {showNavButton && (
-        <NavButtons desktop={desktop}>
-          {leftNavButton}
-          {rightNavButton}
-        </NavButtons>
-      )}
       <NavWrap>
-        {menuId === 'plural' ? (
-          <PluralMenu />
-        ) : (
-          <SideNav
-            navData={navData[menuId]}
-            menuId={menuId}
-            setMenuId={setMenuId}
-            desktop={desktop}
-            padTop={!showNavButton}
-          />
-        )}
+        <PluralMenu />
       </NavWrap>
     </NavContext.Provider>
   )

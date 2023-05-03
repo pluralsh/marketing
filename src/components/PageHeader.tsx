@@ -1,4 +1,4 @@
-import { type ComponentProps, HTMLProps, useEffect, useState } from 'react'
+import { type ComponentProps, useEffect, useState } from 'react'
 
 import { Button, DiscordIcon, usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
@@ -7,14 +7,13 @@ import { useRouter } from 'next/router'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
-import { type SiteSettingsFragment } from '@src/generated/graphqlDirectus'
+import { useNavData } from '@src/contexts/NavDataContext'
 
-import {
-  breakpointIsGreaterOrEqual,
-  mqs,
-  useBreakpoint,
-} from './BreakpointProvider'
+import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
+
+import { useBreakpoint } from './BreakpointProvider'
 import GithubStars from './GithubStars'
+import { MaxWidthLimiter } from './MaxWidthLimiter'
 import MobileMenu from './MobileMenu'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
 
@@ -22,9 +21,7 @@ const Filler = styled.div((_) => ({
   flexGrow: 1,
 }))
 
-type Nav = Exclude<SiteSettingsFragment['main_nav'], null | undefined>['subnav']
-
-function PageHeaderUnstyled({ nav, ...props }: { nav: Nav }) {
+function PageHeader({ ...props }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -48,121 +45,128 @@ function PageHeaderUnstyled({ nav, ...props }: { nav: Nav }) {
     setMenuIsOpen(false)
   })
 
-  console.log('NAV klink', nav)
-
   return (
-    <header {...props}>
-      <nav className="leftSection">
-        <NextLink
-          href="/"
-          className="flex flex-shrink-0"
-          passHref
-        >
-          <img
-            className="logo"
-            alt="Plural docs"
-            src="/images/plural-logo.svg"
+    <HeaderWrap>
+      <PageHeaderInner {...props}>
+        <nav className="leftSection">
+          <NextLink
+            href="/"
+            className="flex flex-shrink-0"
+            passHref
+          >
+            <img
+              className="logo"
+              alt="Plural docs"
+              src="/images/plural-logo.svg"
+            />
+          </NextLink>
+          <PageHeaderLinks />
+        </nav>
+        <Filler />
+        <section className="rightSection">
+          <div className="socialIcons">
+            <SocialLink
+              className="discordIcon"
+              href="https://discord.gg/pluralsh"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={0}
+            >
+              <DiscordIcon size={16} />
+            </SocialLink>
+            <GithubStars />
+          </div>
+          <div className="buttons">
+            <Button
+              as="a"
+              href="https://app.plural.sh/signup"
+              primary
+              fontFamily={theme.fontFamilies.sans}
+            >
+              Get started
+            </Button>
+            <Button
+              as="a"
+              href="https://app.plural.sh/login"
+              secondary
+              fontFamily={theme.fontFamilies.sans}
+            >
+              Sign in
+            </Button>
+          </div>
+          <SearchButton />
+          <HamburgerButton
+            isOpen={menuIsOpen}
+            onClick={() => {
+              setMenuIsOpen(!menuIsOpen)
+            }}
           />
-        </NextLink>
-        <PageHeaderLinks nav={nav} />
-      </nav>
-      <Filler />
-      <section className="rightSection">
-        <div className="socialIcons">
-          <SocialLink
-            className="discordIcon"
-            href="https://discord.gg/pluralsh"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={0}
-          >
-            <DiscordIcon size={16} />
-          </SocialLink>
-          <GithubStars />
-        </div>
-        <div className="buttons">
-          <Button
-            as="a"
-            href="https://app.plural.sh/signup"
-            primary
-            fontFamily={theme.fontFamilies.sans}
-          >
-            Get started
-          </Button>
-          <Button
-            as="a"
-            href="https://app.plural.sh/login"
-            secondary
-            fontFamily={theme.fontFamilies.sans}
-          >
-            Sign in
-          </Button>
-        </div>
-        <SearchButton />
-        <HamburgerButton
+        </section>
+        <MobileMenu
           isOpen={menuIsOpen}
-          onClick={() => {
-            setMenuIsOpen(!menuIsOpen)
-          }}
+          setIsOpen={setMenuIsOpen}
         />
-      </section>
-      <MobileMenu
-        isOpen={menuIsOpen}
-        setIsOpen={setMenuIsOpen}
-      />
-    </header>
+      </PageHeaderInner>
+    </HeaderWrap>
   )
 }
 
-const PageHeader = styled(PageHeaderUnstyled)(({ theme }) => ({
+const HeaderWrap = styled.div(({ theme }) => ({
   top: 0,
   position: 'sticky',
-  height: 'var(--top-nav-height)',
   background: theme.colors['fill-zero'],
-  width: '100%',
   zIndex: '100',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'left',
-  paddingLeft: theme.spacing.large,
-  paddingRight: theme.spacing.large,
-  [mqs.fullHeader]: {
-    paddingLeft: 40,
-    paddingRight: 40,
-  },
-  '.socialIcons': {
-    display: 'none',
-    [mqs.fullHeader]: {
-      display: 'flex',
-      flexDirection: 'row',
-      gap: theme.spacing.medium,
-    },
-  },
-  '.buttons': {
-    display: 'none',
-    gap: theme.spacing.medium,
-    [mqs.fullHeader]: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-  },
-  '.logo': {
-    display: 'block',
-    width: 98,
-    [mqs.fullHeader]: {
-      // width: 216,
-    },
-  },
-  '.rightSection, .leftSection': {
+}))
+
+const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(
+  ({ theme }) => ({
+    height: 'var(--top-nav-height)',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing.medium,
-  },
-}))
+    justifyContent: 'left',
+    '--link-h-pad': `${theme.spacing.xsmall}px`,
+    [mqs.lg]: {
+      '--link-h-pad': `${theme.spacing.small}px`,
+    },
+    [mqs.xl]: {
+      '--link-h-pad': `${theme.spacing.medium}px`,
+    },
+    '.socialIcons': {
+      display: 'none',
+      [mqs.showSocial]: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: theme.spacing.medium,
+      },
+    },
+    '.buttons': {
+      display: 'none',
+      gap: theme.spacing.medium,
+      [mqs.fullHeader]: {
+        display: 'flex',
+        alignItems: 'center',
+      },
+    },
+    '.logo': {
+      display: 'block',
+      width: 98,
+      [mqs.fullHeader]: {
+        // width: 216,
+      },
+    },
+    '.rightSection, .leftSection': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: theme.spacing.medium,
+    },
+  })
+)
 
 export const MainLink = styled.a(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
   '&:any-link': {
     color: theme.colors['text-light'],
     textDecoration: 'none',
@@ -171,9 +175,9 @@ export const MainLink = styled.a(({ theme }) => ({
     textDecoration: 'underline',
     color: theme.colors.text,
   },
-  padding: `${theme.spacing.xsmall}px ${theme.spacing.medium}px`,
+  padding: `${theme.spacing.xsmall}px var(--link-h-pad)`,
   [mqs.fullHeader]: {
-    padding: `${theme.spacing.small}px ${theme.spacing.medium}px`,
+    padding: `${theme.spacing.small}px var(--link-h-pad)`,
   },
 }))
 
@@ -194,15 +198,29 @@ export const SecondaryLink = styled.a(({ theme }) => ({
   },
 }))
 
-const PageHeaderLinks = styled(
-  ({ nav, ...props }: { nav: Nav } & ComponentProps<'div'>) => (
+function NavItemLink({ navItem }: { navItem?: any }) {
+  return (
+    <MainLink {...(navItem?.link?.url ? { href: navItem?.link?.url } : {})}>
+      {navItem?.link?.title}
+    </MainLink>
+  )
+}
+
+const PageHeaderLinks = styled(({ ...props }: ComponentProps<'div'>) => {
+  const nav = useNavData()
+
+  return (
     <div {...props}>
-      {nav?.map((navList) => (
-        <MainLink href={navList.link.url}>{navList?.link.title}</MainLink>
-      ))}
+      {nav?.map((navItem) => {
+        if (navItem?.flatten && navItem?.subnav) {
+          return navItem?.subnav?.map((n) => <NavItemLink navItem={n} />)
+        }
+
+        return <NavItemLink navItem={navItem} />
+      })}
     </div>
   )
-)(({ theme }) => ({
+})(({ theme }) => ({
   display: 'none',
   [mqs.fullHeader]: {
     display: 'flex',

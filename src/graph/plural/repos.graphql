@@ -64,3 +64,80 @@ query Repo($name: String) {
     ...FullRepo
   }
 }
+
+fragment Category on CategoryInfo {
+  category
+  count
+}
+
+fragment MinStack on Stack {
+  id
+  name
+  displayName
+  description
+  featured
+  creator {
+    id
+    name
+  }
+  collections {
+    id
+    provider
+    bundles {
+      recipe {
+        repository {
+          ...MinRepo
+          tags {
+            tag
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment FullStack on Stack {
+  ...MinStack
+}
+
+fragment PageInfo on PageInfo {
+  endCursor
+  hasNextPage
+}
+
+query Stacks($featured: Boolean) {
+  stacks(featured: $featured, first: 10) {
+    pageInfo {
+      ...PageInfo
+    }
+    edges {
+      node {
+        ...MinStack
+      }
+    }
+  }
+}
+
+query Categories {
+  categories {
+    ...Category
+  }
+}
+
+fragment Tag on GroupedTag {
+  tag
+  count
+}
+
+query Tags($cursor: String) {
+  tags(type: REPOSITORIES, first: 5000, after: $cursor) {
+    pageInfo {
+      ...PageInfo
+    }
+    edges {
+      node {
+        ...Tag
+      }
+    }
+  }
+}

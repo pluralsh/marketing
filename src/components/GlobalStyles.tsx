@@ -1,7 +1,6 @@
-import mapKeys from 'lodash/mapKeys'
 import { createGlobalStyle } from 'styled-components'
 
-import { mqs } from './BreakpointProvider'
+import { breakpoints, mqs } from '../breakpoints'
 
 const fillAvailable = (prop) => ({
   [`${prop} `]: '-webkit-fill-available',
@@ -11,21 +10,21 @@ const fillAvailable = (prop) => ({
 
 // Judo to get around specificity of emotion styles set by honorable
 // and also allow tailwind classes to override
-const textStyleWrap = (selector) =>
-  `body :is(div, h1, h2, h3, h4, h5, h6, p, *):where(${selector})`
+// const textStyleWrap = (selector) =>
+//   `body :is(div, h1, h2, h3, h4, h5, h6, p, *):where(${selector})`
 
-const GlobalStyles = createGlobalStyle(({ theme }) => {
-  const marketingTextStyles = mapKeys(
-    theme.partials.marketingText,
-    (value, key) => textStyleWrap(`.${key}`)
-  )
+const GlobalStyles = createGlobalStyle(({ theme }) =>
+  // const marketingTextStyles = mapKeys(
+  //   theme.partials.marketingText,
+  //   (value, key) => textStyleWrap(`.${key}`)
+  // )
 
-  return {
+  ({
     'h1, h2, h3, h4, h5, h6': {
       margin: 0,
     },
     //  Text Styles
-    ...marketingTextStyles,
+    // ...marketingTextStyles,
     // /* End Text Styles */
 
     '::selection': {
@@ -37,10 +36,6 @@ const GlobalStyles = createGlobalStyle(({ theme }) => {
     },
     'a:focus-visible': {
       ...theme.partials.focus.default,
-    },
-    ':root': {
-      '--top-nav-height': '72px',
-      '--menu-extra-bpad': '0px',
     },
     'a:any-link': {
       color: 'unset',
@@ -60,13 +55,35 @@ const GlobalStyles = createGlobalStyle(({ theme }) => {
       scrollPaddingTop: 'var(--top-nav-height)',
       scrollMarginTop: `${theme.spacing.large}px`,
     },
-    [mqs.twoColumn]: {
+    ':root': {
+      '--top-nav-height': '72px',
+      '--menu-extra-bpad': '0px',
+      '--page-x-pad': `20px`,
+      '--page-max-width': `${
+        breakpoints.md - (theme.spacing.large - 20) * 2
+      }px`,
+    },
+    [mqs.md]: {
+      ':root': {
+        '--page-x-pad': `${theme.spacing.large}px`,
+        '--page-max-width': `${
+          breakpoints.xxl - (96 - theme.spacing.large) * 2
+        }px`,
+      },
+    },
+    [mqs.lg]: {
       ':root': {
         '--top-nav-height': '80px',
       },
     },
-  }
-})
+    [mqs.xxl]: {
+      ':root': {
+        '--page-x-pad': `96px`,
+        '--page-max-width': `${breakpoints.maxWidth - 96 * 2}px`,
+      },
+    },
+  })
+)
 
 export default GlobalStyles
 export { fillAvailable }

@@ -5,9 +5,7 @@ import {
   type EventsQueryVariables,
 } from '@src/generated/graphqlDirectus'
 
-export default function Index({ events, ...props }) {
-  console.log('props', props)
-
+export default function Index({ events }) {
   return (
     <div>
       <div className="flex flex-col gap-x-medium gap-y-xlarge ">
