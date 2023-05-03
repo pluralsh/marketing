@@ -20,8 +20,9 @@ import upperFirst from 'lodash/upperFirst'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import MarketplaceHeroImage from '@src/components/MarketplaceHeroImage'
 import MarketplaceSidebar from '@src/components/MarketplaceSidebar'
-import { MarketplaceGrid } from '@src/components/PageGrid'
+import { MarketplacePage } from '@src/components/PageGrid'
 import { type Repo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -103,9 +104,9 @@ function FilterChip(props: ComponentProps<typeof Chip>) {
 
 const ContentContainer = styled.div(({ theme }) => ({
   display: 'flex',
-  columnGap: theme.spacing.xxlarge,
-  [mqs.maxWidth]: {
-    columnGap: theme.spacing.xxxlarge,
+  columnGap: theme.spacing.xlarge,
+  [mqs.xxl]: {
+    columnGap: theme.spacing.xxlarge,
   },
 }))
 
@@ -185,7 +186,9 @@ export function clearToken({
   setSearchParams: SetSearchParams
 }) {
   setSearchParams((params) => {
-    const newParams = params.getAll(key).filter((v) => v !== value)
+    const newParams = params
+      .getAll(key)
+      .filter((v) => v.toLowerCase() !== value.toLowerCase())
 
     params.delete(key)
     newParams.forEach((p) => params.append(key, p))
@@ -263,7 +266,7 @@ export default function Marketplace({
     : sortedRepositories
 
   return (
-    <MarketplaceGrid>
+    <MarketplacePage>
       <div className="my-xxlarge xxl:mb-[80px]">
         <Heading1
           as="h1"
@@ -296,6 +299,7 @@ export default function Marketplace({
             >
               Plural curated stacks
             </Subtitle>
+            <MarketplaceHeroImage />
             <Subtitle
               as="h4"
               className="mb-xlarge"
@@ -314,7 +318,7 @@ export default function Marketplace({
           />
         </SidecarContainer>
       </ContentContainer>
-    </MarketplaceGrid>
+    </MarketplacePage>
   )
 }
 

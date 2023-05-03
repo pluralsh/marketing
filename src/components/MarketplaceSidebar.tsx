@@ -22,13 +22,21 @@ function useParamToggle(key: string) {
   const handleToggle = useCallback(
     (value) => {
       const existing = searchParams.getAll(key)
-      const formatedValue = value.toLowerCase()
+      const formattedValue = value.toLowerCase()
 
-      if (existing.includes(formatedValue)) {
-        clearToken({ key, value, setSearchParams })
+      console.log('handleToggle formattted', formattedValue)
+      console.log('handleToggle unformatted', value)
+
+      if (existing.includes(formattedValue)) {
+        console.log('includes:', formattedValue)
+        console.log('clear:', key, value)
+
+        clearToken({ key, value: formattedValue, setSearchParams })
       } else {
+        console.log('doesnt includes:', formattedValue)
+
         setSearchParams((params) => {
-          params.append(key, formatedValue)
+          params.append(key, formattedValue)
 
           return params
         })
@@ -126,15 +134,17 @@ function Categories({ categories }: { categories: Categories }) {
     >
       {(expanded) => (
         <CheckboxList>
-          {sortedCategories.map(({ category }) => (
-            <MarketplaceSidebarCheckbox
-              key={category}
-              toggled={isToggled(category)}
-              onClick={() => handleToggle(category)}
-              label={capitalize(category)}
-              trapFocus={expanded}
-            />
-          ))}
+          {sortedCategories.map(({ category }) =>
+            category ? (
+              <MarketplaceSidebarCheckbox
+                key={category}
+                toggled={isToggled(category)}
+                onClick={() => handleToggle(category)}
+                label={capitalize(category)}
+                trapFocus={expanded}
+              />
+            ) : null
+          )}
         </CheckboxList>
       )}
     </AccordionWithExpanded>

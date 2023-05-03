@@ -79,7 +79,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
     [mqs.xxl]: {
       ':root': {
         '--page-x-pad': `96px`,
-        '--page-max-width': `${breakpoints.maxWidth - 96 * 2}px`,
+        '--page-max-width': `${breakpoints.maxWidth}px`,
       },
     },
   })
