@@ -20,7 +20,9 @@ export const useSearchParams = (): [
       const newParams =
         typeof p === 'function' ? p(oldParams) : new URLSearchParams(p)
 
-      router.replace({ ...router, query: newParams.toString() })
+      router.replace({ ...router, query: newParams.toString() }, undefined, {
+        shallow: true,
+      })
     },
   ]
 }

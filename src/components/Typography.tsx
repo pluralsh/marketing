@@ -18,7 +18,7 @@ export const Body1 = styled.p(({ theme }) => ({
   ...theme.partials.marketingText.body1,
 }))
 
-const SubtitleWrap = styled.h2(({ theme }) => ({
+const SubtitleWrap = styled.h2((_) => ({
   display: 'flex',
   position: 'relative',
   textAlign: 'center',
@@ -39,20 +39,18 @@ const SubtitleBorder = styled((props) => (
   />
 ))(({ theme }) => ({
   flexGrow: '1',
-  content: '" stuff"',
   borderTop: theme.borders.default,
   minWidth: theme.spacing.xlarge,
 }))
 
 export function Subtitle({
   children,
-  as,
   ...props
 }: ComponentProps<typeof SubtitleWrap>) {
   return (
     <SubtitleWrap {...props}>
       <SubtitleBorder />
-      <SubtitleContent as={as}>{children}</SubtitleContent>
+      <SubtitleContent>{children}</SubtitleContent>
       <SubtitleBorder />
     </SubtitleWrap>
   )

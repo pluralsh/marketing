@@ -148,7 +148,6 @@ function Tags({
   search,
   setSearch,
 }) {
-  console.log('tags', tags)
   const [nDisplayedTags, setNDisplayedTags] = useState(12)
   const { handleToggle, isToggled } = useParamToggle('tag')
   const sortedTags = tags.slice().sort((a, b) => a?.tag?.localeCompare(b?.tag))
@@ -235,7 +234,6 @@ const SidebarWrapper = styled(Card)<{ $isOpen: boolean }>(({ theme }) => ({
   position: 'sticky',
   top: 'var(--top-nav-height)',
   right: 0,
-  // transition: 'all 250ms ease',
   marginBottom: theme.spacing.medium,
   maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
 }))
