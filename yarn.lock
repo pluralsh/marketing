@@ -307,9 +307,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.7.5":
-  version: 3.7.5
-  resolution: "@apollo/client@npm:3.7.5"
+"@apollo/client@npm:3.7.14":
+  version: 3.7.14
+  resolution: "@apollo/client@npm:3.7.14"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.1
     "@wry/context": ^0.7.0
@@ -317,7 +317,7 @@ __metadata:
     "@wry/trie": ^0.3.0
     graphql-tag: ^2.12.6
     hoist-non-react-statics: ^3.3.2
-    optimism: ^0.16.1
+    optimism: ^0.16.2
     prop-types: ^15.7.2
     response-iterator: ^0.2.6
     symbol-observable: ^4.0.0
@@ -339,7 +339,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: c36f4469eb6a9ebc0f750a97cb201bcca725e1e98098c3d135d923e6d711ef8fa99365745b66f40744f59b78b3ffc0883ab2448ddadce89a5053033b40db8706
+  checksum: eaa8af74450fee4d4761d25fb8fe752788517b27ebb46a51b6496950c5b73f48b6ba3e4f3474b6e4a4f310916dc3fcf079306c35f16d4284b96c7fdbb8539fde
   languageName: node
   linkType: hard
 
@@ -11433,7 +11433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"optimism@npm:^0.16.1":
+"optimism@npm:^0.16.2":
   version: 0.16.2
   resolution: "optimism@npm:0.16.2"
   dependencies:
@@ -12666,7 +12666,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@apollo/client": 3.7.5
+    "@apollo/client": 3.7.14
     "@docsearch/react": 3.3.2
     "@emotion/react": 11.10.5
     "@emotion/styled": 11.10.5
