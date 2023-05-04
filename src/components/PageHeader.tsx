@@ -212,8 +212,13 @@ const PageHeaderLinks = styled(({ ...props }: ComponentProps<'div'>) => {
   return (
     <div {...props}>
       {nav?.map((navItem) => {
+        if (navItem?.mobile_only) {
+          return null
+        }
         if (navItem?.flatten && navItem?.subnav) {
-          return navItem?.subnav?.map((n) => <NavItemLink navItem={n} />)
+          return navItem?.subnav?.map((n) =>
+            n?.mobile_only ? null : <NavItemLink navItem={n} />
+          )
         }
 
         return <NavItemLink navItem={navItem} />

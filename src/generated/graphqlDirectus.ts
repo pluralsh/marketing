@@ -375,6 +375,7 @@ export type Nav_List = {
   flatten?: Maybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   link?: Maybe<Nav_Link>;
+  mobile_only?: Maybe<Scalars['Boolean']>;
   parent_nav_list_id?: Maybe<Nav_List>;
   slug?: Maybe<Scalars['String']>;
   sort?: Maybe<Scalars['Int']>;
@@ -431,6 +432,7 @@ export type Nav_List_Aggregated_Count = {
   flatten?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   link?: Maybe<Scalars['Int']>;
+  mobile_only?: Maybe<Scalars['Int']>;
   parent_nav_list_id?: Maybe<Scalars['Int']>;
   slug?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['Int']>;
@@ -448,6 +450,7 @@ export type Nav_List_Filter = {
   flatten?: InputMaybe<Boolean_Filter_Operators>;
   id?: InputMaybe<String_Filter_Operators>;
   link?: InputMaybe<Nav_Link_Filter>;
+  mobile_only?: InputMaybe<Boolean_Filter_Operators>;
   parent_nav_list_id?: InputMaybe<Nav_List_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
@@ -517,16 +520,16 @@ export type EventsQuery = { __typename?: 'Query', events: Array<{ __typename?: '
 
 export type LinkFragment = { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null };
 
-export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
+export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type NavListDepth3Fragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
+export type NavListDepth3Fragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null };
+export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null };
 
 export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
+export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
 
 export const EventFragmentDoc = gql`
     fragment Event on events {
@@ -548,6 +551,7 @@ export const NavListFragmentDoc = gql`
     fragment NavList on nav_list {
   id
   flatten
+  mobile_only
   link {
     ...Link
   }
