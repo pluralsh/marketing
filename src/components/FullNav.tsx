@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 import { getBarePathFromPath } from '../utils/text'
 
-import { PluralMenu } from './MobileMenu'
+import { PluralMenu } from './NavigationMobile'
 import { NavPositionWrapper } from './SideNav'
 
 import type { PartialBy } from '../utils/typescript'

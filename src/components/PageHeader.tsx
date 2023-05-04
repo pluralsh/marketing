@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button, DiscordIcon, usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
@@ -7,21 +7,20 @@ import { useRouter } from 'next/router'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
-import { useNavData } from '@src/contexts/NavDataContext'
-
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './BreakpointProvider'
 import GithubStars from './GithubStars'
 import { MaxWidthLimiter } from './MaxWidthLimiter'
-import MobileMenu from './MobileMenu'
+import { NavigationDesktop } from './NavigationDesktop'
+import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
 
 const Filler = styled.div((_) => ({
   flexGrow: 1,
 }))
 
-function PageHeader({ ...props }) {
+export function PageHeader({ ...props }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -60,7 +59,7 @@ function PageHeader({ ...props }) {
               src="/images/plural-logo.svg"
             />
           </NextLink>
-          <PageHeaderLinks />
+          <NavigationDesktop />
         </nav>
         <Filler />
         <section className="rightSection">
@@ -102,7 +101,7 @@ function PageHeader({ ...props }) {
             }}
           />
         </section>
-        <MobileMenu
+        <NavigationMobile
           isOpen={menuIsOpen}
           setIsOpen={setMenuIsOpen}
         />
@@ -162,75 +161,3 @@ const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(
     },
   })
 )
-
-export const MainLink = styled.a(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  cursor: 'pointer',
-  '&:any-link': {
-    color: theme.colors['text-light'],
-    textDecoration: 'none',
-  },
-  '&[href]:hover': {
-    textDecoration: 'underline',
-    color: theme.colors.text,
-  },
-  padding: `${theme.spacing.xsmall}px var(--link-h-pad)`,
-  [mqs.fullHeader]: {
-    padding: `${theme.spacing.small}px var(--link-h-pad)`,
-  },
-}))
-
-export const SecondaryLink = styled.a(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  '&:any-link': {
-    color: theme.colors['text-light'],
-    textDecoration: 'none',
-  },
-  '&:hover': {
-    textDecoration: 'underline',
-    color: theme.colors.text,
-  },
-  padding: `${theme.spacing.xsmall}px ${theme.spacing.medium}px`,
-  [mqs.fullHeader]: {
-    padding: `${theme.spacing.small}px ${theme.spacing.medium}px`,
-  },
-}))
-
-function NavItemLink({ navItem }: { navItem?: any }) {
-  return (
-    <MainLink {...(navItem?.link?.url ? { href: navItem?.link?.url } : {})}>
-      {navItem?.link?.title}
-    </MainLink>
-  )
-}
-
-const PageHeaderLinks = styled(({ ...props }: ComponentProps<'div'>) => {
-  const nav = useNavData()
-
-  return (
-    <div {...props}>
-      {nav?.map((navItem) => {
-        if (navItem?.mobile_only) {
-          return null
-        }
-        if (navItem?.flatten && navItem?.subnav) {
-          return navItem?.subnav?.map((n) =>
-            n?.mobile_only ? null : <NavItemLink navItem={n} />
-          )
-        }
-
-        return <NavItemLink navItem={navItem} />
-      })}
-    </div>
-  )
-})(({ theme }) => ({
-  display: 'none',
-  [mqs.fullHeader]: {
-    display: 'flex',
-    gap: theme.spacing.xsmall,
-  },
-}))
-
-export { PageHeader }

@@ -10,11 +10,26 @@ import { type NavListFragment } from '@src/generated/graphqlDirectus'
 import { FullNav } from './FullNav'
 import GithubStars from './GithubStars'
 import useScrollLock from './hooks/useScrollLock'
-import { MainLink } from './PageHeader'
+import { MainLink } from './Navigation'
 import { SocialLink } from './PageHeaderButtons'
-import { TopHeading } from './SideNav'
 
 import type { NavContextValue } from './FullNav'
+
+const MobileMainLink = styled(MainLink)(({ theme }) => ({
+  paddingLeft: 0,
+  paddingRight: 0,
+  paddingTop: theme.spacing.xsmall,
+  paddingBottom: theme.spacing.xsmall,
+  marginBottom: theme.spacing.xsmall,
+  width: '100%',
+}))
+
+export const MenuHeading = styled.h6(({ theme }) => ({
+  ...theme.partials.marketingText.label,
+  margin: 0,
+  paddingTop: theme.spacing.xsmall,
+  paddingBottom: theme.spacing.xsmall,
+}))
 
 type MobileMenuProps = NavContextValue & {
   className?: string
@@ -43,18 +58,18 @@ function NavList({ navData }: { navData?: NavData | null }) {
       {navData.map((navItem) => {
         if (isEmpty(navItem?.subnav)) {
           return (
-            <MainLink
+            <MobileMainLink
               {...(navItem?.link?.url ? { href: navItem?.link.url } : {})}
             >
               {navItem?.link?.title}
-            </MainLink>
+            </MobileMainLink>
           )
         }
 
         return (
-          <section className="mb-large">
+          <section className="mb-medium">
             {navItem?.link?.title ? (
-              <TopHeading>{navItem?.link?.title}</TopHeading>
+              <MenuHeading>{navItem?.link?.title}</MenuHeading>
             ) : null}
             <NavList navData={navItem?.subnav} />
           </section>
@@ -98,18 +113,6 @@ export const PluralMenu = styled(PluralMenuContent)(
     paddingRight: theme.spacing.xlarge,
     overflow: 'auto',
     paddingBottom: `calc(${theme.spacing.xlarge}px + var(--menu-extra-bpad))`,
-
-    [TopHeading]: {
-      paddingLeft: 0,
-    },
-    [MainLink]: {
-      paddingLeft: 0,
-      paddingRight: 0,
-      paddingTop: theme.spacing.xsmall,
-      paddingBottom: theme.spacing.xsmall,
-      marginBottom: theme.spacing.xsmall,
-      width: '100%',
-    },
   })
 )
 
@@ -128,7 +131,11 @@ const Content = styled.div(({ theme }) => ({
   overflowY: 'auto',
 }))
 
-function MobileMenu({ isOpen, setIsOpen, className }: MobileMenuProps) {
+function NavigationMobileUnstyled({
+  isOpen,
+  setIsOpen,
+  className,
+}: MobileMenuProps) {
   const [, setScrollLock] = useScrollLock(false)
 
   useIsomorphicLayoutEffect(() => {
@@ -148,14 +155,16 @@ function MobileMenu({ isOpen, setIsOpen, className }: MobileMenuProps) {
   )
 }
 
-export default styled(MobileMenu)(({ isOpen, theme }) => ({
-  '--menu-extra-bpad': '90px',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  height: '100vh',
-  width: '100%',
-  display: isOpen ? 'block' : 'none',
-  zIndex: theme.zIndexes.modal,
-  pointerEvents: 'none',
-}))
+export const NavigationMobile = styled(NavigationMobileUnstyled)(
+  ({ isOpen, theme }) => ({
+    '--menu-extra-bpad': '90px',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    height: '100vh',
+    width: '100%',
+    display: isOpen ? 'block' : 'none',
+    zIndex: theme.zIndexes.modal,
+    pointerEvents: 'none',
+  })
+)
