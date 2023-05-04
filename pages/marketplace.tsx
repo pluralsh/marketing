@@ -278,7 +278,7 @@ export default function Marketplace({
       </div>
       <ContentContainer>
         <MainContent>
-          <div className="mb-xlarge">
+          <div className="sticky top-[var(--top-nav-height)] z-10 mb-xlarge">
             <SearchBar
               search={search}
               setSearch={setSearch}
@@ -322,11 +322,18 @@ export default function Marketplace({
   )
 }
 
-const SearchBarWrap = styled.div(({ theme: _ }) => ({}))
+const SearchBarWrap = styled.div(({ theme }) => ({
+  backgroundColor: theme.colors['fill-zero'],
+  flexShrink: 1,
+  flexGrow: 1,
+  flexBasis: 210,
+  minWidth: 210,
+  marginBottom: theme.spacing.small,
+}))
 
 function SearchBar({ search, setSearch }) {
   return (
-    <SearchBarWrap className="flex-shrink-1 flex-grow-1 flex-basis-[210px] mb-small  min-w-[210px]">
+    <SearchBarWrap>
       <Input
         titleContent={
           <>
