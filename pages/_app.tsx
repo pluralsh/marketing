@@ -21,7 +21,6 @@ import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 import '@src/styles/globals.css'
 
-import { directusClient } from '@src/apollo-client'
 import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import ExternalScripts from '@src/components/ExternalScripts'
@@ -39,19 +38,17 @@ import { PageHeader } from '@src/components/PageHeader'
 import { PagePropsContext } from '@src/components/PagePropsContext'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
-import {
-  SiteSettingsDocument,
-  type SiteSettingsQuery,
-  type SiteSettingsQueryVariables,
-} from '@src/generated/graphqlDirectus'
+import { type SiteSettingsQuery } from '@src/generated/graphqlDirectus'
 
-import type { Repo } from '@src/data/getRepos'
+import { getSiteSettings } from '../src/data/getSiteSettings'
+
+import type { MinRepo } from '@src/data/getRepos'
 
 export type GlobalPageProps = { metaTitle?: string; metaDescription?: string }
 
 type MyAppProps = AppProps<GlobalPageProps> & {
   errors: Error[]
-  repos: Repo[]
+  repos: MinRepo[]
   swrConfig: ComponentProps<typeof SWRConfig>['value']
   siteSettings: SiteSettingsQuery['site_settings']
 }
@@ -176,23 +173,3 @@ App.getInitialProps = async () => {
 }
 
 export default App
-
-let siteSettingsCache: SiteSettingsQuery['site_settings']
-
-const getSiteSettings = async () => {
-  const { data, error } = await directusClient.query<
-    SiteSettingsQuery,
-    SiteSettingsQueryVariables
-  >({
-    query: SiteSettingsDocument,
-  })
-
-  if (data?.site_settings) {
-    siteSettingsCache = data.site_settings
-  }
-  if (error && !siteSettingsCache) {
-    throw new Error(`${error.name}: ${error.message}`)
-  }
-
-  return siteSettingsCache
-}

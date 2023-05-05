@@ -1,6 +1,7 @@
 import { type ComponentProps, type PropsWithChildren } from 'react'
 
 import { CaretRightIcon } from '@pluralsh/design-system'
+import Link from 'next/link'
 
 import styled from 'styled-components'
 
@@ -97,26 +98,29 @@ const HeroStyles = styled.div<{ bgImg: string }>(({ theme, bgImg }) => ({
   },
 }))
 
-const CtaStyles = styled.div(({ theme }) => ({
+export const Cta = styled(CtaUnstyled)(({ theme }) => ({
   ...theme.partials.marketingText.standaloneLink,
+  fontSize: 12,
   display: 'flex',
   flexDirection: 'row',
   columnGap: theme.spacing.small,
+  paddingTop: theme.spacing.xsmall,
+  paddingBottom: theme.spacing.xsmall,
   '._chevron': {
     display: 'flex',
-    align: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 }))
 
-function Cta({ children, ...props }: ComponentProps<typeof CtaStyles>) {
+function CtaUnstyled({ children, ...props }: ComponentProps<typeof Link>) {
   return (
-    <CtaStyles {...props}>
+    <Link {...props}>
       <div>{children}</div>
       <div className="_chevron">
         <CaretRightIcon size={12} />
       </div>
-    </CtaStyles>
+    </Link>
   )
 }
 
@@ -130,7 +134,7 @@ export default function MarketplaceHeroImage() {
         A curated stack of apps to help you integrate, orchestrate, and analyze
         your data.
       </p>
-      <Cta>View stack</Cta>
+      <Cta href="/plural-stacks/data">View stack</Cta>
     </HeroThing>
   )
 }

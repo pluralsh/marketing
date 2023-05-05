@@ -1,29 +1,36 @@
-import { type ComponentProps, useCallback, useRef, useState } from 'react'
+import {
+  type ComponentProps,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import {
   BrowseAppsIcon,
   Button,
+  Card,
+  type CardProps,
   Chip,
   Input,
   MagnifyingGlassIcon,
-  RepositoryCard,
   TabPanel,
 } from '@pluralsh/design-system'
 import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next'
-import Link from 'next/link'
 
 import { until } from '@open-draft/until'
 import Fuse from 'fuse.js'
 import isEmpty from 'lodash/isEmpty'
 import orderBy from 'lodash/orderBy'
 import upperFirst from 'lodash/upperFirst'
-import styled from 'styled-components'
+import { useDebounce } from 'rooks'
+import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import MarketplaceHeroImage from '@src/components/MarketplaceHeroImage'
-import MarketplaceSidebar from '@src/components/MarketplaceSidebar'
+import MarketplaceFiltersUnstyled from '@src/components/MarketplaceFilters'
+import MarketplaceHeroImage, { Cta } from '@src/components/MarketplaceHeroImage'
 import { MarketplacePage } from '@src/components/PageGrid'
-import { type Repo, getRepos, reposCache } from '@src/data/getRepos'
+import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
   type Tags,
@@ -33,8 +40,10 @@ import {
 import { useSearchParams } from '../src/components/hooks/useSearchParams'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
+import { RepoCardList } from './RepoCardList'
+
 type PageProps = {
-  repositories: Repo[]
+  repositories: MinRepo[]
   categories: Categories
   tags: Tags
 }
@@ -48,46 +57,6 @@ export type SetSearchParams = (
     | ConstructorParameters<typeof URLSearchParams>[0]
     | ((params: URLSearchParams) => URLSearchParams)
 ) => void
-
-export function RepoCardList({
-  repositories,
-  repoProps = {},
-  urlParams = '',
-  size = 'small',
-}: {
-  repositories: Repo[]
-  repoProps?: ComponentProps<typeof RepositoryCard>
-  urlParams?: string
-  size?: ComponentProps<typeof RepositoryCard>['size']
-}) {
-  return (
-    <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-3">
-      {repositories?.map((repository) => (
-        <RepositoryCard
-          key={repository.id}
-          as={Link}
-          href={`/applications/${repository.name}${
-            urlParams ? `?${urlParams}` : ''
-          }`}
-          color="text"
-          textDecoration="none"
-          width="100%"
-          title={repository.name}
-          imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
-          publisher={repository.publisher?.name}
-          description={repository.description ?? undefined}
-          tags={repository.tags?.flatMap((t) => t?.tag || [])}
-          priv={repository.private ?? undefined}
-          verified={repository.verified ?? undefined}
-          trending={repository.trending ?? undefined}
-          releaseStatus={repository.releaseStatus ?? undefined}
-          size={size}
-          {...repoProps}
-        />
-      ))}
-    </div>
-  )
-}
 
 function FilterChip(props: ComponentProps<typeof Chip>) {
   return (
@@ -104,7 +73,15 @@ function FilterChip(props: ComponentProps<typeof Chip>) {
 
 const ContentContainer = styled.div(({ theme }) => ({
   display: 'flex',
-  columnGap: theme.spacing.xlarge,
+  flexDirection: 'column',
+  rowGap: theme.spacing.xxlarge,
+  [mqs.md]: {
+    rowGap: theme.spacing.xxxlarge,
+  },
+  [mqs.lg]: {
+    flexDirection: 'row',
+    columnGap: theme.spacing.xlarge,
+  },
   [mqs.xxl]: {
     columnGap: theme.spacing.xxlarge,
   },
@@ -114,12 +91,22 @@ const MainContent = styled.div(({ theme: _ }) => ({
   flexGrow: '1',
 }))
 
-const SidecarContainer = styled.div((_) => ({
-  display: 'none',
+const Sidecar = styled.div(({ theme }) => ({
   [mqs.lg]: {
-    display: 'block',
     width: 248,
     flexShrink: 0,
+    position: 'sticky',
+    top: 'var(--top-nav-height)',
+    flexDirection: 'row',
+    columnGap: theme.spacing.xlarge,
+  },
+}))
+
+const SidecarFilters = styled(MarketplaceFiltersUnstyled)(({ theme }) => ({
+  display: 'none',
+  [mqs.lg]: {
+    maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
+    display: 'block',
   },
 }))
 
@@ -197,6 +184,10 @@ export function clearToken({
   })
 }
 
+const SidecarCardTitle = styled.h5(({ theme }) => ({
+  ...theme.partials.marketingText.body2Bold,
+}))
+
 export default function Marketplace({
   ...props
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -225,45 +216,64 @@ export default function Marketplace({
 
   const { repositories } = props
 
-  const sortedRepositories = (
-    orderBy(
-      repositories,
-      [
-        'trending',
-        (r) => (r as (typeof repositories)[number])?.name?.toLowerCase(),
-      ],
-      ['desc', 'asc']
-    ) as typeof repositories
-  )
-    .filter((repository) =>
-      categories.length
-        ? categories.some(
-            (category) =>
-              category === repository?.category?.toLowerCase() ||
-              (category === 'trending' && repository.trending)
-          )
-        : true
-    )
-    .filter((repository) => {
-      if (!tags.length) return true
-
-      const repositoryTags = repository?.tags?.map((t) => t?.tag.toLowerCase())
-
-      return tags.some((tag) => repositoryTags?.includes(tag))
-    })
-
-  const fuse = new Fuse(sortedRepositories, searchOptions)
-
-  const resultRepositories = search
-    ? (orderBy(
-        fuse.search(search).map(({ item }) => item),
+  const sortedRepositories = useMemo(
+    () =>
+      orderBy(
+        repositories,
         [
           'trending',
-          (r) => (r as (typeof repositories)[number])?.name.toLowerCase(),
+          (r) => (r as (typeof repositories)[number])?.name?.toLowerCase(),
         ],
         ['desc', 'asc']
-      ) as typeof repositories)
-    : sortedRepositories
+      ) as typeof repositories,
+    [repositories]
+  )
+  const filteredRepositories = useMemo(
+    () =>
+      sortedRepositories
+        .filter((repository) =>
+          categories.length
+            ? categories.some(
+                (category) =>
+                  category === repository?.category?.toLowerCase() ||
+                  (category === 'trending' && repository.trending)
+              )
+            : true
+        )
+        .filter((repository) => {
+          if (!tags.length) return true
+
+          const repositoryTags = repository?.tags?.map((t) =>
+            t?.tag.toLowerCase()
+          )
+
+          return tags.some((tag) => repositoryTags?.includes(tag))
+        }),
+    [categories, sortedRepositories, tags]
+  )
+
+  const fuse = useMemo(
+    () => new Fuse(filteredRepositories, searchOptions),
+    [filteredRepositories]
+  )
+
+  const resultRepositories = useMemo(
+    () =>
+      search
+        ? (orderBy(
+            fuse.search(search).map(({ item }) => item),
+            [
+              'trending',
+              (r) => (r as (typeof repositories)[number])?.name.toLowerCase(),
+            ],
+            ['desc', 'asc']
+          ) as typeof repositories)
+        : filteredRepositories,
+    [fuse, search, filteredRepositories]
+  )
+
+  console.log('resultRepo', resultRepositories)
+  console.log('filtered', filteredRepositories)
 
   return (
     <MarketplacePage>
@@ -278,7 +288,7 @@ export default function Marketplace({
       </div>
       <ContentContainer>
         <MainContent>
-          <div className="sticky top-[var(--top-nav-height)] z-10 mb-xlarge">
+          <SearchBarArea className="sticky top-[var(--top-nav-height)] z-10 mb-xlarge">
             <SearchBar
               search={search}
               setSearch={setSearch}
@@ -291,15 +301,19 @@ export default function Marketplace({
                 handleClearTokens={handleClearTokens}
               />
             )}
-          </div>
+          </SearchBarArea>
           <TabPanel stateRef={tabStateRef}>
-            <Subtitle
-              as="h4"
-              className="mb-xlarge"
-            >
-              Plural curated stacks
-            </Subtitle>
-            <MarketplaceHeroImage />
+            {!isFiltered && !search && (
+              <div className="heroArea mb-xlarge">
+                <Subtitle
+                  as="h4"
+                  className="mb-xlarge"
+                >
+                  Plural curated stacks
+                </Subtitle>
+                <MarketplaceHeroImage />
+              </div>
+            )}
             <Subtitle
               as="h4"
               className="mb-xlarge"
@@ -307,20 +321,102 @@ export default function Marketplace({
               All apps
             </Subtitle>
 
-            <RepoCardList repositories={resultRepositories} />
+            <RepoCardList
+              repositories={resultRepositories}
+              pageSize={12}
+            />
           </TabPanel>
         </MainContent>
-        <SidecarContainer>
-          <MarketplaceSidebar
-            isOpen
+        <Sidecar>
+          <SidecarFilters
             categories={props.categories}
             tags={props.tags}
+            className="mb-large"
           />
-        </SidecarContainer>
+          <SidecarCard
+            variant="feature"
+            className="mb-large"
+          >
+            <SidecarCardTitle className="mb-small">
+              Join our contributor program
+            </SidecarCardTitle>
+            <PBody2 className="mb-small">
+              Add a new application to the Plural catalog or take a deep dive
+              into the Plural internals.
+            </PBody2>
+            <Cta
+              target="_blank"
+              href="https://www.plural.sh/blog/paying-for-oss-contributions/"
+            >
+              Learn more
+            </Cta>
+          </SidecarCard>
+          <SidecarCard variant="fill-one">
+            <SidecarCardTitle className="mb-small">
+              Add an application
+            </SidecarCardTitle>
+            <PBody2 className="mb-small">
+              Is something missing from the Plural marketplace? Are you a vendor
+              who wants to add your solution? We'd love for you to onboard your
+              application.
+            </PBody2>
+            <Cta
+              target="_blank"
+              href="https://docs.plural.sh/adding-new-application"
+            >
+              Read the guide
+            </Cta>
+          </SidecarCard>
+        </Sidecar>
       </ContentContainer>
     </MarketplacePage>
   )
 }
+
+function SidecarCard({
+  variant,
+  ...props
+}: CardProps & { variant?: 'fill-one' | 'feature' }) {
+  const theme = useTheme()
+
+  return (
+    <Card
+      padding={theme.spacing.large}
+      background={
+        variant === 'fill-one'
+          ? 'fill-one'
+          : variant === 'feature'
+          ? 'linear-gradient(342.58deg, rgba(73, 79, 242, 0.5) 6.13%, rgba(73, 79, 242, 0) 101.49%), #21242C'
+          : 'transparent'
+      }
+      {...props}
+    />
+  )
+}
+
+const PBody2 = styled.p(({ theme }) => ({
+  ...theme.partials.text.body2,
+  color: theme.colors['text-light'],
+}))
+
+const SearchBarArea = styled.div(({ theme }) => {
+  const mB = theme.spacing.medium
+
+  return {
+    backgroundColor: theme.colors['fill-zero'],
+    marginBottom: mB,
+    zIndex: 999,
+    flexShrink: 0,
+    '::after': {
+      content: '""',
+      position: 'absolute',
+      top: '100%',
+      height: mB,
+      width: '100%',
+      background: `linear-gradient(0deg, transparent 0%, ${theme.colors['fill-zero']} 90%)`,
+    },
+  }
+})
 
 const SearchBarWrap = styled.div(({ theme }) => ({
   backgroundColor: theme.colors['fill-zero'],
@@ -331,7 +427,10 @@ const SearchBarWrap = styled.div(({ theme }) => ({
   marginBottom: theme.spacing.small,
 }))
 
-function SearchBar({ search, setSearch }) {
+function SearchBar({ search: searchProp, setSearch: setSearchProp }) {
+  const [search, setSearch] = useState(searchProp)
+  const debouncedSetSearch = useDebounce(setSearchProp, 500)
+
   return (
     <SearchBarWrap>
       <Input
@@ -349,7 +448,10 @@ function SearchBar({ search, setSearch }) {
         }
         placeholder="Search the marketplace"
         value={search}
-        onChange={(event) => setSearch(event.target.value)}
+        onChange={(event) => {
+          setSearch(event.target.value)
+          debouncedSetSearch(event.target.value)
+        }}
       />
     </SearchBarWrap>
   )
@@ -362,7 +464,6 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
 
   return {
     props: {
-      stuff: 'trhings',
       repositories: repos || reposCache.filtered,
       tags: tags || [],
       categories: categories || [],

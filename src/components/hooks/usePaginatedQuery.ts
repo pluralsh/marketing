@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import {
   type Edges,
   type PaginatedResult,
-  mapExistingNodes,
+  filterMapNodes,
 } from '@src/utils/graphql'
 
 import type * as Apollo from '@apollo/client'
@@ -77,7 +77,7 @@ export function usePaginatedQueryHook<Q, V extends OperationVars, N>(
   const handleFetchMore = useCallback(() => {
     setPreviousEdgeNodes((x) => [
       ...x,
-      ...(mapExistingNodes(workingResults) || []),
+      ...(filterMapNodes(workingResults) || []),
     ])
     setCursor(workingResults?.pageInfo?.endCursor ?? null)
   }, [workingResults])
@@ -98,7 +98,7 @@ export function usePaginatedQueryHook<Q, V extends OperationVars, N>(
       >
     ) => () => void
   ] = [
-    [...previousEdgeNodes, ...(mapExistingNodes(workingResults) || [])],
+    [...previousEdgeNodes, ...(filterMapNodes(workingResults) || [])],
     results.loading,
     workingResults?.pageInfo?.hasNextPage || false,
     handleFetchMore,

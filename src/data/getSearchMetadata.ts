@@ -1,6 +1,6 @@
 import { until } from '@open-draft/until'
 
-import { mapExistingNodes } from '@src/utils/graphql'
+import { filterMapNodes } from '@src/utils/graphql'
 import { notNil } from '@src/utils/typescript'
 
 import client from '../apollo-client'
@@ -35,7 +35,7 @@ async function getTags(): Promise<Tags> {
     throw Error(error.message)
   }
 
-  const tags = mapExistingNodes(data?.tags) ?? cache.tags
+  const tags = filterMapNodes(data?.tags) ?? cache.tags
 
   return tags
 }

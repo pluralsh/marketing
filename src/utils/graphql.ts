@@ -1,8 +1,5 @@
-import { type MutationUpdaterFunction } from '@apollo/client/core/types'
 import isString from 'lodash/isString'
 import uniqWith from 'lodash/uniqWith'
-
-import { UserFragment } from '../models/user'
 
 export function updateFragment(cache, { fragment, id, update, fragmentName }) {
   const current = cache.readFragment({ id, fragment, fragmentName })
@@ -98,19 +95,56 @@ export type PaginatedResult<N> = Connection<N> & {
   pageInfo: { endCursor?: string | null | undefined; hasNextPage: boolean }
 }
 
-export function mapExistingNodes<N>(connection?: Connection<N> | null) {
+function filterMapNodes<N>(
+  connection: Connection<N> | null | undefined,
+  filter?: (node: N | undefined | null) => boolean
+): N[] | undefined
+function filterMapNodes<N, M>(
+  connection: Connection<N> | undefined | null,
+  filter: (node: N | undefined | null) => boolean,
+  map: (node: N) => M
+): M[] | undefined
+function filterMapNodes<N, M>(
+  connection: Connection<N> | null | undefined,
+  filter?: ((node: N | undefined | null) => boolean) | undefined | null,
+  map?: (node: N) => M
+): (N | M)[] | undefined {
   if (!connection?.edges) {
     return undefined
   }
   const { edges } = connection
 
   return (edges || []).reduce((prev, edge) => {
-    if (edge?.node) {
-      prev.push(edge.node)
+    if (edge?.node && (filter ? filter(edge.node) : true)) {
+      prev.push(map ? map(edge.node) : edge.node)
 
       return prev
     }
 
     return prev
-  }, [] as N[])
+  }, [] as (N | M)[])
 }
+
+export { filterMapNodes }
+
+export function whatever<N, M>(
+  data: N[],
+  filter: (item: N) => boolean,
+  map: (item: N) => M
+) {
+  return data.reduce((prev, item) => {
+    if (filter(item)) {
+      prev.push(map(item))
+    }
+
+    return prev
+  }, [] as M[])
+}
+
+const x = whatever(
+  ['a', 'b'],
+  () => true,
+  (x) => Number(x)
+)
+
+console.log('x', x)

@@ -1,6 +1,4 @@
-import type { ComponentPropsWithoutRef } from 'react'
-
-import { DiscordIcon, GitHubLogoIcon } from '@pluralsh/design-system'
+import { DiscordIcon } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 

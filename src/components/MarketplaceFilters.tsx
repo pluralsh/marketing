@@ -31,7 +31,7 @@ function useParamToggle(key: string) {
         console.log('includes:', formattedValue)
         console.log('clear:', key, value)
 
-        clearToken({ key, value: formattedValue, setSearchParams })
+        clearToken({ key, value, setSearchParams })
       } else {
         console.log('doesnt includes:', formattedValue)
 
@@ -151,13 +151,7 @@ function Categories({ categories }: { categories: Categories }) {
   )
 }
 
-function Tags({
-  tags,
-  hasMore = false,
-  fetchMore = () => {},
-  search,
-  setSearch,
-}) {
+function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
   const [nDisplayedTags, setNDisplayedTags] = useState(12)
   const { handleToggle, isToggled } = useParamToggle('tag')
   const sortedTags = tags.slice().sort((a, b) => a?.tag?.localeCompare(b?.tag))
@@ -180,7 +174,7 @@ function Tags({
       ghost
       defaultExpanded
       title={`Tags (${sortedTags.length}${
-        nDisplayedTags < tags.length || hasMore ? '+' : ''
+        nDisplayedTags < tags.length ? '+' : ''
       })`}
     >
       {(expanded) => (
@@ -216,9 +210,9 @@ function Tags({
               />
             ))}
           </CheckboxList>
-          {(nDisplayedTags < tags.length || hasMore) && !search && (
+          {nDisplayedTags < tags.length && !search && (
             <A
-              mt={0.5}
+              marginTop="small"
               marginLeft="xsmall"
               color="text-light"
               onClick={handleMoreTagsClick}
@@ -234,45 +228,41 @@ function Tags({
   )
 }
 
-const SidebarWrapper = styled(Card)<{ $isOpen: boolean }>(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  height: 'auto',
-  overflowY: 'scroll',
-  overflowX: 'auto',
-  flexShrink: 0,
-  position: 'sticky',
-  top: 'var(--top-nav-height)',
-  right: 0,
-  marginBottom: theme.spacing.medium,
-  maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
-}))
+const MarketplaceFilters = styled(MarketplaceFiltersUnstyled)(
+  ({ theme: _ }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'auto',
+    overflowY: 'scroll',
+    overflowX: 'auto',
+    flexShrink: 0,
+  })
+)
 
-function MarketplaceSidebar({
-  isOpen,
+export default MarketplaceFilters
+
+function MarketplaceFiltersUnstyled({
   tags,
   categories,
+  className,
 }: {
-  isOpen: boolean
   tags: any[]
   categories: any[]
+  className?: string
 }) {
   const [search, setSearch] = useState('')
   const filteredCategories = categories?.filter((c) => !!c.category)
 
   return (
-    <SidebarWrapper $isOpen={isOpen}>
+    <Card className={className}>
       <Div>
         <Categories categories={filteredCategories} />
         <Tags
           tags={tags}
-          // hasMore={hasMoreTags}
-          // fetchMore={fetchMoreTags}
           search={search}
           setSearch={setSearch}
         />
       </Div>
-    </SidebarWrapper>
+    </Card>
   )
 }
-export default MarketplaceSidebar

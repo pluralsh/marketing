@@ -1,5 +1,3 @@
-import path from 'path'
-
 import { InlineCode } from '@pluralsh/design-system'
 import type {
   GetStaticPaths,
@@ -16,43 +14,18 @@ import {
 } from '@pluralsh/design-system/dist/markdoc/components'
 
 import client from '@src/apollo-client'
-import MarkdocComponent from '@src/components/MarkdocContent'
 import { getAppMetaDescription } from '@src/consts'
-import { APP_CATALOG_BASE_URL } from '@src/consts/routes'
-import { getRepos } from '@src/data/getRepos'
-import { RecipesDocument } from '@src/generated/graphql'
-import { readMdFileCached } from '@src/markdoc/mdParser'
+import { type FullRepo, getRepo, getRepos } from '@src/data/getRepos'
+import { RecipesDocument } from '@src/generated/graphqlPlural'
+import { filterMapNodes } from '@src/utils/graphql'
 import { providerToProviderName } from '@src/utils/text'
 
-import type { MarkdocHeading, GlobalPageProps } from '../_app'
+import type { GlobalPageProps } from '../_app'
 import type {
   RecipeFragment,
   RecipesQuery,
   RecipesQueryVariables,
-} from '@src/generated/graphql'
-
-function collectHeadings(node: any, sections: MarkdocHeading[] = []) {
-  if (node) {
-    if (node?.name === 'Heading') {
-      const title = node.children[0]
-
-      if (typeof title === 'string') {
-        sections.push({
-          ...node.attributes,
-          title,
-        })
-      }
-    }
-
-    if (node?.children) {
-      for (const child of node.children) {
-        collectHeadings(child, sections)
-      }
-    }
-  }
-
-  return sections as MarkdocHeading[]
-}
+} from '@src/generated/graphqlPlural'
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -62,15 +35,8 @@ function isRecipe(
 
 export default function App({
   repo,
-  markdoc,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { recipes } = repo || {}
-
-  const headings = collectHeadings(markdoc?.content)
-
-  const mdHasConfig = !!headings.find((heading) =>
-    heading?.title?.match(/configuration/gi)
-  )
 
   const tabs = recipes?.filter(isRecipe).map((recipe) => ({
     key: recipe.name,
@@ -106,7 +72,7 @@ export default function App({
         We currently support {repo?.displayName} for the following providers:
       </Paragraph>
       {tabs && tabs.length > 0 && <FenceInner tabs={tabs} />}
-      {!mdHasConfig && recipeSections && recipeHasConfig && (
+      {recipeSections && recipeHasConfig && (
         <>
           <Heading level={2}>Setup Configuration</Heading>
           <List ordered={false}>
@@ -121,7 +87,6 @@ export default function App({
           </List>
         </>
       )}
-      {markdoc && <MarkdocComponent markdoc={markdoc} />}
     </div>
   )
 }
@@ -142,24 +107,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<Partial<GlobalPageProps>> = async (
-  context
-) => {
-  const repoName = context?.params?.repo
+export const getStaticProps: GetStaticProps<
+  Partial<GlobalPageProps> & { repo: FullRepo; recipes: RecipeFragment[] }
+> = async (context) => {
+  const repoName = context?.params?.app as string
 
-  const repos = await getRepos()
-  const thisRepo = repos.find((r) => r.name === repoName)
+  const thisRepo = await getRepo(repoName)
 
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
   }
-  const mdFilePath = path.join(
-    '/pages',
-    APP_CATALOG_BASE_URL,
-    `${repoName}.mdpart`
-  )
-
-  const markdoc = await readMdFileCached(mdFilePath)
 
   const { data: recipesData, error: recipesError } = await client.query<
     RecipesQuery,
@@ -174,24 +131,14 @@ export const getStaticProps: GetStaticProps<Partial<GlobalPageProps>> = async (
   }
 
   const recipes =
-    recipesData?.recipes?.edges
-      ?.map((edge) => edge?.node)
-      .filter((r) => r && !r?.private) || []
+    filterMapNodes(recipesData?.recipes, (r) => !!r && !r?.private) || []
 
   return {
     props: {
-      ...(markdoc ? { markdoc } : {}),
-      displayTitle:
-        markdoc?.frontmatter?.title || `Installing ${thisRepo?.displayName}`,
-      displayDescription:
-        markdoc?.frontmatter?.description || thisRepo?.description,
+      metaTitle: `Deploying ${thisRepo?.displayName} on Kubernetes`,
       metaDescription: getAppMetaDescription(thisRepo.displayName),
-      repo: thisRepo
-        ? {
-            ...thisRepo,
-            recipes: recipes || [],
-          }
-        : null,
+      repo: thisRepo,
+      recipes: recipes || [],
     },
     revalidate: 600,
   }

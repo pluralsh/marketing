@@ -1,10 +1,15 @@
 import capitalize from 'lodash/capitalize'
 import memoizeOne from 'memoize-one'
 
+import { filterMapNodes } from '@src/utils/graphql'
+
 import client from '../apollo-client'
 import {
-  // type RecipeFragment,
+  type FullRepoFragment,
   type MinRepoFragment,
+  RepoDocument,
+  type RepoQuery,
+  type RepoQueryVariables,
   ReposDocument,
   type ReposQuery,
   type ReposQueryVariables,
@@ -12,13 +17,16 @@ import {
 
 const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']
 
-export type Repo = Exclude<MinRepoFragment, null | undefined> & {
-  displayName?: string
-  // recipes?: (RecipeFragment | undefined | null)[]
-}
+export type MinRepo = ReturnType<
+  typeof normalizeRepo<Exclude<MinRepoFragment, null | undefined>>
+>
+
+export type FullRepo = ReturnType<
+  typeof normalizeRepo<Exclude<FullRepoFragment, null | undefined>>
+>
 
 export const reposCache: {
-  filtered: Repo[]
+  filtered: MinRepo[]
 } = {
   filtered: [],
 }
@@ -56,27 +64,29 @@ function fakeDisplayName(name = '') {
   return displayName
 }
 
-function inRemoveList(repoName: string) {
+function inRemoveList(repoName?: string) {
   return !!REMOVE_LIST.find((name) => name === repoName)
 }
 
-const normalizeRepos = memoizeOne(
-  (data: ReposQuery) =>
-    data?.repositories?.edges?.flatMap((edge) => {
-      const repo = edge?.node
+function normalizeRepo<T extends { name?: string }>(repo: T) {
+  return {
+    ...repo,
+    displayName:
+      ((repo as any).displayName as string) || fakeDisplayName(repo?.name),
+  }
+}
 
-      return repo && !inRemoveList(repo.name)
-        ? {
-            ...repo,
-            displayName:
-              ((repo as any).displayName as string) ||
-              fakeDisplayName(repo?.name),
-          }
-        : []
-    }) || []
+function filterRepo<T extends { name?: string } | null | undefined>(
+  repo: T
+): boolean {
+  return !!repo && !inRemoveList(repo?.name)
+}
+
+const normalizeRepos = memoizeOne((data: ReposQuery) =>
+  filterMapNodes(data?.repositories, filterRepo, normalizeRepo)
 )
 
-export async function getRepos(): Promise<Repo[]> {
+export async function getRepos(): Promise<MinRepo[]> {
   const { data, error } = await client.query<ReposQuery, ReposQueryVariables>({
     query: ReposDocument,
   })
@@ -84,7 +94,7 @@ export async function getRepos(): Promise<Repo[]> {
   if (error) {
     throw new Error(`${error.name}: ${error.message}`)
   }
-  const filteredRepos = normalizeRepos(data)
+  const filteredRepos = normalizeRepos(data) as MinRepo[]
 
   if (filteredRepos && filteredRepos.length > 0) {
     reposCache.filtered = filteredRepos
@@ -93,4 +103,25 @@ export async function getRepos(): Promise<Repo[]> {
   }
 
   throw new Error('No repos found')
+}
+
+const fullRepoCache: Record<string, FullRepo> = {}
+
+export async function getRepo(repoName: string): Promise<FullRepo> {
+  const { data, error } = await client.query<RepoQuery, RepoQueryVariables>({
+    query: RepoDocument,
+    variables: { name: repoName },
+  })
+
+  if (error) {
+    throw new Error(`${error.name}: ${error.message}`)
+  }
+  const repo = data.repository
+    ? normalizeRepo(data.repository)
+    : fullRepoCache[repoName] || undefined
+
+  if (!filterRepo(repo)) throw new Error('No repo found')
+  fullRepoCache[repoName] = repo
+
+  return repo
 }
