@@ -20,7 +20,7 @@ const config: CodegenConfig = {
         'typescript-react-apollo',
         {
           add: {
-            content: '/* eslint-disable */',
+            content: '/* eslint-disable */\n/* prettier-ignore */',
           },
         },
       ],
