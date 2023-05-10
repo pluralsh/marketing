@@ -1600,15 +1600,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.16.7":
-  version: 7.21.5
-  resolution: "@babel/runtime@npm:7.21.5"
-  dependencies:
-    regenerator-runtime: ^0.13.11
-  checksum: 358f2779d3187f5c67ad302e8f8d435412925d0b991d133c7d4a7b1ddd5a3fda1b6f34537cb64628dfd96a27ae46df105bed3895b8d754b88cacdded8d1129dd
-  languageName: node
-  linkType: hard
-
 "@babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7":
   version: 7.20.7
   resolution: "@babel/template@npm:7.20.7"
@@ -4409,18 +4400,6 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 6c396b1a175699b8ebca56e81230194b03d94df5a83bde542a643363dfa40065e8fa795ef57bb8d540134d717538c420d7013e3d3cf7b8a93a0680d0d6192765
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-virtual@npm:3.0.0-alpha.0":
-  version: 3.0.0-alpha.0
-  resolution: "@tanstack/react-virtual@npm:3.0.0-alpha.0"
-  dependencies:
-    "@babel/runtime": ^7.16.7
-    "@reach/observe-rect": ^1.1.0
-  peerDependencies:
-    react: ">=16"
-  checksum: 46f82711356fe50612c6025ddf739a84eb74249d86c25748fea70a653607089ac830a6a44e537232fdb0879aa7dcdcbee3fce090c66f04bd425eb9a0eb691c2d
   languageName: node
   linkType: hard
 
@@ -10895,7 +10874,7 @@ __metadata:
     "@react-stately/list": 3.8.0
     "@react-stately/select": 3.5.0
     "@tanstack/react-table": 8.8.5
-    "@tanstack/react-virtual": 3.0.0-alpha.0
+    "@tanstack/react-virtual": 3.0.0-beta.48
     "@types/node": 18.16.3
     "@types/react": 18.2.0
     "@types/react-dom": 18.2.1
