@@ -86,9 +86,7 @@ export function MenuButton({
     buttonRef
   )
 
-  console.log('menuProps', menuProps)
-
-  const { floating, triggerRef: _ } = useFloatingDropdown({
+  const { floating, triggerRef } = useFloatingDropdown({
     triggerRef: buttonRef,
     width,
     maxHeight,
@@ -96,10 +94,10 @@ export function MenuButton({
   })
 
   return (
-    <div>
+    <div className="relative">
       <MainLinkDropdown
         isOpen={triggerState.isOpen}
-        buttonRef={buttonRef}
+        buttonRef={triggerRef}
         {...menuTriggerProps}
       >
         {label}
@@ -109,7 +107,7 @@ export function MenuButton({
         onClose={triggerState.close}
         floating={floating}
       >
-        <Menu>{children}</Menu>
+        <Menu {...menuProps}>{children}</Menu>
       </PopoverMenu>
     </div>
   )
@@ -135,23 +133,13 @@ function Menu<T extends object>(props: AriaMenuProps<T>) {
         width: 150,
       }}
     >
-      {[...state.collection].map(
-        (item) => (
-          // item.type === 'section' ? (
-          // <MenuSection
-          //   key={item.key}
-          //   section={item}
-          //   state={state}
-          // />
-          // ) : (
-          <MenuItem
-            key={item.key}
-            item={item}
-            state={state}
-          />
-        )
-        // )
-      )}
+      {[...state.collection].map((item) => (
+        <MenuItem
+          key={item.key}
+          item={item}
+          state={state}
+        />
+      ))}
     </Card>
   )
 }
