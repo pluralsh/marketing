@@ -22,9 +22,6 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  apps: Array<Apps>;
-  apps_aggregated: Array<Apps_Aggregated>;
-  apps_by_id?: Maybe<Apps>;
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
@@ -35,32 +32,6 @@ export type Query = {
   nav_list_aggregated: Array<Nav_List_Aggregated>;
   nav_list_by_id?: Maybe<Nav_List>;
   site_settings?: Maybe<Site_Settings>;
-};
-
-
-export type QueryAppsArgs = {
-  filter?: InputMaybe<Apps_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryApps_AggregatedArgs = {
-  filter?: InputMaybe<Apps_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryApps_By_IdArgs = {
-  id: Scalars['ID'];
 };
 
 
@@ -139,70 +110,6 @@ export type QueryNav_List_AggregatedArgs = {
 
 export type QueryNav_List_By_IdArgs = {
   id: Scalars['ID'];
-};
-
-export type Apps = {
-  __typename?: 'apps';
-  date_created?: Maybe<Scalars['Date']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  sort?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
-  test_field?: Maybe<Scalars['String']>;
-  user_created?: Maybe<Scalars['String']>;
-  user_updated?: Maybe<Scalars['String']>;
-};
-
-export type Apps_Aggregated = {
-  __typename?: 'apps_aggregated';
-  avg?: Maybe<Apps_Aggregated_Fields>;
-  avgDistinct?: Maybe<Apps_Aggregated_Fields>;
-  count?: Maybe<Apps_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']>;
-  countDistinct?: Maybe<Apps_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']>;
-  max?: Maybe<Apps_Aggregated_Fields>;
-  min?: Maybe<Apps_Aggregated_Fields>;
-  sum?: Maybe<Apps_Aggregated_Fields>;
-  sumDistinct?: Maybe<Apps_Aggregated_Fields>;
-};
-
-export type Apps_Aggregated_Count = {
-  __typename?: 'apps_aggregated_count';
-  date_created?: Maybe<Scalars['Int']>;
-  date_updated?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['Int']>;
-  test_field?: Maybe<Scalars['Int']>;
-  user_created?: Maybe<Scalars['Int']>;
-  user_updated?: Maybe<Scalars['Int']>;
-};
-
-export type Apps_Aggregated_Fields = {
-  __typename?: 'apps_aggregated_fields';
-  id?: Maybe<Scalars['Float']>;
-  sort?: Maybe<Scalars['Float']>;
-};
-
-export type Apps_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  name?: InputMaybe<String_Filter_Operators>;
-  sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
-  test_field?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Boolean_Filter_Operators = {

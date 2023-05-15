@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["dom", "dom.iterable", "ESNext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ESNext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -9,7 +13,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "ESnext",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,10 +24,21 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["./src/*"],
-      "@pages/*": ["./pages/*"]
+      "@src/*": [
+        "src/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "pages/**/*", "src/**/*", "tailwind.config.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "pages/**/*",
+    "src/**/*",
+    "tailwind.config.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

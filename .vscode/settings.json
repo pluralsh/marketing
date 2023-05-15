@@ -1,6 +1,9 @@
 {
   "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "editor.codeActionsOnSave": [
+    "source.formatDocument",
+    "source.fixAll.eslint"
+  ],
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true

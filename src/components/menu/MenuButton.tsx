@@ -1,33 +1,53 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 
-import { Menu, ReactAriaPopover } from '@pluralsh/design-system'
+// import { Menu } from '@pluralsh/design-system'
 
-import { useMenu, useMenuTrigger } from 'react-aria'
-import { Item, useMenuTriggerState, useTreeState } from 'react-stately'
+import { Button } from '@pluralsh/design-system'
 
-// Reuse the Popover, and Button from your component library. See below for details.
-import { Button, Popover } from 'your-component-library'
+import { useFloatingDropdown } from '@pluralsh/design-system/dist/components/useFloatingDropdown'
+import { useMenu, useMenuItem, useMenuTrigger } from '@react-aria/menu'
+import { useMenuTriggerState } from '@react-stately/menu'
+import { useTreeState } from '@react-stately/tree'
 
-import type { AriaMenuProps } from 'react-aria'
-import type { MenuTriggerProps } from 'react-stately'
+import { PopoverMenu } from './PopoverMenu'
+
+import type { AriaMenuProps } from '@react-aria/menu'
+import type { MenuTriggerProps } from '@react-stately/menu'
+
+type Placement = 'left' | 'right'
 
 interface MenuButtonProps<T> extends AriaMenuProps<T>, MenuTriggerProps {
   label?: string
+  placement?: Placement
 }
 
-export function MenuButton<T extends object>(props: MenuButtonProps<T>) {
+export function MenuButton<T extends object>({
+  placement = 'left',
+  ...props
+}: MenuButtonProps<T>) {
   // Create state based on the incoming props
   const state = useMenuTriggerState(props)
 
   // Get props for the button and menu elements
-  const ref = useRef(null)
-  const { menuTriggerProps, menuProps } = useMenuTrigger<T>({}, state, ref)
+  const buttonRef = useRef(null)
+  const { menuTriggerProps, menuProps } = useMenuTrigger<T>(
+    {},
+    state,
+    buttonRef
+  )
+
+  const { floating, triggerRef } = useFloatingDropdown({
+    triggerRef: buttonRef,
+    width: '300px',
+    maxHeight: '400px',
+    placement: '',
+  })
 
   return (
     <>
       <Button
         {...menuTriggerProps}
-        buttonRef={ref}
+        buttonRef={buttonRef}
         style={{ height: 30, fontSize: 14 }}
       >
         {props.label}
@@ -39,16 +59,18 @@ export function MenuButton<T extends object>(props: MenuButtonProps<T>) {
         </span>
       </Button>
       {state.isOpen && (
-        <ReactAriaPopover
-          state={state}
-          triggerRef={ref}
-          placement="bottom start"
+        <PopoverMenu
+          isOpen={state.isOpen}
+          onClose={state.close}
+          // state={state}
+          triggerRef={buttonRef}
+          // placement="bottom start"
         >
           <Menu
             {...props}
             {...menuProps}
           />
-        </ReactAriaPopover>
+        </PopoverMenu>
       )}
     </>
   )

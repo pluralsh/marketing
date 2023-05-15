@@ -114,7 +114,7 @@ const HeaderWrap = styled.div(({ theme }) => ({
   top: 0,
   position: 'sticky',
   background: theme.colors['fill-zero'],
-  zIndex: '100',
+  zIndex: theme.zIndexes.modal - 100,
 }))
 
 const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(

@@ -1,11 +1,12 @@
 import { createContext, useContext } from 'react'
 
-import { type SiteSettingsFragment } from '@src/generated/graphqlDirectus'
+import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
-type NavData = Exclude<
-  SiteSettingsFragment['main_nav'],
-  null | undefined
->['subnav']
+export type NavList = NavListFragment & {
+  subnav?: NavList[] | null | undefined
+}
+
+export type NavData = NavList[]
 
 const NavDataContext = createContext<NavData | null>(null)
 

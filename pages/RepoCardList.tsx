@@ -12,6 +12,7 @@ import {
   CaretRightIcon,
   RepositoryCard,
 } from '@pluralsh/design-system'
+import { type ButtonProps } from 'honorable'
 import Link from 'next/link'
 
 import classNames from 'classnames'
@@ -135,8 +136,9 @@ const ResponsivePageNavigation = styled(ResponsivePageNavigationUnstyled)(
   })
 )
 
+type NavVariant = 'small' | 'medium'
 type PageNavigationProps = {
-  variant?: 'small'
+  variant?: NavVariant
   totalPages: number
   pageIndex: number
   setPageIndex: Dispatch<SetStateAction<number>>
@@ -152,6 +154,40 @@ function ResponsivePageNavigationUnstyled(props: PageNavigationProps) {
       />
       <PageNavigation {...props} />
     </>
+  )
+}
+
+function DirectionButton({
+  variant,
+  direction = 'right',
+}: {
+  direction: 'right' | 'left'
+  variant: NavVariant
+} & ButtonProps) {
+  const icon = direction === 'left' ? <CaretLeftIcon /> : <CaretRightIcon />
+  const text = direction === 'left' ? 'Previous' : 'Next'
+
+  return (
+    <Button
+      startIcon={variant === 'small' ? undefined : icon}
+      tertiary
+      {...(variant === 'small'
+        ? {
+            small: true,
+            padding: 0,
+            width: 32,
+            height: 32,
+            alignItems: 'center',
+            justifyContent: 'center',
+            'aria-label': 'Previous',
+            '@media (min-width:300)': {
+              width: 32,
+            },
+          }
+        : {})}
+    >
+      {variant === 'small' ? icon : text}
+    </Button>
   )
 }
 
@@ -175,6 +211,7 @@ function PageNavigation({
     Math.max(1, pageIndex - 1),
     Math.min(totalPages - 1, pageIndex + 2)
   )
+  const theme = useTheme()
 
   console.log('pages', pages)
   console.log('firstPages', firstPages)
@@ -188,27 +225,13 @@ function PageNavigation({
         _medium: variant !== 'small',
       })}
     >
-      <Button
+      <DirectionButton
+        direction="left"
         disabled={pageIndex === 0}
-        startIcon={variant === 'small' ? undefined : <CaretLeftIcon />}
-        tertiary
         onClick={() => {
           setPageIndex(Math.max(0, pageIndex - 1))
         }}
-        {...(variant === 'small'
-          ? {
-              small: true,
-              padding: 0,
-              width: 32,
-              height: 32,
-              alignItems: 'center',
-              justifyContent: 'center',
-              'aria-label': 'Previous',
-            }
-          : {})}
-      >
-        {variant === 'small' ? <CaretLeftIcon /> : 'Previous'}
-      </Button>
+      />
       <div className="flex flex-row gap-small">
         {firstPages.map((i) => (
           <PageButton

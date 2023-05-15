@@ -1,4 +1,5 @@
 import { directusClient } from '@src/apollo-client'
+import { MenuButton } from '@src/components/menu/MenuButton'
 import {
   EventsDocument,
   type EventsQuery,
@@ -16,9 +17,12 @@ export default function Index({ events }) {
             const startDate = new Date(event.start_date).toDateString()
 
             return (
-              <div className="rounded-md bg-fill-one p-medium">
-                {event.name}, {startDate}
-              </div>
+              <>
+                <MenuButton children={undefined} />
+                <div className="rounded-md bg-fill-one p-medium">
+                  {event.name}, {startDate}
+                </div>
+              </>
             )
           })}
         </div>

@@ -288,7 +288,7 @@ export default function Marketplace({
       </div>
       <ContentContainer>
         <MainContent>
-          <SearchBarArea className="sticky top-[var(--top-nav-height)] z-10 mb-xlarge">
+          <SearchBarArea className="sticky top-[var(--top-nav-height)] mb-xlarge">
             <SearchBar
               search={search}
               setSearch={setSearch}
@@ -405,7 +405,7 @@ const SearchBarArea = styled.div(({ theme }) => {
   return {
     backgroundColor: theme.colors['fill-zero'],
     marginBottom: mB,
-    zIndex: 999,
+    zIndex: theme.zIndexes.base + 10,
     flexShrink: 0,
     '::after': {
       content: '""',

@@ -1,12 +1,13 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, useMemo } from 'react'
 
 import styled from 'styled-components'
 
-import { useNavData } from '@src/contexts/NavDataContext'
+import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import { mqs } from '../breakpoints'
 
 import { MainLink } from './Navigation'
+import { PluralMenu } from './NavigationMobile'
 
 function NavItemLink({ navItem }: { navItem?: any }) {
   return (
@@ -16,20 +17,28 @@ function NavItemLink({ navItem }: { navItem?: any }) {
   )
 }
 
+function flattenNavData(navData: NavData): NavData {
+  const ret = navData?.flatMap((navItem) => {
+    if (navItem?.flatten && navItem.subnav) {
+      return flattenNavData(navItem.subnav)
+    }
+
+    return navItem
+  })
+
+  return ret
+}
+
 export const NavigationDesktop = styled(
   ({ ...props }: ComponentProps<'div'>) => {
-    const nav = useNavData()
+    const navData = useNavData()
+    const flatNav = useMemo(() => flattenNavData(navData), [navData])
 
     return (
       <div {...props}>
-        {nav?.map((navItem) => {
+        {flatNav?.map((navItem) => {
           if (navItem?.mobile_only) {
             return null
-          }
-          if (navItem?.flatten && navItem?.subnav) {
-            return navItem?.subnav?.map((n) =>
-              n?.mobile_only ? null : <NavItemLink navItem={n} />
-            )
           }
 
           return <NavItemLink navItem={navItem} />

@@ -1,17 +1,18 @@
-import styled, { useTheme } from 'styled-components'
-import { animated, to, useTransition } from 'react-spring'
+import { type ReactNode } from 'react'
+
+import { WrapWithIf } from '@pluralsh/design-system'
 
 import {
   FloatingPortal,
   type Placement,
   type UseFloatingReturn,
 } from '@floating-ui/react-dom-interactions'
-
-import Popover, {
+import {
+  Popover,
   type PopoverProps,
 } from '@pluralsh/design-system/dist/components/ReactAriaPopover'
-import { WrapWithIf } from '@pluralsh/design-system'
-import { ReactNode } from 'react'
+import { animated, to, useTransition } from 'react-spring'
+import styled, { useTheme } from 'styled-components'
 
 type PopoverMenuProps = {
   isOpen: boolean
@@ -49,7 +50,7 @@ const Animated = styled(animated.div)((_) => ({
   display: 'flex',
 }))
 
-function PopoverMenu({
+export function PopoverMenu({
   isOpen,
   onClose,
   //   listBoxState,
