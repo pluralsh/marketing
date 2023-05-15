@@ -1,13 +1,16 @@
-import React, { useRef } from 'react'
+import React, { type ComponentProps, type RefObject, useRef } from 'react'
 
-// import { Menu } from '@pluralsh/design-system'
-
-import { Button } from '@pluralsh/design-system'
+import { Card, DropdownArrowIcon } from '@pluralsh/design-system'
 
 import { useFloatingDropdown } from '@pluralsh/design-system/dist/components/useFloatingDropdown'
+import { useButton } from '@react-aria/button'
 import { useMenu, useMenuItem, useMenuTrigger } from '@react-aria/menu'
+import { Item } from '@react-stately/collections'
 import { useMenuTriggerState } from '@react-stately/menu'
 import { useTreeState } from '@react-stately/tree'
+import styled from 'styled-components'
+
+import { MainLink } from '../Navigation'
 
 import { PopoverMenu } from './PopoverMenu'
 
@@ -19,60 +22,96 @@ type Placement = 'left' | 'right'
 interface MenuButtonProps<T> extends AriaMenuProps<T>, MenuTriggerProps {
   label?: string
   placement?: Placement
+  width?: number | string
+  maxHeight?: number | string
 }
 
-export function MenuButton<T extends object>({
-  placement = 'left',
+function MainLinkDropdownUnstyled({
+  isOpen,
   ...props
-}: MenuButtonProps<T>) {
-  // Create state based on the incoming props
-  const state = useMenuTriggerState(props)
+}: ComponentProps<typeof MainLink> & { buttonRef: RefObject<any> }) {
+  const { className, children, buttonRef, style } = props
 
-  // Get props for the button and menu elements
-  const buttonRef = useRef(null)
-  const { menuTriggerProps, menuProps } = useMenuTrigger<T>(
-    {},
-    state,
+  const { buttonProps } = useButton(
+    { ...props, elementType: 'button' },
     buttonRef
   )
 
-  const { floating, triggerRef } = useFloatingDropdown({
+  return (
+    <MainLink
+      as="button"
+      ref={buttonRef}
+      type="button"
+      style={style}
+      className={className}
+      {...buttonProps}
+    >
+      {children}
+      <div className="icon">
+        <DropdownArrowIcon size={14} />
+      </div>
+    </MainLink>
+  )
+}
+
+const MainLinkDropdown = styled(MainLinkDropdownUnstyled)(
+  ({ theme, isOpen }) => ({
+    width: '500px',
+    '.icon': {
+      display: 'flex',
+      alignItems: 'center',
+      position: 'relative',
+      marginLeft: theme.spacing.xsmall,
+      transformOrigin: '50% 50%',
+      transform: isOpen ? 'scaleY(-100%)' : 'scaleY(100%)',
+    },
+  })
+)
+
+export function MenuButton({
+  placement = 'left',
+  width = '300px',
+  maxHeight = '400px',
+  label,
+  children,
+}: MenuButtonProps<any>) {
+  // Create state based on the incoming props
+  const triggerState = useMenuTriggerState({})
+
+  // Get props for the button and menu elements
+  const buttonRef = useRef(null)
+  const { menuTriggerProps, menuProps } = useMenuTrigger(
+    {},
+    triggerState,
+    buttonRef
+  )
+
+  console.log('menuProps', menuProps)
+
+  const { floating, triggerRef: _ } = useFloatingDropdown({
     triggerRef: buttonRef,
-    width: '300px',
-    maxHeight: '400px',
-    placement: '',
+    width,
+    maxHeight,
+    placement,
   })
 
   return (
-    <>
-      <Button
-        {...menuTriggerProps}
+    <div>
+      <MainLinkDropdown
+        isOpen={triggerState.isOpen}
         buttonRef={buttonRef}
-        style={{ height: 30, fontSize: 14 }}
+        {...menuTriggerProps}
       >
-        {props.label}
-        <span
-          aria-hidden="true"
-          style={{ paddingLeft: 5 }}
-        >
-          ▼
-        </span>
-      </Button>
-      {state.isOpen && (
-        <PopoverMenu
-          isOpen={state.isOpen}
-          onClose={state.close}
-          // state={state}
-          triggerRef={buttonRef}
-          // placement="bottom start"
-        >
-          <Menu
-            {...props}
-            {...menuProps}
-          />
-        </PopoverMenu>
-      )}
-    </>
+        {label}
+      </MainLinkDropdown>
+      <PopoverMenu
+        isOpen={triggerState.isOpen}
+        onClose={triggerState.close}
+        floating={floating}
+      >
+        <Menu>{children}</Menu>
+      </PopoverMenu>
+    </div>
   )
 }
 
@@ -85,7 +124,8 @@ function Menu<T extends object>(props: AriaMenuProps<T>) {
   const { menuProps } = useMenu(props, state, ref)
 
   return (
-    <ul
+    <Card
+      as="ul"
       {...menuProps}
       ref={ref}
       style={{
@@ -95,22 +135,24 @@ function Menu<T extends object>(props: AriaMenuProps<T>) {
         width: 150,
       }}
     >
-      {[...state.collection].map((item) =>
-        item.type === 'section' ? (
-          <MenuSection
-            key={item.key}
-            section={item}
-            state={state}
-          />
-        ) : (
+      {[...state.collection].map(
+        (item) => (
+          // item.type === 'section' ? (
+          // <MenuSection
+          //   key={item.key}
+          //   section={item}
+          //   state={state}
+          // />
+          // ) : (
           <MenuItem
             key={item.key}
             item={item}
             state={state}
           />
         )
+        // )
       )}
-    </ul>
+    </Card>
   )
 }
 

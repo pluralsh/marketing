@@ -7,9 +7,8 @@ import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 import { mqs } from '../breakpoints'
 
 import { MainLink } from './Navigation'
-import { PluralMenu } from './NavigationMobile'
 
-function NavItemLink({ navItem }: { navItem?: any }) {
+export function NavItemLink({ navItem }: { navItem?: any }) {
   return (
     <MainLink {...(navItem?.link?.url ? { href: navItem?.link?.url } : {})}>
       {navItem?.link?.title}
