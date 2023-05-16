@@ -1,12 +1,37 @@
 import { Item } from '@react-stately/collections'
 
 import { directusClient } from '@src/apollo-client'
-import { MenuButton } from '@src/components/menu/MenuButton'
+import { MItem, MenuButton } from '@src/components/menu/MenuButton'
 import {
   EventsDocument,
   type EventsQuery,
   type EventsQueryVariables,
 } from '@src/generated/graphqlDirectus'
+
+const items = [
+  {
+    key: '1',
+    id: '1',
+    textValue: 'label 1',
+    content: 'string',
+  },
+  {
+    key: '2',
+    id: '2',
+    textValue: 'label 2',
+    content: 'string',
+  },
+  {
+    key: '4',
+    id: '4',
+    textValue: 'label 4',
+    content: 'simple ccontent', // <div>complex content</div>,
+  },
+] as const
+
+// const tree = useTreeData({
+//   initialItems: items,
+// })
 
 export default function Index({ events }) {
   return (
@@ -15,25 +40,15 @@ export default function Index({ events }) {
         <h1 className="hero1 mb-medium w-full md:w-3/4">Events</h1>
         <p className="text-marketing-white">This is some paragraph textzz</p>
         <div className="my-large">
-          <MenuButton label="Menu 1">
-            <Item
-              key="1"
-              textValue="Part 1"
-            >
-              part 1
-            </Item>
-            <Item
-              key="2"
-              textValue="Part 2"
-            >
-              part 2
-            </Item>
-            <Item
-              key="3"
-              textValue="Part 3"
-            >
-              part 3
-            </Item>
+          <MenuButton<(typeof items)[number]>
+            label="Menu 1"
+            items={items}
+          >
+            {({ content, ...item }) => (
+              <Item key={item.key}>
+                <MItem>{content}</MItem>
+              </Item>
+            )}
           </MenuButton>
         </div>
         <div className="flex flex-col">
