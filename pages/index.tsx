@@ -1,7 +1,8 @@
 import { Item } from '@react-stately/collections'
 
 import { directusClient } from '@src/apollo-client'
-import { MenuButton, MenuItemHeaderLink } from '@src/components/menu/MenuButton'
+import { MenuButton } from '@src/components/menu/Menu'
+import { TopNavMenuItem } from '@src/components/menu/TopNavMenu'
 import {
   EventsDocument,
   type EventsQuery,
@@ -42,7 +43,7 @@ export default function Index({ events }) {
           <MenuButton<(typeof items)[number]>
             label="Menu 1"
             items={items}
-            itemRenderer={MenuItemHeaderLink}
+            itemRenderer={TopNavMenuItem}
           >
             {({ content, ...item }) => (
               <Item

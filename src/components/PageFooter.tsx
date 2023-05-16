@@ -82,7 +82,7 @@ const Footer = styled(MaxWidthLimiter).attrs(() => ({ as: 'footer' }))(
       [mqs.fullHeader]: {
         display: 'flex',
       },
-      [mqs.showSocial]: {
+      [mqs.fullHeaderSocial]: {
         display: 'none',
       },
     },

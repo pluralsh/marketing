@@ -5,9 +5,10 @@ export type Breakpoint =
   | 'lg'
   | 'xl'
   | 'xxl'
-  | 'fullHeader'
   | 'maxWidth'
-  | 'showSocial'
+  | 'fullHeader'
+  | 'fullHeaderWide'
+  | 'fullHeaderSocial'
 
 export const breakpoints: Record<Breakpoint, number> = {
   '': 0,
@@ -18,7 +19,8 @@ export const breakpoints: Record<Breakpoint, number> = {
   xxl: 1440,
   maxWidth: 1920,
   fullHeader: 1000,
-  showSocial: 1280,
+  fullHeaderWide: 1060,
+  fullHeaderSocial: 1280,
 }
 
 export const mqs = Object.fromEntries(

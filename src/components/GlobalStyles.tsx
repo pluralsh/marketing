@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
     },
     'a:focus-visible': {
       ...theme.partials.focus.default,
+      boxShadow: 'none',
     },
     'a:any-link': {
       color: 'unset',
@@ -59,6 +60,9 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       '--top-nav-height': '72px',
       '--menu-extra-bpad': '0px',
       '--page-x-pad': `20px`,
+      '--top-nav-link-h-pad': 0,
+      [mqs.lg]: {},
+      [mqs.xl]: {},
       '--page-max-width': `${
         breakpoints.md - (theme.spacing.large - 20) * 2
       }px`,
@@ -74,12 +78,29 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
     [mqs.lg]: {
       ':root': {
         '--top-nav-height': '80px',
+        '--top-nav-link-h-pad': `${theme.spacing.small}px`,
+      },
+    },
+    [mqs.fullHeader]: {
+      ':root': {
+        '--top-nav-link-h-pad': `${theme.spacing.xsmall - 1}px`,
+      },
+    },
+    [mqs.fullHeaderWide]: {
+      ':root': {
+        '--top-nav-link-h-pad': `${theme.spacing.small}px`,
+      },
+    },
+    [mqs.fullHeaderSocial]: {
+      ':root': {
+        '--top-nav-link-h-pad': `${theme.spacing.small}px`,
       },
     },
     [mqs.xxl]: {
       ':root': {
         '--page-x-pad': `96px`,
         '--page-max-width': `${breakpoints.maxWidth}px`,
+        '--top-nav-link-h-pad': `${theme.spacing.medium}px`,
       },
     },
   })

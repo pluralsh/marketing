@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { Button, DiscordIcon, usePrevious } from '@pluralsh/design-system'
+import {
+  Button,
+  DiscordIcon,
+  PluralLogoFull,
+  usePrevious,
+} from '@pluralsh/design-system'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -44,19 +49,23 @@ export function PageHeader({ ...props }) {
     setMenuIsOpen(false)
   })
 
+  console.log('theme.name', theme.mode)
+
   return (
     <HeaderWrap>
       <PageHeaderInner {...props}>
         <nav className="leftSection">
           <NextLink
             href="/"
-            className="flex flex-shrink-0"
+            className="logoLink flex flex-shrink-0"
             passHref
           >
-            <img
-              className="logo"
-              alt="Plural docs"
-              src="/images/plural-logo.svg"
+            <PluralLogoFull
+              color={
+                theme.mode === 'light'
+                  ? theme.colors.grey[900]
+                  : theme.colors.text
+              }
             />
           </NextLink>
           <NavigationDesktop />
@@ -124,16 +133,9 @@ const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'left',
-    '--link-h-pad': `${theme.spacing.xsmall}px`,
-    [mqs.lg]: {
-      '--link-h-pad': `${theme.spacing.small}px`,
-    },
-    [mqs.xl]: {
-      '--link-h-pad': `${theme.spacing.medium}px`,
-    },
     '.socialIcons': {
       display: 'none',
-      [mqs.showSocial]: {
+      [mqs.fullHeaderSocial]: {
         display: 'flex',
         flexDirection: 'row',
         gap: theme.spacing.medium,
@@ -147,12 +149,11 @@ const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(
         alignItems: 'center',
       },
     },
-    '.logo': {
-      display: 'block',
+    '.logoLink': {
+      display: 'flex',
+      flexShrink: 0,
+      alignItems: 'center',
       width: 98,
-      [mqs.fullHeader]: {
-        // width: 216,
-      },
     },
     '.rightSection, .leftSection': {
       display: 'flex',
