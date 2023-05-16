@@ -2,11 +2,21 @@ import styled from 'styled-components'
 
 import { mqs } from '../breakpoints'
 
-export const MainLink = styled.a(({ theme }) => ({
+export const MainLink = styled.a.withConfig({
+  shouldForwardProp: (prop) => !['isDisabled', 'isSelected'].includes(prop),
+})<{ isDisabled?: boolean; isSelected?: boolean }>(({ theme, isSelected }) => ({
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
-  '&:any-link': {
+  ...(isSelected
+    ? {
+        color: theme.colors.text,
+      }
+    : {}),
+  '*:focus-visible > &': {
+    textDecoration: 'underline',
+  },
+  '&, &:any-link': {
     color: theme.colors['text-light'],
     textDecoration: 'none',
   },

@@ -1,7 +1,7 @@
 import { Item } from '@react-stately/collections'
 
 import { directusClient } from '@src/apollo-client'
-import { MItem, MenuButton } from '@src/components/menu/MenuButton'
+import { MenuButton, MenuItemHeaderLink } from '@src/components/menu/MenuButton'
 import {
   EventsDocument,
   type EventsQuery,
@@ -11,27 +11,26 @@ import {
 const items = [
   {
     key: '1',
-    id: '1',
     textValue: 'label 1',
     content: 'string',
   },
   {
     key: '2',
-    id: '2',
     textValue: 'label 2',
     content: 'string',
   },
   {
     key: '4',
-    id: '4',
     textValue: 'label 4',
     content: 'simple ccontent', // <div>complex content</div>,
   },
+  {
+    key: '5',
+    textValue: 'label 4',
+    content: 'simple ccontent', // <div>complex content</div>,
+    // render: ({ item, state }) => <div>custom render, state</div>,
+  },
 ] as const
-
-// const tree = useTreeData({
-//   initialItems: items,
-// })
 
 export default function Index({ events }) {
   return (
@@ -43,10 +42,14 @@ export default function Index({ events }) {
           <MenuButton<(typeof items)[number]>
             label="Menu 1"
             items={items}
+            itemRenderer={MenuItemHeaderLink}
           >
             {({ content, ...item }) => (
-              <Item key={item.key}>
-                <MItem>{content}</MItem>
+              <Item
+                key={item.key}
+                textValue={item.textValue}
+              >
+                {content}
               </Item>
             )}
           </MenuButton>

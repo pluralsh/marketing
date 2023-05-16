@@ -1,29 +1,39 @@
 import React, {
   type ComponentProps,
+  type FunctionComponent,
   type RefObject,
-  cloneElement,
   useRef,
 } from 'react'
 
-import { Card, DropdownArrowIcon } from '@pluralsh/design-system'
+import { Card, CaretDownIcon } from '@pluralsh/design-system'
 
 import { useFloatingDropdown } from '@pluralsh/design-system/dist/components/useFloatingDropdown'
 import { useButton } from '@react-aria/button'
 import { useMenu, useMenuItem, useMenuTrigger } from '@react-aria/menu'
+import { type AriaMenuProps } from '@react-aria/menu'
 import { useMenuTriggerState } from '@react-stately/menu'
-import { useTreeState } from '@react-stately/tree'
+import { type MenuTriggerProps } from '@react-stately/menu'
+import { type TreeState, useTreeState } from '@react-stately/tree'
+import { type Node } from '@react-types/shared'
 import styled from 'styled-components'
 
 import { MainLink } from '../Navigation'
 
 import { PopoverMenu } from './PopoverMenu'
 
-import type { AriaMenuProps } from '@react-aria/menu'
-import type { MenuTriggerProps } from '@react-stately/menu'
-
 type Placement = 'left' | 'right'
 
-interface MenuButtonProps<T> extends AriaMenuProps<T>, MenuTriggerProps {
+type ItemRendererProps<T extends object> = {
+  item: Node<T>
+  state: TreeState<T>
+}
+
+type ItemRenderer<T extends object> = (p: ItemRendererProps<T>) => JSX.Element
+
+interface MenuButtonProps<T extends { render?: FunctionComponent }>
+  extends AriaMenuProps<T>,
+    MenuTriggerProps {
+  itemRenderer?: ItemRenderer<T>
   label?: string
   placement?: Placement
   width?: number | string
@@ -31,7 +41,6 @@ interface MenuButtonProps<T> extends AriaMenuProps<T>, MenuTriggerProps {
 }
 
 function MainLinkDropdownUnstyled({
-  isOpen,
   ...props
 }: ComponentProps<typeof MainLink> & { buttonRef: RefObject<any> }) {
   const eltType = 'button'
@@ -53,14 +62,10 @@ function MainLinkDropdownUnstyled({
     >
       {children}
       <div className="icon">
-        <DropdownArrowIcon size={14} />
+        <CaretDownIcon size={14} />
       </div>
     </MainLink>
   )
-}
-
-export function MItem({ children, ...props }: ComponentProps<'div'>) {
-  return <div {...props}>{children}</div>
 }
 
 const MainLinkDropdown = styled(MainLinkDropdownUnstyled).withConfig({
@@ -78,8 +83,8 @@ const MainLinkDropdown = styled(MainLinkDropdownUnstyled).withConfig({
 
 export function MenuButton<T extends object>({
   placement = 'left',
-  width = 'min-content',
-  maxHeight = '400px',
+  width = 'max-content',
+  maxHeight = '100px',
   label,
   children,
   ...props
@@ -106,9 +111,6 @@ export function MenuButton<T extends object>({
     placement,
   })
 
-  console.log('menuProps', menuProps)
-  console.log('props', props)
-
   return (
     <div className="relative">
       <MainLinkDropdown
@@ -134,7 +136,10 @@ export function MenuButton<T extends object>({
   )
 }
 
-function Menu<T extends object>(props: AriaMenuProps<T>) {
+function Menu<T extends object>({
+  itemRenderer = MenuItem,
+  ...props
+}: AriaMenuProps<T> & { itemRenderer?: ItemRenderer<T> }) {
   // Create menu state based on the incoming props
   const state = useTreeState(props)
 
@@ -144,30 +149,34 @@ function Menu<T extends object>(props: AriaMenuProps<T>) {
 
   console.log('state.collection', state.collection)
 
+  const Item = itemRenderer
+
   return (
-    <Card
+    <DropdownCard
       as="ul"
       {...menuProps}
       ref={ref}
-      style={{
-        margin: 0,
-        padding: 0,
-        listStyle: 'none',
-        width: 150,
-      }}
+      fillLevel={2}
     >
       {[...state.collection].map((item) => (
-        <MenuItem
+        <Item
           key={item.key}
           item={item}
           state={state}
         />
       ))}
-    </Card>
+    </DropdownCard>
   )
 }
 
-function MenuItem({ item, state }) {
+const DropdownCard = styled(Card).attrs({ fillLevel: 2 })(({ theme: _ }) => ({
+  overflow: 'hidden',
+}))
+
+export function MenuItem<T extends object>({
+  item,
+  state,
+}: ItemRendererProps<T>) {
   // Get props for the menu item element
   const ref = React.useRef(null)
   const { menuItemProps, isFocused, isSelected, isDisabled } = useMenuItem(
@@ -176,29 +185,67 @@ function MenuItem({ item, state }) {
     ref
   )
 
-  console.log('item', item)
-
   return (
-    <MenuItemInner
+    <li
       $isFocused={isFocused}
       $isDisabled={isDisabled}
+      $isSelected={isSelected}
       {...menuItemProps}
       ref={ref}
     >
       {item.rendered}
-      {isSelected && <span aria-hidden="true">✅</span>}
-    </MenuItemInner>
+    </li>
   )
 }
 
-const MenuItemInner = styled.li<{ $isDisabled: boolean; $isFocused: boolean }>(
-  ({ theme, $isDisabled, $isFocused }) => ({
-    background: $isFocused ? 'gray' : 'transparent',
-    color: $isDisabled ? theme.colors['text-disabled'] : theme.colors.text,
-    padding: `${theme.spacing.medium}px ${theme.spacing.small}px`,
-    outline: 'none',
-    cursor: 'default',
-    display: 'flex',
-    justifyContent: 'space-between',
+const MenuItemInner = styled.li<{
+  $isDisabled: boolean
+  $isFocused: boolean
+  $isSelected
+}>(({ theme, $isDisabled, $isFocused, $isSelected }) => ({
+  [`${MainLink}`]: {
+    backgroundColor: 'blue',
+  },
+  background: $isFocused ? 'gray' : 'transparent',
+  color: $isDisabled ? theme.colors['text-disabled'] : theme.colors.text,
+  padding: `${theme.spacing.medium}px ${theme.spacing.small}px`,
+  outline: 'none',
+  cursor: 'default',
+  display: 'flex',
+  justifyContent: 'space-between',
+}))
+
+export function MenuItemHeaderLink<T extends object>({
+  item,
+  state,
+}: ItemRendererProps<T>) {
+  // Get props for the menu item element
+  const ref = React.useRef(null)
+  const { menuItemProps, isSelected, isDisabled } = useMenuItem(
+    { key: item.key },
+    state,
+    ref
+  )
+
+  return (
+    <MenuItemHeaderLinkInner
+      {...menuItemProps}
+      ref={ref}
+    >
+      <MainLink
+        isSelected={isSelected}
+        isDisabled={isDisabled}
+      >
+        {item.rendered}
+      </MainLink>
+    </MenuItemHeaderLinkInner>
+  )
+}
+
+const MenuItemHeaderLinkInner = styled.li(
+  ({ theme, $isDisabled, $isFocused, $isSelected }) => ({
+    '&:focus-visible': {
+      border: `1px solid ${theme.colors['border-outline-focused']}`,
+    },
   })
 )
