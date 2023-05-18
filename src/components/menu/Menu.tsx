@@ -91,7 +91,7 @@ export function MenuButton<T extends object>({
   ...props
 }: MenuButtonProps<T>) {
   // Create state based on the incoming props
-  const triggerState = useMenuTriggerState({})
+  const triggerState = useMenuTriggerState(props)
 
   // Get props for the button and menu elements
   const buttonRef = useRef(null)
@@ -150,7 +150,6 @@ function MenuDropdown<T extends object>({
     <DropdownCard
       {...menuProps}
       ref={ref}
-      fillLevel={1}
     >
       <ul>
         {[...state.collection].map((item) => (
@@ -165,12 +164,13 @@ function MenuDropdown<T extends object>({
   )
 }
 
-const DropdownCard = styled(Card).attrs({ fillLevel: 2 })(({ theme }) => ({
+const DropdownCard = styled(Card).attrs({ fillLevel: 1 })(({ theme }) => ({
   overflowX: 'hidden',
   overflowY: 'auto',
   paddingTop: theme.spacing.xsmall,
   paddingBottom: theme.spacing.xsmall,
   minWidth: 110,
+  boxShadow: theme.boxShadows.moderate,
 }))
 
 export function MenuItem<T extends object>({

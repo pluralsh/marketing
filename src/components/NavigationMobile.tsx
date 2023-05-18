@@ -59,6 +59,7 @@ function NavList({ navData }: { navData?: NavData | null }) {
         if (isEmpty(navItem?.subnav)) {
           return (
             <MobileMainLink
+              key={navItem?.id}
               {...(navItem?.link?.url ? { href: navItem?.link.url } : {})}
             >
               {navItem?.link?.title}

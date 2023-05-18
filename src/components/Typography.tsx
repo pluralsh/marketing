@@ -14,6 +14,13 @@ export const Heading1 = styled.h1(({ theme }) => ({
   },
 }))
 
+export const Heading2 = styled.h2(({ theme }) => ({
+  ...theme.partials.marketingText.title2,
+  [mqs.md]: {
+    ...theme.partials.marketingText.title1,
+  },
+}))
+
 export const Body1 = styled.p(({ theme }) => ({
   ...theme.partials.marketingText.body1,
 }))

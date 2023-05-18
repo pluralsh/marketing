@@ -72,37 +72,29 @@ const CheckboxList = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   rowGap: theme.spacing.xxsmall,
+  '*': {
+    tabIndex: -1,
+  },
 }))
 
-const CheckboxLabel = styled.p<{ $toggled?: boolean }>(
-  ({ $toggled, theme }) => ({
-    ...theme.partials.text.body2,
-    color: $toggled ? theme.colors.text : theme.colors['text-light'],
-    margin: 0,
-  })
-)
-
-function MarketplaceSidebarCheckbox({
-  toggled,
-  onClick,
-  label,
-  trapFocus = false,
-}: any) {
-  return (
+const MarketplaceSidebarCheckbox = styled(
+  ({ toggled, onClick, label, trapFocus, className }: any) => (
     <Checkbox
       small
       checked={toggled}
       onChange={onClick}
-      tabIndex={trapFocus ? 0 : -1}
-      paddingBottom="xsmall"
-      paddingTop="xsmall"
-      paddingLeft="xsmall"
-      paddingRight={0}
+      className={className}
+      tabIndex={trapFocus ? undefined : -1}
     >
-      <CheckboxLabel $toggled={toggled}>{label}</CheckboxLabel>
+      {label}
     </Checkbox>
   )
-}
+)(({ theme }) => ({
+  paddingBottom: theme.spacing.xsmall,
+  paddingTop: theme.spacing.xsmall,
+  paddingLeft: theme.spacing.xsmall,
+  paddingRight: 0,
+}))
 
 const searchOptions = {
   keys: ['tag'],
