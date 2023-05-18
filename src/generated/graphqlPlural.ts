@@ -1352,6 +1352,7 @@ export type Invite = {
   email?: Maybe<Scalars['String']>;
   existing: Scalars['Boolean'];
   expiresAt?: Maybe<Scalars['DateTime']>;
+  groups?: Maybe<Array<Maybe<Group>>>;
   id: Scalars['ID'];
   insertedAt?: Maybe<Scalars['DateTime']>;
   secureId?: Maybe<Scalars['String']>;
@@ -1361,6 +1362,7 @@ export type Invite = {
 
 export type InviteAttributes = {
   email?: InputMaybe<Scalars['String']>;
+  inviteGroups?: InputMaybe<Array<InputMaybe<BindingAttributes>>>;
 };
 
 export type InviteConnection = {
@@ -2660,6 +2662,8 @@ export type RootMutationType = {
   deleteChartInstallation?: Maybe<ChartInstallation>;
   /** Delete a cluster. */
   deleteCluster?: Maybe<Cluster>;
+  /** deletes a dependency for this cluster and potentially disables promotions entirely */
+  deleteClusterDependency?: Maybe<ClusterDependency>;
   deleteDemoProject?: Maybe<DemoProject>;
   deleteDnsRecord?: Maybe<DnsRecord>;
   deleteDomain?: Maybe<DnsDomain>;
@@ -3015,6 +3019,12 @@ export type RootMutationTypeDeleteChartInstallationArgs = {
 export type RootMutationTypeDeleteClusterArgs = {
   name: Scalars['String'];
   provider: Provider;
+};
+
+
+export type RootMutationTypeDeleteClusterDependencyArgs = {
+  destId: Scalars['ID'];
+  sourceId: Scalars['ID'];
 };
 
 
