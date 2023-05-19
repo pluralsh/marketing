@@ -2,9 +2,12 @@ import { createContext, useContext } from 'react'
 
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
-export type NavList = NavListFragment & {
-  subnav?: NavList[] | null | undefined
-}
+export type NavList =
+  | (NavListFragment & {
+      subnav?: NavList[] | null | undefined
+    })
+  | null
+  | undefined
 
 export type NavData = NavList[]
 
