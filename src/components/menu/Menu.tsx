@@ -5,9 +5,12 @@ import React, {
   useRef,
 } from 'react'
 
-import { Card, CaretDownIcon } from '@pluralsh/design-system'
+import {
+  Card,
+  CaretDownIcon,
+  useFloatingDropdown,
+} from '@pluralsh/design-system'
 
-import { useFloatingDropdown } from '@pluralsh/design-system/dist/components/useFloatingDropdown'
 import { useButton } from '@react-aria/button'
 import { useMenu, useMenuItem, useMenuTrigger } from '@react-aria/menu'
 import { type AriaMenuProps } from '@react-aria/menu'
@@ -39,6 +42,7 @@ interface MenuButtonProps<T extends { render?: FunctionComponent }>
   width?: number | string
   maxHeight?: number | string
   className?: string
+  dropdownProps?: Parameters<typeof useFloatingDropdown>[0]
 }
 
 function MainLinkTriggerUnstyled({
@@ -85,8 +89,7 @@ const MainLinkTrigger = styled(MainLinkTriggerUnstyled).withConfig({
 
 export function MenuButton<T extends object>({
   placement = 'left',
-  width = 'max-content',
-  maxHeight = 300,
+  dropdownProps,
   label,
   children,
   className,
@@ -104,10 +107,12 @@ export function MenuButton<T extends object>({
   )
 
   const { floating, triggerRef } = useFloatingDropdown({
-    triggerRef: buttonRef,
-    width,
-    maxHeight,
     placement,
+    width: 'max-content',
+    maxHeight: 300,
+    minWidth: 'reference',
+    ...dropdownProps,
+    triggerRef: buttonRef,
   })
 
   return (
@@ -175,7 +180,6 @@ const DropdownCard = styled(Card).attrs({ fillLevel: 1 })(({ theme }) => ({
   overflowY: 'auto',
   paddingTop: theme.spacing.xsmall,
   paddingBottom: theme.spacing.xsmall,
-  minWidth: 110,
   boxShadow: theme.boxShadows.moderate,
 }))
 

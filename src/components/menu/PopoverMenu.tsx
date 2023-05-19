@@ -53,12 +53,7 @@ const Animated = styled(animated.div)((_) => ({
 export function PopoverMenu({
   isOpen,
   onClose,
-  //   listBoxState,
-  //   listBoxProps,
-  //   listBoxRef,
   popoverRef,
-  //   dropdownHeaderFixed,
-  //   dropdownFooterFixed,
   floating,
   children,
 }: PopoverMenuProps) {
