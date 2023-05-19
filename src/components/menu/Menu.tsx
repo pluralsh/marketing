@@ -136,7 +136,7 @@ export function MenuButton<T extends object>({
 }
 
 export const MenuButtonWrap = styled.div((_) => ({
-  display: 'relative',
+  position: 'relative',
 }))
 
 function MenuDropdown<T extends object>({
