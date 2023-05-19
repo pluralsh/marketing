@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { useNavigationContext } from '@pluralsh/design-system'
 
@@ -44,17 +44,22 @@ const TopNavMenuItemWrapper = styled.li((_) => ({}))
 export function TopNavMenu({ navItem }: { navItem: NavList }) {
   const navigate = useNavigationContext().useNavigate()
 
-  if (!navItem?.subnav) {
+  const items = useMemo(
+    () => navItem?.subnav?.filter((item): item is NavList => !!item),
+    [navItem.subnav]
+  )
+
+  if (!items) {
     return null
   }
 
   return (
     <MenuButton
       label={navItem.link?.title || 'Menu'}
-      items={navItem.subnav}
+      items={items}
       itemRenderer={TopNavMenuItem}
       onAction={(key) => {
-        const item = navItem.subnav?.find((item) => item.id === key)
+        const item = navItem.subnav?.find((item) => item?.id === key)
         const url = item?.link?.url
 
         if (url) {

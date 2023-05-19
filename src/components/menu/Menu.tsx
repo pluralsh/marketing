@@ -38,6 +38,7 @@ interface MenuButtonProps<T extends { render?: FunctionComponent }>
   placement?: Placement
   width?: number | string
   maxHeight?: number | string
+  className?: string
 }
 
 function MainLinkTriggerUnstyled({
@@ -88,6 +89,7 @@ export function MenuButton<T extends object>({
   maxHeight = 300,
   label,
   children,
+  className,
   ...props
 }: MenuButtonProps<T>) {
   // Create state based on the incoming props
@@ -109,7 +111,7 @@ export function MenuButton<T extends object>({
   })
 
   return (
-    <div className="relative">
+    <MenuButtonWrap className={className}>
       <MainLinkTrigger
         isOpen={triggerState.isOpen}
         buttonRef={triggerRef}
@@ -129,9 +131,13 @@ export function MenuButton<T extends object>({
           {children}
         </MenuDropdown>
       </PopoverMenu>
-    </div>
+    </MenuButtonWrap>
   )
 }
+
+export const MenuButtonWrap = styled.div((_) => ({
+  display: 'relative',
+}))
 
 function MenuDropdown<T extends object>({
   itemRenderer = MenuItem,

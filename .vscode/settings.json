@@ -1,11 +1,17 @@
 {
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": [
-    // "source.fixAll.eslint"
+    "source.formatDocument",
+    "source.fixAll.eslint",
   ],
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
   },
   "eslint.nodePath": ".yarn/sdks",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",

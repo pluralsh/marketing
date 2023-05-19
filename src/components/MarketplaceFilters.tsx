@@ -24,17 +24,9 @@ function useParamToggle(key: string) {
       const existing = searchParams.getAll(key)
       const formattedValue = value.toLowerCase()
 
-      console.log('handleToggle formattted', formattedValue)
-      console.log('handleToggle unformatted', value)
-
       if (existing.includes(formattedValue)) {
-        console.log('includes:', formattedValue)
-        console.log('clear:', key, value)
-
         clearToken({ key, value, setSearchParams })
       } else {
-        console.log('doesnt includes:', formattedValue)
-
         setSearchParams((params) => {
           params.append(key, formattedValue)
 

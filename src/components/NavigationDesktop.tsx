@@ -40,7 +40,7 @@ export const NavigationDesktop = styled(
           if (navItem?.mobile_only) {
             return null
           }
-          if (navItem.subnav) {
+          if (navItem?.subnav) {
             return <TopNavMenu navItem={navItem} />
           }
 
