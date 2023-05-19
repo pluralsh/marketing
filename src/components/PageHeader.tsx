@@ -49,8 +49,6 @@ export function PageHeader({ ...props }) {
     setMenuIsOpen(false)
   })
 
-  console.log('theme.name', theme.mode)
-
   return (
     <HeaderWrap>
       <PageHeaderInner {...props}>

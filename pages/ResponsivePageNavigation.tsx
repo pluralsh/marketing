@@ -148,7 +148,6 @@ function selectWindow(
 
   // Shift window to right if it would extend too far left
   if (startI < 0) {
-    console.log('too far left')
     startI = 0
   }
   let endI = startI + windowWidth
@@ -197,20 +196,10 @@ function PageNavigation({
   if (middleEndI !== middlePages.length) {
     middleEndI--
   }
-
-  console.log('middleStartI', middleStartI)
-
-  console.log('middleEndI', middleEndI)
-  console.log('maxMiddleButtons', maxMiddleButtons)
   const firstPages = pages.slice(firstStartI, firstEndI)
 
   middlePages = middlePages.slice(middleStartI, middleEndI)
   const lastPages = pages.length > 1 ? pages.slice(lastStartI, lastEndI) : []
-
-  console.log('firstPages', firstPages)
-  console.log('middlePages', middlePages)
-  console.log('lastPages', lastPages)
-  console.log('pageIndex', pageIndex)
 
   return (
     <div

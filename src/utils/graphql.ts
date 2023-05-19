@@ -126,25 +126,3 @@ function filterMapNodes<N, M>(
 }
 
 export { filterMapNodes }
-
-export function whatever<N, M>(
-  data: N[],
-  filter: (item: N) => boolean,
-  map: (item: N) => M
-) {
-  return data.reduce((prev, item) => {
-    if (filter(item)) {
-      prev.push(map(item))
-    }
-
-    return prev
-  }, [] as M[])
-}
-
-const x = whatever(
-  ['a', 'b'],
-  () => true,
-  (x) => Number(x)
-)
-
-console.log('x', x)

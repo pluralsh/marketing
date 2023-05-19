@@ -277,9 +277,6 @@ export default function Marketplace({
     [fuse, search, filteredRepositories]
   )
 
-  console.log('resultRepo', resultRepositories)
-  console.log('filtered', filteredRepositories)
-
   return (
     <MarketplacePage>
       <div className="my-xxlarge xxl:mb-[80px]">
