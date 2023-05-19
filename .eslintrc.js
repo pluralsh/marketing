@@ -58,6 +58,7 @@ module.exports = {
       },
     ],
   },
+  // Disable parser and rules that depend on a parser for config files
   overrides: [
     {
       files: [
@@ -69,6 +70,10 @@ module.exports = {
       ],
       parserOptions: {
         project: null,
+      },
+      rules: {
+        '@typescript-eslint/consistent-type-exports': 'off',
+        '@typescript-eslint/consistent-type-imports': 'off',
       },
     },
   ],
