@@ -1,26 +1,13 @@
-import {
-  type ComponentProps,
-  type Dispatch,
-  type SetStateAction,
-  useMemo,
-  useState,
-} from 'react'
+import { type ComponentProps, useEffect, useMemo, useState } from 'react'
 
-import {
-  Button,
-  CaretLeftIcon,
-  CaretRightIcon,
-  RepositoryCard,
-} from '@pluralsh/design-system'
-import { type ButtonProps } from 'honorable'
+import { RepositoryCard } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import classNames from 'classnames'
 import drop from 'lodash/drop'
-import styled, { useTheme } from 'styled-components'
 
-import { mqs } from '@src/breakpoints'
 import { type MinRepo } from '@src/data/getRepos'
+
+import { ResponsivePageNavigation } from './ResponsivePageNavigation'
 
 function getPaginatedItems<T>(items: T[], pageIndex = 0, pageSize = 24) {
   const offset = pageIndex * pageSize
@@ -35,46 +22,28 @@ function getPaginatedItems<T>(items: T[], pageIndex = 0, pageSize = 24) {
   }
 }
 
-function PageButton({ selected, ...props }) {
-  const theme = useTheme()
-
-  return (
-    <Button
-      secondary
-      minWidth={40}
-      backgroundColor={
-        selected ? theme.colors['fill-one-selected'] : 'transparent'
-      }
-      {...{
-        '&:hover': {
-          backgroundColor: selected
-            ? theme.colors['fill-one-hover']
-            : theme.colors['fill-zero-hover'],
-        },
-      }}
-      {...props}
-    />
-  )
-}
-
 export function RepoCardList({
   repositories,
   repoProps = {},
   urlParams = '',
   size = 'small',
-  pageSize = 24,
+  pageSize = 16,
 }: {
   repositories: MinRepo[]
   repoProps?: ComponentProps<typeof RepositoryCard>
   urlParams?: string
   size?: ComponentProps<typeof RepositoryCard>['size']
-  pageSize: number
+  pageSize?: number
 }) {
-  const [pageIndex, setPageIndex] = useState(0)
+  const [curPageIndex, setCurPageIndex] = useState(0)
   const { pageItems, totalPages } = useMemo(
-    () => getPaginatedItems(repositories, pageIndex, pageSize),
-    [pageIndex, pageSize, repositories]
+    () => getPaginatedItems(repositories, curPageIndex, pageSize),
+    [curPageIndex, pageSize, repositories]
   )
+
+  useEffect(() => {
+    setCurPageIndex(0)
+  }, [repositories])
 
   return (
     <div>
@@ -106,198 +75,9 @@ export function RepoCardList({
       <ResponsivePageNavigation
         className="mt-xxlarge"
         totalPages={totalPages}
-        pageIndex={pageIndex}
-        setPageIndex={setPageIndex}
+        pageIndex={curPageIndex}
+        setPageIndex={setCurPageIndex}
       />
-    </div>
-  )
-}
-
-const ResponsivePageNavigation = styled(ResponsivePageNavigationUnstyled)(
-  ({ theme }) => ({
-    display: 'flex',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    gap: theme.spacing.xlarge,
-    '&._small': {
-      gap: theme.spacing.xsmall,
-    },
-    '&._medium': {
-      display: 'none',
-    },
-    [mqs.md]: {
-      '&._medium': {
-        display: 'flex',
-      },
-      '&._small': {
-        display: 'none',
-      },
-    },
-  })
-)
-
-type NavVariant = 'small' | 'medium'
-type PageNavigationProps = {
-  variant?: NavVariant
-  totalPages: number
-  pageIndex: number
-  setPageIndex: Dispatch<SetStateAction<number>>
-  className?: string
-}
-
-function ResponsivePageNavigationUnstyled(props: PageNavigationProps) {
-  return (
-    <>
-      <PageNavigation
-        variant="small"
-        {...props}
-      />
-      <PageNavigation {...props} />
-    </>
-  )
-}
-
-function DirectionButton({
-  variant,
-  direction = 'right',
-}: {
-  direction: 'right' | 'left'
-  variant: NavVariant
-} & ButtonProps) {
-  const icon = direction === 'left' ? <CaretLeftIcon /> : <CaretRightIcon />
-  const text = direction === 'left' ? 'Previous' : 'Next'
-
-  return (
-    <Button
-      startIcon={variant === 'small' ? undefined : icon}
-      tertiary
-      {...(variant === 'small'
-        ? {
-            small: true,
-            padding: 0,
-            width: 32,
-            height: 32,
-            alignItems: 'center',
-            justifyContent: 'center',
-            'aria-label': 'Previous',
-            '@media (min-width:300)': {
-              width: 32,
-            },
-          }
-        : {})}
-    >
-      {variant === 'small' ? icon : text}
-    </Button>
-  )
-}
-
-function PageNavigation({
-  variant,
-  totalPages,
-  pageIndex,
-  setPageIndex,
-  className,
-}: PageNavigationProps) {
-  const maxPageButtons = variant === 'small' ? 7 : 7
-  const pages = Array.from({ length: totalPages }, (_, i) => i)
-  const firstPages = pages.slice(0, 1)
-  const lastPages = pages.slice(-1)
-  // let middlePages = pages
-  //   .slice(firstPages.length, -lastPages.length)
-
-  //   console.log('middlePages f', middlePages)
-
-  const middlePages = pages.slice(
-    Math.max(1, pageIndex - 1),
-    Math.min(totalPages - 1, pageIndex + 2)
-  )
-  const theme = useTheme()
-
-  console.log('pages', pages)
-  console.log('firstPages', firstPages)
-  console.log('lastPages', lastPages)
-  console.log('middlePages', middlePages)
-
-  return (
-    <div
-      className={classNames(className, {
-        _small: variant === 'small',
-        _medium: variant !== 'small',
-      })}
-    >
-      <DirectionButton
-        direction="left"
-        disabled={pageIndex === 0}
-        onClick={() => {
-          setPageIndex(Math.max(0, pageIndex - 1))
-        }}
-      />
-      <div className="flex flex-row gap-small">
-        {firstPages.map((i) => (
-          <PageButton
-            small={variant === 'small' ? true : undefined}
-            selected={i === pageIndex}
-            onClick={() => {
-              setPageIndex(i)
-            }}
-          >
-            {i + 1}
-          </PageButton>
-        ))}
-        {totalPages > maxPageButtons ? (
-          <>
-            {middlePages[0] !== firstPages[firstPages.length - 1] + 1 && (
-              <div className="flex content-center items-center">···</div>
-            )}
-            {middlePages.map((i) => (
-              <PageButton
-                small={variant === 'small' ? true : undefined}
-                selected={i === pageIndex}
-                onClick={() => {
-                  setPageIndex(i)
-                }}
-              >
-                {i + 1}
-              </PageButton>
-            ))}
-            {lastPages[0] !== middlePages[middlePages.length - 1] + 1 && (
-              <div className="flex content-center items-center">···</div>
-            )}{' '}
-          </>
-        ) : null}
-        {lastPages.map((i) => (
-          <PageButton
-            small={variant === 'small' ? true : undefined}
-            selected={i === pageIndex}
-            onClick={() => {
-              setPageIndex(i)
-            }}
-          >
-            {i + 1}
-          </PageButton>
-        ))}
-      </div>
-      <Button
-        disabled={pageIndex === totalPages - 1}
-        endIcon={variant === 'small' ? undefined : <CaretRightIcon />}
-        secondary
-        onClick={() => {
-          setPageIndex(Math.min(totalPages - 1, pageIndex + 1))
-        }}
-        {...(variant === 'small'
-          ? {
-              small: true,
-              padding: 0,
-              width: 32,
-              height: 32,
-              alignItems: 'center',
-              justifyContent: 'center',
-              'aria-label': 'Next',
-            }
-          : {})}
-      >
-        {variant === 'small' ? <CaretRightIcon /> : 'Next'}
-      </Button>
     </div>
   )
 }

@@ -27,6 +27,7 @@ import { useDebounce } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFiltersUnstyled from '@src/components/MarketplaceFilters'
 import MarketplaceHeroImage, { Cta } from '@src/components/MarketplaceHeroImage'
 import { MarketplacePage } from '@src/components/PageGrid'
@@ -71,21 +72,23 @@ function FilterChip(props: ComponentProps<typeof Chip>) {
   )
 }
 
-const ContentContainer = styled.div(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  rowGap: theme.spacing.xxlarge,
-  [mqs.md]: {
-    rowGap: theme.spacing.xxxlarge,
-  },
-  [mqs.lg]: {
-    flexDirection: 'row',
-    columnGap: theme.spacing.xlarge,
-  },
-  [mqs.xxl]: {
-    columnGap: theme.spacing.xxlarge,
-  },
-}))
+const ContentContainer = styled.div<{ $reverse?: boolean }>(
+  ({ theme, $reverse }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: theme.spacing.xxlarge,
+    [mqs.md]: {
+      rowGap: theme.spacing.xxxlarge,
+    },
+    [mqs.lg]: {
+      flexDirection: $reverse ? 'row-reverse' : 'row',
+      columnGap: theme.spacing.xlarge,
+    },
+    [mqs.xxl]: {
+      columnGap: theme.spacing.xxlarge,
+    },
+  })
+)
 
 const MainContent = styled.div(({ theme: _ }) => ({
   flexGrow: '1',
@@ -95,8 +98,8 @@ const Sidecar = styled.div(({ theme }) => ({
   [mqs.lg]: {
     width: 248,
     flexShrink: 0,
-    position: 'sticky',
-    top: 'var(--top-nav-height)',
+    // position: 'sticky',
+    // top: 'var(--top-nav-height)',
     flexDirection: 'row',
     columnGap: theme.spacing.xlarge,
   },
@@ -107,6 +110,8 @@ const SidecarFilters = styled(MarketplaceFiltersUnstyled)(({ theme }) => ({
   [mqs.lg]: {
     maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
     display: 'block',
+    position: 'sticky',
+    top: 'var(--top-nav-height)',
   },
 }))
 
@@ -320,56 +325,70 @@ export default function Marketplace({
             >
               All apps
             </Subtitle>
-
-            <RepoCardList
-              repositories={resultRepositories}
-              pageSize={12}
-            />
+            <RepoCardList repositories={resultRepositories} />
           </TabPanel>
         </MainContent>
-        <Sidecar>
+        <Sidecar className="xxl:display-none">
           <SidecarFilters
             categories={props.categories}
             tags={props.tags}
-            className="mb-large"
           />
-          <SidecarCard
-            variant="feature"
-            className="mb-large"
-          >
-            <SidecarCardTitle className="mb-small">
-              Join our contributor program
-            </SidecarCardTitle>
-            <PBody2 className="mb-small">
-              Add a new application to the Plural catalog or take a deep dive
-              into the Plural internals.
-            </PBody2>
-            <Cta
-              target="_blank"
-              href="https://www.plural.sh/blog/paying-for-oss-contributions/"
-            >
-              Learn more
-            </Cta>
-          </SidecarCard>
-          <SidecarCard variant="fill-one">
-            <SidecarCardTitle className="mb-small">
-              Add an application
-            </SidecarCardTitle>
-            <PBody2 className="mb-small">
-              Is something missing from the Plural marketplace? Are you a vendor
-              who wants to add your solution? We'd love for you to onboard your
-              application.
-            </PBody2>
-            <Cta
-              target="_blank"
-              href="https://docs.plural.sh/adding-new-application"
-            >
-              Read the guide
-            </Cta>
-          </SidecarCard>
         </Sidecar>
       </ContentContainer>
+      <ContentContainer $reverse>
+        <Sidecar className="my-xxlarge md:my-[80px] xl:my-large">
+          <ContributorCard />
+          <AddAppCard />
+        </Sidecar>
+        <MainContent className="my-xxlarge md:my-[80px] xxl:my-xxxxlarge">
+          <MarketplaceExtras />
+        </MainContent>
+      </ContentContainer>
     </MarketplacePage>
+  )
+}
+
+function AddAppCard() {
+  return (
+    <SidecarCard variant="fill-one">
+      <SidecarCardTitle className="mb-small">
+        Add an application
+      </SidecarCardTitle>
+      <PBody2 className="mb-small">
+        Is something missing from the Plural marketplace? Are you a vendor who
+        wants to add your solution? We'd love for you to onboard your
+        application.
+      </PBody2>
+      <Cta
+        target="_blank"
+        href="https://docs.plural.sh/adding-new-application"
+      >
+        Read the guide
+      </Cta>
+    </SidecarCard>
+  )
+}
+
+function ContributorCard() {
+  return (
+    <SidecarCard
+      variant="feature"
+      className="mb-large"
+    >
+      <SidecarCardTitle className="mb-small">
+        Join our contributor program
+      </SidecarCardTitle>
+      <PBody2 className="mb-small">
+        Add a new application to the Plural catalog or take a deep dive into the
+        Plural internals.
+      </PBody2>
+      <Cta
+        target="_blank"
+        href="https://www.plural.sh/blog/paying-for-oss-contributions/"
+      >
+        Learn more
+      </Cta>
+    </SidecarCard>
   )
 }
 
