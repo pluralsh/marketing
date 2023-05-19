@@ -36,7 +36,7 @@
     "next-env.d.ts",
     "pages/**/*",
     "src/**/*",
-    "tailwind.config.js"
+    "tailwind.config.ts"
   ],
   "exclude": [
     "node_modules"
