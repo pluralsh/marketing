@@ -64,7 +64,7 @@ module.exports = {
         '.eslintrc.js',
         'next.config.js',
         'tailwind.config.ts',
-        'postcss.config.ts',
+        'postcss.config.js',
         'codegen.ts',
       ],
       parserOptions: {
