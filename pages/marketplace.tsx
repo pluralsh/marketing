@@ -31,6 +31,7 @@ import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFiltersUnstyled from '@src/components/MarketplaceFilters'
 import MarketplaceHeroImage, { Cta } from '@src/components/MarketplaceHeroImage'
 import { MarketplacePage } from '@src/components/PageGrid'
+import { RepoCardList } from '@src/components/RepoCardList'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -40,8 +41,6 @@ import {
 
 import { useSearchParams } from '../src/components/hooks/useSearchParams'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
-
-import { RepoCardList } from './RepoCardList'
 
 type PageProps = {
   repositories: MinRepo[]
