@@ -41,7 +41,12 @@ export const NavigationDesktop = styled(
             return null
           }
           if (navItem?.subnav) {
-            return <TopNavMenu navItem={navItem} />
+            return (
+              <TopNavMenu
+                key={navItem.id}
+                navItem={navItem}
+              />
+            )
           }
 
           return <NavItemLink navItem={navItem} />
