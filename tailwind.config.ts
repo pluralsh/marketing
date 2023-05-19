@@ -14,12 +14,9 @@ const colors = {
 }
 
 export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
   theme: {
-    screens: mapValues(breakpoints, (bp)=> `${bp}px`),
+    screens: mapValues(breakpoints, (bp) => `${bp}px`),
     colors: colors,
     spacing: spacing,
     extend: {},
