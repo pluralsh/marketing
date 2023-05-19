@@ -7,6 +7,7 @@ body h6 {
   margin: 0;
 }
 
+/* stylelint-disable */
 body, #__next {
   min-height: 100%;
 }
@@ -14,6 +15,7 @@ body, #__next {
 #__next {
   min-height: 100vh;
 }
+/* stylelint-enable */
 
 *,
 *::before,

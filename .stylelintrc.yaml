@@ -2,3 +2,12 @@ extends:
   - '@pluralsh/stylelint-config'
   - 'stylelint-config-prettier'
 ignoreFiles: []
+rules:
+  at-rule-no-unknown:
+    - true
+    - ignoreAtRules:
+        - tailwind
+        - apply
+        - variants
+        - responsive
+        - screen
