@@ -25,10 +25,11 @@ export function TopNavMenuItem<T extends NavList>({
   )
 
   return (
-    <TopNavMenuItemWrapper>
+    <TopNavMenuItemWrapper
+      ref={ref}
+      {...menuItemProps}
+    >
       <MainLink
-        ref={ref}
-        {...menuItemProps}
         isSelected={isSelected}
         isDisabled={isDisabled}
         href={item.value?.link?.url}
