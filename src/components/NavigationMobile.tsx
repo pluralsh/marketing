@@ -56,6 +56,9 @@ function NavList({ navData }: { navData?: NavData | null }) {
   return (
     <>
       {navData.map((navItem) => {
+        if (!navItem) {
+          return null
+        }
         if (isEmpty(navItem?.subnav)) {
           return (
             <MobileMainLink
@@ -68,7 +71,10 @@ function NavList({ navData }: { navData?: NavData | null }) {
         }
 
         return (
-          <section className="mb-medium">
+          <section
+            key={navItem.id}
+            className="mb-medium"
+          >
             {navItem?.link?.title ? (
               <MenuHeading>{navItem?.link?.title}</MenuHeading>
             ) : null}
