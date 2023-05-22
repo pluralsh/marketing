@@ -1,4 +1,10 @@
-import { type ComponentProps, useEffect, useMemo, useState } from 'react'
+import {
+  type ComponentProps,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import { RepositoryCard } from '@pluralsh/design-system'
 import Link from 'next/link'
@@ -40,13 +46,25 @@ export function RepoCardList({
     () => getPaginatedItems(repositories, curPageIndex, pageSize),
     [curPageIndex, pageSize, repositories]
   )
+  const searchTopRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const top = searchTopRef.current?.getBoundingClientRect()?.top
+
+    if (top) {
+      window.scrollTo({
+        top: top + window.scrollY - 130,
+        behavior: 'smooth',
+      })
+    }
+  }, [curPageIndex])
 
   useEffect(() => {
     setCurPageIndex(0)
   }, [repositories])
 
   return (
-    <div>
+    <div ref={searchTopRef}>
       <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-3">
         {pageItems?.map((repository) => (
           <RepositoryCard

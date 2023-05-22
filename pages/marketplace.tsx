@@ -201,6 +201,7 @@ export default function Marketplace({
   const [search, setSearch] = useState('')
   const isFiltered = !isEmpty(categories) || !isEmpty(tags)
   const tabStateRef = useRef<any>()
+  const searchTopRef = useRef<any>()
 
   const handleClearToken = useCallback(
     (key, value) => {
@@ -316,10 +317,11 @@ export default function Marketplace({
               </div>
             )}
             <Subtitle
+              ref={searchTopRef}
               as="h4"
               className="mb-xlarge"
             >
-              All apps
+              {!isFiltered && !search ? <>All apps</> : <>Results</>}
             </Subtitle>
             <RepoCardList repositories={resultRepositories} />
           </TabPanel>

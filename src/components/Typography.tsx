@@ -21,8 +21,30 @@ export const Heading2 = styled.h2(({ theme }) => ({
   },
 }))
 
-export const Body1 = styled.p(({ theme }) => ({
+export const Body1 = styled.p(({ theme, color }) => ({
   ...theme.partials.marketingText.body1,
+  ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
+}))
+
+export const Body2 = styled.p(({ theme, color }) => ({
+  ...theme.partials.marketingText.body2,
+  ...(color
+    ? { color: theme.colors[color] }
+    : { color: theme.colors['text-light'] }),
+}))
+
+export const AppBody1 = styled.p(({ theme, color }) => ({
+  ...theme.partials.text.body1,
+  ...(color
+    ? { color: theme.colors[color] }
+    : { color: theme.colors['text-light'] }),
+}))
+
+export const AppBody2 = styled.p(({ theme, color }) => ({
+  ...theme.partials.text.body2,
+  ...(color
+    ? { color: theme.colors[color] }
+    : { color: theme.colors['text-light'] }),
 }))
 
 const SubtitleWrap = styled.h2((_) => ({

@@ -166,6 +166,21 @@ function selectWindow(
   return [startI, endI]
 }
 
+const Ellipsis = styled((props: ComponentProps<'div'>) => (
+  <div
+    {...props}
+    aria-hidden="true"
+  >
+    ···
+  </div>
+))(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginLeft: -4,
+  marginRight: -4,
+}))
+
 function PageNavigation({
   variant,
   totalPages,
@@ -196,6 +211,7 @@ function PageNavigation({
   if (middleEndI !== middlePages.length) {
     middleEndI--
   }
+
   const firstPages = pages.slice(firstStartI, firstEndI)
 
   middlePages = middlePages.slice(middleStartI, middleEndI)
@@ -232,7 +248,7 @@ function PageNavigation({
         {!isEmpty(middlePages) ? (
           <>
             {middlePages[0] !== firstPages[firstPages.length - 1] + 1 && (
-              <div className="flex content-center items-center">···</div>
+              <Ellipsis />
             )}
             {middlePages.map((i) => (
               <PageButton
@@ -246,7 +262,7 @@ function PageNavigation({
               </PageButton>
             ))}
             {lastPages[0] !== middlePages[middlePages.length - 1] + 1 && (
-              <div className="flex content-center items-center">···</div>
+              <Ellipsis />
             )}
           </>
         ) : null}
