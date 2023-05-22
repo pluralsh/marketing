@@ -1,3 +1,5 @@
+// Hook for implementing WAI-ARIA Disclosure pattern
+// https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
 import {
   type HTMLAttributes,
   useCallback,
@@ -12,17 +14,22 @@ import { mergeProps } from '@react-aria/utils'
 export interface useDisclosureProps {
   onOpenChange?: (isOpen: boolean) => void
   isOpen?: boolean
+  defaultOpen?: boolean
   id?: string
 }
 
 export function useDisclosure({
   onOpenChange,
   isOpen,
+  defaultOpen = false,
   id,
 }: useDisclosureProps = {}) {
   const generatedId = useId()
   const contentId = id || generatedId
-  const [isOpenControlled, setIsOpenControlled] = useState(false)
+  const [isOpenControlled, setIsOpenControlled] = useState(defaultOpen)
+
+  isOpen = isOpen ?? isOpenControlled
+
   const toggleOpen = useCallback(() => {
     setIsOpenControlled(!isOpen)
     onOpenChange?.(!isOpen)
@@ -30,24 +37,24 @@ export function useDisclosure({
   const { keyboardProps } = useKeyboard({
     onKeyDown(e) {
       if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
         toggleOpen()
       }
     },
   })
 
-  isOpen = isOpen ?? isOpenControlled
-
   const triggerProps = useMemo<HTMLAttributes<HTMLElement>>(() => {
     const myProps: HTMLAttributes<HTMLElement> = {
       role: 'button',
+      tabIndex: 0,
       'aria-controls': contentId,
-      'aria-expanded': isOpen,
+      'aria-expanded': !!isOpen,
       onClick: () => {
         toggleOpen()
       },
     }
 
-    return mergeProps(keyboardProps, myProps, { chickadee: 'chicek' })
+    return mergeProps(keyboardProps, myProps)
   }, [contentId, isOpen, keyboardProps, toggleOpen])
 
   const contentProps = useMemo(
