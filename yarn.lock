@@ -3086,9 +3086,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pluralsh/design-system@file:.yalc/@pluralsh/design-system::locator=plural-marketing-site%40workspace%3A.":
-  version: 0.1.0
-  resolution: "@pluralsh/design-system@file:.yalc/@pluralsh/design-system#.yalc/@pluralsh/design-system::hash=2622a9&locator=plural-marketing-site%40workspace%3A."
+"@pluralsh/design-system@npm:1.339.0":
+  version: 1.339.0
+  resolution: "@pluralsh/design-system@npm:1.339.0"
   dependencies:
     "@floating-ui/react-dom-interactions": 0.13.3
     "@loomhq/loom-embed": 1.5.0
@@ -3148,7 +3148,7 @@ __metadata:
     react-dom: ">=16.0.0"
     react-transition-group: ">=4.4.2"
     styled-components: ">=5.3.5"
-  checksum: 0b8bc79a1f667093b515c04f70ca7afd60510674e64ca428b95ef894a2e8da406e4880d653664ea81430efd59f7241a3fd57dbf520eaf35519b2539140356dd7
+  checksum: 1b71f4c976dccf52660cc1779570708c8e807a6b34aff17c5d94c36f0b5c97eaae0816fa39c5bde7f4c0b811abf66e11cb12c2a6d11b048c52be3a7ce48e45b5
   languageName: node
   linkType: hard
 
@@ -10740,7 +10740,7 @@ __metadata:
     "@markdoc/next.js": 0.2.2
     "@next/bundle-analyzer": 13.4.3
     "@open-draft/until": 2.1.0
-    "@pluralsh/design-system": "file:.yalc/@pluralsh/design-system"
+    "@pluralsh/design-system": 1.339.0
     "@pluralsh/eslint-config-typescript": 2.5.41
     "@pluralsh/stylelint-config": 1.1.3
     "@react-aria/menu": 3.9.0

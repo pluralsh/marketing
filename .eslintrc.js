@@ -58,7 +58,7 @@ module.exports = {
       },
     ],
   },
-  // Disable parser and rules that depend on a parser for config files
+  // Disable TS parser and rules that depend on a parser for config files
   overrides: [
     {
       files: [
