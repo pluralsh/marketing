@@ -67,7 +67,7 @@ export function RepoCardList({
         behavior: 'smooth',
       })
     }
-  }, [curPageIndex, lastPageIndex])
+  }, [curPageIndex, lastPageIndex, scrollOffset])
 
   useEffect(() => {
     setCurPageIndex(0)
