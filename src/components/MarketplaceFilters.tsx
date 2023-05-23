@@ -104,23 +104,26 @@ function Categories({ categories }: { categories: Categories }) {
   )
 
   return (
-    <FilterAccordion label={`Categories (${sortedCategories.length})`}>
+    <FilterAccordion
+      defaultOpen
+      label={`Categories (${sortedCategories.length})`}
+    >
       {(expanded) => (
-        // <FilterSection>
-        <CheckboxList>
-          {sortedCategories.map(({ category }) =>
-            category ? (
-              <MarketplaceSidebarCheckbox
-                key={category}
-                toggled={isToggled(category)}
-                onClick={() => handleToggle(category)}
-                label={capitalize(category)}
-                trapFocus={expanded}
-              />
-            ) : null
-          )}
-        </CheckboxList>
-        // </FilterSection>
+        <FilterSection>
+          <CheckboxList>
+            {sortedCategories.map(({ category }) =>
+              category ? (
+                <MarketplaceSidebarCheckbox
+                  key={category}
+                  toggled={isToggled(category)}
+                  onClick={() => handleToggle(category)}
+                  label={capitalize(category)}
+                  trapFocus={expanded}
+                />
+              ) : null
+            )}
+          </CheckboxList>
+        </FilterSection>
       )}
     </FilterAccordion>
   )
@@ -167,7 +170,7 @@ function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
       })`}
     >
       {(expanded) => (
-        <>
+        <FilterSection>
           <Input
             medium
             width="100%"
@@ -211,7 +214,7 @@ function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
               See More +
             </A>
           )}
-        </>
+        </FilterSection>
       )}
     </FilterAccordion>
   )

@@ -114,7 +114,7 @@ export function SearchBar({
         stateProps={{
           orientation: 'horizontal',
           selectedKey: tabKey,
-          onSelectionChange: (key) => setTabKey(key as string),
+          onSelectionChange: (key) => setTabKey(key as MarketSearchTabKey),
         }}
       >
         {tabs.map(({ key, label }) => (

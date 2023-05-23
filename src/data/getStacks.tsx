@@ -1,4 +1,3 @@
-import capitalize from 'lodash/capitalize'
 import memoizeOne from 'memoize-one'
 
 import { filterMapNodes } from '@src/utils/graphql'
@@ -29,39 +28,6 @@ export const stacksCache: {
   filtered: MinStack[]
 } = {
   filtered: [],
-}
-
-const replacements = {
-  nvidia: 'NVIDIA',
-  oauth: 'OAuth',
-  sql: 'SQL',
-}
-
-const nameMap = {
-  console: 'Plural Console',
-  'renovate-on-prem': 'Renovate on Prem',
-  nocodb: 'NocoDB',
-  mongodb: 'MongoDB',
-  rabbitmq: 'RabbitMQ',
-  n8n: 'n8n',
-  mlflow: 'MLflow',
-  postgres: 'PostgreSQL',
-  'argo-cd': 'Argo CD',
-}
-
-function fakeDisplayName(name = '') {
-  let displayName: string =
-    nameMap[name] ||
-    name
-      .split('-')
-      .map((word) => capitalize(word))
-      .join(' ')
-
-  Object.entries(replacements).forEach(([s, r]) => {
-    displayName = displayName.replace(RegExp(s, 'i'), r)
-  })
-
-  return displayName
 }
 
 function inRemoveList(stackName?: string) {

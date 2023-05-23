@@ -57,25 +57,9 @@ function MarketplaceExtrasUnstyled(props: ComponentProps<'div'>) {
             exercitation elit voluptate.
           </AppBody2>
         </SingleAccordion>
-        <SingleAccordion
-          unstyled
-          triggerButton={<CustomTrig />}
-        >
-          <AppBody2 color="text-light">
-            Cillum veniam esse qui aute consectetur adipisicing qui laborum ad
-            culpa veniam ex nisi in. Do in adipisicing consequat voluptate
-            excepteur cillum occaecat. Irure cillum tempor Lorem sit anim. Sint
-            sunt tempor ex enim. Dolor est in commodo fugiat excepteur aliquip
-            exercitation elit voluptate.
-          </AppBody2>
-        </SingleAccordion>
       </div>
     </div>
   )
-}
-
-function CustomTrig({ isOpen, ...props }: { isOpen?: boolean }) {
-  return <div {...props}>Hi {isOpen ? 'open' : 'closed'}</div>
 }
 
 export const MarketplaceExtras = styled(MarketplaceExtrasUnstyled)((_) => ({}))

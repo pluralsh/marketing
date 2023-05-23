@@ -7,3 +7,4 @@ rules:
     - true
     - ignoreAtRules:
         - "@tailwind"
+        - "tailwind"
