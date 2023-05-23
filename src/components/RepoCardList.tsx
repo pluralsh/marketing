@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react'
 
-import { RepositoryCard } from '@pluralsh/design-system'
+import { RepositoryCard, usePrevious } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import drop from 'lodash/drop'
@@ -41,7 +41,9 @@ export function RepoCardList({
   size?: ComponentProps<typeof RepositoryCard>['size']
   pageSize?: number
 }) {
-  const [curPageIndex, setCurPageIndex] = useState(0)
+  const [cPI, setCurPageIndex] = useState(0)
+  const curPageIndex = cPI ?? 0
+  const lastPageIndex = usePrevious(curPageIndex) ?? 0
   const { pageItems, totalPages } = useMemo(
     () => getPaginatedItems(repositories, curPageIndex, pageSize),
     [curPageIndex, pageSize, repositories]
@@ -49,6 +51,9 @@ export function RepoCardList({
   const searchTopRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (curPageIndex === lastPageIndex) {
+      return
+    }
     const top = searchTopRef.current?.getBoundingClientRect()?.top
 
     if (top) {
@@ -57,7 +62,7 @@ export function RepoCardList({
         behavior: 'smooth',
       })
     }
-  }, [curPageIndex])
+  }, [curPageIndex, lastPageIndex])
 
   useEffect(() => {
     setCurPageIndex(0)

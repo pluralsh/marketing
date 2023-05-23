@@ -106,7 +106,7 @@ fragment PageInfo on PageInfo {
 }
 
 query Stacks($featured: Boolean) {
-  stacks(featured: $featured, first: 10) {
+  stacks(featured: $featured, first: 50) {
     pageInfo {
       ...PageInfo
     }
@@ -115,6 +115,12 @@ query Stacks($featured: Boolean) {
         ...MinStack
       }
     }
+  }
+}
+
+query Stack($name: String!, $provider: Provider! = AWS) {
+  stack(name: $name, provider: $provider) {
+    ...FullStack
   }
 }
 

@@ -11,7 +11,7 @@ import {
 import { useKeyboard } from '@react-aria/interactions'
 import { mergeProps } from '@react-aria/utils'
 
-export interface useDisclosureProps {
+export interface UseDisclosureProps {
   onOpenChange?: (isOpen: boolean) => void
   isOpen?: boolean
   defaultOpen?: boolean
@@ -23,7 +23,7 @@ export function useDisclosure({
   isOpen,
   defaultOpen = false,
   id,
-}: useDisclosureProps = {}) {
+}: UseDisclosureProps = {}) {
   const generatedId = useId()
   const contentId = id || generatedId
   const [isOpenControlled, setIsOpenControlled] = useState(defaultOpen)

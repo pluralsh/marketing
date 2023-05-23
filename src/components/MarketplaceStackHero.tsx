@@ -1,13 +1,17 @@
 import { type ComponentProps, type PropsWithChildren } from 'react'
 
-import { CaretRightIcon } from '@pluralsh/design-system'
+import { CaretRightIcon, Chip, StackIcon } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { type MinStack } from '@src/data/getStacks'
+
+import { AppBody1, Heading1, Label } from './Typography'
 
 const SIZES = ['sm', 'md', 'lg', 'xl']
+const knownStacks = new Set(['data', 'devops', 'security'])
 
 function HeroThing({
   imgPrefix,
@@ -43,15 +47,11 @@ const HeroStyles = styled.div<{ bgImg: string }>(({ theme, bgImg }) => ({
   display: 'flex',
   minHeight: '540px',
   '& > *': { flexShrink: 0 },
-  h1: {
-    margin: 0,
-    marginBottom: theme.spacing.xsmall,
-  },
   '.contentWrap': {
     width: '100%',
     zIndex: 1,
-    display: 'flex',
-    alignItems: 'center',
+    // display: 'flex',
+    // alignItems: 'center',
   },
   picture: {
     display: 'contents',
@@ -124,17 +124,34 @@ function CtaUnstyled({ children, ...props }: ComponentProps<typeof Link>) {
   )
 }
 
-export default function MarketplaceHeroImage() {
+export default function StackHero({ stack }: { stack: MinStack }) {
+  const imgSrcPart = knownStacks.has(stack.name) ? stack.name : 'data'
+
   return (
     <HeroThing
-      imgPrefix="/images/marketplace/stack-card-data"
+      imgPrefix={`/images/marketplace/stack-card-${imgSrcPart}`}
       imgSuffix="@2x.jpg"
     >
-      <p className="body1 mb- m-0">
-        A curated stack of apps to help you integrate, orchestrate, and analyze
-        your data.
-      </p>
-      <Cta href="/plural-stacks/data">View stack</Cta>
+      <div className="flex flex-col p-large gap-small">
+        <div className="flex flex-row gap-medium">
+          <div className="flex flex-col gap-xsmall grow">
+            <Heading1>{stack.displayName}</Heading1>
+            <Label>{stack?.collections?.length} Apps</Label>
+          </div>
+          <div>
+            <Chip
+              severity="neutral"
+              fillLevel={2}
+              size="medium"
+              icon={<StackIcon />}
+            >
+              Stack
+            </Chip>
+          </div>
+        </div>
+        <AppBody1 className="max-w-[320px]">{stack.description}</AppBody1>
+        <Cta href={`/plural-stacks/${stack.name}`}>View stack</Cta>
+      </div>
     </HeroThing>
   )
 }

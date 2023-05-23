@@ -54,6 +54,10 @@ const SubtitleWrap = styled.h2((_) => ({
   alignItems: 'center',
 }))
 
+export const Label = styled.p(({ theme }) => ({
+  ...theme.partials.marketingText.label,
+}))
+
 const SubtitleContent = styled.div(({ theme }) => ({
   paddingLeft: theme.spacing.medium,
   paddingRight: theme.spacing.medium,

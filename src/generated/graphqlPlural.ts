@@ -5014,6 +5014,14 @@ export type StacksQueryVariables = Exact<{
 
 export type StacksQuery = { __typename?: 'RootQueryType', stacks?: { __typename?: 'StackConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean }, edges?: Array<{ __typename?: 'StackEdge', node?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null } | null } } | null> | null } | null> | null } | null } | null> | null } | null };
 
+export type StackQueryVariables = Exact<{
+  name: Scalars['String'];
+  provider?: Provider;
+}>;
+
+
+export type StackQuery = { __typename?: 'RootQueryType', stack?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null } | null } } | null> | null } | null> | null } | null };
+
 export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5314,7 +5322,7 @@ export type RepoLazyQueryHookResult = ReturnType<typeof useRepoLazyQuery>;
 export type RepoQueryResult = Apollo.QueryResult<RepoQuery, RepoQueryVariables>;
 export const StacksDocument = gql`
     query Stacks($featured: Boolean) {
-  stacks(featured: $featured, first: 10) {
+  stacks(featured: $featured, first: 50) {
     pageInfo {
       ...PageInfo
     }
@@ -5355,6 +5363,42 @@ export function useStacksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Sta
 export type StacksQueryHookResult = ReturnType<typeof useStacksQuery>;
 export type StacksLazyQueryHookResult = ReturnType<typeof useStacksLazyQuery>;
 export type StacksQueryResult = Apollo.QueryResult<StacksQuery, StacksQueryVariables>;
+export const StackDocument = gql`
+    query Stack($name: String!, $provider: Provider! = AWS) {
+  stack(name: $name, provider: $provider) {
+    ...FullStack
+  }
+}
+    ${FullStackFragmentDoc}`;
+
+/**
+ * __useStackQuery__
+ *
+ * To run a query within a React component, call `useStackQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStackQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStackQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *      provider: // value for 'provider'
+ *   },
+ * });
+ */
+export function useStackQuery(baseOptions: Apollo.QueryHookOptions<StackQuery, StackQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StackQuery, StackQueryVariables>(StackDocument, options);
+      }
+export function useStackLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StackQuery, StackQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StackQuery, StackQueryVariables>(StackDocument, options);
+        }
+export type StackQueryHookResult = ReturnType<typeof useStackQuery>;
+export type StackLazyQueryHookResult = ReturnType<typeof useStackLazyQuery>;
+export type StackQueryResult = Apollo.QueryResult<StackQuery, StackQueryVariables>;
 export const CategoriesDocument = gql`
     query Categories {
   categories {

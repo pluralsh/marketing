@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 
 import { Card, Checkbox, CloseIcon, Input } from '@pluralsh/design-system'
-import { A, Accordion, Div } from 'honorable'
+import { A, Div } from 'honorable'
 
 import Fuse from 'fuse.js'
 import capitalize from 'lodash/capitalize'
@@ -11,6 +11,8 @@ import { clearToken } from '@pages/marketplace'
 import { useSearchParams } from '@src/components/hooks/useSearchParams'
 import { Categories } from '@src/data/getSearchMetadata'
 import { type CategoryFragment } from '@src/generated/graphqlPlural'
+
+import { type AccordionProps, SingleAccordion } from './SingleAccordion'
 
 function useParamToggle(key: string) {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -46,19 +48,11 @@ function useParamToggle(key: string) {
   )
 }
 
-function AccordionWithExpanded({ children, ...props }: any) {
-  const [expanded, setExpanded] = useState(true)
-
-  return (
-    <Accordion
-      expanded={expanded}
-      onExpand={() => setExpanded(!expanded)}
-      {...props}
-    >
-      {children(expanded)}
-    </Accordion>
-  )
-}
+const FilterSection = styled.div(({ theme }) => ({
+  paddingLeft: theme.spacing.xsmall,
+  paddingBottom: theme.spacing.small,
+  overflow: 'hidden',
+}))
 
 const CheckboxList = styled.div(({ theme }) => ({
   display: 'flex',
@@ -110,13 +104,9 @@ function Categories({ categories }: { categories: Categories }) {
   )
 
   return (
-    <AccordionWithExpanded
-      ghost
-      defaultExpanded
-      title={`Categories (${sortedCategories.length})`}
-      borderBottom="1px solid border !important"
-    >
+    <FilterAccordion label={`Categories (${sortedCategories.length})`}>
       {(expanded) => (
+        // <FilterSection>
         <CheckboxList>
           {sortedCategories.map(({ category }) =>
             category ? (
@@ -130,10 +120,27 @@ function Categories({ categories }: { categories: Categories }) {
             ) : null
           )}
         </CheckboxList>
+        // </FilterSection>
       )}
-    </AccordionWithExpanded>
+    </FilterAccordion>
   )
 }
+
+const FilterAccordion = styled((props: AccordionProps) => {
+  console.log('filter accordion props', props)
+
+  return (
+    <SingleAccordion
+      unstyled
+      {...props}
+    />
+  )
+})(({ theme }) => ({
+  borderBottom: theme.borders.default,
+  '&:last-of-type': {
+    borderBottom: 'none',
+  },
+}))
 
 function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
   const [nDisplayedTags, setNDisplayedTags] = useState(12)
@@ -154,10 +161,8 @@ function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
   }
 
   return (
-    <AccordionWithExpanded
-      ghost
-      defaultExpanded
-      title={`Tags (${sortedTags.length}${
+    <FilterAccordion
+      label={`Tags (${sortedTags.length}${
         nDisplayedTags < tags.length ? '+' : ''
       })`}
     >
@@ -208,7 +213,7 @@ function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
           )}
         </>
       )}
-    </AccordionWithExpanded>
+    </FilterAccordion>
   )
 }
 

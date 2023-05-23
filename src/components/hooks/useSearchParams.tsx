@@ -4,7 +4,11 @@ import {
 } from 'next/navigation'
 import { useRouter } from 'next/router'
 
-import { type SetSearchParams } from '../../../pages/marketplace'
+export type SetSearchParams = (
+  params:
+    | ConstructorParameters<typeof URLSearchParams>[0]
+    | ((params: URLSearchParams) => URLSearchParams)
+) => void
 
 export const useSearchParams = (): [
   ReadonlyURLSearchParams,

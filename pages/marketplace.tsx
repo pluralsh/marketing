@@ -7,13 +7,10 @@ import {
 } from 'react'
 
 import {
-  BrowseAppsIcon,
   Button,
   Card,
   type CardProps,
   Chip,
-  Input,
-  MagnifyingGlassIcon,
   TabPanel,
 } from '@pluralsh/design-system'
 import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next'
@@ -23,13 +20,13 @@ import Fuse from 'fuse.js'
 import isEmpty from 'lodash/isEmpty'
 import orderBy from 'lodash/orderBy'
 import upperFirst from 'lodash/upperFirst'
-import { useDebounce } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { Carousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFiltersUnstyled from '@src/components/MarketplaceFilters'
-import MarketplaceHeroImage, { Cta } from '@src/components/MarketplaceHeroImage'
+import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
 import { MarketplacePage } from '@src/components/PageGrid'
 import { RepoCardList } from '@src/components/RepoCardList'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
@@ -38,12 +35,22 @@ import {
   type Tags,
   getSearchMetadata,
 } from '@src/data/getSearchMetadata'
+import { type MinStack, getStacks, stacksCache } from '@src/data/getStacks'
 
-import { useSearchParams } from '../src/components/hooks/useSearchParams'
+import {
+  type SetSearchParams,
+  useSearchParams,
+} from '../src/components/hooks/useSearchParams'
+import {
+  MarketSearchTabKey,
+  SearchBar,
+  useSearchTabKey,
+} from '../src/components/MarketplaceSearchBar'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
 type PageProps = {
   repositories: MinRepo[]
+  stacks: MinStack[]
   categories: Categories
   tags: Tags
 }
@@ -52,11 +59,24 @@ const searchOptions = {
   threshold: 0.25,
 }
 
-export type SetSearchParams = (
-  params:
-    | ConstructorParameters<typeof URLSearchParams>[0]
-    | ((params: URLSearchParams) => URLSearchParams)
-) => void
+export const SearchBarArea = styled.div(({ theme }) => {
+  const mB = theme.spacing.medium
+
+  return {
+    backgroundColor: theme.colors['fill-zero'],
+    marginBottom: mB,
+    zIndex: theme.zIndexes.base + 10,
+    flexShrink: 0,
+    '::after': {
+      content: '""',
+      position: 'absolute',
+      top: '100%',
+      height: mB,
+      width: '100%',
+      background: `linear-gradient(0deg, transparent 0%, ${theme.colors['fill-zero']} 90%)`,
+    },
+  }
+})
 
 function FilterChip(props: ComponentProps<typeof Chip>) {
   return (
@@ -75,10 +95,10 @@ const ContentContainer = styled.div<{ $reverse?: boolean }>(
   ({ theme, $reverse }) => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: theme.spacing.xxlarge,
-    [mqs.md]: {
-      rowGap: theme.spacing.xxxlarge,
-    },
+    // rowGap: theme.spacing.xxlarge,
+    // [mqs.md]: {
+    // rowGap: theme.spacing.xxxlarge,
+    // },
     [mqs.lg]: {
       flexDirection: $reverse ? 'row-reverse' : 'row',
       columnGap: theme.spacing.xlarge,
@@ -200,7 +220,8 @@ export default function Marketplace({
   const tags = searchParams.getAll('tag')
   const [search, setSearch] = useState('')
   const isFiltered = !isEmpty(categories) || !isEmpty(tags)
-  const tabStateRef = useRef<any>()
+  const searchTabStateRef = useRef<any>()
+  const [searchTabKey] = useSearchTabKey()
   const searchTopRef = useRef<any>()
 
   const handleClearToken = useCallback(
@@ -219,7 +240,7 @@ export default function Marketplace({
   //   handleClearTokens()
   // }, [handleClearTokens])
 
-  const { repositories } = props
+  const { repositories, stacks } = props
 
   const sortedRepositories = useMemo(
     () =>
@@ -278,7 +299,7 @@ export default function Marketplace({
   )
 
   return (
-    <MarketplacePage>
+    <MarketplacePage className="mb-xxxxlarge">
       <div className="my-xxlarge xxl:mb-[80px]">
         <Heading1
           as="h1"
@@ -294,6 +315,7 @@ export default function Marketplace({
             <SearchBar
               search={search}
               setSearch={setSearch}
+              tabStateRef={searchTabStateRef}
             />
             {isFiltered && (
               <FilterChips
@@ -304,26 +326,38 @@ export default function Marketplace({
               />
             )}
           </SearchBarArea>
-          <TabPanel stateRef={tabStateRef}>
-            {!isFiltered && !search && (
-              <div className="heroArea mb-xlarge">
+          <TabPanel stateRef={searchTabStateRef}>
+            {!isFiltered &&
+              !search &&
+              (searchTabKey === MarketSearchTabKey.all ||
+                searchTabKey === MarketSearchTabKey.stacks) && (
+                <div className="heroArea mb-xlarge">
+                  <Subtitle
+                    as="h4"
+                    className="mb-xlarge"
+                  >
+                    Plural curated stacks
+                  </Subtitle>
+                  <Carousel>
+                    {stacks.map((stack) =>
+                      stack ? <StackHero stack={stack} /> : null
+                    )}
+                  </Carousel>
+                </div>
+              )}
+            {(searchTabKey === MarketSearchTabKey.all ||
+              searchTabKey === MarketSearchTabKey.apps) && (
+              <>
                 <Subtitle
+                  ref={searchTopRef}
                   as="h4"
                   className="mb-xlarge"
                 >
-                  Plural curated stacks
+                  {!isFiltered && !search ? <>All apps</> : <>Results</>}
                 </Subtitle>
-                <MarketplaceHeroImage />
-              </div>
+                <RepoCardList repositories={resultRepositories} />
+              </>
             )}
-            <Subtitle
-              ref={searchTopRef}
-              as="h4"
-              className="mb-xlarge"
-            >
-              {!isFiltered && !search ? <>All apps</> : <>Results</>}
-            </Subtitle>
-            <RepoCardList repositories={resultRepositories} />
           </TabPanel>
         </MainContent>
         <Sidecar className="xxl:display-none">
@@ -334,11 +368,11 @@ export default function Marketplace({
         </Sidecar>
       </ContentContainer>
       <ContentContainer $reverse>
-        <Sidecar className="my-xxlarge md:my-[80px] xl:my-large">
+        <Sidecar className="mt-xxlarge md:mt-[80px] lg:my-large">
           <ContributorCard />
           <AddAppCard />
         </Sidecar>
-        <MainContent className="my-xxlarge md:my-[80px] xxl:my-xxxxlarge">
+        <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
           <MarketplaceExtras />
         </MainContent>
       </ContentContainer>
@@ -416,75 +450,22 @@ const PBody2 = styled.p(({ theme }) => ({
   color: theme.colors['text-light'],
 }))
 
-const SearchBarArea = styled.div(({ theme }) => {
-  const mB = theme.spacing.medium
-
-  return {
-    backgroundColor: theme.colors['fill-zero'],
-    marginBottom: mB,
-    zIndex: theme.zIndexes.base + 10,
-    flexShrink: 0,
-    '::after': {
-      content: '""',
-      position: 'absolute',
-      top: '100%',
-      height: mB,
-      width: '100%',
-      background: `linear-gradient(0deg, transparent 0%, ${theme.colors['fill-zero']} 90%)`,
-    },
-  }
-})
-
-const SearchBarWrap = styled.div(({ theme }) => ({
-  backgroundColor: theme.colors['fill-zero'],
-  flexShrink: 1,
-  flexGrow: 1,
-  flexBasis: 210,
-  minWidth: 210,
-  marginBottom: theme.spacing.small,
-}))
-
-function SearchBar({ search: searchProp, setSearch: setSearchProp }) {
-  const [search, setSearch] = useState(searchProp)
-  const debouncedSetSearch = useDebounce(setSearchProp, 500)
-
-  return (
-    <SearchBarWrap>
-      <Input
-        titleContent={
-          <>
-            <BrowseAppsIcon marginRight="small" />
-            Marketplace
-          </>
-        }
-        startIcon={
-          <MagnifyingGlassIcon
-            size={16}
-            color="icon-light"
-          />
-        }
-        placeholder="Search the marketplace"
-        value={search}
-        onChange={(event) => {
-          setSearch(event.target.value)
-          debouncedSetSearch(event.target.value)
-        }}
-      />
-    </SearchBarWrap>
-  )
-}
-
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   const { data: repos, error: reposError } = await until(() => getRepos())
+  const { data: stacks, error: stacksError } = await until(() => getStacks())
 
   const { categories, tags } = await getSearchMetadata()
 
   return {
     props: {
       repositories: repos || reposCache.filtered,
+      stacks: stacks || stacksCache.filtered,
       tags: tags || [],
       categories: categories || [],
-      errors: [...(reposError ? [reposError] : [])],
+      errors: [
+        ...(reposError ? [reposError] : []),
+        ...(stacksError ? [reposError] : []),
+      ],
     },
   }
 }

@@ -37,6 +37,7 @@
     "@pluralsh/design-system": "1.339.0",
     "@react-aria/menu": "3.9.0",
     "@react-aria/ssr": "3.6.0",
+    "@react-aria/visually-hidden": "3.8.0",
     "@react-stately/list": "3.8.0",
     "@react-stately/menu": "3.5.1",
     "@react-stately/select": "3.5.0",
