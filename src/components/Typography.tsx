@@ -1,4 +1,4 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, forwardRef } from 'react'
 
 import styled from 'styled-components'
 
@@ -65,26 +65,29 @@ const SubtitleContent = styled.div(({ theme }) => ({
   color: theme.colors.text,
 }))
 
-const SubtitleBorder = styled((props) => (
-  <div
-    aria-hidden
-    {...props}
-  />
-))(({ theme }) => ({
+const SubtitleBorder = styled(
+  forwardRef<HTMLDivElement, ComponentProps<'div'>>((props, ref) => (
+    <div
+      aria-hidden
+      {...props}
+      ref={ref}
+    />
+  ))
+)(({ theme }) => ({
   flexGrow: '1',
   borderTop: theme.borders.default,
   minWidth: theme.spacing.xlarge,
 }))
 
-export function Subtitle({
-  children,
-  ...props
-}: ComponentProps<typeof SubtitleWrap>) {
-  return (
-    <SubtitleWrap {...props}>
+export const Subtitle = forwardRef(
+  ({ children, ...props }: ComponentProps<typeof SubtitleWrap>, ref) => (
+    <SubtitleWrap
+      {...props}
+      ref={ref}
+    >
       <SubtitleBorder />
       <SubtitleContent>{children}</SubtitleContent>
       <SubtitleBorder />
     </SubtitleWrap>
   )
-}
+)

@@ -49,7 +49,12 @@ export const NavigationDesktop = styled(
             )
           }
 
-          return <NavItemLink navItem={navItem} />
+          return (
+            <NavItemLink
+              key={navItem?.id}
+              navItem={navItem}
+            />
+          )
         })}
       </div>
     )
