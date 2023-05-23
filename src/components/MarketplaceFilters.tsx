@@ -50,6 +50,7 @@ function useParamToggle(key: string) {
 
 const FilterSection = styled.div(({ theme }) => ({
   paddingLeft: theme.spacing.xsmall,
+  paddingRight: theme.spacing.xsmall,
   paddingBottom: theme.spacing.small,
   overflow: 'hidden',
 }))
@@ -80,6 +81,9 @@ const MarketplaceSidebarCheckbox = styled(
   paddingTop: theme.spacing.xsmall,
   paddingLeft: theme.spacing.xsmall,
   paddingRight: 0,
+  // Temporary hack to prevent scrollbars when accordions are collapsed
+  // Remove when design system Checkbox is updated
+  position: 'relative',
 }))
 
 const searchOptions = {
