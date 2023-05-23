@@ -59,6 +59,8 @@ const searchOptions = {
   threshold: 0.25,
 }
 
+export const mqMarketTwoCol = mqs.xl
+
 export const SearchBarArea = styled.div(({ theme }) => {
   const mB = theme.spacing.medium
 
@@ -95,11 +97,7 @@ const ContentContainer = styled.div<{ $reverse?: boolean }>(
   ({ theme, $reverse }) => ({
     display: 'flex',
     flexDirection: 'column',
-    // rowGap: theme.spacing.xxlarge,
-    // [mqs.md]: {
-    // rowGap: theme.spacing.xxxlarge,
-    // },
-    [mqs.lg]: {
+    [mqMarketTwoCol]: {
       flexDirection: $reverse ? 'row-reverse' : 'row',
       columnGap: theme.spacing.xlarge,
     },
@@ -114,11 +112,9 @@ const MainContent = styled.div(({ theme: _ }) => ({
 }))
 
 const Sidecar = styled.div(({ theme }) => ({
-  [mqs.lg]: {
+  [mqMarketTwoCol]: {
     width: 248,
     flexShrink: 0,
-    // position: 'sticky',
-    // top: 'var(--top-nav-height)',
     flexDirection: 'row',
     columnGap: theme.spacing.xlarge,
   },
@@ -126,7 +122,7 @@ const Sidecar = styled.div(({ theme }) => ({
 
 const SidecarFilters = styled(MarketplaceFiltersUnstyled)(({ theme }) => ({
   display: 'none',
-  [mqs.lg]: {
+  [mqMarketTwoCol]: {
     maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
     display: 'block',
     position: 'sticky',
@@ -234,11 +230,6 @@ export default function Marketplace({
   const handleClearTokens = useCallback(() => {
     setSearchParams({})
   }, [setSearchParams])
-
-  // const handleClearFilters = useCallback(() => {
-  //   setSearch('')
-  //   handleClearTokens()
-  // }, [handleClearTokens])
 
   const { repositories, stacks } = props
 
@@ -368,7 +359,7 @@ export default function Marketplace({
         </Sidecar>
       </ContentContainer>
       <ContentContainer $reverse>
-        <Sidecar className="mt-xxlarge md:mt-[80px] lg:my-large">
+        <Sidecar className="mt-xxlarge md:mt-[80px] xl:my-large">
           <ContributorCard />
           <AddAppCard />
         </Sidecar>

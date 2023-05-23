@@ -11,8 +11,10 @@ import Link from 'next/link'
 
 import drop from 'lodash/drop'
 
+import { breakpointIsGreaterOrEqual } from '@src/breakpoints'
 import { type MinRepo } from '@src/data/getRepos'
 
+import { useBreakpoint } from './BreakpointProvider'
 import { ResponsivePageNavigation } from './ResponsivePageNavigation'
 
 function getPaginatedItems<T>(items: T[], pageIndex = 0, pageSize = 24) {
@@ -49,6 +51,9 @@ export function RepoCardList({
     [curPageIndex, pageSize, repositories]
   )
   const searchTopRef = useRef<HTMLDivElement>(null)
+  const breakpoint = useBreakpoint()
+
+  const scrollOffset = breakpointIsGreaterOrEqual(breakpoint, 'md') ? 130 : 200
 
   useEffect(() => {
     if (curPageIndex === lastPageIndex) {
@@ -58,7 +63,7 @@ export function RepoCardList({
 
     if (top) {
       window.scrollTo({
-        top: top + window.scrollY - 130,
+        top: top + window.scrollY - scrollOffset,
         behavior: 'smooth',
       })
     }

@@ -1,4 +1,5 @@
 import {
+  type ComponentProps,
   type Dispatch,
   type MutableRefObject,
   type SetStateAction,
@@ -8,6 +9,8 @@ import {
 
 import {
   BrowseAppsIcon,
+  Button,
+  FiltersIcon,
   Input,
   MagnifyingGlassIcon,
   SubTab,
@@ -17,18 +20,28 @@ import {
 import { useDebounce } from 'rooks'
 import styled from 'styled-components'
 
+import { mqs } from '@src/breakpoints'
+
 import { useSearchParams } from './hooks/useSearchParams'
+
+const mqMoveTabs = mqs.md
 
 const SearchBarWrap = styled.div(({ theme }) => ({
   display: 'flex',
-  gap: theme.spacing.medium,
+  gap: theme.spacing.small,
   backgroundColor: theme.colors['fill-zero'],
-  flexShrink: 1,
-  flexGrow: 1,
-  flexBasis: 210,
-  minWidth: 210,
   marginBottom: theme.spacing.small,
+  flexWrap: 'wrap',
   '& > *:first-child': { flexGrow: 1 },
+  [mqs.xs]: {
+    gap: theme.spacing.medium,
+  },
+  [mqMoveTabs]: {
+    flexWrap: 'nowrap',
+  },
+  [mqs.lg]: {
+    columnGap: theme.spacing.large,
+  },
 }))
 
 export enum MarketSearchTabKey {
@@ -71,6 +84,106 @@ export function useSearchTabKey(): [
   ]
 }
 
+const MarketTabs = styled(TabList)(({ theme: _ }) => ({
+  order: 3,
+  width: '100%',
+  justifyContent: 'stretch',
+  '& > *': {
+    flexGrow: 1,
+    textAlign: 'center',
+  },
+  [mqMoveTabs]: {
+    width: 'auto',
+    order: 'initial',
+  },
+}))
+
+const MarketFilterBtn = styled(
+  ({ ...props }: ComponentProps<typeof Button>) => (
+    <Button
+      secondary
+      startIcon={<FiltersIcon />}
+      {...props}
+    >
+      <span className="text">Filter</span>
+    </Button>
+  )
+)(({ theme }) => ({
+  '& > span:first-child': {
+    marginRight: `0 !important`,
+  },
+  width: '40px',
+  '.text': {
+    display: 'none',
+  },
+  [mqs.md]: {
+    width: 'auto',
+    '& > span:first-child': {
+      marginRight: `${theme.spacing.small}px !important`,
+    },
+    '.text': {
+      display: 'inline',
+    },
+  },
+  [mqs.lg]: {
+    display: 'none',
+  },
+}))
+
+const SearchBarLabel = styled.span(({ theme }) => ({
+  display: 'none',
+  [mqs.md]: {
+    display: 'inline',
+    marginLeft: theme.spacing.small,
+  },
+}))
+
+const SearchTitleContent = styled.div(({ theme }) => ({
+  display: 'flex',
+  flexAlign: 'center',
+  marginLeft: -theme.spacing.xxsmall,
+  marginRight: -theme.spacing.xxsmall,
+  [mqs.xs]: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+}))
+
+const SearchInput = styled((props: ComponentProps<typeof Input>) => (
+  <Input
+    titleContent={
+      <SearchTitleContent>
+        <BrowseAppsIcon />
+        <SearchBarLabel>Marketplace</SearchBarLabel>
+      </SearchTitleContent>
+    }
+    startIcon={
+      <MagnifyingGlassIcon
+        size={16}
+        color="icon-light"
+      />
+    }
+    placeholder="Search the marketplace"
+    caption
+    {...props}
+  />
+))(({ theme }) => ({
+  '& > *:first-child > *:last-child': {
+    marginLeft: -theme.spacing.xxsmall,
+    marginRight: -theme.spacing.xxxsmall,
+    [mqs.xs]: {
+      marginLeft: 0,
+      marginRight: 0,
+    },
+  },
+  '&&': {
+    paddingRight: theme.spacing.xsmall,
+    [mqs.xs]: {
+      marginRight: 0,
+    },
+  },
+}))
+
 export function SearchBar({
   search: searchProp,
   setSearch: setSearchProp,
@@ -82,34 +195,19 @@ export function SearchBar({
 }) {
   const [search, setSearch] = useState(searchProp)
   const debouncedSetSearch = useDebounce(setSearchProp, 500)
-
   const [tabKey, setTabKey] = useSearchTabKey()
-
-  console.log('tabKey', tabKey)
 
   return (
     <SearchBarWrap>
-      <Input
-        titleContent={
-          <>
-            <BrowseAppsIcon marginRight="small" />
-            Marketplace
-          </>
-        }
-        startIcon={
-          <MagnifyingGlassIcon
-            size={16}
-            color="icon-light"
-          />
-        }
-        placeholder="Search the marketplace"
+      <SearchInput
         value={search}
         onChange={(event) => {
           setSearch(event.target.value)
           debouncedSetSearch(event.target.value)
         }}
       />
-      <TabList
+      {/* <MarketTabs> */}
+      <MarketTabs
         stateRef={tabStateRef}
         stateProps={{
           orientation: 'horizontal',
@@ -120,7 +218,13 @@ export function SearchBar({
         {tabs.map(({ key, label }) => (
           <SubTab key={key}>{label}</SubTab>
         ))}
-      </TabList>
+        {/* </MarketTabs> */}
+      </MarketTabs>
+      <MarketFilterBtn
+        onClick={() => {
+          alert('click')
+        }}
+      />
     </SearchBarWrap>
   )
 }

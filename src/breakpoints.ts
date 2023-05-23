@@ -1,5 +1,6 @@
 export type Breakpoint =
   | ''
+  | 'xs'
   | 'sm'
   | 'md'
   | 'lg'
@@ -11,13 +12,16 @@ export type Breakpoint =
   | 'fullHeaderSocial'
 
 export const breakpoints: Record<Breakpoint, number> = {
+  // First breakpoints in order will be picked by useBreakpoint()
   '': 0,
+  xs: 375,
   sm: 640,
   md: 768,
   lg: 1000,
   xl: 1280,
   xxl: 1440,
   maxWidth: 1920,
+  // Additional breakpoints after maxWidth won't be selected by useBreakpoint()
   fullHeader: 1000,
   fullHeaderWide: 1060,
   fullHeaderSocial: 1280,
