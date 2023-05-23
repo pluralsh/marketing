@@ -126,20 +126,26 @@ function AccordionContentUnstyled({
     to: { height: isOpen ? contentHeight : 0 },
     config: isOpen
       ? {
+          clamp: true,
           mass: 0.6,
           tension: 280,
           velocity: 0.02,
         }
       : {
+          clamp: true,
           mass: 0.6,
           tension: 400,
           velocity: 0.02,
-          restVelocity: 0.1,
         },
   })
 
   return (
-    <animated.div style={{ overflow: 'hidden', ...springs }}>
+    <animated.div
+      style={{
+        overflow: 'hidden',
+        ...springs,
+      }}
+    >
       <div
         className={className}
         ref={eltRef}
