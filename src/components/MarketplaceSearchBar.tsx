@@ -18,11 +18,14 @@ import {
 } from '@pluralsh/design-system'
 
 import { useDebounce } from 'rooks'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
+import { mqMarketTwoCol } from '@pages/marketplace'
 import { mqs } from '@src/breakpoints'
 
+import { BareModal } from './BareModal'
 import { useSearchParams } from './hooks/useSearchParams'
+import MarketplaceFilters from './MarketplaceFilters'
 
 const mqMoveTabs = mqs.md
 
@@ -84,7 +87,13 @@ export function useSearchTabKey(): [
   ]
 }
 
-const MarketTabs = styled(TabList)(({ theme: _ }) => ({
+const MarketTabs = styled(({ ...props }: ComponentProps<typeof TabList>) => (
+  <TabList {...props}>
+    {tabs.map(({ key, label }) => (
+      <SubTab key={key}>{label}</SubTab>
+    ))}
+  </TabList>
+))(({ theme: _ }) => ({
   order: 3,
   width: '100%',
   justifyContent: 'stretch',
@@ -125,9 +134,16 @@ const MarketFilterBtn = styled(
       display: 'inline',
     },
   },
-  [mqs.lg]: {
-    display: 'none',
+  [mqMarketTwoCol]: {
+    '&&': {
+      display: 'none',
+    },
   },
+}))
+
+const ModalFilters = styled(MarketplaceFilters)(({ theme: _ }) => ({
+  maxHeight: '100%',
+  flexShrink: 1,
 }))
 
 const SearchBarLabel = styled.span(({ theme }) => ({
@@ -187,15 +203,29 @@ const SearchInput = styled((props: ComponentProps<typeof Input>) => (
 export function SearchBar({
   search: searchProp,
   setSearch: setSearchProp,
+  filterProps,
   tabStateRef,
 }: {
   search: string
+  filterProps: any
   setSearch: Dispatch<SetStateAction<string>>
   tabStateRef: MutableRefObject<any>
 }) {
   const [search, setSearch] = useState(searchProp)
   const debouncedSetSearch = useDebounce(setSearchProp, 500)
   const [tabKey, setTabKey] = useSearchTabKey()
+  const [filtersOpen, setFiltersOpen] = useState(false)
+
+  const tabs = (
+    <MarketTabs
+      stateRef={tabStateRef}
+      stateProps={{
+        orientation: 'horizontal',
+        selectedKey: tabKey,
+        onSelectionChange: (key) => setTabKey(key as MarketSearchTabKey),
+      }}
+    />
+  )
 
   return (
     <SearchBarWrap>
@@ -206,25 +236,20 @@ export function SearchBar({
           debouncedSetSearch(event.target.value)
         }}
       />
-      {/* <MarketTabs> */}
-      <MarketTabs
-        stateRef={tabStateRef}
-        stateProps={{
-          orientation: 'horizontal',
-          selectedKey: tabKey,
-          onSelectionChange: (key) => setTabKey(key as MarketSearchTabKey),
-        }}
-      >
-        {tabs.map(({ key, label }) => (
-          <SubTab key={key}>{label}</SubTab>
-        ))}
-        {/* </MarketTabs> */}
-      </MarketTabs>
+      {tabs}
       <MarketFilterBtn
         onClick={() => {
-          alert('click')
+          setFiltersOpen(!filtersOpen)
         }}
       />
+
+      <BareModal
+        open={filtersOpen}
+        onClose={() => setFiltersOpen(false)}
+        closeButton
+      >
+        <ModalFilters {...filterProps} />
+      </BareModal>
     </SearchBarWrap>
   )
 }

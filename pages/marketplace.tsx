@@ -25,7 +25,7 @@ import styled, { useTheme } from 'styled-components'
 import { mqs } from '@src/breakpoints'
 import { Carousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
-import MarketplaceFiltersUnstyled from '@src/components/MarketplaceFilters'
+import MarketplaceFilters from '@src/components/MarketplaceFilters'
 import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
 import { MarketplacePage } from '@src/components/PageGrid'
 import { RepoCardList } from '@src/components/RepoCardList'
@@ -120,10 +120,11 @@ const Sidecar = styled.div(({ theme }) => ({
   },
 }))
 
-const SidecarFilters = styled(MarketplaceFiltersUnstyled)(({ theme }) => ({
+const SidecarFilters = styled(MarketplaceFilters)(({ theme }) => ({
   display: 'none',
   [mqMarketTwoCol]: {
     maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
+    'maxHeight ': `calc(100dvh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
     display: 'block',
     position: 'sticky',
     top: 'var(--top-nav-height)',
@@ -289,6 +290,11 @@ export default function Marketplace({
     [fuse, search, filteredRepositories]
   )
 
+  const filterProps = {
+    categories: props.categories,
+    tags: props.tags,
+  }
+
   return (
     <MarketplacePage className="mb-xxxxlarge">
       <div className="my-xxlarge xxl:mb-[80px]">
@@ -307,6 +313,7 @@ export default function Marketplace({
               search={search}
               setSearch={setSearch}
               tabStateRef={searchTabStateRef}
+              filterProps={filterProps}
             />
             {isFiltered && (
               <FilterChips
@@ -351,11 +358,8 @@ export default function Marketplace({
             )}
           </TabPanel>
         </MainContent>
-        <Sidecar className="xxl:display-none">
-          <SidecarFilters
-            categories={props.categories}
-            tags={props.tags}
-          />
+        <Sidecar>
+          <SidecarFilters {...filterProps} />
         </Sidecar>
       </ContentContainer>
       <ContentContainer $reverse>

@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 
 import { Card, Checkbox, CloseIcon, Input } from '@pluralsh/design-system'
-import { A, Div } from 'honorable'
+import { A } from 'honorable'
 
 import Fuse from 'fuse.js'
 import capitalize from 'lodash/capitalize'
@@ -81,9 +81,6 @@ const MarketplaceSidebarCheckbox = styled(
   paddingTop: theme.spacing.xsmall,
   paddingLeft: theme.spacing.xsmall,
   paddingRight: 0,
-  // Temporary hack to prevent scrollbars when accordions are collapsed
-  // Remove when design system Checkbox is updated
-  position: 'relative',
 }))
 
 const searchOptions = {
@@ -169,6 +166,7 @@ function Tags({ tags, fetchMore = () => {}, search, setSearch }) {
 
   return (
     <FilterAccordion
+      defaultOpen
       label={`Tags (${sortedTags.length}${
         nDisplayedTags < tags.length ? '+' : ''
       })`}
@@ -235,8 +233,6 @@ const MarketplaceFilters = styled(MarketplaceFiltersUnstyled)(
   })
 )
 
-export default MarketplaceFilters
-
 function MarketplaceFiltersUnstyled({
   tags,
   categories,
@@ -251,14 +247,14 @@ function MarketplaceFiltersUnstyled({
 
   return (
     <Card className={className}>
-      <Div>
-        <Categories categories={filteredCategories} />
-        <Tags
-          tags={tags}
-          search={search}
-          setSearch={setSearch}
-        />
-      </Div>
+      <Categories categories={filteredCategories} />
+      <Tags
+        tags={tags}
+        search={search}
+        setSearch={setSearch}
+      />
     </Card>
   )
 }
+
+export default MarketplaceFilters

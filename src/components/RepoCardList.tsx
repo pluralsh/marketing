@@ -35,7 +35,7 @@ export function RepoCardList({
   repoProps = {},
   urlParams = '',
   size = 'small',
-  pageSize = 16,
+  pageSize = 24,
 }: {
   repositories: MinRepo[]
   repoProps?: ComponentProps<typeof RepositoryCard>
@@ -75,30 +75,41 @@ export function RepoCardList({
 
   return (
     <div ref={searchTopRef}>
-      <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-3">
-        {pageItems?.map((repository) => (
-          <RepositoryCard
-            key={repository.id}
-            as={Link}
-            href={`/applications/${repository.name}${
-              urlParams ? `?${urlParams}` : ''
-            }`}
-            color="text"
-            textDecoration="none"
-            width="100%"
-            title={repository.name}
-            imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
-            publisher={repository.publisher?.name}
-            description={repository.description ?? undefined}
-            tags={repository.tags?.flatMap((t) => t?.tag || [])}
-            priv={repository.private ?? undefined}
-            verified={repository.verified ?? undefined}
-            trending={repository.trending ?? undefined}
-            releaseStatus={repository.releaseStatus ?? undefined}
-            size={size}
-            {...repoProps}
-          />
-        ))}
+      <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-6">
+        {pageItems?.map((repository) => {
+          const featuredLabel = repository.trending ? 'Trending' : undefined
+
+          return (
+            <RepositoryCard
+              className={
+                featuredLabel
+                  ? 'md:col-span-2 lg:col-span-1 xl:col-span-3'
+                  : 'xl:col-span-2'
+              }
+              variant="marketing"
+              key={repository.id}
+              as={Link}
+              href={`/applications/${repository.name}${
+                urlParams ? `?${urlParams}` : ''
+              }`}
+              color="text"
+              textDecoration="none"
+              width="100%"
+              title={repository.name}
+              imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
+              publisher={repository.publisher?.name}
+              description={repository.description ?? undefined}
+              tags={repository.tags?.flatMap((t) => t?.tag || [])}
+              priv={repository.private ?? undefined}
+              verified={repository.verified ?? undefined}
+              featuredLabel={featuredLabel}
+              // trending={repository.trending ?? undefined}
+              releaseStatus={repository.releaseStatus ?? undefined}
+              size={size}
+              {...repoProps}
+            />
+          )
+        })}
       </div>
       <ResponsivePageNavigation
         className="mt-xxlarge"

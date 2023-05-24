@@ -51,6 +51,7 @@ const AccordionTrigger = styled(AccordionTriggerUnstyled)(
       padding,
       // transition: `paddingBottom ${paddingTransition}`,
       ...theme.partials.text.body2Bold,
+      color: theme.colors.text,
       '&[aria-expanded="true"]': {
         paddingBottom: bottomPadOpen,
       },
@@ -123,7 +124,7 @@ function AccordionContentUnstyled({
 
   useResizeObserver(eltRef, onResize)
   const springs = useSpring({
-    to: { height: isOpen ? contentHeight : 0 },
+    to: { height: isOpen ? contentHeight || 'auto' : 0 },
     config: isOpen
       ? {
           clamp: true,
@@ -208,12 +209,17 @@ export function SingleAccordion({
   if (!textValue && typeof label === 'string') {
     textValue = label
   }
+
+  console.log('defaultOpen', defaultOpen)
+
   const { triggerProps, contentProps, isOpen } = useDisclosure({
     defaultOpen,
     isOpen: isOpenProp,
     onOpenChange,
     id,
   })
+
+  console.log('isOpen', isOpen)
 
   useEffect(() => {}, [isOpen])
 

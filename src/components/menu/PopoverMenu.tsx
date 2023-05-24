@@ -17,8 +17,6 @@ import styled, { useTheme } from 'styled-components'
 type PopoverMenuProps = {
   isOpen: boolean
   onClose: () => void
-  //   listBoxState: ListState<object>
-  //   listBoxProps: AriaListBoxOptions<object>
   floating: UseFloatingReturn<any>
   children: ReactNode
 } & Pick<PopoverProps, 'popoverRef'>
