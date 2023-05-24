@@ -10,8 +10,7 @@ import { type MinStack } from '@src/data/getStacks'
 
 import { AppBody1, Heading1, Label } from './Typography'
 
-const SIZES = ['sm', 'md', 'lg', 'xl']
-const knownStacks = new Set(['data', 'devops', 'security'])
+const knownStacks = new Set(['data', 'devops', 'security', 'observability'])
 
 function HeroThing({
   imgPrefix,
@@ -22,25 +21,22 @@ function HeroThing({
   imgSuffix: string
 }>) {
   return (
-    <HeroStyles bgImg={`${imgPrefix}-sm${imgSuffix}`}>
+    <HeroStyles
+      $bgPrefix={imgPrefix}
+      $bgSuffix={imgSuffix}
+    >
       <div className="contentWrap">{children}</div>
-      {SIZES.map((size) => (
-        <picture>
-          <img
-            className={`hero_img hero_img_${size}`}
-            aria-hidden="true"
-            src={`${imgPrefix}-${size}${imgSuffix}`}
-          />
-        </picture>
-      ))}
     </HeroStyles>
   )
 }
 
-const HeroStyles = styled.div<{ bgImg: string }>(({ theme, bgImg }) => ({
-  background: bgImg ? `url(${bgImg})` : undefined,
+const HeroStyles = styled.div<{
+  $bgPrefix: string
+  $bgSuffix: string
+}>(({ theme, $bgPrefix, $bgSuffix }) => ({
+  backgroundImage: `url(${$bgPrefix}-sm${$bgSuffix})`,
   backgroundSize: 'cover',
-  backgroundPosition: 'center center',
+  backgroundPosition: 'center bottom',
   borderRadius: theme.borderRadiuses.large,
   border: theme.borders['fill-one'],
   overflow: 'hidden',
@@ -50,51 +46,27 @@ const HeroStyles = styled.div<{ bgImg: string }>(({ theme, bgImg }) => ({
   '.contentWrap': {
     width: '100%',
     zIndex: 1,
-    // display: 'flex',
-    // alignItems: 'center',
   },
-  picture: {
-    display: 'contents',
-  },
-
-  //
-  // Responsive hide/reveal classes
-  //
-  '.hero_img': {
-    display: 'none',
-    width: '100%',
-    transform: 'translateX(-100%)',
-    zIndex: 0,
-  },
-  // '.hero_img_sm': {
-  //   display: 'block',
-  //   opacity: 0,
-  //   maxHeight: 540,
-  // },
   [mqs.sm]: {
-    minHeight: 'unset',
-    '.hero_img': {
-      display: 'none',
-    },
-    '.hero_img_md': {
-      display: 'block',
-    },
+    backgroundImage: `url(${$bgPrefix}-md${$bgSuffix})`,
+    backgroundPosition: 'right center',
+    minHeight: '303px',
   },
-  [mqs.xl]: {
-    '.hero_img': {
-      display: 'none',
-    },
-    '.hero_img_lg': {
-      display: 'block',
-    },
+  // [mqs.md]: {
+  //   backgroundImage: `url(${$bgPrefix}-lg${$bgSuffix})`,
+  //   backgroundPosition: 'center center',
+  // },
+  [mqs.lg]: {
+    backgroundImage: `url(${$bgPrefix}-xl${$bgSuffix})`,
+    backgroundPosition: 'right center',
   },
+  // [mqs.xl]: {
+  //   backgroundImage: `url(${$bgPrefix}-lg${$bgSuffix})`,
+  //   backgroundPosition: 'center center',
+  // },
   [mqs.maxWidth]: {
-    '.hero_img': {
-      display: 'none',
-    },
-    '.hero_img_xl': {
-      display: 'block',
-    },
+    backgroundImage: `url(${$bgPrefix}-xl${$bgSuffix})`,
+    backgroundPosition: 'right center',
   },
 }))
 
