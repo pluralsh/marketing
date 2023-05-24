@@ -45,7 +45,7 @@ const HeroStyles = styled.div<{ bgImg: string }>(({ theme, bgImg }) => ({
   border: theme.borders['fill-one'],
   overflow: 'hidden',
   display: 'flex',
-  minHeight: '540px',
+  minHeight: '454px',
   '& > *': { flexShrink: 0 },
   '.contentWrap': {
     width: '100%',
