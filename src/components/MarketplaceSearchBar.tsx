@@ -18,7 +18,7 @@ import {
 } from '@pluralsh/design-system'
 
 import { useDebounce } from 'rooks'
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 
 import { mqMarketTwoCol } from '@pages/marketplace'
 import { mqs } from '@src/breakpoints'

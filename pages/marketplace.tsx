@@ -112,7 +112,9 @@ const MainContent = styled.div(({ theme: _ }) => ({
 }))
 
 const Sidecar = styled.div(({ theme }) => ({
+  display: 'none',
   [mqMarketTwoCol]: {
+    display: 'block',
     width: 248,
     flexShrink: 0,
     flexDirection: 'row',
@@ -121,11 +123,11 @@ const Sidecar = styled.div(({ theme }) => ({
 }))
 
 const SidecarFilters = styled(MarketplaceFilters)(({ theme }) => ({
-  display: 'none',
+  // display: 'none',
   [mqMarketTwoCol]: {
     maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
     'maxHeight ': `calc(100dvh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
-    display: 'block',
+    // display: 'block',
     position: 'sticky',
     top: 'var(--top-nav-height)',
   },

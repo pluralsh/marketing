@@ -5,10 +5,12 @@ import {
   useRef,
   useState,
 } from 'react'
+
 import { usePrevious } from '@pluralsh/design-system'
+
 import styled from 'styled-components'
 
-const MarketFilterModal = styled(
+export const MarketFilterModal = styled(
   ({
     isOpen,
     onOpenChange,
