@@ -49,7 +49,7 @@ const nameMap = {
   'argo-cd': 'Argo CD',
 }
 
-function fakeDisplayName(name = '') {
+export function fakeDisplayName(name = '') {
   let displayName: string =
     nameMap[name] ||
     name

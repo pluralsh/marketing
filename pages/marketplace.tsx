@@ -28,7 +28,7 @@ import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/MarketplaceFilters'
 import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
 import { MarketplacePage } from '@src/components/PageGrid'
-import { RepoCardList } from '@src/components/RepoCardList'
+import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -36,6 +36,7 @@ import {
   getSearchMetadata,
 } from '@src/data/getSearchMetadata'
 import { type MinStack, getStacks, stacksCache } from '@src/data/getStacks'
+import { type MinRepoFragment } from '@src/generated/graphqlPlural'
 
 import {
   type SetSearchParams,
@@ -54,12 +55,25 @@ type PageProps = {
   categories: Categories
   tags: Tags
 }
-const searchOptions = {
+const reposSearchOptions = {
   keys: ['name', 'description', 'tags.tag'],
+  threshold: 0.25,
+}
+const stacksSearchOptions = {
+  keys: ['name', 'description', 'collections.bundles.recipe.repository.tag'],
   threshold: 0.25,
 }
 
 export const mqMarketTwoCol = mqs.xl
+
+export function getStackRepos(stack: MinStack) {
+  return stack.collections?.[0]?.bundles
+    ?.map((bundle) => bundle?.recipe?.repository)
+    .filter(
+      (repo: MinRepoFragment | null | undefined): repo is MinRepoFragment =>
+        !!repo
+    )
+}
 
 export const SearchBarArea = styled.div(({ theme }) => {
   const mB = theme.spacing.medium
@@ -222,6 +236,7 @@ export default function Marketplace({
   const searchTabStateRef = useRef<any>()
   const [searchTabKey] = useSearchTabKey()
   const searchTopRef = useRef<any>()
+  const isFilteredOrSearched = isFiltered || search
 
   const handleClearToken = useCallback(
     (key, value) => {
@@ -235,6 +250,57 @@ export default function Marketplace({
   }, [setSearchParams])
 
   const { repositories, stacks } = props
+  const filteredStacks = useMemo(
+    () =>
+      stacks
+        .filter((stack) =>
+          !isEmpty(categories)
+            ? categories.some(
+                (category) =>
+                  stack.name.toLowerCase() === category.toLowerCase() ||
+                  getStackRepos(stack)?.some(
+                    (repo) =>
+                      repo.category?.toLowerCase() === category.toLowerCase()
+                  )
+              )
+            : true
+        )
+        .filter((stack) =>
+          !isEmpty(tags)
+            ? tags.some(
+                (tag) =>
+                  stack.name.toLowerCase() === tag.toLowerCase() ||
+                  getStackRepos(stack)?.some(
+                    (repo) =>
+                      repo.name.toLowerCase() === tag.toLowerCase() ||
+                      repo?.tags?.some(
+                        (t) => t?.tag?.toLowerCase() === tag.toLowerCase()
+                      )
+                  )
+              )
+            : true
+        ),
+    [categories, stacks, tags]
+  )
+  const stacksFuse = useMemo(
+    () => new Fuse(filteredStacks, stacksSearchOptions),
+    [filteredStacks]
+  )
+
+  const resultStacks = useMemo(
+    () =>
+      search
+        ? (orderBy(
+            stacksFuse.search(search).map(({ item }) => item),
+            [
+              'trending',
+              (r) => (r as (typeof stacks)[number])?.name.toLowerCase(),
+            ],
+            ['desc', 'asc']
+          ) as typeof stacks)
+        : filteredStacks,
+    [filteredStacks, search, stacksFuse]
+  )
 
   const sortedRepositories = useMemo(
     () =>
@@ -272,8 +338,8 @@ export default function Marketplace({
     [categories, sortedRepositories, tags]
   )
 
-  const fuse = useMemo(
-    () => new Fuse(filteredRepositories, searchOptions),
+  const reposFuse = useMemo(
+    () => new Fuse(filteredRepositories, reposSearchOptions),
     [filteredRepositories]
   )
 
@@ -281,7 +347,7 @@ export default function Marketplace({
     () =>
       search
         ? (orderBy(
-            fuse.search(search).map(({ item }) => item),
+            reposFuse.search(search).map(({ item }) => item),
             [
               'trending',
               (r) => (r as (typeof repositories)[number])?.name.toLowerCase(),
@@ -289,7 +355,7 @@ export default function Marketplace({
             ['desc', 'asc']
           ) as typeof repositories)
         : filteredRepositories,
-    [fuse, search, filteredRepositories]
+    [reposFuse, search, filteredRepositories]
   )
 
   const filterProps = {
@@ -327,10 +393,8 @@ export default function Marketplace({
             )}
           </SearchBarArea>
           <TabPanel stateRef={searchTabStateRef}>
-            {!isFiltered &&
-              !search &&
-              (searchTabKey === MarketSearchTabKey.all ||
-                searchTabKey === MarketSearchTabKey.stacks) && (
+            {!isFilteredOrSearched &&
+              searchTabKey === MarketSearchTabKey.all && (
                 <div className="heroArea mb-xlarge">
                   <Subtitle
                     as="h4"
@@ -340,7 +404,12 @@ export default function Marketplace({
                   </Subtitle>
                   <Carousel>
                     {stacks.map((stack) =>
-                      stack ? <StackHero stack={stack} /> : null
+                      stack ? (
+                        <StackHero
+                          key={stack.id}
+                          stack={stack}
+                        />
+                      ) : null
                     )}
                   </Carousel>
                 </div>
@@ -355,7 +424,43 @@ export default function Marketplace({
                 >
                   {!isFiltered && !search ? <>All apps</> : <>Results</>}
                 </Subtitle>
-                <RepoCardList repositories={resultRepositories} />
+                <RepoCardList>
+                  {isFilteredOrSearched &&
+                    resultStacks.map((stack) => (
+                      <StackCard
+                        key={stack.id}
+                        stack={stack}
+                        wideFeatures={!isFilteredOrSearched}
+                      />
+                    ))}
+                  {resultRepositories.map((repository) => (
+                    <RepoCard
+                      key={repository.id}
+                      repository={repository}
+                      wideFeatures={!isFilteredOrSearched}
+                    />
+                  ))}
+                </RepoCardList>
+              </>
+            )}
+            {searchTabKey === MarketSearchTabKey.stacks && (
+              <>
+                <Subtitle
+                  ref={searchTopRef}
+                  as="h4"
+                  className="mb-xlarge"
+                >
+                  Plural curated stacks
+                </Subtitle>
+                <RepoCardList>
+                  {stacks.map((stack) => (
+                    <StackCard
+                      key={stack.id}
+                      stack={stack}
+                      wideFeatures={!isFilteredOrSearched}
+                    />
+                  ))}
+                </RepoCardList>
               </>
             )}
           </TabPanel>

@@ -1,18 +1,27 @@
 import {
-  type ComponentProps,
+  Children,
+  type ReactNode,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
 
-import { RepositoryCard, usePrevious } from '@pluralsh/design-system'
+import {
+  EmptyState,
+  StackCard as PluralStackCard,
+  RepositoryCard,
+  usePrevious,
+} from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import drop from 'lodash/drop'
+import isEmpty from 'lodash/isEmpty'
 
+import { getStackRepos } from '@pages/marketplace'
 import { breakpointIsGreaterOrEqual } from '@src/breakpoints'
-import { type MinRepo } from '@src/data/getRepos'
+import { type MinRepo, fakeDisplayName } from '@src/data/getRepos'
+import { type MinStack } from '@src/data/getStacks'
 
 import { useBreakpoint } from './BreakpointProvider'
 import { ResponsivePageNavigation } from './ResponsivePageNavigation'
@@ -31,24 +40,19 @@ function getPaginatedItems<T>(items: T[], pageIndex = 0, pageSize = 24) {
 }
 
 export function RepoCardList({
-  repositories,
-  repoProps = {},
-  urlParams = '',
-  size = 'small',
+  children,
   pageSize = 24,
 }: {
-  repositories: MinRepo[]
-  repoProps?: ComponentProps<typeof RepositoryCard>
-  urlParams?: string
-  size?: ComponentProps<typeof RepositoryCard>['size']
+  children: ReactNode
   pageSize?: number
 }) {
   const [cPI, setCurPageIndex] = useState(0)
   const curPageIndex = cPI ?? 0
   const lastPageIndex = usePrevious(curPageIndex) ?? 0
+  const childArray = useMemo(() => Children.toArray(children), [children])
   const { pageItems, totalPages } = useMemo(
-    () => getPaginatedItems(repositories, curPageIndex, pageSize),
-    [curPageIndex, pageSize, repositories]
+    () => getPaginatedItems(childArray, curPageIndex, pageSize),
+    [curPageIndex, pageSize, childArray]
   )
   const searchTopRef = useRef<HTMLDivElement>(null)
   const breakpoint = useBreakpoint()
@@ -71,46 +75,20 @@ export function RepoCardList({
 
   useEffect(() => {
     setCurPageIndex(0)
-  }, [repositories])
+  }, [childArray])
 
   return (
     <div ref={searchTopRef}>
-      <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-6">
-        {pageItems?.map((repository) => {
-          const featuredLabel = repository.trending ? 'Trending' : undefined
-
-          return (
-            <RepositoryCard
-              className={
-                featuredLabel
-                  ? 'md:col-span-2 lg:col-span-1 xl:col-span-3'
-                  : 'xl:col-span-2'
-              }
-              variant="marketing"
-              key={repository.id}
-              as={Link}
-              href={`/applications/${repository.name}${
-                urlParams ? `?${urlParams}` : ''
-              }`}
-              color="text"
-              textDecoration="none"
-              width="100%"
-              title={repository.name}
-              imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
-              publisher={repository.publisher?.name}
-              description={repository.description ?? undefined}
-              tags={repository.tags?.flatMap((t) => t?.tag || [])}
-              priv={repository.private ?? undefined}
-              verified={repository.verified ?? undefined}
-              featuredLabel={featuredLabel}
-              // trending={repository.trending ?? undefined}
-              releaseStatus={repository.releaseStatus ?? undefined}
-              size={size}
-              {...repoProps}
-            />
-          )
-        })}
-      </div>
+      {isEmpty(pageItems) ? (
+        <EmptyState
+          width="100%"
+          message="No apps match your search criteria"
+        />
+      ) : (
+        <div className="grid grid-cols-1 gap-medium md:grid-cols-2 xl:grid-cols-6">
+          {pageItems}
+        </div>
+      )}
       <ResponsivePageNavigation
         className="mt-xxlarge"
         totalPages={totalPages}
@@ -118,5 +96,78 @@ export function RepoCardList({
         setPageIndex={setCurPageIndex}
       />
     </div>
+  )
+}
+
+export function RepoCard({
+  repository,
+  urlParams,
+  wideFeatures = true,
+  ...props
+}: {
+  repository: MinRepo
+  urlParams?: string
+  wideFeatures: boolean
+}) {
+  const featuredLabel = repository.trending ? 'Trending' : undefined
+
+  return (
+    <RepositoryCard
+      className={
+        featuredLabel && wideFeatures
+          ? 'md:col-span-2 lg:col-span-1 xl:col-span-3'
+          : 'xl:col-span-2'
+      }
+      variant="marketing"
+      as={Link}
+      href={`/applications/${repository.name}${
+        urlParams ? `?${urlParams}` : ''
+      }`}
+      color="text"
+      textDecoration="none"
+      width="100%"
+      title={repository.name}
+      imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
+      publisher={repository.publisher?.name}
+      description={repository.description ?? undefined}
+      tags={repository.tags?.flatMap((t) => t?.tag || [])}
+      priv={repository.private ?? undefined}
+      verified={repository.verified ?? undefined}
+      featuredLabel={featuredLabel}
+      releaseStatus={repository.releaseStatus ?? undefined}
+      size="small"
+      {...props}
+    />
+  )
+}
+
+export function StackCard({
+  stack,
+  urlParams,
+  ...props
+}: {
+  stack: MinStack
+  urlParams?: string
+  wideFeatures: boolean
+}) {
+  const apps = getStackRepos(stack)?.map((repo) => ({
+    name: fakeDisplayName(repo.name),
+    imageUrl: repo.darkIcon || repo.icon || '',
+  }))
+
+  return (
+    <PluralStackCard
+      className="xl:col-span-2"
+      as={Link}
+      href={`/stack/${stack.name}${urlParams ? `?${urlParams}` : ''}`}
+      color="text"
+      textDecoration="none"
+      width="100%"
+      title={stack.displayName || stack.name}
+      description={stack.description ?? undefined}
+      size="small"
+      apps={apps}
+      {...props}
+    />
   )
 }
