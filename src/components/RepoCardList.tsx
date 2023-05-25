@@ -100,7 +100,7 @@ export function RepoCardList({
 }
 
 export function RepoCard({
-  repository,
+  repository: repo,
   urlParams,
   wideFeatures = true,
   ...props
@@ -109,7 +109,7 @@ export function RepoCard({
   urlParams?: string
   wideFeatures: boolean
 }) {
-  const featuredLabel = repository.trending ? 'Trending' : undefined
+  const featuredLabel = repo.trending ? 'Trending' : undefined
 
   return (
     <RepositoryCard
@@ -120,21 +120,19 @@ export function RepoCard({
       }
       variant="marketing"
       as={Link}
-      href={`/applications/${repository.name}${
-        urlParams ? `?${urlParams}` : ''
-      }`}
+      href={`/applications/${repo.name}${urlParams ? `?${urlParams}` : ''}`}
       color="text"
       textDecoration="none"
       width="100%"
-      title={repository.name}
-      imageUrl={(repository.darkIcon || repository.icon) ?? undefined}
-      publisher={repository.publisher?.name}
-      description={repository.description ?? undefined}
-      tags={repository.tags?.flatMap((t) => t?.tag || [])}
-      priv={repository.private ?? undefined}
-      verified={repository.verified ?? undefined}
+      title={fakeDisplayName(repo.name)}
+      imageUrl={(repo.darkIcon || repo.icon) ?? undefined}
+      publisher={repo.publisher?.name}
+      description={repo.description ?? undefined}
+      tags={repo.tags?.flatMap((t) => t?.tag || [])}
+      priv={repo.private ?? undefined}
+      verified={repo.verified ?? undefined}
       featuredLabel={featuredLabel}
-      releaseStatus={repository.releaseStatus ?? undefined}
+      releaseStatus={repo.releaseStatus ?? undefined}
       size="small"
       {...props}
     />

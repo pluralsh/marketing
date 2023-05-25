@@ -212,7 +212,7 @@ export function SearchBar({
   tabStateRef: MutableRefObject<any>
 }) {
   const [search, setSearch] = useState(searchProp)
-  const debouncedSetSearch = useDebounce(setSearchProp, 500)
+  const debouncedSetSearch = useDebounce(setSearchProp, 300)
   const [tabKey, setTabKey] = useSearchTabKey()
   const [filtersOpen, setFiltersOpen] = useState(false)
 

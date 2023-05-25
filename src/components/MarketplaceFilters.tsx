@@ -81,6 +81,9 @@ const MarketplaceSidebarCheckbox = styled(
   paddingTop: theme.spacing.xsmall,
   paddingLeft: theme.spacing.xsmall,
   paddingRight: 0,
+  // Temporary hack to prevent scrollbars when accordions are collapsed
+  // Remove when design system Checkbox is updated
+  position: 'relative',
 }))
 
 const searchOptions = {
