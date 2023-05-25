@@ -45,7 +45,7 @@
     "graphql": "16.6.0",
     "honorable": "0.194.0",
     "honorable-theme-default": "0.77.0",
-    "immer": "9.0.19",
+    "immer": "9.0.21",
     "js-yaml": "4.1.0",
     "lodash": "4.17.21",
     "memoize-one": "6.0.0",
