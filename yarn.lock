@@ -12649,16 +12649,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rooks@npm:7.4.3":
-  version: 7.4.3
-  resolution: "rooks@npm:7.4.3"
+"rooks@npm:7.4.4":
+  version: 7.4.4
+  resolution: "rooks@npm:7.4.4"
   dependencies:
     lodash.debounce: ^4.0.8
     raf: ^3.4.1
   peerDependencies:
     react: ^16.8.0  || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
-  checksum: 3bdde0ca21c30080ee92c418c454848b10699d943118f390bae3aa0109df0ee25180679b41ce7b0edadc8ddf796923041e8ae32a73f2201b4e90bbf24e817a9b
+  checksum: 0d23cfb8e55eb0becbbe59dabc6a0c9fa4db855f347787ed848c5705f7547ed2f7a4549af86eacab7b535446ce12c4dc4cc63d7e0a3a040c1edf4a5a4ed51b6c
   languageName: node
   linkType: hard
 
@@ -12733,7 +12733,7 @@ __metadata:
     react-spring: 9.6.1
     react-transition-group: 4.4.5
     react-use-measure: 2.1.1
-    rooks: 7.4.3
+    rooks: 7.4.4
     styled-components: 5.3.6
     stylelint: 14.16.1
     stylelint-config-prettier: 9.0.5
