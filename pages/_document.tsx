@@ -3,6 +3,8 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import { ServerStyleSheet } from 'styled-components'
 
+// https://styled-components.com/docs/advanced
+// https://github.com/vercel/next.js/blob/canary/examples/with-styled-components/pages/_document.tsx
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()

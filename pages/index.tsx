@@ -3,9 +3,7 @@ import { Body1, Heading1 } from '@src/components/Typography'
 
 import { Page } from './_app'
 
-export default function Index({ globalProps, ...pageProps }) {
-  console.log({ pageProps, globalProps })
-
+export default function Index() {
   return (
     <Page>
       <div className="flex flex-col gap-x-medium gap-y-xlarge ">
