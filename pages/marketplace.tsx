@@ -13,7 +13,7 @@ import {
   Chip,
   TabPanel,
 } from '@pluralsh/design-system'
-import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
 import { until } from '@open-draft/until'
 import Fuse from 'fuse.js'
@@ -23,6 +23,10 @@ import upperFirst from 'lodash/upperFirst'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import {
+  type GlobalProps,
+  propsWithGlobalSettings,
+} from '@src/components/getGlobalProps'
 import { Carousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/MarketplaceFilters'
@@ -56,6 +60,7 @@ type PageProps = {
   stacks: MinStack[]
   categories: Categories
   tags: Tags
+  globalProps: GlobalProps
 }
 const reposSearchOptions = {
   keys: ['name', 'description', 'tags.tag'],
@@ -229,7 +234,7 @@ const SidecarCardTitle = styled.h5(({ theme }) => ({
 
 export default function Marketplace({
   ...props
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [searchParams, setSearchParams] = useSearchParams()
   const categories = searchParams.getAll('category')
   const tags = searchParams.getAll('tag')
@@ -562,22 +567,20 @@ const PBody2 = styled.p(({ theme }) => ({
   color: theme.colors['text-light'],
 }))
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const { data: repos, error: reposError } = await until(() => getRepos())
   const { data: stacks, error: stacksError } = await until(() => getStacks())
 
   const { categories, tags } = await getSearchMetadata()
 
-  return {
-    props: {
-      repositories: repos || reposCache.filtered,
-      stacks: stacks || stacksCache.filtered,
-      tags: tags || [],
-      categories: categories || [],
-      errors: [
-        ...(reposError ? [reposError] : []),
-        ...(stacksError ? [reposError] : []),
-      ],
-    },
-  }
+  return propsWithGlobalSettings({
+    repositories: repos || reposCache.filtered,
+    stacks: stacks || stacksCache.filtered,
+    tags: tags || [],
+    categories: categories || [],
+    errors: [
+      ...(reposError ? [reposError] : []),
+      ...(stacksError ? [reposError] : []),
+    ],
+  })
 }

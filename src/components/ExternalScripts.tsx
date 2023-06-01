@@ -61,5 +61,9 @@ function HubSpot() {
 }
 
 export default function ExternalScripts() {
+  if (process.env.NEXT_PUBLIC_DEV_MODE) {
+    return null
+  }
+
   return <HubSpot />
 }

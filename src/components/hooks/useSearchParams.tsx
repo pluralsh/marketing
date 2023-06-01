@@ -1,3 +1,5 @@
+import { useCallback, useMemo } from 'react'
+
 import {
   type ReadonlyURLSearchParams,
   useSearchParams as useNextSearchParams,
@@ -17,8 +19,7 @@ export const useSearchParams = (): [
   const router = useRouter()
   const searchParams = useNextSearchParams()
 
-  return [
-    searchParams,
+  const func = useCallback(
     (p) => {
       const oldParams = new URLSearchParams(searchParams.toString())
       const newParams =
@@ -28,5 +29,8 @@ export const useSearchParams = (): [
         shallow: true,
       })
     },
-  ]
+    [router, searchParams]
+  )
+
+  return useMemo(() => [searchParams, func], [searchParams, func])
 }

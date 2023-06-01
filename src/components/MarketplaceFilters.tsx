@@ -133,16 +133,12 @@ function Categories({ categories }: { categories: Categories }) {
   )
 }
 
-const FilterAccordion = styled((props: AccordionProps) => {
-  console.log('filter accordion props', props)
-
-  return (
-    <SingleAccordion
-      unstyled
-      {...props}
-    />
-  )
-})(({ theme }) => ({
+const FilterAccordion = styled((props: AccordionProps) => (
+  <SingleAccordion
+    unstyled
+    {...props}
+  />
+))(({ theme }) => ({
   borderBottom: theme.borders.default,
   '&:last-of-type': {
     borderBottom: 'none',

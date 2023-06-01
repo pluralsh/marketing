@@ -32,7 +32,7 @@ export const MarketFilterModal = styled(
         } else {
           setIsClosing(true)
           d.addEventListener('webkitAnimationEnd', () => {
-            console.log('animationEnd')
+            // console.log('animationEnd')
             setIsClosing(false)
           })
         }

@@ -8,13 +8,6 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 
-// import {
-//   FenceInner,
-//   Heading,
-//   List,
-//   ListItem,
-//   Paragraph,
-// } from '@pluralsh/design-system/dist/markdoc/components'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import isEmpty from 'lodash/isEmpty'
 import styled, { useTheme } from 'styled-components'
@@ -22,9 +15,10 @@ import styled, { useTheme } from 'styled-components'
 import { Page } from '@pages/_app'
 import client from '@src/apollo-client'
 import { breakpoints, mqs } from '@src/breakpoints'
+import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
 import { AppTitle, Body1, Overline } from '@src/components/Typography'
-import { getProviderIcon } from '@src/consts'
+import { getAppMeta, getProviderIcon } from '@src/consts'
 import { type MinRepo, getRepos } from '@src/data/getRepos'
 import {
   type Recipe,
@@ -240,17 +234,15 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       ?.map((edge) => edge?.node)
       .filter((r): r is Recipe => !!r && !r?.private) || []
 
-  return {
-    props: {
-      repo: thisRepo
-        ? {
-            ...thisRepo,
-          }
-        : null,
-      recipes,
-    },
-    revalidate: 600,
-  }
+  return propsWithGlobalSettings({
+    repo: thisRepo
+      ? {
+          ...thisRepo,
+        }
+      : null,
+    recipes,
+    ...getAppMeta(thisRepo),
+  })
 }
 
 const ProviderIcon = styled(

@@ -1,12 +1,19 @@
-export default function Index() {
+import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
+import { Body1, Heading1 } from '@src/components/Typography'
+
+import { Page } from './_app'
+
+export default function Index({ globalProps, ...pageProps }) {
+  console.log({ pageProps, globalProps })
+
   return (
-    <div>
+    <Page>
       <div className="flex flex-col gap-x-medium gap-y-xlarge ">
-        <h1 className="hero1 mb-medium w-full md:w-3/4">Home page</h1>
-        <p className="text-marketing-white">This is some body text</p>
+        <Heading1>Home page</Heading1>
+        <Body1>This is some body text</Body1>
       </div>
-    </div>
+    </Page>
   )
 }
 
-export const getServerSideProps = async () => ({ props: {} })
+export const getStaticProps = async () => propsWithGlobalSettings({})

@@ -13,31 +13,38 @@ const switchMQ = mqs.sm
 function CarouselUnstyled({ children, ...props }: { children: ReactNode }) {
   const [selected, setSelected] = useState(0)
   const count = Children.count(children)
-  const kids = Children.toArray(children)
 
-  const dots = new Array(count).fill(0).map((_, i) => (
-    <Dot
-      key={count}
-      onClick={() => {
-        setSelected(i)
-      }}
-      $selected={i === selected}
-    />
-  ))
+  const dots = Children.map(children, (child, i) => {
+    console.log('child.key', (child as any)?.key)
+
+    return (
+      <Dot
+        onClick={() => {
+          setSelected(i)
+        }}
+        $selected={i === selected}
+      />
+    )
+  })
 
   return (
     <div {...props}>
       <ItemsWrap style={{ translate: `-${100 * selected}%` }}>
-        {kids.map((child, i) => (
-          <ItemWrap
-            style={{
-              ...(i !== 0 ? { position: 'absolute', top: 0, left: 0 } : {}),
-              transform: `translate(${100 * i}%)`,
-            }}
-          >
-            {child}
-          </ItemWrap>
-        ))}
+        {Children.map(children, (child, i) => {
+          console.log('child', child)
+
+          return (
+            <ItemWrap
+              key={i}
+              style={{
+                ...(i !== 0 ? { position: 'absolute', top: 0, left: 0 } : {}),
+                transform: `translate(${100 * i}%)`,
+              }}
+            >
+              {child}
+            </ItemWrap>
+          )
+        })}
       </ItemsWrap>
       <Interface>
         <Dots className="absolute">{dots}</Dots>

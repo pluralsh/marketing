@@ -17,6 +17,7 @@ import {
   SubTab,
   TabList,
 } from '@pluralsh/design-system'
+import { type ReadonlyURLSearchParams } from 'next/navigation'
 
 import { useDebounce } from 'rooks'
 import styled from 'styled-components'
@@ -64,7 +65,9 @@ const tabs: {
 
 export const TAB_PARAM = 'type'
 
-function hasValidTypeParam(searchParams: ReadonlyURLSearchParams) {
+function hasValidTypeParam(
+  searchParams: ReadonlyURLSearchParams | URLSearchParams
+) {
   return (
     !searchParams.has('type') ||
     tabs.slice(1).some((t) => t.key === searchParams.get('type'))

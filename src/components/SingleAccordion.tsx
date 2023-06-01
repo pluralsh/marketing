@@ -210,16 +210,12 @@ export function SingleAccordion({
     textValue = label
   }
 
-  console.log('defaultOpen', defaultOpen)
-
   const { triggerProps, contentProps, isOpen } = useDisclosure({
     defaultOpen,
     isOpen: isOpenProp,
     onOpenChange,
     id,
   })
-
-  console.log('isOpen', isOpen)
 
   useEffect(() => {}, [isOpen])
 
@@ -261,9 +257,6 @@ export function SingleAccordion({
       {trigger}
       <AccordionContent
         isOpen={isOpen}
-        onClick={() => {
-          console.log('clicked!')
-        }}
         pad={padContent}
         unstyled={unstyled}
         {...contentProps}

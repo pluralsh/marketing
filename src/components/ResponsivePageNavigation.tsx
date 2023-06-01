@@ -236,6 +236,7 @@ function PageNavigation({
       <div className="flex flex-row gap-xsmall sm:gap-small">
         {firstPages.map((i) => (
           <PageButton
+            key={`first-${i}`}
             variant={variant}
             selected={i === pageIndex}
             onClick={() => {
@@ -252,6 +253,7 @@ function PageNavigation({
             )}
             {middlePages.map((i) => (
               <PageButton
+                key={`middle-${i}`}
                 variant={variant}
                 selected={i === pageIndex}
                 onClick={() => {
@@ -268,6 +270,7 @@ function PageNavigation({
         ) : null}
         {lastPages.map((i) => (
           <PageButton
+            key={`last-${i}`}
             variant={variant}
             selected={i === pageIndex}
             onClick={() => {
