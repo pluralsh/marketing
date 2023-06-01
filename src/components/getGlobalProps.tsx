@@ -16,15 +16,19 @@ async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
     getGithubDataServer()
   )
-
-  const siteSettings = await getSiteSettings()
+  const swrFallback = {}
 
   if (isGithubRepoData(githubData)) {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
 
+  const siteSettings = await getSiteSettings()
+
   return {
     siteSettings,
+    swrConfig: {
+      fallback: swrFallback,
+    },
     errors: [...(githubError ? [githubError] : [])],
   }
 }

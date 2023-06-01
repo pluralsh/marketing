@@ -71,12 +71,6 @@ const Link = forwardRef(
   )
 )
 
-export const swrFallback = {}
-
-export const swrConfig = {
-  fallback: swrFallback,
-}
-
 function App({ Component, pageProps }: MyAppProps) {
   usePosthog()
   const { globalProps, ...pgProps } = pageProps
@@ -105,7 +99,7 @@ function App({ Component, pageProps }: MyAppProps) {
     <SSRProvider>
       <MarkdocContextProvider value={{ variant: 'docs' }}>
         <NavigationContextProvider value={navContextVal}>
-          <SWRConfig value={swrConfig}>
+          <SWRConfig value={globalProps.swrConfig}>
             <BreakpointProvider>
               <ThemeProvider theme={honorableTheme}>
                 <StyledThemeProvider theme={docsStyledTheme}>
