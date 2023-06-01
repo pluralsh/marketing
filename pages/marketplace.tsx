@@ -49,6 +49,8 @@ import {
 } from '../src/components/MarketplaceSearchBar'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
+import { Page } from './_app'
+
 type PageProps = {
   repositories: MinRepo[]
   stacks: MinStack[]
@@ -364,121 +366,129 @@ export default function Marketplace({
   }
 
   return (
-    <MarketplacePage className="mb-xxxxlarge">
-      <div className="my-xxlarge xxl:mb-[80px]">
-        <Heading1
-          as="h1"
-          className="mb-medium"
-        >
-          Explore the open-source marketplace
-        </Heading1>
-        <Body1 as="p">Discover over 90 production-ready applications.</Body1>
-      </div>
-      <ContentContainer>
-        <MainContent>
-          <SearchBarArea className="sticky top-[var(--top-nav-height)] mb-xlarge">
-            <SearchBar
-              search={search}
-              setSearch={setSearch}
-              tabStateRef={searchTabStateRef}
-              filterProps={filterProps}
-            />
-            {isFiltered && (
-              <FilterChips
-                categories={categories}
-                handleClearToken={handleClearToken}
-                tags={tags}
-                handleClearTokens={handleClearTokens}
+    <Page>
+      <MarketplacePage className="mb-xxxxlarge">
+        <div className="my-xxlarge xxl:mb-[80px]">
+          <Heading1
+            as="h1"
+            className="mb-medium"
+          >
+            Explore the open-source marketplace
+          </Heading1>
+          <Body1 as="p">
+            Discover over 90 incredible applications ready to deploy in your
+            cloud in minutes using our guided deployment flow. With security,
+            observability, and scale out of the box, we elevate you from the
+            work of building and maintaining your open-source infrastructure and
+            let teams focus on delivering value.
+          </Body1>
+        </div>
+        <ContentContainer>
+          <MainContent>
+            <SearchBarArea className="sticky top-[var(--top-nav-height)] mb-xlarge">
+              <SearchBar
+                search={search}
+                setSearch={setSearch}
+                tabStateRef={searchTabStateRef}
+                filterProps={filterProps}
               />
-            )}
-          </SearchBarArea>
-          <TabPanel stateRef={searchTabStateRef}>
-            {!isFilteredOrSearched &&
-              searchTabKey === MarketSearchTabKey.all && (
-                <div className="heroArea mb-xlarge">
+              {isFiltered && (
+                <FilterChips
+                  categories={categories}
+                  handleClearToken={handleClearToken}
+                  tags={tags}
+                  handleClearTokens={handleClearTokens}
+                />
+              )}
+            </SearchBarArea>
+            <TabPanel stateRef={searchTabStateRef}>
+              {!isFilteredOrSearched &&
+                searchTabKey === MarketSearchTabKey.all && (
+                  <div className="heroArea mb-xlarge">
+                    <Subtitle
+                      as="h4"
+                      className="mb-xlarge"
+                    >
+                      Plural curated stacks
+                    </Subtitle>
+                    <Carousel>
+                      {stacks.map((stack) =>
+                        stack ? (
+                          <StackHero
+                            key={stack.id}
+                            stack={stack}
+                          />
+                        ) : null
+                      )}
+                    </Carousel>
+                  </div>
+                )}
+              {(searchTabKey === MarketSearchTabKey.all ||
+                searchTabKey === MarketSearchTabKey.apps) && (
+                <>
                   <Subtitle
+                    ref={searchTopRef}
+                    as="h4"
+                    className="mb-xlarge"
+                  >
+                    {!isFiltered && !search ? <>All apps</> : <>Results</>}
+                  </Subtitle>
+                  <RepoCardList>
+                    {isFilteredOrSearched &&
+                      resultStacks.map((stack) => (
+                        <StackCard
+                          key={stack.id}
+                          stack={stack}
+                          wideFeatures={!isFilteredOrSearched}
+                        />
+                      ))}
+                    {resultRepositories.map((repository) => (
+                      <RepoCard
+                        key={repository.id}
+                        repository={repository}
+                        wideFeatures={!isFilteredOrSearched}
+                      />
+                    ))}
+                  </RepoCardList>
+                </>
+              )}
+              {searchTabKey === MarketSearchTabKey.stacks && (
+                <>
+                  <Subtitle
+                    ref={searchTopRef}
                     as="h4"
                     className="mb-xlarge"
                   >
                     Plural curated stacks
                   </Subtitle>
-                  <Carousel>
-                    {stacks.map((stack) =>
-                      stack ? (
-                        <StackHero
-                          key={stack.id}
-                          stack={stack}
-                        />
-                      ) : null
-                    )}
-                  </Carousel>
-                </div>
-              )}
-            {(searchTabKey === MarketSearchTabKey.all ||
-              searchTabKey === MarketSearchTabKey.apps) && (
-              <>
-                <Subtitle
-                  ref={searchTopRef}
-                  as="h4"
-                  className="mb-xlarge"
-                >
-                  {!isFiltered && !search ? <>All apps</> : <>Results</>}
-                </Subtitle>
-                <RepoCardList>
-                  {isFilteredOrSearched &&
-                    resultStacks.map((stack) => (
+                  <RepoCardList>
+                    {stacks.map((stack) => (
                       <StackCard
                         key={stack.id}
                         stack={stack}
                         wideFeatures={!isFilteredOrSearched}
                       />
                     ))}
-                  {resultRepositories.map((repository) => (
-                    <RepoCard
-                      key={repository.id}
-                      repository={repository}
-                      wideFeatures={!isFilteredOrSearched}
-                    />
-                  ))}
-                </RepoCardList>
-              </>
-            )}
-            {searchTabKey === MarketSearchTabKey.stacks && (
-              <>
-                <Subtitle
-                  ref={searchTopRef}
-                  as="h4"
-                  className="mb-xlarge"
-                >
-                  Plural curated stacks
-                </Subtitle>
-                <RepoCardList>
-                  {stacks.map((stack) => (
-                    <StackCard
-                      key={stack.id}
-                      stack={stack}
-                      wideFeatures={!isFilteredOrSearched}
-                    />
-                  ))}
-                </RepoCardList>
-              </>
-            )}
-          </TabPanel>
-        </MainContent>
-        <Sidecar>
-          <SidecarFilters {...filterProps} />
-        </Sidecar>
-      </ContentContainer>
-      <ContentContainer $reverse>
-        <Sidecar className="mt-xxlarge md:mt-[80px] xl:my-large">
-          <ContributorCard />
-          <AddAppCard />
-        </Sidecar>
-        <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
-          <MarketplaceExtras />
-        </MainContent>
-      </ContentContainer>
-    </MarketplacePage>
+                  </RepoCardList>
+                </>
+              )}
+            </TabPanel>
+          </MainContent>
+          <Sidecar>
+            <SidecarFilters {...filterProps} />
+          </Sidecar>
+        </ContentContainer>
+        <ContentContainer $reverse>
+          <Sidecar className="mt-xxlarge md:mt-[80px] xl:my-large">
+            <ContributorCard />
+            <AddAppCard />
+          </Sidecar>
+          <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
+            <MarketplaceExtras />
+          </MainContent>
+        </ContentContainer>
+      </MarketplacePage>
+    </Page>
   )
 }
 

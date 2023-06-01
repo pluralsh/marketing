@@ -3,7 +3,9 @@ import {
   type Dispatch,
   type MutableRefObject,
   type SetStateAction,
+  forwardRef,
   useCallback,
+  useEffect,
   useState,
 } from 'react'
 
@@ -12,7 +14,6 @@ import {
   Button,
   FiltersIcon,
   Input,
-  MagnifyingGlassIcon,
   SubTab,
   TabList,
 } from '@pluralsh/design-system'
@@ -63,16 +64,35 @@ const tabs: {
 
 export const TAB_PARAM = 'type'
 
+function hasValidTypeParam(searchParams: URLSearchParams) {
+  return tabs.slice(1).some((t) => t.key === searchParams.get('type'))
+}
+
 export function useSearchTabKey(): [
   MarketSearchTabKey,
   (k: MarketSearchTabKey) => void
 ] {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  // If 'type' is 'all' or not a known tab key, delete 'type' search param as irrelevant
+  useEffect(() => {
+    setSearchParams((p) => {
+      if (!hasValidTypeParam(p)) {
+        p.delete(TAB_PARAM)
+      }
+
+      return p
+    })
+  }, [searchParams, setSearchParams])
+
   const setTabKey = useCallback(
     (tabKey: MarketSearchTabKey) => {
       setSearchParams((p) => {
-        p.set(TAB_PARAM, tabKey)
+        if (!hasValidTypeParam(p)) {
+          p.delete(TAB_PARAM)
+        } else {
+          p.set(TAB_PARAM, tabKey)
+        }
 
         return p
       })
@@ -165,25 +185,23 @@ const SearchTitleContent = styled.div(({ theme }) => ({
   },
 }))
 
-const SearchInput = styled((props: ComponentProps<typeof Input>) => (
-  <Input
-    titleContent={
-      <SearchTitleContent>
-        <BrowseAppsIcon />
-        <SearchBarLabel>Marketplace</SearchBarLabel>
-      </SearchTitleContent>
-    }
-    startIcon={
-      <MagnifyingGlassIcon
-        size={16}
-        color="icon-light"
-      />
-    }
-    placeholder="Search the marketplace"
-    caption
-    {...props}
-  />
-))(({ theme }) => ({
+const SearchInput = styled(
+  forwardRef<HTMLInputElement, ComponentProps<typeof Input>>((props, ref) => (
+    <Input
+      ref={ref}
+      titleContent={
+        <SearchTitleContent>
+          <BrowseAppsIcon />
+          <SearchBarLabel>Marketplace</SearchBarLabel>
+        </SearchTitleContent>
+      }
+      showClearButton
+      placeholder="Search"
+      caption
+      {...props}
+    />
+  ))
+)(({ theme }) => ({
   '& > *:first-child > *:last-child': {
     marginLeft: -theme.spacing.xxsmall,
     marginRight: -theme.spacing.xxxsmall,

@@ -61,7 +61,7 @@ export type MarkdocHeading = {
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
 
-const Page = styled(MaxWidthLimiter)((_) => ({
+export const Page = styled(MaxWidthLimiter)((_) => ({
   width: '100%',
 }))
 
@@ -116,9 +116,7 @@ function App({
       <PagePropsContext.Provider value={pageProps}>
         <HtmlHead {...headProps} />
         <PageHeader />
-        <Page>
-          <Component {...pageProps} />
-        </Page>
+        <Component {...pageProps} />
         <ExternalScripts />
         <PageFooter />
       </PagePropsContext.Provider>

@@ -1,5 +1,7 @@
 import { type ComponentProps, forwardRef } from 'react'
 
+import { type styledTheme } from '@pluralsh/design-system'
+
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -21,31 +23,52 @@ export const Heading2 = styled.h2(({ theme }) => ({
   },
 }))
 
-export const Body1 = styled.p(({ theme, color }) => ({
-  ...theme.partials.marketingText.body1,
-  ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
-}))
+const textPropFilter = {
+  shouldForwardProp: (prop) => !['color'].includes(prop),
+}
 
-export const Body2 = styled.p(({ theme, color }) => ({
-  ...theme.partials.marketingText.body2,
-  ...(color
-    ? { color: theme.colors[color] }
-    : { color: theme.colors['text-light'] }),
-}))
+export const Body1 = styled.p.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.marketingText.body1,
+    ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
+  })
+)
 
-export const AppBody1 = styled.p(({ theme, color }) => ({
-  ...theme.partials.text.body1,
-  ...(color
-    ? { color: theme.colors[color] }
-    : { color: theme.colors['text-light'] }),
-}))
+export const Body2 = styled.p.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.marketingText.body2,
+    ...(color
+      ? { color: theme.colors[color] }
+      : { color: theme.colors['text-light'] }),
+  })
+)
 
-export const AppBody2 = styled.p(({ theme, color }) => ({
-  ...theme.partials.text.body2,
-  ...(color
-    ? { color: theme.colors[color] }
-    : { color: theme.colors['text-light'] }),
-}))
+export const AppBody1 = styled.p.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.text.body1,
+    ...(color
+      ? { color: theme.colors[color] }
+      : { color: theme.colors['text-light'] }),
+  })
+)
+
+export const AppBody2 = styled.p.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.text.body2,
+    ...(color
+      ? { color: theme.colors[color] }
+      : { color: theme.colors['text-light'] }),
+  })
+)
+
+export const Overline = styled.p.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.text.overline,
+    ...(color
+      ? { color: theme.colors[color] }
+      : { color: theme.colors['text-xlight'] }),
+  })
+)
 
 const SubtitleWrap = styled.h2((_) => ({
   display: 'flex',
@@ -91,3 +114,10 @@ export const Subtitle = forwardRef(
     </SubtitleWrap>
   )
 )
+
+export const AppTitle = styled.h1(({ theme }) => ({
+  ...theme.partials.marketingText.subtitle1,
+  [mqs.md]: {
+    ...theme.partials.marketingText.hero1,
+  },
+}))

@@ -40,7 +40,7 @@ export function isAppCatalogRoute(route: string) {
   return isSubrouteOf(route, APP_CATALOG_BASE_URL)
 }
 
-export const providerToProviderName: Record<Provider, string> = {
+export const providerToProviderIcon: Record<Provider, string> = {
   GCP: 'GCP',
   AWS: 'AWS',
   AZURE: 'Azure',
