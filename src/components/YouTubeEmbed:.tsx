@@ -27,3 +27,5 @@
 //     </Embed>
 //   )
 // }
+
+export default {}

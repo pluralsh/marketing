@@ -1,6 +1,6 @@
 import { type ComponentProps, forwardRef } from 'react'
 
-import { type styledTheme } from '@pluralsh/design-system'
+// import { type styledTheme } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 

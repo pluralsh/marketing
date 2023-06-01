@@ -1,6 +1,6 @@
 import { type ComponentProps } from 'react'
 
-import { AppIcon, InlineCode, Tooltip } from '@pluralsh/design-system'
+import { AppIcon, Tooltip } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -8,13 +8,13 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 
-import {
-  FenceInner,
-  Heading,
-  List,
-  ListItem,
-  Paragraph,
-} from '@pluralsh/design-system/dist/markdoc/components'
+// import {
+//   FenceInner,
+//   Heading,
+//   List,
+//   ListItem,
+//   Paragraph,
+// } from '@pluralsh/design-system/dist/markdoc/components'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import isEmpty from 'lodash/isEmpty'
 import styled, { useTheme } from 'styled-components'
@@ -88,7 +88,7 @@ const AppPageTitle = styled(
 }))
 
 type ProviderProps = {
-  label?: string
+  label?: string | null | undefined
   iconDark: string
   iconLight: string
 }
@@ -98,37 +98,38 @@ export default function App({
   recipes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
-  const tabs = recipes?.filter(isRecipe).map((recipe) => ({
-    key: recipe.name,
-    label:
-      providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-      recipe.provider,
-    language: 'shell',
-    content: `plural bundle install ${repo?.name} ${recipe.name}`,
-  }))
+  // const tabs = recipes?.filter(isRecipe).map((recipe) => ({
+  //   key: recipe.name,
+  //   label:
+  //     providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
+  //     recipe.provider,
+  //   language: 'shell',
+  //   content: `plural bundle install ${repo?.name} ${recipe.name}`,
+  // }))
 
-  const providers: ProviderProps & { key: string } =
+  const providers: (ProviderProps & { key: string })[] =
     recipes?.filter(isRecipe).map((recipe) => ({
       key: recipe.name,
       label:
         providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-        recipe.provider,
+        recipe.provider ||
+        '',
       iconLight: getProviderIcon({ provider: recipe?.provider, mode: 'light' }),
       iconDark: getProviderIcon({ provider: recipe?.provider, mode: 'dark' }),
     })) || []
 
-  const recipeSections = Array.isArray(recipes) && recipes[0]?.recipeSections
+  // const recipeSections = Array.isArray(recipes) && recipes[0]?.recipeSections
 
-  let recipeHasConfig = false
-
-  if (recipeSections) {
-    for (const section of recipeSections) {
-      if (section?.configuration?.length || 0 > 0) {
-        recipeHasConfig = true
-        break
-      }
-    }
-  }
+  // const recipeHasConfig = false
+  //
+  // if (recipeSections) {
+  //   for (const section of recipeSections) {
+  //     if (section?.configuration?.length || 0 > 0) {
+  //       recipeHasConfig = true
+  //       break
+  //     }
+  //   }
+  // }
   if (!repo) {
     router.push('/marketplace')
 
