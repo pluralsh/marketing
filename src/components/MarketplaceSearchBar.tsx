@@ -64,8 +64,11 @@ const tabs: {
 
 export const TAB_PARAM = 'type'
 
-function hasValidTypeParam(searchParams: URLSearchParams) {
-  return tabs.slice(1).some((t) => t.key === searchParams.get('type'))
+function hasValidTypeParam(searchParams: ReadonlyURLSearchParams) {
+  return (
+    !searchParams.has('type') ||
+    tabs.slice(1).some((t) => t.key === searchParams.get('type'))
+  )
 }
 
 export function useSearchTabKey(): [
@@ -76,13 +79,13 @@ export function useSearchTabKey(): [
 
   // If 'type' is 'all' or not a known tab key, delete 'type' search param as irrelevant
   useEffect(() => {
-    setSearchParams((p) => {
-      if (!hasValidTypeParam(p)) {
+    if (!hasValidTypeParam(searchParams)) {
+      setSearchParams((p) => {
         p.delete(TAB_PARAM)
-      }
 
-      return p
-    })
+        return p
+      })
+    }
   }, [searchParams, setSearchParams])
 
   const setTabKey = useCallback(
