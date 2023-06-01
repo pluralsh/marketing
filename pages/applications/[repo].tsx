@@ -1,4 +1,4 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, useEffect } from 'react'
 
 import { AppIcon, Tooltip } from '@pluralsh/design-system'
 import {
@@ -130,9 +130,13 @@ export default function App({
   //     }
   //   }
   // }
-  if (!repo) {
-    router.push('/marketplace')
 
+  useEffect(() => {
+    if (!repo) {
+      router.push('/marketplace')
+    }
+  }, [repo, router])
+  if (!repo) {
     return null
   }
 
