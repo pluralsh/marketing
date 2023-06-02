@@ -20,6 +20,7 @@ import { breakpoints, mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
+import { Quotes } from '@src/components/QuoteCard'
 import {
   AppTitle,
   Body1,
@@ -38,6 +39,8 @@ import {
   type RecipesQuery,
   type RecipesQueryVariables,
 } from '@src/generated/graphqlPlural'
+
+import { CompanyLogos } from '../../src/components/CompanyLogos'
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -247,6 +250,12 @@ export default function App({
           </div>
         </FullPage>
       </GradientBG>
+      <FullPage>
+        <CompanyLogos className="mt-xxxxlarge mb-xxxxxlarge" />
+      </FullPage>
+      <FullPage>
+        <Quotes />
+      </FullPage>
     </HeroGradientBG>
   )
 }

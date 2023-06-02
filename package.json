@@ -72,6 +72,7 @@
     "react-use-measure": "2.1.1",
     "rooks": "7.14.1",
     "styled-components": "5.3.10",
+    "swiper": "^9.3.2",
     "swr": "2.1.5",
     "tslib": "2.5.2",
     "type-fest": "3.11.1",

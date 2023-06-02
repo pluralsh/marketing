@@ -83,15 +83,19 @@ export const Overline = styled.p.withConfig(textPropFilter)(
   })
 )
 
+export const Label = styled.h4.withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.marketingText.label,
+    ...(color
+      ? { color: theme.colors[color] }
+      : { color: theme.colors['text-xlight'] }),
+  })
+)
 const SubtitleWrap = styled.h2((_) => ({
   display: 'flex',
   position: 'relative',
   textAlign: 'center',
   alignItems: 'center',
-}))
-
-export const Label = styled.p(({ theme }) => ({
-  ...theme.partials.marketingText.label,
 }))
 
 const SubtitleContent = styled.div(({ theme }) => ({
