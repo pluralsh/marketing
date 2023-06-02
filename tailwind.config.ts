@@ -1,5 +1,7 @@
 import { styledTheme } from '@pluralsh/design-system'
+import { S } from 'honorable'
 
+import mapKeys from 'lodash/mapKeys'
 import mapValues from 'lodash/mapValues'
 import { type Config } from 'tailwindcss'
 
@@ -14,11 +16,16 @@ const spacing = {
 const colors = {
   ...styledTheme.colors,
 }
+const screens = mapKeys(
+  mapValues(breakpoints, (bp) => `${bp}px`),
+  (_, key) => key
+)
 
+console.log('screens', screens)
 export default {
   content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
   theme: {
-    screens: mapValues(breakpoints, (bp) => `${bp}px`),
+    screens,
     colors,
     spacing,
     extend: {},

@@ -1,6 +1,6 @@
 import { type ComponentProps, useEffect } from 'react'
 
-import { AppIcon, Tooltip } from '@pluralsh/design-system'
+import { AppIcon, CheckRoundedIcon, Tooltip } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -8,6 +8,7 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 
+import { FenceInner } from '@pluralsh/design-system/dist/markdoc/components'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import isEmpty from 'lodash/isEmpty'
 import styled, { useTheme } from 'styled-components'
@@ -15,9 +16,18 @@ import styled, { useTheme } from 'styled-components'
 import { Page } from '@pages/_app'
 import client from '@src/apollo-client'
 import { breakpoints, mqs } from '@src/breakpoints'
+import Embed from '@src/components/Embed'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
-import { AppTitle, Body1, Overline } from '@src/components/Typography'
+import {
+  AppTitle,
+  Body1,
+  Body2,
+  Cta,
+  Heading3,
+  Overline,
+  Title2,
+} from '@src/components/Typography'
 import { getAppMeta, getProviderIcon } from '@src/consts'
 import { type MinRepo, getRepos } from '@src/data/getRepos'
 import {
@@ -92,30 +102,22 @@ export default function App({
   recipes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
-  // const tabs = recipes?.filter(isRecipe).map((recipe) => ({
-  //   key: recipe.name,
-  //   label:
-  //     providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-  //     recipe.provider,
-  //   language: 'shell',
-  //   content: `plural bundle install ${repo?.name} ${recipe.name}`,
-  // }))
-
-  const providers: (ProviderProps & { key: string })[] =
+  const tabs =
     recipes?.filter(isRecipe).map((recipe) => ({
       key: recipe.name,
       label:
         providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-        recipe.provider ||
-        '',
+        recipe.provider,
+      language: 'shell',
+      content: `plural bundle install ${repo?.name} ${recipe.name}`,
       iconLight: getProviderIcon({ provider: recipe?.provider, mode: 'light' }),
       iconDark: getProviderIcon({ provider: recipe?.provider, mode: 'dark' }),
     })) || []
 
   // const recipeSections = Array.isArray(recipes) && recipes[0]?.recipeSections
 
-  // const recipeHasConfig = false
-  //
+  // let recipeHasConfig = false
+
   // if (recipeSections) {
   //   for (const section of recipeSections) {
   //     if (section?.configuration?.length || 0 > 0) {
@@ -134,57 +136,148 @@ export default function App({
     return null
   }
 
+  const colGaps = [
+    'lg:flex-row',
+    'xl:gap-xlarge',
+    'xl:flex-row',
+    'xl:gap-xlarge',
+    'xxl:gap-xxxxlarge',
+    'maxWidth:gap-xxxxxlarge',
+  ].join(' ')
+
   return (
-    <GradientBG>
+    <HeroGradientBG>
       <Page>
         <div className="py-[40px] md:pb-xxxlarge">
           <BackButton />
         </div>
-        <div className="flex flex-col gap-large">
-          <AppPageTitle app={repo} />
-          <Body1 color="text-light">
-            Orchestrate all your applications to work in harmony with{' '}
-            {repo.displayName} on Plural.
-          </Body1>
-          <div className="flex flex-col gap-medium">
-            <Overline>Available providers</Overline>
-            {!isEmpty(providers) && (
-              <div className="flex gap-small">
-                {providers.map((provider) => (
-                  <ProviderIcon
-                    label={provider.label}
-                    iconLight={provider.iconLight}
-                    iconDark={provider.iconDark}
-                  />
-                ))}
-              </div>
-            )}
+        <div className={`flex flex-col gap-xxxlarge ${colGaps}`}>
+          <div className="basis-0 flex-grow flex flex-col gap-large">
+            <AppPageTitle app={repo} />
+            <Body1 color="text-light">
+              Orchestrate all your applications to work in harmony with{' '}
+              {repo.displayName} on Plural.
+            </Body1>
+            <div className="flex flex-col gap-medium">
+              <Overline>Available providers</Overline>
+              {!isEmpty(tabs) && (
+                <div className="flex gap-small">
+                  {tabs.map((provider) => (
+                    <ProviderIcon
+                      key={provider.key}
+                      label={provider.label}
+                      iconLight={provider.iconLight}
+                      iconDark={provider.iconDark}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="basis-0 flex-grow">
+            <Embed
+              className="m-0 p-0"
+              url="https://www.youtube.com/watch?v=mFDA-718RhI"
+              aspectRatio="16 / 9"
+            />
           </div>
         </div>
-        {/* <Heading level={2}>Installation</Heading>
-        <Paragraph>
-          We currently support {repo?.displayName} for the following providers:
-        </Paragraph>
-        {tabs && tabs.length > 0 && <FenceInner tabs={tabs} />}
-        {recipeSections && recipeHasConfig && (
-          <>
-            <Heading level={2}>Setup Configuration</Heading>
-            <List ordered={false}>
-              {recipeSections.map((section) =>
-                section?.configuration?.map((x, configIdx) => (
-                  <ListItem key={configIdx}>
-                    <InlineCode>{x?.name}</InlineCode>:{' '}
-                    {x?.longform || x?.documentation}
-                  </ListItem>
-                ))
+        <div>
+          <div
+            className={`py-xxxxlarge xl:py-[192px] flex flex-col gap-xxxlarge  ${colGaps}`}
+          >
+            <div className="lg:basis-0 flex-grow">
+              <Heading3 as="h2">Why use {repo.displayName} on Plural?</Heading3>
+              <Body2>
+                You’re likely spending time weighing the benefits of
+                self-hosting with the convenience and cost of managed services.
+                Skip the pro-con discussions and get the best of both worlds
+                with Plural. Automate and orchestrate your ETL, ML jobs, and
+                DevOps tasks without taking on the Ops burden or managed service
+                cost. Especially if you’re handling PII data, you’ll need
+                everything to stay within your own VPC, which is best done with
+                self-hosting open-source.
+              </Body2>
+            </div>
+            <div className="lg:basis-0 flex-grow">
+              <Body2 className="xl:mt-[17px]">
+                Deploying {repo.displayName} is a matter of executing these 2
+                commands:
+              </Body2>
+              {tabs && tabs.length > 0 && (
+                <div>
+                  <FenceInner tabs={tabs} />
+                  <FenceInner>
+                    {`plural deploy --commit "deploying ${repo.name}"`}
+                  </FenceInner>
+                </div>
               )}
-            </List>
-          </>
-        )} */}
+            </div>
+          </div>
+        </div>
       </Page>
-    </GradientBG>
+      <GradientBG className="flex flex-col py-xxxxlarge gap-xxxlarge">
+        <Page>
+          <div className={`flex flex-col gap-large  ${colGaps}`}>
+            <div className="flex flex-col gap-large lg:basis-0 flex-grow">
+              <Title2>Open-source and free to use</Title2>
+              <Body2>
+                Plural automates the deployment and operation of{' '}
+                {repo.displayName} in your cloud. Get up and running with your{' '}
+                {repo.displayName} instance in minutes and let Plural deploy{' '}
+                {repo.displayName} and all its dependencies into your cloud with
+                all of the day-2 operations handled out of the box.
+              </Body2>
+              <Cta href="https://app.plural.sh/shell">
+                Explore {repo.displayName} on Plural in live demo environment
+              </Cta>
+            </div>
+            <div className="flex flex-col gap-large lg:basis-0 flex-grow">
+              <Checklist>
+                <ChecklistItem>Automated upgrades</ChecklistItem>
+                <ChecklistItem>
+                  Transparent pricing and cost management{' '}
+                </ChecklistItem>
+                <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
+                <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
+                <ChecklistItem>Log management </ChecklistItem>
+              </Checklist>
+            </div>
+          </div>
+          <div>
+            <img src="" />
+          </div>
+        </Page>
+      </GradientBG>
+    </HeroGradientBG>
   )
 }
+
+export const Checklist = styled.ul(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing.medium,
+}))
+
+export const ChecklistItem = styled(({ children, ...props }) => {
+  const theme = useTheme()
+
+  return (
+    <li {...props}>
+      <CheckRoundedIcon
+        color={theme.colors['icon-success']}
+        size={20}
+      />
+      {children}
+    </li>
+  )
+})(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing.small,
+  ...theme.partials.marketingText.body1Bold,
+  color: theme.colors.text,
+}))
 
 export const getStaticPaths: GetStaticPaths = async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -286,7 +379,12 @@ const ProviderIcon = styled(
   },
 }))
 
-const GradientBG = styled(
+const GradientBG = styled.div(() => ({
+  background: 'url(/images/gradients/gradient-blue-1.png)',
+  backgroundSize: 'cover',
+}))
+
+const HeroGradientBG = styled(
   ({ className, children, ...props }: ComponentProps<'div'>) => (
     <div className={className}>
       <div className="background" />

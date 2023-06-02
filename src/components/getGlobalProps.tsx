@@ -2,7 +2,6 @@ import { type GetStaticPropsResult } from 'next'
 
 import { until } from '@open-draft/until'
 
-import { swrFallback } from '@pages/_app'
 import { REVALIDATE_TIME } from '@src/consts'
 import { getSiteSettings } from '@src/data/getSiteSettings'
 

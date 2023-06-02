@@ -137,6 +137,9 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
       ...theme.partials.focus.default,
     },
   },
+  '.DocSearch-Container': {
+    zIndex: theme.zIndexes.modal,
+  },
   '.DocSearch-Button-Container, .DocSearch-MagnifierLabel': {
     display: 'block',
     width: 16,

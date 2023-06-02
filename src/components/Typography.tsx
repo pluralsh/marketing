@@ -2,6 +2,8 @@ import { type ComponentProps, forwardRef } from 'react'
 
 // import { type styledTheme } from '@pluralsh/design-system'
 
+import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
+
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -21,6 +23,17 @@ export const Heading2 = styled.h2(({ theme }) => ({
   [mqs.md]: {
     ...theme.partials.marketingText.title1,
   },
+}))
+
+export const Heading3 = styled.h2(({ theme }) => ({
+  ...theme.partials.marketingText.title1,
+  [mqs.xxl]: {
+    ...theme.partials.marketingText.hero2,
+  },
+}))
+
+export const Title2 = styled.h3(({ theme }) => ({
+  ...theme.partials.marketingText.title2,
 }))
 
 const textPropFilter = {
@@ -119,5 +132,36 @@ export const AppTitle = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.subtitle1,
   [mqs.md]: {
     ...theme.partials.marketingText.hero1,
+  },
+}))
+
+export const Cta = styled(({ children, ...props }) => {
+  const { Link } = useNavigationContext()
+
+  return (
+    <Link {...props}>
+      {children}
+      <span className="icon">
+        <ArrowRightIcon size={18} />
+      </span>
+    </Link>
+  )
+})(({ theme }) => ({
+  // display: 'block',
+  gap: theme.spacing.medium,
+  ...theme.partials.marketingText.body2Bold,
+  fontWeight: 500,
+  cursor: 'pointer',
+  '.icon': {
+    display: 'inline-block',
+    position: 'relative',
+    top: 2,
+    marginLeft: theme.spacing.medium,
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover': {
+    '.icon': {
+      transform: 'translate(20%)',
+    },
   },
 }))
