@@ -15,6 +15,7 @@ async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
     getGithubDataServer()
   )
+
   const swrFallback = {}
 
   if (isGithubRepoData(githubData)) {
