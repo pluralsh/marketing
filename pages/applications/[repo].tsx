@@ -1,6 +1,11 @@
 import { type ComponentProps, useEffect } from 'react'
 
-import { AppIcon, CheckRoundedIcon, Tooltip } from '@pluralsh/design-system'
+import {
+  AppIcon,
+  CheckRoundedIcon,
+  Code,
+  Tooltip,
+} from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -8,7 +13,6 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 
-import { FenceInner } from '@pluralsh/design-system/dist/markdoc/components'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import classNames from 'classnames'
 import isEmpty from 'lodash/isEmpty'
@@ -16,16 +20,17 @@ import styled, { useTheme } from 'styled-components'
 
 import { FullPage } from '@pages/_app'
 import client from '@src/apollo-client'
-import { breakpoints, mqs } from '@src/breakpoints'
+import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
-import { Quotes } from '@src/components/QuoteCard'
+import { EndorsementsCarousel } from '@src/components/QuoteCards'
 import {
   AppTitle,
   Body1,
   Body2,
   Cta,
+  Heading1,
   Heading3,
   Overline,
   Title2,
@@ -41,6 +46,7 @@ import {
 } from '@src/generated/graphqlPlural'
 
 import { CompanyLogos } from '../../src/components/CompanyLogos'
+import { GradientBG, HeroGradientBG } from '../../src/components/GradientBGs'
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -190,18 +196,24 @@ export default function App({
               </TextLimiter>
             </Col>
             <Col>
-              <Body2 className="xl:mt-[17px]">
-                Deploying {repo.displayName} is a matter of executing these 2
-                commands:
-              </Body2>
               {tabs && tabs.length > 0 && (
-                <div>
-                  <FenceInner tabs={tabs} />
-                  <FenceInner>
+                <div className="flex flex-col gap-medium">
+                  <Body2 className="columns:mt-[17px]">
+                    Deploying {repo.displayName} is a matter of executing these
+                    2 commands:
+                  </Body2>
+                  <Code tabs={tabs} />
+                  <Code>
                     {`plural deploy --commit "deploying ${repo.name}"`}
-                  </FenceInner>
+                  </Code>
                 </div>
               )}
+              <Cta
+                className="mt-xlarge"
+                href={`https://docs.plural.sh/applications/${repo.name}`}
+              >
+                Read the install documentation
+              </Cta>
             </Col>
           </Columns2>
         </div>
@@ -251,10 +263,15 @@ export default function App({
         </FullPage>
       </GradientBG>
       <FullPage>
-        <CompanyLogos className="mt-xxxxlarge mb-xxxxxlarge" />
+        <CompanyLogos className="mt-xxxxlarge" />
       </FullPage>
       <FullPage>
-        <Quotes />
+        <div className="my-xxxxxlarge">
+          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+            What companies are saying about Plural
+          </Heading1>
+          <EndorsementsCarousel />
+        </div>
       </FullPage>
     </HeroGradientBG>
   )
@@ -418,58 +435,5 @@ const ProviderIcon = styled(
   },
   '.iconDark': {
     display: theme.mode === 'light' ? 'none' : 'block',
-  },
-}))
-
-const GradientBG = styled.div(() => ({
-  background: 'url(/images/gradients/gradient-blue-1.png)',
-  backgroundSize: 'cover',
-}))
-
-const HeroGradientBG = styled(
-  ({ className, children, ...props }: ComponentProps<'div'>) => (
-    <div className={className}>
-      <div className="background" />
-      <div
-        className="content"
-        {...props}
-      >
-        {children}
-      </div>
-    </div>
-  )
-)(({ theme }) => ({
-  position: 'relative',
-  '.background, .background::before, .background::after': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 750,
-    maskImage: 'linear-gradient(rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)',
-  },
-  '.background': {
-    overflow: 'hidden',
-    opacity: 0.45,
-  },
-  '.content': {
-    position: 'relative',
-  },
-  '.background::before': {
-    opacity: 0.6,
-    minWidth: breakpoints.xxl,
-    right: 'auto',
-    background:
-      'linear-gradient(76.99deg, rgba(249, 250, 251, 0.6) 22.61%, rgba(73, 79, 242, 0.6) 58.15%, rgba(143, 214, 255, 0.6) 74.8%, rgba(249, 250, 251, 0.6) 101.64%);',
-  },
-  '.background::after': {
-    background: `linear-gradient(28.91deg, ${theme.colors['fill-zero']} 42.04%, rgba(50, 53, 59, 0) 81.67%)`,
-  },
-  [mqs.xxl]: {
-    '.background::before': {
-      minWidth: 'unset',
-      right: 0,
-    },
   },
 }))

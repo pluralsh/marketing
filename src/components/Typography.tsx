@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react'
+import { Children, type ComponentProps, forwardRef } from 'react'
 
 // import { type styledTheme } from '@pluralsh/design-system'
 
@@ -139,32 +139,59 @@ export const AppTitle = styled.h1(({ theme }) => ({
   },
 }))
 
+const CtaIcon = styled((props) => (
+  <span {...props}>
+    <ArrowRightIcon size={18} />
+  </span>
+))(({ theme }) => ({
+  display: 'inline-block',
+  position: 'relative',
+  top: 2,
+  marginLeft: theme.spacing.medium,
+  transition: 'transform 0.2s ease',
+}))
+
 export const Cta = styled(({ children, ...props }) => {
   const { Link } = useNavigationContext()
 
-  return (
-    <Link {...props}>
-      {children}
-      <span className="icon">
-        <ArrowRightIcon size={18} />
-      </span>
-    </Link>
-  )
+  console.log('children', children, children.length)
+
+  console.log('typeof children', typeof children)
+
+  const kids = Children.map(children, (child, i) => {
+    if (i === Children.count(children) - 1 && typeof child === 'string') {
+      const splitChild = child.split(/(?<=\s)/)
+
+      if (splitChild.length >= 1) {
+        return [
+          ...splitChild.slice(0, -1),
+          <span style={{ whiteSpace: 'nowrap' }}>
+            {...splitChild.slice(-1)}
+            <CtaIcon />
+          </span>,
+        ]
+      }
+
+      return (
+        <>
+          {child}
+          <CtaIcon />
+        </>
+      )
+    }
+
+    return child
+  })
+
+  return <Link {...props}>{kids}</Link>
 })(({ theme }) => ({
-  // display: 'block',
+  display: 'block',
   gap: theme.spacing.medium,
   ...theme.partials.marketingText.body2Bold,
   fontWeight: 500,
   cursor: 'pointer',
-  '.icon': {
-    display: 'inline-block',
-    position: 'relative',
-    top: 2,
-    marginLeft: theme.spacing.medium,
-    transition: 'transform 0.2s ease',
-  },
   '&:hover': {
-    '.icon': {
+    [CtaIcon]: {
       transform: 'translate(20%)',
     },
   },

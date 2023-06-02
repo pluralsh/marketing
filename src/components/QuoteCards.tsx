@@ -30,7 +30,7 @@ export const quotes = [
       <>
         “I have neither the patience nor the talent for DevOps/SysAdmin work,
         and yet I've deployed four enterprise-caliber open-source apps on
-        Kubernetes...since 9am today. Bonkers.”
+        Kubernetes... since 9am today. Bonkers.”
       </>
     ),
     company: 'Justifi',
@@ -156,59 +156,61 @@ export const QuoteCard = styled(
       : theme.colors['fill-three'],
 }))
 
-export const Quotes = styled(({ ...props }: ComponentProps<'div'>) => {
-  const [activeI, setActiveI] = useState(0)
-  const theme = useTheme()
-  const [swiper, setSwiper] = useState<SwiperT | null>(null)
+export const EndorsementsCarousel = styled(
+  ({ ...props }: ComponentProps<'div'>) => {
+    const [activeI, setActiveI] = useState(0)
+    const theme = useTheme()
+    const [swiper, setSwiper] = useState<SwiperT | null>(null)
 
-  useEffect(() => {
-    if (swiper?.activeIndex !== activeI) {
-      swiper?.slideTo(activeI)
-    }
-  }, [activeI, swiper])
+    useEffect(() => {
+      if (swiper?.activeIndex !== activeI) {
+        swiper?.slideTo(activeI)
+      }
+    }, [activeI, swiper])
 
-  const quotesInner = [...quotes, ...quotes, ...quotes]
+    const quotesInner = [...quotes, ...quotes, ...quotes]
 
-  return (
-    <div {...props}>
-      <div>
-        <Swiper
-          spaceBetween={theme.spacing.large}
-          slidesPerView="auto"
-          onSlideChange={(s) => {
-            setActiveI(s.activeIndex)
-          }}
-          onSwiper={setSwiper}
-        >
-          {quotesInner.map((quote, i) => (
-            <SwiperSlide>
-              <QuoteCard
-                className="h-[100%]"
-                {...quote}
-                onClick={() => {
-                  //   swiper?.slideTo(i)
-                  setActiveI(i)
-                }}
-                variant={i === activeI ? 'active' : undefined}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <DotList className="dotList">
-        {quotesInner.map((_, i) => (
-          <Dot
-            $selected={i === activeI}
-            onClick={() => {
-              swiper?.slideTo(i)
-              setActiveI(i)
+    return (
+      <div {...props}>
+        <div>
+          <Swiper
+            spaceBetween={theme.spacing.large}
+            slidesPerView="auto"
+            onSlideChange={(s) => {
+              setActiveI(s.activeIndex)
             }}
-          />
-        ))}
-      </DotList>
-    </div>
-  )
-})(({ theme }) => ({
+            onSwiper={setSwiper}
+          >
+            {quotesInner.map((quote, i) => (
+              <SwiperSlide>
+                <QuoteCard
+                  className="h-[100%]"
+                  {...quote}
+                  onClick={() => {
+                    //   swiper?.slideTo(i)
+                    setActiveI(i)
+                  }}
+                  variant={i === activeI ? 'active' : undefined}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <DotList className="dotList">
+          {quotesInner.map((_, i) => (
+            <Dot
+              $selected={i === activeI}
+              onClick={() => {
+                swiper?.slideTo(i)
+                setActiveI(i)
+              }}
+            />
+          ))}
+        </DotList>
+      </div>
+    )
+  }
+)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   '.swiper': { overflow: 'visible' },
