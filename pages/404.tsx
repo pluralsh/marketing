@@ -1,12 +1,13 @@
 import Link from '@pluralsh/design-system/dist/markdoc/components/Link'
 
+import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { Body1, Heading1 } from '@src/components/Typography'
 
-import { Page } from './_app'
+import { FullPage } from './_app'
 
-export default function Docs404() {
+export default function Plural404() {
   return (
-    <Page>
+    <FullPage>
       <div className="flex flex-col gap-y-medium ">
         <Heading1>Page not found</Heading1>
         <Body1>
@@ -14,8 +15,12 @@ export default function Docs404() {
           <Link href="/">home page</Link>?
         </Body1>
       </div>
-    </Page>
+    </FullPage>
   )
 }
 
-export { getStaticProps } from '@src/utils/defaultPageFunctions'
+export async function getStaticProps() {
+  return propsWithGlobalSettings({
+    metaTitle: 'Page not Found',
+  })
+}

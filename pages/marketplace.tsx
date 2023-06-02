@@ -53,7 +53,7 @@ import {
 } from '../src/components/MarketplaceSearchBar'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
-import { Page } from './_app'
+import { FullPage } from './_app'
 
 type PageProps = {
   repositories: MinRepo[]
@@ -371,7 +371,7 @@ export default function Marketplace({
   }
 
   return (
-    <Page>
+    <FullPage>
       <MarketplacePage className="mb-xxxxlarge">
         <div className="my-xxlarge xxl:mb-[80px]">
           <Heading1
@@ -493,7 +493,7 @@ export default function Marketplace({
           </MainContent>
         </ContentContainer>
       </MarketplacePage>
-    </Page>
+    </FullPage>
   )
 }
 

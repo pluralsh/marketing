@@ -20,13 +20,15 @@ export default function PrimaryPage({
   pageProps: GlobalPageProps
   globalProps: GlobalProps
 }) {
-  const { metaTitle, metaDescription } = pageProps || {}
+  const { metaTitle, metaTitleFull, metaDescription } = pageProps || {}
   const { siteSettings } = globalProps || {}
 
   const headProps = {
-    title: metaTitle
-      ? `${PAGE_TITLE_PREFIX}${metaTitle}${PAGE_TITLE_SUFFIX}`
-      : ROOT_TITLE,
+    title:
+      metaTitleFull ||
+      (metaTitle
+        ? `${PAGE_TITLE_PREFIX}${metaTitle}${PAGE_TITLE_SUFFIX}`
+        : ROOT_TITLE),
     description: metaDescription || siteSettings?.og_description || '',
   }
   const navData = siteSettings?.main_nav?.subnav || []

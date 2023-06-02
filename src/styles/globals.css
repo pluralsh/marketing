@@ -10,6 +10,7 @@ body h6 {
 /* stylelint-disable */
 body, #__next {
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 #__next {

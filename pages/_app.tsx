@@ -30,6 +30,7 @@ import PrimaryPage from '@src/components/PrimaryPage'
 
 export type GlobalPageProps = {
   metaTitle?: string
+  metaTitleFull?: string
   metaDescription?: string
 }
 
@@ -43,7 +44,7 @@ export type MarkdocHeading = {
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
 
-export const Page = styled(MaxWidthLimiter)((_) => ({
+export const FullPage = styled(MaxWidthLimiter)((_) => ({
   width: '100%',
 }))
 

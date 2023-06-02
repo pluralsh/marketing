@@ -1,16 +1,16 @@
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { Body1, Heading1 } from '@src/components/Typography'
 
-import { Page } from './_app'
+import { FullPage } from './_app'
 
 export default function Index() {
   return (
-    <Page>
+    <FullPage>
       <div className="flex flex-col gap-x-medium gap-y-xlarge ">
         <Heading1>Home page</Heading1>
         <Body1>This is some body text</Body1>
       </div>
-    </Page>
+    </FullPage>
   )
 }
 

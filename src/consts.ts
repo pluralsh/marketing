@@ -13,7 +13,7 @@ export const getAppMeta = (repo: MinRepo): GlobalPageProps => {
   if (!displayName) return {}
 
   return {
-    metaTitle: `Deploying ${displayName} on Kubernetes`,
+    metaTitleFull: `Deploying ${displayName} on Kubernetes`,
     metaDescription: `Use Plural to deploy and manage ${displayName} on Kubernetes, in your cloud.`,
   }
 }

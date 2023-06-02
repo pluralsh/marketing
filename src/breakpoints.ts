@@ -1,6 +1,6 @@
 import { type Entries } from 'type-fest'
 
-export const breakpoints = {
+export const breakpointsBase = {
   // First breakpoints in order will be picked by useBreakpoint()
   '': 0,
   xs: 375,
@@ -10,11 +10,16 @@ export const breakpoints = {
   xl: 1280,
   xxl: 1440,
   maxWidth: 1920,
-  // Additional breakpoints after maxWidth won't be selected by useBreakpoint()
-  fullHeader: 1000,
-  fullHeaderWide: 1060,
-  fullHeaderSocial: 1280,
 } as const satisfies Record<string, number>
+
+export const breakpoints = {
+  ...breakpointsBase,
+  // Additional breakpoints after maxWidth won't be selected by useBreakpoint()
+  fullHeader: breakpointsBase.lg,
+  fullHeaderWide: breakpointsBase.lg + 60,
+  fullHeaderSocial: breakpointsBase.xl,
+  columns: breakpointsBase.lg,
+}
 
 export type Breakpoints = typeof breakpoints
 export type Breakpoint = keyof Breakpoints
