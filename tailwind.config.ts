@@ -21,7 +21,6 @@ const screens = mapKeys(
   (_, key) => key
 )
 
-console.log('screens', screens)
 export default {
   content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
   theme: {
