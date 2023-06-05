@@ -5,16 +5,11 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 
 import GithubStars from './GithubStars'
-import { MaxWidthLimiter } from './MaxWidthLimiter'
 import { SocialLink } from './PageHeaderButtons'
 
-export default function PageFooter({ className }: { className?: string }) {
+export function BasicFooter({ className }: { className?: string }) {
   return (
-    <Footer
-      className={className}
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/contentinfo_role
-      role="contentinfo"
-    >
+    <BasicFooterWrap className={className}>
       <div className="socialIcons">
         <SocialLink
           className="discordIcon"
@@ -45,7 +40,7 @@ export default function PageFooter({ className }: { className?: string }) {
           Cookie Settings
         </FooterLink>
       </div>
-    </Footer>
+    </BasicFooterWrap>
   )
 }
 
@@ -61,30 +56,23 @@ export const FooterLink = styled.a(({ theme }) => ({
   },
 }))
 
-const Footer = styled(MaxWidthLimiter).attrs(() => ({ as: 'footer' }))(
-  ({ theme }) => ({
-    position: 'sticky',
-    top: '100vh',
-    marginTop: theme.spacing.xxlarge,
-    paddingBottom: theme.spacing.large,
-    width: '100%',
-    '.footerLinks': {
+const BasicFooterWrap = styled.div(({ theme }) => ({
+  '.footerLinks': {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: theme.spacing.medium,
+    flexWrap: 'wrap',
+  },
+  '.socialIcons': {
+    display: 'none',
+    justifyContent: 'center',
+    gap: theme.spacing.medium,
+    marginBottom: theme.spacing.small,
+    [mqs.fullHeader]: {
       display: 'flex',
-      justifyContent: 'center',
-      gap: theme.spacing.medium,
-      flexWrap: 'wrap',
     },
-    '.socialIcons': {
+    [mqs.fullHeaderSocial]: {
       display: 'none',
-      justifyContent: 'center',
-      gap: theme.spacing.medium,
-      marginBottom: theme.spacing.small,
-      [mqs.fullHeader]: {
-        display: 'flex',
-      },
-      [mqs.fullHeaderSocial]: {
-        display: 'none',
-      },
     },
-  })
-)
+  },
+}))

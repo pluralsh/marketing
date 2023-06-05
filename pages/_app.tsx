@@ -18,7 +18,6 @@ import { MarkdocContextProvider } from '@pluralsh/design-system/dist/markdoc'
 import { SSRProvider } from '@react-aria/ssr'
 import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
-import '@src/styles/globals.css'
 
 import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
@@ -27,6 +26,10 @@ import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
 import { MaxWidthLimiter } from '@src/components/MaxWidthLimiter'
 import PrimaryPage from '@src/components/PrimaryPage'
+
+// Styles
+import 'swiper/css'
+import '@src/styles/globals.css'
 
 export type GlobalPageProps = {
   metaTitle?: string

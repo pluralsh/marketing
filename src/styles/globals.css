@@ -14,8 +14,8 @@ body,
   overflow-x: hidden;
   /*  overflow: hidden breaks sticky positioning, use clip instead */
   /*  where supported */
-  display: flow-root;
-  overflow-x: clip;
+  /* display: flow-root; */
+  /* overflow-x: clip; */
 }
 
 #__next {

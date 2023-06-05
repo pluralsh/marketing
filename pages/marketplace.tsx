@@ -27,7 +27,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/components/getGlobalProps'
-import { Carousel } from '@src/components/MarketplaceCarousel'
+import { MarketplaceCarousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/MarketplaceFilters'
 import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
@@ -130,6 +130,8 @@ const ContentContainer = styled.div<{ $reverse?: boolean }>(
 
 const MainContent = styled.div(({ theme: _ }) => ({
   flexGrow: '1',
+  // minWidth must be set to prevent expanding beyond available width
+  minWidth: 200,
 }))
 
 const Sidecar = styled.div(({ theme }) => ({
@@ -144,11 +146,9 @@ const Sidecar = styled.div(({ theme }) => ({
 }))
 
 const SidecarFilters = styled(MarketplaceFilters)(({ theme }) => ({
-  // display: 'none',
   [mqMarketTwoCol]: {
     maxHeight: `calc(100vh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
     'maxHeight ': `calc(100dvh - var(--top-nav-height) - ${theme.spacing.medium}px)`,
-    // display: 'block',
     position: 'sticky',
     top: 'var(--top-nav-height)',
   },
@@ -416,7 +416,7 @@ export default function Marketplace({
                     >
                       Plural curated stacks
                     </Subtitle>
-                    <Carousel>
+                    <MarketplaceCarousel>
                       {stacks.map((stack) =>
                         stack ? (
                           <StackHero
@@ -425,7 +425,7 @@ export default function Marketplace({
                           />
                         ) : null
                       )}
-                    </Carousel>
+                    </MarketplaceCarousel>
                   </div>
                 )}
               {(searchTabKey === MarketSearchTabKey.all ||

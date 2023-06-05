@@ -1,12 +1,22 @@
-import { Children, type ReactNode, useState } from 'react'
+import {
+  Children,
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useState,
+} from 'react'
 
 import { Button, CaretRightIcon } from '@pluralsh/design-system'
 import { type ButtonProps } from 'honorable'
 
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { type Swiper as SwiperT } from 'swiper/types'
 
 import { mqs } from '@src/breakpoints'
+
+import { CarouselDot, CarouselDots } from './CarouselDots'
 
 const switchMQ = mqs.sm
 
@@ -14,8 +24,8 @@ function CarouselUnstyled({ children, ...props }: { children: ReactNode }) {
   const [selected, setSelected] = useState(0)
   const count = Children.count(children)
 
-  const dots = Children.map(children, (child, i) => (
-    <Dot
+  const dots = Children.map(children, (_, i) => (
+    <CarouselDot
       onClick={() => {
         setSelected(i)
       }}
@@ -38,7 +48,7 @@ function CarouselUnstyled({ children, ...props }: { children: ReactNode }) {
           </ItemWrap>
         ))}
       </ItemsWrap>
-      <Interface>
+      <InterfaceOverlay>
         <Dots className="absolute">{dots}</Dots>
         <Buttons>
           <NavButton
@@ -56,7 +66,7 @@ function CarouselUnstyled({ children, ...props }: { children: ReactNode }) {
             }}
           />
         </Buttons>
-      </Interface>
+      </InterfaceOverlay>
     </div>
   )
 }
@@ -97,14 +107,14 @@ export const Carousel = styled(CarouselUnstyled)((_) => ({
   overflow: 'hidden',
 }))
 
-const Interface = styled.div(({ theme }) => ({
+const InterfaceOverlay = styled.div(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing.large,
   left: theme.spacing.large,
   bottom: theme.spacing.large,
   right: theme.spacing.large,
-  //   padding: theme.spacing.large,
   pointerEvents: 'none',
+  zIndex: 1,
 }))
 
 const OFFSET = 10
@@ -137,12 +147,7 @@ const ItemsWrap = styled.div((_) => ({
   transition: 'all 0.7s ease',
 }))
 
-export const DotList = styled.div((_) => ({
-  display: 'flex',
-  gap: 5,
-}))
-
-const Dots = styled(DotList)((_) => ({
+const Dots = styled(CarouselDots)((_) => ({
   display: 'flex',
   width: '100%',
   height: '100%',
@@ -153,33 +158,74 @@ const Dots = styled(DotList)((_) => ({
   },
 }))
 
-export const Dot = styled.div<{ $selected: boolean }>(
-  ({ theme, $selected }) => ({
-    position: 'relative',
-    pointerEvents: 'auto',
-    cursor: 'pointer',
+export const MarketplaceCarousel = styled(
+  ({ children, ...props }: ComponentProps<'div'>) => {
+    const [activeIndex, setActiveIndex] = useState(0)
+    const theme = useTheme()
+    const [swiper, setSwiper] = useState<SwiperT | null>(null)
 
-    width: 10,
-    height: 10,
-    '&::after, &::before': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderRadius: '50%',
-      overflow: 'hidden',
-    },
-    '&::before': {
-      border: `1px solid ${theme.colors['icon-xlight']}`,
-    },
-    '&::after': {
-      backgroundColor: theme.colors['action-link-active'],
-      opacity: 0.2,
-      transform: 'scale(0)',
-      transition: 'all 0.3s ease',
-      ...($selected ? { transform: 'scale(1)', opacity: '100%' } : {}),
-    },
-  })
-)
+    useEffect(() => {
+      if (swiper?.activeIndex !== activeIndex) {
+        swiper?.slideTo(activeIndex)
+      }
+    }, [activeIndex, swiper])
+
+    const count = Children.count(children)
+    const dots = Children.map(children, (child, i) => (
+      <CarouselDot
+        onClick={() => {
+          setActiveIndex(i)
+        }}
+        $selected={i === activeIndex}
+      />
+    ))
+
+    console.log('activeIndex', activeIndex)
+
+    console.log('children', children)
+
+    return (
+      <div {...props}>
+        <div>
+          <Swiper
+            loop
+            spaceBetween={theme.spacing.large}
+            slidesPerView={1}
+            onSlideChange={(s) => {
+              console.log('slidechangez', s.activeIndex)
+              // setActiveIndex(s.activeIndex)
+            }}
+            onSwiper={setSwiper}
+          >
+            {Children.map(children, (child, i) => (
+              <SwiperSlide key={i}>{child}</SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <InterfaceOverlay>
+          <Dots className="absolute">{dots}</Dots>
+          <Buttons>
+            <NavButton
+              direction="left"
+              onClick={() => {
+                if (swiper) {
+                  swiper.slidePrev()
+                }
+                // setActiveIndex(activeIndex === 0 ? count - 1 : activeIndex - 1)
+              }}
+            />
+            <NavButton
+              direction="right"
+              // disabled={activeIndex === count - 1}
+              onClick={() => {
+                setActiveIndex(Math.min(count - 1, activeIndex + 1))
+              }}
+            />
+          </Buttons>
+        </InterfaceOverlay>
+      </div>
+    )
+  }
+)(({ theme: _ }) => ({
+  position: 'relative',
+}))

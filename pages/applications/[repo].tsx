@@ -24,7 +24,7 @@ import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
-import { EndorsementsCarousel } from '@src/components/QuoteCards'
+import { QuotesCarousel } from '@src/components/QuoteCards'
 import {
   AppTitle,
   Body1,
@@ -233,7 +233,7 @@ export default function App({
                     cloud with all of the day-2 operations handled out of the
                     box.
                   </Body2>
-                  <Cta href="https://app.plural.sh/shell">
+                  <Cta href="https://www.plural.sh/demo-login">
                     Explore {repo.displayName} on Plural in live demo
                     environment
                   </Cta>
@@ -270,7 +270,7 @@ export default function App({
           <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
             What companies are saying about Plural
           </Heading1>
-          <EndorsementsCarousel />
+          <QuotesCarousel />
         </div>
       </FullPage>
     </HeroGradientBG>
