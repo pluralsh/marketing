@@ -176,7 +176,7 @@ export const QuotesCarousel = styled(({ ...props }: ComponentProps<'div'>) => {
           spaceBetween={theme.spacing.large}
           slidesPerView="auto"
           onSlideChange={(s) => {
-            setActiveIndex(s.activeIndex)
+            setActiveIndex(s.realIndex)
           }}
           onSwiper={setSwiper}
         >

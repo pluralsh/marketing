@@ -18,58 +18,7 @@ import { mqs } from '@src/breakpoints'
 
 import { CarouselDot, CarouselDots } from './CarouselDots'
 
-const switchMQ = mqs.sm
-
-function CarouselUnstyled({ children, ...props }: { children: ReactNode }) {
-  const [selected, setSelected] = useState(0)
-  const count = Children.count(children)
-
-  const dots = Children.map(children, (_, i) => (
-    <CarouselDot
-      onClick={() => {
-        setSelected(i)
-      }}
-      $selected={i === selected}
-    />
-  ))
-
-  return (
-    <div {...props}>
-      <ItemsWrap style={{ translate: `-${100 * selected}%` }}>
-        {Children.map(children, (child, i) => (
-          <ItemWrap
-            key={i}
-            style={{
-              ...(i !== 0 ? { position: 'absolute', top: 0, left: 0 } : {}),
-              transform: `translate(${100 * i}%)`,
-            }}
-          >
-            {child}
-          </ItemWrap>
-        ))}
-      </ItemsWrap>
-      <InterfaceOverlay>
-        <Dots className="absolute">{dots}</Dots>
-        <Buttons>
-          <NavButton
-            direction="left"
-            disabled={selected === 0}
-            onClick={() => {
-              setSelected(Math.max(0, selected - 1))
-            }}
-          />
-          <NavButton
-            direction="right"
-            disabled={selected === count - 1}
-            onClick={() => {
-              setSelected(Math.min(count - 1, selected + 1))
-            }}
-          />
-        </Buttons>
-      </InterfaceOverlay>
-    </div>
-  )
-}
+const switchPointMQ = mqs.sm
 
 const NavButton = styled(
   ({ direction, ...props }: { direction: 'left' | 'right' } & ButtonProps) => {
@@ -102,11 +51,6 @@ const NavButton = styled(
   },
 }))
 
-export const Carousel = styled(CarouselUnstyled)((_) => ({
-  position: 'relative',
-  overflow: 'hidden',
-}))
-
 const InterfaceOverlay = styled.div(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing.large,
@@ -117,8 +61,6 @@ const InterfaceOverlay = styled.div(({ theme }) => ({
   zIndex: 1,
 }))
 
-const OFFSET = 10
-
 const Buttons = styled.div(({ theme }) => ({
   display: 'flex',
   width: '100%',
@@ -126,25 +68,12 @@ const Buttons = styled.div(({ theme }) => ({
   alignItems: 'start',
   paddingTop: '208px',
   justifyContent: 'space-between',
-  [switchMQ]: {
+  [switchPointMQ]: {
     paddingTop: 'unset',
     gap: theme.spacing.medium,
     justifyContent: 'end',
     alignItems: 'end',
   },
-}))
-
-const ItemWrap = styled.div((_) => ({
-  width: '100%',
-  paddingLeft: OFFSET,
-  paddingRight: OFFSET,
-}))
-
-const ItemsWrap = styled.div((_) => ({
-  position: 'relative',
-  marginLeft: -OFFSET,
-  marginRight: -OFFSET,
-  transition: 'all 0.7s ease',
 }))
 
 const Dots = styled(CarouselDots)((_) => ({
@@ -153,7 +82,7 @@ const Dots = styled(CarouselDots)((_) => ({
   height: '100%',
   alignItems: 'end',
   justifyContent: 'center',
-  [switchMQ]: {
+  [switchPointMQ]: {
     justifyContent: 'start',
   },
 }))
@@ -164,13 +93,6 @@ export const MarketplaceCarousel = styled(
     const theme = useTheme()
     const [swiper, setSwiper] = useState<SwiperT | null>(null)
 
-    useEffect(() => {
-      if (swiper?.activeIndex !== activeIndex) {
-        swiper?.slideTo(activeIndex)
-      }
-    }, [activeIndex, swiper])
-
-    const count = Children.count(children)
     const dots = Children.map(children, (child, i) => (
       <CarouselDot
         onClick={() => {
@@ -180,10 +102,6 @@ export const MarketplaceCarousel = styled(
       />
     ))
 
-    console.log('activeIndex', activeIndex)
-
-    console.log('children', children)
-
     return (
       <div {...props}>
         <div>
@@ -192,8 +110,7 @@ export const MarketplaceCarousel = styled(
             spaceBetween={theme.spacing.large}
             slidesPerView={1}
             onSlideChange={(s) => {
-              console.log('slidechangez', s.activeIndex)
-              // setActiveIndex(s.activeIndex)
+              setActiveIndex(s.realIndex)
             }}
             onSwiper={setSwiper}
           >
@@ -208,17 +125,13 @@ export const MarketplaceCarousel = styled(
             <NavButton
               direction="left"
               onClick={() => {
-                if (swiper) {
-                  swiper.slidePrev()
-                }
-                // setActiveIndex(activeIndex === 0 ? count - 1 : activeIndex - 1)
+                swiper?.slidePrev()
               }}
             />
             <NavButton
               direction="right"
-              // disabled={activeIndex === count - 1}
               onClick={() => {
-                setActiveIndex(Math.min(count - 1, activeIndex + 1))
+                swiper?.slideNext()
               }}
             />
           </Buttons>
