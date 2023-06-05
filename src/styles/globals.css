@@ -8,9 +8,14 @@ body h6 {
 }
 
 /* stylelint-disable */
-body, #__next {
+body,
+#__next {
   min-height: 100%;
   overflow-x: hidden;
+  /*  overflow: hidden breaks sticky positioning, use clip instead */
+  /*  where supported */
+  display: flow-root;
+  overflow-x: clip;
 }
 
 #__next {
