@@ -3,41 +3,47 @@ import { type ComponentProps, forwardRef, useEffect, useState } from 'react'
 import { CloseIcon, IconFrame } from '@pluralsh/design-system'
 import { Modal } from 'honorable'
 
+import useLockedBody from '@pluralsh/design-system/dist/hooks/useLockedBody'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
 
 export const BareModal = styled(
-  forwardRef<any, ComponentProps<typeof Modal> & { closeButton: boolean }>(
-    ({ closeButton = true, children, ...props }, ref) => {
-      const [hasMounted, setHasMounted] = useState(false)
+  forwardRef<
+    any,
+    ComponentProps<typeof Modal> & { lockBody?: boolean; closeButton: boolean }
+  >(({ closeButton = true, lockBody = true, children, ...props }, ref) => {
+    const [hasMounted, setHasMounted] = useState(false)
+    const [, setBodyLocked] = useLockedBody(props.open && lockBody)
 
-      useEffect(() => setHasMounted(true), [])
+    useEffect(() => setHasMounted(true), [])
+    useEffect(() => {
+      setBodyLocked(!!(lockBody && props?.open))
+    }, [lockBody, props.open, setBodyLocked])
 
-      if (!hasMounted) {
-        return null
-      }
-
-      return (
-        <Modal
-          ref={ref}
-          portal
-          {...props}
-        >
-          {closeButton && (
-            <IconFrame
-              className="closeButton"
-              type="floating"
-              clickable
-              icon={<CloseIcon />}
-              onClick={props.onClose}
-            />
-          )}
-          {children}
-        </Modal>
-      )
+    if (!hasMounted) {
+      return null
     }
-  )
+
+    return (
+      <Modal
+        ref={ref}
+        portal
+        {...props}
+      >
+        {closeButton && (
+          <IconFrame
+            className="closeButton"
+            type="floating"
+            clickable
+            icon={<CloseIcon />}
+            onClick={props.onClose}
+          />
+        )}
+        {children}
+      </Modal>
+    )
+  })
 )(({ theme, closeButton }) => ({
   '.closeButton': { flexShrink: 0, marginLeft: 'auto' },
   '&&': {
