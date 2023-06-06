@@ -1,16 +1,11 @@
-import {
-  Children,
-  type ComponentProps,
-  type ReactNode,
-  useEffect,
-  useState,
-} from 'react'
+import { Children, type ComponentProps, useState } from 'react'
 
 import { Button, CaretRightIcon } from '@pluralsh/design-system'
 import { type ButtonProps } from 'honorable'
 
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
 import styled, { useTheme } from 'styled-components'
+import { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { type Swiper as SwiperT } from 'swiper/types'
 
@@ -96,7 +91,7 @@ export const MarketplaceCarousel = styled(
     const dots = Children.map(children, (child, i) => (
       <CarouselDot
         onClick={() => {
-          setActiveIndex(i)
+          swiper?.slideToLoop(i)
         }}
         $selected={i === activeIndex}
       />
@@ -106,7 +101,9 @@ export const MarketplaceCarousel = styled(
       <div {...props}>
         <div>
           <Swiper
+            modules={[Autoplay]}
             loop
+            autoplay={{ delay: 1000 }}
             spaceBetween={theme.spacing.large}
             slidesPerView={1}
             onSlideChange={(s) => {

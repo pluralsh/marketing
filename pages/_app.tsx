@@ -28,8 +28,9 @@ import { MaxWidthLimiter } from '@src/components/MaxWidthLimiter'
 import PrimaryPage from '@src/components/PrimaryPage'
 
 // Styles
-import 'swiper/css'
 import '@src/styles/globals.css'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 
 export type GlobalPageProps = {
   metaTitle?: string

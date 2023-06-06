@@ -8,8 +8,18 @@ import 'swiper/css'
 import { mqs } from '@src/breakpoints'
 
 import { CarouselDot, CarouselDots } from './CarouselDots'
+import useIndex from './hooks/useIndex'
 
-export const quotes = [
+type Quote = {
+  quote?: ReactNode | string
+  company?: string
+  logoUrl?: string
+  name?: string
+  title?: string
+  portraitUrl?: string
+}
+
+export const DEFAULT_QUOTES = [
   {
     quote: (
       <>
@@ -40,19 +50,58 @@ export const quotes = [
     portraitUrl: 'sawyer-waugh.jpg',
   },
   {
-    quote: (
-      <>
-        “This is awesome. You saved me hours of further DevOps work for our v1
-        release. Just to say, I really love Plural.”
-      </>
-    ),
+    quote:
+      '“This is awesome. You saved me hours of further DevOps work for our v1 release. Just to say, I really love Plural.”',
     company: 'Modeo',
     logoUrl: 'logo-modeo.png',
     name: 'Ismael Goulani',
     title: 'CTO | Data Engineer at Modeo',
     portraitUrl: 'ismael-goulani.jpg',
   },
-]
+
+  {
+    quote: (
+      <>
+        “Wow! First of all I want to say thank you for creating Plural! It
+        solves a lot of problems coming from a non-DevOps background. You guys
+        are amazing!”
+      </>
+    ),
+    company: 'Poplar Homes',
+    logoUrl: 'logo-poplar.png',
+    name: 'Joey Taleño',
+    title: 'Head of Data at Poplar Homes',
+    portraitUrl: 'joey-taleno.jpg',
+  },
+
+  {
+    quote: (
+      <>
+        “We have been using Plural for complex Kubernetes deployments of
+        Kubeflow and are excited with the possibilities it provides in making
+        our workflows simpler and more efficient. ”
+      </>
+    ),
+    company: 'Alexander Thamm',
+    logoUrl: 'logo-alexander-thamm.png',
+    name: 'Jürgen Stary',
+    title: 'Engineering Manager @ Alexander Thamm',
+    portraitUrl: 'jurgen-stary.jpg',
+  },
+  {
+    quote: (
+      <>
+        “Plural has been awesome, it’s super fast and intuitive to get going and
+        there is zero-to-no overhead of the app management.”
+      </>
+    ),
+    company: 'Commandbar',
+    logoUrl: 'logo-commandbar.png',
+    name: 'Richard Freling',
+    title: 'CTA and Co-Founder at Commandbar',
+    portraitUrl: 'richard-freling.jpg',
+  },
+] as const satisfies readonly Quote[]
 
 export const QuoteCard = styled(
   ({
@@ -85,9 +134,11 @@ export const QuoteCard = styled(
           />
         </div>
         <div className="attribution">
-          <div className="portrait">
-            <img src={`${dir}/${portraitUrl}`} />
-          </div>
+          <div
+            aria-hidden
+            className="portrait"
+            style={{ backgroundImage: `url(${dir}/${portraitUrl})` }}
+          />
           <div className="nameTitle">
             <div className="name">{name}</div>
             <div className="title">{title}</div>
@@ -146,9 +197,12 @@ export const QuoteCard = styled(
     color: theme.colors['text-xlight'],
   },
   '.portrait': {
+    flexShrink: 0,
     width: 46,
+    height: 46,
     borderRadius: '50%',
     overflow: 'hidden',
+    backgroundSize: 'cover',
   },
   backgroundColor:
     variant === 'active'
@@ -156,62 +210,96 @@ export const QuoteCard = styled(
       : theme.colors['fill-three'],
 }))
 
-export const QuotesCarousel = styled(({ ...props }: ComponentProps<'div'>) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const theme = useTheme()
-  const [swiper, setSwiper] = useState<SwiperT | null>(null)
+export const QuotesCarousel = styled(
+  ({
+    quotes = DEFAULT_QUOTES,
+    ...props
+  }: { quotes?: typeof DEFAULT_QUOTES } & ComponentProps<'div'>) => {
+    // const [activeIndex, setActiveIndex] = useState(0)
+    const theme = useTheme()
+    const [swiper, setSwiper] = useState<SwiperT | null>(null)
+    const {
+      activeIndex: activeI,
+      setIndex,
+      goForward,
+    } = useIndex(quotes.length, 0, true)
 
-  useEffect(() => {
-    if (swiper?.activeIndex !== activeIndex) {
-      swiper?.slideTo(activeIndex)
-    }
-  }, [activeIndex, swiper])
+    const activeIndex = activeI ?? 0
 
-  const quotesInner = [...quotes, ...quotes, ...quotes]
+    useEffect(() => {
+      console.log('slideTo', activeIndex)
 
-  return (
-    <div {...props}>
-      <div>
-        <Swiper
-          spaceBetween={theme.spacing.large}
-          slidesPerView="auto"
-          onSlideChange={(s) => {
-            setActiveIndex(s.realIndex)
-          }}
-          onSwiper={setSwiper}
-        >
-          {quotesInner.map((quote, i) => (
-            <SwiperSlide key={`${quote.company}-${quote.name}`}>
-              <QuoteCard
-                className="h-[100%]"
-                {...quote}
-                onClick={() => {
-                  //   swiper?.slideTo(i)
-                  setActiveIndex(i)
-                }}
-                variant={i === activeIndex ? 'active' : undefined}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <CarouselDots className="dotList">
-        {quotesInner.map((_, i) => (
-          <CarouselDot
-            $selected={i === activeIndex}
-            onClick={() => {
-              swiper?.slideTo(i)
-              setActiveIndex(i)
+      if (activeIndex !== swiper?.realIndex) {
+        console.log('slideTo happening', activeIndex)
+        swiper?.slideToLoop(activeIndex)
+      }
+    }, [activeIndex, swiper])
+
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        goForward()
+      }, 2000)
+
+      return () => {
+        clearTimeout(timeout)
+      }
+    }, [goForward])
+
+    const quotesInner = quotes
+
+    return (
+      <div {...props}>
+        <div>
+          <Swiper
+            modules={[]}
+            spaceBetween={theme.spacing.large}
+            slidesPerView="auto"
+            onSlideChange={(s) => {
+              setIndex(s.realIndex)
             }}
-          />
-        ))}
-      </CarouselDots>
-    </div>
-  )
-})(({ theme }) => ({
+            onSwiper={setSwiper}
+          >
+            {quotesInner.map((quote, i) => (
+              <SwiperSlide
+                virtualIndex={i}
+                key={`${quote.company}-${quote.name}`}
+              >
+                <QuoteCard
+                  className="h-[100%]"
+                  {...quote}
+                  onClick={() => {
+                    setIndex(i)
+                  }}
+                  variant={i === activeIndex ? 'active' : undefined}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <CarouselDots className="dotList">
+          {quotesInner.map((_, i) => (
+            <CarouselDot
+              $selected={i === activeIndex}
+              onClick={() => {
+                setIndex(i)
+              }}
+            />
+          ))}
+        </CarouselDots>
+      </div>
+    )
+  }
+)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  '.swiper': { overflow: 'visible' },
+  '.swiper': {
+    overflow: 'visible',
+    maxWidth: 'none',
+    // maxWidth: 400,
+    // [mqs.xxl]: {
+    //   maxWidth: 456,
+    // },
+  },
   '.swiper-wrapper': {
     alignItems: 'stretch',
     overflow: 'visible',

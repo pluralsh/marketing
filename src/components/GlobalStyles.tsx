@@ -47,12 +47,6 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
     },
     body: {
       margin: 0,
-      overflowX: 'hidden',
-      // overflow: hidden breaks sticky positioning, use clip instead
-      // where supported'
-      display: 'flow-root',
-      'overflowX ': 'clip',
-      //
       color: theme.colors.text,
       backgroundColor: theme.colors['fill-zero'],
       ...fillAvailable('minHeight'),
