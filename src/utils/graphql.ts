@@ -1,5 +1,4 @@
-import isString from 'lodash/isString'
-import uniqWith from 'lodash/uniqWith'
+import { isString, uniqWith } from 'lodash-es'
 
 export function updateFragment(cache, { fragment, id, update, fragmentName }) {
   const current = cache.readFragment({ id, fragment, fragmentName })

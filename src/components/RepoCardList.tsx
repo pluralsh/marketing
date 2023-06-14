@@ -15,8 +15,7 @@ import {
 } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import drop from 'lodash/drop'
-import isEmpty from 'lodash/isEmpty'
+import { drop, isEmpty } from 'lodash-es'
 
 import { getStackRepos } from '@pages/marketplace'
 import { breakpointIsGreaterOrEqual } from '@src/breakpoints'

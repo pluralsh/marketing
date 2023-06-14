@@ -1,8 +1,6 @@
 import { styledTheme } from '@pluralsh/design-system'
-import { S } from 'honorable'
 
-import mapKeys from 'lodash/mapKeys'
-import mapValues from 'lodash/mapValues'
+import { mapKeys, mapValues } from 'lodash-es'
 import { type Config } from 'tailwindcss'
 
 import { breakpoints } from './src/breakpoints'

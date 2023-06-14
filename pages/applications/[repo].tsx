@@ -15,7 +15,7 @@ import { useRouter } from 'next/router'
 
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import classNames from 'classnames'
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { FullPage } from '@pages/_app'

@@ -1,4 +1,4 @@
-import isNil from 'lodash/isNil'
+import { isNil } from 'lodash-es'
 
 export function isDefined<T>(argument: T | undefined): argument is T {
   return argument !== undefined

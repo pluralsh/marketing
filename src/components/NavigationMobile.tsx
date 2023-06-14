@@ -1,6 +1,6 @@
 import { DiscordIcon } from '@pluralsh/design-system'
 
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 

@@ -1,4 +1,4 @@
-import isNil from 'lodash/isNil'
+import { isNil } from 'lodash-es'
 
 // Functions to use in Array.filter() that will inform the type checker that
 // null and undefined values are guaranteed filtered out

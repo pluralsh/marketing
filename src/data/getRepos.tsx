@@ -1,4 +1,4 @@
-import capitalize from 'lodash/capitalize'
+import { capitalize } from 'lodash-es'
 import memoizeOne from 'memoize-one'
 
 import { filterMapNodes } from '@src/utils/graphql'
@@ -13,6 +13,7 @@ import {
   ReposDocument,
   type ReposQuery,
   type ReposQueryVariables,
+  type Repository,
 } from '../generated/graphqlPlural'
 
 const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']

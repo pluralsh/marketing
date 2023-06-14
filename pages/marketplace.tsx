@@ -17,9 +17,7 @@ import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
 import { until } from '@open-draft/until'
 import Fuse from 'fuse.js'
-import isEmpty from 'lodash/isEmpty'
-import orderBy from 'lodash/orderBy'
-import upperFirst from 'lodash/upperFirst'
+import { isEmpty, orderBy, upperFirst } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'

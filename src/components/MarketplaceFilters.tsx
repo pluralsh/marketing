@@ -4,7 +4,7 @@ import { Card, Checkbox, CloseIcon, Input } from '@pluralsh/design-system'
 import { A } from 'honorable'
 
 import Fuse from 'fuse.js'
-import capitalize from 'lodash/capitalize'
+import { capitalize } from 'lodash-es'
 import styled from 'styled-components'
 
 import { clearToken } from '@pages/marketplace'

@@ -4,7 +4,7 @@ import { Button, CaretLeftIcon, CaretRightIcon } from '@pluralsh/design-system'
 import { type ButtonProps } from 'honorable'
 
 import classNames from 'classnames'
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'

@@ -1,5 +1,5 @@
 import { getRuntimeSchema } from '@pluralsh/design-system/dist/markdoc'
-import merge from 'lodash/merge'
+import { merge } from 'lodash-es'
 
 import * as config from './config'
 import * as functions from './functions'
