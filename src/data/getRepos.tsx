@@ -87,7 +87,7 @@ function normalizeRepo<T extends Pick<FullRepoFragment, 'name' | 'recipes'>>(
 }
 
 function filterRepo<
-  T extends { name?: string; recipes?: any[] } | null | undefined
+  T extends { name?: string; recipes?: any[] | null } | null | undefined
 >(repo: T): boolean {
   return !!repo && !inRemoveList(repo?.name) && !isEmpty(repo?.recipes)
 }
