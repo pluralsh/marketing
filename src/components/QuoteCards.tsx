@@ -238,7 +238,7 @@ export const QuotesCarousel = styled(
     useEffect(() => {
       const timeout = setTimeout(() => {
         goForward()
-      }, 2000)
+      }, 6000)
 
       return () => {
         clearTimeout(timeout)
