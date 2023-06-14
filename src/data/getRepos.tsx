@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash-es'
+import { capitalize, isEmpty } from 'lodash-es'
 import memoizeOne from 'memoize-one'
 
 import { filterMapNodes } from '@src/utils/graphql'
@@ -7,13 +7,14 @@ import client from '../apollo-client'
 import {
   type FullRepoFragment,
   type MinRepoFragment,
+  type RecipeFragment,
+  type RecipeSectionFragment,
   RepoDocument,
   type RepoQuery,
   type RepoQueryVariables,
   ReposDocument,
   type ReposQuery,
   type ReposQueryVariables,
-  type Repository,
 } from '../generated/graphqlPlural'
 
 const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']
@@ -69,19 +70,42 @@ function inRemoveList(repoName?: string) {
   return !!REMOVE_LIST.find((name) => name === repoName)
 }
 
-function normalizeRepo<T extends { name?: string }>(repo: T) {
+function normalizeRepo<T extends Pick<FullRepoFragment, 'name' | 'recipes'>>(
+  repo: T
+) {
+  const { recipes, ...props } = repo
+
+  const nRecipes = normalizeRecipes(recipes)
+
   return {
-    ...repo,
+    ...props,
+    ...(nRecipes ? { recipes: nRecipes } : {}),
+    recipes,
     displayName:
       ((repo as any).displayName as string) || fakeDisplayName(repo?.name),
   }
 }
 
-function filterRepo<T extends { name?: string } | null | undefined>(
-  repo: T
-): boolean {
-  return !!repo && !inRemoveList(repo?.name)
+function filterRepo<
+  T extends { name?: string; recipes?: any[] } | null | undefined
+>(repo: T): boolean {
+  return !!repo && !inRemoveList(repo?.name) && !isEmpty(repo?.recipes)
 }
+
+const normalizeRecipes = (recipes: FullRepoFragment['recipes']) =>
+  recipes
+    ?.filter((recipe): recipe is RecipeFragment => !!recipe && !recipe.private)
+    .map((recipe) => {
+      const { recipeSections, ...r } = recipe
+      const filteredSections = recipeSections?.filter(
+        (r): r is RecipeSectionFragment => !!r
+      )
+
+      return {
+        ...r,
+        ...(filteredSections ? { recipeSections: filteredSections } : {}),
+      }
+    })
 
 const normalizeRepos = memoizeOne((data: ReposQuery) =>
   filterMapNodes(data?.repositories, filterRepo, normalizeRepo)

@@ -39,6 +39,9 @@ fragment MinRepo on Repository {
   }
   trending
   verified
+  recipes {
+    ...MinRecipe
+  }
 }
 
 fragment FullRepo on Repository {

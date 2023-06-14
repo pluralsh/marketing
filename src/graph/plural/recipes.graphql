@@ -1,3 +1,21 @@
+fragment RecipeSection on RecipeSection {
+  repository {
+    name
+  }
+  configuration {
+    name
+    type
+    optional
+    documentation
+    longform
+  }
+}
+
+fragment MinRecipe on Recipe {
+  name
+  private
+}
+
 fragment Recipe on Recipe {
   name
   description
@@ -7,16 +25,7 @@ fragment Recipe on Recipe {
     description
   }
   recipeSections {
-    repository {
-      name
-    }
-    configuration {
-      name
-      type
-      optional
-      documentation
-      longform
-    }
+    ...RecipeSection
   }
 }
 
