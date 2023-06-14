@@ -58,16 +58,11 @@ async function crawlPages(filePath = '/pages') {
     .filter((file) => pageFilter(file.name))
     .flatMap((file) => {
       if (file.isDirectory()) {
-        console.log('dir: ', file.name)
-
         return crawlPages(path.join(filePath, file.name))
       }
       let pathname = file.name.split('.').slice(0, -1).join('.')
 
-      console.log({ pathname })
-
       pathname = pathname.replace(/(^|\/)index$/g, '')
-      console.log({ pathname })
 
       return pathname
     })
@@ -83,8 +78,6 @@ async function generateSiteMap({
 }) {
   const lastMod = new Date().toISOString()
   const pages = await crawlPages()
-
-  console.log('pages', pages)
 
   // We generate the XML sitemap with the posts data
   const sitemap = wrapSiteMap(

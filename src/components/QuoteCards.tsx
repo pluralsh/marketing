@@ -227,10 +227,7 @@ export const QuotesCarousel = styled(
     const activeIndex = activeI ?? 0
 
     useEffect(() => {
-      console.log('slideTo', activeIndex)
-
       if (activeIndex !== swiper?.realIndex) {
-        console.log('slideTo happening', activeIndex)
         swiper?.slideToLoop(activeIndex)
       }
     }, [activeIndex, swiper])

@@ -154,10 +154,6 @@ const CtaIcon = styled((props) => (
 export const Cta = styled(({ children, ...props }) => {
   const { Link } = useNavigationContext()
 
-  console.log('children', children, children.length)
-
-  console.log('typeof children', typeof children)
-
   const kids = Children.map(children, (child, i) => {
     if (i === Children.count(children) - 1 && typeof child === 'string') {
       const splitChild = child.split(/(?<=\s)/)

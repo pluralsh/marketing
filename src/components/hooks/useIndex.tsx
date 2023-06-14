@@ -87,7 +87,6 @@ const useIndex = (
           } else if (newIndex > length - increment) {
             newIndex = length - increment
           }
-          console.log('goforward', newIndex)
           setUnsafeActiveIndex(newIndex)
         }
       },
