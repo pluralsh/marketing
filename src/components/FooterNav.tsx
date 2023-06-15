@@ -90,7 +90,7 @@ const navItems = [
         href: 'https://github.com/pluralsh/plural',
         target: '_blank',
       },
-    ],
+    ] as const,
   },
   {
     heading: 'Contact',
@@ -189,11 +189,11 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
     <div {...props}>
       <NavSections>
         {navItems.map((navItem) => (
-          <NavSection>
+          <NavSection key={navItem.heading}>
             <Heading>{navItem.heading}</Heading>
             <NavItems>
               {navItem.links.map((link) => (
-                <NavItem>
+                <NavItem key={`${link.children}${link.href}`}>
                   <NavLink {...link} />
                 </NavItem>
               ))}
