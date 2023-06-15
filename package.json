@@ -5,8 +5,10 @@
     "node": "18.12.1"
   },
   "scripts": {
-    "dev": "concurrently \"next dev\" \"graphql-codegen --watch --config codegen.ts \" ",
-    "build": "next build",
+    "dev": "run-s generate:pageindex dev:watch",
+    "dev:watch": "concurrently \"next dev\" \"yarn graphql:codegen:watch\"",
+    "build": "run-s generate:pageindex build:next",
+    "build:next": "next build",
     "start": "next start",
     "lint": "run-p lint:format lint:js lint:css",
     "lint:format": "prettier --check --no-error-on-unmatched-pattern ./{src,pages}/**/*.{js,jsx,ts,tsx,graphql,md,mdpart}",
@@ -17,6 +19,8 @@
     "fix:js": "eslint --fix {src,pages} --ext ts,tsx,js,jsx",
     "fix:css": "stylelint src/**/*.css --fix",
     "graphql:codegen": "graphql-codegen --config codegen.ts",
+    "graphql:codegen:watch": "graphql-codegen --watch --config codegen.ts",
+    "generate:pageindex": "node index-pages.mjs",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
   "dependencies": {

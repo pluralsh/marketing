@@ -67,6 +67,7 @@ module.exports = {
         'tailwind.config.ts',
         'postcss.config.js',
         'codegen.ts',
+        'index-pages.js',
       ],
       parserOptions: {
         project: null,
