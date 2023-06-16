@@ -8,8 +8,7 @@ import {
   useState,
 } from 'react'
 
-import { useKeyboard } from '@react-aria/interactions'
-import { mergeProps } from '@react-aria/utils'
+import { mergeProps, useKeyboard } from 'react-aria'
 
 export interface UseDisclosureProps {
   onOpenChange?: (isOpen: boolean) => void

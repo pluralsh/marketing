@@ -11,13 +11,15 @@ import {
   useFloatingDropdown,
 } from '@pluralsh/design-system'
 
-import { useButton } from '@react-aria/button'
-import { useMenu, useMenuItem, useMenuTrigger } from '@react-aria/menu'
-import { type AriaMenuProps } from '@react-aria/menu'
-import { useMenuTriggerState } from '@react-stately/menu'
-import { type MenuTriggerProps } from '@react-stately/menu'
-import { type TreeState, useTreeState } from '@react-stately/tree'
 import { type Node } from '@react-types/shared'
+import { type AriaMenuProps } from 'react-aria'
+import { useButton, useMenu, useMenuItem, useMenuTrigger } from 'react-aria'
+import {
+  type MenuTriggerProps,
+  type TreeState,
+  useTreeState,
+} from 'react-stately'
+import { useMenuTriggerState } from 'react-stately'
 import styled from 'styled-components'
 
 import { MainLinkBase } from '../Navigation'

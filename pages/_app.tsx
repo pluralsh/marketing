@@ -15,7 +15,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 import { MarkdocContextProvider } from '@pluralsh/design-system/dist/markdoc'
-import { SSRProvider } from '@react-aria/ssr'
+import { SSRProvider } from 'react-aria'
 import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 

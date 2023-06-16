@@ -2,8 +2,8 @@ import React, { useMemo } from 'react'
 
 import { useNavigationContext } from '@pluralsh/design-system'
 
-import { useMenuItem } from '@react-aria/menu'
-import { Item } from '@react-stately/collections'
+import { useMenuItem } from 'react-aria'
+import { Item } from 'react-stately'
 import styled from 'styled-components'
 
 import { type NavList } from '@src/contexts/NavDataContext'

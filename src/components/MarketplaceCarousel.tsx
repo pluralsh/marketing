@@ -3,7 +3,7 @@ import { Children, type ComponentProps, useState } from 'react'
 import { Button, CaretRightIcon } from '@pluralsh/design-system'
 import { type ButtonProps } from 'honorable'
 
-import { useVisuallyHidden } from '@react-aria/visually-hidden'
+import { useVisuallyHidden } from 'react-aria'
 import styled, { useTheme } from 'styled-components'
 import { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
