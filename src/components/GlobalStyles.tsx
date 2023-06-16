@@ -70,7 +70,8 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       ':root': {
         '--page-x-pad': `${theme.spacing.large}px`,
         '--page-max-width': `${
-          breakpoints.xxl - (96 - theme.spacing.large) * 2
+          // breakpoints.xxl - (96 - theme.spacing.large) * 2
+          breakpoints.md - theme.spacing.large * 2
         }px`,
       },
     },
@@ -78,6 +79,10 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       ':root': {
         '--top-nav-height': '80px',
         '--top-nav-link-h-pad': `${theme.spacing.small}px`,
+        '--page-max-width': `${
+          breakpoints.xxl - (96 - theme.spacing.large) * 2
+          // breakpoints.md - theme.spacing.large * 2
+        }px`,
       },
     },
     [mqs.fullHeader]: {

@@ -24,15 +24,21 @@ export const breakpoints = {
 export type Breakpoints = typeof breakpoints
 export type Breakpoint = keyof Breakpoints
 
-type MQ<T extends number> = `@media screen and (min-width: ${T}px)`
+type MQ<
+  K extends string,
+  T extends number
+> = `@media screen and (min-width: ${T}px) /* ${K} */`
 
 type MQs<BPs extends Record<string, number>> = {
-  [K in keyof BPs]: MQ<BPs[K]>
+  [K in keyof BPs]: MQ<K, BPs[K]>
 }
 
 export const mqs = Object.fromEntries(
   (Object.entries(breakpoints) as Entries<typeof breakpoints>).map(
-    ([key, val]) => [key, `@media screen and (min-width: ${val}px)`]
+    ([key, val]) => [
+      key,
+      `@media screen and (min-width: ${val}px) /* ${key} */`,
+    ]
   )
 ) as MQs<Breakpoints>
 
