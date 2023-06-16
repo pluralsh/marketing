@@ -7,17 +7,19 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  Date: any;
-  GraphQLStringOrFloat: any;
-  JSON: any;
+  ID: { input: string | number; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  Date: { input: any; output: any; }
+  GraphQLStringOrFloat: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type Query = {
@@ -37,86 +39,86 @@ export type Query = {
 
 export type QueryEventsArgs = {
   filter?: InputMaybe<Events_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryEvents_AggregatedArgs = {
   filter?: InputMaybe<Events_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryEvents_By_IdArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryNav_LinkArgs = {
   filter?: InputMaybe<Nav_Link_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryNav_Link_AggregatedArgs = {
   filter?: InputMaybe<Nav_Link_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryNav_Link_By_IdArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 
 export type QueryNav_ListArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryNav_List_AggregatedArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryNav_List_By_IdArgs = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['input'];
 };
 
 export type Boolean_Filter_Operators = {
-  _eq?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<Scalars['Boolean']>;
-  _nnull?: InputMaybe<Scalars['Boolean']>;
-  _null?: InputMaybe<Scalars['Boolean']>;
+  _eq?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<Scalars['Boolean']['input']>;
+  _nnull?: InputMaybe<Scalars['Boolean']['input']>;
+  _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type Count_Function_Filter_Operators = {
@@ -125,22 +127,22 @@ export type Count_Function_Filter_Operators = {
 
 export type Count_Functions = {
   __typename?: 'count_functions';
-  count?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Date_Filter_Operators = {
-  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _eq?: InputMaybe<Scalars['String']>;
-  _gt?: InputMaybe<Scalars['String']>;
-  _gte?: InputMaybe<Scalars['String']>;
-  _in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  _lt?: InputMaybe<Scalars['String']>;
-  _lte?: InputMaybe<Scalars['String']>;
-  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _neq?: InputMaybe<Scalars['String']>;
-  _nin?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  _nnull?: InputMaybe<Scalars['Boolean']>;
-  _null?: InputMaybe<Scalars['Boolean']>;
+  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _eq?: InputMaybe<Scalars['String']['input']>;
+  _gt?: InputMaybe<Scalars['String']['input']>;
+  _gte?: InputMaybe<Scalars['String']['input']>;
+  _in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  _lt?: InputMaybe<Scalars['String']['input']>;
+  _lte?: InputMaybe<Scalars['String']['input']>;
+  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _neq?: InputMaybe<Scalars['String']['input']>;
+  _nin?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  _nnull?: InputMaybe<Scalars['Boolean']['input']>;
+  _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type Datetime_Function_Filter_Operators = {
@@ -156,36 +158,36 @@ export type Datetime_Function_Filter_Operators = {
 
 export type Datetime_Functions = {
   __typename?: 'datetime_functions';
-  day?: Maybe<Scalars['Int']>;
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  week?: Maybe<Scalars['Int']>;
-  weekday?: Maybe<Scalars['Int']>;
-  year?: Maybe<Scalars['Int']>;
+  day?: Maybe<Scalars['Int']['output']>;
+  hour?: Maybe<Scalars['Int']['output']>;
+  minute?: Maybe<Scalars['Int']['output']>;
+  month?: Maybe<Scalars['Int']['output']>;
+  second?: Maybe<Scalars['Int']['output']>;
+  week?: Maybe<Scalars['Int']['output']>;
+  weekday?: Maybe<Scalars['Int']['output']>;
+  year?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Events = {
   __typename?: 'events';
-  date_created?: Maybe<Scalars['Date']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  description?: Maybe<Scalars['String']>;
-  end_date?: Maybe<Scalars['Date']>;
+  description?: Maybe<Scalars['String']['output']>;
+  end_date?: Maybe<Scalars['Date']['output']>;
   end_date_func?: Maybe<Datetime_Functions>;
-  fields?: Maybe<Scalars['JSON']>;
+  fields?: Maybe<Scalars['JSON']['output']>;
   fields_func?: Maybe<Count_Functions>;
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  sort?: Maybe<Scalars['Int']>;
-  start_date?: Maybe<Scalars['Date']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  start_date?: Maybe<Scalars['Date']['output']>;
   start_date_func?: Maybe<Datetime_Functions>;
-  status?: Maybe<Scalars['String']>;
-  user_created?: Maybe<Scalars['String']>;
-  user_updated?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 export type Events_Aggregated = {
@@ -193,9 +195,9 @@ export type Events_Aggregated = {
   avg?: Maybe<Events_Aggregated_Fields>;
   avgDistinct?: Maybe<Events_Aggregated_Fields>;
   count?: Maybe<Events_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']>;
+  countAll?: Maybe<Scalars['Int']['output']>;
   countDistinct?: Maybe<Events_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']>;
+  group?: Maybe<Scalars['JSON']['output']>;
   max?: Maybe<Events_Aggregated_Fields>;
   min?: Maybe<Events_Aggregated_Fields>;
   sum?: Maybe<Events_Aggregated_Fields>;
@@ -204,24 +206,24 @@ export type Events_Aggregated = {
 
 export type Events_Aggregated_Count = {
   __typename?: 'events_aggregated_count';
-  date_created?: Maybe<Scalars['Int']>;
-  date_updated?: Maybe<Scalars['Int']>;
-  description?: Maybe<Scalars['Int']>;
-  end_date?: Maybe<Scalars['Int']>;
-  fields?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['Int']>;
-  slug?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Scalars['Int']>;
-  start_date?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['Int']>;
-  user_created?: Maybe<Scalars['Int']>;
-  user_updated?: Maybe<Scalars['Int']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  end_date?: Maybe<Scalars['Int']['output']>;
+  fields?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  start_date?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Events_Aggregated_Fields = {
   __typename?: 'events_aggregated_fields';
-  sort?: Maybe<Scalars['Float']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Events_Filter = {
@@ -249,24 +251,24 @@ export type Events_Filter = {
 
 export type Nav_Link = {
   __typename?: 'nav_link';
-  id: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 export type Nav_Link_Aggregated = {
   __typename?: 'nav_link_aggregated';
   count?: Maybe<Nav_Link_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']>;
+  countAll?: Maybe<Scalars['Int']['output']>;
   countDistinct?: Maybe<Nav_Link_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']>;
+  group?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Nav_Link_Aggregated_Count = {
   __typename?: 'nav_link_aggregated_count';
-  id?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['Int']>;
-  url?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Nav_Link_Filter = {
@@ -279,13 +281,13 @@ export type Nav_Link_Filter = {
 
 export type Nav_List = {
   __typename?: 'nav_list';
-  flatten?: Maybe<Scalars['Boolean']>;
-  id: Scalars['ID'];
+  flatten?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['ID']['output'];
   link?: Maybe<Nav_Link>;
-  mobile_only?: Maybe<Scalars['Boolean']>;
+  mobile_only?: Maybe<Scalars['Boolean']['output']>;
   parent_nav_list_id?: Maybe<Nav_List>;
-  slug?: Maybe<Scalars['String']>;
-  sort?: Maybe<Scalars['Int']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
   subnav?: Maybe<Array<Maybe<Nav_List>>>;
   subnav_func?: Maybe<Count_Functions>;
 };
@@ -293,31 +295,31 @@ export type Nav_List = {
 
 export type Nav_ListLinkArgs = {
   filter?: InputMaybe<Nav_Link_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type Nav_ListParent_Nav_List_IdArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type Nav_ListSubnavArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Nav_List_Aggregated = {
@@ -325,9 +327,9 @@ export type Nav_List_Aggregated = {
   avg?: Maybe<Nav_List_Aggregated_Fields>;
   avgDistinct?: Maybe<Nav_List_Aggregated_Fields>;
   count?: Maybe<Nav_List_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']>;
+  countAll?: Maybe<Scalars['Int']['output']>;
   countDistinct?: Maybe<Nav_List_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']>;
+  group?: Maybe<Scalars['JSON']['output']>;
   max?: Maybe<Nav_List_Aggregated_Fields>;
   min?: Maybe<Nav_List_Aggregated_Fields>;
   sum?: Maybe<Nav_List_Aggregated_Fields>;
@@ -336,19 +338,19 @@ export type Nav_List_Aggregated = {
 
 export type Nav_List_Aggregated_Count = {
   __typename?: 'nav_list_aggregated_count';
-  flatten?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  link?: Maybe<Scalars['Int']>;
-  mobile_only?: Maybe<Scalars['Int']>;
-  parent_nav_list_id?: Maybe<Scalars['Int']>;
-  slug?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Scalars['Int']>;
-  subnav?: Maybe<Scalars['Int']>;
+  flatten?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  link?: Maybe<Scalars['Int']['output']>;
+  mobile_only?: Maybe<Scalars['Int']['output']>;
+  parent_nav_list_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  subnav?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Nav_List_Aggregated_Fields = {
   __typename?: 'nav_list_aggregated_fields';
-  sort?: Maybe<Scalars['Float']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Nav_List_Filter = {
@@ -366,56 +368,56 @@ export type Nav_List_Filter = {
 };
 
 export type Number_Filter_Operators = {
-  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _eq?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _gt?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _gte?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _in?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _lt?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _lte?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _neq?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
-  _nin?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
-  _nnull?: InputMaybe<Scalars['Boolean']>;
-  _null?: InputMaybe<Scalars['Boolean']>;
+  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _eq?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _gt?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _gte?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _in?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _lt?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _lte?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _neq?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
+  _nin?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
+  _nnull?: InputMaybe<Scalars['Boolean']['input']>;
+  _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type Site_Settings = {
   __typename?: 'site_settings';
-  date_updated?: Maybe<Scalars['Date']>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   main_nav?: Maybe<Nav_List>;
-  og_description?: Maybe<Scalars['String']>;
-  user_updated?: Maybe<Scalars['String']>;
+  og_description?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
 export type Site_SettingsMain_NavArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  page?: InputMaybe<Scalars['Int']>;
-  search?: InputMaybe<Scalars['String']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type String_Filter_Operators = {
-  _contains?: InputMaybe<Scalars['String']>;
-  _empty?: InputMaybe<Scalars['Boolean']>;
-  _ends_with?: InputMaybe<Scalars['String']>;
-  _eq?: InputMaybe<Scalars['String']>;
-  _icontains?: InputMaybe<Scalars['String']>;
-  _in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  _ncontains?: InputMaybe<Scalars['String']>;
-  _nempty?: InputMaybe<Scalars['Boolean']>;
-  _nends_with?: InputMaybe<Scalars['String']>;
-  _neq?: InputMaybe<Scalars['String']>;
-  _nin?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  _nnull?: InputMaybe<Scalars['Boolean']>;
-  _nstarts_with?: InputMaybe<Scalars['String']>;
-  _null?: InputMaybe<Scalars['Boolean']>;
-  _starts_with?: InputMaybe<Scalars['String']>;
+  _contains?: InputMaybe<Scalars['String']['input']>;
+  _empty?: InputMaybe<Scalars['Boolean']['input']>;
+  _ends_with?: InputMaybe<Scalars['String']['input']>;
+  _eq?: InputMaybe<Scalars['String']['input']>;
+  _icontains?: InputMaybe<Scalars['String']['input']>;
+  _in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  _ncontains?: InputMaybe<Scalars['String']['input']>;
+  _nempty?: InputMaybe<Scalars['Boolean']['input']>;
+  _nends_with?: InputMaybe<Scalars['String']['input']>;
+  _neq?: InputMaybe<Scalars['String']['input']>;
+  _nin?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  _nnull?: InputMaybe<Scalars['Boolean']['input']>;
+  _nstarts_with?: InputMaybe<Scalars['String']['input']>;
+  _null?: InputMaybe<Scalars['Boolean']['input']>;
+  _starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EventFragment = { __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, fields?: any | null };
