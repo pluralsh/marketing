@@ -2,8 +2,10 @@ import { type ComponentProps, useEffect } from 'react'
 
 import {
   AppIcon,
+  Card,
   CheckRoundedIcon,
   Code,
+  ColorModeProvider,
   Tooltip,
 } from '@pluralsh/design-system'
 import {
@@ -22,6 +24,7 @@ import { FullPage } from '@pages/_app'
 import client from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
+import { FooterValueProp } from '@src/components/FooterValueProp'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
 import { QuotesCarousel } from '@src/components/QuoteCards'
@@ -134,146 +137,163 @@ export default function App({
   }
 
   return (
-    <HeroGradientBG>
-      <FullPage>
-        <div className="py-[40px] md:pb-xxxlarge">
-          <BackButton />
-        </div>
-        <Columns2>
-          <Col>
-            <TextLimiter className="flex flex-col gap-large">
-              <AppPageTitle app={repo} />
-              <Body1 color="text-light">
-                {repo.description}
-                {/* Orchestrate all your applications to work in harmony with{' '}
-                {repo.displayName} on Plural. */}
-              </Body1>
-              <div className="flex flex-col gap-medium">
-                <Overline>Available providers</Overline>
-                {!isEmpty(tabs) && (
-                  <div className="flex gap-small">
-                    {tabs.map((provider) => (
-                      <ProviderIcon
-                        key={provider.key}
-                        label={provider.label}
-                        iconLight={provider.iconLight}
-                        iconDark={provider.iconDark}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            </TextLimiter>
-          </Col>
-          <Col>
-            <Embed
-              className="m-0 p-0"
-              url="https://www.youtube.com/watch?v=mFDA-718RhI"
-              aspectRatio="16 / 9"
-            />
-          </Col>
-        </Columns2>
-        <div>
-          <Columns2 className="py-xxxxlarge xl:py-[192px]">
+    <>
+      <HeroGradientBG>
+        <FullPage>
+          <div className="py-[40px] md:pb-xxxlarge">
+            <BackButton />
+          </div>
+          <Columns2>
             <Col>
-              <TextLimiter>
-                <Heading3
-                  className="mb-large"
-                  as="h2"
-                >
-                  Why use {repo.displayName} on Plural?
-                </Heading3>
-                <Body2>
-                  You’re likely spending time weighing the benefits of
-                  self-hosting with the convenience and cost of managed
-                  services. Skip the pro-con discussions and get the best of
-                  both worlds with Plural. Automate and orchestrate your ETL, ML
-                  jobs, and DevOps tasks without taking on the Ops burden or
-                  managed service cost. Especially if you’re handling PII data,
-                  you’ll need everything to stay within your own VPC, which is
-                  best done with self-hosting open-source.
-                </Body2>
+              <TextLimiter className="flex flex-col gap-large">
+                <AppPageTitle app={repo} />
+                <Body1 color="text-light">
+                  {repo.description}
+                  {/* Orchestrate all your applications to work in harmony with{' '}
+                {repo.displayName} on Plural. */}
+                </Body1>
+                <div className="flex flex-col gap-medium">
+                  <Overline>Available providers</Overline>
+                  {!isEmpty(tabs) && (
+                    <div className="flex gap-small">
+                      {tabs.map((provider) => (
+                        <ProviderIcon
+                          key={provider.key}
+                          label={provider.label}
+                          iconLight={provider.iconLight}
+                          iconDark={provider.iconDark}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </TextLimiter>
             </Col>
             <Col>
-              {tabs && tabs.length > 0 && (
-                <div className="flex flex-col gap-medium">
-                  <Body2 className="columns:mt-[17px]">
-                    Deploying {repo.displayName} is a matter of executing these
-                    2 commands:
-                  </Body2>
-                  <Code tabs={tabs} />
-                  <Code>
-                    {`plural deploy --commit "deploying ${repo.name}"`}
-                  </Code>
-                </div>
-              )}
-              <Cta
-                className="mt-xlarge"
-                href={`https://docs.plural.sh/applications/${repo.name}`}
-              >
-                Read the install documentation
-              </Cta>
+              <Embed
+                className="m-0 p-0"
+                url="https://www.youtube.com/watch?v=mFDA-718RhI"
+                aspectRatio="16 / 9"
+              />
             </Col>
           </Columns2>
-        </div>
-      </FullPage>
-      <GradientBG className="flex flex-col py-xxxxlarge gap-xxxlarge">
-        <FullPage>
           <div>
-            <Columns2>
+            <Columns2 className="py-xxxxlarge xl:py-[192px]">
               <Col>
-                <TextLimiter className="flex flex-col gap-large">
-                  <Title2>Open-source and free to use</Title2>
+                <TextLimiter>
+                  <Heading3
+                    className="mb-large"
+                    as="h2"
+                  >
+                    Why use {repo.displayName} on Plural?
+                  </Heading3>
                   <Body2>
-                    Plural automates the deployment and operation of{' '}
-                    {repo.displayName} in your cloud. Get up and running with
-                    your {repo.displayName} instance in minutes and let Plural
-                    deploy {repo.displayName} and all its dependencies into your
-                    cloud with all of the day-2 operations handled out of the
-                    box.
+                    You’re likely spending time weighing the benefits of
+                    self-hosting with the convenience and cost of managed
+                    services. Skip the pro-con discussions and get the best of
+                    both worlds with Plural. Automate and orchestrate your ETL,
+                    ML jobs, and DevOps tasks without taking on the Ops burden
+                    or managed service cost. Especially if you’re handling PII
+                    data, you’ll need everything to stay within your own VPC,
+                    which is best done with self-hosting open-source.
                   </Body2>
-                  <Cta href="https://www.plural.sh/demo-login">
-                    Explore {repo.displayName} on Plural in live demo
-                    environment
-                  </Cta>
                 </TextLimiter>
               </Col>
-              <Col className="flex flex-col gap-large">
-                <Checklist>
-                  <ChecklistItem>Automated upgrades</ChecklistItem>
-                  <ChecklistItem>
-                    Transparent pricing and cost management{' '}
-                  </ChecklistItem>
-                  <ChecklistItem>
-                    Prebuilt dashboards, extendable{' '}
-                  </ChecklistItem>
-                  <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
-                  <ChecklistItem>Log management </ChecklistItem>
-                </Checklist>
+              <Col>
+                {tabs && tabs.length > 0 && (
+                  <div className="flex flex-col gap-medium">
+                    <Body2 className="columns:mt-[17px]">
+                      Deploying {repo.displayName} is a matter of executing
+                      these 2 commands:
+                    </Body2>
+                    <Code tabs={tabs} />
+                    <Code>
+                      {`plural deploy --commit "deploying ${repo.name}"`}
+                    </Code>
+                  </div>
+                )}
+                <Cta
+                  className="mt-xlarge"
+                  href={`https://docs.plural.sh/applications/${repo.name}`}
+                >
+                  Read the install documentation
+                </Cta>
               </Col>
             </Columns2>
-            <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-              <img
-                src="/images/application/product-value@2x.png"
-                alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-              />
-            </div>
           </div>
         </FullPage>
-      </GradientBG>
+        <GradientBG className="flex flex-col py-xxxxlarge gap-xxxlarge">
+          <FullPage>
+            <div>
+              <Columns2>
+                <Col>
+                  <TextLimiter className="flex flex-col gap-large">
+                    <Title2>Open-source and free to use</Title2>
+                    <Body2>
+                      Plural automates the deployment and operation of{' '}
+                      {repo.displayName} in your cloud. Get up and running with
+                      your {repo.displayName} instance in minutes and let Plural
+                      deploy {repo.displayName} and all its dependencies into
+                      your cloud with all of the day-2 operations handled out of
+                      the box.
+                    </Body2>
+                    <Cta href="https://www.plural.sh/demo-login">
+                      Explore {repo.displayName} on Plural in live demo
+                      environment
+                    </Cta>
+                  </TextLimiter>
+                </Col>
+                <Col className="flex flex-col gap-large">
+                  <Checklist>
+                    <ChecklistItem>Automated upgrades</ChecklistItem>
+                    <ChecklistItem>
+                      Transparent pricing and cost management{' '}
+                    </ChecklistItem>
+                    <ChecklistItem>
+                      Prebuilt dashboards, extendable{' '}
+                    </ChecklistItem>
+                    <ChecklistItem>
+                      Prebuilt runbooks, extendable{' '}
+                    </ChecklistItem>
+                    <ChecklistItem>Log management </ChecklistItem>
+                  </Checklist>
+                </Col>
+              </Columns2>
+              <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
+                <img
+                  src="/images/application/product-value@2x.png"
+                  alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
+                />
+              </div>
+            </div>
+          </FullPage>
+        </GradientBG>
+        {/* Put in a ColorModeProvider */}
+        <ColorModeProvider mode="light">
+          <div className="bg-fill-zero">
+            <FullPage className="py-xxlarge">
+              <Card padding="medium">
+                <Heading1>Stuff</Heading1>
+              </Card>
+            </FullPage>
+          </div>
+        </ColorModeProvider>
+        <FullPage>
+          <CompanyLogos className="mt-xxxxlarge" />
+        </FullPage>
+        <FullPage>
+          <div className="my-xxxxxlarge">
+            <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+              What companies are saying about Plural
+            </Heading1>
+            <QuotesCarousel />
+          </div>
+        </FullPage>
+      </HeroGradientBG>
       <FullPage>
-        <CompanyLogos className="mt-xxxxlarge" />
+        <FooterValueProp />
       </FullPage>
-      <FullPage>
-        <div className="my-xxxxxlarge">
-          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-            What companies are saying about Plural
-          </Heading1>
-          <QuotesCarousel />
-        </div>
-      </FullPage>
-    </HeroGradientBG>
+    </>
   )
 }
 

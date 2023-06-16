@@ -1,12 +1,16 @@
 import { Children, type ComponentProps, forwardRef } from 'react'
 
-// import { type styledTheme } from '@pluralsh/design-system'
+import {
+  ArrowRightIcon,
+  type styledTheme,
+  useNavigationContext,
+} from '@pluralsh/design-system'
 
-import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
-
+import { isEmpty, lowerFirst } from 'lodash-es'
 import styled from 'styled-components'
+import { type PascalCase } from 'type-fest'
 
-import { mqs } from '@src/breakpoints'
+import { type Breakpoint, mqs } from '@src/breakpoints'
 
 export const Heading1 = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.title2,
@@ -32,13 +36,58 @@ export const Heading3 = styled.h2(({ theme }) => ({
   },
 }))
 
+type TextStyle =
+  | `m${PascalCase<keyof typeof styledTheme.partials.marketingText>}`
+  | `a${PascalCase<keyof typeof styledTheme.partials.marketingText>}`
+
+const textPropFilter = {
+  shouldForwardProp: (prop) => !['color', 'styles'].includes(prop),
+}
+
+const APP_PREFIX = 'a'
+const MARKETING_PREFIX = 'm'
+
+export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
+  color?: any
+  textStyles?: Partial<Record<Breakpoint, TextStyle>>
+}>(({ theme, color, textStyles: styles }) => {
+  const parts = Object.fromEntries(
+    Object.entries(styles || {})
+      .map(([breakpoint, styleName]) => {
+        let prefix = APP_PREFIX
+        let textStyles: Record<string, any> = theme.partials.text
+
+        if (styleName.startsWith(MARKETING_PREFIX)) {
+          prefix = MARKETING_PREFIX
+          textStyles = theme.partials.marketingText
+        }
+        const key = lowerFirst(styleName.replace(new RegExp(`^${prefix}`), ''))
+
+        if (!mqs[breakpoint]) {
+          return []
+        }
+
+        return [
+          [mqs[breakpoint]],
+          {
+            ...(textStyles[key] || {}),
+          },
+        ]
+      })
+      .filter((val) => !isEmpty(val))
+  )
+
+  console.log('parts', parts)
+
+  return {
+    ...parts,
+    ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
+  }
+})
+
 export const Title2 = styled.h3(({ theme }) => ({
   ...theme.partials.marketingText.title2,
 }))
-
-const textPropFilter = {
-  shouldForwardProp: (prop) => !['color'].includes(prop),
-}
 
 export const Body1 = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({

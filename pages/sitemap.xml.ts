@@ -1,6 +1,7 @@
 import { until } from '@open-draft/until'
 
-import { getRepos, getStacks } from '@src/data/getRepos'
+import { getRepos } from '@src/data/getRepos'
+import { getStacks } from '@src/data/getStacks'
 
 import pages from '../src/generated/pages.json'
 

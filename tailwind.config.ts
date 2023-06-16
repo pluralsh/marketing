@@ -1,6 +1,5 @@
-import { styledTheme } from '@pluralsh/design-system'
+import { semanticColorCssVars, styledTheme } from '@pluralsh/design-system'
 
-import { semanticColorVars } from '@pluralsh/design-system/dist/theme/colors'
 import { mapKeys, mapValues } from 'lodash-es'
 import { type Config } from 'tailwindcss'
 
@@ -14,7 +13,7 @@ const spacing = {
 }
 const colors = {
   ...styledTheme.colors,
-  ...semanticColorVars,
+  ...semanticColorCssVars,
 }
 const screens = mapKeys(
   mapValues(breakpoints, (bp) => `${bp}px`),
