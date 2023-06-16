@@ -30,7 +30,7 @@ type MQ<
 > = `@media screen and (min-width: ${T}px) /* ${K} */`
 
 type MQs<BPs extends Record<string, number>> = {
-  [K in keyof BPs]: MQ<K, BPs[K]>
+  [K in keyof BPs]: MQ<K & string, BPs[K]>
 }
 
 export const mqs = Object.fromEntries(

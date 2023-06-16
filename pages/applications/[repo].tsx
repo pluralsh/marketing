@@ -2,10 +2,15 @@ import { type ComponentProps, useEffect } from 'react'
 
 import {
   AppIcon,
+  BrowserIcon,
+  Button,
   Card,
+  CertificateIcon,
   CheckRoundedIcon,
   Code,
   ColorModeProvider,
+  DocumentIcon,
+  GitHubIcon,
   Tooltip,
 } from '@pluralsh/design-system'
 import {
@@ -39,7 +44,7 @@ import {
   Title2,
 } from '@src/components/Typography'
 import { getAppMeta, getProviderIcon } from '@src/consts'
-import { type MinRepo, getRepos } from '@src/data/getRepos'
+import { type FullRepo, type MinRepo, getRepos } from '@src/data/getRepos'
 import {
   type Recipe,
   type RecipeFragment,
@@ -135,6 +140,8 @@ export default function App({
   if (!repo) {
     return null
   }
+  console.log('repo.community', repo.community)
+  console.log('repo', repo)
 
   return (
     <>
@@ -180,7 +187,7 @@ export default function App({
           <div>
             <Columns2
               className={classNames(
-                'gap-y-large',
+                'gap-y-xxxlarge',
                 'py-xxxxlarge',
                 'xl:py-[192px]'
               )}
@@ -203,6 +210,53 @@ export default function App({
                     data, you’ll need everything to stay within your own VPC,
                     which is best done with self-hosting open-source.
                   </Body2>
+                  <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                    {repo.community?.homepage && (
+                      <Button
+                        as="a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={repo.community?.homepage}
+                        tertiary
+                        startIcon={<BrowserIcon />}
+                      >
+                        {repo.displayName}’s website
+                      </Button>
+                    )}
+                    {repo.community?.gitUrl && (
+                      <Button
+                        as="a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={repo.community?.gitUrl}
+                        tertiary
+                        startIcon={<GitHubIcon />}
+                      >
+                        GitHub
+                      </Button>
+                    )}
+                    {repo.license?.url && (
+                      <Button
+                        as="a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={repo.license.url}
+                        tertiary
+                        startIcon={<CertificateIcon />}
+                      >
+                        License
+                      </Button>
+                    )}
+                    <Button
+                      as="a"
+                      target="_blank"
+                      href={`https://docs.plural.sh/applications/${repo.name}`}
+                      tertiary
+                      startIcon={<DocumentIcon />}
+                    >
+                      Installing {repo.displayName} docs
+                    </Button>
+                  </div>
                 </TextLimiter>
               </Col>
               <Col>
@@ -302,6 +356,8 @@ export default function App({
 }
 
 export const TextLimiter = styled.div(({ theme: _ }) => ({
+  maxWidth: 600,
+
   [mqs.columns]: {
     maxWidth: 600,
   },

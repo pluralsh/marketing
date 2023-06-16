@@ -1,5 +1,6 @@
 import { capitalize, isEmpty } from 'lodash-es'
 import memoizeOne from 'memoize-one'
+import { type SetOptional } from 'type-fest'
 
 import { filterMapNodes } from '@src/utils/graphql'
 
@@ -70,12 +71,13 @@ function inRemoveList(repoName?: string) {
   return !!REMOVE_LIST.find((name) => name === repoName)
 }
 
-function normalizeRepo<T extends Pick<FullRepoFragment, 'name' | 'recipes'>>(
-  repo: T
-) {
+function normalizeRepo<
+  T extends SetOptional<FullRepoFragment, keyof Omit<FullRepoFragment, 'name'>>
+>(repo: T) {
   const { recipes, ...props } = repo
 
   const nRecipes = normalizeRecipes(recipes)
+  const community = props.community || ({} as typeof props.community)
 
   return {
     ...props,
@@ -83,6 +85,15 @@ function normalizeRepo<T extends Pick<FullRepoFragment, 'name' | 'recipes'>>(
     recipes,
     displayName:
       ((repo as any).displayName as string) || fakeDisplayName(repo?.name),
+    community: {
+      ...community,
+      ...(!community?.gitUrl && props.gitUrl //
+        ? { gitUrl: props.gitUrl }
+        : {}),
+      ...(!community?.homepage && props.homepage //
+        ? { homepage: props.homepage }
+        : {}),
+    },
   }
 }
 

@@ -77,8 +77,6 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
       .filter((val) => !isEmpty(val))
   )
 
-  console.log('parts', parts)
-
   return {
     ...parts,
     ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),

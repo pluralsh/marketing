@@ -18,21 +18,21 @@ fragment MinRepo on Repository {
   }
   darkIcon
   description
-  # gitUrl
-  # homepage
+  gitUrl
+  homepage
   icon
   id
-  # license {
-  #   name
-  #   url
-  # }
-  # mainBranch
+  license {
+    name
+    url
+  }
+  mainBranch
   name
   private
   publisher {
     ...Publisher
   }
-  # readme
+  readme
   releaseStatus
   tags {
     tag
@@ -47,6 +47,11 @@ fragment MinRepo on Repository {
 fragment FullRepo on Repository {
   ...MinRepo
   readme
+  homepage
+  gitUrl
+  license {
+    url
+  }
   recipes {
     ...Recipe
   }
