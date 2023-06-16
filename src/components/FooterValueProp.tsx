@@ -1,35 +1,117 @@
-import { type ComponentProps } from 'react'
+import {
+  type ComponentProps,
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+} from 'react'
 
-import { TerminalIcon } from '@pluralsh/design-system'
+import {
+  Button,
+  CloudIcon,
+  EmojiIcon,
+  TerminalIcon,
+} from '@pluralsh/design-system'
+import Link from 'next/link'
 
-import styled from 'styled-components'
+import classNames from 'classnames'
+import styled, { useTheme } from 'styled-components'
+
+import { Col, Columns2, TextLimiter } from '@pages/applications/[repo]'
 
 import { ResponsiveText } from './Typography'
 
 export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
-  <div
+  <Columns2
     {...props}
-    className="v-gap-"
+    className={classNames(props.className, 'gap-y-xxxlarge')}
   >
-    <div>
-      <ResponsiveText
-        as="h2"
-        textStyles={{ '': 'mTitle1', md: 'mHero2' }}
+    <Col>
+      <TextLimiter>
+        <ResponsiveText
+          as="h2"
+          textStyles={{ '': 'mTitle1', md: 'mHero2' }}
+        >
+          Build and scale infrastructure within minutes.
+        </ResponsiveText>
+      </TextLimiter>
+      <div className="flex gap-medium mt-xlarge">
+        <Button
+          primary
+          large
+          as="a"
+          href="https://app.plural.sh/login"
+          target="_blank"
+        >
+          Get started
+        </Button>
+        <Button
+          secondary
+          large
+          as={Link}
+          href="/demo-login"
+        >
+          Explore live demo
+        </Button>
+      </div>
+    </Col>
+    <Col className="flex flex-col gap-large">
+      <ValueProp
+        title="Developer friendly"
+        icon={<TerminalIcon />}
       >
-        Build and scale infrastructure within minutes.
+        Bring your own cloud and run on top of Kubernetes with the ideal cluster
+        distribution.
+      </ValueProp>
+      <ValueProp
+        title="Built for the cloud"
+        icon={<CloudIcon />}
+      >
+        Use our simple GitOps driven workflow for deploying and managing
+        applications, and a centralized configuration in a single repo.
+      </ValueProp>
+      <ValueProp
+        title="Fully open-source"
+        icon={<EmojiIcon />}
+      >
+        We are a community first company. We are and always will be open-source.
+      </ValueProp>
+    </Col>
+  </Columns2>
+))(({ theme: _ }) => ({}))
+
+function ValueProp({
+  children,
+  title,
+  icon,
+}: {
+  children: ReactNode
+  title: ReactNode
+  icon: ReactElement
+}) {
+  const theme = useTheme()
+
+  const iconClone = cloneElement(icon, {
+    size: 18,
+    color: theme.colors['icon-secondary'],
+  })
+
+  return (
+    <div className="grid grid-cols-[min-content_auto] gap-x-medium gap-y-xsmall">
+      <div className="p-[14px]">{iconClone}</div>
+      <ResponsiveText
+        as="h3"
+        textStyles={{ '': 'mSubtitle1' }}
+        className="self-center mt-[-0.15em]"
+      >
+        <TextLimiter>{title}</TextLimiter>
+      </ResponsiveText>
+      <ResponsiveText
+        as="p"
+        textStyles={{ '': 'mBody2' }}
+        className="grid col-start-2"
+      >
+        <TextLimiter>{children}</TextLimiter>
       </ResponsiveText>
     </div>
-    <div className="flex flex-col gap-y-xxlarge gap-x-medium">
-      <div className="p-[14px]">
-        <TerminalIcon size={18} />
-      </div>
-      <div>
-        <ResponsiveText as="h3">Developer friendly</ResponsiveText>
-        <ResponsiveText as="p">
-          Bring your own cloud and run on top of Kubernetes with the ideal
-          cluster distribution.
-        </ResponsiveText>
-      </div>
-    </div>
-  </div>
-))(({ theme: _ }) => ({}))
+  )
+}

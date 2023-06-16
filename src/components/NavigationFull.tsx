@@ -60,7 +60,7 @@ export const NavWrap = styled.div((_) => ({
   flexGrow: 1,
 }))
 
-export function FullNav({
+export function NavigationFull({
   desktop = true,
   isOpen,
   setIsOpen,

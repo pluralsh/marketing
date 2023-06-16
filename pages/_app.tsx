@@ -21,10 +21,11 @@ import { SWRConfig } from 'swr'
 
 import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
+import { type FooterVariant } from '@src/components/FooterFull'
 import { type GlobalProps } from '@src/components/getGlobalProps'
 import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
-import { MaxWidthLimiter } from '@src/components/MaxWidthLimiter'
+import { PageMaxWidthLimiter } from '@src/components/MaxWidthLimiter'
 import PrimaryPage from '@src/components/PrimaryPage'
 
 // Styles
@@ -36,6 +37,7 @@ export type GlobalPageProps = {
   metaTitle?: string
   metaTitleFull?: string
   metaDescription?: string
+  footerVariant?: FooterVariant
 }
 
 type MyAppProps = AppProps<GlobalPageProps & { globalProps: GlobalProps }>
@@ -48,7 +50,7 @@ export type MarkdocHeading = {
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
 
-export const FullPage = styled(MaxWidthLimiter)((_) => ({
+export const FullPage = styled(PageMaxWidthLimiter)((_) => ({
   width: '100%',
 }))
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MaxWidthLimiter = styled.div(({ theme: _ }) => ({
+export const PageMaxWidthLimiter = styled.div(({ theme: _ }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   paddingLeft: 'var(--page-x-pad)',

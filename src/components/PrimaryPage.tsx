@@ -5,7 +5,7 @@ import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
 
 import ExternalScripts from './ExternalScripts'
-import { FullFooter } from './FullFooter'
+import { FullFooter } from './FooterFull'
 import { type GlobalProps } from './getGlobalProps'
 import HtmlHead from './HtmlHead'
 import { PageHeader } from './PageHeader'
@@ -40,7 +40,7 @@ export default function PrimaryPage({
         <PageHeader />
         {children}
         <ExternalScripts />
-        <FullFooter />
+        <FullFooter variant={pageProps.footerVariant} />
       </PagePropsContext.Provider>
     </NavDataProvider>
   )

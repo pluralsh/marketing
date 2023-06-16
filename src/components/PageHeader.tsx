@@ -16,7 +16,7 @@ import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './BreakpointProvider'
 import GithubStars from './GithubStars'
-import { MaxWidthLimiter } from './MaxWidthLimiter'
+import { PageMaxWidthLimiter } from './MaxWidthLimiter'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
@@ -124,39 +124,39 @@ const HeaderWrap = styled.div(({ theme }) => ({
   zIndex: theme.zIndexes.modal - 100,
 }))
 
-const PageHeaderInner = styled(MaxWidthLimiter).attrs(() => ({ as: 'header' }))(
-  ({ theme }) => ({
-    height: 'var(--top-nav-height)',
-    width: '100%',
+const PageHeaderInner = styled(PageMaxWidthLimiter).attrs(() => ({
+  as: 'header',
+}))(({ theme }) => ({
+  height: 'var(--top-nav-height)',
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'left',
+  '.socialIcons': {
+    display: 'none',
+    [mqs.fullHeaderSocial]: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: theme.spacing.medium,
+    },
+  },
+  '.buttons': {
+    display: 'none',
+    gap: theme.spacing.medium,
+    [mqs.fullHeader]: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  },
+  '.logoLink': {
+    display: 'flex',
+    flexShrink: 0,
+    alignItems: 'center',
+    width: 98,
+  },
+  '.rightSection, .leftSection': {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'left',
-    '.socialIcons': {
-      display: 'none',
-      [mqs.fullHeaderSocial]: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: theme.spacing.medium,
-      },
-    },
-    '.buttons': {
-      display: 'none',
-      gap: theme.spacing.medium,
-      [mqs.fullHeader]: {
-        display: 'flex',
-        alignItems: 'center',
-      },
-    },
-    '.logoLink': {
-      display: 'flex',
-      flexShrink: 0,
-      alignItems: 'center',
-      width: 98,
-    },
-    '.rightSection, .leftSection': {
-      display: 'flex',
-      alignItems: 'center',
-      gap: theme.spacing.medium,
-    },
-  })
-)
+    gap: theme.spacing.medium,
+  },
+}))

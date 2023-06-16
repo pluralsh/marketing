@@ -24,7 +24,7 @@ import { FullPage } from '@pages/_app'
 import client from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
-import { FooterValueProp } from '@src/components/FooterValueProp'
+import { FooterVariant } from '@src/components/FooterFull'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
 import { QuotesCarousel } from '@src/components/QuoteCards'
@@ -143,7 +143,7 @@ export default function App({
           <div className="py-[40px] md:pb-xxxlarge">
             <BackButton />
           </div>
-          <Columns2>
+          <Columns2 className="gap-y-xxlarge">
             <Col>
               <TextLimiter className="flex flex-col gap-large">
                 <AppPageTitle app={repo} />
@@ -178,7 +178,13 @@ export default function App({
             </Col>
           </Columns2>
           <div>
-            <Columns2 className="py-xxxxlarge xl:py-[192px]">
+            <Columns2
+              className={classNames(
+                'gap-y-large',
+                'py-xxxxlarge',
+                'xl:py-[192px]'
+              )}
+            >
               <Col>
                 <TextLimiter>
                   <Heading3
@@ -225,7 +231,7 @@ export default function App({
         <GradientBG className="flex flex-col py-xxxxlarge gap-xxxlarge">
           <FullPage>
             <div>
-              <Columns2>
+              <Columns2 className="gap-y-xxxlarge">
                 <Col>
                   <TextLimiter className="flex flex-col gap-large">
                     <Title2>Open-source and free to use</Title2>
@@ -290,9 +296,7 @@ export default function App({
           </div>
         </FullPage>
       </HeroGradientBG>
-      <FullPage>
-        <FooterValueProp />
-      </FullPage>
+      <FullPage>{/* <FooterValueProp /> */}</FullPage>
     </>
   )
 }
@@ -318,13 +322,12 @@ export function Columns2({ className, ...props }: ComponentProps<'div'>) {
       className={classNames([
         'flex',
         'flex-col',
-        'gap-large',
         'columns:flex-row',
-        'columns:gap-xlarge',
-        'xl:gap-xxlarge',
+        'columns:gap-x-xlarge',
+        'xl:gap-x-xxlarge',
         'xl:flex-row',
-        'xxl:gap-xxxxlarge',
-        'maxWidth:gap-xxxxxlarge',
+        'xxl:gap-x-xxxxlarge',
+        'maxWidth:gap-x-xxxxxlarge',
         className,
       ])}
       {...props}
@@ -394,7 +397,9 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     RecipesQueryVariables
   >({
     query: RecipesDocument,
-    variables: { repoName },
+    variables: {
+      repoName,
+    },
   })
 
   if (recipesError) {
@@ -414,6 +419,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       : null,
     recipes,
     ...getAppMeta(thisRepo),
+    footerVariant: FooterVariant.kitchenSink,
   })
 }
 

@@ -7,13 +7,13 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 import { useNavData } from '@src/contexts/NavDataContext'
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
-import { FullNav } from './FullNav'
 import GithubStars from './GithubStars'
 import useScrollLock from './hooks/useScrollLock'
 import { MainLink } from './Navigation'
+import { NavigationFull } from './NavigationFull'
 import { SocialLink } from './PageHeaderButtons'
 
-import type { NavContextValue } from './FullNav'
+import type { NavContextValue } from './NavigationFull'
 
 const MobileMainLink = styled(MainLink)(({ theme }) => ({
   paddingLeft: 0,
@@ -152,7 +152,7 @@ function NavigationMobileUnstyled({
   return (
     <div className={className}>
       <Content>
-        <FullNav
+        <NavigationFull
           desktop={false}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
