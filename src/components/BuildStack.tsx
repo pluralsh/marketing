@@ -20,7 +20,7 @@ import { mqs } from '@src/breakpoints'
 import { type getRepos } from '@src/data/getRepos'
 import { type getStacks } from '@src/data/getStacks'
 
-import { ResponsiveText } from './Typography'
+import { Cta, ResponsiveText } from './Typography'
 
 export const getStackTabData = ({
   repos,
@@ -28,56 +28,52 @@ export const getStackTabData = ({
 }: {
   repos?: Awaited<ReturnType<typeof getRepos>> | null
   stacks?: Awaited<ReturnType<typeof getStacks>> | null
-}) => {
-  console.log('getStackTabData')
-
-  return [
-    {
-      label: 'Data',
-      key: 'data',
-      stacks: stacks?.filter((stack) => ['data'].includes(stack.name)),
-      apps: repos?.filter((repo) =>
-        [
-          'airbyte',
-          'dagster',
-          'growthbook',
-          'clickhouse',
-          'datahub',
-          'posthog',
-          'jitsu',
-          'lightdash',
-        ].includes(repo.name)
-      ),
-    },
-    {
-      label: 'DevOps',
-      key: 'devops',
-      stacks: stacks?.filter((stack) => ['devops'].includes(stack.name)),
-      apps: repos?.filter((repo) =>
-        [
-          'argo-cd',
-          'sentry',
-          'grafana',
-          'kubecost',
-          'bytebase',
-          'jenkins',
-          'istio',
-          'kubeflow',
-        ].includes(repo.name)
-      ),
-    },
-    {
-      label: 'Security',
-      key: 'security',
-      stacks: stacks?.filter((stack) => ['security'].includes(stack.name)),
-      apps: repos?.filter((repo) =>
-        ['kubescape', 'istio', 'vault', 'hydra', 'oauth2-proxy'].includes(
-          repo.name
-        )
-      ),
-    },
-  ]
-}
+}) => [
+  {
+    label: 'Data',
+    key: 'data',
+    stacks: stacks?.filter((stack) => ['data'].includes(stack.name)),
+    apps: repos?.filter((repo) =>
+      [
+        'airbyte',
+        'dagster',
+        'growthbook',
+        'clickhouse',
+        'datahub',
+        'posthog',
+        'jitsu',
+        'lightdash',
+      ].includes(repo.name)
+    ),
+  },
+  {
+    label: 'DevOps',
+    key: 'devops',
+    stacks: stacks?.filter((stack) => ['devops'].includes(stack.name)),
+    apps: repos?.filter((repo) =>
+      [
+        'argo-cd',
+        'sentry',
+        'grafana',
+        'kubecost',
+        'bytebase',
+        'jenkins',
+        'istio',
+        'kubeflow',
+      ].includes(repo.name)
+    ),
+  },
+  {
+    label: 'Security',
+    key: 'security',
+    stacks: stacks?.filter((stack) => ['security'].includes(stack.name)),
+    apps: repos?.filter((repo) =>
+      ['kubescape', 'istio', 'vault', 'hydra', 'oauth2-proxy'].includes(
+        repo.name
+      )
+    ),
+  },
+]
 
 export default function BuildStack({
   tabs,
@@ -87,10 +83,6 @@ export default function BuildStack({
   const tabStateRef = useRef<any>()
   const [curTabKey, setCurTabKey] = useState('data')
   const curTab = tabs.find((tab) => tab.key === curTabKey)
-
-  console.log('curTabKey', curTabKey)
-  console.log('curTab', curTab)
-  console.log('tabs', tabs)
 
   return (
     <ColorModeProvider mode="light">
@@ -148,7 +140,6 @@ export default function BuildStack({
                   </div>
                   <div className="stackApps">
                     {(stack.collections?.[0]?.bundles || []).map((b) => {
-                      console.log('b', b)
                       const repo = b?.recipe.repository
 
                       return (
@@ -162,29 +153,31 @@ export default function BuildStack({
                 </BuildStackCard>
               ))}
 
-              {curTab?.apps?.map((app) => {
-                console.log('app', app)
-
-                return (
-                  <BuildStackCard
-                    $variant="app"
-                    key={`app-${app.name}`}
-                    href={`/applications/${app.name}`}
-                  >
-                    <div className="appBox">
-                      <AppIcon
-                        size="xsmall"
-                        url={app.icon || app.darkIcon || ''}
-                      />
-                      <div className="appTitleBox">
-                        <div className="title"> {app.displayName}</div>
-                        <div className="category">{app.category}</div>
-                      </div>
+              {curTab?.apps?.map((app) => (
+                <BuildStackCard
+                  $variant="app"
+                  key={`app-${app.name}`}
+                  href={`/applications/${app.name}`}
+                >
+                  <div className="appBox">
+                    <AppIcon
+                      size="xsmall"
+                      url={app.icon || app.darkIcon || ''}
+                    />
+                    <div className="appTitleBox">
+                      <div className="title"> {app.displayName}</div>
+                      <div className="category">{app.category}</div>
                     </div>
-                  </BuildStackCard>
-                )
-              })}
+                  </div>
+                </BuildStackCard>
+              ))}
             </TabPanel>
+            <Cta
+              className="mt-large"
+              href="/marketplace"
+            >
+              Explore the Marketplace
+            </Cta>
           </div>
         </FullPage>
       </div>
@@ -233,6 +226,7 @@ const BuildStackCard = styled(Link)<{ $variant: 'app' | 'stack' }>(
       ...theme.partials.text.caption,
       color: theme.colors['text-light'],
     },
+    [mqs.columns]: {},
   })
 )
 

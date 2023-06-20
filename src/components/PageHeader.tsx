@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 import {
   Button,
@@ -117,13 +117,44 @@ export function PageHeader({ ...props }) {
   )
 }
 
-const HeaderWrap = styled.div(({ theme }) => ({
+const HeaderWrap = styled(({ children, ...props }) => {
+  const filterId = useId()
+
+  return (
+    <div
+      style={{
+        backdropFilter: `blur(7px) url(#${filterId})`,
+      }}
+      {...props}
+    >
+      <svg
+        className="hide"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <filter id={filterId}>
+          <feColorMatrix
+            type="matrix"
+            values="0.220  0.000 -0.030  0.000  0.07 
+                    0.000  0.220 -0.050  0.000  0.07 
+                    0.000  0.000  0.220  0.000  0.08  
+                    0.000  0.000  0.000  1.000  0.500"
+          />
+        </filter>
+      </svg>
+      {children}
+    </div>
+  )
+})(({ theme }) => ({
   top: 0,
   left: 0,
   right: 0,
   position: 'fixed',
-  background: theme.colors['fill-zero'],
+  // background: `rgba(0, 0, 0, 0.7)`,
+  // backdropFilter: 'blur(7.5px)',
   zIndex: theme.zIndexes.modal - 100,
+  '& > .hide': {
+    display: 'none',
+  },
 }))
 
 const PageHeaderInner = styled(PageMaxWidthLimiter).attrs(() => ({

@@ -239,6 +239,9 @@ export const Cta = styled(({ children, ...props }) => {
   ...theme.partials.marketingText.body2Bold,
   fontWeight: 500,
   cursor: 'pointer',
+  '&, &:any-link': {
+    color: theme.colors.text,
+  },
   '&:hover': {
     [CtaIcon]: {
       transform: 'translate(20%)',

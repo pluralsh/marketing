@@ -183,8 +183,6 @@ export default function App({
   if (!repo) {
     return null
   }
-  console.log('repo.community', repo.community)
-  console.log('repo', repo)
 
   return (
     <HeaderPad as={GradientBG}>
