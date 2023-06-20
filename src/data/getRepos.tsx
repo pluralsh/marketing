@@ -143,11 +143,15 @@ export async function getRepos(): Promise<MinRepo[]> {
 
 const fullRepoCache: Record<string, FullRepo> = {}
 
-export async function getRepo(repoName: string): Promise<FullRepo> {
+export async function getFullRepo(repoName: string): Promise<FullRepo> {
+  console.log('KLINKY getFullRepo', repoName)
   const { data, error } = await client.query<RepoQuery, RepoQueryVariables>({
     query: RepoDocument,
     variables: { name: repoName },
   })
+
+  console.log('KLINKY data', data)
+  console.log('KLINKY error', error)
 
   if (error) {
     throw new Error(`${error.name}: ${error.message}`)

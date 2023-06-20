@@ -108,7 +108,9 @@ export default function StackHero({ stack }: { stack: MinStack }) {
         <div className="flex flex-row gap-medium">
           <div className="flex flex-col gap-xsmall grow">
             <Heading1>{stack.displayName}</Heading1>
-            <Label>{stack?.collections?.length} Apps</Label>
+            {stack?.collections?.[0]?.bundles?.length ?? (
+              <Label>{stack?.collections?.[0]?.bundles?.length} Apps</Label>
+            )}
           </div>
           <div>
             <Chip

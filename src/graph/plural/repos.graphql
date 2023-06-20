@@ -9,30 +9,15 @@ fragment Publisher on Publisher {
 
 fragment MinRepo on Repository {
   category
-  community {
-    discord
-    slack
-    homepage
-    gitUrl
-    twitter
-  }
   darkIcon
   description
-  gitUrl
-  homepage
   icon
   id
-  license {
-    name
-    url
-  }
-  mainBranch
   name
   private
   publisher {
     ...Publisher
   }
-  readme
   releaseStatus
   tags {
     tag
@@ -42,18 +27,54 @@ fragment MinRepo on Repository {
   recipes {
     ...MinRecipe
   }
+
+  # Remove later when repositories q is public
+  readme
+  mainBranch
+  homepage
+  gitUrl
+  license {
+    name
+    url
+  }
+  community {
+    discord
+    slack
+    homepage
+    gitUrl
+    twitter
+  }
 }
 
 fragment FullRepo on Repository {
   ...MinRepo
   readme
+  mainBranch
   homepage
   gitUrl
   license {
+    name
     url
+  }
+  community {
+    discord
+    slack
+    homepage
+    gitUrl
+    twitter
   }
   recipes {
     ...Recipe
+  }
+}
+
+query Repos {
+  repositories(first: 5000) {
+    edges {
+      node {
+        ...MinRepo
+      }
+    }
   }
 }
 

@@ -7,7 +7,7 @@ import {
 } from '@pluralsh/design-system'
 
 import { isEmpty, lowerFirst } from 'lodash-es'
-import styled from 'styled-components'
+import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
@@ -41,11 +41,24 @@ type TextStyle =
   | `a${PascalCase<keyof typeof styledTheme.partials.marketingText>}`
 
 const textPropFilter = {
-  shouldForwardProp: (prop) => !['color', 'styles'].includes(prop),
+  shouldForwardProp: (prop) => !['color', 'textStyles'].includes(prop),
 }
 
 const APP_PREFIX = 'a'
 const MARKETING_PREFIX = 'm'
+
+function getTextStylesFromString(theme: DefaultTheme, styleName: string) {
+  let prefix = APP_PREFIX
+  let textStyles: Record<string, any> = theme.partials.text
+
+  if (styleName.startsWith(MARKETING_PREFIX)) {
+    prefix = MARKETING_PREFIX
+    textStyles = theme.partials.marketingText
+  }
+  const key = lowerFirst(styleName.replace(new RegExp(`^${prefix}`), ''))
+
+  return textStyles[key]
+}
 
 export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
   color?: any
@@ -54,23 +67,15 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
   const parts = Object.fromEntries(
     Object.entries(styles || {})
       .map(([breakpoint, styleName]) => {
-        let prefix = APP_PREFIX
-        let textStyles: Record<string, any> = theme.partials.text
-
-        if (styleName.startsWith(MARKETING_PREFIX)) {
-          prefix = MARKETING_PREFIX
-          textStyles = theme.partials.marketingText
-        }
-        const key = lowerFirst(styleName.replace(new RegExp(`^${prefix}`), ''))
-
-        if (!mqs[breakpoint]) {
+        if (!breakpoint || !mqs[breakpoint]) {
           return []
         }
+        const textStyles = getTextStylesFromString(theme, styleName)
 
         return [
           [mqs[breakpoint]],
           {
-            ...(textStyles[key] || {}),
+            ...(textStyles || {}),
           },
         ]
       })
@@ -78,6 +83,7 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
   )
 
   return {
+    ...(styles?.[''] ? getTextStylesFromString(theme, styles['']) || {} : {}),
     ...parts,
     ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
   }

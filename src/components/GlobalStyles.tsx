@@ -62,9 +62,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       '--top-nav-link-h-pad': 0,
       [mqs.lg]: {},
       [mqs.xl]: {},
-      '--page-max-width': `${
-        breakpoints.md - (theme.spacing.large - 20) * 2
-      }px`,
+      '--page-max-width': `${breakpoints.md - theme.spacing.large * 2}px`,
     },
     [mqs.md]: {
       ':root': {

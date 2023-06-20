@@ -4,11 +4,9 @@ import {
   AppIcon,
   BrowserIcon,
   Button,
-  Card,
   CertificateIcon,
   CheckRoundedIcon,
   Code,
-  ColorModeProvider,
   DocumentIcon,
   GitHubIcon,
   Tooltip,
@@ -20,6 +18,7 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 
+import { until } from '@open-draft/until'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
@@ -28,6 +27,7 @@ import styled, { useTheme } from 'styled-components'
 import { FullPage } from '@pages/_app'
 import client from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
+import BuildStack, { getStackTabData } from '@src/components/BuildStack'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
@@ -44,7 +44,13 @@ import {
   Title2,
 } from '@src/components/Typography'
 import { getAppMeta, getProviderIcon } from '@src/consts'
-import { type FullRepo, type MinRepo, getRepos } from '@src/data/getRepos'
+import {
+  type FullRepo,
+  type MinRepo,
+  // getFullRepo,
+  getRepos,
+} from '@src/data/getRepos'
+import { getStacks } from '@src/data/getStacks'
 import {
   type Recipe,
   type RecipeFragment,
@@ -118,6 +124,7 @@ type ProviderProps = {
 export default function App({
   repo,
   recipes,
+  buildStackTabs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const tabs =
@@ -328,16 +335,7 @@ export default function App({
             </div>
           </FullPage>
         </GradientBG>
-        {/* Put in a ColorModeProvider */}
-        <ColorModeProvider mode="light">
-          <div className="bg-fill-zero">
-            <FullPage className="py-xxlarge">
-              <Card padding="medium">
-                <Heading1>Stuff</Heading1>
-              </Card>
-            </FullPage>
-          </div>
-        </ColorModeProvider>
+        {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
         <FullPage>
           <CompanyLogos className="mt-xxxxlarge" />
         </FullPage>
@@ -434,15 +432,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export type AppPageProps = {
-  repo?: MinRepo | null
+  repo?: FullRepo | null
   recipes?: Recipe[]
+  buildStackTabs?: ReturnType<typeof getStackTabData>
 }
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo
 
-  const repos = await getRepos()
-  const thisRepo = repos.find((r) => r.name === repoName)
+  const { data: repos, error: reposError } = await until(() => getRepos())
+
+  // const { data: repo, error: repoError } = await until(() =>
+  //   getFullRepo(`${repoName}`)
+  // )
+
+  const { data: stacks, error: stacksError } = await until(() => getStacks())
+
+  const thisRepo = repos?.find((r) => r.name === repoName)
+  // const thisRepo = repo
 
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
@@ -457,6 +464,8 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       repoName,
     },
   })
+
+  const buildStackTabs = getStackTabData({ repos, stacks })
 
   if (recipesError) {
     throw new Error(`${recipesError.name}: ${recipesError.message}`)
@@ -476,6 +485,12 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     recipes,
     ...getAppMeta(thisRepo),
     footerVariant: FooterVariant.kitchenSink,
+    buildStackTabs,
+    errors: [
+      ...(reposError ? [reposError] : []),
+      ...(stacksError ? [reposError] : []),
+      // ...(repoError ? [repoError] : []),
+    ],
   })
 }
 

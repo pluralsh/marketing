@@ -34,14 +34,18 @@ function inRemoveList(stackName?: string) {
   return !!REMOVE_LIST.find((name) => name === stackName)
 }
 
+function fakeDisplayName(name?: string) {
+  return name || ''
+}
+
 function normalizeStack<T extends { name?: string }>(stack: T) {
   return stack
 
-  //   return {
-  //     ...stack,
-  //     displayName:
-  //       ((stack as any).displayName as string) || fakeDisplayName(stack?.name),
-  //   }
+  return {
+    ...stack,
+    displayName:
+      ((stack as any).displayName as string) || fakeDisplayName(stack?.name),
+  }
 }
 
 function filterStack<T extends { name?: string } | null | undefined>(
