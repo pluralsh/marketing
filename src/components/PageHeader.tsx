@@ -119,11 +119,30 @@ export function PageHeader({ ...props }) {
 
 const HeaderWrap = styled(({ children, ...props }) => {
   const filterId = useId()
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.currentTarget.scroll) {
+        setHasScrolled(window.scrollY !== 0)
+      }
+    }
+
+    setHasScrolled(window.scrollY !== 0)
+
+    window.addEventListener('scroll', listener, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', listener)
+    }
+  }, [])
 
   return (
     <div
       style={{
-        backdropFilter: `blur(7px) url(#${filterId})`,
+        backdropFilter: hasScrolled
+          ? `blur(7px) url(#${filterId}) opacity(1)`
+          : `blur(7px) url(#${filterId}) opacity(0)`,
       }}
       {...props}
     >
@@ -149,8 +168,7 @@ const HeaderWrap = styled(({ children, ...props }) => {
   left: 0,
   right: 0,
   position: 'fixed',
-  // background: `rgba(0, 0, 0, 0.7)`,
-  // backdropFilter: 'blur(7.5px)',
+  transition: 'all 3s ease',
   zIndex: theme.zIndexes.modal - 100,
   '& > .hide': {
     display: 'none',
