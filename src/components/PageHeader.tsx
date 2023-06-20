@@ -119,7 +119,9 @@ export function PageHeader({ ...props }) {
 
 const HeaderWrap = styled.div(({ theme }) => ({
   top: 0,
-  position: 'sticky',
+  left: 0,
+  right: 0,
+  position: 'fixed',
   background: theme.colors['fill-zero'],
   zIndex: theme.zIndexes.modal - 100,
 }))

@@ -33,6 +33,8 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import { BackButton } from '@src/components/Nav'
 import { QuotesCarousel } from '@src/components/QuoteCards'
+import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
+import { SingleAccordion } from '@src/components/SingleAccordion'
 import {
   AppTitle,
   Body1,
@@ -60,7 +62,7 @@ import {
 } from '@src/generated/graphqlPlural'
 
 import { CompanyLogos } from '../../src/components/CompanyLogos'
-import { GradientBG, HeroGradientBG } from '../../src/components/GradientBGs'
+import { HeaderPad } from '../../src/components/GradientBGs'
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -121,6 +123,40 @@ type ProviderProps = {
   iconLight: string
 }
 
+const GradientBG = styled(
+  ({ children, position: _position, image: _image, ...props }) => (
+    <div {...props}>
+      <div className="bg" />
+      <div className="content">{children}</div>
+    </div>
+  )
+)<{ position?: string; image?: string }>(
+  ({
+    theme,
+    position = 'top center',
+    image = '/images/gradients/gradient-bg-1.jpg',
+  }) => ({
+    position: 'relative',
+    '.bg': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundImage: `url(${image})`,
+      backgroundPosition: position,
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: theme.colors['fill-zero'],
+      filter: 'blur(10px)',
+    },
+    '.content': {
+      position: 'relative',
+    },
+  })
+)
+
 export default function App({
   repo,
   recipes,
@@ -151,205 +187,206 @@ export default function App({
   console.log('repo', repo)
 
   return (
-    <>
-      <HeroGradientBG>
-        <FullPage>
-          <div className="py-[40px] md:pb-xxxlarge">
-            <BackButton />
-          </div>
-          <Columns2 className="gap-y-xxlarge">
-            <Col>
-              <TextLimiter className="flex flex-col gap-large">
-                <AppPageTitle app={repo} />
-                <Body1 color="text-light">
-                  {repo.description}
-                  {/* Orchestrate all your applications to work in harmony with{' '}
+    <HeaderPad as={GradientBG}>
+      <FullPage>
+        <div className="py-[40px] md:pb-xxxlarge">
+          <BackButton />
+        </div>
+        <Columns2 className="gap-y-xxlarge">
+          <Col>
+            <TextLimiter className="flex flex-col gap-large">
+              <AppPageTitle app={repo} />
+              <Body1 color="text-light">
+                {repo.description}
+                {/* Orchestrate all your applications to work in harmony with{' '}
                 {repo.displayName} on Plural. */}
-                </Body1>
-                <div className="flex flex-col gap-medium">
-                  <Overline>Available providers</Overline>
-                  {!isEmpty(tabs) && (
-                    <div className="flex gap-small">
-                      {tabs.map((provider) => (
-                        <ProviderIcon
-                          key={provider.key}
-                          label={provider.label}
-                          iconLight={provider.iconLight}
-                          iconDark={provider.iconDark}
-                        />
-                      ))}
-                    </div>
+              </Body1>
+              <div className="flex flex-col gap-medium">
+                <Overline>Available providers</Overline>
+                {!isEmpty(tabs) && (
+                  <div className="flex gap-small">
+                    {tabs.map((provider) => (
+                      <ProviderIcon
+                        key={provider.key}
+                        label={provider.label}
+                        iconLight={provider.iconLight}
+                        iconDark={provider.iconDark}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </TextLimiter>
+          </Col>
+          <Col>
+            <Embed
+              className="m-0 p-0"
+              url="https://www.youtube.com/watch?v=mFDA-718RhI"
+              aspectRatio="16 / 9"
+            />
+          </Col>
+        </Columns2>
+        <div
+          className={classNames(
+            'flex',
+            'flex-col',
+            'gap-large',
+            'py-xxxxlarge',
+            'xl:py-[192px]'
+          )}
+        >
+          <Columns2 className={classNames('gap-y-xxxlarge')}>
+            <Col>
+              <TextLimiter>
+                <Heading3
+                  className="mb-large"
+                  as="h2"
+                >
+                  Why use {repo.displayName} on Plural?
+                </Heading3>
+                <Body2>
+                  You’re likely spending time weighing the benefits of
+                  self-hosting with the convenience and cost of managed
+                  services. Skip the pro-con discussions and get the best of
+                  both worlds with Plural. Automate and orchestrate your ETL, ML
+                  jobs, and DevOps tasks without taking on the Ops burden or
+                  managed service cost. Especially if you’re handling PII data,
+                  you’ll need everything to stay within your own VPC, which is
+                  best done with self-hosting open-source.
+                </Body2>
+                <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                  {repo.community?.homepage && (
+                    <Button
+                      as="a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={repo.community?.homepage}
+                      tertiary
+                      startIcon={<BrowserIcon />}
+                    >
+                      {repo.displayName}’s website
+                    </Button>
                   )}
+                  {repo.community?.gitUrl && (
+                    <Button
+                      as="a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={repo.community?.gitUrl}
+                      tertiary
+                      startIcon={<GitHubIcon />}
+                    >
+                      GitHub
+                    </Button>
+                  )}
+                  {repo.license?.url && (
+                    <Button
+                      as="a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={repo.license.url}
+                      tertiary
+                      startIcon={<CertificateIcon />}
+                    >
+                      License
+                    </Button>
+                  )}
+                  <Button
+                    as="a"
+                    target="_blank"
+                    href={`https://docs.plural.sh/applications/${repo.name}`}
+                    tertiary
+                    startIcon={<DocumentIcon />}
+                  >
+                    Installing {repo.displayName} docs
+                  </Button>
                 </div>
               </TextLimiter>
             </Col>
             <Col>
-              <Embed
-                className="m-0 p-0"
-                url="https://www.youtube.com/watch?v=mFDA-718RhI"
-                aspectRatio="16 / 9"
-              />
+              {tabs && tabs.length > 0 && (
+                <div className="flex flex-col gap-medium">
+                  <Body2 className="columns:mt-[17px]">
+                    Deploying {repo.displayName} is a matter of executing these
+                    2 commands:
+                  </Body2>
+                  <Code tabs={tabs} />
+                  <Code>
+                    {`plural deploy --commit "deploying ${repo.name}"`}
+                  </Code>
+                </div>
+              )}
+              <Cta
+                className="mt-xlarge"
+                href={`https://docs.plural.sh/applications/${repo.name}`}
+              >
+                Read the install documentation
+              </Cta>
             </Col>
           </Columns2>
-          <div>
-            <Columns2
-              className={classNames(
-                'gap-y-xxxlarge',
-                'py-xxxxlarge',
-                'xl:py-[192px]'
-              )}
-            >
-              <Col>
-                <TextLimiter>
-                  <Heading3
-                    className="mb-large"
-                    as="h2"
-                  >
-                    Why use {repo.displayName} on Plural?
-                  </Heading3>
-                  <Body2>
-                    You’re likely spending time weighing the benefits of
-                    self-hosting with the convenience and cost of managed
-                    services. Skip the pro-con discussions and get the best of
-                    both worlds with Plural. Automate and orchestrate your ETL,
-                    ML jobs, and DevOps tasks without taking on the Ops burden
-                    or managed service cost. Especially if you’re handling PII
-                    data, you’ll need everything to stay within your own VPC,
-                    which is best done with self-hosting open-source.
-                  </Body2>
-                  <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
-                    {repo.community?.homepage && (
-                      <Button
-                        as="a"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={repo.community?.homepage}
-                        tertiary
-                        startIcon={<BrowserIcon />}
-                      >
-                        {repo.displayName}’s website
-                      </Button>
-                    )}
-                    {repo.community?.gitUrl && (
-                      <Button
-                        as="a"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={repo.community?.gitUrl}
-                        tertiary
-                        startIcon={<GitHubIcon />}
-                      >
-                        GitHub
-                      </Button>
-                    )}
-                    {repo.license?.url && (
-                      <Button
-                        as="a"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={repo.license.url}
-                        tertiary
-                        startIcon={<CertificateIcon />}
-                      >
-                        License
-                      </Button>
-                    )}
-                    <Button
-                      as="a"
-                      target="_blank"
-                      href={`https://docs.plural.sh/applications/${repo.name}`}
-                      tertiary
-                      startIcon={<DocumentIcon />}
-                    >
-                      Installing {repo.displayName} docs
-                    </Button>
-                  </div>
-                </TextLimiter>
-              </Col>
-              <Col>
-                {tabs && tabs.length > 0 && (
-                  <div className="flex flex-col gap-medium">
-                    <Body2 className="columns:mt-[17px]">
-                      Deploying {repo.displayName} is a matter of executing
-                      these 2 commands:
-                    </Body2>
-                    <Code tabs={tabs} />
-                    <Code>
-                      {`plural deploy --commit "deploying ${repo.name}"`}
-                    </Code>
-                  </div>
-                )}
-                <Cta
-                  className="mt-xlarge"
-                  href={`https://docs.plural.sh/applications/${repo.name}`}
-                >
-                  Read the install documentation
-                </Cta>
-              </Col>
-            </Columns2>
-          </div>
-        </FullPage>
-        <GradientBG className="flex flex-col py-xxxxlarge gap-xxxlarge">
-          <FullPage>
-            <div>
-              <Columns2 className="gap-y-xxxlarge">
-                <Col>
-                  <TextLimiter className="flex flex-col gap-large">
-                    <Title2>Open-source and free to use</Title2>
-                    <Body2>
-                      Plural automates the deployment and operation of{' '}
-                      {repo.displayName} in your cloud. Get up and running with
-                      your {repo.displayName} instance in minutes and let Plural
-                      deploy {repo.displayName} and all its dependencies into
-                      your cloud with all of the day-2 operations handled out of
-                      the box.
-                    </Body2>
-                    <Cta href="https://www.plural.sh/demo-login">
-                      Explore {repo.displayName} on Plural in live demo
-                      environment
-                    </Cta>
-                  </TextLimiter>
-                </Col>
-                <Col className="flex flex-col gap-large">
-                  <Checklist>
-                    <ChecklistItem>Automated upgrades</ChecklistItem>
-                    <ChecklistItem>
-                      Transparent pricing and cost management{' '}
-                    </ChecklistItem>
-                    <ChecklistItem>
-                      Prebuilt dashboards, extendable{' '}
-                    </ChecklistItem>
-                    <ChecklistItem>
-                      Prebuilt runbooks, extendable{' '}
-                    </ChecklistItem>
-                    <ChecklistItem>Log management </ChecklistItem>
-                  </Checklist>
-                </Col>
-              </Columns2>
-              <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-                <img
-                  src="/images/application/product-value@2x.png"
-                  alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-                />
-              </div>
+          <SingleAccordion label={`${repo.displayName}’s readme`}>
+            <div className="mt-medium mx-auto max-w-[800px]">
+              <RepoReadmeMd
+                text={repo.readme ?? ''}
+                gitUrl={repo.gitUrl ?? ''}
+                mainBranch={repo.mainBranch ?? ''}
+              />
             </div>
-          </FullPage>
-        </GradientBG>
-        {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
-        <FullPage>
-          <CompanyLogos className="mt-xxxxlarge" />
-        </FullPage>
-        <FullPage>
-          <div className="my-xxxxxlarge">
-            <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-              What companies are saying about Plural
-            </Heading1>
-            <QuotesCarousel />
+          </SingleAccordion>
+        </div>
+      </FullPage>
+      <FullPage>
+        <div>
+          <Columns2 className="gap-y-xxxlarge">
+            <Col>
+              <TextLimiter className="flex flex-col gap-large">
+                <Title2>Open-source and free to use</Title2>
+                <Body2>
+                  Plural automates the deployment and operation of{' '}
+                  {repo.displayName} in your cloud. Get up and running with your{' '}
+                  {repo.displayName} instance in minutes and let Plural deploy{' '}
+                  {repo.displayName} and all its dependencies into your cloud
+                  with all of the day-2 operations handled out of the box.
+                </Body2>
+                <Cta href="https://www.plural.sh/demo-login">
+                  Explore {repo.displayName} on Plural in live demo environment
+                </Cta>
+              </TextLimiter>
+            </Col>
+            <Col className="flex flex-col gap-large">
+              <Checklist>
+                <ChecklistItem>Automated upgrades</ChecklistItem>
+                <ChecklistItem>
+                  Transparent pricing and cost management{' '}
+                </ChecklistItem>
+                <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
+                <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
+                <ChecklistItem>Log management </ChecklistItem>
+              </Checklist>
+            </Col>
+          </Columns2>
+          <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
+            <img
+              src="/images/application/product-value@2x.png"
+              alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
+            />
           </div>
-        </FullPage>
-      </HeroGradientBG>
+        </div>
+      </FullPage>
+      {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
+      <FullPage>
+        <CompanyLogos className="mt-xxxxlarge" />
+      </FullPage>
+      <FullPage>
+        <div className="my-xxxxxlarge">
+          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+            What companies are saying about Plural
+          </Heading1>
+          <QuotesCarousel />
+        </div>
+      </FullPage>
       <FullPage>{/* <FooterValueProp /> */}</FullPage>
-    </>
+    </HeaderPad>
   )
 }
 

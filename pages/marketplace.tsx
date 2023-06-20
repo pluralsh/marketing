@@ -25,6 +25,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/components/getGlobalProps'
+import { HeaderPad } from '@src/components/GradientBGs'
 import { MarketplaceCarousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/MarketplaceFilters'
@@ -369,7 +370,7 @@ export default function Marketplace({
   }
 
   return (
-    <FullPage>
+    <FullPage as={HeaderPad}>
       <MarketplacePage className="mb-xxxxlarge">
         <div className="my-xxlarge xxl:mb-[80px]">
           <Heading1
