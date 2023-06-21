@@ -333,7 +333,7 @@ export default function App({
           </Columns2>
           {repo?.readme && (
             <SingleAccordion label={`${repo.displayName}’s readme`}>
-              <div className="mt-medium mx-auto max-w-[800px]">
+              <div className="pt-medium pb-xlarge mx-auto max-w-[800px]">
                 <RepoReadmeMd
                   text={repo.readme ?? ''}
                   gitUrl={repo.gitUrl ?? ''}
