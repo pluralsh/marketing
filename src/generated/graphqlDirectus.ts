@@ -24,6 +24,9 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  apps: Array<Apps>;
+  apps_aggregated: Array<Apps_Aggregated>;
+  apps_by_id?: Maybe<Apps>;
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
@@ -34,6 +37,32 @@ export type Query = {
   nav_list_aggregated: Array<Nav_List_Aggregated>;
   nav_list_by_id?: Maybe<Nav_List>;
   site_settings?: Maybe<Site_Settings>;
+};
+
+
+export type QueryAppsArgs = {
+  filter?: InputMaybe<Apps_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryApps_AggregatedArgs = {
+  filter?: InputMaybe<Apps_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryApps_By_IdArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -112,6 +141,55 @@ export type QueryNav_List_AggregatedArgs = {
 
 export type QueryNav_List_By_IdArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type Apps = {
+  __typename?: 'apps';
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  heroVideo?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+export type Apps_Aggregated = {
+  __typename?: 'apps_aggregated';
+  avg?: Maybe<Apps_Aggregated_Fields>;
+  avgDistinct?: Maybe<Apps_Aggregated_Fields>;
+  count?: Maybe<Apps_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Apps_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Apps_Aggregated_Fields>;
+  min?: Maybe<Apps_Aggregated_Fields>;
+  sum?: Maybe<Apps_Aggregated_Fields>;
+  sumDistinct?: Maybe<Apps_Aggregated_Fields>;
+};
+
+export type Apps_Aggregated_Count = {
+  __typename?: 'apps_aggregated_count';
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  heroVideo?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Apps_Aggregated_Fields = {
+  __typename?: 'apps_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Apps_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  heroVideo?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Boolean_Filter_Operators = {
@@ -440,6 +518,15 @@ export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
 
+export type AppExtrasFragment = { __typename?: 'apps', name?: string | null, heroVideo?: string | null };
+
+export type AppExtrasQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type AppExtrasQuery = { __typename?: 'Query', apps: Array<{ __typename?: 'apps', name?: string | null, heroVideo?: string | null }> };
+
 export const EventFragmentDoc = gql`
     fragment Event on events {
   id
@@ -485,6 +572,12 @@ export const SiteSettingsFragmentDoc = gql`
   og_description
 }
     ${NavListDepth3FragmentDoc}`;
+export const AppExtrasFragmentDoc = gql`
+    fragment AppExtras on apps {
+  name
+  heroVideo
+}
+    `;
 export const EventsDocument = gql`
     query Events {
   events {
@@ -553,3 +646,38 @@ export function useSiteSettingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type SiteSettingsQueryHookResult = ReturnType<typeof useSiteSettingsQuery>;
 export type SiteSettingsLazyQueryHookResult = ReturnType<typeof useSiteSettingsLazyQuery>;
 export type SiteSettingsQueryResult = Apollo.QueryResult<SiteSettingsQuery, SiteSettingsQueryVariables>;
+export const AppExtrasDocument = gql`
+    query AppExtras($name: String) {
+  apps(filter: {name: {_eq: $name}}) {
+    ...AppExtras
+  }
+}
+    ${AppExtrasFragmentDoc}`;
+
+/**
+ * __useAppExtrasQuery__
+ *
+ * To run a query within a React component, call `useAppExtrasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAppExtrasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAppExtrasQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useAppExtrasQuery(baseOptions?: Apollo.QueryHookOptions<AppExtrasQuery, AppExtrasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AppExtrasQuery, AppExtrasQueryVariables>(AppExtrasDocument, options);
+      }
+export function useAppExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AppExtrasQuery, AppExtrasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AppExtrasQuery, AppExtrasQueryVariables>(AppExtrasDocument, options);
+        }
+export type AppExtrasQueryHookResult = ReturnType<typeof useAppExtrasQuery>;
+export type AppExtrasLazyQueryHookResult = ReturnType<typeof useAppExtrasLazyQuery>;
+export type AppExtrasQueryResult = Apollo.QueryResult<AppExtrasQuery, AppExtrasQueryVariables>;

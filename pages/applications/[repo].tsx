@@ -25,7 +25,7 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { FullPage } from '@pages/_app'
-import client from '@src/apollo-client'
+import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import BuildStack, { getStackTabData } from '@src/components/BuildStack'
 import Embed from '@src/components/Embed'
@@ -54,6 +54,12 @@ import {
 } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import {
+  AppExtrasDocument,
+  type AppExtrasFragment,
+  type AppExtrasQuery,
+  type AppExtrasQueryVariables,
+} from '@src/generated/graphqlDirectus'
+import {
   type Recipe,
   type RecipeFragment,
   RecipesDocument,
@@ -63,6 +69,8 @@ import {
 
 import { CompanyLogos } from '../../src/components/CompanyLogos'
 import { HeaderPad } from '../../src/components/GradientBGs'
+
+const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=mFDA-718RhI'
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -159,6 +167,7 @@ const GradientBG = styled(
 
 export default function App({
   repo,
+  appExtras,
   recipes,
   buildStackTabs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -219,7 +228,7 @@ export default function App({
           <Col>
             <Embed
               className="m-0 p-0"
-              url="https://www.youtube.com/watch?v=mFDA-718RhI"
+              url={appExtras?.heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
           </Col>
@@ -322,15 +331,17 @@ export default function App({
               </Cta>
             </Col>
           </Columns2>
-          <SingleAccordion label={`${repo.displayName}’s readme`}>
-            <div className="mt-medium mx-auto max-w-[800px]">
-              <RepoReadmeMd
-                text={repo.readme ?? ''}
-                gitUrl={repo.gitUrl ?? ''}
-                mainBranch={repo.mainBranch ?? ''}
-              />
-            </div>
-          </SingleAccordion>
+          {repo?.readme && (
+            <SingleAccordion label={`${repo.displayName}’s readme`}>
+              <div className="mt-medium mx-auto max-w-[800px]">
+                <RepoReadmeMd
+                  text={repo.readme ?? ''}
+                  gitUrl={repo.gitUrl ?? ''}
+                  mainBranch={repo.mainBranch ?? ''}
+                />
+              </div>
+            </SingleAccordion>
+          )}
         </div>
       </FullPage>
       <FullPage>
@@ -468,6 +479,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export type AppPageProps = {
   repo?: FullRepo | null
+  appExtras?: AppExtrasFragment
   recipes?: Recipe[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
 }
@@ -489,6 +501,16 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
   }
+
+  const { data: appData, error: appError } = await directusClient.query<
+    AppExtrasQuery,
+    AppExtrasQueryVariables
+  >({
+    query: AppExtrasDocument,
+    variables: { name: repoName },
+  })
+
+  console.log(appData?.apps?.[0] || null)
 
   const { data: recipesData, error: recipesError } = await client.query<
     RecipesQuery,
@@ -517,6 +539,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
           ...thisRepo,
         }
       : null,
+    appExtras: appData?.apps?.[0] || {},
     recipes,
     ...getAppMeta(thisRepo),
     footerVariant: FooterVariant.kitchenSink,
@@ -525,6 +548,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),
       // ...(repoError ? [repoError] : []),
+      ...(appError ? [appError] : []),
     ],
   })
 }

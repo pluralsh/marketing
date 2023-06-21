@@ -50,3 +50,14 @@ query SiteSettings {
     ...SiteSettings
   }
 }
+
+fragment AppExtras on apps {
+  name
+  heroVideo
+}
+
+query AppExtras($name: String) {
+  apps(filter: { name: { _eq: $name } }) {
+    ...AppExtras
+  }
+}
