@@ -9,6 +9,7 @@ import {
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import classNames from 'classnames'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
 
@@ -119,12 +120,15 @@ export function PageHeader({ ...props }) {
 
 const HeaderWrap = styled(({ children, ...props }) => {
   const filterId = useId()
+  const matrixId = `matrix-${filterId}`
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
     const listener = (e) => {
+      const scrolled = window.scrollY !== 0
+
       if (e.currentTarget.scroll) {
-        setHasScrolled(window.scrollY !== 0)
+        setHasScrolled(scrolled)
       }
     }
 
@@ -138,38 +142,57 @@ const HeaderWrap = styled(({ children, ...props }) => {
   }, [])
 
   return (
-    <div
-      style={{
-        backdropFilter: hasScrolled
-          ? `blur(7px) url(#${filterId}) opacity(1)`
-          : `blur(7px) url(#${filterId}) opacity(0)`,
-      }}
-      {...props}
-    >
+    <div {...props}>
+      <div
+        className={classNames('backdrop', { show: hasScrolled })}
+        style={{
+          backdropFilter: `blur(7.5px) url(#${filterId})`,
+        }}
+      />
       <svg
         className="hide"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <filter id={filterId}>
+        <filter
+          id={filterId}
+          colorInterpolationFilters="sRGB"
+        >
           <feColorMatrix
+            id={matrixId}
             type="matrix"
-            values="0.220  0.000 -0.030  0.000  0.07 
-                    0.000  0.220 -0.050  0.000  0.07 
-                    0.000  0.000  0.220  0.000  0.08  
+            values="0.220  0.000 -0.030  0.000  0.070 
+                    0.000  0.220 -0.050  0.000  0.070 
+                    0.000  0.000  0.220  0.000  0.080  
                     0.000  0.000  0.000  1.000  0.500"
           />
         </filter>
       </svg>
-      {children}
+      <div className="content">{children}</div>
     </div>
   )
 })(({ theme }) => ({
   top: 0,
   left: 0,
   right: 0,
+  height: `var(--top-nav-height)`,
   position: 'fixed',
-  transition: 'all 3s ease',
   zIndex: theme.zIndexes.modal - 100,
+  '.content': {
+    position: 'relative',
+    zIndex: 1,
+  },
+  '.backdrop': {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    transform: 'translateY(-100%)',
+    transition: 'all 0.2s ease-out',
+    '&.show': {
+      transform: 'translateY(0)',
+    },
+  },
   '& > .hide': {
     display: 'none',
   },
