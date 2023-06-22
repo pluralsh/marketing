@@ -6,6 +6,7 @@ import {
   type GetStaticProps,
   type InferGetStaticPropsType,
 } from 'next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { until } from '@open-draft/until'
@@ -14,6 +15,7 @@ import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
+import { RepoSocials } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
 // import { mqs } from '@src/breakpoints'
 import BuildStack, {
@@ -108,7 +110,7 @@ export default function Stack({
 
   const appsTabStateRef = useRef<any>()
   const [curAppTabKey, setCurTabKey] = useState(apps?.[0].name ?? '')
-  // const curApp = apps?.find((app) => app.name === curTabKey)
+  const curApp = apps?.find((app) => app.name === curAppTabKey)
 
   useEffect(() => {
     if (!stack) {
@@ -153,8 +155,16 @@ export default function Stack({
                   </div>
                 )}
               </div>
-              <div>
-                <Button primary>Install with Plural</Button>
+              <div className="flex">
+                <Button
+                  className="flex-grow-0"
+                  target="_blank"
+                  as={Link}
+                  href="https://app.plural.sh/shell"
+                  primary
+                >
+                  Install with Plural
+                </Button>
               </div>
             </TextLimiter>
           </Col>
@@ -217,15 +227,37 @@ export default function Stack({
             </Col>
             <Col>
               <StackAppsTabPanel
-                className="flex flex-col gap-medium"
+                className="flex flex-col gap-large"
                 stateRef={appsTabStateRef}
               >
-                <Cta
-                  className="mt-xlarge"
-                  href={`https://docs.plural.sh/applications/${stack.name}`}
+                <ResponsiveText
+                  as="h3"
+                  textStyles={{ '': 'mTitle1' }}
+                  className="text-center md:text-left"
                 >
-                  Read the install documentation
-                </Cta>
+                  About {curApp?.displayName}
+                </ResponsiveText>
+                <ResponsiveText
+                  as="p"
+                  color="text-xlight"
+                  textStyles={{ '': 'mBody2' }}
+                  className="text-center md:text-left"
+                >
+                  {curApp?.description}
+                </ResponsiveText>
+                <div className="flex flex-wrap flex-col items-center md:items-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                  <RepoSocials repo={curApp} />
+                </div>
+                <div className="flex">
+                  <Button
+                    as={Link}
+                    secondary
+                    className="flex-grow md:flex-grow-0"
+                    href={`/applications/${curApp?.name}`}
+                  >
+                    Learn more about {curApp?.displayName}
+                  </Button>
+                </div>
               </StackAppsTabPanel>
             </Col>
           </Columns2>

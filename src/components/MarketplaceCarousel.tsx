@@ -103,7 +103,7 @@ export const MarketplaceCarousel = styled(
           <Swiper
             modules={[Autoplay]}
             loop
-            autoplay={{ delay: 1000 }}
+            autoplay={{ delay: 8000 }}
             spaceBetween={theme.spacing.large}
             slidesPerView={1}
             onSlideChange={(s) => {
