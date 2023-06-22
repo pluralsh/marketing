@@ -12,7 +12,7 @@ export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' |
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string; }
+  ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
@@ -37,6 +37,9 @@ export type Query = {
   nav_list_aggregated: Array<Nav_List_Aggregated>;
   nav_list_by_id?: Maybe<Nav_List>;
   site_settings?: Maybe<Site_Settings>;
+  stacks: Array<Stacks>;
+  stacks_aggregated: Array<Stacks_Aggregated>;
+  stacks_by_id?: Maybe<Stacks>;
 };
 
 
@@ -143,13 +146,39 @@ export type QueryNav_List_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
+
+export type QueryStacksArgs = {
+  filter?: InputMaybe<Stacks_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryStacks_AggregatedArgs = {
+  filter?: InputMaybe<Stacks_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryStacks_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
 export type Apps = {
   __typename?: 'apps';
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   user_updated?: Maybe<Scalars['String']['output']>;
 };
 
@@ -480,6 +509,55 @@ export type Site_SettingsMain_NavArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type Stacks = {
+  __typename?: 'stacks';
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  heroVideo?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+export type Stacks_Aggregated = {
+  __typename?: 'stacks_aggregated';
+  avg?: Maybe<Stacks_Aggregated_Fields>;
+  avgDistinct?: Maybe<Stacks_Aggregated_Fields>;
+  count?: Maybe<Stacks_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Stacks_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Stacks_Aggregated_Fields>;
+  min?: Maybe<Stacks_Aggregated_Fields>;
+  sum?: Maybe<Stacks_Aggregated_Fields>;
+  sumDistinct?: Maybe<Stacks_Aggregated_Fields>;
+};
+
+export type Stacks_Aggregated_Count = {
+  __typename?: 'stacks_aggregated_count';
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  heroVideo?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Stacks_Aggregated_Fields = {
+  __typename?: 'stacks_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Stacks_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  heroVideo?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
 export type String_Filter_Operators = {
   _contains?: InputMaybe<Scalars['String']['input']>;
   _empty?: InputMaybe<Scalars['Boolean']['input']>;
@@ -518,14 +596,23 @@ export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
 
-export type AppExtrasFragment = { __typename?: 'apps', name?: string | null, heroVideo?: string | null };
+export type AppExtrasFragment = { __typename?: 'apps', name: string, heroVideo?: string | null };
 
 export type AppExtrasQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type AppExtrasQuery = { __typename?: 'Query', apps: Array<{ __typename?: 'apps', name?: string | null, heroVideo?: string | null }> };
+export type AppExtrasQuery = { __typename?: 'Query', apps: Array<{ __typename?: 'apps', name: string, heroVideo?: string | null }> };
+
+export type StackExtrasFragment = { __typename?: 'stacks', name?: string | null, heroVideo?: string | null };
+
+export type StackExtrasQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type StackExtrasQuery = { __typename?: 'Query', stacks: Array<{ __typename?: 'stacks', name?: string | null, heroVideo?: string | null }> };
 
 export const EventFragmentDoc = gql`
     fragment Event on events {
@@ -574,6 +661,12 @@ export const SiteSettingsFragmentDoc = gql`
     ${NavListDepth3FragmentDoc}`;
 export const AppExtrasFragmentDoc = gql`
     fragment AppExtras on apps {
+  name
+  heroVideo
+}
+    `;
+export const StackExtrasFragmentDoc = gql`
+    fragment StackExtras on stacks {
   name
   heroVideo
 }
@@ -681,3 +774,38 @@ export function useAppExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type AppExtrasQueryHookResult = ReturnType<typeof useAppExtrasQuery>;
 export type AppExtrasLazyQueryHookResult = ReturnType<typeof useAppExtrasLazyQuery>;
 export type AppExtrasQueryResult = Apollo.QueryResult<AppExtrasQuery, AppExtrasQueryVariables>;
+export const StackExtrasDocument = gql`
+    query StackExtras($name: String) {
+  stacks(filter: {name: {_eq: $name}}) {
+    ...StackExtras
+  }
+}
+    ${StackExtrasFragmentDoc}`;
+
+/**
+ * __useStackExtrasQuery__
+ *
+ * To run a query within a React component, call `useStackExtrasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStackExtrasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStackExtrasQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useStackExtrasQuery(baseOptions?: Apollo.QueryHookOptions<StackExtrasQuery, StackExtrasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StackExtrasQuery, StackExtrasQueryVariables>(StackExtrasDocument, options);
+      }
+export function useStackExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StackExtrasQuery, StackExtrasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StackExtrasQuery, StackExtrasQueryVariables>(StackExtrasDocument, options);
+        }
+export type StackExtrasQueryHookResult = ReturnType<typeof useStackExtrasQuery>;
+export type StackExtrasLazyQueryHookResult = ReturnType<typeof useStackExtrasLazyQuery>;
+export type StackExtrasQueryResult = Apollo.QueryResult<StackExtrasQuery, StackExtrasQueryVariables>;

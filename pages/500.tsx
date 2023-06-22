@@ -1,6 +1,6 @@
 import Error from 'next/error'
 
-import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
+import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 export default function Plural500({ statusCode }) {
   return <Error statusCode={statusCode} />

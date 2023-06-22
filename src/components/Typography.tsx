@@ -6,7 +6,7 @@ import {
   useNavigationContext,
 } from '@pluralsh/design-system'
 
-import { isEmpty, lowerFirst } from 'lodash-es'
+import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
@@ -47,7 +47,7 @@ const textPropFilter = {
 const APP_PREFIX = 'a'
 const MARKETING_PREFIX = 'm'
 
-function getTextStylesFromString(theme: DefaultTheme, styleName: string) {
+function getStylesFromShortname(theme: DefaultTheme, styleName: string) {
   let prefix = APP_PREFIX
   let textStyles: Record<string, any> = theme.partials.text
 
@@ -66,11 +66,9 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
 }>(({ theme, color, textStyles: styles }) => {
   const parts = Object.fromEntries(
     Object.entries(styles || {})
-      .map(([breakpoint, styleName]) => {
-        if (!breakpoint || !mqs[breakpoint]) {
-          return []
-        }
-        const textStyles = getTextStylesFromString(theme, styleName)
+      .filter(([breakpoint]) => !!breakpoint && !!mqs[breakpoint])
+      .map(([breakpoint, shortname]) => {
+        const textStyles = getStylesFromShortname(theme, shortname)
 
         return [
           [mqs[breakpoint]],
@@ -79,13 +77,14 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
           },
         ]
       })
-      .filter((val) => !isEmpty(val))
   )
 
   return {
-    ...(styles?.[''] ? getTextStylesFromString(theme, styles['']) || {} : {}),
+    ...(styles?.[''] ? getStylesFromShortname(theme, styles['']) || {} : {}),
     ...parts,
-    ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
+    ...(color
+      ? { color: theme.colors[color] || 'red' }
+      : { color: theme.colors.text }),
   }
 })
 

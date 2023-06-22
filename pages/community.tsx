@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 
 import { directusClient } from '@src/apollo-client'
-import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
 import {
   EventsDocument,
   type EventsQuery,
   type EventsQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 export default function Community({ events }) {
   const locale = useRouter().locale || 'en-us'

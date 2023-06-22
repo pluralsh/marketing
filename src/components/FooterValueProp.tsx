@@ -16,8 +16,9 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import styled, { useTheme } from 'styled-components'
 
-import { Col, Columns2, TextLimiter } from '@pages/applications/[repo]'
+import { Col, Columns2 } from '@src/components/layout/Columns'
 
+import { TextLimiter } from './layout/TextLimiter'
 import { ResponsiveText } from './Typography'
 
 export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
@@ -103,14 +104,14 @@ function ValueProp({
         textStyles={{ '': 'mSubtitle1' }}
         className="self-center mt-[-0.15em]"
       >
-        <TextLimiter>{title}</TextLimiter>
+        <TextLimiter as="span">{title}</TextLimiter>
       </ResponsiveText>
       <ResponsiveText
         as="p"
         textStyles={{ '': 'mBody2' }}
         className="grid col-start-2"
       >
-        <TextLimiter>{children}</TextLimiter>
+        <TextLimiter as="span">{children}</TextLimiter>
       </ResponsiveText>
     </div>
   )

@@ -16,17 +16,16 @@ import { useRouter } from 'next/router'
 
 import { MarkdocContextProvider } from '@pluralsh/design-system/dist/markdoc'
 import { SSRProvider } from 'react-aria'
-import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 
 import { BreakpointProvider } from '@src/components/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import { type FooterVariant } from '@src/components/FooterFull'
-import { type GlobalProps } from '@src/components/getGlobalProps'
 import GlobalStyles from '@src/components/GlobalStyles'
 import { usePosthog } from '@src/components/hooks/usePosthog'
-import { PageMaxWidthLimiter } from '@src/components/MaxWidthLimiter'
 import PrimaryPage from '@src/components/PrimaryPage'
+import { type GlobalProps } from '@src/utils/getGlobalProps'
 
 // Styles
 import '@src/styles/globals.css'
@@ -49,10 +48,6 @@ export type MarkdocHeading = {
 }
 
 const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
-
-export const FullPage = styled(PageMaxWidthLimiter)((_) => ({
-  width: '100%',
-}))
 
 const useNavigate = () => {
   const router = useRouter()

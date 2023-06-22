@@ -5,11 +5,9 @@ import {
   BrowserIcon,
   Button,
   CertificateIcon,
-  CheckRoundedIcon,
   Code,
   DocumentIcon,
   GitHubIcon,
-  Tooltip,
 } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
@@ -24,13 +22,15 @@ import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
-import { FullPage } from '@pages/_app'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import BuildStack, { getStackTabData } from '@src/components/BuildStack'
+import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
-import { propsWithGlobalSettings } from '@src/components/getGlobalProps'
+import { Col, Columns2 } from '@src/components/layout/Columns'
+import { FullPage } from '@src/components/layout/FullPage'
+import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
 import { QuotesCarousel } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
@@ -66,9 +66,12 @@ import {
   type RecipesQuery,
   type RecipesQueryVariables,
 } from '@src/generated/graphqlPlural'
+import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { CompanyLogos } from '../../src/components/CompanyLogos'
-import { HeaderPad } from '../../src/components/GradientBGs'
+import { GradientBG } from '../../src/components/layout/GradientBG'
+import { HeaderPad } from '../../src/components/layout/HeaderPad'
+import { ProviderIcon } from '../../src/components/ProviderIcon'
 
 const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=mFDA-718RhI'
 
@@ -125,45 +128,11 @@ const AppPageTitle = styled(
   },
 }))
 
-type ProviderProps = {
+export type ProviderProps = {
   label?: string | null | undefined
   iconDark: string
   iconLight: string
 }
-
-const GradientBG = styled(
-  ({ children, position: _position, image: _image, ...props }) => (
-    <div {...props}>
-      <div className="bg" />
-      <div className="content">{children}</div>
-    </div>
-  )
-)<{ position?: string; image?: string }>(
-  ({
-    theme,
-    position = 'top center',
-    image = '/images/gradients/gradient-bg-1.jpg',
-  }) => ({
-    position: 'relative',
-    '.bg': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundImage: `url(${image})`,
-      backgroundPosition: position,
-      backgroundSize: 'contain',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor: theme.colors['fill-zero'],
-      filter: 'blur(10px)',
-    },
-    '.content': {
-      position: 'relative',
-    },
-  })
-)
 
 export default function App({
   repo,
@@ -399,68 +368,6 @@ export default function App({
   )
 }
 
-export const TextLimiter = styled.div(({ theme: _ }) => ({
-  maxWidth: 600,
-
-  [mqs.columns]: {
-    maxWidth: 600,
-  },
-}))
-
-export function Col({ className, ...props }: ComponentProps<'div'>) {
-  return (
-    <div
-      className={classNames('columns:basis-0 columns:flex-grow', className)}
-      {...props}
-    />
-  )
-}
-
-export function Columns2({ className, ...props }: ComponentProps<'div'>) {
-  return (
-    <div
-      className={classNames([
-        'flex',
-        'flex-col',
-        'columns:flex-row',
-        'columns:gap-x-xlarge',
-        'xl:gap-x-xxlarge',
-        'xl:flex-row',
-        'xxl:gap-x-xxxxlarge',
-        'maxWidth:gap-x-xxxxxlarge',
-        className,
-      ])}
-      {...props}
-    />
-  )
-}
-
-export const Checklist = styled.ul(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing.medium,
-}))
-
-export const ChecklistItem = styled(({ children, ...props }) => {
-  const theme = useTheme()
-
-  return (
-    <li {...props}>
-      <CheckRoundedIcon
-        color={theme.colors['icon-success']}
-        size={20}
-      />
-      {children}
-    </li>
-  )
-})(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing.small,
-  ...theme.partials.marketingText.body1Bold,
-  color: theme.colors.text,
-}))
-
 export const getStaticPaths: GetStaticPaths = async () => {
   if (process.env.NODE_ENV === 'development') {
     return {
@@ -510,8 +417,6 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     variables: { name: repoName },
   })
 
-  console.log(appData?.apps?.[0] || null)
-
   const { data: recipesData, error: recipesError } = await client.query<
     RecipesQuery,
     RecipesQueryVariables
@@ -552,44 +457,3 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     ],
   })
 }
-
-const ProviderIcon = styled(
-  ({
-    iconLight,
-    iconDark,
-    label,
-    ...props
-  }: ComponentProps<'div'> & ProviderProps) => (
-    <Tooltip
-      placement="top"
-      label={label}
-    >
-      <div {...props}>
-        <img
-          className="icon iconLight"
-          src={iconLight}
-        />
-        <img
-          className="icon iconDark"
-          src={iconDark}
-        />
-      </div>
-    </Tooltip>
-  )
-)(({ theme }) => ({
-  border: theme.borders['fill-two'],
-  background: theme.colors['fill-zero'],
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: theme.spacing.xsmall,
-  borderRadius: theme.borderRadiuses.large,
-  width: 44,
-  height: 44,
-  '.iconLight': {
-    display: theme.mode === 'light' ? 'block' : 'none',
-  },
-  '.iconDark': {
-    display: theme.mode === 'light' ? 'none' : 'block',
-  },
-}))

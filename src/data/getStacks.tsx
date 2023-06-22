@@ -1,3 +1,4 @@
+import { upperFirst } from 'lodash-es'
 import memoizeOne from 'memoize-one'
 
 import { filterMapNodes } from '@src/utils/graphql'
@@ -35,16 +36,15 @@ function inRemoveList(stackName?: string) {
 }
 
 function fakeDisplayName(name?: string) {
-  return name || ''
+  return upperFirst(name) || ''
 }
 
-function normalizeStack<T extends { name?: string }>(stack: T) {
-  return stack
-
+function normalizeStack<T extends { name?: string | null }>(stack: T) {
   return {
     ...stack,
     displayName:
-      ((stack as any).displayName as string) || fakeDisplayName(stack?.name),
+      ((stack as any).displayName as string) ||
+      fakeDisplayName(stack?.name || ''),
   }
 }
 
@@ -81,7 +81,7 @@ export async function getStacks(): Promise<MinStack[]> {
 
 const fullStackCache: Record<string, FullStack> = {}
 
-export async function getStack(repoName: string): Promise<FullStack> {
+export async function getFullStack(repoName: string): Promise<FullStack> {
   const { data, error } = await client.query<StackQuery, StackQueryVariables>({
     query: StackDocument,
     variables: { name: repoName },

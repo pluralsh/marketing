@@ -47,7 +47,7 @@ export const CompanyLogos = styled(({ ...props }) => (
     </Label>
     <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
       {partnerLogos.map((logo) => (
-        <div>
+        <div key={logo.logoUrl}>
           <img
             src={`/images/partner-logos/${logo.logoUrl}`}
             alt={logo.name}

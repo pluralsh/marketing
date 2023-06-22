@@ -1,7 +1,6 @@
 import { Children, memo } from 'react'
 
 import {
-  A,
   Blockquote,
   Code,
   Div,
@@ -22,6 +21,12 @@ import rehypeRaw from 'rehype-raw'
 import styled from 'styled-components'
 
 import MultilineCode from './Code'
+
+const MdA = styled.a(({ theme }) => ({
+  '&, &:any-link': {
+    ...theme.partials.text.inlineLink,
+  },
+}))
 
 const MdImg = styled(({ src, gitUrl, mainBranch, ...props }) => {
   // Convert local image paths to full path on github
@@ -215,12 +220,11 @@ export default memo(
             props: { body2: true, marginBottom: 'medium' },
           }),
           a: toReactMarkdownComponent({
-            component: A,
+            component: MdA,
             props: {
-              inline: true,
-              display: 'inline',
+              // inline: true,
+              // display: 'inline',
               target: '_blank',
-              // display: 'inline', color: 'text-light', size: 'small', target: '_blank',
             },
           }),
           span: toReactMarkdownComponent({

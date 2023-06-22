@@ -71,7 +71,7 @@ function inRemoveList(repoName?: string) {
   return !!REMOVE_LIST.find((name) => name === repoName)
 }
 
-function normalizeRepo<
+export function normalizeRepo<
   T extends SetOptional<FullRepoFragment, keyof Omit<FullRepoFragment, 'name'>>
 >(repo: T) {
   const { recipes, ...props } = repo

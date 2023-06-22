@@ -57,3 +57,7 @@ export function toHtmlId(str) {
   // make sure the id starts with a letter or underscore
   return id.match(/^[A-Za-z]/) ? id : `_${id}`
 }
+
+export function startsWithVowel(str: string) {
+  return !!str.match(/^[aeiou]/i)
+}

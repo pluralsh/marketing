@@ -2,14 +2,13 @@ import { type GetStaticPropsResult } from 'next'
 
 import { until } from '@open-draft/until'
 
-import { REVALIDATE_TIME } from '@src/consts'
-import { getSiteSettings } from '@src/data/getSiteSettings'
-
 import {
   GITHUB_DATA_URL,
   getGithubDataServer,
   isGithubRepoData,
-} from './GithubStars'
+} from '@src/components/GithubStars'
+import { REVALIDATE_TIME } from '@src/consts'
+import { getSiteSettings } from '@src/data/getSiteSettings'
 
 async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>

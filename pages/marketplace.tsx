@@ -21,16 +21,12 @@ import { isEmpty, orderBy, upperFirst } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import {
-  type GlobalProps,
-  propsWithGlobalSettings,
-} from '@src/components/getGlobalProps'
-import { HeaderPad } from '@src/components/GradientBGs'
+import { MarketplacePage } from '@src/components/layout/BasicPage'
+import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { MarketplaceCarousel } from '@src/components/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/MarketplaceFilters'
 import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
-import { MarketplacePage } from '@src/components/PageGrid'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
@@ -40,19 +36,22 @@ import {
 } from '@src/data/getSearchMetadata'
 import { type MinStack, getStacks, stacksCache } from '@src/data/getStacks'
 import { type MinRepoFragment } from '@src/generated/graphqlPlural'
+import {
+  type GlobalProps,
+  propsWithGlobalSettings,
+} from '@src/utils/getGlobalProps'
 
 import {
   type SetSearchParams,
   useSearchParams,
 } from '../src/components/hooks/useSearchParams'
+import { FullPage } from '../src/components/layout/FullPage'
 import {
   MarketSearchTabKey,
   SearchBar,
   useSearchTabKey,
 } from '../src/components/MarketplaceSearchBar'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
-
-import { FullPage } from './_app'
 
 type PageProps = {
   repositories: MinRepo[]

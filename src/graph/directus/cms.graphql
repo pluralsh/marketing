@@ -61,3 +61,14 @@ query AppExtras($name: String) {
     ...AppExtras
   }
 }
+
+fragment StackExtras on stacks {
+  name
+  heroVideo
+}
+
+query StackExtras($name: String) {
+  stacks(filter: { name: { _eq: $name } }) {
+    ...StackExtras
+  }
+}

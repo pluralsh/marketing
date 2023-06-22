@@ -50,6 +50,23 @@ const config: CodegenConfig = {
         },
       ],
     },
+    'src/generated/graphqlDirectusSystem.ts': {
+      schema: `https://directus.plural.sh/graphql/system${
+        directusToken ? `?access_token=${directusToken}` : ''
+      }`,
+      documents: './src/graph/directus/system/*.graphql',
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+        {
+          add: {
+            content: '/* eslint-disable */\n// prettier-ignore',
+            config: null,
+          },
+        },
+      ],
+    },
   },
   hooks: {
     afterAllFileWrite: ['eslint --fix'],

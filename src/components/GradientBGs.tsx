@@ -4,10 +4,6 @@ import styled from 'styled-components'
 
 import { breakpoints, mqs } from '@src/breakpoints'
 
-export const HeaderPad = styled.div(() => ({
-  paddingTop: `var(--top-nav-height)`,
-}))
-
 export const GradientBG = styled.div(() => ({
   background: 'url(/images/gradients/gradient-blue-1.png)',
   backgroundSize: 'cover',

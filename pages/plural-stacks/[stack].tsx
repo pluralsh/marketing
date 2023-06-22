@@ -1,0 +1,363 @@
+import { useEffect, useRef, useState } from 'react'
+
+import { Button, TabList, TabPanel } from '@pluralsh/design-system'
+import {
+  type GetStaticPaths,
+  type GetStaticProps,
+  type InferGetStaticPropsType,
+} from 'next'
+import { useRouter } from 'next/router'
+
+import { until } from '@open-draft/until'
+import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
+import classNames from 'classnames'
+import { isEmpty } from 'lodash-es'
+import styled from 'styled-components'
+
+import { directusClient } from '@src/apollo-client'
+// import { mqs } from '@src/breakpoints'
+import BuildStack, {
+  AppCard,
+  getStackTabData,
+} from '@src/components/BuildStack'
+import { Checklist, ChecklistItem } from '@src/components/Checklist'
+import Embed from '@src/components/Embed'
+import { FooterVariant } from '@src/components/FooterFull'
+import { FullPage } from '@src/components/layout/FullPage'
+import { GradientBG } from '@src/components/layout/GradientBG'
+import { BackButton } from '@src/components/Nav'
+import { ProviderIcon } from '@src/components/ProviderIcon'
+import { QuotesCarousel } from '@src/components/QuoteCards'
+import {
+  AppTitle,
+  Body1,
+  Body2,
+  Cta,
+  Heading1,
+  Overline,
+  ResponsiveText,
+  Title2,
+} from '@src/components/Typography'
+import { getProviderIcon, getStackMeta } from '@src/consts'
+import { getRepos, normalizeRepo } from '@src/data/getRepos'
+import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
+import {
+  StackExtrasDocument,
+  type StackExtrasFragment,
+  type StackExtrasQuery,
+  type StackExtrasQueryVariables,
+} from '@src/generated/graphqlDirectus'
+import {
+  type MinRepoFragment,
+  type StackCollectionFragment,
+} from '@src/generated/graphqlPlural'
+import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { startsWithVowel } from '@src/utils/text'
+
+import { CompanyLogos } from '../../src/components/CompanyLogos'
+import { Col, Columns2 } from '../../src/components/layout/Columns'
+import { HeaderPad } from '../../src/components/layout/HeaderPad'
+import { TextLimiter } from '../../src/components/layout/TextLimiter'
+
+const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=LOUshNTgPV0'
+
+function isCollection(
+  collection: StackCollectionFragment | null | undefined
+): collection is StackCollectionFragment {
+  return !!collection
+}
+
+const StackAppsTabList = styled(TabList)(({ theme }) => ({
+  flexDirection: 'column',
+  border: theme.borders['fill-two'],
+  padding: theme.spacing.xsmall,
+  rowGap: theme.spacing.xsmall,
+  borderRadius: theme.borderRadiuses.medium,
+}))
+
+const StackAppsTabPanel = styled(TabPanel)((_) => ({}))
+
+export default function Stack({
+  stack,
+  stackExtras,
+  buildStackTabs,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter()
+  const providers =
+    stack?.collections?.filter(isCollection).map((collection) => ({
+      key: collection.id,
+      label:
+        providerToProviderName[collection?.provider?.toUpperCase() || ''] ||
+        collection.provider,
+      // language: 'shell',
+      // content: `plural stack install ${stack?.name}`,
+      iconLight: getProviderIcon({
+        provider: collection?.provider,
+        mode: 'light',
+      }),
+      iconDark: getProviderIcon({
+        provider: collection?.provider,
+        mode: 'dark',
+      }),
+    })) || []
+
+  const apps = stack?.collections?.[0]?.bundles
+    ?.map((bundle) => bundle?.recipe.repository)
+    .filter((repo): repo is MinRepoFragment => !!repo)
+    .map((repo) => normalizeRepo(repo))
+
+  const appsTabStateRef = useRef<any>()
+  const [curAppTabKey, setCurTabKey] = useState(apps?.[0].name ?? '')
+  // const curApp = apps?.find((app) => app.name === curTabKey)
+
+  useEffect(() => {
+    if (!stack) {
+      // router.push('/marketplace')
+    }
+  }, [stack, router])
+  if (!stack) {
+    return null
+  }
+  console.log('curTabKey', curAppTabKey)
+
+  return (
+    <HeaderPad as={GradientBG}>
+      <FullPage>
+        <div className="py-[40px] md:pb-xxxlarge">
+          <BackButton />
+        </div>
+        <Columns2 className="gap-y-xxlarge">
+          <Col>
+            <TextLimiter className="flex flex-col gap-xlarge">
+              <AppTitle>
+                Build {startsWithVowel(stack.displayName) ? 'an' : 'a'}{' '}
+                {stack.displayName} Stack with Plural
+              </AppTitle>
+              <Body1 color="text-light">
+                {stack.description}
+                {/* Orchestrate all your applications to work in harmony with{' '}
+                {repo.displayName} on Plural. */}
+              </Body1>
+              <div className="flex flex-col gap-medium">
+                <Overline>Available providers</Overline>
+                {!isEmpty(providers) && (
+                  <div className="flex gap-small">
+                    {providers.map((provider) => (
+                      <ProviderIcon
+                        key={provider.key}
+                        label={provider.label}
+                        iconLight={provider.iconLight}
+                        iconDark={provider.iconDark}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div>
+                <Button primary>Install with Plural</Button>
+              </div>
+            </TextLimiter>
+          </Col>
+          <Col>
+            <Embed
+              className="m-0 p-0"
+              url={stackExtras?.heroVideo || DEFAULT_HERO_VIDEO}
+              aspectRatio="16 / 9"
+            />
+          </Col>
+        </Columns2>
+        <div
+          className={classNames(
+            'flex',
+            'flex-col',
+            // 'gap-large',
+            'py-xxxxlarge',
+            'xl:py-[192px]'
+          )}
+        >
+          <Columns2 className="mb-small">
+            <Col>
+              <ResponsiveText
+                color="text-xlight"
+                textStyles={{ '': 'mLabel' }}
+              >
+                The stack
+              </ResponsiveText>
+            </Col>
+            <Col />
+          </Columns2>
+          <Columns2 className={classNames('gap-y-xxxlarge')}>
+            <Col>
+              <StackAppsTabList
+                stateRef={appsTabStateRef}
+                stateProps={{
+                  orientation: 'vertical',
+                  selectedKey: curAppTabKey,
+                  onSelectionChange: (key) => setCurTabKey(key as string),
+                }}
+              >
+                {apps?.map((repo) => {
+                  console.log('repo', repo.name)
+
+                  if (!repo || !repo.name) {
+                    return null
+                  }
+
+                  return (
+                    <AppCard
+                      key={repo.name}
+                      size="small"
+                      app={repo}
+                    >
+                      {repo.name}
+                    </AppCard>
+                  )
+                })}
+              </StackAppsTabList>
+            </Col>
+            <Col>
+              <StackAppsTabPanel
+                className="flex flex-col gap-medium"
+                stateRef={appsTabStateRef}
+              >
+                <Cta
+                  className="mt-xlarge"
+                  href={`https://docs.plural.sh/applications/${stack.name}`}
+                >
+                  Read the install documentation
+                </Cta>
+              </StackAppsTabPanel>
+            </Col>
+          </Columns2>
+        </div>
+      </FullPage>
+      <FullPage>
+        <div>
+          <Columns2 className="gap-y-xxxlarge">
+            <Col>
+              <TextLimiter className="flex flex-col gap-large">
+                <Title2>Open-source and free to use</Title2>
+                <Body2>
+                  Plural automates the deployment and operation of{' '}
+                  {stack.displayName} in your cloud. Get up and running with
+                  your {stack.displayName} instance in minutes and let Plural
+                  deploy {stack.displayName} and all its dependencies into your
+                  cloud with all of the day-2 operations handled out of the box.
+                </Body2>
+                <Cta href="https://www.plural.sh/demo-login">
+                  Explore {stack.displayName} on Plural in live demo environment
+                </Cta>
+              </TextLimiter>
+            </Col>
+            <Col className="flex flex-col gap-large">
+              <Checklist>
+                <ChecklistItem>Automated upgrades</ChecklistItem>
+                <ChecklistItem>
+                  Transparent pricing and cost management{' '}
+                </ChecklistItem>
+                <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
+                <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
+                <ChecklistItem>Log management </ChecklistItem>
+              </Checklist>
+            </Col>
+          </Columns2>
+          <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
+            <img
+              src="/images/application/product-value@2x.png"
+              alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
+            />
+          </div>
+        </div>
+      </FullPage>
+      {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
+      <FullPage>
+        <CompanyLogos className="mt-xxxxlarge" />
+      </FullPage>
+      <FullPage>
+        <div className="my-xxxxxlarge">
+          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+            What companies are saying about Plural
+          </Heading1>
+          <QuotesCarousel />
+        </div>
+      </FullPage>
+      <FullPage>{/* <FooterValueProp /> */}</FullPage>
+    </HeaderPad>
+  )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    }
+  }
+
+  const repos = (await getRepos()) || []
+
+  return {
+    paths: repos.map((repo) => ({ params: { repo: repo?.name } })),
+    fallback: true,
+  }
+}
+
+export type StackPageProps = {
+  stack?: FullStack | null
+  stackExtras?: StackExtrasFragment
+  buildStackTabs?: ReturnType<typeof getStackTabData>
+}
+
+export const getStaticProps: GetStaticProps<StackPageProps> = async (
+  context
+) => {
+  const stackName = context?.params?.stack
+
+  if (!stackName || typeof stackName !== 'string') {
+    return { notFound: true }
+  }
+  const { data: repos, error: reposError } = await until(() => getRepos())
+
+  // const { data: repo, error: repoError } = await until(() =>
+  //   getFullRepo(`${repoName}`)
+  // )
+
+  const { data: stacks, error: stacksError } = await until(() => getStacks())
+  const { data: stack, error: stackError } = await until(() =>
+    getFullStack(stackName)
+  )
+
+  const thisStack = stack // stacks?.find((r) => r.name === stackName)
+
+  if (!thisStack || !stackName || typeof stackName !== 'string') {
+    return { notFound: true }
+  }
+
+  const { data: stackData, error: appError } = await directusClient.query<
+    StackExtrasQuery,
+    StackExtrasQueryVariables
+  >({
+    query: StackExtrasDocument,
+    variables: { name: stackName },
+  })
+
+  const buildStackTabs = getStackTabData({ repos, stacks })
+
+  return propsWithGlobalSettings({
+    stack: thisStack
+      ? {
+          ...thisStack,
+        }
+      : null,
+    stackExtras: stackData?.stacks?.[0] || {},
+    ...getStackMeta(thisStack),
+    footerVariant: FooterVariant.kitchenSink,
+    buildStackTabs,
+    errors: [
+      ...(reposError ? [reposError] : []),
+      ...(stacksError ? [stacksError] : []),
+      ...(stackError ? [stackError] : []),
+      ...(appError ? [appError] : []),
+    ],
+  })
+}

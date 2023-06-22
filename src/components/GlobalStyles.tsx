@@ -39,7 +39,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       boxShadow: 'none',
     },
     'a:any-link': {
-      color: 'unset',
+      // color: 'unset',
       textDecoration: 'unset',
     },
     html: {

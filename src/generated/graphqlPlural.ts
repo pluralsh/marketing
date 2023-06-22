@@ -12,7 +12,7 @@ export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' |
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string; }
+  ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
@@ -5026,26 +5026,7 @@ export type RepoQuery = { __typename?: 'RootQueryType', repository?: { __typenam
 
 export type CategoryFragment = { __typename?: 'CategoryInfo', category?: Category | null, count?: number | null };
 
-export type MinStackFragment = { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null };
-
-export type FullStackFragment = { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null };
-
 export type PageInfoFragment = { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean };
-
-export type StacksQueryVariables = Exact<{
-  featured?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type StacksQuery = { __typename?: 'RootQueryType', stacks?: { __typename?: 'StackConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean }, edges?: Array<{ __typename?: 'StackEdge', node?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null } | null } | null> | null } | null };
-
-export type StackQueryVariables = Exact<{
-  name: Scalars['String']['input'];
-  provider?: Provider;
-}>;
-
-
-export type StackQuery = { __typename?: 'RootQueryType', stack?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null } | null };
 
 export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5060,6 +5041,27 @@ export type TagsQueryVariables = Exact<{
 
 
 export type TagsQuery = { __typename?: 'RootQueryType', tags?: { __typename?: 'GroupedTagConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean }, edges?: Array<{ __typename?: 'GroupedTagEdge', node?: { __typename?: 'GroupedTag', tag: string, count: number } | null } | null> | null } | null };
+
+export type StackCollectionFragment = { __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null };
+
+export type MinStackFragment = { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null };
+
+export type FullStackFragment = { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null };
+
+export type StacksQueryVariables = Exact<{
+  featured?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type StacksQuery = { __typename?: 'RootQueryType', stacks?: { __typename?: 'StackConnection', pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean }, edges?: Array<{ __typename?: 'StackEdge', node?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null } | null } | null> | null } | null };
+
+export type StackQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+  provider?: InputMaybe<Provider>;
+}>;
+
+
+export type StackQuery = { __typename?: 'RootQueryType', stack?: { __typename?: 'Stack', id: string, name: string, displayName?: string | null, description?: string | null, featured?: boolean | null, creator?: { __typename?: 'User', id: string, name: string } | null, collections?: Array<{ __typename?: 'StackCollection', id: string, provider: Provider, bundles?: Array<{ __typename?: 'StackRecipe', recipe: { __typename?: 'Recipe', repository?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, readme?: string | null, mainBranch?: string | null, homepage?: string | null, gitUrl?: string | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null } | null } } | null> | null } | null> | null } | null };
 
 export const ArtifactFragmentDoc = gql`
     fragment Artifact on Artifact {
@@ -5189,38 +5191,6 @@ export const CategoryFragmentDoc = gql`
   count
 }
     `;
-export const MinStackFragmentDoc = gql`
-    fragment MinStack on Stack {
-  id
-  name
-  displayName
-  description
-  featured
-  creator {
-    id
-    name
-  }
-  collections {
-    id
-    provider
-    bundles {
-      recipe {
-        repository {
-          ...MinRepo
-          tags {
-            tag
-          }
-        }
-      }
-    }
-  }
-}
-    ${MinRepoFragmentDoc}`;
-export const FullStackFragmentDoc = gql`
-    fragment FullStack on Stack {
-  ...MinStack
-}
-    ${MinStackFragmentDoc}`;
 export const PageInfoFragmentDoc = gql`
     fragment PageInfo on PageInfo {
   endCursor
@@ -5233,6 +5203,43 @@ export const TagFragmentDoc = gql`
   count
 }
     `;
+export const StackCollectionFragmentDoc = gql`
+    fragment StackCollection on StackCollection {
+  id
+  provider
+  bundles {
+    recipe {
+      repository {
+        ...MinRepo
+        tags {
+          tag
+        }
+      }
+    }
+  }
+}
+    ${MinRepoFragmentDoc}`;
+export const MinStackFragmentDoc = gql`
+    fragment MinStack on Stack {
+  id
+  name
+  displayName
+  description
+  featured
+  creator {
+    id
+    name
+  }
+  collections {
+    ...StackCollection
+  }
+}
+    ${StackCollectionFragmentDoc}`;
+export const FullStackFragmentDoc = gql`
+    fragment FullStack on Stack {
+  ...MinStack
+}
+    ${MinStackFragmentDoc}`;
 export const ListArtifactsDocument = gql`
     query ListArtifacts($id: ID!) {
   repository(id: $id) {
@@ -5382,85 +5389,6 @@ export function useRepoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RepoQ
 export type RepoQueryHookResult = ReturnType<typeof useRepoQuery>;
 export type RepoLazyQueryHookResult = ReturnType<typeof useRepoLazyQuery>;
 export type RepoQueryResult = Apollo.QueryResult<RepoQuery, RepoQueryVariables>;
-export const StacksDocument = gql`
-    query Stacks($featured: Boolean) {
-  stacks(featured: $featured, first: 50) {
-    pageInfo {
-      ...PageInfo
-    }
-    edges {
-      node {
-        ...MinStack
-      }
-    }
-  }
-}
-    ${PageInfoFragmentDoc}
-${MinStackFragmentDoc}`;
-
-/**
- * __useStacksQuery__
- *
- * To run a query within a React component, call `useStacksQuery` and pass it any options that fit your needs.
- * When your component renders, `useStacksQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useStacksQuery({
- *   variables: {
- *      featured: // value for 'featured'
- *   },
- * });
- */
-export function useStacksQuery(baseOptions?: Apollo.QueryHookOptions<StacksQuery, StacksQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
-      }
-export function useStacksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StacksQuery, StacksQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
-        }
-export type StacksQueryHookResult = ReturnType<typeof useStacksQuery>;
-export type StacksLazyQueryHookResult = ReturnType<typeof useStacksLazyQuery>;
-export type StacksQueryResult = Apollo.QueryResult<StacksQuery, StacksQueryVariables>;
-export const StackDocument = gql`
-    query Stack($name: String!, $provider: Provider! = AWS) {
-  stack(name: $name, provider: $provider) {
-    ...FullStack
-  }
-}
-    ${FullStackFragmentDoc}`;
-
-/**
- * __useStackQuery__
- *
- * To run a query within a React component, call `useStackQuery` and pass it any options that fit your needs.
- * When your component renders, `useStackQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useStackQuery({
- *   variables: {
- *      name: // value for 'name'
- *      provider: // value for 'provider'
- *   },
- * });
- */
-export function useStackQuery(baseOptions: Apollo.QueryHookOptions<StackQuery, StackQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<StackQuery, StackQueryVariables>(StackDocument, options);
-      }
-export function useStackLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StackQuery, StackQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<StackQuery, StackQueryVariables>(StackDocument, options);
-        }
-export type StackQueryHookResult = ReturnType<typeof useStackQuery>;
-export type StackLazyQueryHookResult = ReturnType<typeof useStackLazyQuery>;
-export type StackQueryResult = Apollo.QueryResult<StackQuery, StackQueryVariables>;
 export const CategoriesDocument = gql`
     query Categories {
   categories {
@@ -5538,3 +5466,82 @@ export function useTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsQ
 export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
 export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
 export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
+export const StacksDocument = gql`
+    query Stacks($featured: Boolean) {
+  stacks(featured: $featured, first: 50) {
+    pageInfo {
+      ...PageInfo
+    }
+    edges {
+      node {
+        ...MinStack
+      }
+    }
+  }
+}
+    ${PageInfoFragmentDoc}
+${MinStackFragmentDoc}`;
+
+/**
+ * __useStacksQuery__
+ *
+ * To run a query within a React component, call `useStacksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStacksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStacksQuery({
+ *   variables: {
+ *      featured: // value for 'featured'
+ *   },
+ * });
+ */
+export function useStacksQuery(baseOptions?: Apollo.QueryHookOptions<StacksQuery, StacksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
+      }
+export function useStacksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StacksQuery, StacksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
+        }
+export type StacksQueryHookResult = ReturnType<typeof useStacksQuery>;
+export type StacksLazyQueryHookResult = ReturnType<typeof useStacksLazyQuery>;
+export type StacksQueryResult = Apollo.QueryResult<StacksQuery, StacksQueryVariables>;
+export const StackDocument = gql`
+    query Stack($name: String!, $provider: Provider = AWS) {
+  stack(name: $name, provider: $provider) {
+    ...FullStack
+  }
+}
+    ${FullStackFragmentDoc}`;
+
+/**
+ * __useStackQuery__
+ *
+ * To run a query within a React component, call `useStackQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStackQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStackQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *      provider: // value for 'provider'
+ *   },
+ * });
+ */
+export function useStackQuery(baseOptions: Apollo.QueryHookOptions<StackQuery, StackQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StackQuery, StackQueryVariables>(StackDocument, options);
+      }
+export function useStackLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StackQuery, StackQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StackQuery, StackQueryVariables>(StackDocument, options);
+        }
+export type StackQueryHookResult = ReturnType<typeof useStackQuery>;
+export type StackLazyQueryHookResult = ReturnType<typeof useStackLazyQuery>;
+export type StackQueryResult = Apollo.QueryResult<StackQuery, StackQueryVariables>;

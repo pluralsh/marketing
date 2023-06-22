@@ -99,58 +99,9 @@ fragment Category on CategoryInfo {
   count
 }
 
-fragment MinStack on Stack {
-  id
-  name
-  displayName
-  description
-  featured
-  creator {
-    id
-    name
-  }
-  collections {
-    id
-    provider
-    bundles {
-      recipe {
-        repository {
-          ...MinRepo
-          tags {
-            tag
-          }
-        }
-      }
-    }
-  }
-}
-
-fragment FullStack on Stack {
-  ...MinStack
-}
-
 fragment PageInfo on PageInfo {
   endCursor
   hasNextPage
-}
-
-query Stacks($featured: Boolean) {
-  stacks(featured: $featured, first: 50) {
-    pageInfo {
-      ...PageInfo
-    }
-    edges {
-      node {
-        ...MinStack
-      }
-    }
-  }
-}
-
-query Stack($name: String!, $provider: Provider! = AWS) {
-  stack(name: $name, provider: $provider) {
-    ...FullStack
-  }
 }
 
 query Categories {

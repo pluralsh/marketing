@@ -4,9 +4,10 @@ import { type GlobalPageProps } from '@pages/_app'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
 
+import { type GlobalProps } from '../utils/getGlobalProps'
+
 import ExternalScripts from './ExternalScripts'
 import { FullFooter } from './FooterFull'
-import { type GlobalProps } from './getGlobalProps'
 import HtmlHead from './HtmlHead'
 import { PageHeader } from './PageHeader'
 import { PagePropsContext } from './PagePropsContext'
