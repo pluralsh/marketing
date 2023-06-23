@@ -11,7 +11,7 @@ import { type Swiper as SwiperT } from 'swiper/types'
 
 import { mqs } from '@src/breakpoints'
 
-import { CarouselDot, CarouselDots } from './CarouselDots'
+import { CarouselDot, CarouselDots } from '../CarouselDots'
 
 const switchPointMQ = mqs.sm
 

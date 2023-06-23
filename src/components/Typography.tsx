@@ -1,4 +1,9 @@
-import { Children, type ComponentProps, forwardRef } from 'react'
+import {
+  Children,
+  type ComponentProps,
+  type ReactNode,
+  forwardRef,
+} from 'react'
 
 import {
   ArrowRightIcon,
@@ -11,6 +16,8 @@ import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
+
+import { useScrollTo } from './hooks/useScrollTo'
 
 export const Heading1 = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.title2,
@@ -192,8 +199,13 @@ export const AppTitle = styled.h1(({ theme }) => ({
 }))
 
 const CtaIcon = styled((props) => (
+  // const theme = useTheme()
+
   <span {...props}>
-    <ArrowRightIcon size={18} />
+    <ArrowRightIcon
+      size={18}
+      // color={theme.colors.text}
+    />
   </span>
 ))(({ theme }) => ({
   display: 'inline-block',
@@ -233,6 +245,86 @@ export const Cta = styled(({ children, ...props }) => {
 
   return <Link {...props}>{kids}</Link>
 })(({ theme }) => ({
+  display: 'block',
+  gap: theme.spacing.medium,
+  ...theme.partials.marketingText.body2Bold,
+  fontWeight: 500,
+  cursor: 'pointer',
+  '&, &:any-link': {
+    color: theme.colors.text,
+  },
+  '&:hover': {
+    [CtaIcon]: {
+      transform: 'translate(20%)',
+    },
+  },
+}))
+
+const ScrollToLinkIcon = styled((props) => (
+  <span {...props}>
+    <ArrowRightIcon
+      className="arrow"
+      size={16}
+    />
+  </span>
+))(({ theme }) => ({
+  display: 'inline-block',
+  position: 'relative',
+  top: 2,
+  marginLeft: theme.spacing.medium,
+  transition: 'transform 0.2s ease',
+  '.arrow': {
+    transform: 'rotate(90deg)',
+  },
+}))
+
+export const ScrollToLink = styled(
+  ({
+    target,
+    children,
+    ...props
+  }: {
+    target: string | HTMLElement
+    children: ReactNode
+  }) => {
+    // const scroll = useScrollTo(target)
+    const onClick = useScrollTo(target)
+
+    const kids = Children.map(children, (child, i) => {
+      if (i === Children.count(children) - 1 && typeof child === 'string') {
+        const splitChild = child.split(/(?<=\s)/)
+
+        if (splitChild.length >= 1) {
+          return [
+            ...splitChild.slice(0, -1),
+            <span style={{ whiteSpace: 'nowrap' }}>
+              {...splitChild.slice(-1)}
+              <ScrollToLinkIcon />
+            </span>,
+          ]
+        }
+
+        return (
+          <>
+            {child}
+            <ScrollToLinkIcon />
+          </>
+        )
+      }
+
+      return child
+    })
+
+    return (
+      <a
+        onClick={onClick}
+        {...props}
+      >
+        {kids}
+      </a>
+    )
+  }
+)(({ theme }) => ({
   display: 'block',
   gap: theme.spacing.medium,
   ...theme.partials.marketingText.body2Bold,

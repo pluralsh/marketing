@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 
 import deepFreeze from 'deep-freeze'
 
-import { APP_CATALOG_BASE_URL } from './consts/routes'
+import { APPS_BASE_URL } from './consts/routes'
 
 import type { MinRepo } from './data/getRepos'
 
@@ -103,7 +103,7 @@ const rootNavData: NavMenu = deepFreeze([
     title: 'Applications',
     sections: [
       {
-        href: APP_CATALOG_BASE_URL,
+        href: APPS_BASE_URL,
         toMenu: 'appCatalog',
         title: 'Application Catalog',
       },
@@ -298,12 +298,12 @@ export const getNavData = ({ repos }: { repos: MinRepo[] }): NavData => ({
   appCatalog: [
     {
       title: 'Application Catalog',
-      href: APP_CATALOG_BASE_URL,
+      href: APPS_BASE_URL,
       sections: [
-        { title: 'Catalog Overview', href: APP_CATALOG_BASE_URL },
+        { title: 'Catalog Overview', href: APPS_BASE_URL },
         ...repos.map((repo) => ({
           title: repo.displayName,
-          href: `${APP_CATALOG_BASE_URL}/${repo.name}`,
+          href: `${APPS_BASE_URL}/${repo.name}`,
         })),
       ],
     },

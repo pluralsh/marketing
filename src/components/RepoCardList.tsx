@@ -16,13 +16,15 @@ import {
 import Link from 'next/link'
 
 import { drop, isEmpty } from 'lodash-es'
+import urlJoin from 'url-join'
 
 import { getStackRepos } from '@pages/marketplace'
 import { breakpointIsGreaterOrEqual } from '@src/breakpoints'
+import { APPS_BASE_URL } from '@src/consts/routes'
 import { type MinRepo, fakeDisplayName } from '@src/data/getRepos'
 import { type MinStack } from '@src/data/getStacks'
 
-import { useBreakpoint } from './BreakpointProvider'
+import { useBreakpoint } from './contexts/BreakpointProvider'
 import { ResponsivePageNavigation } from './ResponsivePageNavigation'
 
 function getPaginatedItems<T>(items: T[], pageIndex = 0, pageSize = 24) {
@@ -119,7 +121,7 @@ export function RepoCard({
       }
       variant="marketing"
       as={Link}
-      href={`/applications/${repo.name}${urlParams ? `?${urlParams}` : ''}`}
+      href={urlJoin(APPS_BASE_URL, repo.name, urlParams ? `?${urlParams}` : '')}
       color="text"
       textDecoration="none"
       width="100%"

@@ -1,42 +1,26 @@
-import { type ComponentProps } from 'react'
+import { StandardPage } from '@src/components/layout/FullPage'
+import { AppBody2, ResponsiveText } from '@src/components/Typography'
 
-import { A } from 'honorable'
+import { SingleAccordion } from '../SingleAccordion'
 
-import styled from 'styled-components'
-
-import { SingleAccordion } from './SingleAccordion'
-import { AppBody2, Heading2 } from './Typography'
-
-function MarketplaceExtrasUnstyled(props: ComponentProps<'div'>) {
+export function FAQSection() {
   return (
-    <div {...props}>
-      <Heading2 className="mb-xlarge">
-        Don’t see what you’re looking for?
-      </Heading2>
-      <div className="flex flex-col gap-large">
-        <SingleAccordion label="Request an application">
+    <StandardPage className="py-xxxlarge">
+      <ResponsiveText
+        className="mb-xlarge text-center"
+        as="h2"
+        textStyles={{ '': 'mTitle1' }}
+      >
+        FAQ
+      </ResponsiveText>
+      <div className="flex flex-col gap-y-large">
+        <SingleAccordion label="Do you offer other orchestrators?">
           <AppBody2 color="text-light">
             Minim qui eiusmod enim voluptate minim velit. Irure ullamco do
             proident nisi non laboris et. Ipsum ipsum excepteur pariatur magna.
           </AppBody2>
         </SingleAccordion>
-        <SingleAccordion label="Adding an application">
-          <AppBody2
-            color="text-light"
-            className="mb-small"
-          >
-            Join our contributors. Add a new application to the Plural catalog.
-            Check out our{' '}
-            <A
-              inline
-              href="https://www.plural.sh/blog/paying-for-oss-contributions/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              documentation
-            </A>{' '}
-            on how to get started with adding an application.
-          </AppBody2>
+        <SingleAccordion label="How much does it cost to get started?">
           <AppBody2 color="text-light">
             Esse aliqua velit enim id consequat ad ad. Aute aliquip deserunt ad
             laboris ipsum. Dolor aliqua ut quis est aute aute ullamco elit
@@ -58,8 +42,6 @@ function MarketplaceExtrasUnstyled(props: ComponentProps<'div'>) {
           </AppBody2>
         </SingleAccordion>
       </div>
-    </div>
+    </StandardPage>
   )
 }
-
-export const MarketplaceExtras = styled(MarketplaceExtrasUnstyled)((_) => ({}))

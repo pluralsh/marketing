@@ -21,12 +21,23 @@ import { isEmpty, orderBy, upperFirst } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import {
+  type SetSearchParams,
+  useSearchParams,
+} from '@src/components/hooks/useSearchParams'
 import { MarketplacePage } from '@src/components/layout/BasicPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { MarketplaceCarousel } from '@src/components/MarketplaceCarousel'
-import { MarketplaceExtras } from '@src/components/MarketplaceExtras'
-import MarketplaceFilters from '@src/components/MarketplaceFilters'
-import StackHero, { Cta } from '@src/components/MarketplaceStackHero'
+import { MarketplaceCarousel } from '@src/components/page-sections/MarketplaceCarousel'
+import { MarketplaceExtras } from '@src/components/page-sections/MarketplaceExtras'
+import MarketplaceFilters from '@src/components/page-sections/MarketplaceFilters'
+import {
+  MarketSearchTabKey,
+  SearchBar,
+  useSearchTabKey,
+} from '@src/components/page-sections/MarketplaceSearchBar'
+import StackHero, {
+  Cta,
+} from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
@@ -41,16 +52,7 @@ import {
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
 
-import {
-  type SetSearchParams,
-  useSearchParams,
-} from '../src/components/hooks/useSearchParams'
-import { FullPage } from '../src/components/layout/FullPage'
-import {
-  MarketSearchTabKey,
-  SearchBar,
-  useSearchTabKey,
-} from '../src/components/MarketplaceSearchBar'
+import { FullPage, StandardPage } from '../src/components/layout/FullPage'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
 type PageProps = {

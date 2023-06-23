@@ -1,4 +1,4 @@
-import { APP_CATALOG_BASE_URL } from '../consts/routes'
+import { APPS_BASE_URL } from '../consts/routes'
 
 import type { Provider } from '../generated/graphqlPlural'
 
@@ -36,10 +36,6 @@ export function isSubrouteOf(route: string, compareRoute: string) {
   return route.startsWith(compareRoute)
 }
 
-export function isAppCatalogRoute(route: string) {
-  return isSubrouteOf(route, APP_CATALOG_BASE_URL)
-}
-
 export const providerToProviderIcon: Record<Provider, string> = {
   GCP: 'GCP',
   AWS: 'AWS',
@@ -61,3 +57,5 @@ export function toHtmlId(str) {
 export function startsWithVowel(str: string) {
   return !!str.match(/^[aeiou]/i)
 }
+
+export { default as urlJoin } from 'url-join'

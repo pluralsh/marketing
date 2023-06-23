@@ -23,7 +23,7 @@ export const GradientBG = styled(
       bottom: 0,
       backgroundImage: `url(${image})`,
       backgroundPosition: position,
-      backgroundSize: 'contain',
+      backgroundSize: '100%',
       backgroundRepeat: 'no-repeat',
       backgroundColor: theme.colors['fill-zero'],
       filter: 'blur(10px)',

@@ -16,17 +16,17 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import styled, { useTheme } from 'styled-components'
 
-import { Col, Columns2 } from '@src/components/layout/Columns'
+import { Columns, EqualColumn } from '@src/components/layout/Columns'
 
 import { TextLimiter } from './layout/TextLimiter'
 import { ResponsiveText } from './Typography'
 
 export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
-  <Columns2
+  <Columns
     {...props}
     className={classNames(props.className, 'gap-y-xxxlarge')}
   >
-    <Col>
+    <EqualColumn>
       <TextLimiter>
         <ResponsiveText
           as="h2"
@@ -54,8 +54,8 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
           Explore live demo
         </Button>
       </div>
-    </Col>
-    <Col className="flex flex-col gap-large">
+    </EqualColumn>
+    <EqualColumn className="flex flex-col gap-large">
       <ValueProp
         title="Developer friendly"
         icon={<TerminalIcon />}
@@ -76,8 +76,8 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
       >
         We are a community first company. We are and always will be open-source.
       </ValueProp>
-    </Col>
-  </Columns2>
+    </EqualColumn>
+  </Columns>
 ))(({ theme: _ }) => ({}))
 
 function ValueProp({

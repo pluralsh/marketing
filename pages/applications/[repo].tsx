@@ -6,6 +6,7 @@ import {
   Button,
   CertificateIcon,
   Code,
+  ColorModeProvider,
   DocumentIcon,
   GitHubIcon,
 } from '@pluralsh/design-system'
@@ -22,17 +23,24 @@ import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
+import { ProductValueSection } from '@pages/plural-stacks/[stack]'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
-import BuildStack, { getStackTabData } from '@src/components/BuildStack'
-import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Col, Columns2 } from '@src/components/layout/Columns'
-import { FullPage } from '@src/components/layout/FullPage'
+import { Columns, EqualColumn } from '@src/components/layout/Columns'
+import { StandardPage } from '@src/components/layout/FullPage'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
-import { QuotesCarousel } from '@src/components/QuoteCards'
+import BuildStack, {
+  getStackTabData,
+} from '@src/components/page-sections/BuildStackSection'
+import {
+  CaseStudySection,
+  getCaseStudyApps,
+} from '@src/components/page-sections/CaseStudySection'
+import { FAQSection } from '@src/components/page-sections/FAQSection'
+import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
 import { SingleAccordion } from '@src/components/SingleAccordion'
 import {
@@ -40,10 +48,8 @@ import {
   Body1,
   Body2,
   Cta,
-  Heading1,
   Heading3,
   Overline,
-  Title2,
 } from '@src/components/Typography'
 import { getAppMeta, getProviderIcon } from '@src/consts'
 import {
@@ -68,7 +74,7 @@ import {
 } from '@src/generated/graphqlPlural'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-import { CompanyLogos } from '../../src/components/CompanyLogos'
+import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { ProviderIcon } from '../../src/components/ProviderIcon'
@@ -195,6 +201,7 @@ export default function App({
   appExtras,
   recipes,
   buildStackTabs,
+  caseStudyApps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const tabs =
@@ -220,12 +227,12 @@ export default function App({
 
   return (
     <HeaderPad as={GradientBG}>
-      <FullPage>
+      <StandardPage>
         <div className="py-[40px] md:pb-xxxlarge">
           <BackButton />
         </div>
-        <Columns2 className="gap-y-xxlarge">
-          <Col>
+        <Columns className="gap-y-xxlarge">
+          <EqualColumn>
             <TextLimiter className="flex flex-col gap-large">
               <AppPageTitle app={repo} />
               <Body1 color="text-light">
@@ -249,15 +256,15 @@ export default function App({
                 )}
               </div>
             </TextLimiter>
-          </Col>
-          <Col>
+          </EqualColumn>
+          <EqualColumn>
             <Embed
               className="m-0 p-0"
               url={appExtras?.heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
-          </Col>
-        </Columns2>
+          </EqualColumn>
+        </Columns>
         <div
           className={classNames(
             'flex',
@@ -267,8 +274,8 @@ export default function App({
             'xl:py-[192px]'
           )}
         >
-          <Columns2 className={classNames('gap-y-xxxlarge')}>
-            <Col>
+          <Columns className={classNames('gap-y-xxxlarge')}>
+            <EqualColumn>
               <TextLimiter>
                 <Heading3
                   className="mb-large"
@@ -290,8 +297,8 @@ export default function App({
                   <RepoSocials repo={repo} />
                 </div>
               </TextLimiter>
-            </Col>
-            <Col>
+            </EqualColumn>
+            <EqualColumn>
               {tabs && tabs.length > 0 && (
                 <div className="flex flex-col gap-medium">
                   <Body2 className="columns:mt-[17px]">
@@ -310,8 +317,8 @@ export default function App({
               >
                 Read the install documentation
               </Cta>
-            </Col>
-          </Columns2>
+            </EqualColumn>
+          </Columns>
           {repo?.readme && (
             <SingleAccordion label={`${repo.displayName}’s readme`}>
               <div className="pt-medium pb-xlarge mx-auto max-w-[800px]">
@@ -324,59 +331,31 @@ export default function App({
             </SingleAccordion>
           )}
         </div>
-      </FullPage>
-      <FullPage>
-        <div>
-          <Columns2 className="gap-y-xxxlarge">
-            <Col>
-              <TextLimiter className="flex flex-col gap-large">
-                <Title2>Open-source and free to use</Title2>
-                <Body2>
-                  Plural automates the deployment and operation of{' '}
-                  {repo.displayName} in your cloud. Get up and running with your{' '}
-                  {repo.displayName} instance in minutes and let Plural deploy{' '}
-                  {repo.displayName} and all its dependencies into your cloud
-                  with all of the day-2 operations handled out of the box.
-                </Body2>
-                <Cta href="https://www.plural.sh/demo-login">
-                  Explore {repo.displayName} on Plural in live demo environment
-                </Cta>
-              </TextLimiter>
-            </Col>
-            <Col className="flex flex-col gap-large">
-              <Checklist>
-                <ChecklistItem>Automated upgrades</ChecklistItem>
-                <ChecklistItem>
-                  Transparent pricing and cost management{' '}
-                </ChecklistItem>
-                <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
-                <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
-                <ChecklistItem>Log management </ChecklistItem>
-              </Checklist>
-            </Col>
-          </Columns2>
-          <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-            <img
-              src="/images/application/product-value@2x.png"
-              alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-            />
-          </div>
-        </div>
-      </FullPage>
+      </StandardPage>
+      <ProductValueSection
+        name={repo.displayName}
+        isStack={false}
+      />
       {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
-      <FullPage>
-        <CompanyLogos className="mt-xxxxlarge" />
-      </FullPage>
-      <FullPage>
-        <div className="my-xxxxxlarge">
-          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-            What companies are saying about Plural
-          </Heading1>
-          <QuotesCarousel />
-        </div>
-      </FullPage>
-      <FullPage>{/* <FooterValueProp /> */}</FullPage>
+      <CompanyLogosSection className="mt-xxxxlarge" />
+      <TestimonialsSection />
+      <CaseStudyFAQSection caseStudyProps={{ apps: caseStudyApps }} />
     </HeaderPad>
+  )
+}
+
+export function CaseStudyFAQSection({
+  caseStudyProps,
+}: {
+  caseStudyProps: ComponentProps<typeof CaseStudySection>
+}) {
+  return (
+    <ColorModeProvider mode="light">
+      <div className="bg-fill-zero gap-xlarge mt-xxxlarge mb-xlarge columns:mt-xxxxxxlarge columns:gap-xxxxxlarge columns:mb-xxxxxlarge">
+        <CaseStudySection {...caseStudyProps} />
+        <FAQSection />
+      </div>
+    </ColorModeProvider>
   )
 }
 
@@ -401,6 +380,7 @@ export type AppPageProps = {
   appExtras?: AppExtrasFragment
   recipes?: Recipe[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
+  caseStudyApps: MinRepo[]
 }
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
@@ -415,7 +395,6 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const { data: stacks, error: stacksError } = await until(() => getStacks())
 
   const thisRepo = repos?.find((r) => r.name === repoName)
-  // const thisRepo = repo
 
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
@@ -461,6 +440,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     ...getAppMeta(thisRepo),
     footerVariant: FooterVariant.kitchenSink,
     buildStackTabs,
+    caseStudyApps: getCaseStudyApps(repos),
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),

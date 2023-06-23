@@ -24,9 +24,9 @@ import styled from 'styled-components'
 
 import { mqMarketTwoCol } from '@pages/marketplace'
 import { mqs } from '@src/breakpoints'
+import { BareModal } from '@src/components/BareModal'
+import { useSearchParams } from '@src/components/hooks/useSearchParams'
 
-import { BareModal } from './BareModal'
-import { useSearchParams } from './hooks/useSearchParams'
 import MarketplaceFilters from './MarketplaceFilters'
 
 const mqMoveTabs = mqs.md

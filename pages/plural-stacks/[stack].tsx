@@ -15,33 +15,33 @@ import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
-import { RepoSocials } from '@pages/applications/[repo]'
+import { CaseStudyFAQSection, RepoSocials } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
-// import { mqs } from '@src/breakpoints'
-import BuildStack, {
-  AppCard,
-  getStackTabData,
-} from '@src/components/BuildStack'
+import { AppCard } from '@src/components/AppOrStackCard'
 import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
-import { FullPage } from '@src/components/layout/FullPage'
+import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { BackButton } from '@src/components/Nav'
+import BuildStackSection, {
+  getStackTabData,
+} from '@src/components/page-sections/BuildStackSection'
+import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
-import { QuotesCarousel } from '@src/components/QuoteCards'
+import { TestimonialsSection } from '@src/components/QuoteCards'
 import {
   AppTitle,
   Body1,
   Body2,
   Cta,
-  Heading1,
   Overline,
   ResponsiveText,
   Title2,
 } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
-import { getRepos, normalizeRepo } from '@src/data/getRepos'
+import { APPS_BASE_URL } from '@src/consts/routes'
+import { type MinRepo, getRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
 import {
   StackExtrasDocument,
@@ -54,10 +54,10 @@ import {
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { startsWithVowel } from '@src/utils/text'
+import { startsWithVowel, urlJoin } from '@src/utils/text'
 
-import { CompanyLogos } from '../../src/components/CompanyLogos'
-import { Col, Columns2 } from '../../src/components/layout/Columns'
+import { CompanyLogosSection } from '../../src/components/CompanyLogos'
+import { Columns, EqualColumn } from '../../src/components/layout/Columns'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { TextLimiter } from '../../src/components/layout/TextLimiter'
 
@@ -83,6 +83,7 @@ export default function Stack({
   stack,
   stackExtras,
   buildStackTabs,
+  caseStudyApps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const providers =
@@ -124,12 +125,12 @@ export default function Stack({
 
   return (
     <HeaderPad as={GradientBG}>
-      <FullPage>
+      <StandardPage>
         <div className="py-[40px] md:pb-xxxlarge">
           <BackButton />
         </div>
-        <Columns2 className="gap-y-xxlarge">
-          <Col>
+        <Columns className="gap-y-xxlarge">
+          <EqualColumn>
             <TextLimiter className="flex flex-col gap-xlarge">
               <AppTitle>
                 Build {startsWithVowel(stack.displayName) ? 'an' : 'a'}{' '}
@@ -167,15 +168,15 @@ export default function Stack({
                 </Button>
               </div>
             </TextLimiter>
-          </Col>
-          <Col>
+          </EqualColumn>
+          <EqualColumn>
             <Embed
               className="m-0 p-0"
               url={stackExtras?.heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
-          </Col>
-        </Columns2>
+          </EqualColumn>
+        </Columns>
         <div
           className={classNames(
             'flex',
@@ -185,19 +186,19 @@ export default function Stack({
             'xl:py-[192px]'
           )}
         >
-          <Columns2 className="mb-small">
-            <Col>
+          <Columns className="mb-small">
+            <EqualColumn>
               <ResponsiveText
                 color="text-xlight"
                 textStyles={{ '': 'mLabel' }}
               >
                 The stack
               </ResponsiveText>
-            </Col>
-            <Col />
-          </Columns2>
-          <Columns2 className={classNames('gap-y-xxxlarge')}>
-            <Col>
+            </EqualColumn>
+            <EqualColumn />
+          </Columns>
+          <Columns className={classNames('gap-y-xxxlarge')}>
+            <EqualColumn>
               <StackAppsTabList
                 stateRef={appsTabStateRef}
                 stateProps={{
@@ -224,8 +225,8 @@ export default function Stack({
                   )
                 })}
               </StackAppsTabList>
-            </Col>
-            <Col>
+            </EqualColumn>
+            <EqualColumn>
               <StackAppsTabPanel
                 className="flex flex-col gap-large"
                 stateRef={appsTabStateRef}
@@ -253,67 +254,24 @@ export default function Stack({
                     as={Link}
                     secondary
                     className="flex-grow md:flex-grow-0"
-                    href={`/applications/${curApp?.name}`}
+                    href={urlJoin(APPS_BASE_URL, curApp?.name || '')}
                   >
                     Learn more about {curApp?.displayName}
                   </Button>
                 </div>
               </StackAppsTabPanel>
-            </Col>
-          </Columns2>
+            </EqualColumn>
+          </Columns>
         </div>
-      </FullPage>
-      <FullPage>
-        <div>
-          <Columns2 className="gap-y-xxxlarge">
-            <Col>
-              <TextLimiter className="flex flex-col gap-large">
-                <Title2>Open-source and free to use</Title2>
-                <Body2>
-                  Plural automates the deployment and operation of{' '}
-                  {stack.displayName} in your cloud. Get up and running with
-                  your {stack.displayName} instance in minutes and let Plural
-                  deploy {stack.displayName} and all its dependencies into your
-                  cloud with all of the day-2 operations handled out of the box.
-                </Body2>
-                <Cta href="https://www.plural.sh/demo-login">
-                  Explore {stack.displayName} on Plural in live demo environment
-                </Cta>
-              </TextLimiter>
-            </Col>
-            <Col className="flex flex-col gap-large">
-              <Checklist>
-                <ChecklistItem>Automated upgrades</ChecklistItem>
-                <ChecklistItem>
-                  Transparent pricing and cost management{' '}
-                </ChecklistItem>
-                <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
-                <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
-                <ChecklistItem>Log management </ChecklistItem>
-              </Checklist>
-            </Col>
-          </Columns2>
-          <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-            <img
-              src="/images/application/product-value@2x.png"
-              alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-            />
-          </div>
-        </div>
-      </FullPage>
-      {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
-      <FullPage>
-        <CompanyLogos className="mt-xxxxlarge" />
-      </FullPage>
-      <FullPage>
-        <div className="my-xxxxxlarge">
-          <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-            What companies are saying about Plural
-          </Heading1>
-          <QuotesCarousel />
-        </div>
-      </FullPage>
-      <FullPage>{/* <FooterValueProp /> */}</FullPage>
+      </StandardPage>
+      <ProductValueSection
+        name={stack.displayName}
+        isStack
+      />
+      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
+      <CompanyLogosSection className="mt-xxxxlarge" />
+      <TestimonialsSection />
+      <CaseStudyFAQSection caseStudyProps={{ apps: caseStudyApps }} />
     </HeaderPad>
   )
 }
@@ -326,10 +284,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 
-  const repos = (await getRepos()) || []
+  const stacks = (await getStacks()) || []
 
   return {
-    paths: repos.map((repo) => ({ params: { repo: repo?.name } })),
+    paths: stacks.map((stack) => ({ params: { stack: stack?.name } })),
     fallback: true,
   }
 }
@@ -338,6 +296,7 @@ export type StackPageProps = {
   stack?: FullStack | null
   stackExtras?: StackExtrasFragment
   buildStackTabs?: ReturnType<typeof getStackTabData>
+  caseStudyApps: MinRepo[]
 }
 
 export const getStaticProps: GetStaticProps<StackPageProps> = async (
@@ -385,6 +344,7 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
     ...getStackMeta(thisStack),
     footerVariant: FooterVariant.kitchenSink,
     buildStackTabs,
+    caseStudyApps: getCaseStudyApps(repos),
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [stacksError] : []),
@@ -392,4 +352,55 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
       ...(appError ? [appError] : []),
     ],
   })
+}
+
+export function ProductValueSection({
+  name,
+  isStack,
+}: {
+  name: string
+  isStack: boolean
+}) {
+  const fullName = isStack ? `the ${name} Stack` : name
+
+  return (
+    <StandardPage>
+      <div>
+        <Columns className="gap-y-xxxlarge">
+          <EqualColumn>
+            <TextLimiter className="flex flex-col gap-large">
+              <Title2>Open-source and free to use</Title2>
+              <Body2>
+                Plural automates the deployment and operation of {fullName} in
+                your cloud. Get up and running with your {fullName} instance in
+                minutes and let Plural deploy {fullName} and all its
+                dependencies into your cloud with all of the day-2 operations
+                handled out of the box.
+              </Body2>
+              <Cta href="https://www.plural.sh/demo-login">
+                Explore {fullName} on Plural in live demo environment
+              </Cta>
+            </TextLimiter>
+          </EqualColumn>
+          <EqualColumn className="flex flex-col gap-large">
+            <Checklist>
+              <ChecklistItem>Automated upgrades</ChecklistItem>
+              <ChecklistItem>
+                Transparent pricing and cost management
+              </ChecklistItem>
+              <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
+              <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
+              <ChecklistItem>Log management </ChecklistItem>
+            </Checklist>
+          </EqualColumn>
+        </Columns>
+        <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
+          <img
+            src="/images/application/product-value@2x.png"
+            alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
+          />
+        </div>
+      </div>
+    </StandardPage>
+  )
 }

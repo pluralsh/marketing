@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 import { type MinStack } from '@src/data/getStacks'
 
-import { AppBody1, Heading1, Label } from './Typography'
+import { AppBody1, Heading1, Label } from '../Typography'
 
 const knownStacks = new Set(['data', 'devops', 'security', 'observability'])
 
@@ -98,6 +98,7 @@ function CtaUnstyled({ children, ...props }: ComponentProps<typeof Link>) {
 
 export default function StackHero({ stack }: { stack: MinStack }) {
   const imgSrcPart = knownStacks.has(stack.name) ? stack.name : 'data'
+  const numApps = stack?.collections?.[0]?.bundles?.length
 
   return (
     <HeroThing
@@ -108,9 +109,7 @@ export default function StackHero({ stack }: { stack: MinStack }) {
         <div className="flex flex-row gap-medium">
           <div className="flex flex-col gap-xsmall grow">
             <Heading1>{stack.displayName}</Heading1>
-            {stack?.collections?.[0]?.bundles?.length ?? (
-              <Label>{stack?.collections?.[0]?.bundles?.length} Apps</Label>
-            )}
+            {numApps ? <Label>{numApps} Apps</Label> : null}
           </div>
           <div>
             <Chip

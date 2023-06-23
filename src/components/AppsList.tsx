@@ -11,7 +11,7 @@ import chroma from 'chroma-js'
 import Fuse from 'fuse.js'
 import styled from 'styled-components'
 
-import { APP_CATALOG_BASE_URL } from '../consts/routes'
+import { APPS_BASE_URL } from '../consts/routes'
 import { useRepos } from '../contexts/ReposContext'
 
 function AppsList({ className, ...props }: { className?: string }) {
@@ -60,7 +60,7 @@ function AppsList({ className, ...props }: { className?: string }) {
               label={`${application.displayName}`}
               checked={false}
               as={Link}
-              href={`${APP_CATALOG_BASE_URL}/${application.name}`}
+              href={`${APPS_BASE_URL}/${application.name}`}
               cursor="pointer"
               textDecoration="none"
               color="inherit"

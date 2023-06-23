@@ -3,9 +3,7 @@ import { type ComponentProps, type Ref, forwardRef } from 'react'
 
 import {
   AppIcon,
-  Chip,
   ColorModeProvider,
-  StackIcon,
   type TabBaseProps,
   TabList,
   TabPanel,
@@ -16,11 +14,12 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import { FullPage } from '@src/components/layout/FullPage'
-import { type MinRepo, type getRepos } from '@src/data/getRepos'
-import { type MinStack, type getStacks } from '@src/data/getStacks'
+import { StandardPage } from '@src/components/layout/FullPage'
+import { type getRepos } from '@src/data/getRepos'
+import { type getStacks } from '@src/data/getStacks'
 
-import { Cta, ResponsiveText } from './Typography'
+import { AppCard, StackCard } from '../AppOrStackCard'
+import { Cta, ResponsiveText } from '../Typography'
 
 export const getStackTabData = ({
   repos,
@@ -75,83 +74,6 @@ export const getStackTabData = ({
   },
 ]
 
-function StackCard({
-  stack,
-  size = 'medium',
-  ...props
-}: {
-  stack: MinStack
-  size?: ComponentProps<typeof AppOrStackCard>['$size']
-} & ComponentProps<typeof AppOrStackCard>) {
-  return (
-    <AppOrStackCard
-      $variant="stack"
-      $size={size}
-      {...props}
-    >
-      <div className="stackTitleBox">
-        <div className="title"> {stack.displayName}</div>
-        <div>
-          <Chip
-            size="small"
-            icon={<StackIcon />}
-          >
-            Stack
-          </Chip>
-        </div>
-      </div>
-      <div className="stackApps">
-        {(stack.collections?.[0]?.bundles || []).map((b) => {
-          const repo = b?.recipe.repository
-
-          return (
-            <AppIcon
-              size="xxsmall"
-              url={repo?.icon || repo?.darkIcon || ''}
-            />
-          )
-        })}
-      </div>
-    </AppOrStackCard>
-  )
-}
-
-export const AppCard = forwardRef(
-  (
-    {
-      app,
-      size = 'medium',
-      active = false,
-      ...props
-    }: {
-      active?: boolean
-      app: MinRepo
-      size?: ComponentProps<typeof AppOrStackCard>['$size']
-    } & ComponentProps<typeof AppOrStackCard>,
-    ref
-  ) => (
-    <AppOrStackCard
-      ref={ref}
-      $variant="app"
-      $size={size}
-      $active={active}
-      {...props}
-    >
-      <div className="appBox">
-        <AppIcon
-          hue={active ? 'lightest' : 'lighter'}
-          size={size === 'small' ? 'xsmall' : 'small'}
-          url={app.icon || app.darkIcon || ''}
-        />
-        <div className="appTitleBox">
-          <div className="title"> {app.displayName}</div>
-          <div className="category">{app.category}</div>
-        </div>
-      </div>
-    </AppOrStackCard>
-  )
-)
-
 export default function BuildStack({
   tabs,
 }: {
@@ -164,7 +86,7 @@ export default function BuildStack({
   return (
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero">
-        <FullPage className="py-xxxxlarge columns:py-xxxx">
+        <StandardPage className="py-xxxxlarge columns:py-xxxx">
           <div className="text-center mb-xxlarge">
             <ResponsiveText
               textStyles={{ '': 'mTitle2', md: 'mTitle1', xxl: 'mHero2' }}
@@ -211,7 +133,6 @@ export default function BuildStack({
                 <AppCard
                   as={Link}
                   app={app}
-                  $variant="app"
                   key={`app-${app.name}`}
                   href={`/applications/${app.name}`}
                 >
@@ -235,73 +156,11 @@ export default function BuildStack({
               Explore the Marketplace
             </Cta>
           </div>
-        </FullPage>
+        </StandardPage>
       </div>
     </ColorModeProvider>
   )
 }
-
-const AppOrStackCard = styled.div<{
-  $variant: 'app' | 'stack'
-  $size: 'medium' | 'small'
-  $active: 'boolean'
-}>(({ theme, $variant = 'app', $active = false, $size = 'medium' }) => ({
-  display: 'flex',
-  rowGap: theme.spacing.xxsmall,
-  flexDirection: 'column',
-  justifyContent: 'center',
-  padding: $size === 'small' ? theme.spacing.small : theme.spacing.large,
-  paddingBottom: $variant === 'stack' ? theme.spacing.small : undefined,
-  '&, &:focus-visible': {
-    backgroundColor: $active
-      ? theme.colors['fill-one-selected']
-      : theme.colors['fill-one'],
-  },
-
-  color: theme.colors.text,
-  borderRadius: theme.borderRadiuses.large,
-  ...(theme.mode === 'light'
-    ? {
-        boxShadow: `0px 1px 3px rgba(74, 81, 242, 0.04), 0px 2px 10px rgba(74, 81, 242, 0.04)`,
-        '&:hover': {
-          boxShadow: `0px 2px 7px 1px rgba(74, 81, 242, 0.1), 0px 2px 10px rgba(74, 81, 242, 0.08)`,
-        },
-      }
-    : {
-        '&:hover': {
-          backgroundColor: $active
-            ? theme.colors['fill-one-selected']
-            : theme.colors['fill-one-hover'],
-        },
-      }),
-  '.stackTitleBox, .appBox': {
-    display: 'flex',
-    gap: theme.spacing.small,
-  },
-  '.stackApps': {
-    display: 'flex',
-    gap: theme.spacing.xxsmall,
-  },
-  '.appTitleBox': {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 0,
-    overflow: 'hidden',
-  },
-  '.title': {
-    ...theme.partials.text.title2,
-    color: theme.colors.text,
-    overflow: 'hidden',
-    flexShrink: 1,
-    flexGrow: 1,
-    textOverflow: 'ellipsis',
-  },
-  '.category': {
-    ...theme.partials.text.caption,
-    color: theme.colors['text-light'],
-  },
-  [mqs.columns]: {},
-}))
 
 const StackTabList = styled(TabList)<{ $active: boolean }>(({ theme }) => ({
   // '&&': {

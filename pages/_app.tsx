@@ -19,7 +19,7 @@ import { SSRProvider } from 'react-aria'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 
-import { BreakpointProvider } from '@src/components/BreakpointProvider'
+import { BreakpointProvider } from '@src/components/contexts/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import { type FooterVariant } from '@src/components/FooterFull'
 import GlobalStyles from '@src/components/GlobalStyles'

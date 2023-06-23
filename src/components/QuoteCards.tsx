@@ -9,6 +9,8 @@ import { mqs } from '@src/breakpoints'
 
 import { CarouselDot, CarouselDots } from './CarouselDots'
 import useIndex from './hooks/useIndex'
+import { StandardPage } from './layout/FullPage'
+import { Heading1 } from './Typography'
 
 type Quote = {
   quote?: ReactNode | string
@@ -316,3 +318,16 @@ export const QuotesCarousel = styled(
     height: 'unset',
   },
 }))
+
+export function TestimonialsSection() {
+  return (
+    <StandardPage>
+      <div className="my-xxxxxlarge">
+        <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+          What companies are saying about Plural
+        </Heading1>
+        <QuotesCarousel />
+      </div>
+    </StandardPage>
+  )
+}

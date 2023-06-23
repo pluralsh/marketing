@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { PropsWithChildren } from 'react'
 
-import { type Breakpoint, breakpoints } from '../breakpoints'
+import { type Breakpoint, breakpoints } from '../../breakpoints'
 
 export const BreakpointContext = createContext<Breakpoint>('')
 

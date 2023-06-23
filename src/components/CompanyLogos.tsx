@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import { Label } from '@src/components/Typography'
 
+import { StandardPage } from './layout/FullPage'
+
 const partnerLogos = [
   {
     logoUrl: 'logo-poplar.svg',
@@ -40,23 +42,25 @@ const partnerLogos = [
   },
 ]
 
-export const CompanyLogos = styled(({ ...props }) => (
-  <div {...props}>
-    <Label className="mb-large md:mb-xxlarge text-center ">
-      Companies using Plural
-    </Label>
-    <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
-      {partnerLogos.map((logo) => (
-        <div key={logo.logoUrl}>
-          <img
-            src={`/images/partner-logos/${logo.logoUrl}`}
-            alt={logo.name}
-            style={{ width: `${logo.width}px` }}
-          />
-        </div>
-      ))}
-    </ul>
-  </div>
+export const CompanyLogosSection = styled(({ ...props }) => (
+  <StandardPage>
+    <div {...props}>
+      <Label className="mb-large md:mb-xxlarge text-center ">
+        Companies using Plural
+      </Label>
+      <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
+        {partnerLogos.map((logo) => (
+          <div key={logo.logoUrl}>
+            <img
+              src={`/images/partner-logos/${logo.logoUrl}`}
+              alt={logo.name}
+              style={{ width: `${logo.width}px` }}
+            />
+          </div>
+        ))}
+      </ul>
+    </div>
+  </StandardPage>
 ))(({ theme: _ }) => ({
   ul: {},
   img: {

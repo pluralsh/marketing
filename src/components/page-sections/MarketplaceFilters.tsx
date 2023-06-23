@@ -12,7 +12,7 @@ import { useSearchParams } from '@src/components/hooks/useSearchParams'
 import { Categories } from '@src/data/getSearchMetadata'
 import { type CategoryFragment } from '@src/generated/graphqlPlural'
 
-import { type AccordionProps, SingleAccordion } from './SingleAccordion'
+import { type AccordionProps, SingleAccordion } from '../SingleAccordion'
 
 function useParamToggle(key: string) {
   const [searchParams, setSearchParams] = useSearchParams()

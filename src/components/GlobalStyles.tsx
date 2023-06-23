@@ -56,37 +56,41 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       scrollMarginTop: `${theme.spacing.large}px`,
     },
     ':root': {
+      '--page-x-pad-start': '16px',
+      '--page-x-pad-md': '24px',
+      '--page-x-pad-lg': '24px',
+      '--page-x-pad-xl': '24px',
+      '--page-x-pad-xxl': '32px',
+      '--page-x-pad-max': '96px',
+
       '--top-nav-height': '72px',
       '--menu-extra-bpad': '0px',
-      '--page-x-pad': `20px`,
+      '--page-x-pad': 'var(--page-x-pad-start)',
       '--top-nav-link-h-pad': 0,
-      [mqs.lg]: {},
-      [mqs.xl]: {},
-      '--page-max-width': `${breakpoints.md - theme.spacing.large * 2}px`,
+      '--page-max-width': `calc(${breakpoints.md}px - ((var(--page-x-pad-md) - var(--page-x-pad)) * 2)))`,
     },
     [mqs.md]: {
       ':root': {
-        '--page-x-pad': `${theme.spacing.large}px`,
-        '--page-max-width': `${
-          // breakpoints.xxl - (96 - theme.spacing.large) * 2
-          breakpoints.md - theme.spacing.large * 2
-        }px`,
+        '--page-x-pad': `var(--page-x-pad-md)`,
+        '--page-max-width': `calc(${breakpoints.lg}px - ((var(--page-x-pad-lg) - var(--page-x-pad)) * 2)))`,
       },
     },
     [mqs.lg]: {
       ':root': {
         '--top-nav-height': '80px',
         '--top-nav-link-h-pad': `${theme.spacing.small}px`,
-        '--page-max-width': `${
-          breakpoints.xxl - (96 - theme.spacing.large) * 2
-          // breakpoints.md - theme.spacing.large * 2
-        }px`,
+        '--page-x-pad': `var(--page-x-pad-lg)`,
+        '--page-max-width': `calc(${breakpoints.xl}px - ((var(--page-x-pad-xl) - var(--page-x-pad)) * 2)))`,
       },
     },
     [mqs.fullHeader]: {
       ':root': {
         '--top-nav-link-h-pad': `${theme.spacing.xsmall - 1}px`,
       },
+    },
+    [mqs.xl]: {
+      '--page-x-pad': `var(--page-x-pad-xl)`,
+      '--page-max-width': `calc(${breakpoints.xxl}px - ((var(--page-x-pad-xxl) - var(--page-x-pad)) * 2)))`,
     },
     [mqs.fullHeaderWide]: {
       ':root': {
@@ -100,10 +104,14 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
     },
     [mqs.xxl]: {
       ':root': {
-        '--page-x-pad': `96px`,
-        '--page-max-width': `${breakpoints.maxWidth}px`,
         '--top-nav-link-h-pad': `${theme.spacing.medium}px`,
+        '--page-x-pad': `var(--page-x-pad-xxl)`,
+        '--page-max-width': `calc(${breakpoints.maxWidth}px - ((var(--page-x-pad-max) - var(--page-x-pad)) * 2)))`,
       },
+    },
+    [mqs.maxWidth]: {
+      '--page-x-pad': `var(--page-x-pad-max)`,
+      '--page-max-width': `calc(${breakpoints.maxWidth}px)`,
     },
   })
 )

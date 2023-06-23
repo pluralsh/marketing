@@ -15,6 +15,13 @@ const colors = {
   ...styledTheme.colors,
   ...semanticColorCssVars,
 }
+
+const borderRadius = {
+  none: '0',
+  medium: `${styledTheme.borderRadiuses.medium}px`,
+  large: `${styledTheme.borderRadiuses.large}px`,
+}
+
 const screens = mapKeys(
   mapValues(breakpoints, (bp) => `${bp}px`),
   (_, key) => key
@@ -26,6 +33,7 @@ export default {
     screens,
     colors,
     spacing,
+    borderRadius,
     extend: {},
   },
   plugins: [],

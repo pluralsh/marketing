@@ -15,7 +15,7 @@ import styled, { useTheme } from 'styled-components'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
-import { useBreakpoint } from './BreakpointProvider'
+import { useBreakpoint } from './contexts/BreakpointProvider'
 import GithubStars from './GithubStars'
 import { PageMaxWidthLimiter } from './MaxWidthLimiter'
 import { NavigationDesktop } from './NavigationDesktop'
@@ -25,6 +25,8 @@ import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
 const Filler = styled.div((_) => ({
   flexGrow: 1,
 }))
+
+export const PAGE_HEADER_ID = 'plural-page-header'
 
 export function PageHeader({ ...props }) {
   const theme = useTheme()
@@ -51,7 +53,7 @@ export function PageHeader({ ...props }) {
   })
 
   return (
-    <HeaderWrap>
+    <HeaderWrap id={PAGE_HEADER_ID}>
       <PageHeaderInner {...props}>
         <nav className="leftSection">
           <NextLink
