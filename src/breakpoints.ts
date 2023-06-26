@@ -9,7 +9,7 @@ export const breakpointsBase = {
   lg: 1000,
   xl: 1280,
   xxl: 1440,
-  maxWidth: 1920,
+  max: 1920,
 } as const satisfies Record<string, number>
 
 export const breakpoints = {

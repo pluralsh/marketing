@@ -64,7 +64,7 @@ const HeroStyles = styled.div<{
   //   backgroundImage: `url(${$bgPrefix}-lg${$bgSuffix})`,
   //   backgroundPosition: 'center center',
   // },
-  [mqs.maxWidth]: {
+  [mqs.max]: {
     backgroundImage: `url(${$bgPrefix}-xl${$bgSuffix})`,
     backgroundPosition: 'right center',
   },

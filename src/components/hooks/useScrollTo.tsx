@@ -34,5 +34,5 @@ export const useScrollTo = (
         ...options,
       })
     }
-  }, [idOrElt, options, theme.spacing.large])
+  }, [idOrElt, options, theme.spacing.xxlarge])
 }

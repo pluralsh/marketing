@@ -1,15 +1,6 @@
 import { type ComponentProps, useEffect } from 'react'
 
-import {
-  AppIcon,
-  BrowserIcon,
-  Button,
-  CertificateIcon,
-  Code,
-  ColorModeProvider,
-  DocumentIcon,
-  GitHubIcon,
-} from '@pluralsh/design-system'
+import { AppIcon, Code, ColorModeProvider } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -55,7 +46,7 @@ import { getAppMeta, getProviderIcon } from '@src/consts'
 import {
   type FullRepo,
   type MinRepo,
-  // getFullRepo,
+  getFullRepo,
   getRepos,
 } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
@@ -78,6 +69,7 @@ import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { ProviderIcon } from '../../src/components/ProviderIcon'
+import { RepoSocials } from '../../src/components/RepoSocials'
 
 const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=mFDA-718RhI'
 
@@ -133,62 +125,6 @@ const AppPageTitle = styled(
     },
   },
 }))
-
-export function RepoSocials({ repo }: { repo?: MinRepo | null }) {
-  if (!repo) {
-    return null
-  }
-
-  return (
-    <>
-      {repo.community?.homepage && (
-        <Button
-          as="a"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={repo.community?.homepage}
-          tertiary
-          startIcon={<BrowserIcon />}
-        >
-          {repo.displayName}’s website
-        </Button>
-      )}
-      {repo.community?.gitUrl && (
-        <Button
-          as="a"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={repo.community?.gitUrl}
-          tertiary
-          startIcon={<GitHubIcon />}
-        >
-          GitHub
-        </Button>
-      )}
-      {repo.license?.url && (
-        <Button
-          as="a"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={repo.license.url}
-          tertiary
-          startIcon={<CertificateIcon />}
-        >
-          License
-        </Button>
-      )}
-      <Button
-        as="a"
-        target="_blank"
-        href={`https://docs.plural.sh/applications/${repo.name}`}
-        tertiary
-        startIcon={<DocumentIcon />}
-      >
-        Installing {repo.displayName} docs
-      </Button>
-    </>
-  )
-}
 
 export type ProviderProps = {
   label?: string | null | undefined
@@ -388,13 +324,13 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
 
   const { data: repos, error: reposError } = await until(() => getRepos())
 
-  // const { data: repo, error: repoError } = await until(() =>
-  //   getFullRepo(`${repoName}`)
-  // )
+  const { data: repo, error: repoError } = await until(() =>
+    getFullRepo(`${repoName}`)
+  )
 
   const { data: stacks, error: stacksError } = await until(() => getStacks())
 
-  const thisRepo = repos?.find((r) => r.name === repoName)
+  const thisRepo = repo
 
   if (!thisRepo || !repoName || typeof repoName !== 'string') {
     return { notFound: true }
@@ -444,7 +380,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),
-      // ...(repoError ? [repoError] : []),
+      ...(repoError ? [repoError] : []),
       ...(appError ? [appError] : []),
     ],
   })

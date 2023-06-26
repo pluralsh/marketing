@@ -1,3 +1,5 @@
+import { until } from '@open-draft/until'
+
 const keys = ['free', 'pro', 'enterprise'] as const
 
 export type PricingKey = (typeof keys)[number]
@@ -31,8 +33,8 @@ const freeTier: Plan = {
 }
 
 const proTier: Plan = {
-  key: 'free',
-  label: 'Open-source',
+  key: 'pro',
+  label: 'Pro',
   price: '$399 / cluster, + $49 / user / month',
   features: [
     { label: 'Everything in open-source plan' },
@@ -49,8 +51,8 @@ const proTier: Plan = {
 }
 
 const entTier: Plan = {
-  key: 'free',
-  label: 'Open-source',
+  key: 'enterprise',
+  label: 'Enterprise',
   price: 'Custom',
   features: [
     { label: 'Everything in Pro plan' },
@@ -62,20 +64,17 @@ const entTier: Plan = {
   cta: { label: 'Contact sales', url: '/contact-sales' },
 }
 
-export type LineItem =
-  | { label: string }
-  | { checked: boolean }
-  | { label: string; checked: boolean }
+export type LineItem = { label?: string; checked?: boolean }
 
 export type LineItems = {
-  name: string
+  label: string
   definition?: string
   values: Record<PricingKey, LineItem>
 }[]
 
 const lineItems: LineItems = [
   {
-    name: 'Apps',
+    label: 'Apps',
     values: {
       free: { label: 'Unlimited' },
       pro: { label: 'Unlimited' },
@@ -83,7 +82,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Clusters',
+    label: 'Clusters',
     values: {
       free: { label: 'Free' },
       pro: { label: '$399/cluster/month' },
@@ -91,7 +90,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'User accounts',
+    label: 'User accounts',
     values: {
       free: { label: 'Up to 5 users' },
       pro: { label: '$49/user/month' },
@@ -99,7 +98,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Roles',
+    label: 'Roles',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -107,7 +106,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Groups',
+    label: 'Groups',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -115,7 +114,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Service accounts',
+    label: 'Service accounts',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -123,7 +122,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Discord Forum',
+    label: 'Discord Forum',
     values: {
       free: { checked: true },
       pro: { checked: true },
@@ -131,7 +130,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Community support',
+    label: 'Community support',
     values: {
       free: { checked: true },
       pro: { checked: true },
@@ -139,7 +138,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Private Slack Connect',
+    label: 'Private Slack Connect',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -147,7 +146,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Dedicated SRE',
+    label: 'Dedicated SRE',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -155,7 +154,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Onboarding',
+    label: 'Onboarding',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -163,7 +162,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Emergency Hotfixes',
+    label: 'Emergency Hotfixes',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -171,7 +170,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'SLAs',
+    label: 'SLAs',
     definition: 'Service-level agreements',
     values: {
       free: { checked: false },
@@ -180,7 +179,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Coverage',
+    label: 'Coverage',
     values: {
       free: { label: 'Best effort' },
       pro: { label: 'Business hours' },
@@ -188,7 +187,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Authentication',
+    label: 'Authentication',
     values: {
       free: { label: 'Google OAuth + OIDC' },
       pro: { label: 'Google OAuth + OIDC' },
@@ -196,7 +195,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'VPN',
+    label: 'VPN',
     definition: 'Virtual private network',
     values: {
       free: { checked: false },
@@ -205,7 +204,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Audit logs',
+    label: 'Audit logs',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -213,7 +212,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'SOC 2',
+    label: 'SOC 2',
     definition: 'Service Organization Controls 2 compliant',
     values: {
       free: { checked: true },
@@ -222,7 +221,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'GDPR',
+    label: 'GDPR',
     definition: 'General Data Protection Regulation compliant',
     values: {
       free: { checked: true },
@@ -231,7 +230,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Compliance reports',
+    label: 'Compliance reports',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -239,7 +238,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Training',
+    label: 'Training',
     values: {
       free: { checked: false },
       pro: { label: 'Available' },
@@ -247,7 +246,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Developer support',
+    label: 'Developer support',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -255,7 +254,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Commercial license',
+    label: 'Commercial license',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -263,7 +262,7 @@ const lineItems: LineItems = [
     },
   },
   {
-    name: 'Invoices',
+    label: 'Invoices',
     values: {
       free: { checked: false },
       pro: { checked: false },
@@ -277,6 +276,12 @@ const data: { plans: Plan[]; lineItems: LineItems } = {
   lineItems,
 }
 
-export default async function getPricing() {
+async function getPricingInner() {
   return data
+}
+
+export type Pricing = Awaited<ReturnType<typeof getPricingInner>>
+
+export default async function getPricing() {
+  return until(() => getPricingInner())
 }

@@ -52,7 +52,7 @@ import {
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
 
-import { FullPage, StandardPage } from '../src/components/layout/FullPage'
+import { FullPage } from '../src/components/layout/FullPage'
 import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
 type PageProps = {

@@ -1,4 +1,7 @@
+import { type JSXElementConstructor } from 'react'
+
 import { isNil } from 'lodash-es'
+import { type ConditionalExcept } from 'type-fest'
 
 export function isDefined<T>(argument: T | undefined): argument is T {
   return argument !== undefined
@@ -26,3 +29,7 @@ export function notNilAnd<T>(filterFunc: (value: T) => boolean) {
     return notNil(value) && filterFunc(value)
   }
 }
+
+export type Omit$Props<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = ConditionalExcept<ComponentProps<T>, `${string}`>

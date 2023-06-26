@@ -15,7 +15,7 @@ import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
-import { CaseStudyFAQSection, RepoSocials } from '@pages/applications/[repo]'
+import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
 import { AppCard } from '@src/components/AppOrStackCard'
 import { Checklist, ChecklistItem } from '@src/components/Checklist'
@@ -30,6 +30,7 @@ import BuildStackSection, {
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
+import { RepoSocials } from '@src/components/RepoSocials'
 import {
   AppTitle,
   Body1,

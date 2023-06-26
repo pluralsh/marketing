@@ -13,6 +13,18 @@ const fillAvailable = (prop) => ({
 // const textStyleWrap = (selector) =>
 //   `body :is(div, h1, h2, h3, h4, h5, h6, p, *):where(${selector})`
 
+function maxWidthCalc({
+  nextBreakpoint,
+  nextPageXPad,
+}: {
+  nextBreakpoint: number
+  nextPageXPad: string
+}) {
+  return {
+    '--page-max-width': `calc(${nextBreakpoint}px - ((${nextPageXPad} - var(--page-x-pad)) * 2))`,
+  }
+}
+
 const GlobalStyles = createGlobalStyle(({ theme }) =>
   // const marketingTextStyles = mapKeys(
   //   theme.partials.marketingText,
@@ -60,19 +72,25 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       '--page-x-pad-md': '24px',
       '--page-x-pad-lg': '24px',
       '--page-x-pad-xl': '24px',
-      '--page-x-pad-xxl': '32px',
+      '--page-x-pad-xxl': '48px',
       '--page-x-pad-max': '96px',
 
       '--top-nav-height': '72px',
       '--menu-extra-bpad': '0px',
       '--page-x-pad': 'var(--page-x-pad-start)',
       '--top-nav-link-h-pad': 0,
-      '--page-max-width': `calc(${breakpoints.md}px - ((var(--page-x-pad-md) - var(--page-x-pad)) * 2)))`,
+      ...maxWidthCalc({
+        nextBreakpoint: breakpoints.md,
+        nextPageXPad: 'var(--page-x-pad-md)',
+      }),
     },
     [mqs.md]: {
       ':root': {
         '--page-x-pad': `var(--page-x-pad-md)`,
-        '--page-max-width': `calc(${breakpoints.lg}px - ((var(--page-x-pad-lg) - var(--page-x-pad)) * 2)))`,
+        ...maxWidthCalc({
+          nextBreakpoint: breakpoints.lg,
+          nextPageXPad: 'var(--page-x-pad-lg)',
+        }),
       },
     },
     [mqs.lg]: {
@@ -80,7 +98,10 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
         '--top-nav-height': '80px',
         '--top-nav-link-h-pad': `${theme.spacing.small}px`,
         '--page-x-pad': `var(--page-x-pad-lg)`,
-        '--page-max-width': `calc(${breakpoints.xl}px - ((var(--page-x-pad-xl) - var(--page-x-pad)) * 2)))`,
+        ...maxWidthCalc({
+          nextBreakpoint: breakpoints.xl,
+          nextPageXPad: 'var(--page-x-pad-xl)',
+        }),
       },
     },
     [mqs.fullHeader]: {
@@ -89,8 +110,13 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       },
     },
     [mqs.xl]: {
-      '--page-x-pad': `var(--page-x-pad-xl)`,
-      '--page-max-width': `calc(${breakpoints.xxl}px - ((var(--page-x-pad-xxl) - var(--page-x-pad)) * 2)))`,
+      ':root': {
+        '--page-x-pad': `var(--page-x-pad-xl)`,
+        ...maxWidthCalc({
+          nextBreakpoint: breakpoints.xxl,
+          nextPageXPad: 'var(--page-x-pad-xxl)',
+        }),
+      },
     },
     [mqs.fullHeaderWide]: {
       ':root': {
@@ -106,12 +132,17 @@ const GlobalStyles = createGlobalStyle(({ theme }) =>
       ':root': {
         '--top-nav-link-h-pad': `${theme.spacing.medium}px`,
         '--page-x-pad': `var(--page-x-pad-xxl)`,
-        '--page-max-width': `calc(${breakpoints.maxWidth}px - ((var(--page-x-pad-max) - var(--page-x-pad)) * 2)))`,
+        ...maxWidthCalc({
+          nextBreakpoint: breakpoints.max,
+          nextPageXPad: 'var(--page-x-pad-max)',
+        }),
       },
     },
-    [mqs.maxWidth]: {
-      '--page-x-pad': `var(--page-x-pad-max)`,
-      '--page-max-width': `calc(${breakpoints.maxWidth}px)`,
+    [mqs.max]: {
+      ':root': {
+        '--page-x-pad': `var(--page-x-pad-max)`,
+        '--page-max-width': `calc(${breakpoints.max}px)`,
+      },
     },
   })
 )

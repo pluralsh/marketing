@@ -27,16 +27,8 @@ fragment MinRepo on Repository {
   recipes {
     ...MinRecipe
   }
-
-  # Remove later when repositories q is public
-  readme
-  mainBranch
   homepage
   gitUrl
-  license {
-    name
-    url
-  }
   community {
     discord
     slack
@@ -44,28 +36,19 @@ fragment MinRepo on Repository {
     gitUrl
     twitter
   }
+  license {
+    name
+    url
+  }
+  # Remove later when repositories q is public
+  # readme
+  # mainBranch
 }
 
 fragment FullRepo on Repository {
   ...MinRepo
   readme
   mainBranch
-  homepage
-  gitUrl
-  license {
-    name
-    url
-  }
-  community {
-    discord
-    slack
-    homepage
-    gitUrl
-    twitter
-  }
-  recipes {
-    ...Recipe
-  }
 }
 
 query Repos {
