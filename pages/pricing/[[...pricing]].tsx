@@ -77,8 +77,8 @@ export function LineItemRow({
 }) {
   return (
     <tr {...props}>
-      <th>
-        <LineItemHead scope="row">{item.label}</LineItemHead>
+      <th scope="row">
+        <LineItemHead>{item.label}</LineItemHead>
       </th>
       {plans.map((plan) => (
         <td key={plan.key}>
@@ -284,7 +284,7 @@ export default function Pricing({
           as="h1"
           textStyles={{
             '': 'mTitle2',
-            md: 'mHero2',
+            sm: 'mHero2',
             xxl: 'mBigHeader',
           }}
         >
@@ -304,7 +304,7 @@ export default function Pricing({
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero pt-xxxxlarge md:pt-xxxxxlarge">
           <StandardPage>
-            <div className="pb-xxlarge md:pb-xxxlarge">
+            <div className="pb-xxlarge md:pb-xxxlarge text-center">
               <ResponsiveText
                 as="h2"
                 color="text-light"
@@ -314,14 +314,16 @@ export default function Pricing({
               </ResponsiveText>
               <ResponsiveText
                 as="h3"
-                textStyles={{ '': 'mSubtitle2', md: 'mHero2' }}
-                className="mt-medium"
+                textStyles={{ '': 'mSubtitle2', sm: 'mHero2' }}
+                color="text"
+                className="mt-medium "
               >
                 Find the plan that is right for your business
               </ResponsiveText>
               <ResponsiveText
                 as="p"
                 className="mt-xlarge"
+                color="text-light"
                 textStyles={{ '': 'mBody1' }}
               >
                 Flexible plans for every stage of your business.

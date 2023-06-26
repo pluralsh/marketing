@@ -90,7 +90,7 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
     ...(styles?.[''] ? getStylesFromShortname(theme, styles['']) || {} : {}),
     ...parts,
     ...(color
-      ? { color: theme.colors[color] || 'red' }
+      ? { color: theme.colors[color] || theme.colors.text }
       : { color: theme.colors.text }),
   }
 })
@@ -102,7 +102,9 @@ export const Title2 = styled.h3(({ theme }) => ({
 export const Body1 = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.marketingText.body1,
-    ...(color ? { color: theme.colors[color] } : { color: theme.colors.text }),
+    ...(color
+      ? { color: theme.colors[color] || theme.colors.text }
+      : { color: theme.colors.text }),
   })
 )
 
@@ -110,7 +112,7 @@ export const Body2 = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.marketingText.body2,
     ...(color
-      ? { color: theme.colors[color] }
+      ? { color: theme.colors[color] || theme.colors['text-light'] }
       : { color: theme.colors['text-light'] }),
   })
 )
@@ -119,7 +121,7 @@ export const AppBody1 = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.body1,
     ...(color
-      ? { color: theme.colors[color] }
+      ? { color: theme.colors[color] || theme.colors['text-light'] }
       : { color: theme.colors['text-light'] }),
   })
 )
@@ -128,7 +130,7 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.body2,
     ...(color
-      ? { color: theme.colors[color] }
+      ? { color: theme.colors[color] || theme.colors['text-light'] }
       : { color: theme.colors['text-light'] }),
   })
 )
@@ -137,7 +139,7 @@ export const Overline = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.overline,
     ...(color
-      ? { color: theme.colors[color] }
+      ? { color: theme.colors[color] || theme.colors['text-xlight'] }
       : { color: theme.colors['text-xlight'] }),
   })
 )
@@ -146,7 +148,7 @@ export const Label = styled.h4.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.marketingText.label,
     ...(color
-      ? { color: theme.colors[color] }
+      ? { color: theme.colors[color] || theme.colors['text-xlight'] }
       : { color: theme.colors['text-xlight'] }),
   })
 )
