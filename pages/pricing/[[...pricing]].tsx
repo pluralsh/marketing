@@ -198,7 +198,7 @@ const LineItemsTableSC = styled.table<{ $numPlans: number }>(
       '& >  *': {
         position: 'sticky',
         top: 'var(--top-nav-height)',
-        backgroundColor: `${chroma(theme.colors['fill-one']).alpha(0.6)}`,
+        backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.6)}`,
         backdropFilter: 'blur(6px)',
       },
     },

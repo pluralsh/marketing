@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import { PageMaxWidthLimiter } from '@src/components/MaxWidthLimiter'
+
+const PageMaxWidthLimiter = styled.div(({ theme: _ }) => ({
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  paddingLeft: 'var(--page-x-pad)',
+  paddingRight: 'var(--page-x-pad)',
+  maxWidth: 'var(--page-max-width)',
+}))
 
 export const StandardPageInner = styled.div(() => ({
   width: '100%',

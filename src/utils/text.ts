@@ -1,5 +1,3 @@
-import { APPS_BASE_URL } from '../consts/routes'
-
 import type { Provider } from '../generated/graphqlPlural'
 
 export * from '@pluralsh/design-system'

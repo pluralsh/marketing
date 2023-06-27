@@ -5,7 +5,6 @@ import { mqs } from '@src/breakpoints'
 import { BasicFooter } from './BasicFooter'
 import { FooterNav } from './FooterNav'
 import { FooterValueProp } from './FooterValueProp'
-import { PageMaxWidthLimiter } from './MaxWidthLimiter'
 
 export enum FooterVariant {
   none = 'none',
@@ -29,21 +28,19 @@ export function FullFooter({
 
   return (
     <StickyFooter className={className}>
-      <PageMaxWidthLimiter>
-        {showValueProp && (
-          <div className="pt-xxxlarge md:py-xxxxlarge">
-            <FooterValueProp />
-          </div>
-        )}
-        <div
-          // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/contentinfo_role
-          role="contentinfo"
-          className="flex flex-col gap-y-xxxlarge pt-xxxxlarge"
-        >
-          {showNav && <FooterNav />}
-          <BasicFooter />
+      {showValueProp && (
+        <div className="pt-xxxlarge md:py-xxxxlarge">
+          <FooterValueProp />
         </div>
-      </PageMaxWidthLimiter>
+      )}
+      <div
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/contentinfo_role
+        role="contentinfo"
+        className="flex flex-col gap-y-xxxlarge pt-xxxxlarge"
+      >
+        {showNav && <FooterNav />}
+        <BasicFooter />
+      </div>
     </StickyFooter>
   )
 }

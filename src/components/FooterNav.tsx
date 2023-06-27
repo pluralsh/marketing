@@ -15,6 +15,8 @@ import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
 
+import { FullPage } from './layout/FullPage'
+
 type NavItemT = {
   heading: ReactNode
   links: ComponentProps<typeof Link>[]
@@ -187,49 +189,51 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
 
   return (
     <div {...props}>
-      <NavSections>
-        {navItems.map((navItem) => (
-          <NavSection key={navItem.heading}>
-            <Heading>{navItem.heading}</Heading>
-            <NavItems>
-              {navItem.links.map((link) => (
-                <NavItem key={`${link.children}${link.href}`}>
-                  <NavLink {...link} />
-                </NavItem>
-              ))}
-            </NavItems>
+      <FullPage>
+        <NavSections>
+          {navItems.map((navItem) => (
+            <NavSection key={navItem.heading}>
+              <Heading>{navItem.heading}</Heading>
+              <NavItems>
+                {navItem.links.map((link) => (
+                  <NavItem key={`${link.children}${link.href}`}>
+                    <NavLink {...link} />
+                  </NavItem>
+                ))}
+              </NavItems>
+            </NavSection>
+          ))}
+          <NavSection className="newsletter">
+            <form onSubmit={submitEmail}>
+              <Heading>Newsletter</Heading>
+              <NavLink
+                as="p"
+                className="mb-medium"
+              >
+                Be the first to know when we drop something new.
+              </NavLink>
+              <Input
+                placeholder="Email address"
+                onChange={(e) => {
+                  setEmail(e?.target?.value)
+                }}
+                value={email}
+                endIcon={
+                  <Tooltip label="Subscribe">
+                    <button
+                      type="submit"
+                      className="submitButton"
+                      aria-label="Subscribe"
+                    >
+                      <ArrowRightIcon aria-label="Subscribe" />
+                    </button>
+                  </Tooltip>
+                }
+              />
+            </form>
           </NavSection>
-        ))}
-        <NavSection className="newsletter">
-          <form onSubmit={submitEmail}>
-            <Heading>Newsletter</Heading>
-            <NavLink
-              as="p"
-              className="mb-medium"
-            >
-              Be the first to know when we drop something new.
-            </NavLink>
-            <Input
-              placeholder="Email address"
-              onChange={(e) => {
-                setEmail(e?.target?.value)
-              }}
-              value={email}
-              endIcon={
-                <Tooltip label="Subscribe">
-                  <button
-                    type="submit"
-                    className="submitButton"
-                    aria-label="Subscribe"
-                  >
-                    <ArrowRightIcon aria-label="Subscribe" />
-                  </button>
-                </Tooltip>
-              }
-            />
-          </form>
-        </NavSection>
-      </NavSections>
+        </NavSections>
+      </FullPage>
     </div>
   )
 })(({ theme }) => {

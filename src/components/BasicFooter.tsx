@@ -5,41 +5,44 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 
 import GithubStars from './GithubStars'
+import { FullPage } from './layout/FullPage'
 import { SocialLink } from './PageHeaderButtons'
 
 export function BasicFooter({ className }: { className?: string }) {
   return (
     <BasicFooterWrap className={className}>
-      <div className="socialIcons">
-        <SocialLink
-          className="discordIcon"
-          href="https://discord.gg/pluralsh"
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={0}
-        >
-          <DiscordIcon size={16} />
-        </SocialLink>
-        <GithubStars />
-      </div>
-      <div className="footerLinks">
-        <FooterLink as="div">© Plural {new Date().getFullYear()}</FooterLink>
-        <FooterLink href="https://plural.sh/legal/privacy-policy">
-          Privacy Policy
-        </FooterLink>
-        <FooterLink href="https://www.plural.sh/legal/terms-and-conditions">
-          Terms & Conditions
-        </FooterLink>
-        <FooterLink
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            window.Cookiebot?.show()
-          }}
-        >
-          Cookie Settings
-        </FooterLink>
-      </div>
+      <FullPage>
+        <div className="socialIcons">
+          <SocialLink
+            className="discordIcon"
+            href="https://discord.gg/pluralsh"
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={0}
+          >
+            <DiscordIcon size={16} />
+          </SocialLink>
+          <GithubStars />
+        </div>
+        <div className="footerLinks">
+          <FooterLink as="div">© Plural {new Date().getFullYear()}</FooterLink>
+          <FooterLink href="https://plural.sh/legal/privacy-policy">
+            Privacy Policy
+          </FooterLink>
+          <FooterLink href="https://www.plural.sh/legal/terms-and-conditions">
+            Terms & Conditions
+          </FooterLink>
+          <FooterLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              window.Cookiebot?.show()
+            }}
+          >
+            Cookie Settings
+          </FooterLink>
+        </div>
+      </FullPage>
     </BasicFooterWrap>
   )
 }

@@ -17,7 +17,7 @@ import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
 import GithubStars from './GithubStars'
-import { PageMaxWidthLimiter } from './MaxWidthLimiter'
+import { FullPage } from './layout/FullPage'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
@@ -200,7 +200,7 @@ const HeaderWrap = styled(({ children, ...props }) => {
   },
 }))
 
-const PageHeaderInner = styled(PageMaxWidthLimiter).attrs(() => ({
+const PageHeaderInner = styled(FullPage).attrs(() => ({
   as: 'header',
 }))(({ theme }) => ({
   height: 'var(--top-nav-height)',
