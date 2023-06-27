@@ -289,7 +289,7 @@ export function CaseStudyFAQSection({
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero gap-xlarge mt-xxxlarge mb-xlarge columns:mt-xxxxxxlarge columns:gap-xxxxxlarge columns:mb-xxxxxlarge">
         <CaseStudySection {...caseStudyProps} />
-        <FAQSection />
+        <FAQSection className="py-xxxlarge" />
       </div>
     </ColorModeProvider>
   )

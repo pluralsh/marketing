@@ -4994,6 +4994,13 @@ export type ListArtifactsQueryVariables = Exact<{
 
 export type ListArtifactsQuery = { __typename?: 'RootQueryType', repository?: { __typename?: 'Repository', artifacts?: Array<{ __typename?: 'Artifact', id?: string | null, name?: string | null, blob?: string | null, type?: ArtifactType | null, platform?: ArtifactPlatform | null, arch?: string | null, filesize?: number | null, sha?: string | null, readme?: string | null, insertedAt?: Date | null, updatedAt?: Date | null } | null> | null } | null };
 
+export type PlatformPlanFragment = { __typename?: 'PlatformPlan', id: string, name: string, cost: number, period: PaymentPeriod, lineItems?: Array<{ __typename?: 'PlatformPlanItem', name: string, dimension: LineItemDimension, cost: number, period: PaymentPeriod } | null> | null };
+
+export type PlatformPlansQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PlatformPlansQuery = { __typename?: 'RootQueryType', platformPlans?: Array<{ __typename?: 'PlatformPlan', id: string, name: string, cost: number, period: PaymentPeriod, lineItems?: Array<{ __typename?: 'PlatformPlanItem', name: string, dimension: LineItemDimension, cost: number, period: PaymentPeriod } | null> | null } | null> | null };
+
 export type RecipeSectionFragment = { __typename?: 'RecipeSection', repository?: { __typename?: 'Repository', name: string } | null, configuration?: Array<{ __typename?: 'RecipeConfiguration', name?: string | null, type?: Datatype | null, optional?: boolean | null, documentation?: string | null, longform?: string | null } | null> | null };
 
 export type MinRecipeFragment = { __typename?: 'Recipe', name: string, private?: boolean | null };
@@ -5077,6 +5084,20 @@ export const ArtifactFragmentDoc = gql`
   readme
   insertedAt
   updatedAt
+}
+    `;
+export const PlatformPlanFragmentDoc = gql`
+    fragment PlatformPlan on PlatformPlan {
+  id
+  name
+  cost
+  period
+  lineItems {
+    name
+    dimension
+    cost
+    period
+  }
 }
     `;
 export const RecipeSectionFragmentDoc = gql`
@@ -5259,6 +5280,40 @@ export function useListArtifactsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type ListArtifactsQueryHookResult = ReturnType<typeof useListArtifactsQuery>;
 export type ListArtifactsLazyQueryHookResult = ReturnType<typeof useListArtifactsLazyQuery>;
 export type ListArtifactsQueryResult = Apollo.QueryResult<ListArtifactsQuery, ListArtifactsQueryVariables>;
+export const PlatformPlansDocument = gql`
+    query PlatformPlans {
+  platformPlans {
+    ...PlatformPlan
+  }
+}
+    ${PlatformPlanFragmentDoc}`;
+
+/**
+ * __usePlatformPlansQuery__
+ *
+ * To run a query within a React component, call `usePlatformPlansQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePlatformPlansQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePlatformPlansQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePlatformPlansQuery(baseOptions?: Apollo.QueryHookOptions<PlatformPlansQuery, PlatformPlansQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PlatformPlansQuery, PlatformPlansQueryVariables>(PlatformPlansDocument, options);
+      }
+export function usePlatformPlansLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PlatformPlansQuery, PlatformPlansQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PlatformPlansQuery, PlatformPlansQueryVariables>(PlatformPlansDocument, options);
+        }
+export type PlatformPlansQueryHookResult = ReturnType<typeof usePlatformPlansQuery>;
+export type PlatformPlansLazyQueryHookResult = ReturnType<typeof usePlatformPlansLazyQuery>;
+export type PlatformPlansQueryResult = Apollo.QueryResult<PlatformPlansQuery, PlatformPlansQueryVariables>;
 export const RecipesDocument = gql`
     query Recipes($repoName: String!) {
   recipes(repositoryName: $repoName, first: 500) {

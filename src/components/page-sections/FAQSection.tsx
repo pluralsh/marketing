@@ -1,11 +1,15 @@
+import { type ComponentProps } from 'react'
+
 import { StandardPage } from '@src/components/layout/FullPage'
 import { AppBody2, ResponsiveText } from '@src/components/Typography'
 
 import { SingleAccordion } from '../SingleAccordion'
 
-export function FAQSection() {
+export function FAQSection(
+  props: Omit<ComponentProps<typeof StandardPage>, 'children'>
+) {
   return (
-    <StandardPage className="py-xxxlarge">
+    <StandardPage {...props}>
       <ResponsiveText
         className="mb-xlarge text-center"
         as="h2"

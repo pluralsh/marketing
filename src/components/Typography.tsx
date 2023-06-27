@@ -280,17 +280,19 @@ const ScrollToLinkIcon = styled((props) => (
   },
 }))
 
+const ScrollToLinkSC = styled.a``
+
 export const ScrollToLink = styled(
   ({
-    target,
+    scrollToTarget,
     children,
     ...props
   }: {
-    target: string | HTMLElement
+    scrollToTarget: string | HTMLElement
     children: ReactNode
-  }) => {
+  } & ComponentProps<typeof ScrollToLinkSC>) => {
     // const scroll = useScrollTo(target)
-    const onClick = useScrollTo(target)
+    const onClick = useScrollTo(scrollToTarget)
 
     const kids = Children.map(children, (child, i) => {
       if (i === Children.count(children) - 1 && typeof child === 'string') {
@@ -318,12 +320,12 @@ export const ScrollToLink = styled(
     })
 
     return (
-      <a
+      <ScrollToLinkSC
         onClick={onClick}
         {...props}
       >
         {kids}
-      </a>
+      </ScrollToLinkSC>
     )
   }
 )(({ theme }) => ({

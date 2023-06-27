@@ -1,4 +1,10 @@
 import { until } from '@open-draft/until'
+import { produce } from 'immer'
+
+import {
+  type NormalizedPlatformPlans,
+  getPlaformPlans,
+} from './getPlatformPlans'
 
 const keys = ['free', 'pro', 'enterprise'] as const
 
@@ -16,9 +22,10 @@ export type Plan = {
     url: string
   }
   violator?: { label: string }
+  isFeatured?: boolean
 }
 
-const freeTier: Plan = {
+const freePlanBase: Plan = {
   key: 'free',
   label: 'Open-source',
   price: 'Free',
@@ -32,7 +39,7 @@ const freeTier: Plan = {
   cta: { label: 'Start deploying', url: 'https://app.plural.sh' },
 }
 
-const proTier: Plan = {
+const proPlanBase: Plan = {
   key: 'pro',
   label: 'Pro',
   price: '$399 / cluster, + $49 / user / month',
@@ -48,9 +55,13 @@ const proTier: Plan = {
     label: 'Start free trial',
     url: 'https://app.plural.sh/account/billing',
   },
+  violator: {
+    label: 'Most popular',
+  },
+  isFeatured: true,
 }
 
-const entTier: Plan = {
+const enterprisePlanBase: Plan = {
   key: 'enterprise',
   label: 'Enterprise',
   price: 'Custom',
@@ -64,15 +75,16 @@ const entTier: Plan = {
   cta: { label: 'Contact sales', url: '/contact-sales' },
 }
 
-export type LineItem = { label?: string; checked?: boolean }
+export type PlanFeatureValue = { label?: string; checked?: boolean }
 
-export type LineItems = {
+export type PlansFeatures = {
+  key?: string
   label: string
   definition?: string
-  values: Record<PricingKey, LineItem>
+  values: Record<PricingKey, PlanFeatureValue>
 }[]
 
-const lineItems: LineItems = [
+const plansFeatures: PlansFeatures = [
   {
     label: 'Apps',
     values: {
@@ -82,6 +94,7 @@ const lineItems: LineItems = [
     },
   },
   {
+    key: 'clusters',
     label: 'Clusters',
     values: {
       free: { label: 'Free' },
@@ -90,6 +103,7 @@ const lineItems: LineItems = [
     },
   },
   {
+    key: 'users',
     label: 'User accounts',
     values: {
       free: { label: 'Up to 5 users' },
@@ -271,17 +285,53 @@ const lineItems: LineItems = [
   },
 ]
 
-const data: { plans: Plan[]; lineItems: LineItems } = {
-  plans: [freeTier, proTier, entTier],
-  lineItems,
-}
+async function getPricingInner(
+  platformPlans: NormalizedPlatformPlans
+): Promise<{
+  plans: Plan[]
+  plansFeatures: PlansFeatures
+}> {
+  const { userMonthlyPricing, clusterMonthlyPricing } = platformPlans ?? {}
+  const features = produce(plansFeatures, (draft) => {
+    const users = draft.find((feature) => feature.key === 'users')
+    const clusters = draft.find((feature) => feature.key === 'clusters')
 
-async function getPricingInner() {
-  return data
+    if (users && typeof userMonthlyPricing === 'number') {
+      users.values.pro.label = `$${
+        Math.round(userMonthlyPricing * 100) / 100
+      }/month`
+    }
+    if (clusters && typeof clusterMonthlyPricing === 'number') {
+      clusters.values.pro.label = `$${
+        Math.round(clusterMonthlyPricing * 100) / 100
+      }/month`
+    }
+
+    return draft
+  })
+  const proPlan: Plan = {
+    ...proPlanBase,
+    ...(clusterMonthlyPricing && userMonthlyPricing
+      ? {
+          price: `$${
+            Math.round(clusterMonthlyPricing * 100) / 100
+          } / cluster, + $${
+            Math.round(userMonthlyPricing * 100) / 100
+          } / user / month`,
+        }
+      : {}),
+  }
+
+  return {
+    plans: [freePlanBase, proPlan, enterprisePlanBase],
+    plansFeatures: features,
+  }
 }
 
 export type Pricing = Awaited<ReturnType<typeof getPricingInner>>
 
 export default async function getPricing() {
-  return until(() => getPricingInner())
+  const { data: platformPlans, error } = await until(() => getPlaformPlans())
+
+  return { error, data: await getPricingInner(platformPlans) }
 }

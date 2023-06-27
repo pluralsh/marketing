@@ -21,9 +21,6 @@ export function Columns({ className, ...props }: ComponentProps<'div'>) {
         'columns:flex-row',
         'columns:gap-x-xlarge',
         'xl:gap-x-xxlarge',
-        // 'xl:flex-row',
-        // 'xxl:gap-x-xxxxlarge',
-        // 'maxWidth:gap-x-xxxxxlarge',
         className,
       ])}
       {...props}
