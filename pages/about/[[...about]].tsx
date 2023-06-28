@@ -1,15 +1,11 @@
-import { type ComponentProps } from 'react'
-
-import { Button, Chip, ColorModeProvider } from '@pluralsh/design-system'
+import { ColorModeProvider } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
   type InferGetStaticPropsType,
 } from 'next'
-import Link from 'next/link'
 
 import classNames from 'classnames'
-import styled from 'styled-components'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -18,115 +14,13 @@ import { GradientBG } from '@src/components/layout/GradientBG'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
 import { Cta, ResponsiveText } from '@src/components/Typography'
-import { type Plan, type Pricing } from '@src/data/getPricing'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 
-const PlanCardSC = styled.div(({ theme }) => ({
-  '&, .titleArea, .content, .featureList': {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  gap: theme.spacing.xxlarge,
-  position: 'relative',
-  background: theme.colors['fill-zero'],
-  border: theme.borders.default,
-  padding: `${theme.spacing.xxlarge}px ${theme.spacing.xlarge}px`,
-  borderRadius: theme.borderRadiuses.large,
-  '.titleArea': {
-    gap: theme.spacing.xxsmall,
-  },
-  '.content': {
-    gap: theme.spacing.large,
-  },
-  '.featureList': {
-    gap: theme.spacing.xsmall,
-    li: {
-      ...theme.partials.marketingText.body2,
-      color: theme.colors.text,
-    },
-  },
-  '.violator': {
-    position: 'absolute',
-    top: 0,
-    transform: 'translateY(-50%)',
-  },
-}))
-
-export function PlanCard({
-  plan: { cta, violator, label, price, features, isFeatured },
-  ...props
-}: {
-  plan: Plan
-} & ComponentProps<typeof PlanCardSC>) {
-  return (
-    <PlanCardSC {...props}>
-      {violator?.label && (
-        <Chip
-          // as="aside"
-          size="large"
-          fillLevel={2}
-          className="violator"
-          severity="success"
-        >
-          {violator.label}
-        </Chip>
-      )}
-      <div className="content">
-        <div className="titleArea">
-          <ResponsiveText
-            color="text"
-            textStyles={{ '': isFeatured ? 'mTitle1' : 'mSubtitle1' }}
-          >
-            {label}
-          </ResponsiveText>
-          <ResponsiveText
-            color="text-xlight"
-            textStyles={{ '': 'mLabel' }}
-          >
-            {price}
-          </ResponsiveText>
-        </div>
-        {features && (
-          <ul className="featureList">
-            {features?.map((feature) => (
-              <li>{feature.label}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {cta && (
-        <Button
-          as={Link}
-          href={cta.url}
-          className="cta"
-        >
-          {cta.label}
-        </Button>
-      )}
-    </PlanCardSC>
-  )
-}
-
-export function PlanCardsSection({ plans }: { plans: Plan[] }) {
-  return (
-    <StandardPage className="flex flex-col gap-xlarge [text-wrap:balance] pb-xxlarge md:pb-xxxlarge">
-      <Columns className="gap-y-xlarge">
-        {plans.map((plan) => (
-          <EqualColumn key={plan.key}>
-            <PlanCard plan={plan} />
-          </EqualColumn>
-        ))}
-      </Columns>
-    </StandardPage>
-  )
-}
-
-export default function Pricing({
+export default function About({
   teamMembers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -260,8 +154,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: [{ params: {} }],
-    fallback: true,
+    paths: [{ params: { about: [] } }],
+    fallback: false,
   }
 }
 
@@ -270,13 +164,7 @@ export type PricingPageProps = { teamMembers: TeamMemberFragment[] }
 export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   _context
 ) => {
-  console.log('about page')
-  if (_context?.params?.about) {
-    return { notFound: true }
-  }
   const { data: teamMembers, error: teamMembersError } = await getTeamMembers()
-
-  console.log('teamMembers', teamMembers)
 
   if (!teamMembers) {
     return { notFound: true }
@@ -286,6 +174,7 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
     metaTitle: 'About',
     teamMembers,
     footerVariant: FooterVariant.kitchenSink,
+
     errors: [...(teamMembersError ? [teamMembersError] : [])],
   })
 }

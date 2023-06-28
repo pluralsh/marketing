@@ -122,7 +122,6 @@ export default function Stack({
   if (!stack) {
     return null
   }
-  console.log('curTabKey', curAppTabKey)
 
   return (
     <HeaderPad as={GradientBG}>
@@ -209,8 +208,6 @@ export default function Stack({
                 }}
               >
                 {apps?.map((repo) => {
-                  console.log('repo', repo.name)
-
                   if (!repo || !repo.name) {
                     return null
                   }

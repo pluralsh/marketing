@@ -61,8 +61,6 @@ const MemberInfoSC = styled.div(({ theme }) => ({
 }))
 
 function Member({ member, ...props }: { member: TeamMemberFragment }) {
-  console.log('file', member.portrait)
-
   return (
     <MemberSC {...props}>
       {member.portrait && (

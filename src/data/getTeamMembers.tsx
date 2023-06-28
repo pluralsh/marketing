@@ -17,9 +17,6 @@ export async function getTeamMembersInner() {
     query: TeamMembersDocument,
   })
 
-  console.log('error', error)
-  console.log('data', data)
-
   if (error) {
     throw new Error(`${error.name}: ${error.message}`)
   }

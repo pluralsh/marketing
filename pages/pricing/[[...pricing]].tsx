@@ -249,8 +249,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: [{ params: {} }],
-    fallback: true,
+    paths: [{ params: { pricing: [] } }],
+    fallback: false,
   }
 }
 
@@ -259,9 +259,6 @@ export type PricingPageProps = Pricing
 export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   _context
 ) => {
-  if (_context?.params?.pricing) {
-    return { notFound: true }
-  }
   const { data: pricing, error: pricingError } = await getPricing()
 
   if (!pricing) {
