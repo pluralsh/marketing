@@ -10,11 +10,10 @@ import {
   type TeamMemberFragment,
 } from '@src/generated/graphqlDirectus'
 
+import { ComponentLinkTab } from '../ComponentLinkTab'
 import { FullPage, StandardPage } from '../layout/FullPage'
 import { TextLimiter } from '../layout/TextLimiter'
 import { ResponsiveText, SectionHead } from '../Typography'
-
-import { ComponentLinkTab } from './ComponentLinkTab'
 
 const FILE_PREFIX = 'https://directus.plural.sh/assets'
 

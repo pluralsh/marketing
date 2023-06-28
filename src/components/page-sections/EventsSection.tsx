@@ -1,14 +1,8 @@
 import { useRouter } from 'next/router'
 
-import { directusClient } from '@src/apollo-client'
-import {
-  EventsDocument,
-  type EventsQuery,
-  type EventsQueryVariables,
-} from '@src/generated/graphqlDirectus'
-import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { type EventFragment } from '@src/generated/graphqlDirectus'
 
-export default function Community({ events }) {
+export default function Events({ events }: { events: EventFragment[] }) {
   const locale = useRouter().locale || 'en-us'
 
   const sortedEvents = [...events].sort(
@@ -43,19 +37,4 @@ export default function Community({ events }) {
       </div>
     </div>
   )
-}
-
-export async function getStaticProps() {
-  const { data, error } = await directusClient.query<
-    EventsQuery,
-    EventsQueryVariables
-  >({
-    query: EventsDocument,
-  })
-
-  if (error) {
-    throw new Error(`${error.name}: ${error.message}`)
-  }
-
-  return propsWithGlobalSettings({ events: data.events || [] })
 }
