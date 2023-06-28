@@ -1,4 +1,6 @@
-import { forwardRef } from 'react'
+import { type ComponentProps, type Ref, forwardRef } from 'react'
+
+import { type TabBaseProps } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 
@@ -22,7 +24,15 @@ const ComponentLinkTabSC = styled.button<{ $active: boolean }>(
 )
 
 export const ComponentLinkTab = forwardRef(
-  ({ active, children, textValue, ...props }: StackTabProps, ref: Ref<any>) => (
+  (
+    {
+      active,
+      children,
+      textValue,
+      ...props
+    }: TabBaseProps & ComponentProps<typeof ComponentLinkTabSC>,
+    ref: Ref<any>
+  ) => (
     <ComponentLinkTabSC
       $active={active}
       ref={ref}
