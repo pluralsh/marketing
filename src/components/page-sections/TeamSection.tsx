@@ -11,6 +11,7 @@ import {
 } from '@src/generated/graphqlDirectus'
 
 import { FullPage, StandardPage } from '../layout/FullPage'
+import { TextLimiter } from '../layout/TextLimiter'
 import { ResponsiveText, SectionHead } from '../Typography'
 
 import { ComponentLinkTab } from './ComponentLinkTab'
@@ -146,22 +147,25 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
           h2="Our compact yet remarkable team"
           className=""
         />
-        <ResponsiveText
-          textStyles={{ '': 'mBody2' }}
-          color="text-light"
-        >
-          We’re a vibrant and dynamic team of employees, fueled by a passion for
-          tackling fascinating challenges in the realm of cloud computing. As
-          our team continues to grow, we thrive on exploring the ever-evolving
-          landscape of Kubernetes, Elixir, Go, and React. With a shared
-          enthusiasm for innovation and cutting-edge technologies, we eagerly
-          dive into complex projects, seeking out novel solutions that push the
-          boundaries of what’s possible.
-        </ResponsiveText>
+        <TextLimiter className="mx-auto">
+          <ResponsiveText
+            textStyles={{ '': 'mBody2' }}
+            color="text-light"
+            className="text-center"
+          >
+            We’re a vibrant and dynamic team of employees, fueled by a passion
+            for tackling fascinating challenges in the realm of cloud computing.
+            As our team continues to grow, we thrive on exploring the
+            ever-evolving landscape of Kubernetes, Elixir, Go, and React. With a
+            shared enthusiasm for innovation and cutting-edge technologies, we
+            eagerly dive into complex projects, seeking out novel solutions that
+            push the boundaries of what’s possible.
+          </ResponsiveText>
+        </TextLimiter>
       </StandardPage>
       <FullPage>
         <TeamTabList
-          className="mb-xxlarge"
+          className="mb-xxlarge xl:mb-xxxlarge"
           stateRef={tabStateRef}
           stateProps={tabStateProps}
         >

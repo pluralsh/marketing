@@ -224,6 +224,7 @@ export function SectionHead({
           as="h2"
           textStyles={{ '': 'mLabel' }}
           color="text-light"
+          className="[text-wrap:balance]"
           {...h1Props}
         >
           {h1}
@@ -234,6 +235,7 @@ export function SectionHead({
           as="h3"
           textStyles={{ '': 'mHero2', xl: 'mHero1' }}
           color="text"
+          className="[text-wrap:balance]"
           {...h2Props}
         >
           {h2}
