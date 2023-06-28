@@ -162,7 +162,7 @@ export default function BuildStack({
   )
 }
 
-const StackTabList = styled(TabList)<{ $active: boolean }>(({ theme }) => ({
+const StackTabList = styled(TabList)(({ theme }) => ({
   // '&&': {
   justifyContent: 'center',
   gap: theme.spacing.xxsmall,

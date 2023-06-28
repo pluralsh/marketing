@@ -197,6 +197,52 @@ export const Subtitle = forwardRef(
   )
 )
 
+const SectionHeadSC = styled.div(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  rowGap: theme.spacing.medium,
+  marginBottom: theme.spacing.xlarge,
+  textAlign: 'center',
+}))
+
+export function SectionHead({
+  h1,
+  h1Props = {},
+  h2,
+  h2Props = {},
+  ...props
+}: {
+  h1?: ReactNode
+  h1Props?: ComponentProps<typeof ResponsiveText>
+  h2?: ReactNode
+  h2Props?: ComponentProps<typeof ResponsiveText>
+} & ComponentProps<typeof SectionHeadSC>) {
+  return (
+    <SectionHeadSC {...props}>
+      {h1 && (
+        <ResponsiveText
+          as="h2"
+          textStyles={{ '': 'mLabel' }}
+          color="text-light"
+          {...h1Props}
+        >
+          {h1}
+        </ResponsiveText>
+      )}
+      {h2 && (
+        <ResponsiveText
+          as="h3"
+          textStyles={{ '': 'mHero2', xl: 'mHero1' }}
+          color="text"
+          {...h2Props}
+        >
+          {h2}
+        </ResponsiveText>
+      )}
+    </SectionHeadSC>
+  )
+}
+
 export const AppTitle = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.subtitle1,
   [mqs.md]: {

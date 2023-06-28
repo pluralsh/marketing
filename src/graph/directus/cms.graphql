@@ -86,6 +86,7 @@ fragment ImageFile on directus_files {
 }
 
 fragment TeamMember on team_members {
+  id
   name
   title
   categories

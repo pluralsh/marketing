@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 
 import classNames from 'classnames'
 import styled from 'styled-components'
@@ -11,7 +11,9 @@ import {
 } from '@src/generated/graphqlDirectus'
 
 import { FullPage, StandardPage } from '../layout/FullPage'
-import { ResponsiveText } from '../Typography'
+import { ResponsiveText, SectionHead } from '../Typography'
+
+import { ComponentLinkTab } from './ComponentLinkTab'
 
 const FILE_PREFIX = 'https://directus.plural.sh/assets'
 
@@ -30,6 +32,7 @@ const MemberSC = styled.li(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
+    backgroundColor: theme.colors['fill-three'],
     backgroundSize: 'cover',
   },
   img: {
@@ -60,15 +63,25 @@ const MemberInfoSC = styled.div(({ theme }) => ({
   paddingBottom: theme.spacing.small,
 }))
 
+const TeamTabList = styled(TabList)(({ theme }) => ({
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+  gap: theme.spacing.xxsmall,
+}))
+
 function Member({ member, ...props }: { member: TeamMemberFragment }) {
   return (
     <MemberSC {...props}>
-      {member.portrait && (
-        <div
-          className="bg"
-          style={{ backgroundImage: `url(${getImageUrl(member.portrait)})` }}
-        />
-      )}
+      <div
+        className="bg"
+        {...(member.portrait
+          ? {
+              style: {
+                backgroundImage: `url(${getImageUrl(member.portrait)})`,
+              },
+            }
+          : {})}
+      />
       <ColorModeProvider mode="dark">
         <MemberInfoSC>
           <ResponsiveText
@@ -95,23 +108,22 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
   )
 }
 
-export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
-  return (
-    <>
-      <StandardPage>
-        <ResponsiveText textStyles={{ '': 'mTitle1' }}>
-          Let's do this
-        </ResponsiveText>
-      </StandardPage>
-      <FullPage>
-        <TeamList members={members} />
-      </FullPage>
-    </>
-  )
-}
+const teamTabs = [
+  { key: '', label: 'View all' },
+  { key: 'management', label: 'Management' },
+  { key: 'product', label: 'Product' },
+  { key: 'partner', label: 'Partners' },
+]
 
-export function TeamList({ members }: { members: TeamMemberFragment[] }) {
-  const [category, _setCategory] = useState('')
+export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
+  const tabStateRef = useRef<any>()
+  const [category, setCategory] = useState('data')
+
+  const tabStateProps = {
+    orientation: 'horizontal',
+    selectedKey: category,
+    onSelectionChange: useCallback((key) => setCategory(key as string), []),
+  }
 
   const filteredMembers = members.filter((member) => {
     if (!category) {
@@ -127,6 +139,49 @@ export function TeamList({ members }: { members: TeamMemberFragment[] }) {
   })
 
   return (
+    <div>
+      <StandardPage className="mb-xxlarge md:mb-xxxxxlarge">
+        <SectionHead
+          h1="The team"
+          h2="Our compact yet remarkable team"
+          className=""
+        />
+        <ResponsiveText
+          textStyles={{ '': 'mBody2' }}
+          color="text-light"
+        >
+          We’re a vibrant and dynamic team of employees, fueled by a passion for
+          tackling fascinating challenges in the realm of cloud computing. As
+          our team continues to grow, we thrive on exploring the ever-evolving
+          landscape of Kubernetes, Elixir, Go, and React. With a shared
+          enthusiasm for innovation and cutting-edge technologies, we eagerly
+          dive into complex projects, seeking out novel solutions that push the
+          boundaries of what’s possible.
+        </ResponsiveText>
+      </StandardPage>
+      <FullPage>
+        <TeamTabList
+          className="mb-xxlarge"
+          stateRef={tabStateRef}
+          stateProps={tabStateProps}
+        >
+          {teamTabs.map((tab) => (
+            <ComponentLinkTab key={tab.key}>{tab.label}</ComponentLinkTab>
+          ))}
+        </TeamTabList>
+        <TabPanel
+          stateRef={tabStateRef}
+          className=""
+        >
+          <TeamList members={filteredMembers} />
+        </TabPanel>
+      </FullPage>
+    </div>
+  )
+}
+
+export function TeamList({ members }: { members: TeamMemberFragment[] }) {
+  return (
     <ul
       className={classNames(
         'm-0 p-0 grid',
@@ -134,8 +189,11 @@ export function TeamList({ members }: { members: TeamMemberFragment[] }) {
         'gap-large xl:gap-xlarge xxl:gap-xxlarge'
       )}
     >
-      {filteredMembers.map((member) => (
-        <Member member={member} />
+      {members.map((member) => (
+        <Member
+          key={member.id}
+          member={member}
+        />
       ))}
     </ul>
   )

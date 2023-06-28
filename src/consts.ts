@@ -30,7 +30,7 @@ export const getStackMeta = (stack: MinStack): GlobalPageProps => {
   }
 }
 
-export const REVALIDATE_TIME = 600
+export const REVALIDATE_TIME = 600 // in seconds
 
 const PROVIDER_ICON_DIR = '/images/providers'
 const ProviderIcons = {
