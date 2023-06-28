@@ -43,19 +43,23 @@ export const Heading3 = styled.h2(({ theme }) => ({
   },
 }))
 
+const APP_PREFIX = 'a' as const
+const MARKETING_PREFIX = 'm' as const
+
+type Prefix = typeof APP_PREFIX | typeof MARKETING_PREFIX
+
 type TextStyle =
-  | `m${PascalCase<keyof typeof styledTheme.partials.marketingText>}`
-  | `a${PascalCase<keyof typeof styledTheme.partials.marketingText>}`
+  | `${typeof MARKETING_PREFIX}${PascalCase<
+      keyof typeof styledTheme.partials.marketingText
+    >}`
+  | `${typeof APP_PREFIX}${PascalCase<keyof typeof styledTheme.partials.text>}`
 
 const textPropFilter = {
   shouldForwardProp: (prop) => !['color', 'textStyles'].includes(prop),
 }
 
-const APP_PREFIX = 'a'
-const MARKETING_PREFIX = 'm'
-
 function getStylesFromShortname(theme: DefaultTheme, styleName: string) {
-  let prefix = APP_PREFIX
+  let prefix: Prefix = APP_PREFIX
   let textStyles: Record<string, any> = theme.partials.text
 
   if (styleName.startsWith(MARKETING_PREFIX)) {

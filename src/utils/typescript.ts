@@ -1,4 +1,4 @@
-import { type JSXElementConstructor } from 'react'
+import { type ComponentProps, type JSXElementConstructor } from 'react'
 
 import { isNil } from 'lodash-es'
 import { type ConditionalExcept } from 'type-fest'

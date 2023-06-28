@@ -18,6 +18,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   Date: { input: any; output: any; }
+  GraphQLBigInt: { input: any; output: any; }
   GraphQLStringOrFloat: { input: any; output: any; }
   JSON: { input: any; output: any; }
 };
@@ -40,6 +41,9 @@ export type Query = {
   stacks: Array<Stacks>;
   stacks_aggregated: Array<Stacks_Aggregated>;
   stacks_by_id?: Maybe<Stacks>;
+  team_members: Array<Team_Members>;
+  team_members_aggregated: Array<Team_Members_Aggregated>;
+  team_members_by_id?: Maybe<Team_Members>;
 };
 
 
@@ -172,6 +176,32 @@ export type QueryStacks_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
+
+export type QueryTeam_MembersArgs = {
+  filter?: InputMaybe<Team_Members_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryTeam_Members_AggregatedArgs = {
+  filter?: InputMaybe<Team_Members_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryTeam_Members_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
 export type Apps = {
   __typename?: 'apps';
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -273,6 +303,65 @@ export type Datetime_Functions = {
   week?: Maybe<Scalars['Int']['output']>;
   weekday?: Maybe<Scalars['Int']['output']>;
   year?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Directus_Files = {
+  __typename?: 'directus_files';
+  charset?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  duration?: Maybe<Scalars['Int']['output']>;
+  embed?: Maybe<Scalars['String']['output']>;
+  filename_disk?: Maybe<Scalars['String']['output']>;
+  filename_download: Scalars['String']['output'];
+  filesize?: Maybe<Scalars['GraphQLBigInt']['output']>;
+  folder?: Maybe<Scalars['String']['output']>;
+  height?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
+  location?: Maybe<Scalars['String']['output']>;
+  metadata?: Maybe<Scalars['JSON']['output']>;
+  metadata_func?: Maybe<Count_Functions>;
+  modified_by?: Maybe<Scalars['String']['output']>;
+  modified_on?: Maybe<Scalars['Date']['output']>;
+  modified_on_func?: Maybe<Datetime_Functions>;
+  storage: Scalars['String']['output'];
+  tags?: Maybe<Scalars['JSON']['output']>;
+  tags_func?: Maybe<Count_Functions>;
+  title?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+  uploaded_by?: Maybe<Scalars['String']['output']>;
+  uploaded_on?: Maybe<Scalars['Date']['output']>;
+  uploaded_on_func?: Maybe<Datetime_Functions>;
+  width?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Directus_Files_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Directus_Files_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Directus_Files_Filter>>>;
+  charset?: InputMaybe<String_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  duration?: InputMaybe<Number_Filter_Operators>;
+  embed?: InputMaybe<String_Filter_Operators>;
+  filename_disk?: InputMaybe<String_Filter_Operators>;
+  filename_download?: InputMaybe<String_Filter_Operators>;
+  filesize?: InputMaybe<Number_Filter_Operators>;
+  folder?: InputMaybe<String_Filter_Operators>;
+  height?: InputMaybe<Number_Filter_Operators>;
+  id?: InputMaybe<String_Filter_Operators>;
+  location?: InputMaybe<String_Filter_Operators>;
+  metadata?: InputMaybe<String_Filter_Operators>;
+  metadata_func?: InputMaybe<Count_Function_Filter_Operators>;
+  modified_by?: InputMaybe<String_Filter_Operators>;
+  modified_on?: InputMaybe<Date_Filter_Operators>;
+  modified_on_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  storage?: InputMaybe<String_Filter_Operators>;
+  tags?: InputMaybe<String_Filter_Operators>;
+  tags_func?: InputMaybe<Count_Function_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+  type?: InputMaybe<String_Filter_Operators>;
+  uploaded_by?: InputMaybe<String_Filter_Operators>;
+  uploaded_on?: InputMaybe<Date_Filter_Operators>;
+  uploaded_on_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  width?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Events = {
@@ -576,6 +665,85 @@ export type String_Filter_Operators = {
   _starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Team_Members = {
+  __typename?: 'team_members';
+  categories?: Maybe<Scalars['JSON']['output']>;
+  categories_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  portrait?: Maybe<Directus_Files>;
+  pronouns?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Team_MembersPortraitArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Team_Members_Aggregated = {
+  __typename?: 'team_members_aggregated';
+  avg?: Maybe<Team_Members_Aggregated_Fields>;
+  avgDistinct?: Maybe<Team_Members_Aggregated_Fields>;
+  count?: Maybe<Team_Members_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Team_Members_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Team_Members_Aggregated_Fields>;
+  min?: Maybe<Team_Members_Aggregated_Fields>;
+  sum?: Maybe<Team_Members_Aggregated_Fields>;
+  sumDistinct?: Maybe<Team_Members_Aggregated_Fields>;
+};
+
+export type Team_Members_Aggregated_Count = {
+  __typename?: 'team_members_aggregated_count';
+  categories?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  portrait?: Maybe<Scalars['Int']['output']>;
+  pronouns?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Team_Members_Aggregated_Fields = {
+  __typename?: 'team_members_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Team_Members_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Team_Members_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Team_Members_Filter>>>;
+  categories?: InputMaybe<String_Filter_Operators>;
+  categories_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  portrait?: InputMaybe<Directus_Files_Filter>;
+  pronouns?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
 export type EventFragment = { __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, fields?: any | null };
 
 export type EventsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -613,6 +781,15 @@ export type StackExtrasQueryVariables = Exact<{
 
 
 export type StackExtrasQuery = { __typename?: 'Query', stacks: Array<{ __typename?: 'stacks', name?: string | null, heroVideo?: string | null }> };
+
+export type ImageFileFragment = { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null };
+
+export type TeamMemberFragment = { __typename?: 'team_members', name?: string | null, title?: string | null, categories?: any | null, pronouns?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type TeamMembersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeamMembersQuery = { __typename?: 'Query', team_members: Array<{ __typename?: 'team_members', name?: string | null, title?: string | null, categories?: any | null, pronouns?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
 
 export const EventFragmentDoc = gql`
     fragment Event on events {
@@ -671,6 +848,30 @@ export const StackExtrasFragmentDoc = gql`
   heroVideo
 }
     `;
+export const ImageFileFragmentDoc = gql`
+    fragment ImageFile on directus_files {
+  id
+  title
+  description
+  tags
+  filename_disk
+  filename_download
+  metadata
+  type
+  filesize
+}
+    `;
+export const TeamMemberFragmentDoc = gql`
+    fragment TeamMember on team_members {
+  name
+  title
+  categories
+  pronouns
+  portrait {
+    ...ImageFile
+  }
+}
+    ${ImageFileFragmentDoc}`;
 export const EventsDocument = gql`
     query Events {
   events {
@@ -809,3 +1010,37 @@ export function useStackExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type StackExtrasQueryHookResult = ReturnType<typeof useStackExtrasQuery>;
 export type StackExtrasLazyQueryHookResult = ReturnType<typeof useStackExtrasLazyQuery>;
 export type StackExtrasQueryResult = Apollo.QueryResult<StackExtrasQuery, StackExtrasQueryVariables>;
+export const TeamMembersDocument = gql`
+    query TeamMembers {
+  team_members {
+    ...TeamMember
+  }
+}
+    ${TeamMemberFragmentDoc}`;
+
+/**
+ * __useTeamMembersQuery__
+ *
+ * To run a query within a React component, call `useTeamMembersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTeamMembersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTeamMembersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTeamMembersQuery(baseOptions?: Apollo.QueryHookOptions<TeamMembersQuery, TeamMembersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
+      }
+export function useTeamMembersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TeamMembersQuery, TeamMembersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
+        }
+export type TeamMembersQueryHookResult = ReturnType<typeof useTeamMembersQuery>;
+export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLazyQuery>;
+export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;

@@ -72,3 +72,31 @@ query StackExtras($name: String) {
     ...StackExtras
   }
 }
+
+fragment ImageFile on directus_files {
+  id
+  title
+  description
+  tags
+  filename_disk
+  filename_download
+  metadata
+  type
+  filesize
+}
+
+fragment TeamMember on team_members {
+  name
+  title
+  categories
+  pronouns
+  portrait {
+    ...ImageFile
+  }
+}
+
+query TeamMembers {
+  team_members {
+    ...TeamMember
+  }
+}

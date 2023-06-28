@@ -278,6 +278,7 @@ export const QuotesCarousel = styled(
         <CarouselDots className="dotList">
           {quotesInner.map((_, i) => (
             <CarouselDot
+              key={i}
               $selected={i === activeIndex}
               onClick={() => {
                 setIndex(i)

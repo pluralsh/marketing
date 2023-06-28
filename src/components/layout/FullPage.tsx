@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { mqs } from '@src/breakpoints'
+import { breakpoints, mqs } from '@src/breakpoints'
 
 const PageMaxWidthLimiter = styled.div(({ theme: _ }) => ({
   marginLeft: 'auto',
@@ -14,11 +14,14 @@ export const StandardPageInner = styled.div(() => ({
   width: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  maxWidth: 1088,
+  maxWidth: `calc(${breakpoints.md}px - (var(--page-x-pad) * 2))`,
+  [mqs.columns]: {
+    maxWidth: 1088,
+  },
   [mqs.xl]: {
     maxWidth: 1248,
   },
-  [mqs.xxl]: {
+  [mqs.max]: {
     maxWidth: 1432,
   },
 }))
