@@ -299,12 +299,12 @@ async function getPricingInner(
     if (users && typeof userMonthlyPricing === 'number') {
       users.values.pro.label = `$${
         Math.round(userMonthlyPricing * 100) / 100
-      }/month`
+      }/user/month`
     }
     if (clusters && typeof clusterMonthlyPricing === 'number') {
       clusters.values.pro.label = `$${
         Math.round(clusterMonthlyPricing * 100) / 100
-      }/month`
+      }/cluster/month`
     }
 
     return draft

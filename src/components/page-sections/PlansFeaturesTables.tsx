@@ -1,9 +1,10 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, Fragment } from 'react'
 
 import { Button } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import chroma from 'chroma-js'
+import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -25,6 +26,7 @@ const PlanFeatureSC = styled.div(({ theme }) => ({
   justifyContent: 'center',
   padding: `${theme.spacing.medium}px ${theme.spacing.xsmall}px`,
   borderBottom: theme.borders.default,
+  height: '100%',
 }))
 const LineItemHead = styled(PlanFeatureSC)((_) => ({
   textAlign: 'left',
@@ -35,12 +37,18 @@ export function PlanFeature({
   item,
   ...props
 }: { item: LineItemT } & ComponentProps<typeof PlanFeatureSC>) {
+  const label = item?.label?.split('/').flatMap((value, i, array) =>
+    array.length - 1 !== i // check for the last item
+      ? [value, <Fragment key={i}>&#8203;/</Fragment>]
+      : value
+  )
+
   return (
     <PlanFeatureSC {...props}>
       {item.checked ? (
         <PlanFeatureCheck />
-      ) : item.label ? (
-        item.label
+      ) : !isEmpty(label) ? (
+        label
       ) : (
         <PlanFeatureX />
       )}
@@ -227,9 +235,9 @@ export function PlansFeaturesTable({
         )}
         {plans.map((plan) => (
           <th
+            key={plan.key}
             className="tableHead"
             scope="col"
-            key={plan.key}
             {...(isOnePlan ? { colSpan: 2, 'aria-colspan': 2 } : {})}
           >
             <PlanHeading plan={plan} />
@@ -238,8 +246,8 @@ export function PlansFeaturesTable({
       </tr>
       {items.map((item, i) => (
         <PlansFeaturesRow
-          className="tableContent"
           key={`${item.label}-${i}`}
+          className="tableContent"
           plans={plans}
           item={item}
         />
