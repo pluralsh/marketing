@@ -15,7 +15,7 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
-import { FAQSection } from '@src/components/page-sections/FAQSection'
+import { PricingFAQSection } from '@src/components/page-sections/PricingFAQSection'
 import { ResponsiveText, ScrollToLink } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
@@ -233,7 +233,7 @@ export default function Pricing({
               </div>
             </div>
           </div>
-          <FAQSection />
+          <PricingFAQSection />
         </div>
       </ColorModeProvider>
     </>

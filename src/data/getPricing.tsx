@@ -46,6 +46,8 @@ const proPlanBase: Plan = {
   features: [
     { label: 'Everything in open-source plan' },
     { label: '24 hour SLA’s' },
+    { label: 'Multi-cluster management' },
+    { label: 'Dev->Prod promotion flows' },
     { label: 'Advanced user management' },
     { label: 'Audit logs' },
     { label: 'VPN' },
@@ -69,7 +71,7 @@ const enterprisePlanBase: Plan = {
     { label: 'Everything in Pro plan' },
     { label: '4 hour SLAs' },
     { label: 'Dedicated SRE' },
-    { label: 'SSO' },
+    { label: 'SAML integration' },
     { label: 'Commercial license' },
   ],
   cta: { label: 'Contact sales', url: '/contact-sales' },
@@ -121,6 +123,22 @@ const plansFeatures: PlansFeatures = [
   },
   {
     label: 'Groups',
+    values: {
+      free: { checked: false },
+      pro: { checked: true },
+      enterprise: { checked: true },
+    },
+  },
+  {
+    label: 'Multi-cluster management',
+    values: {
+      free: { checked: false },
+      pro: { checked: true },
+      enterprise: { checked: true },
+    },
+  },
+  {
+    label: 'Dev->Prod promotion flows',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -196,8 +214,8 @@ const plansFeatures: PlansFeatures = [
     label: 'Coverage',
     values: {
       free: { label: 'Best effort' },
-      pro: { label: 'Business hours' },
-      enterprise: { label: 'Extended' },
+      pro: { label: '9-5 Business hours' },
+      enterprise: { label: 'Custom' },
     },
   },
   {

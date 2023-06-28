@@ -5,7 +5,7 @@ import { AppBody2, ResponsiveText } from '@src/components/Typography'
 
 import { SingleAccordion } from '../SingleAccordion'
 
-export function FAQSection(
+export function RepoFAQSection(
   props: Omit<ComponentProps<typeof StandardPage>, 'children'>
 ) {
   return (

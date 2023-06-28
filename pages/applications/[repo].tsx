@@ -30,7 +30,7 @@ import {
   CaseStudySection,
   getCaseStudyApps,
 } from '@src/components/page-sections/CaseStudySection'
-import { FAQSection } from '@src/components/page-sections/FAQSection'
+import { RepoFAQSection } from '@src/components/page-sections/RepoFAQSection'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
 import { SingleAccordion } from '@src/components/SingleAccordion'
@@ -289,7 +289,7 @@ export function CaseStudyFAQSection({
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero gap-xlarge mt-xxxlarge mb-xlarge columns:mt-xxxxxxlarge columns:gap-xxxxxlarge columns:mb-xxxxxlarge">
         <CaseStudySection {...caseStudyProps} />
-        <FAQSection className="py-xxxlarge" />
+        <RepoFAQSection className="py-xxxlarge" />
       </div>
     </ColorModeProvider>
   )
