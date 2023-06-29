@@ -64,7 +64,6 @@ export function PlanCard({
     <PlanCardSC {...props}>
       {violator?.label && (
         <Chip
-          // as="aside"
           size="large"
           fillLevel={2}
           className="violator"
@@ -99,6 +98,7 @@ export function PlanCard({
 
       {cta && (
         <Button
+          {...(isFeatured ? { primary: true } : { secondary: true })}
           as={Link}
           href={cta.url}
           className="cta"
