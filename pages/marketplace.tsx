@@ -21,11 +21,13 @@ import { isEmpty, orderBy, upperFirst } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { CardCta } from '@src/components/CardCta'
 import {
   type SetSearchParams,
   useSearchParams,
 } from '@src/components/hooks/useSearchParams'
 import { MarketplacePage } from '@src/components/layout/BasicPage'
+import { FullPage } from '@src/components/layout/FullPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { MarketplaceCarousel } from '@src/components/page-sections/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/page-sections/MarketplaceExtras'
@@ -35,10 +37,9 @@ import {
   SearchBar,
   useSearchTabKey,
 } from '@src/components/page-sections/MarketplaceSearchBar'
-import StackHero, {
-  Cta,
-} from '@src/components/page-sections/MarketplaceStackHero'
+import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
+import { Body1, Heading1, Subtitle } from '@src/components/Typography'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -51,9 +52,6 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-
-import { FullPage } from '../src/components/layout/FullPage'
-import { Body1, Heading1, Subtitle } from '../src/components/Typography'
 
 type PageProps = {
   repositories: MinRepo[]
@@ -508,12 +506,12 @@ function AddAppCard() {
         wants to add your solution? We'd love for you to onboard your
         application.
       </PBody2>
-      <Cta
+      <CardCta
         target="_blank"
         href="https://docs.plural.sh/adding-new-application"
       >
         Read the guide
-      </Cta>
+      </CardCta>
     </SidecarCard>
   )
 }
@@ -531,12 +529,12 @@ function ContributorCard() {
         Add a new application to the Plural catalog or take a deep dive into the
         Plural internals.
       </PBody2>
-      <Cta
+      <CardCta
         target="_blank"
         href="https://www.plural.sh/blog/paying-for-oss-contributions/"
       >
         Learn more
-      </Cta>
+      </CardCta>
     </SidecarCard>
   )
 }
