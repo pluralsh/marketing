@@ -366,6 +366,8 @@ export type Directus_Files_Filter = {
 
 export type Events = {
   __typename?: 'events';
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -377,11 +379,15 @@ export type Events = {
   fields_func?: Maybe<Count_Functions>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
+  show_end_time?: Maybe<Scalars['Boolean']['output']>;
+  show_start_time: Scalars['Boolean']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   start_date?: Maybe<Scalars['Date']['output']>;
   start_date_func?: Maybe<Datetime_Functions>;
   status?: Maybe<Scalars['String']['output']>;
+  /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
+  timezone?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Scalars['String']['output']>;
   user_updated?: Maybe<Scalars['String']['output']>;
 };
@@ -402,6 +408,7 @@ export type Events_Aggregated = {
 
 export type Events_Aggregated_Count = {
   __typename?: 'events_aggregated_count';
+  ctas?: Maybe<Scalars['Int']['output']>;
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
@@ -409,10 +416,14 @@ export type Events_Aggregated_Count = {
   fields?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
+  show_end_time?: Maybe<Scalars['Int']['output']>;
+  show_start_time?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   start_date?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
+  /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
+  timezone?: Maybe<Scalars['Int']['output']>;
   user_created?: Maybe<Scalars['Int']['output']>;
   user_updated?: Maybe<Scalars['Int']['output']>;
 };
@@ -425,6 +436,8 @@ export type Events_Aggregated_Fields = {
 export type Events_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Events_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Events_Filter>>>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
@@ -436,11 +449,14 @@ export type Events_Filter = {
   fields_func?: InputMaybe<Count_Function_Filter_Operators>;
   id?: InputMaybe<String_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
+  show_end_time?: InputMaybe<Boolean_Filter_Operators>;
+  show_start_time?: InputMaybe<Boolean_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   start_date?: InputMaybe<Date_Filter_Operators>;
   start_date_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
+  timezone?: InputMaybe<String_Filter_Operators>;
   user_created?: InputMaybe<String_Filter_Operators>;
   user_updated?: InputMaybe<String_Filter_Operators>;
 };
@@ -744,12 +760,12 @@ export type Team_Members_Filter = {
   title?: InputMaybe<String_Filter_Operators>;
 };
 
-export type EventFragment = { __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, fields?: any | null };
+export type EventFragment = { __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, show_start_time: boolean, show_end_time?: boolean | null, timezone?: string | null, description?: string | null, fields?: any | null, ctas?: any | null };
 
 export type EventsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type EventsQuery = { __typename?: 'Query', events: Array<{ __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, fields?: any | null }> };
+export type EventsQuery = { __typename?: 'Query', events: Array<{ __typename?: 'events', id: string, name?: string | null, start_date?: any | null, end_date?: any | null, show_start_time: boolean, show_end_time?: boolean | null, timezone?: string | null, description?: string | null, fields?: any | null, ctas?: any | null }> };
 
 export type LinkFragment = { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null };
 
@@ -797,7 +813,12 @@ export const EventFragmentDoc = gql`
   name
   start_date
   end_date
+  show_start_time
+  show_end_time
+  timezone
+  description
   fields
+  ctas
 }
     `;
 export const LinkFragmentDoc = gql`

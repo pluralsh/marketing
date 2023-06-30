@@ -58,10 +58,11 @@ export const ScrollToLink = forwardRef<
   HTMLAnchorElement,
   {
     scrollToTarget: string | HTMLElement
+    options?: Parameters<typeof useScrollTo>[1]
     children: ReactNode
   } & ComponentProps<typeof ScrollToLinkSC>
->(({ scrollToTarget, children, ...props }, ref) => {
-  const onClick = useScrollTo(scrollToTarget)
+>(({ scrollToTarget, children, options, ...props }, ref) => {
+  const onClick = useScrollTo(scrollToTarget, options)
 
   const kids = Children.map(children, (child, i) => {
     if (i === Children.count(children) - 1 && typeof child === 'string') {

@@ -19,8 +19,14 @@ import { Cta, ResponsiveText, SectionHead } from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
+
+const DUMMY_PATH_PARAM = 'about' as const
+
+export const getStaticPaths: GetStaticPaths = async () =>
+  indexPageStaticPaths(DUMMY_PATH_PARAM)
 
 export default function About({
   teamMembers,
@@ -302,20 +308,6 @@ function Value({ label, children }: { label: ReactNode; children: ReactNode }) {
       </ResponsiveText>
     </div>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      paths: [],
-      fallback: 'blocking',
-    }
-  }
-
-  return {
-    paths: [{ params: { about: [] } }],
-    fallback: false,
-  }
 }
 
 export type PricingPageProps = { teamMembers: TeamMemberFragment[] }

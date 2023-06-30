@@ -21,8 +21,14 @@ import { ScrollToLink } from '@src/components/ScrollToLink'
 import { ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
 import { PlansFeaturesTable as PlanFeaturesTable } from '../../src/components/page-sections/PlansFeaturesTables'
+
+const DUMMY_PATH_PARAM = 'pricing'
+
+export const getStaticPaths: GetStaticPaths = async () =>
+  indexPageStaticPaths(DUMMY_PATH_PARAM)
 
 const PlanCardSC = styled.div(({ theme }) => ({
   '&, .titleArea, .content, .featureList': {
@@ -239,20 +245,6 @@ export default function Pricing({
       </ColorModeProvider>
     </>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      paths: [],
-      fallback: 'blocking',
-    }
-  }
-
-  return {
-    paths: [{ params: { pricing: [] } }],
-    fallback: false,
-  }
 }
 
 export type PricingPageProps = Pricing

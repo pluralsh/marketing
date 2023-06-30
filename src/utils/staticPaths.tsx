@@ -1,4 +1,6 @@
-export const singlePageStaticPaths = (paramName: string) => {
+import { INDEX_PATH_PARAM_SUFFIX } from '../../index-pages.mjs'
+
+export const indexPageStaticPaths = (paramName: string) => {
   if (process.env.NODE_ENV === 'development') {
     return {
       paths: [],
@@ -7,7 +9,7 @@ export const singlePageStaticPaths = (paramName: string) => {
   }
 
   return {
-    paths: [{ params: { [paramName]: [] } }],
+    paths: [{ params: { [paramName + INDEX_PATH_PARAM_SUFFIX]: [] } }],
     fallback: false as const,
   }
 }

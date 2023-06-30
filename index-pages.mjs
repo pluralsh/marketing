@@ -1,30 +1,15 @@
-import { Dirent } from 'fs'
+// import { Dirent } from 'fs'
 import { readdir, writeFile } from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
+
+export const INDEX_PATH_PARAM_SUFFIX = '-index'
 
 const __filename = fileURLToPath(import.meta.url)
 
 const __dirname = path.dirname(__filename)
 
-function writeUrl({ location, lastMod, priority = '0.5' }) {
-  return `  <url>
-    <loc>${process.env.NEXT_PUBLIC_ROOT_URL}/${location}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${priority || '0.5'}</priority>
-  </url>`
-}
-
-function wrapSiteMap(content) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${content}
-</urlset>
-`
-}
-
-const ignore = [
+const ignoreList = [
   // sitemaps
   /^sitemap\.xml.*/,
   // _nextjs templates
@@ -34,16 +19,24 @@ const ignore = [
   /^([_.[]|404|500).*$/,
 ]
 
+// Allow list will override ignore list
+const indexPageRegex = new RegExp(
+  `^\\[\\[\\.{3}.*?${INDEX_PATH_PARAM_SUFFIX}\\]\\]`
+)
+
 const pageFilter = (file) => {
-  for (const ig of ignore) {
-    if (file.name.match(ig)) {
-      return false
-    }
-  }
   if (file?.isDirectory()) {
     return true
   }
-  return file.name.match(/\.(ts|tsx|js|jsx|md|mdoc)$/)
+  let allow = true
+
+  for (const regx of ignoreList) {
+    if (file.name.match(regx)) {
+      allow = false
+    }
+  }
+
+  return allow && file.name.match(/\.(ts|tsx|js|jsx|md|mdoc)$/)
 }
 
 const rootDir = __dirname
@@ -54,14 +47,24 @@ async function crawlPages(filePath = '/') {
   const fullPath = path.join(rootDir, PAGES_PATH, filePath)
   const files = await readdir(fullPath, { withFileTypes: true })
 
-  const filteredFiles = files.filter(pageFilter)
+  const filteredFiles = files
+    .map((file) => {
+      if (file.name.match(indexPageRegex)) {
+        file.name = 'index.tsx'
+      }
+
+      return file
+    })
+    .filter(pageFilter)
 
   const pages = []
+
   for (const file of filteredFiles) {
     if (file.isDirectory()) {
       pages.push(...(await crawlPages(path.join(filePath, file.name))))
     } else {
       let pathname = file.name.split('.').slice(0, -1).join('.')
+
       pathname = path.join(filePath, pathname.replace(/(^|\/)index$/g, ''))
       pages.push({ path: pathname })
     }

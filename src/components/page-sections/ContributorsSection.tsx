@@ -1,12 +1,13 @@
 import { type ComponentProps } from 'react'
 
+import chroma from 'chroma-js'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
-import { type CommunityContributor } from '@src/data/getGithubStats'
-
-import { GradientBG } from '../GradientBGs'
+import { type CommunityContributor } from '../../data/getGithubData'
 import { StandardPage } from '../layout/FullPage'
+import { GradientBG } from '../layout/GradientBG'
+import { ResponsiveText } from '../Typography'
 
 export default function ContributorsSection({
   contributors,
@@ -14,8 +15,20 @@ export default function ContributorsSection({
   contributors: CommunityContributor[]
 }) {
   return (
-    <GradientBG className="">
-      <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
+    <GradientBG
+      size="100% 100%"
+      image="/images/gradients/gradient-bg-4.jpg"
+    >
+      <StandardPage
+        id="contributors-section"
+        className="py-xxxxlarge xl:py-xxxxxxlarge"
+      >
+        <ResponsiveText
+          className="mb-xxxlarge text-center"
+          textStyles={{ '': 'mHero2', md: 'mHero2', xl: 'mHero1' }}
+        >
+          Our contributors
+        </ResponsiveText>
         <ContributorsList contributors={contributors} />
       </StandardPage>
     </GradientBG>
@@ -54,7 +67,8 @@ const ContributorCardSC = styled.a(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing.large,
   borderRadius: theme.borderRadiuses.large,
-  background: theme.colors['fill-one'],
+  background: `${chroma(theme.colors['fill-one']).alpha(0.6)}`,
+  // backdropFilter: 'blur(6px)',
   border: theme.borders['fill-two'],
   '.portrait': {
     flexShrink: 0,

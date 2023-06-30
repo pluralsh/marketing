@@ -1,8 +1,17 @@
 [
   {
+    "path": "/about"
+  },
+  {
+    "path": "/community"
+  },
+  {
     "path": "/"
   },
   {
     "path": "/marketplace"
+  },
+  {
+    "path": "/pricing"
   }
 ]

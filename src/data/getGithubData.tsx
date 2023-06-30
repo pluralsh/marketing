@@ -86,8 +86,6 @@ function normalizeContributors(cList: GHContributorList) {
 
 export async function getContributors() {
   return until(async () => {
-    console.log('until getGithubStats')
-
     // Octokit.js
     // https://github.com/octokit/core.js#readme
     const octokit = new Octokit({

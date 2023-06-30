@@ -1,18 +1,17 @@
+import { type ReactNode } from 'react'
+
 import styled from 'styled-components'
 
-export const GradientBG = styled(
-  ({ children, position: _position, image: _image, size: _size, ...props }) => (
-    <div {...props}>
-      <div className="bg" />
-      <div className="content">{children}</div>
-    </div>
-  )
-)<{ position?: string; image?: string }>(
+const GradientBGSC = styled.div<{
+  $position?: string
+  $image?: string
+  $size?: string
+}>(
   ({
     theme,
-    position = 'top center',
-    size = '100%',
-    image = '/images/gradients/gradient-bg-1.jpg',
+    $position: position = 'top center',
+    $size = '100%',
+    $image: image = '/images/gradients/gradient-bg-1.jpg',
   }) => ({
     position: 'relative',
     '.bg, .bg::after': {
@@ -29,7 +28,7 @@ export const GradientBG = styled(
       '--blur-amount': '10px',
       backgroundImage: `url(${image})`,
       backgroundPosition: position,
-      backgroundSize: size,
+      backgroundSize: $size,
       backgroundRepeat: 'no-repeat',
       backgroundColor: theme.colors['fill-zero'],
       filter: 'blur(var(--blur-amount))',
@@ -39,3 +38,28 @@ export const GradientBG = styled(
     },
   })
 )
+
+export function GradientBG({
+  children,
+  position,
+  image,
+  size,
+  ...props
+}: {
+  children: ReactNode
+  position?: string
+  image?: string
+  size?: string
+}) {
+  return (
+    <GradientBGSC
+      $position={position}
+      $image={image}
+      $size={size}
+      {...props}
+    >
+      <div className="bg" />
+      <div className="content">{children}</div>
+    </GradientBGSC>
+  )
+}

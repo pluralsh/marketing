@@ -1,4 +1,9 @@
-import { ColorModeProvider } from '@pluralsh/design-system'
+import {
+  Button,
+  ColorModeProvider,
+  DiscordIcon,
+  GitHubLogoIcon,
+} from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -7,53 +12,44 @@ import {
 
 import classNames from 'classnames'
 
-import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import ContributorsSection from '@src/components/page-sections/ContributorsSection'
 import EventsSection from '@src/components/page-sections/EventsSection'
-import { Cta, ResponsiveText } from '@src/components/Typography'
-import { getContributors } from '@src/data/getGithubStats'
-import {
-  EventsDocument,
-  type EventsQuery,
-  type EventsQueryVariables,
-} from '@src/generated/graphqlDirectus'
+import { ScrollToLink } from '@src/components/ScrollToLink'
+import { ResponsiveText } from '@src/components/Typography'
+import { getEvents } from '@src/data/getEvents'
+import { getContributors } from '@src/data/getGithubData'
+import { type EventsQuery } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { singlePageStaticPaths } from '@src/utils/staticPaths'
+import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 
-const DUMMY_PARAM = 'community' as const
+const DUMMY_PATH_PARAM = 'community' as const
+
+export const getStaticPaths: GetStaticPaths = async () =>
+  indexPageStaticPaths(DUMMY_PATH_PARAM)
 
 export default function About({
   contributors,
   events,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('contributors', contributors)
-
   return (
     <>
       <HeaderPad
         as={GradientBG}
         size="cover"
         // position="top middle"
-        image="/images/gradients/gradient-bg-1.jpg"
+        image="/images/gradients/gradient-bg-4.jpg"
       >
-        <div
-          className={classNames(
-            'pb-xxxlarge',
-            'md:pb-xxxxlarge',
-            'xxl:pb-xxxxxxlarge'
-          )}
-        >
-          <StandardPage
+        <StandardPage>
+          <div
             className={classNames(
               'flex flex-col gap-xxlarge',
-              'pt-xxxlarge pb-xxxxxlarge',
-              'md:pt-xxxxlarge md:pb-xxxxxlarge',
-              'xl:pt-xxxxlarge xl:pb-xxxxxxlarge'
+              'py-xxxlarge',
+              'xl:py-xxxxlarge'
             )}
           >
             <div>
@@ -71,7 +67,7 @@ export default function About({
                 as="p"
                 textStyles={{ '': 'mBody1' }}
                 color="text-light"
-                className="mb-xlarge max-w-[800px]"
+                className="max-w-[800px]"
               >
                 The Plural community is built to support all Plural users
                 through discussions, educational resources, and events. No
@@ -80,16 +76,46 @@ export default function About({
                 journey.
               </ResponsiveText>
             </div>
-            <div />
-            <Cta
-              target="_blank"
-              href="/blog/what-is-plural/"
-            >
-              Read more
-            </Cta>
-          </StandardPage>
-        </div>
+            <div className="flex gap-large">
+              <Button
+                large
+                secondary
+                as="a"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<DiscordIcon size={20} />}
+                href="https://discord.gg/pluralsh"
+              >
+                Discord
+              </Button>
+              <Button
+                large
+                secondary
+                as="a"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<GitHubLogoIcon size={20} />}
+                href="https://github.com/pluralsh"
+              >
+                Github
+              </Button>
+            </div>
+            <div className="flex gap-large">
+              <ScrollToLink scrollToTarget="resources-section">
+                Resources
+              </ScrollToLink>
+              <ScrollToLink scrollToTarget="contributors-section">
+                Our contributors
+              </ScrollToLink>
+            </div>
+          </div>
+        </StandardPage>
       </HeaderPad>
+      <div className="bg-fill-zero">
+        <StandardPage className="pt-xxxxlarge pb-xxxxxxlarge">
+          <EventsSection events={events} />
+        </StandardPage>
+      </div>
       <ColorModeProvider mode="light">
         <div
           className={classNames(
@@ -102,7 +128,7 @@ export default function About({
           )}
         >
           <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            <EventsSection events={events} />
+            content
           </StandardPage>
         </div>
       </ColorModeProvider>
@@ -110,14 +136,6 @@ export default function About({
       <ContributorsSection contributors={contributors} />
     </>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const ret = singlePageStaticPaths(DUMMY_PARAM)
-
-  console.log('ret', ret)
-
-  return ret
 }
 
 export type CommunityPageProps = {
@@ -128,29 +146,22 @@ export type CommunityPageProps = {
 export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
   _context
 ) => {
-  console.log('COMMUNITY')
   const { data: contributors, error: githubError } = await getContributors()
 
   if (!contributors) {
     return { notFound: true }
   }
 
-  const { data: events, error: eventsError } = await directusClient.query<
-    EventsQuery,
-    EventsQueryVariables
-  >({
-    query: EventsDocument,
-  })
-
-  if (eventsError) {
-    throw new Error(`${eventsError.name}: ${eventsError.message}`)
-  }
+  const { data: events, error: eventsError } = await getEvents()
 
   return propsWithGlobalSettings({
     metaTitle: 'Community',
     contributors,
     footerVariant: FooterVariant.kitchenSink,
-    events: events.events || [],
-    errors: [...(githubError ? [githubError] : [])],
+    events: events || [],
+    errors: [
+      ...(githubError ? [githubError] : []),
+      ...(eventsError ? [eventsError] : []),
+    ],
   })
 }

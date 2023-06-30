@@ -3,7 +3,12 @@ fragment Event on events {
   name
   start_date
   end_date
+  show_start_time
+  show_end_time
+  timezone
+  description
   fields
+  ctas
 }
 
 query Events {
