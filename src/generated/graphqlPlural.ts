@@ -2732,6 +2732,7 @@ export type RootMutationType = {
   realizeInvite?: Maybe<User>;
   realizeResetToken?: Maybe<Scalars['Boolean']['output']>;
   rebootShell?: Maybe<CloudShell>;
+  release?: Maybe<Scalars['Boolean']['output']>;
   releaseLock?: Maybe<ApplyLock>;
   resetInstallations?: Maybe<Scalars['Int']['output']>;
   restartShell?: Maybe<Scalars['Boolean']['output']>;
@@ -3288,6 +3289,13 @@ export type RootMutationTypeRealizeInviteArgs = {
 export type RootMutationTypeRealizeResetTokenArgs = {
   attributes: ResetTokenRealization;
   id: Scalars['ID']['input'];
+};
+
+
+export type RootMutationTypeReleaseArgs = {
+  repositoryId?: InputMaybe<Scalars['ID']['input']>;
+  repositoryName?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 

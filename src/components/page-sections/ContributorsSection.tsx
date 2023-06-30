@@ -1,4 +1,12 @@
+import { type ComponentProps } from 'react'
+
+import classNames from 'classnames'
+import styled from 'styled-components'
+
 import { type CommunityContributor } from '@src/data/getGithubStats'
+
+import { GradientBG } from '../GradientBGs'
+import { StandardPage } from '../layout/FullPage'
 
 export default function ContributorsSection({
   contributors,
@@ -6,27 +14,92 @@ export default function ContributorsSection({
   contributors: CommunityContributor[]
 }) {
   return (
-    <div>
-      <div className="flex flex-col gap-x-medium gap-y-xlarge ">
-        <h1 className="hero1 mb-medium w-full md:w-3/4">Contributors</h1>
-        <div className="flex flex-col gap-medium">
-          {contributors.map((contributor) => (
-            <div className="rounded-md bg-fill-one p-medium">
-              <a
-                href={contributor.html_url}
-                target="_blank"
-                rel="noreferrer nofollow"
-              >
-                <div className="w-xxxlarge [border-radius:50%] overflow-hidden background-">
-                  <img src={contributor.avatar_url} />
-                </div>
-                <div>@{contributor.login}</div>
-                <div>contributions: {contributor.contributions}</div>
-              </a>
-            </div>
-          ))}
-        </div>
+    <GradientBG className="">
+      <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
+        <ContributorsList contributors={contributors} />
+      </StandardPage>
+    </GradientBG>
+  )
+}
+
+function ContributorsList({
+  contributors,
+}: {
+  contributors: CommunityContributor[]
+}) {
+  return (
+    <ul
+      className={classNames(
+        'grid',
+        'grid-cols-1',
+        'gap-x-xlarge gap-y-xlarge',
+        'sm:grid-cols-2',
+        'sm:gap-x-xlarge sm:gap-y-xxxlarge',
+        'xl:grid-cols-3',
+        'max:grid-cols-4'
+      )}
+    >
+      {contributors.map((contributor) => (
+        <li>
+          <ContributorCard contributor={contributor} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+const ContributorCardSC = styled.a(({ theme }) => ({
+  display: 'flex',
+  columnGap: theme.spacing.medium,
+  alignItems: 'center',
+  padding: theme.spacing.large,
+  borderRadius: theme.borderRadiuses.large,
+  background: theme.colors['fill-one'],
+  border: theme.borders['fill-two'],
+  '.portrait': {
+    flexShrink: 0,
+    borderRadius: '50%',
+    border: theme.colors['border-fill-two'],
+    overflow: 'hidden',
+    width: theme.spacing.xxxxlarge,
+    height: theme.spacing.xxxxlarge,
+    backgroundSize: 'cover',
+  },
+  '.info': {
+    flexShrink: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: theme.spacing.xsmall,
+  },
+  '.name': {
+    ...theme.partials.marketingText.subtitle1,
+    color: theme.colors.text,
+  },
+  '.login': {
+    ...theme.partials.marketingText.body1,
+    color: theme.colors.text,
+  },
+}))
+
+function ContributorCard({
+  contributor,
+}: { contributor: CommunityContributor } & ComponentProps<
+  typeof ContributorCardSC
+>) {
+  return (
+    <ContributorCardSC
+      href={contributor.html_url}
+      target="_blank"
+      rel="noreferrer nofollow"
+    >
+      <div
+        className="portrait"
+        style={{ backgroundImage: `url(${contributor.avatar_url})` }}
+      />
+      <div className="info">
+        <div className="name">{contributor.name || contributor.login}</div>
+        <div className="login">@{contributor.login}</div>
       </div>
-    </div>
+    </ContributorCardSC>
   )
 }

@@ -88,7 +88,7 @@ export default function About({
                   </ResponsiveText>
                   <Cta
                     target="_blank"
-                    href="/blog/what-is-plural/"
+                    href="https://www.plural.sh/blog/what-is-plural/"
                   >
                     Read more
                   </Cta>

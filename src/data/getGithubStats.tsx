@@ -18,20 +18,25 @@ function reqContribs({
   })
 }
 
-const PICK_PROPS = [
+const C_PICK_PROPS = [
   'avatar_url',
   'html_url',
   'login',
   'contributions',
   'id',
 ] as const
+const U_PICK_PROPS = ['name', 'email', 'bio', 'blog'] as const
 
 export type CommunityContributor = Pick<
   GHContributorList[number],
-  (typeof PICK_PROPS)[number]
->
+  (typeof C_PICK_PROPS)[number]
+> &
+  Partial<Pick<GHUser, (typeof U_PICK_PROPS)[number]>>
 
 type GHContributorList = Awaited<ReturnType<typeof reqContribs>>['data']
+type GHUser = Awaited<
+  ReturnType<Octokit['rest']['users']['getByUsername']>
+>['data']
 
 const filterList = [
   'avaidyanatha',
@@ -65,7 +70,7 @@ function normalizeContributors(cList: GHContributorList) {
     const original = contributors.get(idString)
 
     if (!original) {
-      contributors.set(idString, pick(contributor, PICK_PROPS))
+      contributors.set(idString, pick(contributor, C_PICK_PROPS))
     } else {
       contributors.set(idString, {
         ...original,
@@ -88,20 +93,39 @@ export async function getContributors() {
     const octokit = new Octokit({
       auth: process.env.GITHUB_API_TOKEN,
     })
-    const req = (repo: string, owner = 'pluralsh') =>
+    const cReq = (repo: string, owner = 'pluralsh') =>
       until(() => reqContribs({ owner, repo, octokit }))
 
     const allResponses = await Promise.all([
-      req('plural'),
-      req('plural-artifacts'),
-      req('plural-cli'),
-      req('console'),
-      req('design-system'),
-      req('documentation'),
+      cReq('plural'),
+      cReq('plural-artifacts'),
+      cReq('plural-cli'),
+      cReq('console'),
+      cReq('design-system'),
+      cReq('documentation'),
     ])
 
-    return normalizeContributors(
+    const contributors = normalizeContributors(
       allResponses.flatMap((response) => response?.data?.data || [])
     )
+
+    const fullUsers = Object.fromEntries(
+      (
+        await Promise.all(
+          contributors.flatMap((c) =>
+            c.login
+              ? octokit.rest.users.getByUsername({ username: c.login })
+              : []
+          )
+        )
+      ).map((u) => [u.data.login, pick(u.data, U_PICK_PROPS)])
+    )
+
+    const merged = contributors.map((c) => ({
+      ...c,
+      ...(c?.login && fullUsers[c.login] ? fullUsers[c.login] : {}),
+    }))
+
+    return merged
   })
 }

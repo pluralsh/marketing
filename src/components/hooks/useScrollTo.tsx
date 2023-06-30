@@ -1,20 +1,18 @@
 import { useCallback } from 'react'
 
-import { useTheme } from 'styled-components'
-
 import { PAGE_HEADER_ID } from '../PageHeader'
 
 export const useScrollTo = (
   idOrElt: string | HTMLElement,
-  options: ScrollToOptions = {}
+  options: ScrollToOptions & { offset?: number } = {}
 ) => {
-  const theme = useTheme()
+  const { offset, ...scrollToOptions } = options
 
   return useCallback(() => {
     const headerHeight =
       document.getElementById(PAGE_HEADER_ID)?.getBoundingClientRect().height ??
       0
-    const scrollOffset = headerHeight + theme.spacing.xxlarge
+    const scrollOffset = headerHeight + (offset ?? 0)
 
     let elt: string | HTMLElement | null = idOrElt
 
@@ -31,8 +29,8 @@ export const useScrollTo = (
       window.scrollTo({
         top: top + window.scrollY - scrollOffset,
         behavior: 'smooth',
-        ...options,
+        ...scrollToOptions,
       })
     }
-  }, [idOrElt, options, theme.spacing.xxlarge])
+  }, [idOrElt, offset, scrollToOptions])
 }

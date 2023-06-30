@@ -15,12 +15,13 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { PricingFAQSection } from '@src/components/page-sections/PricingFAQSection'
-import { ResponsiveText, ScrollToLink } from '@src/components/Typography'
+import { ScrollToLink } from '@src/components/ScrollToLink'
+import { ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { PlansFeaturesTable as PlanFeaturesTable } from '../../src/components/page-sections/PlansFeaturesTables'
 
 const PlanCardSC = styled.div(({ theme }) => ({

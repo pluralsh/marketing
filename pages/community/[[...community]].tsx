@@ -9,10 +9,8 @@ import classNames from 'classnames'
 
 import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
-import { TextLimiter } from '@src/components/layout/TextLimiter'
 import ContributorsSection from '@src/components/page-sections/ContributorsSection'
 import EventsSection from '@src/components/page-sections/EventsSection'
 import { Cta, ResponsiveText } from '@src/components/Typography'
@@ -52,59 +50,43 @@ export default function About({
         >
           <StandardPage
             className={classNames(
-              'flex flex-col gap-xlarge',
-              'pt-xxlarge pb-xxxxxlarge',
+              'flex flex-col gap-xxlarge',
+              'pt-xxxlarge pb-xxxxxlarge',
               'md:pt-xxxxlarge md:pb-xxxxxlarge',
               'xl:pt-xxxxlarge xl:pb-xxxxxxlarge'
             )}
           >
-            <ResponsiveText
-              className="mb-medium"
-              as="h1"
-              color="text-xlight"
-              textStyles={{
-                '': 'mLabel',
-              }}
+            <div>
+              <ResponsiveText
+                className="mb-xlarge [text-wrap:balance]"
+                as="h2"
+                textStyles={{
+                  '': 'mHero1',
+                  md: 'mBigHeader',
+                }}
+              >
+                Join our community
+              </ResponsiveText>
+              <ResponsiveText
+                as="p"
+                textStyles={{ '': 'mBody1' }}
+                color="text-light"
+                className="mb-xlarge max-w-[800px]"
+              >
+                The Plural community is built to support all Plural users
+                through discussions, educational resources, and events. No
+                matter how big or small your challenge is our community of
+                Plural experts and contributors is here to help guide your
+                journey.
+              </ResponsiveText>
+            </div>
+            <div />
+            <Cta
+              target="_blank"
+              href="/blog/what-is-plural/"
             >
-              Our mission
-            </ResponsiveText>
-            <Columns className="gap-y-xxxxlarge columns:items-center">
-              <EqualColumn>
-                <TextLimiter>
-                  <ResponsiveText
-                    className="[text-wrap:balance]"
-                    as="h2"
-                    textStyles={{
-                      '': 'mHero2',
-                      md: 'mHero1',
-                    }}
-                  >
-                    We are building a flexible, scalable solution to application
-                    delivery.
-                  </ResponsiveText>
-                </TextLimiter>
-              </EqualColumn>
-              <EqualColumn>
-                <TextLimiter>
-                  <ResponsiveText
-                    as="p"
-                    textStyles={{ '': 'mBody1' }}
-                    color="text-light"
-                    className="mb-xlarge"
-                  >
-                    At Plural, we believe that there is a better way to solve
-                    the third major constraint—distributed systems operational
-                    cost—that benefits OSS developers and DevOps teams alike.
-                  </ResponsiveText>
-                  <Cta
-                    target="_blank"
-                    href="/blog/what-is-plural/"
-                  >
-                    Read more
-                  </Cta>
-                </TextLimiter>
-              </EqualColumn>
-            </Columns>
+              Read more
+            </Cta>
           </StandardPage>
         </div>
       </HeaderPad>
@@ -120,13 +102,12 @@ export default function About({
           )}
         >
           <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            <ContributorsSection contributors={contributors} />
-          </StandardPage>
-          <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
             <EventsSection events={events} />
           </StandardPage>
         </div>
       </ColorModeProvider>
+
+      <ContributorsSection contributors={contributors} />
     </>
   )
 }

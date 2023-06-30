@@ -44,10 +44,10 @@ const proPlanBase: Plan = {
   label: 'Pro',
   price: '$399 / cluster, + $49 / user / month',
   features: [
-    { label: 'Everything in open-source plan' },
+    { label: 'Everything in Open-source plan' },
     { label: '24 hour SLA’s' },
     { label: 'Multi-cluster management' },
-    { label: 'Dev->Prod promotion flows' },
+    { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
     { label: 'Audit logs' },
     { label: 'VPN' },
@@ -73,6 +73,7 @@ const enterprisePlanBase: Plan = {
     { label: 'Dedicated SRE' },
     { label: 'SAML integration' },
     { label: 'Commercial license' },
+    { label: 'Cost optimization' },
   ],
   cta: { label: 'Contact sales', url: '/contact-sales' },
 }
@@ -101,7 +102,7 @@ const plansFeatures: PlansFeatures = [
     values: {
       free: { label: 'Free' },
       pro: { label: '$399/cluster/month' },
-      enterprise: { label: 'Custom' },
+      enterprise: { label: 'Unlimited' },
     },
   },
   {
@@ -138,7 +139,7 @@ const plansFeatures: PlansFeatures = [
     },
   },
   {
-    label: 'Dev->Prod promotion flows',
+    label: 'Dev → Prod promotion flows',
     values: {
       free: { checked: false },
       pro: { checked: true },
@@ -295,6 +296,14 @@ const plansFeatures: PlansFeatures = [
   },
   {
     label: 'Invoices',
+    values: {
+      free: { checked: false },
+      pro: { checked: false },
+      enterprise: { checked: true },
+    },
+  },
+  {
+    label: 'Cost optimization',
     values: {
       free: { checked: false },
       pro: { checked: false },
