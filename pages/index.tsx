@@ -1,3 +1,4 @@
+import { FooterVariant } from '@src/components/FooterFull'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { Body1, Heading1 } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
@@ -15,4 +16,7 @@ export default function Index() {
   )
 }
 
-export const getStaticProps = async () => propsWithGlobalSettings({})
+export const getStaticProps = async () =>
+  propsWithGlobalSettings({
+    footerVariant: FooterVariant.kitchenSink,
+  })

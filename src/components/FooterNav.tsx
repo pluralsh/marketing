@@ -203,7 +203,7 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
           <NavSection className="newsletter">
             <form
               // onSubmit={submitEmail}
-              action="/"
+              action="/forms/newsletter.html"
               method="POST"
               data-netlify="true"
               // eslint-disable-next-line react/no-unknown-property
