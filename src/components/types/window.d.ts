@@ -30,6 +30,7 @@ interface Window {
   }
   // Hubspot
   _hsq?: any[]
+  hbspt?: { forms: { create: (any) => Record<string, any> } }
   // Gtag
   dataLayer?: any[]
 }

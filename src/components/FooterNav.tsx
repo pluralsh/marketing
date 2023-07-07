@@ -1,30 +1,14 @@
-import {
-  type ComponentProps,
-  type FormEventHandler,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useId,
-  useState,
-} from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
-import {
-  ArrowRightIcon,
-  Input,
-  Tooltip,
-  usePrevious,
-} from '@pluralsh/design-system'
 import Link from 'next/link'
 
-// import ReCAPTCHA from 'react-google-recaptcha'
 import styled from 'styled-components'
 import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
-import { isValidEmail } from '@src/utils/text'
 
 import { FullPage } from './layout/FullPage'
-import { ResponsiveText } from './Typography'
+import { NewsletterSignupForm } from './NewsletterSignupForm'
 
 type NavItemT = {
   heading: ReactNode
@@ -134,7 +118,7 @@ const NavSections = styled.ul(({ theme }) => ({
   ...theme.partials.reset.list,
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-  // var(--v-gap) is set in Sticky Footer in '@src/components/FullFooter.tsx'
+  // var(--v-gap) is set in Sticky Footer in '@src/components/FooterFull.tsx'
   rowGap: 'var(--v-gap)',
   '.newsletter': {
     gridColumnStart: 1,
@@ -156,7 +140,7 @@ const NavSection = styled.li(({ theme }) => ({
   ...theme.partials.reset.li,
 }))
 
-const Heading = styled.h6(({ theme }) => ({
+export const FooterHeading = styled.h6(({ theme }) => ({
   ...theme.partials.marketingText.body2,
   fontWeight: '500',
   color: theme.colors.text,
@@ -174,7 +158,7 @@ const NavItem = styled.li(({ theme }) => ({
   margin: 0,
 }))
 
-const NavLink = styled(Link)(({ theme }) => ({
+export const FooterNavLink = styled(Link)(({ theme }) => ({
   '&, &:any-link': {
     ...theme.partials.marketingText.body2,
     color: theme.colors['text-light'],
@@ -186,184 +170,24 @@ const NavLink = styled(Link)(({ theme }) => ({
   },
 }))
 
-const NEWSLETTER_FORM_NAME = 'newsletter-signup'
-const HONEYPOT_NAME = 'extra'
-
-function NewsletterForm() {
-  const [email, setEmail] = useState('')
-  const prevEmail = usePrevious(email)
-
-  const emailInputId = useId()
-  const [response, setResponse] = useState<{
-    type: 'success' | 'error'
-    message: string
-  } | null>(null)
-
-  useEffect(() => {
-    // Clear response if email field is changed,
-    // unless field was changed to empty because of successful submission
-    if (email !== prevEmail && !(response?.type === 'success' && !email)) {
-      setResponse(null)
-    }
-  }, [email, prevEmail, response?.type])
-
-  function setError(error: string | Error) {
-    setResponse({
-      type: 'error',
-      message: `There was a problem subscribing to the newsletter: ${error}`,
-    })
-  }
-  const submitEmail = useCallback<FormEventHandler<HTMLFormElement>>(
-    (event) => {
-      event.preventDefault()
-      setResponse(null)
-      console.log('response', response)
-
-      const formData = new FormData(event.target as HTMLFormElement)
-
-      if (!isValidEmail(formData.get('email')?.toString())) {
-        setResponse({
-          type: 'error',
-          message: 'Please enter a valid email address.',
-        })
-
-        return
-      }
-      const body = new URLSearchParams(formData as any).toString()
-
-      if (process.env.NODE_ENV === 'development') {
-        setResponse({
-          type: 'error',
-          message: 'Must be server-deployed to submit form.',
-        })
-
-        return
-      }
-      fetch('/forms/newsletter.html', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
-      })
-        .then((e) => {
-          console.log('e', e)
-          console.log('e.ok', e.ok)
-          console.log('e.status', e.status)
-          console.log('e.statusText', e.statusText)
-          if (e.ok) {
-            setResponse({
-              type: 'success',
-              message: 'Thank you for subscribing to the newsletter',
-            })
-            setEmail('')
-          } else {
-            setError(e.statusText)
-          }
-        })
-        .catch((error) => {
-          console.log('error', error)
-          setError(error)
-        })
-    },
-    []
-  )
-
-  return (
-    <form
-      onSubmit={submitEmail}
-      action="/forms/newsletter.html"
-      method="POST"
-      data-netlify="true"
-      // eslint-disable-next-line react/no-unknown-property
-      netlify-honeypot={HONEYPOT_NAME}
-      data-netlify-honeypot={HONEYPOT_NAME}
-      // data-netlify-recaptcha="true"
-      name={NEWSLETTER_FORM_NAME}
-    >
-      <p className="hidden">
-        <input
-          type="text"
-          name={HONEYPOT_NAME}
-        />
-      </p>
-      <input
-        type="hidden"
-        name="form-name"
-        value={NEWSLETTER_FORM_NAME}
-      />
-      <Heading>Newsletter</Heading>
-      <NavLink
-        as="p"
-        className="mb-medium"
-      >
-        Be the first to know when we drop something new.
-      </NavLink>
-      <label
-        htmlFor={emailInputId}
-        className="sr-only"
-      >
-        Email
-      </label>
-      <Input
-        id={emailInputId}
-        inputProps={{ name: 'email' }}
-        placeholder="Email address"
-        onChange={(e) => {
-          setEmail(e?.target?.value)
-        }}
-        value={email}
-        endIcon={
-          <Tooltip label="Subscribe">
-            <button
-              type="submit"
-              className="submitButton"
-              aria-label="Subscribe"
-            >
-              <ArrowRightIcon aria-label="Subscribe" />
-            </button>
-          </Tooltip>
-        }
-      />
-      {response && (
-        <ResponsiveText
-          textStyles={{ '': 'mComponentText' }}
-          color={
-            response.type === 'error'
-              ? 'text-danger-light'
-              : 'text-success-light'
-          }
-          className="mt-small"
-        >
-          {response.message}
-        </ResponsiveText>
-      )}
-      {/* <ReCAPTCHA
-        sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}
-        onChange={(value) => {
-          console.log('recaptcha change', value)
-        }}
-      /> */}
-    </form>
-  )
-}
-
 export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => (
   <div {...props}>
     <FullPage>
       <NavSections>
         {navItems.map((navItem) => (
           <NavSection key={navItem.heading}>
-            <Heading>{navItem.heading}</Heading>
+            <FooterHeading>{navItem.heading}</FooterHeading>
             <NavItems>
               {navItem.links.map((link) => (
                 <NavItem key={`${link.children}${link.href}`}>
-                  <NavLink {...link} />
+                  <FooterNavLink {...link} />
                 </NavItem>
               ))}
             </NavItems>
           </NavSection>
         ))}
         <NavSection className="newsletter">
-          <NewsletterForm />
+          <NewsletterSignupForm />
         </NavSection>
       </NavSections>
     </FullPage>
