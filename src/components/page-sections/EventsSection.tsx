@@ -5,9 +5,10 @@ import { useRouter } from 'next/router'
 import { isEmpty, isNil } from 'lodash-es'
 import styled from 'styled-components'
 
-import { type EventFragment } from '@src/generated/graphqlDirectus'
+import { type PluralEvent } from '@src/data/getEvents'
 
 import { CardCta } from '../CardCta'
+import { TextLimiter } from '../layout/TextLimiter'
 import { ResponsiveText } from '../Typography'
 
 const DATE_FORMAT = {
@@ -27,16 +28,21 @@ function formatTime(
   {
     locale,
     timeZone,
+    timeZoneShort,
     showTimeZone = true,
-  }: { locale: string; timeZone?: string; showTimeZone?: boolean }
+  }: {
+    locale: string
+    timeZone?: string
+    timeZoneShort?: string
+    showTimeZone?: boolean
+  }
 ) {
-  return (
+  return `${
     date?.toLocaleTimeString(locale, {
       ...TIME_FORMAT,
-      ...(showTimeZone ? { timeZoneName: 'short' } : {}),
       ...(timeZone ? { timeZone } : {}),
     }) || ''
-  )
+  }${showTimeZone && timeZoneShort ? ` ${timeZoneShort}` : ''}`
 }
 
 function formatDateTime(
@@ -45,7 +51,8 @@ function formatDateTime(
     locale,
     showTime,
     timeZone,
-  }: { locale: string; showTime; timeZone?: string }
+    timeZoneShort,
+  }: { locale: string; showTime; timeZone?: string; timeZoneShort?: string }
 ) {
   if (!date) {
     return ''
@@ -56,7 +63,7 @@ function formatDateTime(
   })
 
   if (showTime) {
-    dateString += `, ${formatTime(date, { locale, timeZone })}`
+    dateString += `, ${formatTime(date, { locale, timeZone, timeZoneShort })}`
   }
 
   return dateString
@@ -70,11 +77,13 @@ function formatDates(
     timeZone,
     showStartTime,
     showEndTime,
+    timeZoneShort,
   }: {
     locale: string
     showStartTime?: boolean
     showEndTime?: boolean
     timeZone?: string
+    timeZoneShort?: string
   }
 ) {
   const sameYear =
@@ -97,12 +106,14 @@ function formatDates(
       dateString += `, ${formatTime(startDate, {
         locale,
         timeZone,
+        timeZoneShort,
         showTimeZone: !(showEndTime && endDate),
       })}`
       if (showEndTime && endDate) {
         dateString += ` – ${formatTime(endDate, {
           locale,
           timeZone,
+          timeZoneShort,
         })}`
       }
     }
@@ -113,12 +124,16 @@ function formatDates(
   dateString = formatDateTime(startDate, {
     locale,
     showTime: showStartTime,
+    timeZone,
+    timeZoneShort,
   })
 
   if (endDate) {
     dateString += ` – ${formatDateTime(endDate, {
       locale,
       showTime: showEndTime,
+      timeZone,
+      timeZoneShort,
     })}`
   }
 
@@ -171,7 +186,7 @@ const EventCardSC = styled.div(({ theme }) => ({
 function EventCard({
   event,
   ...props
-}: { event: EventFragment } & ComponentProps<typeof EventCardSC>) {
+}: { event: PluralEvent } & ComponentProps<typeof EventCardSC>) {
   const locale = useRouter().locale || 'en-us'
 
   const startDate = !isNil(event.start_date) ? new Date(event.start_date) : null
@@ -180,33 +195,30 @@ function EventCard({
   const dateString = formatDates(startDate, endDate, {
     locale,
     timeZone: event.timezone ?? undefined,
+    timeZoneShort: event.timezone_short ?? undefined,
     showStartTime: !!event.show_start_time,
     showEndTime: !!event.show_end_time,
   })
 
   return (
     <EventCardSC {...props}>
-      <div>
+      <TextLimiter>
         <div className="eventName">{event.name}</div>
         <ul className="details">
           {dateString && <li>{dateString}</li>}
           {event?.fields?.map(
-            (field: { url?: string; label?: string; content?: string }) => {
-              console.log('field', field)
-
-              return (
-                <li>
-                  {field.label && <>{field.label}: </>}
-                  <FieldContent
-                    {...(field.url
-                      ? { as: 'a', target: '_blank', href: field.url }
-                      : {})}
-                  >
-                    {field.content && field.content}
-                  </FieldContent>
-                </li>
-              )
-            }
+            (field: { url?: string; label?: string; content?: string }) => (
+              <li>
+                {field.label && <>{field.label}: </>}
+                <FieldContent
+                  {...(field.url
+                    ? { as: 'a', target: '_blank', href: field.url }
+                    : {})}
+                >
+                  {field.content && field.content}
+                </FieldContent>
+              </li>
+            )
           )}
         </ul>
         {event.description && (
@@ -227,32 +239,33 @@ function EventCard({
             )}
           </div>
         )}
-      </div>
+      </TextLimiter>
     </EventCardSC>
   )
 }
 
-export default function Events({ events }: { events: EventFragment[] }) {
-  const sortedEvents = [...events].sort(
+export default function EventsSection({ events }: { events: PluralEvent[] }) {
+  const sortedEvents = (events || []).sort(
     (a, b) =>
       new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
   )
 
   return (
     <div>
-      <div className=" ">
-        <ResponsiveText
-          as="h3"
-          textStyles={{ '': 'mLabel' }}
-          className="mb-medium"
-        >
-          Upcoming Events
-        </ResponsiveText>
-        <div className="flex flex-col gap-medium">
-          {sortedEvents.map((event) => (
-            <EventCard event={event} />
-          ))}
-        </div>
+      <ResponsiveText
+        as="h3"
+        textStyles={{ '': 'mLabel' }}
+        className="mb-medium"
+      >
+        Upcoming Events
+      </ResponsiveText>
+      <div className="flex flex-col gap-medium">
+        {sortedEvents.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+          />
+        ))}
       </div>
     </div>
   )

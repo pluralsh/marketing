@@ -15,13 +15,20 @@ import classNames from 'classnames'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import CalloutsSection from '@src/components/page-sections/CommunityCalloutsSection'
+import CommunityResourcesSection from '@src/components/page-sections/CommunityResourcesSection'
 import ContributorsSection from '@src/components/page-sections/ContributorsSection'
 import EventsSection from '@src/components/page-sections/EventsSection'
+import FeaturedContributorsSection from '@src/components/page-sections/FeaturedContributorsSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
 import { ResponsiveText } from '@src/components/Typography'
-import { getEvents } from '@src/data/getEvents'
+import {
+  type Callouts,
+  getCommunityPageData,
+} from '@src/data/getCommunityPageData'
+import { type PluralEvent, getEvents } from '@src/data/getEvents'
+import { getFeaturedContributors } from '@src/data/getFeaturedContributors'
 import { getContributors } from '@src/data/getGithubData'
-import { type EventsQuery } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
@@ -32,9 +39,11 @@ const DUMMY_PATH_PARAM = 'community' as const
 export const getStaticPaths: GetStaticPaths = async () =>
   indexPageStaticPaths(DUMMY_PATH_PARAM)
 
-export default function About({
+export default function Community({
   contributors,
+  featuredContributors,
   events,
+  callouts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -76,7 +85,7 @@ export default function About({
                 journey.
               </ResponsiveText>
             </div>
-            <div className="flex gap-large">
+            <div className="flex gap-large flex-wrap">
               <Button
                 large
                 secondary
@@ -100,7 +109,7 @@ export default function About({
                 Github
               </Button>
             </div>
-            <div className="flex gap-large">
+            <div className="flex gap-large flex-wrap">
               <ScrollToLink scrollToTarget="resources-section">
                 Resources
               </ScrollToLink>
@@ -113,11 +122,18 @@ export default function About({
       </HeaderPad>
       <div className="bg-fill-zero">
         <StandardPage className="pt-xxxxlarge pb-xxxxxxlarge">
-          <EventsSection events={events} />
+          <div className="flex flex-col gap-y-xxlarge">
+            <CalloutsSection callouts={callouts} />
+            <EventsSection events={events} />
+            <FeaturedContributorsSection
+              featuredContributors={featuredContributors}
+            />
+          </div>
         </StandardPage>
       </div>
       <ColorModeProvider mode="light">
         <div
+          id="resources-section"
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
@@ -127,8 +143,8 @@ export default function About({
             'text-text'
           )}
         >
-          <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            content
+          <StandardPage>
+            <CommunityResourcesSection />
           </StandardPage>
         </div>
       </ColorModeProvider>
@@ -139,16 +155,21 @@ export default function About({
 }
 
 export type CommunityPageProps = {
-  contributors: any
-  events: EventsQuery['events']
+  contributors: any[]
+  featuredContributors: any[]
+  events: PluralEvent[]
+  callouts: Callouts
 }
 
 export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
   _context
 ) => {
+  const { data: pageData, error: pageDataError } = await getCommunityPageData()
   const { data: contributors, error: githubError } = await getContributors()
+  const { data: featuredContributors, error: featuredContributorsError } =
+    await getFeaturedContributors()
 
-  if (!contributors) {
+  if (!contributors || !featuredContributors || !pageData) {
     return { notFound: true }
   }
 
@@ -157,11 +178,15 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
   return propsWithGlobalSettings({
     metaTitle: 'Community',
     contributors,
+    featuredContributors,
     footerVariant: FooterVariant.kitchenSink,
     events: events || [],
+    callouts: pageData.callouts,
     errors: [
       ...(githubError ? [githubError] : []),
       ...(eventsError ? [eventsError] : []),
+      ...(featuredContributorsError ? [featuredContributorsError] : []),
+      ...(pageDataError ? [pageDataError] : []),
     ],
   })
 }

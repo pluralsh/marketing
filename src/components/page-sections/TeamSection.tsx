@@ -5,21 +5,13 @@ import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
-import {
-  type ImageFileFragment,
-  type TeamMemberFragment,
-} from '@src/generated/graphqlDirectus'
+import { getImageUrl } from '@src/consts/routes'
+import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
 import { FullPage, StandardPage } from '../layout/FullPage'
 import { TextLimiter } from '../layout/TextLimiter'
 import { ResponsiveText, SectionHead } from '../Typography'
-
-const FILE_PREFIX = 'https://directus.plural.sh/assets'
-
-function getImageUrl(image: ImageFileFragment) {
-  return `${FILE_PREFIX}/${image.filename_disk}/${image.filename_download}`
-}
 
 const MemberSC = styled.li(({ theme }) => ({
   position: 'relative',

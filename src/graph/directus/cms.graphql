@@ -106,3 +106,23 @@ query TeamMembers {
     ...TeamMember
   }
 }
+
+fragment FeaturedContributor on featured_contributors {
+  id
+  name
+  title
+  portrait {
+    ...ImageFile
+  }
+  social_github_url
+  social_twitter_url
+  social_linkedin_url
+  content
+  ctas
+}
+
+query FeaturedContributors {
+  featured_contributors {
+    ...FeaturedContributor
+  }
+}

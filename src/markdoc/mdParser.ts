@@ -4,6 +4,8 @@ import path from 'path'
 import Markdoc from '@markdoc/markdoc'
 import yaml from 'js-yaml'
 
+import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
+
 import { config as schemaConfig } from './mdSchema'
 
 import type { MarkdocPage } from './mdSchema'
@@ -57,5 +59,35 @@ export const readMdFileCached = async (
     // console.error(e)
 
     return cacheAndReturn(null)
+  }
+}
+
+export const readMdPage = async (
+  page: MarkdownPageFragment
+): Promise<MarkdocPage | null> => {
+  try {
+    const file = page.content
+
+    if (!file) return null
+
+    const ast = Markdoc.parse(file)
+    const frontmatter = ast.attributes.frontmatter
+      ? yaml.load(ast.attributes.frontmatter)
+      : {}
+    const content = Markdoc.transform(ast, schemaConfig)
+
+    const ret: MarkdocPage = JSON.parse(
+      JSON.stringify({
+        content,
+        frontmatter,
+        file: {
+          path: page.slug,
+        },
+      })
+    )
+
+    return ret
+  } catch (e) {
+    return null
   }
 }

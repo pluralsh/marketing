@@ -11,19 +11,18 @@ import { usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { type MarkdocHeading } from '@pluralsh/design-system/dist/markdoc/utils/collectHeadings'
 import styled from 'styled-components'
 
 import { exists } from '../utils/typescript'
 
-import type { MarkdocHeading } from '../../pages/_app'
-
 const Title = styled.h2(({ theme }) => ({
   ...theme.partials.marketingText.label,
-  // marginTop: theme.spacing.large,
+  marginTop: theme.spacing.large,
   marginBottom: theme.spacing.medium,
   '&::after': {
     // Use to align baseline with Hero 2 text
-    ...theme.partials.marketingText.hero1,
+    ...theme.partials.marketingText.hero2,
     display: 'inline',
     verticalAlign: 'baseline',
     content: '"​"',
@@ -249,10 +248,8 @@ function TableOfContentsBase({
 export const TableOfContents = styled(TableOfContentsBase)(({ theme: _ }) => ({
   display: 'flex',
   flexDirection: 'column',
-  position: 'sticky',
-  top: 'var(--top-nav-height)',
+  position: 'absolute',
+  top: 0,
   bottom: 0,
   width: '100%',
-  // maxHeight: 'calc(100vh - var(--top-nav-height))',
-  'maxHeight ': 'calc(100dvh - var(--top-nav-height))',
 }))

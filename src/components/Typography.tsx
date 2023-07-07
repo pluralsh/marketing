@@ -265,15 +265,25 @@ const CtaIcon = styled((props) => (
   transition: 'transform 0.2s ease',
 }))
 
-const CtaSC = styled.a(({ theme }) => ({
+const CtaSC = styled.a<{ $size: 'medium' | 'small' }>(({ theme, $size }) => ({
   display: 'block',
   gap: theme.spacing.medium,
-  ...theme.partials.marketingText.body2Bold,
-  fontWeight: 500,
+  ...($size === 'small'
+    ? {
+        ...theme.partials.marketingText.standaloneLink,
+        '&, &:any-link': {
+          color: theme.colors['text-light'],
+        },
+      }
+    : {
+        ...theme.partials.marketingText.body2Bold,
+        fontWeight: 500,
+        '&, &:any-link': {
+          color: theme.colors.text,
+        },
+      }),
   cursor: 'pointer',
-  '&, &:any-link': {
-    color: theme.colors.text,
-  },
+
   '&:hover': {
     [CtaIcon]: {
       transform: 'translate(20%)',
@@ -281,40 +291,50 @@ const CtaSC = styled.a(({ theme }) => ({
   },
 }))
 
-export const Cta = styled(({ children, ...props }) => {
-  const { Link } = useNavigationContext()
+export const Cta = styled(
+  ({
+    children,
+    size = 'medium',
+    ...props
+  }: {
+    size?: 'medium' | 'small'
+    children: ReactNode
+  } & ComponentProps<'a'>) => {
+    const { Link } = useNavigationContext()
 
-  const kids = Children.map(children, (child, i) => {
-    if (i === Children.count(children) - 1 && typeof child === 'string') {
-      const splitChild = child.split(/(?<=\s)/)
+    const kids = Children.map(children, (child, i) => {
+      if (i === Children.count(children) - 1 && typeof child === 'string') {
+        const splitChild = child.split(/(?<=\s)/)
 
-      if (splitChild.length >= 1) {
-        return [
-          ...splitChild.slice(0, -1),
-          <span style={{ whiteSpace: 'nowrap' }}>
-            {...splitChild.slice(-1)}
+        if (splitChild.length >= 1) {
+          return [
+            ...splitChild.slice(0, -1),
+            <span style={{ whiteSpace: 'nowrap' }}>
+              {...splitChild.slice(-1)}
+              <CtaIcon />
+            </span>,
+          ]
+        }
+
+        return (
+          <>
+            {child}
             <CtaIcon />
-          </span>,
-        ]
+          </>
+        )
       }
 
-      return (
-        <>
-          {child}
-          <CtaIcon />
-        </>
-      )
-    }
+      return child
+    })
 
-    return child
-  })
-
-  return (
-    <CtaSC
-      as={Link}
-      {...props}
-    >
-      {kids}
-    </CtaSC>
-  )
-})``
+    return (
+      <CtaSC
+        as={Link}
+        $size={size}
+        {...props}
+      >
+        {kids}
+      </CtaSC>
+    )
+  }
+)``

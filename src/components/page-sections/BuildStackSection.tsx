@@ -15,6 +15,7 @@ import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
 import { StandardPage } from '@src/components/layout/FullPage'
+import { appUrl, stackUrl } from '@src/consts/routes'
 import { type getRepos } from '@src/data/getRepos'
 import { type getStacks } from '@src/data/getStacks'
 
@@ -125,7 +126,7 @@ export default function BuildStack({
                   as={Link}
                   stack={stack}
                   key={`stack-${stack.name}`}
-                  href={`/plural-stacks/${stack.name}`}
+                  href={stackUrl(stack.name)}
                 />
               ))}
 
@@ -134,7 +135,7 @@ export default function BuildStack({
                   as={Link}
                   app={app}
                   key={`app-${app.name}`}
-                  href={`/applications/${app.name}`}
+                  href={appUrl(app.name)}
                 >
                   <div className="appBox">
                     <AppIcon

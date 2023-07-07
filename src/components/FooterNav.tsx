@@ -1,9 +1,9 @@
 import {
   type ComponentProps,
-  type FormEventHandler,
-  type MouseEventHandler,
+  // type FormEventHandler,
+  // type MouseEventHandler,
   type ReactNode,
-  useCallback,
+  // useCallback,
   useState,
 } from 'react'
 
@@ -179,13 +179,13 @@ const NavLink = styled(Link)(({ theme }) => ({
 
 export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
   const [email, setEmail] = useState('')
-  const submitEmail = useCallback<MouseEventHandler & FormEventHandler>(
-    (e) => {
-      e.preventDefault()
-      alert(`submit: ${email}`)
-    },
-    [email]
-  )
+  // const submitEmail = useCallback<MouseEventHandler & FormEventHandler>(
+  //   (e) => {
+  //     e.preventDefault()
+  //     alert(`submit: ${email}`)
+  //   },
+  //   [email]
+  // )
 
   return (
     <div {...props}>
@@ -204,7 +204,17 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
             </NavSection>
           ))}
           <NavSection className="newsletter">
-            <form onSubmit={submitEmail}>
+            <form
+              // onSubmit={submitEmail}
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              name="newsletter-signup"
+            >
+              <input
+                type="hidden"
+                name="form-name"
+                value="newsletter-signup"
+              />
               <Heading>Newsletter</Heading>
               <NavLink
                 as="p"

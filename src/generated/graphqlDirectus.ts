@@ -28,15 +28,26 @@ export type Query = {
   apps: Array<Apps>;
   apps_aggregated: Array<Apps_Aggregated>;
   apps_by_id?: Maybe<Apps>;
+  callouts: Array<Callouts>;
+  callouts_aggregated: Array<Callouts_Aggregated>;
+  callouts_by_id?: Maybe<Callouts>;
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
+  featured_contributors: Array<Featured_Contributors>;
+  featured_contributors_aggregated: Array<Featured_Contributors_Aggregated>;
+  featured_contributors_by_id?: Maybe<Featured_Contributors>;
+  markdown_pages: Array<Markdown_Pages>;
+  markdown_pages_aggregated: Array<Markdown_Pages_Aggregated>;
+  markdown_pages_by_id?: Maybe<Markdown_Pages>;
   nav_link: Array<Nav_Link>;
   nav_link_aggregated: Array<Nav_Link_Aggregated>;
   nav_link_by_id?: Maybe<Nav_Link>;
   nav_list: Array<Nav_List>;
   nav_list_aggregated: Array<Nav_List_Aggregated>;
   nav_list_by_id?: Maybe<Nav_List>;
+  page_community?: Maybe<Page_Community>;
+  page_legal?: Maybe<Page_Legal>;
   site_settings?: Maybe<Site_Settings>;
   stacks: Array<Stacks>;
   stacks_aggregated: Array<Stacks_Aggregated>;
@@ -73,6 +84,32 @@ export type QueryApps_By_IdArgs = {
 };
 
 
+export type QueryCalloutsArgs = {
+  filter?: InputMaybe<Callouts_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCallouts_AggregatedArgs = {
+  filter?: InputMaybe<Callouts_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCallouts_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryEventsArgs = {
   filter?: InputMaybe<Events_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -95,6 +132,58 @@ export type QueryEvents_AggregatedArgs = {
 
 
 export type QueryEvents_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFeatured_ContributorsArgs = {
+  filter?: InputMaybe<Featured_Contributors_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFeatured_Contributors_AggregatedArgs = {
+  filter?: InputMaybe<Featured_Contributors_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFeatured_Contributors_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryMarkdown_PagesArgs = {
+  filter?: InputMaybe<Markdown_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryMarkdown_Pages_AggregatedArgs = {
+  filter?: InputMaybe<Markdown_Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryMarkdown_Pages_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -204,12 +293,9 @@ export type QueryTeam_Members_By_IdArgs = {
 
 export type Apps = {
   __typename?: 'apps';
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 export type Apps_Aggregated = {
@@ -228,11 +314,9 @@ export type Apps_Aggregated = {
 
 export type Apps_Aggregated_Count = {
   __typename?: 'apps_aggregated_count';
-  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Apps_Aggregated_Fields = {
@@ -243,12 +327,9 @@ export type Apps_Aggregated_Fields = {
 export type Apps_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Boolean_Filter_Operators = {
@@ -256,6 +337,76 @@ export type Boolean_Filter_Operators = {
   _neq?: InputMaybe<Scalars['Boolean']['input']>;
   _nnull?: InputMaybe<Scalars['Boolean']['input']>;
   _null?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type Callouts = {
+  __typename?: 'callouts';
+  callout_id?: Maybe<Page_Community>;
+  category?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type CalloutsCallout_IdArgs = {
+  filter?: InputMaybe<Page_Community_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Callouts_Aggregated = {
+  __typename?: 'callouts_aggregated';
+  avg?: Maybe<Callouts_Aggregated_Fields>;
+  avgDistinct?: Maybe<Callouts_Aggregated_Fields>;
+  count?: Maybe<Callouts_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Callouts_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Callouts_Aggregated_Fields>;
+  min?: Maybe<Callouts_Aggregated_Fields>;
+  sum?: Maybe<Callouts_Aggregated_Fields>;
+  sumDistinct?: Maybe<Callouts_Aggregated_Fields>;
+};
+
+export type Callouts_Aggregated_Count = {
+  __typename?: 'callouts_aggregated_count';
+  callout_id?: Maybe<Scalars['Int']['output']>;
+  category?: Maybe<Scalars['Int']['output']>;
+  content?: Maybe<Scalars['Int']['output']>;
+  ctas?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Callouts_Aggregated_Fields = {
+  __typename?: 'callouts_aggregated_fields';
+  callout_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Callouts_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Callouts_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Callouts_Filter>>>;
+  callout_id?: InputMaybe<Page_Community_Filter>;
+  category?: InputMaybe<String_Filter_Operators>;
+  content?: InputMaybe<String_Filter_Operators>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Count_Function_Filter_Operators = {
@@ -368,10 +519,6 @@ export type Events = {
   __typename?: 'events';
   ctas?: Maybe<Scalars['JSON']['output']>;
   ctas_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   description?: Maybe<Scalars['String']['output']>;
   end_date?: Maybe<Scalars['Date']['output']>;
   end_date_func?: Maybe<Datetime_Functions>;
@@ -388,8 +535,6 @@ export type Events = {
   status?: Maybe<Scalars['String']['output']>;
   /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
   timezone?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 export type Events_Aggregated = {
@@ -409,8 +554,6 @@ export type Events_Aggregated = {
 export type Events_Aggregated_Count = {
   __typename?: 'events_aggregated_count';
   ctas?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   end_date?: Maybe<Scalars['Int']['output']>;
   fields?: Maybe<Scalars['Int']['output']>;
@@ -424,8 +567,6 @@ export type Events_Aggregated_Count = {
   status?: Maybe<Scalars['Int']['output']>;
   /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
   timezone?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Events_Aggregated_Fields = {
@@ -438,10 +579,6 @@ export type Events_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Events_Filter>>>;
   ctas?: InputMaybe<String_Filter_Operators>;
   ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   end_date?: InputMaybe<Date_Filter_Operators>;
   end_date_func?: InputMaybe<Datetime_Function_Filter_Operators>;
@@ -457,8 +594,145 @@ export type Events_Filter = {
   start_date_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   timezone?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Featured_Contributors = {
+  __typename?: 'featured_contributors';
+  content?: Maybe<Scalars['String']['output']>;
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  portrait?: Maybe<Directus_Files>;
+  social_github_url?: Maybe<Scalars['String']['output']>;
+  social_linkedin_url?: Maybe<Scalars['String']['output']>;
+  social_twitter_url?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Featured_ContributorsPortraitArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Featured_Contributors_Aggregated = {
+  __typename?: 'featured_contributors_aggregated';
+  avg?: Maybe<Featured_Contributors_Aggregated_Fields>;
+  avgDistinct?: Maybe<Featured_Contributors_Aggregated_Fields>;
+  count?: Maybe<Featured_Contributors_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Featured_Contributors_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Featured_Contributors_Aggregated_Fields>;
+  min?: Maybe<Featured_Contributors_Aggregated_Fields>;
+  sum?: Maybe<Featured_Contributors_Aggregated_Fields>;
+  sumDistinct?: Maybe<Featured_Contributors_Aggregated_Fields>;
+};
+
+export type Featured_Contributors_Aggregated_Count = {
+  __typename?: 'featured_contributors_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  ctas?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  portrait?: Maybe<Scalars['Int']['output']>;
+  social_github_url?: Maybe<Scalars['Int']['output']>;
+  social_linkedin_url?: Maybe<Scalars['Int']['output']>;
+  social_twitter_url?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Featured_Contributors_Aggregated_Fields = {
+  __typename?: 'featured_contributors_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Featured_Contributors_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Featured_Contributors_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Featured_Contributors_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  portrait?: InputMaybe<Directus_Files_Filter>;
+  social_github_url?: InputMaybe<String_Filter_Operators>;
+  social_linkedin_url?: InputMaybe<String_Filter_Operators>;
+  social_twitter_url?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Markdown_Pages = {
+  __typename?: 'markdown_pages';
+  content?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  markdown_page_id?: Maybe<Page_Legal>;
+  slug?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Markdown_PagesMarkdown_Page_IdArgs = {
+  filter?: InputMaybe<Page_Legal_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Markdown_Pages_Aggregated = {
+  __typename?: 'markdown_pages_aggregated';
+  avg?: Maybe<Markdown_Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Markdown_Pages_Aggregated_Fields>;
+  count?: Maybe<Markdown_Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Markdown_Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Markdown_Pages_Aggregated_Fields>;
+  min?: Maybe<Markdown_Pages_Aggregated_Fields>;
+  sum?: Maybe<Markdown_Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Markdown_Pages_Aggregated_Fields>;
+};
+
+export type Markdown_Pages_Aggregated_Count = {
+  __typename?: 'markdown_pages_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  markdown_page_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  subtitle?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Markdown_Pages_Aggregated_Fields = {
+  __typename?: 'markdown_pages_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  markdown_page_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Markdown_Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Markdown_Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Markdown_Pages_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  markdown_page_id?: InputMaybe<Page_Legal_Filter>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  subtitle?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Nav_Link = {
@@ -594,10 +868,70 @@ export type Number_Filter_Operators = {
   _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type Site_Settings = {
-  __typename?: 'site_settings';
+export type Page_Community = {
+  __typename?: 'page_community';
+  callouts?: Maybe<Array<Maybe<Callouts>>>;
+  callouts_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Page_CommunityCalloutsArgs = {
+  filter?: InputMaybe<Callouts_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Page_Community_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Page_Community_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Page_Community_Filter>>>;
+  callouts?: InputMaybe<Callouts_Filter>;
+  callouts_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Page_Legal = {
+  __typename?: 'page_legal';
+  id: Scalars['ID']['output'];
+  pages?: Maybe<Array<Maybe<Markdown_Pages>>>;
+  pages_func?: Maybe<Count_Functions>;
+};
+
+
+export type Page_LegalPagesArgs = {
+  filter?: InputMaybe<Markdown_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Page_Legal_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Page_Legal_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Page_Legal_Filter>>>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  pages?: InputMaybe<Markdown_Pages_Filter>;
+  pages_func?: InputMaybe<Count_Function_Filter_Operators>;
+};
+
+export type Site_Settings = {
+  __typename?: 'site_settings';
   id: Scalars['ID']['output'];
   main_nav?: Maybe<Nav_List>;
   og_description?: Maybe<Scalars['String']['output']>;
@@ -616,12 +950,9 @@ export type Site_SettingsMain_NavArgs = {
 
 export type Stacks = {
   __typename?: 'stacks';
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 export type Stacks_Aggregated = {
@@ -640,11 +971,9 @@ export type Stacks_Aggregated = {
 
 export type Stacks_Aggregated_Count = {
   __typename?: 'stacks_aggregated_count';
-  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Stacks_Aggregated_Fields = {
@@ -655,12 +984,9 @@ export type Stacks_Aggregated_Fields = {
 export type Stacks_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type String_Filter_Operators = {
@@ -685,10 +1011,6 @@ export type Team_Members = {
   __typename?: 'team_members';
   categories?: Maybe<Scalars['JSON']['output']>;
   categories_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
   portrait?: Maybe<Directus_Files>;
@@ -725,8 +1047,6 @@ export type Team_Members_Aggregated = {
 export type Team_Members_Aggregated_Count = {
   __typename?: 'team_members_aggregated_count';
   categories?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
   portrait?: Maybe<Scalars['Int']['output']>;
@@ -747,10 +1067,6 @@ export type Team_Members_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Team_Members_Filter>>>;
   categories?: InputMaybe<String_Filter_Operators>;
   categories_func?: InputMaybe<Count_Function_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
   portrait?: InputMaybe<Directus_Files_Filter>;
@@ -806,6 +1122,36 @@ export type TeamMembersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TeamMembersQuery = { __typename?: 'Query', team_members: Array<{ __typename?: 'team_members', id: string, name?: string | null, title?: string | null, categories?: any | null, pronouns?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
+
+export type FeaturedContributorFragment = { __typename?: 'featured_contributors', id: string, name?: string | null, title?: string | null, social_github_url?: string | null, social_twitter_url?: string | null, social_linkedin_url?: string | null, content?: string | null, ctas?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type FeaturedContributorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FeaturedContributorsQuery = { __typename?: 'Query', featured_contributors: Array<{ __typename?: 'featured_contributors', id: string, name?: string | null, title?: string | null, social_github_url?: string | null, social_twitter_url?: string | null, social_linkedin_url?: string | null, content?: string | null, ctas?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
+
+export type CalloutFragment = { __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null };
+
+export type PageCommunityFragment = { __typename?: 'page_community', callouts?: Array<{ __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null } | null> | null };
+
+export type PageCommunityQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PageCommunityQuery = { __typename?: 'Query', page_community?: { __typename?: 'page_community', callouts?: Array<{ __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null } | null> | null } | null };
+
+export type MarkdownPageFragment = { __typename?: 'markdown_pages', id: string, slug?: string | null, title?: string | null, subtitle?: string | null, content?: string | null };
+
+export type PageLegalFragment = { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', id: string, slug?: string | null, title?: string | null, subtitle?: string | null, content?: string | null } | null> | null };
+
+export type PageLegalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PageLegalQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', id: string, slug?: string | null, title?: string | null, subtitle?: string | null, content?: string | null } | null> | null } | null };
+
+export type LegalPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', slug?: string | null } | null> | null } | null };
 
 export const EventFragmentDoc = gql`
     fragment Event on events {
@@ -894,6 +1240,54 @@ export const TeamMemberFragmentDoc = gql`
   }
 }
     ${ImageFileFragmentDoc}`;
+export const FeaturedContributorFragmentDoc = gql`
+    fragment FeaturedContributor on featured_contributors {
+  id
+  name
+  title
+  portrait {
+    ...ImageFile
+  }
+  social_github_url
+  social_twitter_url
+  social_linkedin_url
+  content
+  ctas
+}
+    ${ImageFileFragmentDoc}`;
+export const CalloutFragmentDoc = gql`
+    fragment Callout on callouts {
+  id
+  sort
+  category
+  title
+  content
+  ctas
+}
+    `;
+export const PageCommunityFragmentDoc = gql`
+    fragment PageCommunity on page_community {
+  callouts {
+    ...Callout
+  }
+}
+    ${CalloutFragmentDoc}`;
+export const MarkdownPageFragmentDoc = gql`
+    fragment MarkdownPage on markdown_pages {
+  id
+  slug
+  title
+  subtitle
+  content
+}
+    `;
+export const PageLegalFragmentDoc = gql`
+    fragment PageLegal on page_legal {
+  pages {
+    ...MarkdownPage
+  }
+}
+    ${MarkdownPageFragmentDoc}`;
 export const EventsDocument = gql`
     query Events {
   events {
@@ -1066,3 +1460,141 @@ export function useTeamMembersLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type TeamMembersQueryHookResult = ReturnType<typeof useTeamMembersQuery>;
 export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLazyQuery>;
 export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;
+export const FeaturedContributorsDocument = gql`
+    query FeaturedContributors {
+  featured_contributors {
+    ...FeaturedContributor
+  }
+}
+    ${FeaturedContributorFragmentDoc}`;
+
+/**
+ * __useFeaturedContributorsQuery__
+ *
+ * To run a query within a React component, call `useFeaturedContributorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFeaturedContributorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFeaturedContributorsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFeaturedContributorsQuery(baseOptions?: Apollo.QueryHookOptions<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>(FeaturedContributorsDocument, options);
+      }
+export function useFeaturedContributorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>(FeaturedContributorsDocument, options);
+        }
+export type FeaturedContributorsQueryHookResult = ReturnType<typeof useFeaturedContributorsQuery>;
+export type FeaturedContributorsLazyQueryHookResult = ReturnType<typeof useFeaturedContributorsLazyQuery>;
+export type FeaturedContributorsQueryResult = Apollo.QueryResult<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>;
+export const PageCommunityDocument = gql`
+    query PageCommunity {
+  page_community {
+    ...PageCommunity
+  }
+}
+    ${PageCommunityFragmentDoc}`;
+
+/**
+ * __usePageCommunityQuery__
+ *
+ * To run a query within a React component, call `usePageCommunityQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageCommunityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageCommunityQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePageCommunityQuery(baseOptions?: Apollo.QueryHookOptions<PageCommunityQuery, PageCommunityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageCommunityQuery, PageCommunityQueryVariables>(PageCommunityDocument, options);
+      }
+export function usePageCommunityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageCommunityQuery, PageCommunityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageCommunityQuery, PageCommunityQueryVariables>(PageCommunityDocument, options);
+        }
+export type PageCommunityQueryHookResult = ReturnType<typeof usePageCommunityQuery>;
+export type PageCommunityLazyQueryHookResult = ReturnType<typeof usePageCommunityLazyQuery>;
+export type PageCommunityQueryResult = Apollo.QueryResult<PageCommunityQuery, PageCommunityQueryVariables>;
+export const PageLegalDocument = gql`
+    query PageLegal {
+  page_legal {
+    ...PageLegal
+  }
+}
+    ${PageLegalFragmentDoc}`;
+
+/**
+ * __usePageLegalQuery__
+ *
+ * To run a query within a React component, call `usePageLegalQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageLegalQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageLegalQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePageLegalQuery(baseOptions?: Apollo.QueryHookOptions<PageLegalQuery, PageLegalQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageLegalQuery, PageLegalQueryVariables>(PageLegalDocument, options);
+      }
+export function usePageLegalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageLegalQuery, PageLegalQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageLegalQuery, PageLegalQueryVariables>(PageLegalDocument, options);
+        }
+export type PageLegalQueryHookResult = ReturnType<typeof usePageLegalQuery>;
+export type PageLegalLazyQueryHookResult = ReturnType<typeof usePageLegalLazyQuery>;
+export type PageLegalQueryResult = Apollo.QueryResult<PageLegalQuery, PageLegalQueryVariables>;
+export const LegalPageSlugsDocument = gql`
+    query LegalPageSlugs {
+  page_legal {
+    pages {
+      slug
+    }
+  }
+}
+    `;
+
+/**
+ * __useLegalPageSlugsQuery__
+ *
+ * To run a query within a React component, call `useLegalPageSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLegalPageSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLegalPageSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLegalPageSlugsQuery(baseOptions?: Apollo.QueryHookOptions<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>(LegalPageSlugsDocument, options);
+      }
+export function useLegalPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>(LegalPageSlugsDocument, options);
+        }
+export type LegalPageSlugsQueryHookResult = ReturnType<typeof useLegalPageSlugsQuery>;
+export type LegalPageSlugsLazyQueryHookResult = ReturnType<typeof useLegalPageSlugsLazyQuery>;
+export type LegalPageSlugsQueryResult = Apollo.QueryResult<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>;

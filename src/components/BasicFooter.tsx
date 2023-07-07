@@ -26,10 +26,8 @@ export function BasicFooter({ className }: { className?: string }) {
         </div>
         <div className="footerLinks">
           <FooterLink as="div">© Plural {new Date().getFullYear()}</FooterLink>
-          <FooterLink href="https://plural.sh/legal/privacy-policy">
-            Privacy Policy
-          </FooterLink>
-          <FooterLink href="https://www.plural.sh/legal/terms-and-conditions">
+          <FooterLink href="/legal/privacy-policy">Privacy Policy</FooterLink>
+          <FooterLink href="/legal/terms-and-conditions">
             Terms & Conditions
           </FooterLink>
           <FooterLink

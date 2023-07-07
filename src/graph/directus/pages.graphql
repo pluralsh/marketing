@@ -1,0 +1,48 @@
+fragment Callout on callouts {
+  id
+  sort
+  category
+  title
+  content
+  ctas
+}
+
+fragment PageCommunity on page_community {
+  callouts {
+    ...Callout
+  }
+}
+
+query PageCommunity {
+  page_community {
+    ...PageCommunity
+  }
+}
+
+fragment MarkdownPage on markdown_pages {
+  id
+  slug
+  title
+  subtitle
+  content
+}
+
+fragment PageLegal on page_legal {
+  pages {
+    ...MarkdownPage
+  }
+}
+
+query PageLegal {
+  page_legal {
+    ...PageLegal
+  }
+}
+
+query LegalPageSlugs {
+  page_legal {
+    pages {
+      slug
+    }
+  }
+}

@@ -40,6 +40,7 @@ export type Account = {
   paymentMethods?: Maybe<PaymentMethodConnection>;
   rootUser?: Maybe<User>;
   subscription?: Maybe<PlatformSubscription>;
+  trialed?: Maybe<Scalars['Boolean']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   userCount?: Maybe<Scalars['String']['output']>;
   workosConnectionId?: Maybe<Scalars['String']['output']>;
@@ -2045,9 +2046,12 @@ export type PlatformSubscription = {
   __typename?: 'PlatformSubscription';
   externalId?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  insertedAt?: Maybe<Scalars['DateTime']['output']>;
   latestInvoice?: Maybe<Invoice>;
   lineItems?: Maybe<Array<Maybe<PlatformSubscriptionLineItems>>>;
   plan?: Maybe<PlatformPlan>;
+  trialUntil?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type PlatformSubscriptionLineItems = {

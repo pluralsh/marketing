@@ -41,7 +41,7 @@ import {
   Title2,
 } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
-import { APPS_BASE_URL } from '@src/consts/routes'
+import { appUrl } from '@src/consts/routes'
 import { type MinRepo, getRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
 import {
@@ -55,7 +55,7 @@ import {
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { startsWithVowel, urlJoin } from '@src/utils/text'
+import { startsWithVowel } from '@src/utils/text'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { Columns, EqualColumn } from '../../src/components/layout/Columns'
@@ -252,7 +252,7 @@ export default function Stack({
                     as={Link}
                     secondary
                     className="flex-grow md:flex-grow-0"
-                    href={urlJoin(APPS_BASE_URL, curApp?.name || '')}
+                    href={appUrl(curApp?.name || '')}
                   >
                     Learn more about {curApp?.displayName}
                   </Button>

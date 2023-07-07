@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import { getBarePathFromPath } from '../utils/text'
 
 import { PluralMenu } from './NavigationMobile'
-import { NavPositionWrapper } from './SideNav'
 
 import type { PartialBy } from '../utils/typescript'
 
@@ -19,6 +18,7 @@ export type NavContextValue = {
   setIsOpen: Dispatch<SetStateAction<boolean>>
   isOpen: boolean
 }
+
 export const NavContext = createContext<NavContextValue>({
   setIsOpen: setIsOpenStub,
   isOpen: false,
@@ -31,6 +31,14 @@ function NavButtonsUnstyled({ desktop: _desktop, children, ...props }) {
     </div>
   )
 }
+
+export const NavPositionWrapper = styled.nav(({ theme: _theme }) => ({
+  position: 'sticky',
+  height: 'calc(100vh - var(--top-nav-height))',
+  top: 'var(--top-nav-height)',
+  display: 'flex',
+  flexDirection: 'column',
+}))
 
 export const NavButtons = styled(NavButtonsUnstyled)<{ desktop: boolean }>(
   ({ desktop, theme }) => ({

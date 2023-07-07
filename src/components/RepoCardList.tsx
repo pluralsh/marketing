@@ -16,11 +16,10 @@ import {
 import Link from 'next/link'
 
 import { drop, isEmpty } from 'lodash-es'
-import urlJoin from 'url-join'
 
 import { getStackRepos } from '@pages/marketplace'
 import { breakpointIsGreaterOrEqual } from '@src/breakpoints'
-import { APPS_BASE_URL } from '@src/consts/routes'
+import { appUrl, stackUrl } from '@src/consts/routes'
 import { type MinRepo, fakeDisplayName } from '@src/data/getRepos'
 import { type MinStack } from '@src/data/getStacks'
 
@@ -121,7 +120,7 @@ export function RepoCard({
       }
       variant="marketing"
       as={Link}
-      href={urlJoin(APPS_BASE_URL, repo.name, urlParams ? `?${urlParams}` : '')}
+      href={`${appUrl(repo.name)}${urlParams ? `?${urlParams}` : ''}`}
       color="text"
       textDecoration="none"
       width="100%"
@@ -158,8 +157,8 @@ export function StackCard({
     <PluralStackCard
       className="xl:col-span-2"
       as={Link}
-      href={`/stack/${stack.name}${urlParams ? `?${urlParams}` : ''}`}
-      color="text"
+      href={`${stackUrl(stack.name)}${urlParams ? `?${urlParams}` : ''}`}
+      color="red"
       textDecoration="none"
       width="100%"
       title={stack.displayName || stack.name}

@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 
 export const TextLimiter = styled.div(({ theme: _ }) => ({
-  // maxWidth: 600,
+  maxWidth: 896,
 
   [mqs.columns]: {
-    maxWidth: 600,
+    maxWidth: 896,
   },
 }))

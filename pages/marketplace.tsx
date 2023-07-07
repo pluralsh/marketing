@@ -29,6 +29,7 @@ import {
 import { MarketplacePage } from '@src/components/layout/BasicPage'
 import { FullPage } from '@src/components/layout/FullPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { MarketplaceCarousel } from '@src/components/page-sections/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/page-sections/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/page-sections/MarketplaceFilters'
@@ -378,13 +379,15 @@ export default function Marketplace({
           >
             Explore the open-source marketplace
           </Heading1>
-          <Body1 as="p">
-            Discover over 90 incredible applications ready to deploy in your
-            cloud in minutes using our guided deployment flow. With security,
-            observability, and scale out of the box, we elevate you from the
-            work of building and maintaining your open-source infrastructure and
-            let teams focus on delivering value.
-          </Body1>
+          <TextLimiter>
+            <Body1 as="p">
+              Discover over 90 incredible applications ready to deploy in your
+              cloud in minutes using our guided deployment flow. With security,
+              observability, and scale out of the box, we elevate you from the
+              work of building and maintaining your open-source infrastructure
+              and let teams focus on delivering value.
+            </Body1>
+          </TextLimiter>
         </div>
         <ContentContainer>
           <MainContent>

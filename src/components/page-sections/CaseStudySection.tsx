@@ -6,12 +6,10 @@ https://www.plural.sh/blog/how-modeo-utilizes-plural-for-their-customers/
 
 import Link from 'next/link'
 
-import urlJoin from 'url-join'
-
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { Cta, ResponsiveText } from '@src/components/Typography'
-import { APPS_BASE_URL } from '@src/consts/routes'
+import { appUrl } from '@src/consts/routes'
 import { type MinRepo } from '@src/data/getRepos'
 
 import { AppCard } from '../AppOrStackCard'
@@ -86,7 +84,7 @@ export function CaseStudySection({ apps }: { apps: MinRepo[] }) {
               {apps.map((app) => (
                 <AppCard
                   as={Link}
-                  href={urlJoin(APPS_BASE_URL, app.name)}
+                  href={appUrl(app.name)}
                   key={app.name}
                   className="flex-grow basis-0"
                   size="xsmall"

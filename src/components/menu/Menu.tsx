@@ -5,11 +5,7 @@ import React, {
   useRef,
 } from 'react'
 
-import {
-  Card,
-  CaretDownIcon,
-  useFloatingDropdown,
-} from '@pluralsh/design-system'
+import { CaretDownIcon, useFloatingDropdown } from '@pluralsh/design-system'
 
 import { type Node } from '@react-types/shared'
 import { type AriaMenuProps } from 'react-aria'
@@ -160,29 +156,34 @@ function MenuDropdown<T extends object>({
   const ItemRenderer = itemRenderer
 
   return (
-    <DropdownCard
-      {...menuProps}
+    <div
       ref={ref}
+      {...menuProps}
     >
-      <ul>
-        {[...state.collection].map((item) => (
-          <ItemRenderer
-            key={item.key}
-            item={item}
-            state={state}
-          />
-        ))}
-      </ul>
-    </DropdownCard>
+      <DropdownCard>
+        <ul>
+          {[...state.collection].map((item) => (
+            <ItemRenderer
+              key={item.key}
+              item={item}
+              state={state}
+            />
+          ))}
+        </ul>
+      </DropdownCard>
+    </div>
   )
 }
 
-const DropdownCard = styled(Card).attrs({ fillLevel: 1 })(({ theme }) => ({
+const DropdownCard = styled.div.attrs({ fillLevel: 1 })(({ theme }) => ({
   overflowX: 'hidden',
   overflowY: 'auto',
   paddingTop: theme.spacing.xsmall,
   paddingBottom: theme.spacing.xsmall,
   boxShadow: theme.boxShadows.moderate,
+  border: theme.borders['fill-one'],
+  borderRadius: theme.borderRadiuses.large,
+  backgroundColor: theme.colors['fill-one'],
 }))
 
 export function MenuItem<T extends object>({

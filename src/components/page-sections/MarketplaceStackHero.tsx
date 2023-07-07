@@ -3,6 +3,7 @@ import { Chip, StackIcon, useNavigationContext } from '@pluralsh/design-system'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { stackUrl } from '@src/consts/routes'
 import { type MinStack } from '@src/data/getStacks'
 
 import { CardCta, CardCtaSC } from '../CardCta'
@@ -61,7 +62,7 @@ export default function StackHero({ stack }: { stack: MinStack }) {
   return (
     <StackHeroSC
       as={Link}
-      href={`/plural-stacks/${stack.name}`}
+      href={stackUrl(stack.name)}
       $bgPrefix={`/images/marketplace/stack-card-${imgSrcPart}`}
       $bgSuffix="@2x.jpg"
     >

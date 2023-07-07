@@ -1,9 +1,8 @@
 import { until } from '@open-draft/until'
 
-import { APPS_BASE_URL, STACKS_BASE_URL } from '@src/consts/routes'
+import { appUrl, stackUrl } from '@src/consts/routes'
 import { getRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
-import { urlJoin } from '@src/utils/text'
 
 import pages from '../src/generated/pages.json'
 
@@ -54,14 +53,10 @@ function generateSiteMap({
       ?.map((page) => urlTag({ location: `${page.path}`, lastMod }))
       .join('\n')}
 ${stacks
-  ?.map((stack) =>
-    urlTag({ location: urlJoin(STACKS_BASE_URL, stack.name), lastMod })
-  )
+  ?.map((stack) => urlTag({ location: stackUrl(stack.name), lastMod }))
   .join('\n')}
 ${repos
-  ?.map((repo) =>
-    urlTag({ location: urlJoin(APPS_BASE_URL, repo.name), lastMod })
-  )
+  ?.map((repo) => urlTag({ location: appUrl(repo.name), lastMod }))
   .join('\n')}`
   )
 
