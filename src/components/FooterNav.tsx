@@ -170,6 +170,9 @@ const NavLink = styled(Link)(({ theme }) => ({
   },
 }))
 
+const NEWSLETTER_FORM_NAME = 'newsletter-signup'
+const HONEYPOT_NAME = 'extra'
+
 export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
   const [email, setEmail] = useState('')
   const emailInputId = useId()
@@ -204,21 +207,21 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
               method="POST"
               data-netlify="true"
               // eslint-disable-next-line react/no-unknown-property
-              netlify-honeypot="extra"
-              data-netlify-honeypot="extra"
+              netlify-honeypot={HONEYPOT_NAME}
+              data-netlify-honeypot={HONEYPOT_NAME}
               data-netlify-recaptcha="true"
-              name="newsletter-signup"
+              name={NEWSLETTER_FORM_NAME}
             >
               <p className="hidden">
                 <input
                   type="text"
-                  name="extra"
+                  name={HONEYPOT_NAME}
                 />
               </p>
               <input
                 type="hidden"
                 name="form-name"
-                value="newsletter-signup"
+                value={NEWSLETTER_FORM_NAME}
               />
               <Heading>Newsletter</Heading>
               <NavLink
