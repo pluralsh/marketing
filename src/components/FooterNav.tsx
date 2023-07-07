@@ -200,10 +200,12 @@ function NewsletterForm() {
   } | null>(null)
 
   useEffect(() => {
-    if (email !== prevEmail) {
+    // Clear response if email field is changed,
+    // unless field was changed to empty because of successful submission
+    if (email !== prevEmail && !(response?.type === 'success' && !email)) {
       setResponse(null)
     }
-  }, [email, prevEmail])
+  }, [email, prevEmail, response?.type])
 
   function setError(error: string | Error) {
     setResponse({
@@ -215,6 +217,7 @@ function NewsletterForm() {
     (event) => {
       event.preventDefault()
       setResponse(null)
+      console.log('response', response)
 
       const formData = new FormData(event.target as HTMLFormElement)
 
