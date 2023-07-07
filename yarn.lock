@@ -12590,7 +12590,7 @@ __metadata:
     npm-run-all: 4.1.5
     octokit: ^2.1.0
     postcss: 8.4.24
-    posthog-js: 1.68.4
+    posthog-js: 1.68.5
     prettier: 2.8.8
     raw-loader: 4.0.2
     react: 18.2.0
@@ -12746,12 +12746,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"posthog-js@npm:1.68.4":
-  version: 1.68.4
-  resolution: "posthog-js@npm:1.68.4"
+"posthog-js@npm:1.68.5":
+  version: 1.68.5
+  resolution: "posthog-js@npm:1.68.5"
   dependencies:
     fflate: ^0.4.1
-  checksum: 9efd470a0794459c088d935c55f0b5030964970cd019770517a34979ab72096d808372a2ef5ba455ddd477ae251631fab2627ba9c69aad5593dd4e6f66004da4
+  checksum: 34815624029ede9b1cb8e2be9ab7569f5aaa103f6fc68f1f47c20763170a5650d2f0119b7c40e163352f57e927dfb1bb4d4924fbe8be87d554a508ba872cf6d3
   languageName: node
   linkType: hard
 
