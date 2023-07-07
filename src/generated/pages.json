@@ -12,6 +12,9 @@
     "path": "/marketplace"
   },
   {
+    "path": "/newsletter-success"
+  },
+  {
     "path": "/pricing"
   }
 ]

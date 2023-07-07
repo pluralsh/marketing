@@ -1,14 +1,30 @@
-import { type ComponentProps, type ReactNode, useId, useState } from 'react'
+import {
+  type ComponentProps,
+  type FormEventHandler,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+} from 'react'
 
-import { ArrowRightIcon, Input, Tooltip } from '@pluralsh/design-system'
+import {
+  ArrowRightIcon,
+  Input,
+  Tooltip,
+  usePrevious,
+} from '@pluralsh/design-system'
 import Link from 'next/link'
 
+// import ReCAPTCHA from 'react-google-recaptcha'
 import styled from 'styled-components'
 import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
+import { isValidEmail } from '@src/utils/text'
 
 import { FullPage } from './layout/FullPage'
+import { ResponsiveText } from './Typography'
 
 type NavItemT = {
   heading: ReactNode
@@ -173,95 +189,178 @@ const NavLink = styled(Link)(({ theme }) => ({
 const NEWSLETTER_FORM_NAME = 'newsletter-signup'
 const HONEYPOT_NAME = 'extra'
 
-export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
+function NewsletterForm() {
   const [email, setEmail] = useState('')
+  const prevEmail = usePrevious(email)
+
   const emailInputId = useId()
-  // const submitEmail = useCallback<MouseEventHandler & FormEventHandler>(
-  //   (e) => {
-  //     e.preventDefault()
-  //     alert(`submit: ${email}`)
-  //   },
-  //   [email]
-  // )
+  const [response, setResponse] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
+
+  useEffect(() => {
+    if (email !== prevEmail) {
+      setResponse(null)
+    }
+  }, [email, prevEmail])
+
+  function setError(error: string | Error) {
+    setResponse({
+      type: 'error',
+      message: `There was a problem subscribing to the newsletter: ${error}`,
+    })
+  }
+  const submitEmail = useCallback<FormEventHandler<HTMLFormElement>>(
+    (event) => {
+      event.preventDefault()
+      setResponse(null)
+
+      const formData = new FormData(event.target as HTMLFormElement)
+
+      if (!isValidEmail(formData.get('email')?.toString())) {
+        setResponse({
+          type: 'error',
+          message: 'Please enter a valid email address.',
+        })
+
+        return
+      }
+      const body = new URLSearchParams(formData as any).toString()
+
+      if (process.env.NODE_ENV === 'development') {
+        setResponse({
+          type: 'error',
+          message: 'Must be server-deployed to submit form.',
+        })
+
+        return
+      }
+      fetch('/forms/newsletter.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      })
+        .then((e) => {
+          if (e.ok) {
+            setResponse({
+              type: 'success',
+              message: 'Thank you for subscribing to the newsletter',
+            })
+            setEmail('')
+          } else {
+            setError(e.statusText)
+          }
+        })
+        .catch((error) => {
+          setError(error)
+        })
+    },
+    []
+  )
 
   return (
-    <div {...props}>
-      <FullPage>
-        <NavSections>
-          {navItems.map((navItem) => (
-            <NavSection key={navItem.heading}>
-              <Heading>{navItem.heading}</Heading>
-              <NavItems>
-                {navItem.links.map((link) => (
-                  <NavItem key={`${link.children}${link.href}`}>
-                    <NavLink {...link} />
-                  </NavItem>
-                ))}
-              </NavItems>
-            </NavSection>
-          ))}
-          <NavSection className="newsletter">
-            <form
-              // onSubmit={submitEmail}
-              action="/forms/newsletter.html"
-              method="POST"
-              data-netlify="true"
-              // eslint-disable-next-line react/no-unknown-property
-              netlify-honeypot={HONEYPOT_NAME}
-              data-netlify-honeypot={HONEYPOT_NAME}
-              data-netlify-recaptcha="true"
-              name={NEWSLETTER_FORM_NAME}
+    <form
+      onSubmit={submitEmail}
+      action="/forms/newsletter.html"
+      method="POST"
+      data-netlify="true"
+      // eslint-disable-next-line react/no-unknown-property
+      netlify-honeypot={HONEYPOT_NAME}
+      data-netlify-honeypot={HONEYPOT_NAME}
+      // data-netlify-recaptcha="true"
+      name={NEWSLETTER_FORM_NAME}
+    >
+      <p className="hidden">
+        <input
+          type="text"
+          name={HONEYPOT_NAME}
+        />
+      </p>
+      <input
+        type="hidden"
+        name="form-name"
+        value={NEWSLETTER_FORM_NAME}
+      />
+      <Heading>Newsletter</Heading>
+      <NavLink
+        as="p"
+        className="mb-medium"
+      >
+        Be the first to know when we drop something new.
+      </NavLink>
+      <label
+        htmlFor={emailInputId}
+        className="sr-only"
+      >
+        Email
+      </label>
+      <Input
+        id={emailInputId}
+        inputProps={{ name: 'email' }}
+        placeholder="Email address"
+        onChange={(e) => {
+          setEmail(e?.target?.value)
+        }}
+        value={email}
+        endIcon={
+          <Tooltip label="Subscribe">
+            <button
+              type="submit"
+              className="submitButton"
+              aria-label="Subscribe"
             >
-              <p className="hidden">
-                <input
-                  type="text"
-                  name={HONEYPOT_NAME}
-                />
-              </p>
-              <input
-                type="hidden"
-                name="form-name"
-                value={NEWSLETTER_FORM_NAME}
-              />
-              <Heading>Newsletter</Heading>
-              <NavLink
-                as="p"
-                className="mb-medium"
-              >
-                Be the first to know when we drop something new.
-              </NavLink>
-              <label
-                htmlFor={emailInputId}
-                className="sr-only"
-              >
-                Email
-              </label>
-              <Input
-                id={emailInputId}
-                placeholder="Email address"
-                onChange={(e) => {
-                  setEmail(e?.target?.value)
-                }}
-                value={email}
-                endIcon={
-                  <Tooltip label="Subscribe">
-                    <button
-                      type="submit"
-                      className="submitButton"
-                      aria-label="Subscribe"
-                    >
-                      <ArrowRightIcon aria-label="Subscribe" />
-                    </button>
-                  </Tooltip>
-                }
-              />
-            </form>
-          </NavSection>
-        </NavSections>
-      </FullPage>
-    </div>
+              <ArrowRightIcon aria-label="Subscribe" />
+            </button>
+          </Tooltip>
+        }
+      />
+      {response && (
+        <ResponsiveText
+          textStyles={{ '': 'mComponentText' }}
+          color={
+            response.type === 'error'
+              ? 'text-danger-light'
+              : 'text-success-light'
+          }
+          className="mt-small"
+        >
+          {response.message}
+        </ResponsiveText>
+      )}
+      {/* <ReCAPTCHA
+        sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}
+        onChange={(value) => {
+          console.log('recaptcha change', value)
+        }}
+      /> */}
+    </form>
   )
-})(({ theme }) => {
+}
+
+export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => (
+  <div {...props}>
+    <FullPage>
+      <NavSections>
+        {navItems.map((navItem) => (
+          <NavSection key={navItem.heading}>
+            <Heading>{navItem.heading}</Heading>
+            <NavItems>
+              {navItem.links.map((link) => (
+                <NavItem key={`${link.children}${link.href}`}>
+                  <NavLink {...link} />
+                </NavItem>
+              ))}
+            </NavItems>
+          </NavSection>
+        ))}
+        <NavSection className="newsletter">
+          <NewsletterForm />
+        </NavSection>
+      </NavSections>
+    </FullPage>
+  </div>
+))(({ theme }) => {
   const outlineOffset = -4
 
   return {

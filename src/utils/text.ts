@@ -57,3 +57,13 @@ export function startsWithVowel(str: string) {
 }
 
 export { default as urlJoin } from 'url-join'
+
+const emailRegex = /^[^@]+@([^@.]+\.)+[^@.]+$/
+
+export function isValidEmail(email: string | null | undefined): boolean {
+  if (typeof email !== 'string') {
+    return false
+  }
+
+  return emailRegex.test(email)
+}
