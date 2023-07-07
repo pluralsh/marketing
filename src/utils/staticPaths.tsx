@@ -1,4 +1,6 @@
-import { INDEX_PATH_PARAM_SUFFIX } from '../../index-pages.mjs'
+// Must be synced manually with same param in 'index-pages.mjs'
+// Investigate better syncing solution later
+const INDEX_PATH_PARAM_SUFFIX = '-index'
 
 export const indexPageStaticPaths = (paramName: string) => {
   if (process.env.NODE_ENV === 'development') {

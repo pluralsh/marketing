@@ -3,7 +3,9 @@ import { readdir, writeFile } from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-export const INDEX_PATH_PARAM_SUFFIX = '-index'
+// Must be synced manually with same param in 'src/utils/index-pages.mjs'
+// Investigate better syncing solution later
+const INDEX_PATH_PARAM_SUFFIX = '-index'
 
 const __filename = fileURLToPath(import.meta.url)
 
