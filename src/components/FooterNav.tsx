@@ -242,6 +242,10 @@ function NewsletterForm() {
         body,
       })
         .then((e) => {
+          console.log('e', e)
+          console.log('e.ok', e.ok)
+          console.log('e.status', e.status)
+          console.log('e.statusText', e.statusText)
           if (e.ok) {
             setResponse({
               type: 'success',
@@ -253,6 +257,7 @@ function NewsletterForm() {
           }
         })
         .catch((error) => {
+          console.log('error', error)
           setError(error)
         })
     },
