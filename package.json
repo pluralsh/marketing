@@ -41,7 +41,7 @@
     "@pluralsh/design-system": "2.0.0",
     "@react-types/shared": "3.18.1",
     "@tanstack/react-table": "8.9.3",
-    "@tanstack/react-virtual": "3.0.0-beta.48",
+    "@tanstack/react-virtual": "3.0.0-beta.54",
     "algoliasearch": "4.18.0",
     "chroma-js": "2.4.2",
     "classnames": "2.3.2",
