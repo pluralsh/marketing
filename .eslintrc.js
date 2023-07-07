@@ -57,6 +57,15 @@ module.exports = {
         ],
       },
     ],
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        labelComponents: ['Label'],
+        controlComponents: ['Input'],
+        assert: 'either',
+        depth: 3,
+      },
+    ],
   },
   // Disable TS parser and rules that depend on a parser for config files
   overrides: [
@@ -67,7 +76,7 @@ module.exports = {
         'tailwind.config.ts',
         'postcss.config.js',
         'codegen.ts',
-        'index-pages.js',
+        'index-pages.mjs',
       ],
       parserOptions: {
         project: null,

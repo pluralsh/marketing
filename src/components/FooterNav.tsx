@@ -1,11 +1,4 @@
-import {
-  type ComponentProps,
-  // type FormEventHandler,
-  // type MouseEventHandler,
-  type ReactNode,
-  // useCallback,
-  useState,
-} from 'react'
+import { type ComponentProps, type ReactNode, useId, useState } from 'react'
 
 import { ArrowRightIcon, Input, Tooltip } from '@pluralsh/design-system'
 import Link from 'next/link'
@@ -179,6 +172,7 @@ const NavLink = styled(Link)(({ theme }) => ({
 
 export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
   const [email, setEmail] = useState('')
+  const emailInputId = useId()
   // const submitEmail = useCallback<MouseEventHandler & FormEventHandler>(
   //   (e) => {
   //     e.preventDefault()
@@ -206,10 +200,21 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
           <NavSection className="newsletter">
             <form
               // onSubmit={submitEmail}
+              action="/"
+              method="POST"
               data-netlify="true"
-              data-netlify-honeypot="bot-field"
+              // eslint-disable-next-line react/no-unknown-property
+              netlify-honeypot="extra"
+              data-netlify-honeypot="extra"
+              data-netlify-recaptcha="true"
               name="newsletter-signup"
             >
+              <p className="hidden">
+                <input
+                  type="text"
+                  name="extra"
+                />
+              </p>
               <input
                 type="hidden"
                 name="form-name"
@@ -222,7 +227,14 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => {
               >
                 Be the first to know when we drop something new.
               </NavLink>
+              <label
+                htmlFor={emailInputId}
+                className="sr-only"
+              >
+                Email
+              </label>
               <Input
+                id={emailInputId}
                 placeholder="Email address"
                 onChange={(e) => {
                   setEmail(e?.target?.value)
