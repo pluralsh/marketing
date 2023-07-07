@@ -146,7 +146,7 @@ export const Overline = styled.p.withConfig(textPropFilter)(
   })
 )
 
-export const Label = styled.h4.withConfig(textPropFilter)(
+export const TextLabel = styled.h4.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.marketingText.label,
     ...(color

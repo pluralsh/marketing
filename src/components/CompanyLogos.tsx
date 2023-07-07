@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Label } from '@src/components/Typography'
+import { TextLabel } from '@src/components/Typography'
 
 import { StandardPage } from './layout/FullPage'
 
@@ -45,9 +45,9 @@ const partnerLogos = [
 export const CompanyLogosSection = styled(({ ...props }) => (
   <StandardPage>
     <div {...props}>
-      <Label className="mb-large md:mb-xxlarge text-center ">
+      <TextLabel className="mb-large md:mb-xxlarge text-center ">
         Companies using Plural
-      </Label>
+      </TextLabel>
       <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
         {partnerLogos.map((logo) => (
           <div key={logo.logoUrl}>

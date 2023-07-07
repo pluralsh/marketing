@@ -7,7 +7,7 @@ import { stackUrl } from '@src/consts/routes'
 import { type MinStack } from '@src/data/getStacks'
 
 import { CardCta, CardCtaSC } from '../CardCta'
-import { AppBody1, Heading1, Label } from '../Typography'
+import { AppBody1, Heading1, TextLabel } from '../Typography'
 
 const knownStacks = new Set(['data', 'devops', 'security', 'observability'])
 
@@ -71,7 +71,7 @@ export default function StackHero({ stack }: { stack: MinStack }) {
           <div className="flex flex-row gap-medium">
             <div className="flex flex-col gap-xsmall grow">
               <Heading1>{stack.displayName}</Heading1>
-              {numApps ? <Label>{numApps} Apps</Label> : null}
+              {numApps ? <TextLabel>{numApps} Apps</TextLabel> : null}
             </div>
             <div>
               <Chip
