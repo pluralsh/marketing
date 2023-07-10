@@ -28,8 +28,8 @@ export default function Index() {
         image="/images/gradients/gradient-bg-4.jpg"
       >
         <ContactHeader
-          title="Drop us a note"
-          subtitle="Flexible and transparent pricing for everyone"
+          title="Contact our sales team"
+          subtitle="Our pricing is designed to be flexible and transparent, catering to the needs of all customers."
         />
       </HeaderPad>
       <ColorModeProvider mode="light">
