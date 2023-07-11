@@ -1,11 +1,7 @@
 import { type ComponentProps, useId } from 'react'
 
 import { Button, Chip, ColorModeProvider } from '@pluralsh/design-system'
-import {
-  type GetStaticPaths,
-  type GetStaticProps,
-  type InferGetStaticPropsType,
-} from 'next'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import classNames from 'classnames'
@@ -21,14 +17,8 @@ import { ScrollToLink } from '@src/components/ScrollToLink'
 import { ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
-import { PlansFeaturesTable as PlanFeaturesTable } from '../../src/components/page-sections/PlansFeaturesTables'
-
-const DUMMY_PATH_PARAM = 'pricing'
-
-export const getStaticPaths: GetStaticPaths = async () =>
-  indexPageStaticPaths(DUMMY_PATH_PARAM)
+import { PlansFeaturesTable as PlanFeaturesTable } from '../src/components/page-sections/PlansFeaturesTables'
 
 const PlanCardSC = styled.div(({ theme }) => ({
   '&, .titleArea, .content, .featureList': {

@@ -38,7 +38,7 @@ export default function PrimaryPage({
     <NavDataProvider value={navData}>
       <PagePropsContext.Provider value={pageProps}>
         <HtmlHead {...headProps} />
-        <PageHeader />
+        <PageHeader showHeaderBG={pageProps.showHeaderBG} />
         {children}
         <ExternalScripts />
         <FullFooter variant={pageProps.footerVariant} />

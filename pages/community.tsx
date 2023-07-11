@@ -32,12 +32,12 @@ import { getContributors } from '@src/data/getGithubData'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
-import { HeaderPad } from '../../src/components/layout/HeaderPad'
+import { HeaderPad } from '../src/components/layout/HeaderPad'
 
-const DUMMY_PATH_PARAM = 'community' as const
+const PAGE_PARAM_NAME = 'community' as const
 
 export const getStaticPaths: GetStaticPaths = async () =>
-  indexPageStaticPaths(DUMMY_PATH_PARAM)
+  indexPageStaticPaths(PAGE_PARAM_NAME)
 
 export default function Community({
   contributors,

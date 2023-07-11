@@ -73,7 +73,13 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
               },
             }
           : {})}
-      />
+      >
+        <img
+          src=""
+          className="sr-only"
+          alt={`Portrait of ${member.name}`}
+        />
+      </div>
       <ColorModeProvider mode="dark">
         <MemberInfoSC>
           <ResponsiveText

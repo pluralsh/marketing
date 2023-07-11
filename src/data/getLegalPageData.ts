@@ -1,4 +1,4 @@
-import { directusClient as client } from '@src/apollo-client'
+import { directusClient } from '@src/apollo-client'
 import {
   LegalPageSlugsDocument,
   type LegalPageSlugsQuery,
@@ -9,6 +9,8 @@ import {
   type PageLegalQueryVariables,
 } from '@src/generated/graphqlDirectus'
 
+import { normalizeSlugs } from './normalizeSlugs'
+
 let cache: PageLegalQuery['page_legal'] | null = null
 let slugsCache: string[] = []
 
@@ -17,7 +19,7 @@ export type LegalPage = Awaited<ReturnType<typeof getLegalPageData>>['data']
 export type MarkdownPage = (MarkdownPageFragment | null)[] | null | undefined
 
 export async function getLegalPageData() {
-  const { data, error } = await client.query<
+  const { data, error } = await directusClient.query<
     PageLegalQuery,
     PageLegalQueryVariables
   >({
@@ -31,16 +33,8 @@ export async function getLegalPageData() {
   return { data: data?.page_legal || cache, error }
 }
 
-function normalizeSlugs(pages?: ({ slug?: string | null } | null)[] | null) {
-  return (
-    pages
-      ?.filter((p): p is { slug: string } => typeof p?.slug === 'string')
-      ?.map((p) => p.slug) || []
-  )
-}
-
 export async function getLegalPageSlugs() {
-  const { data, error } = await client.query<
+  const { data, error } = await directusClient.query<
     LegalPageSlugsQuery,
     LegalPageSlugsQueryVariables
   >({

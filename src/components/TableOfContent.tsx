@@ -18,18 +18,8 @@ import { exists } from '../utils/typescript'
 
 const Title = styled.h2(({ theme }) => ({
   ...theme.partials.marketingText.label,
-  marginTop: theme.spacing.large,
+  paddingTop: theme.spacing.xsmall,
   marginBottom: theme.spacing.medium,
-  '&::after': {
-    // Use to align baseline with Hero 2 text
-    ...theme.partials.marketingText.hero2,
-    display: 'inline',
-    verticalAlign: 'baseline',
-    content: '"​"',
-    width: '0',
-    overflow: 'hidden',
-    position: 'relative',
-  },
 }))
 
 const List = styled.ul(({ theme }) => ({
@@ -245,11 +235,14 @@ function TableOfContentsBase({
   )
 }
 
-export const TableOfContents = styled(TableOfContentsBase)(({ theme: _ }) => ({
+export const TableOfContents = styled(TableOfContentsBase)(({ theme }) => ({
+  '--sticky-top': `calc(var(--top-nav-height) + ${theme.spacing.medium}px)`,
   display: 'flex',
   flexDirection: 'column',
-  position: 'absolute',
-  top: 0,
+  position: 'sticky',
+  top: 'var(--sticky-top)',
   bottom: 0,
+  maxHeight: 'calc(100vh - var(--sticky-top))',
+  'maxHeight ': 'calc(100dvh - var(--sticky-top))',
   width: '100%',
 }))

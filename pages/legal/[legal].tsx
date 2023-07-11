@@ -5,15 +5,13 @@ import {
   type InferGetStaticPropsType,
 } from 'next'
 
-import { collectHeadings } from '@pluralsh/design-system/dist/markdoc'
 import classNames from 'classnames'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { MarkdocLegalPage } from '@src/components/MarkdocLegalPage'
-import { TableOfContents } from '@src/components/TableOfContents'
+import { MarkdocMarketingPage } from '@src/components/MarkdocMarketingPage'
 import { ResponsiveText } from '@src/components/Typography'
 import { getLegalPageData, getLegalPageSlugs } from '@src/data/getLegalPageData'
 import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
@@ -48,8 +46,6 @@ export default function Legal({
   subtitle,
   markdoc,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const toc = markdoc?.content ? collectHeadings(markdoc?.content as any) : null
-
   return (
     <>
       <HeaderPad
@@ -104,14 +100,7 @@ export default function Legal({
         >
           {markdoc && (
             <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-              <div className="flex gap-xlarge justify-between">
-                <MarkdocLegalPage markdoc={markdoc} />
-                {toc && (
-                  <div className="hidden relative basis-[200px] flex-grow flex-shrink-0 columns:block">
-                    <TableOfContents toc={toc} />
-                  </div>
-                )}
-              </div>
+              <MarkdocMarketingPage markdoc={markdoc} />
             </StandardPage>
           )}
         </div>

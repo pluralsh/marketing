@@ -28,7 +28,13 @@ module.exports = () => {
     },
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdoc'],
     async redirects() {
-      return []
+      return [
+        {
+          source: '/hiring-senior-account-executive',
+          destination: '/careers/hire/senior-account-executive',
+          permanent: true,
+        },
+      ]
     },
   })
 }

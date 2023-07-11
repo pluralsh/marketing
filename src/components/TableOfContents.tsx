@@ -19,18 +19,8 @@ import type { MarkdocHeading } from '../../pages/_app'
 
 const Title = styled.h2(({ theme }) => ({
   ...theme.partials.marketingText.label,
-  // marginTop: theme.spacing.large,
+  marginTop: theme.spacing.medium,
   marginBottom: theme.spacing.medium,
-  '&::after': {
-    // Use to align baseline with Hero 2 text
-    ...theme.partials.marketingText.hero1,
-    display: 'inline',
-    verticalAlign: 'baseline',
-    content: '"​"',
-    width: '0',
-    overflow: 'hidden',
-    position: 'relative',
-  },
 }))
 
 const List = styled.ul(({ theme }) => ({
@@ -214,7 +204,7 @@ function TableOfContentsBase({
       aria-labelledby={labelId}
       {...props}
     >
-      <Title id={labelId}>On this page</Title>
+      <Title id={labelId}>On this page?</Title>
       <ScrollContainer>
         <List>
           {items.map((item, i) => {

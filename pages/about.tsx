@@ -1,11 +1,7 @@
 import { type ReactNode } from 'react'
 
 import { ColorModeProvider } from '@pluralsh/design-system'
-import {
-  type GetStaticPaths,
-  type GetStaticProps,
-  type InferGetStaticPropsType,
-} from 'next'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
 import classNames from 'classnames'
 
@@ -19,14 +15,8 @@ import { Cta, ResponsiveText, SectionHead } from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
-import { HeaderPad } from '../../src/components/layout/HeaderPad'
-
-const DUMMY_PATH_PARAM = 'about' as const
-
-export const getStaticPaths: GetStaticPaths = async () =>
-  indexPageStaticPaths(DUMMY_PATH_PARAM)
+import { HeaderPad } from '../src/components/layout/HeaderPad'
 
 export default function About({
   teamMembers,
