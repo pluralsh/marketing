@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { type CommunityContributor } from '../../data/getGithubData'
 import { StandardPage } from '../layout/FullPage'
 import { GradientBG } from '../layout/GradientBG'
-import { ResponsiveText } from '../Typography'
+import { CenteredSectionHead, ResponsiveText } from '../Typography'
 
 export default function ContributorsSection({
   contributors,
@@ -23,12 +23,10 @@ export default function ContributorsSection({
         id="contributors-section"
         className="py-xxxxlarge xl:py-xxxxxxlarge"
       >
-        <ResponsiveText
-          className="mb-xxxlarge text-center"
-          textStyles={{ '': 'mHero2', md: 'mHero2', xl: 'mHero1' }}
-        >
-          Our contributors
-        </ResponsiveText>
+        <CenteredSectionHead
+          heading="Our contributors"
+          className="mb-xxxlarge"
+        />
         <ContributorsList contributors={contributors} />
       </StandardPage>
     </GradientBG>

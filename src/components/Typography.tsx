@@ -198,47 +198,80 @@ export const Subtitle = forwardRef(
 const SectionHeadSC = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  rowGap: theme.spacing.medium,
-  marginBottom: theme.spacing.xlarge,
+  rowGap: theme.spacing.large,
   textAlign: 'center',
 }))
 
-export function SectionHead({
-  h1,
-  h1Props = {},
-  h2,
-  h2Props = {},
+const SectionHeadTopSC = styled.div(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  rowGap: theme.spacing.medium,
+  textAlign: 'center',
+}))
+
+const IntroTextSC = styled(ResponsiveText).attrs(() => ({
+  as: 'div',
+  color: 'text-light',
+  textStyles: { '': 'mBody2' },
+}))(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  rowGap: theme.spacing.medium,
+  textAlign: 'center',
+  maxWidth: 'var(--text-width-limit)',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+}))
+
+const HeadingSC = styled(ResponsiveText)(({ theme: _ }) => ({
+  textWrap: 'balance',
+}))
+
+export function CenteredSectionHead({
+  preHeading: h1,
+  preHeadingProps: topLabelProps = {},
+  heading: h2,
+  headingProps: h2Props = {},
+  intro,
+  introProps = {},
+  size = 'large',
   ...props
 }: {
-  h1?: ReactNode
-  h1Props?: ComponentProps<typeof ResponsiveText>
-  h2?: ReactNode
-  h2Props?: ComponentProps<typeof ResponsiveText>
+  preHeading?: ReactNode
+  preHeadingProps?: ComponentProps<typeof ResponsiveText>
+  heading?: ReactNode
+  headingProps?: ComponentProps<typeof ResponsiveText>
+  intro?: ReactNode
+  introProps?: ComponentProps<typeof ResponsiveText>
 } & ComponentProps<typeof SectionHeadSC>) {
   return (
     <SectionHeadSC {...props}>
-      {h1 && (
-        <ResponsiveText
-          as="h2"
-          textStyles={{ '': 'mLabel' }}
-          color="text-light"
-          className="[text-wrap:balance]"
-          {...h1Props}
-        >
-          {h1}
-        </ResponsiveText>
+      {(h1 || h2) && (
+        <SectionHeadTopSC>
+          {h1 && (
+            <HeadingSC
+              as="h2"
+              textStyles={{ '': 'mLabel' }}
+              color="text-light"
+              {...topLabelProps}
+            >
+              {h1}
+            </HeadingSC>
+          )}
+          {h2 && (
+            <HeadingSC
+              as="h3"
+              textStyles={{ '': 'mHero2', xl: 'mHero1' }}
+              color="text"
+              className="[text-wrap:balance]"
+              {...h2Props}
+            >
+              {h2}
+            </HeadingSC>
+          )}
+        </SectionHeadTopSC>
       )}
-      {h2 && (
-        <ResponsiveText
-          as="h3"
-          textStyles={{ '': 'mHero2', xl: 'mHero1' }}
-          color="text"
-          className="[text-wrap:balance]"
-          {...h2Props}
-        >
-          {h2}
-        </ResponsiveText>
-      )}
+      {intro && <IntroTextSC {...introProps}>{intro}</IntroTextSC>}
     </SectionHeadSC>
   )
 }

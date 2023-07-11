@@ -127,7 +127,7 @@ export default function Stack({
     <HeaderPad as={GradientBG}>
       <StandardPage>
         <div className="py-[40px] md:pb-xxxlarge">
-          <BackButton />
+          <BackButton href="/marketplace" />
         </div>
         <Columns className="gap-y-xxlarge">
           <EqualColumn>

@@ -19,7 +19,7 @@ import { mqs } from '@src/breakpoints'
 import DocumentFilledIcon from '../icons/DocumentFilledIcon'
 import PlayFilledIcon from '../icons/PlayFilledIcon'
 import { TextLimiter } from '../layout/TextLimiter'
-import { Cta, ResponsiveText } from '../Typography'
+import { CenteredSectionHead, Cta, ResponsiveText } from '../Typography'
 
 const ResourceCardSC = styled.div(({ theme }) => ({
   background: theme.colors['fill-two'],
@@ -152,13 +152,10 @@ function ResourceCard({
 export default function ResourcesSection() {
   return (
     <>
-      <ResponsiveText
-        as="h2"
-        className="mb-xxxlarge text-center"
-        textStyles={{ '': 'mHero2', md: 'mHero2', xl: 'mHero1' }}
-      >
-        Community resources
-      </ResponsiveText>
+      <CenteredSectionHead
+        heading="Community resources"
+        className="mb-xxxlarge"
+      />
       <div className="flex flex-col gap-xxlarge">
         <div className="grid gap-xlarge grid-cols-2 columns:gap-xxlarge columns:grid-cols-4">
           <ResourceIconCard

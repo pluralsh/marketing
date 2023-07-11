@@ -1,12 +1,22 @@
 import { type ReactNode } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import {
+  ArrowRightLeftIcon,
+  ColorModeProvider,
+  GearTrainIcon,
+  PadlockLockedIcon,
+  PeopleIcon,
+  PersonIcon,
+  RocketIcon,
+} from '@pluralsh/design-system'
 import Head from 'next/head'
-import Link from 'next/link'
 import Script from 'next/script'
 
 import classNames from 'classnames'
+import styled from 'styled-components'
 
+import { mqs } from '@src/breakpoints'
+import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPage } from '@src/components/layout/FullPage'
@@ -15,30 +25,27 @@ import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { JobListingsSection } from '@src/components/page-sections/JobListingsSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
-import { ResponsiveText } from '@src/components/Typography'
-import { jobUrl } from '@src/consts/routes'
+import { CenteredSectionHead, ResponsiveText } from '@src/components/Typography'
 import { getJobListings } from '@src/data/getJobListings'
 import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-// const PAGE_PARAM_NAME = 'careers' as const
-
-// export const getStaticPaths: GetStaticPaths = async () =>
-//   indexPageStaticPaths(PAGE_PARAM_NAME)
+import { ValueCard } from '../../src/components/ValueCard'
 
 export function BasicPageHeader({
-  pageName,
-  title,
-  subtitle,
+  preHeading,
+  heading,
+  intro,
   ctas,
+  ...props
 }: {
-  pageName: ReactNode
-  title: ReactNode
-  subtitle: ReactNode
+  preHeading: ReactNode
+  heading: ReactNode
   ctas: ReactNode
+  intro: ReactNode
 }) {
   return (
-    <StandardPage>
+    <StandardPage {...props}>
       <div
         className={classNames(
           'pt-xxxxlarge',
@@ -58,7 +65,7 @@ export function BasicPageHeader({
                   as="h1"
                   textStyles={{ '': 'mLabel' }}
                 >
-                  {pageName}
+                  {preHeading}
                 </ResponsiveText>
                 <ResponsiveText
                   className="[text-wrap:balance]"
@@ -68,7 +75,7 @@ export function BasicPageHeader({
                     md: 'mBigHeader',
                   }}
                 >
-                  {title}
+                  {heading}
                 </ResponsiveText>
               </div>
               <div>{ctas}</div>
@@ -82,7 +89,7 @@ export function BasicPageHeader({
                 color="text-light"
                 className="[text-wrap:balance] "
               >
-                {subtitle}
+                {intro}
               </ResponsiveText>
             </TextLimiter>
           </EqualColumn>
@@ -91,6 +98,19 @@ export function BasicPageHeader({
     </StandardPage>
   )
 }
+
+const StandardSection = styled.div(({ theme }) => ({
+  paddingTop: theme.spacing.xxxxlarge,
+  paddingBottom: theme.spacing.xxxxlarge,
+  [mqs.md]: {
+    paddingTop: theme.spacing.xxxxxlarge,
+    paddingBottom: theme.spacing.xxxxxlarge,
+  },
+  [mqs.xxl]: {
+    paddingTop: theme.spacing.xxxxxxlarge,
+    paddingBottom: theme.spacing.xxxxxxlarge,
+  },
+}))
 
 export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
   return (
@@ -108,31 +128,180 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
         image="/images/gradients/gradient-bg-5.jpg"
       >
         <BasicPageHeader
-          title="Join us and build something incredible"
-          subtitle={
-            <>
+          heading="Join us and build something incredible"
+          intro={
+            <p>
               At Plural, we believe that there is a better way to solve the
               third major constraint—distributed systems operational cost—that
               benefits OSS developers and DevOps teams alike.
-            </>
+            </p>
           }
           ctas={
-            <ScrollToLink scrollToTarget="#open-positions">
+            <ScrollToLink scrollToTarget="open-positions">
               View open positions
             </ScrollToLink>
           }
-          pageName="Careers"
+          preHeading="Careers"
         />
       </HeaderPad>
       <ColorModeProvider mode="light">
-        <div
+        <StandardSection className="bg-fill-zero">
+          <StandardPage>
+            <CenteredSectionHead
+              heading="What we value"
+              intro="Our motivation is based on:"
+              className="mb-xxlarge md:mb-xxxlarge "
+            />
+            <div
+              className={classNames(
+                'grid',
+                'grid-cols-1',
+                'md:grid-cols-2',
+                'columns:grid-cols-3',
+                'gap-x-xlarge',
+                'gap-y-large',
+                'md:gap-y-xxlarge'
+              )}
+            >
+              <ValueCard
+                icon={<ArrowRightLeftIcon />}
+                title="Collaboration"
+              >
+                Commodo dolore et voluptate sit ullamco aliqua. Voluptate tempor
+                magna in qui est. Ipsum veniam eiusmod commodo consectetur.
+              </ValueCard>
+              <ValueCard
+                icon={<PersonIcon />}
+                title="Autonomy"
+              >
+                Ipsum laboris mollit eu consectetur anim Lorem cillum proident
+                sunt ex ipsum deserunt fugiat.
+              </ValueCard>
+              <ValueCard
+                icon={<PadlockLockedIcon />}
+                title="Trust"
+              >
+                Sit consequat excepteur cillum voluptate exercitation. Qui non
+                sit laboris Lorem culpa exercitation. Excepteur exercitation do
+                mollit cupidatat mollit tempor.
+              </ValueCard>
+              <ValueCard
+                icon={<PeopleIcon />}
+                title="Diversity"
+              >
+                Dolore pariatur consequat dolor sunt labore velit anim dolore et
+                est excepteur minim minim. Commodo dolore labore aliquip ea ad
+                aute reprehenderit elit quis culpa excepteur ex commodo minim.{' '}
+              </ValueCard>
+              <ValueCard
+                icon={<GearTrainIcon />}
+                title="Efficiency"
+              >
+                Est laboris ea exercitation eiusmod culpa non non do
+                reprehenderit duis. In esse incididunt aliquip exercitation. Do
+                eu ullamco adipisicing.
+              </ValueCard>
+              <ValueCard
+                icon={<RocketIcon />}
+                title="Innovation"
+              >
+                Commodo dolore labore aliquip ea ad aute reprehenderit elit quis
+                culpa excepteur ex commodo minim.{' '}
+              </ValueCard>
+            </div>
+          </StandardPage>
+        </StandardSection>
+      </ColorModeProvider>
+      <StandardSection className="bg-fill-zero">
+        <StandardPage>
+          <CenteredSectionHead
+            heading="Our benefits"
+            intro={
+              <p>
+                We prioritize work-life balance to ensure a healthy a
+                sustainable team in the long run.
+              </p>
+            }
+            className="md:mb-xxlarge "
+          />
+          <div
+            className={classNames(
+              'grid',
+              'grid-cols-1',
+              'columns:grid-cols-2',
+              'gap-x-xlarge',
+              'gap-y-large',
+              'md:gap-y-xxlarge'
+            )}
+          >
+            <BenefitCard
+              iconUrl="/images/icons/careers/remote-work.svg"
+              title="Flexible and fully remote"
+            >
+              Commodo dolore et voluptate sit ullamco aliqua. Voluptate tempor
+              magna in qui est. Ipsum veniam eiusmod commodo consectetur.
+            </BenefitCard>
+            <BenefitCard
+              iconUrl="/images/icons/careers/pto.svg"
+              title="Unlimited paid time off for the whole team"
+            >
+              Ipsum laboris mollit eu consectetur anim Lorem cillum proident
+              sunt ex ipsum deserunt fugiat.
+            </BenefitCard>
+            <BenefitCard
+              iconUrl="/images/icons/careers/laptop.svg"
+              title="Gear up"
+            >
+              Sit consequat excepteur cillum voluptate exercitation. Qui non sit
+              laboris Lorem culpa exercitation. Excepteur exercitation do mollit
+              cupidatat mollit tempor.
+            </BenefitCard>
+            <BenefitCard
+              iconUrl="/images/icons/careers/healthcare.svg"
+              title="Healthcare, vision, and dental insurance"
+            >
+              Dolore pariatur consequat dolor sunt labore velit anim dolore et
+              est excepteur minim minim. Commodo dolore labore aliquip ea ad
+              aute reprehenderit elit quis culpa excepteur ex commodo minim.{' '}
+            </BenefitCard>
+            <BenefitCard
+              iconUrl="/images/icons/careers/globe.svg"
+              title="Let’s get together"
+            >
+              Est laboris ea exercitation eiusmod culpa non non do reprehenderit
+              duis. In esse incididunt aliquip exercitation. Do eu ullamco
+              adipisicing.
+            </BenefitCard>
+            <BenefitCard
+              iconUrl="/images/icons/careers/growth.svg"
+              title="Growth suppport"
+            >
+              Commodo dolore labore aliquip ea ad aute reprehenderit elit quis
+              culpa excepteur ex commodo minim.{' '}
+            </BenefitCard>
+          </div>
+        </StandardPage>
+      </StandardSection>
+      <ColorModeProvider mode="light">
+        <StandardSection
           id="open-positions"
-          className="bg-fill-zero py-xxxxlarge text-text"
+          className="bg-fill-zero"
         >
           <StandardPage>
+            <CenteredSectionHead
+              heading="Open positions"
+              intro={
+                <p>
+                  We're actively seeking passionate individuals to join our team
+                  and contribute to our mission. Explore our open positions and
+                  unlock exciting opportunities to make a meaningful impact.
+                </p>
+              }
+              className="mb-xxlarge md:mb-xxxlarge "
+            />
             <JobListingsSection jobListings={jobs} />
           </StandardPage>
-        </div>
+        </StandardSection>
       </ColorModeProvider>
     </>
   )

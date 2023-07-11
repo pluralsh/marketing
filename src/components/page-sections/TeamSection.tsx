@@ -10,8 +10,7 @@ import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
 import { FullPage, StandardPage } from '../layout/FullPage'
-import { TextLimiter } from '../layout/TextLimiter'
-import { ResponsiveText, SectionHead } from '../Typography'
+import { CenteredSectionHead, ResponsiveText } from '../Typography'
 
 const MemberSC = styled.li(({ theme }) => ({
   position: 'relative',
@@ -139,26 +138,21 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
   return (
     <div>
       <StandardPage className="mb-xxlarge md:mb-xxxxxlarge">
-        <SectionHead
-          h1="The team"
-          h2="Our compact yet remarkable team"
-          className=""
+        <CenteredSectionHead
+          preHeading="The team"
+          heading="Our compact yet remarkable team"
+          intro={
+            <p>
+              We’re a vibrant and dynamic team of employees, fueled by a passion
+              for tackling fascinating challenges in the realm of cloud
+              computing. As our team continues to grow, we thrive on exploring
+              the ever-evolving landscape of Kubernetes, Elixir, Go, and React.
+              With a shared enthusiasm for innovation and cutting-edge
+              technologies, we eagerly dive into complex projects, seeking out
+              novel solutions that push the boundaries of what’s possible.
+            </p>
+          }
         />
-        <TextLimiter className="mx-auto">
-          <ResponsiveText
-            textStyles={{ '': 'mBody2' }}
-            color="text-light"
-            className="text-center"
-          >
-            We’re a vibrant and dynamic team of employees, fueled by a passion
-            for tackling fascinating challenges in the realm of cloud computing.
-            As our team continues to grow, we thrive on exploring the
-            ever-evolving landscape of Kubernetes, Elixir, Go, and React. With a
-            shared enthusiasm for innovation and cutting-edge technologies, we
-            eagerly dive into complex projects, seeking out novel solutions that
-            push the boundaries of what’s possible.
-          </ResponsiveText>
-        </TextLimiter>
       </StandardPage>
       <FullPage>
         <TeamTabList

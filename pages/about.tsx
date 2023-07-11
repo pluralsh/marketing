@@ -11,7 +11,11 @@ import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
-import { Cta, ResponsiveText, SectionHead } from '@src/components/Typography'
+import {
+  CenteredSectionHead,
+  Cta,
+  ResponsiveText,
+} from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
@@ -137,22 +141,26 @@ export default function About({
           )}
         >
           <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            <SectionHead
-              h1="About us"
-              h2="Who we are"
+            <CenteredSectionHead
+              preHeading="About us"
+              heading="Who we are"
+              intro={
+                <p>
+                  We are a dynamic and innovative company that specializes in
+                  creating meaningful connections and fostering collaboration.
+                  At Plural, we believe in the power of diversity and inclusion,
+                  recognizing that when different perspectives come together,
+                  incredible things happen.
+                </p>
+              }
+              className="mb-xxxxlarge text-center"
             />
             <TextLimiter className="mx-auto">
               <ResponsiveText
                 textStyles={{ '': 'mBody2' }}
                 color="text-light"
-                className="mb-xxxxlarge text-center"
-              >
-                We are a dynamic and innovative company that specializes in
-                creating meaningful connections and fostering collaboration. At
-                Plural, we believe in the power of diversity and inclusion,
-                recognizing that when different perspectives come together,
-                incredible things happen.
-              </ResponsiveText>
+                className=""
+              />
             </TextLimiter>
             <img
               alt="The Plural team standing together on a sidewalk in the French Quarter of New Orleans."
@@ -160,18 +168,13 @@ export default function About({
             />
           </StandardPage>
           <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            <SectionHead
-              h1="Our company values"
-              h2="As a driven and cohesive team, we share a common 
+            <CenteredSectionHead
+              preHeading="Our company values"
+              heading="As a driven and cohesive team, we share a common 
 mission to build something unique."
-            />
-            <ResponsiveText
-              textStyles={{ '': 'mBody2' }}
-              color="text-light"
+              intro={<p> How we stay connected as a team</p>}
               className="mb-xxxxlarge text-center"
-            >
-              How we stay connected as a team
-            </ResponsiveText>
+            />
             <Columns
               className={classNames(
                 'gap-y-xxxxlarge md:gap-y-xxxxxlarge',

@@ -4,9 +4,10 @@ import Head from 'next/head'
 import Script from 'next/script'
 
 import { FooterVariant } from '@src/components/FooterFull'
-import { StandardPage } from '@src/components/layout/FullPage'
+import { FullPage, StandardPage } from '@src/components/layout/FullPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { MarkdocMarketingPage } from '@src/components/MarkdocMarketingPage'
+import { BackButton } from '@src/components/Nav'
 import { ResponsiveText } from '@src/components/Typography'
 import { getJobListing, getJobListingSlugs } from '@src/data/getJobListings'
 import { type FullJobListingFragment } from '@src/generated/graphqlDirectus'
@@ -51,6 +52,9 @@ export default function Index({
       </Head>
       <ColorModeProvider mode="light">
         <HeaderPad className="bg-fill-zero">
+          <FullPage className="pt-[40px]">
+            <BackButton href="/careers#open-positions" />
+          </FullPage>
           <StandardPage className="py-xxxxlarge">
             <MarkdocMarketingPage
               preContent={

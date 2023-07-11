@@ -14,7 +14,7 @@ import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { PricingFAQSection } from '@src/components/page-sections/PricingFAQSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
-import { ResponsiveText } from '@src/components/Typography'
+import { CenteredSectionHead, ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -182,34 +182,13 @@ export default function Pricing({
           )}
         >
           <div>
-            <StandardPage>
-              <div className="pb-xxlarge md:pb-xxxlarge text-center">
-                <ResponsiveText
-                  as="h2"
-                  color="text-light"
-                  textStyles={{ '': 'mLabel' }}
-                >
-                  Compare plans
-                </ResponsiveText>
-                <ResponsiveText
-                  as="h3"
-                  textStyles={{ '': 'mSubtitle2', sm: 'mHero2' }}
-                  color="text"
-                  className="mt-medium "
-                >
-                  Find the plan that is right for your business
-                </ResponsiveText>
-                <ResponsiveText
-                  as="p"
-                  className="mt-xlarge"
-                  color="text-light"
-                  textStyles={{ '': 'mBody1' }}
-                >
-                  Flexible plans for every stage of your business.
-                </ResponsiveText>
-              </div>
+            <StandardPage className="pb-xxlarge md:pb-xxxlarge">
+              <CenteredSectionHead
+                preHeading="Compare plans"
+                heading="Find the plan that is right for your business"
+                intro="Flexible plans for every stage of your business."
+              />
             </StandardPage>
-
             <div id={compareId}>
               {/* Desktop Pricing table */}
               <StandardPage className="hidden md:block">

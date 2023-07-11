@@ -30,14 +30,8 @@ import { type PluralEvent, getEvents } from '@src/data/getEvents'
 import { getFeaturedContributors } from '@src/data/getFeaturedContributors'
 import { getContributors } from '@src/data/getGithubData'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { indexPageStaticPaths } from '@src/utils/staticPaths'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
-
-const PAGE_PARAM_NAME = 'community' as const
-
-export const getStaticPaths: GetStaticPaths = async () =>
-  indexPageStaticPaths(PAGE_PARAM_NAME)
 
 export default function Community({
   contributors,
