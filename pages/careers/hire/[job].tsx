@@ -93,17 +93,12 @@ export type JobPageProps = {
 export const getStaticProps: GetStaticProps<JobPageProps> = async (context) => {
   const slug = context.params?.[PAGE_PARAM_NAME]
 
-  console.log('slug', slug)
-  console.log('ctx', context)
-
   if (!slug) {
     return { notFound: true }
   }
 
   const { data: job, error: jobError } = await getJobListing(slug)
 
-  console.log('job', job)
-  console.log('jobcontent', job?.content)
   const markdoc = job?.content
     ? await ReadMdContent(job.content, job.slug)
     : false
