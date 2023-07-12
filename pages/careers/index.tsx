@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
 import {
   ArrowRightLeftIcon,
@@ -16,6 +16,7 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -111,6 +112,63 @@ const StandardSection = styled.div(({ theme }) => ({
     paddingBottom: theme.spacing.xxxxxxlarge,
   },
 }))
+
+function PhotosSection() {
+  return (
+    <div className="bg-fill-zero py-xxlarge">
+      <StandardPage>
+        <div
+          className={classNames(
+            'grid grid-cols-1 sm:grid-cols-2 gap-large',
+            'columns:grid-cols-4'
+          )}
+        >
+          <Photo
+            className="columns:row-span-2"
+            ratios={{ '': '2 / 3', columns: null }}
+            url="/images/careers/photo-1.jpg"
+          />
+          <Photo
+            className="columns:row-span-2 columns:col-start-4"
+            ratios={{ '': '2 / 3', columns: null }}
+            url="/images/careers/photo-2.jpg"
+          />{' '}
+          <Photo
+            className="sm:col-span-2 columns:row-start-1 columns:col-start-2"
+            ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
+            url="/images/careers/photo-group-1.jpg"
+          />{' '}
+          <Photo
+            className="sm:col-span-2 columns:row-start-2 columns:col-start-2"
+            ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
+            url="/images/careers/photo-group-2.jpg"
+          />
+        </div>
+      </StandardPage>
+    </div>
+  )
+}
+
+function Photo({
+  url,
+  className,
+  ...props
+}: ComponentProps<typeof ResponsiveAspectRatioSC>) {
+  return (
+    <div
+      className={classNames(
+        'overflow-hidden rounded-large relative',
+        className
+      )}
+    >
+      <ResponsiveAspectRatioSC
+        {...props}
+        className="bg-cover bg-center"
+        style={{ backgroundImage: `url(${url})` }}
+      />
+    </div>
+  )
+}
 
 export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
   return (
@@ -297,12 +355,17 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
                   unlock exciting opportunities to make a meaningful impact.
                 </p>
               }
-              className="mb-xxlarge md:mb-xxxlarge "
+              className={classNames(
+                'pb-large md:pb-xxlarge',
+                'mb-xlarge md:mb-xxxlarge',
+                'border-b border-border'
+              )}
             />
             <JobListingsSection jobListings={jobs} />
           </StandardPage>
         </StandardSection>
       </ColorModeProvider>
+      <PhotosSection />
     </>
   )
 }

@@ -5,6 +5,7 @@ import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
+import { mqs } from '@src/breakpoints'
 import { getImageUrl } from '@src/consts/routes'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
@@ -54,10 +55,34 @@ const MemberInfoSC = styled.div(({ theme }) => ({
   paddingBottom: theme.spacing.small,
 }))
 
-const TeamTabList = styled(TabList)(({ theme }) => ({
+// Using old inline-block layout technique so we can use 'text-wrap: balance'
+// to keep things looking nice when it breaks to multiple lines
+export const FilterTabList = styled(TabList)(({ theme }) => ({
   justifyContent: 'center',
   flexWrap: 'wrap',
+  display: 'block',
   gap: theme.spacing.xxsmall,
+  textAlign: 'center',
+  textWrap: 'balance',
+  marginBottom: -theme.spacing.xxsmall,
+  [mqs.md]: {
+    marginLeft: -theme.spacing.xxsmall / 2,
+    marginRight: -theme.spacing.xxsmall / 2,
+  },
+  '&&': {
+    display: 'block',
+  },
+  button: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+    marginBottom: theme.spacing.xxsmall,
+    [mqs.md]: {
+      display: 'inline-block',
+      marginLeft: theme.spacing.xxsmall / 2,
+      marginRight: theme.spacing.xxsmall / 2,
+    },
+  },
 }))
 
 function Member({ member, ...props }: { member: TeamMemberFragment }) {
@@ -155,15 +180,16 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
         />
       </StandardPage>
       <FullPage>
-        <TeamTabList
-          className="mb-xxlarge xl:mb-xxxlarge"
-          stateRef={tabStateRef}
-          stateProps={tabStateProps}
-        >
-          {teamTabs.map((tab) => (
-            <ComponentLinkTab key={tab.key}>{tab.label}</ComponentLinkTab>
-          ))}
-        </TeamTabList>
+        <div className="mb-xxlarge xl:mb-xxxlarge">
+          <FilterTabList
+            stateRef={tabStateRef}
+            stateProps={tabStateProps}
+          >
+            {teamTabs.map((tab) => (
+              <ComponentLinkTab key={tab.key}>{tab.label}</ComponentLinkTab>
+            ))}
+          </FilterTabList>
+        </div>
         <TabPanel
           stateRef={tabStateRef}
           className=""

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { type CommunityContributor } from '../../data/getGithubData'
 import { StandardPage } from '../layout/FullPage'
 import { GradientBG } from '../layout/GradientBG'
-import { CenteredSectionHead, ResponsiveText } from '../Typography'
+import { CenteredSectionHead } from '../Typography'
 
 export default function ContributorsSection({
   contributors,

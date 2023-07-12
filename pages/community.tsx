@@ -4,11 +4,7 @@ import {
   DiscordIcon,
   GitHubLogoIcon,
 } from '@pluralsh/design-system'
-import {
-  type GetStaticPaths,
-  type GetStaticProps,
-  type InferGetStaticPropsType,
-} from 'next'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
 import classNames from 'classnames'
 

@@ -2,44 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 
 import * as loom from '@loomhq/loom-embed'
 import ReactEmbed from 'react-embed'
-import styled from 'styled-components'
 
-// import { MediaWrap } from './MediaWrap'
-
-const AspectRatio = styled.div<{ $aspectRatio: string }>(
-  ({ $aspectRatio }) => ({
-    ...($aspectRatio
-      ? {
-          position: 'relative',
-          '.lo-emb-vid[style]': {
-            position: 'static !important',
-            padding: '0 !important',
-            height: 'unset !important',
-          } as any,
-          '&::before': {
-            content: '""',
-            width: '1px',
-            marginLeft: '-1px',
-            float: 'left',
-            height: 0,
-            paddingTop: `calc(100% / (${$aspectRatio}))`,
-          },
-          '&::after': {
-            content: '""',
-            display: 'table',
-            clear: 'both',
-          },
-          iframe: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-          },
-        }
-      : {}),
-  })
-)
+import { EmbedAspectRatio } from './AspectRatio'
 
 function Embed({
   url,
@@ -74,7 +38,7 @@ function Embed({
 
   if (isLoomUrl) {
     content = (
-      <AspectRatio
+      <EmbedAspectRatio
         $aspectRatio={aspectRatio}
         {...props}
         dangerouslySetInnerHTML={{ __html: loomEmbed }}
@@ -82,7 +46,7 @@ function Embed({
     )
   } else {
     content = (
-      <AspectRatio
+      <EmbedAspectRatio
         $aspectRatio={aspectRatio}
         {...props}
       >
@@ -91,7 +55,7 @@ function Embed({
           {...props}
           isDark
         />
-      </AspectRatio>
+      </EmbedAspectRatio>
     )
   }
 

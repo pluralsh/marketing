@@ -19,7 +19,7 @@ import { mqs } from '@src/breakpoints'
 import DocumentFilledIcon from '../icons/DocumentFilledIcon'
 import PlayFilledIcon from '../icons/PlayFilledIcon'
 import { TextLimiter } from '../layout/TextLimiter'
-import { CenteredSectionHead, Cta, ResponsiveText } from '../Typography'
+import { CenteredSectionHead, Cta } from '../Typography'
 
 const ResourceCardSC = styled.div(({ theme }) => ({
   background: theme.colors['fill-two'],

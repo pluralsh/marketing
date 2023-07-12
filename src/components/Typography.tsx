@@ -234,7 +234,6 @@ export function CenteredSectionHead({
   headingProps: h2Props = {},
   intro,
   introProps = {},
-  size = 'large',
   ...props
 }: {
   preHeading?: ReactNode
