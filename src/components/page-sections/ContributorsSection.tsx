@@ -4,6 +4,8 @@ import chroma from 'chroma-js'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
+import { mShadows } from '@src/styles/extraStyles'
+
 import { type CommunityContributor } from '../../data/getGithubData'
 import { GradientBG } from '../layout/GradientBG'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
@@ -90,6 +92,11 @@ const ContributorCardSC = styled.a(({ theme }) => ({
   '.login': {
     ...theme.partials.marketingText.body1,
     color: theme.colors.text,
+  },
+  '&:hover': {
+    borderColor: theme.colors['border-primary'],
+    background: `${chroma(theme.colors['fill-two']).alpha(0.6)}`,
+    boxShadow: mShadows.purple.modal,
   },
 }))
 
