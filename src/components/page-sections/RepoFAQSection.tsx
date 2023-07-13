@@ -1,7 +1,7 @@
 import { type ComponentProps } from 'react'
 
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { FAQItem, ResponsiveText } from '@src/components/Typography'
+import { FAQItem } from '@src/components/Typography'
 
 import { CenteredSectionHead } from '../SectionHeads'
 
