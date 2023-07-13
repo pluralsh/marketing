@@ -4195,9 +4195,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pluralsh/design-system@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@pluralsh/design-system@npm:2.0.0"
+"@pluralsh/design-system@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@pluralsh/design-system@npm:2.0.2"
   dependencies:
     "@floating-ui/react-dom-interactions": 0.13.3
     "@loomhq/loom-embed": 1.5.0
@@ -4245,7 +4245,7 @@ __metadata:
     react-dom: ">=18.2.0"
     react-transition-group: ">=4.4.5"
     styled-components: ">=5.3.11"
-  checksum: da001df5770876cafda494b510dbb6f43fab951b08eaa56752d50bcc4fee8ae7edfcbb537a19e4ba226b7a8d000f0996dc8b1f9ba10378d70354d0b5b3489b2c
+  checksum: f9dc127cacc2be469462c9d5830a05ef0d83f08f57713b9d32ab790b111d697fa7822486f93526fe5a6cac37d1bc341b58f073e229f2e487119cc7c83aad6bd7
   languageName: node
   linkType: hard
 
@@ -12546,7 +12546,7 @@ __metadata:
     "@markdoc/next.js": 0.2.2
     "@next/bundle-analyzer": 13.4.7
     "@open-draft/until": 2.1.0
-    "@pluralsh/design-system": 2.0.0
+    "@pluralsh/design-system": 2.0.2
     "@pluralsh/eslint-config-typescript": 2.5.46
     "@pluralsh/stylelint-config": 2.0.3
     "@react-types/shared": 3.18.1
