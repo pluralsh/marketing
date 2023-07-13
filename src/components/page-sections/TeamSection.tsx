@@ -11,7 +11,8 @@ import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
 import { FullPageWidth, StandardPageWidth } from '../layout/LayoutHelpers'
-import { CenteredSectionHead, ResponsiveText } from '../Typography'
+import { CenteredSectionHead } from '../SectionHeads'
+import { ResponsiveText } from '../Typography'
 
 const MemberSC = styled.li(({ theme }) => ({
   position: 'relative',

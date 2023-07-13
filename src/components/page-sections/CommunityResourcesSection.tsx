@@ -20,7 +20,8 @@ import { mShadows } from '@src/styles/extraStyles'
 import DocumentFilledIcon from '../icons/DocumentFilledIcon'
 import PlayFilledIcon from '../icons/PlayFilledIcon'
 import { TextLimiter } from '../layout/TextLimiter'
-import { CenteredSectionHead, Cta } from '../Typography'
+import { CenteredSectionHead } from '../SectionHeads'
+import { Cta } from '../Typography'
 
 const ResourceCardBaseSC = styled.div<{ $clickable: boolean }>(
   ({ theme, $clickable = false }) => ({

@@ -147,12 +147,12 @@ export function HowPluralWorksSection() {
             />
             <ConnectorLineH
               {...{
-                transformOrigin: '50% 0',
+                // transformOrigin: '50% 0',
                 top: '43.5%',
                 bottom: 'auto',
                 left: '30%',
                 right: '35.8%',
-                overflow: 'hidden',
+                // overflow: 'hidden',
               }}
             />
             <ConnectorLineV
@@ -194,11 +194,7 @@ export function HowPluralWorksSection() {
             width={464}
             height={304}
             src="/animations/how-04/index.html"
-          >
-            {' '}
-            <ConnectorLineV {...{}} /> <ConnectorLineV {...{}} />{' '}
-            <ConnectorLineV {...{}} />
-          </HowWorksImage>
+          />
         </HowWorksImgCol>
       </HowWorksSection>
     </HowWorks>

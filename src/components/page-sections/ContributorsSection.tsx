@@ -9,7 +9,7 @@ import { mShadows } from '@src/styles/extraStyles'
 import { type CommunityContributor } from '../../data/getGithubData'
 import { GradientBG } from '../layout/GradientBG'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
-import { CenteredSectionHead } from '../Typography'
+import { CenteredSectionHead } from '../SectionHeads'
 
 export default function ContributorsSection({
   contributors,

@@ -11,11 +11,8 @@ import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
-import {
-  CenteredSectionHead,
-  Cta,
-  ResponsiveText,
-} from '@src/components/Typography'
+import { CenteredSectionHead } from '@src/components/SectionHeads'
+import { Cta, ResponsiveText } from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'

@@ -42,7 +42,7 @@ import {
   Heading3,
   Overline,
 } from '@src/components/Typography'
-import { getAppMeta, getProviderIcon } from '@src/consts'
+import { QUICKSTART_VIDEO_URL, getAppMeta, getProviderIcon } from '@src/consts'
 import {
   type FullRepo,
   type MinRepo,
@@ -71,7 +71,7 @@ import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { ProviderIcon } from '../../src/components/ProviderIcon'
 import { RepoSocials } from '../../src/components/RepoSocials'
 
-const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=mFDA-718RhI'
+const DEFAULT_HERO_VIDEO = QUICKSTART_VIDEO_URL
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined

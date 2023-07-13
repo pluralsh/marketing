@@ -1,4 +1,4 @@
-import { Button, ColorModeProvider, InlineCode } from '@pluralsh/design-system'
+import { Button, ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Link from 'next/link'
 import Script from 'next/script'
@@ -13,11 +13,11 @@ import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import {
-  CenteredSectionHead,
-  Cta,
-  ResponsiveText,
-} from '@src/components/Typography'
+import { MassiveQuote } from '@src/components/MassiveQuote'
+import { RepoFAQSection } from '@src/components/page-sections/RepoFAQSection'
+import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralSection'
+import { QuickstartDemoCard } from '@src/components/QuickstartDemoCard'
+import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -45,7 +45,7 @@ export const BasicUl = styled.ul(({ theme }) => {
   }
 })
 
-const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
+export const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
   color: theme.colors['text-light'],
   'h1, h2, h3, h4, h5, h6': {
     ...theme.partials.text.body1Bold,
@@ -201,123 +201,89 @@ export default function Index() {
           className="bg-fill-zero"
         >
           <StandardPageWidth>
-            <CenteredSectionHead
-              heading="What is Plural?"
-              intro={
-                <p>
-                  Plural is an open-source, unified, application deployment
-                  platform that stands up a Kubernetes cluster and selected
-                  applications in the cloud provider of your choice. Plural
-                  writes all the Helm, Terraform, and YAML needed for your
-                  desired infrastructure and deploys it all into production.
-                  Plural stores your infrastructure code and configuration in a
-                  fresh Git repository of your choosing.
-                </p>
-              }
-              className={classNames('pb-xxxxxxlarge')}
-            />
-            <Columns className="gap-y-xxlarge">
-              <EqualColumn className="flex flex-col gap-y-xlarge">
-                <div>
-                  <ResponsiveText
-                    as="h4"
-                    textStyles={{ '': 'mLabel' }}
-                    className="mb-medium"
+            <WhatIsPluralSection />
+          </StandardPageWidth>
+        </StandardPageSection>
+      </ColorModeProvider>
+      <MassiveQuote
+        content={
+          <>
+            This is awesome. You saved me hours of further DevOps work for our
+            v1 release. Just to say, I really love Plural.
+          </>
+        }
+        attributions={['Ismael Goulani', 'Co-foundeer of MODEO']}
+      />
+      <ColorModeProvider mode="light">
+        <StandardPageSection
+          id="open-positions"
+          className="bg-fill-zero"
+        >
+          <div
+            className={classNames(
+              'flex flex-col',
+              'gap-xxxxxlarge md:gap-xxxxxxlarge'
+            )}
+          >
+            <StandardPageWidth>
+              <QuickstartDemoCard />
+            </StandardPageWidth>
+            <StandardPageWidth>
+              <div className={classNames('flex flex-col gap-xlarge')}>
+                <CenteredSectionHead heading="Try Plural for free" />
+                <div className="flex justify-center">
+                  <Button
+                    secondary
+                    large
+                    as="a"
+                    href="https://app.plural.sh/signup"
+                    target="_blank"
                   >
-                    Architecture
-                  </ResponsiveText>
-                  <ResponsiveText
-                    as="h5"
-                    textStyles={{ '': 'mHero2' }}
-                    className="mb-xlarge"
-                  >
-                    The Plural architecture has three main components
-                  </ResponsiveText>
+                    Sign up now
+                  </Button>
                 </div>
-              </EqualColumn>
-              <EqualColumn />
-            </Columns>
-            <Columns className="gap-y-xxlarge">
-              <EqualColumn className="flex flex-col gap-y-xlarge">
-                <ArchitectureContentSC>
-                  <h6>Plural API</h6>
-                  <p>
-                    The primary responsibility of the Plural API is to store the
-                    packages needed for application installation – terraform,
-                    helm – and ingesting high-level dependency information about
-                    them. This allows us to properly sequence installations and
-                    deliver updates that avoid mismatched dependencies.
-                  </p>
-                  <p>
-                    It also can serve as an identity provider for any Plural
-                    application, delegating authentication via OpenID Connect,
-                    giving seamless login security for all applications.
-                  </p>
-                </ArchitectureContentSC>
-                <ArchitectureContentSC>
-                  <h6>Plural CLI</h6>
-                  <p>
-                    The Plural CLI uses the Plural API as a package manager to
-                    generate a fully functional git repository with all the
-                    infrastructure as code needed to deploy any of your
-                    applications with Plural. This allows you to stand up any
-                    open source stack with just{' '}
-                    <InlineCode>plural build</InlineCode> and{' '}
-                    <InlineCode>plural deploy</InlineCode>, and never even have
-                    to give us cloud credentials, since the infrastructure as
-                    code lives in your local workstation.
-                  </p>
-                  <p>
-                    It also streamlines things like git secret encryption,
-                    dependency-ordering deploys and provides an operational
-                    toolkit for accessing databases and logs, watching the
-                    status of applications and providing login info.{' '}
-                  </p>
-                </ArchitectureContentSC>
-                <ArchitectureContentSC>
-                  <h6>Plural Console</h6>
-                  <p>
-                    The Plural Console is the operational hub for all
-                    applications managed by Plural. It is deployed in-cluster
-                    alongside applications and provides a few key features:
-                  </p>
-                  <BasicUl>
-                    <li>
-                      Automated upgrades – by subscribing to the API's upgrade
-                      websocket
-                    </li>
-                    <li>
-                      Observability – leverages prometheus and loki to provide
-                      fully featured dashboards, runbooks and log aggregation.
-                    </li>
-                    <li>
-                      Documentation/Self-serviceability – application docs for
-                      advanced configuration settings and usage patterns are
-                      available in console, alongside tooling to easily bind
-                      users to applications, reconfigure them, and other
-                      information needed to get started quickly.
-                    </li>
-                  </BasicUl>
-                </ArchitectureContentSC>
-                <Cta href="https://docs.plural.sh">Explore the docs</Cta>
-              </EqualColumn>
-              <EqualColumn>
-                <div
-                  className={classNames(
-                    'overflow-hidden rounded-large'
-                    // `sticky top-[calc(var(--top-nav-height)+16px)]`
-                  )}
+              </div>
+            </StandardPageWidth>
+            <RepoFAQSection />
+            <StandardPageWidth>
+              <div
+                className={classNames(
+                  'flex flex-col gap-xlarge justify-center items-center',
+                  'md:flex-row'
+                )}
+              >
+                <a
+                  className="block"
+                  href="https://landscape.cncf.io/"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <img
-                    className="block w-full"
-                    src="/images/product/architecture.png"
-                    width="1765"
-                    height="2172"
+                    className="w-full max-w-[248px]"
+                    alt="Cloud Native Landscape logo"
+                    src="/images/product/cn-landscape-logo.png"
                   />
-                </div>
-              </EqualColumn>
-            </Columns>
-          </StandardPageWidth>
+                </a>
+                <a
+                  className="block"
+                  href="https://www.cncf.io/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="w-full max-w-[248px] md:max-w-[298px]"
+                    alt="Cloud Native Computing Foundation logo"
+                    src="/images/product/cncf-logo.svg"
+                  />
+                </a>
+                <img
+                  className="w-full max-w-[76px]"
+                  alt="GDPR certification badge"
+                  src="/images/product/gdpr-cert.png"
+                />
+              </div>
+            </StandardPageWidth>
+          </div>
         </StandardPageSection>
       </ColorModeProvider>
     </>

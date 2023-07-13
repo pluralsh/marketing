@@ -3,18 +3,19 @@ import { type ComponentProps } from 'react'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { FAQItem, ResponsiveText } from '@src/components/Typography'
 
+import { CenteredSectionHead } from '../SectionHeads'
+
 export function RepoFAQSection(
   props: Omit<ComponentProps<typeof StandardPageWidth>, 'children'>
 ) {
   return (
     <StandardPageWidth {...props}>
-      <ResponsiveText
-        className="mb-xlarge text-center"
-        as="h2"
-        textStyles={{ '': 'mTitle1' }}
+      <CenteredSectionHead
+        className="mb-xlarge"
+        heading="FAQ"
       >
         FAQ
-      </ResponsiveText>
+      </CenteredSectionHead>
       <div className="flex flex-col gap-y-large">
         <FAQItem label="Do you offer other orchestrators?">
           <p>
