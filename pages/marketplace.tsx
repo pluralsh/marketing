@@ -385,7 +385,10 @@ export default function Marketplace({
             Explore the open-source marketplace
           </Heading1>
           <TextLimiter>
-            <Body1 as="p">
+            <Body1
+              as="p"
+              color="text-xlight"
+            >
               Discover over 90 incredible applications ready to deploy in your
               cloud in minutes using our guided deployment flow. With security,
               observability, and scale out of the box, we elevate you from the
