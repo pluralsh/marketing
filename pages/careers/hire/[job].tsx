@@ -4,8 +4,11 @@ import Head from 'next/head'
 import Script from 'next/script'
 
 import { FooterVariant } from '@src/components/FooterFull'
-import { FullPage, StandardPage } from '@src/components/layout/FullPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import {
+  FullPageWidth,
+  StandardPageWidth,
+} from '@src/components/layout/LayoutHelpers'
 import { MarkdocMarketingPage } from '@src/components/MarkdocMarketingPage'
 import { BackButton } from '@src/components/Nav'
 import { ResponsiveText } from '@src/components/Typography'
@@ -52,10 +55,10 @@ export default function Index({
       </Head>
       <ColorModeProvider mode="light">
         <HeaderPad className="bg-fill-zero">
-          <FullPage className="pt-[40px]">
+          <FullPageWidth className="pt-[40px]">
             <BackButton href="/careers#open-positions" />
-          </FullPage>
-          <StandardPage className="py-xxxxlarge">
+          </FullPageWidth>
+          <StandardPageWidth className="py-xxxxlarge">
             <MarkdocMarketingPage
               preContent={
                 <div className="pb-xxxlarge">
@@ -78,7 +81,7 @@ export default function Index({
               }
               markdoc={markdoc}
             />
-          </StandardPage>
+          </StandardPageWidth>
         </HeaderPad>
       </ColorModeProvider>
     </>

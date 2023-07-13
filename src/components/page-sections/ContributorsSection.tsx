@@ -5,8 +5,8 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { type CommunityContributor } from '../../data/getGithubData'
-import { StandardPage } from '../layout/FullPage'
 import { GradientBG } from '../layout/GradientBG'
+import { StandardPageWidth } from '../layout/LayoutHelpers'
 import { CenteredSectionHead } from '../Typography'
 
 export default function ContributorsSection({
@@ -19,7 +19,7 @@ export default function ContributorsSection({
       size="100% 100%"
       image="/images/gradients/gradient-bg-4.jpg"
     >
-      <StandardPage
+      <StandardPageWidth
         id="contributors-section"
         className="py-xxxxlarge xl:py-xxxxxxlarge"
       >
@@ -28,7 +28,7 @@ export default function ContributorsSection({
           className="mb-xxxlarge"
         />
         <ContributorsList contributors={contributors} />
-      </StandardPage>
+      </StandardPageWidth>
     </GradientBG>
   )
 }

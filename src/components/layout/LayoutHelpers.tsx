@@ -26,14 +26,14 @@ export const StandardPageInner = styled.div(() => ({
   },
 }))
 
-export function StandardPage({ children, ...props }) {
-  return (
-    <FullPage {...props}>
-      <StandardPageInner>{children}</StandardPageInner>
-    </FullPage>
-  )
-}
-
-export const FullPage = styled(PageMaxWidthLimiter)((_) => ({
+export const FullPageWidth = styled(PageMaxWidthLimiter)((_) => ({
   width: '100%',
 }))
+
+export function StandardPageWidth({ children, ...props }) {
+  return (
+    <FullPageWidth {...props}>
+      <StandardPageInner>{children}</StandardPageInner>
+    </FullPageWidth>
+  )
+}

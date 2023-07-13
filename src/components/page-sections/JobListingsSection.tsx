@@ -73,7 +73,7 @@ export const JobCardContentSC = styled.p(({ theme }) => ({
   ...theme.partials.marketingText.body2,
   color: theme.colors.text,
   '& *:any-link': {
-    ...theme.partials.text.inlineLink,
+    ...theme.partials.marketingText.inlineLink,
   },
 }))
 export const JobCardTagListSC = styled.ul(({ theme }) => ({

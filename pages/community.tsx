@@ -9,8 +9,8 @@ import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import classNames from 'classnames'
 
 import { FooterVariant } from '@src/components/FooterFull'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import CalloutsSection from '@src/components/page-sections/CommunityCalloutsSection'
 import CommunityResourcesSection from '@src/components/page-sections/CommunityResourcesSection'
 import ContributorsSection from '@src/components/page-sections/ContributorsSection'
@@ -43,7 +43,7 @@ export default function Community({
         // position="top middle"
         image="/images/gradients/gradient-bg-4.jpg"
       >
-        <StandardPage>
+        <StandardPageWidth>
           <div
             className={classNames(
               'flex flex-col gap-xxlarge',
@@ -108,10 +108,10 @@ export default function Community({
               </ScrollToLink>
             </div>
           </div>
-        </StandardPage>
+        </StandardPageWidth>
       </HeaderPad>
       <div className="bg-fill-zero">
-        <StandardPage className="pt-xxxxlarge pb-xxxxxxlarge">
+        <StandardPageWidth className="pt-xxxxlarge pb-xxxxxxlarge">
           <div className="flex flex-col gap-y-xxlarge">
             <CalloutsSection callouts={callouts} />
             <EventsSection events={events} />
@@ -119,7 +119,7 @@ export default function Community({
               featuredContributors={featuredContributors}
             />
           </div>
-        </StandardPage>
+        </StandardPageWidth>
       </div>
       <ColorModeProvider mode="light">
         <div
@@ -133,9 +133,9 @@ export default function Community({
             'text-text'
           )}
         >
-          <StandardPage>
+          <StandardPageWidth>
             <CommunityResourcesSection />
-          </StandardPage>
+          </StandardPageWidth>
         </div>
       </ColorModeProvider>
 

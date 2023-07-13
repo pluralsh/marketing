@@ -20,7 +20,7 @@ import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
 import BuildStack, {
@@ -163,7 +163,7 @@ export default function App({
 
   return (
     <HeaderPad as={GradientBG}>
-      <StandardPage>
+      <StandardPageWidth>
         <div className="py-[40px] md:pb-xxxlarge">
           <BackButton href="/marketplace" />
         </div>
@@ -267,7 +267,7 @@ export default function App({
             </SingleAccordion>
           )}
         </div>
-      </StandardPage>
+      </StandardPageWidth>
       <ProductValueSection
         name={repo.displayName}
         isStack={false}

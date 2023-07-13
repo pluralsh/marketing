@@ -7,8 +7,8 @@ import classNames from 'classnames'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
 import {
@@ -40,7 +40,7 @@ export default function About({
             'xxl:pb-xxxxxxlarge'
           )}
         >
-          <StandardPage
+          <StandardPageWidth
             className={classNames(
               'flex flex-col gap-xlarge',
               'pt-xxlarge pb-xxxxxlarge',
@@ -95,8 +95,8 @@ export default function About({
                 </TextLimiter>
               </EqualColumn>
             </Columns>
-          </StandardPage>
-          <StandardPage>
+          </StandardPageWidth>
+          <StandardPageWidth>
             <div className="text-center">
               <ResponsiveText
                 textStyles={{ '': 'aOverline' }}
@@ -126,7 +126,7 @@ export default function About({
                 </div>
               </div>
             </div>
-          </StandardPage>
+          </StandardPageWidth>
         </div>
       </HeaderPad>
       <ColorModeProvider mode="light">
@@ -140,7 +140,7 @@ export default function About({
             'text-text'
           )}
         >
-          <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
+          <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
             <CenteredSectionHead
               preHeading="About us"
               heading="Who we are"
@@ -166,8 +166,8 @@ export default function About({
               alt="The Plural team standing together on a sidewalk in the French Quarter of New Orleans."
               src="/images/about/team.jpg"
             />
-          </StandardPage>
-          <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
+          </StandardPageWidth>
+          <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
             <CenteredSectionHead
               preHeading="Our company values"
               heading="As a driven and cohesive team, we share a common 
@@ -231,16 +231,6 @@ mission to build something unique."
                     'columns:gap-y-xxlarge'
                   )}
                 >
-                  <Value label="Transparency">
-                    <p className="m-0 p-0">
-                      We believe in the power of transparency. We strive to
-                      provide open and honest information about our processes,
-                      products, and decisions. We are committed to sharing
-                      insights, updates, and feedback with our community and
-                      stakeholders. Transparency is at the core of everything we
-                      do.
-                    </p>
-                  </Value>
                   <Value label="Excellence">
                     <p className="m-0 p-0">
                       We have a passion for excellence and continuously strive
@@ -272,7 +262,7 @@ mission to build something unique."
                 </TextLimiter>
               </EqualColumn>
             </Columns>
-          </StandardPage>
+          </StandardPageWidth>
 
           <TeamSection members={teamMembers} />
         </div>
@@ -285,7 +275,7 @@ function Value({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-y-xxlarge">
       <ResponsiveText
-        as="h4"
+        as="h3"
         textStyles={{ '': 'mTitle1' }}
         color="text"
       >

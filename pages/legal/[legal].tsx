@@ -8,8 +8,8 @@ import {
 import classNames from 'classnames'
 
 import { FooterVariant } from '@src/components/FooterFull'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { MarkdocMarketingPage } from '@src/components/MarkdocMarketingPage'
 import { ResponsiveText } from '@src/components/Typography'
@@ -54,7 +54,7 @@ export default function Legal({
         position="top middle"
         image="/images/gradients/gradient-bg-4.jpg"
       >
-        <StandardPage>
+        <StandardPageWidth>
           <div
             className={classNames(
               'flex flex-col gap-xxlarge',
@@ -84,7 +84,7 @@ export default function Legal({
               )}
             </div>
           </div>
-        </StandardPage>
+        </StandardPageWidth>
       </HeaderPad>
       <ColorModeProvider mode="light">
         <div
@@ -99,9 +99,9 @@ export default function Legal({
           )}
         >
           {markdoc && (
-            <StandardPage className="mb-xxxxxlarge max:mb-xxxxxxlarge">
+            <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
               <MarkdocMarketingPage markdoc={markdoc} />
-            </StandardPage>
+            </StandardPageWidth>
           )}
         </div>
       </ColorModeProvider>

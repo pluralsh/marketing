@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { TextLabel } from '@src/components/Typography'
 
-import { StandardPage } from './layout/FullPage'
+import { StandardPageWidth } from './layout/LayoutHelpers'
 
 const partnerLogos = [
   {
@@ -43,7 +43,7 @@ const partnerLogos = [
 ]
 
 export const CompanyLogosSection = styled(({ ...props }) => (
-  <StandardPage>
+  <StandardPageWidth>
     <div {...props}>
       <TextLabel className="mb-large md:mb-xxlarge text-center ">
         Companies using Plural
@@ -60,7 +60,7 @@ export const CompanyLogosSection = styled(({ ...props }) => (
         ))}
       </ul>
     </div>
-  </StandardPage>
+  </StandardPageWidth>
 ))(({ theme: _ }) => ({
   ul: {},
   img: {

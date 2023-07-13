@@ -13,7 +13,7 @@ import { ResponsiveText } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HubspotForm } from '../src/components/HubspotForm'
-import { StandardPage } from '../src/components/layout/FullPage'
+import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
 
 export function ContactHeader({
   title,
@@ -23,7 +23,7 @@ export function ContactHeader({
   subtitle: string
 }) {
   return (
-    <StandardPage>
+    <StandardPageWidth>
       <div
         className={classNames(
           'pt-xxxxlarge',
@@ -61,7 +61,7 @@ export function ContactHeader({
           </EqualColumn>
         </Columns>
       </div>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }
 
@@ -88,9 +88,9 @@ export default function Index() {
       </HeaderPad>
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero py-xxxxlarge">
-          <StandardPage>
+          <StandardPageWidth>
             <HubspotForm formId="4381b90a-ac28-4e54-842e-0319c16cf882" />
-          </StandardPage>
+          </StandardPageWidth>
         </div>
       </ColorModeProvider>
     </>

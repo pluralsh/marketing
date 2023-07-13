@@ -10,7 +10,7 @@ import { getImageUrl } from '@src/consts/routes'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
-import { FullPage, StandardPage } from '../layout/FullPage'
+import { FullPageWidth, StandardPageWidth } from '../layout/LayoutHelpers'
 import { CenteredSectionHead, ResponsiveText } from '../Typography'
 
 const MemberSC = styled.li(({ theme }) => ({
@@ -162,7 +162,7 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
 
   return (
     <div>
-      <StandardPage className="mb-xxlarge md:mb-xxxxxlarge">
+      <StandardPageWidth className="mb-xxlarge md:mb-xxxxxlarge">
         <CenteredSectionHead
           preHeading="The team"
           heading="Our compact yet remarkable team"
@@ -178,8 +178,8 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
             </p>
           }
         />
-      </StandardPage>
-      <FullPage>
+      </StandardPageWidth>
+      <FullPageWidth>
         <div className="mb-xxlarge xl:mb-xxxlarge">
           <FilterTabList
             stateRef={tabStateRef}
@@ -196,7 +196,7 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
         >
           <TeamList members={filteredMembers} />
         </TabPanel>
-      </FullPage>
+      </FullPageWidth>
     </div>
   )
 }

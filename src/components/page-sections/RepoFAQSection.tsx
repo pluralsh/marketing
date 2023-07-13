@@ -1,15 +1,13 @@
 import { type ComponentProps } from 'react'
 
-import { StandardPage } from '@src/components/layout/FullPage'
-import { AppBody2, ResponsiveText } from '@src/components/Typography'
-
-import { SingleAccordion } from '../SingleAccordion'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import { FAQItem, ResponsiveText } from '@src/components/Typography'
 
 export function RepoFAQSection(
-  props: Omit<ComponentProps<typeof StandardPage>, 'children'>
+  props: Omit<ComponentProps<typeof StandardPageWidth>, 'children'>
 ) {
   return (
-    <StandardPage {...props}>
+    <StandardPageWidth {...props}>
       <ResponsiveText
         className="mb-xlarge text-center"
         as="h2"
@@ -18,34 +16,37 @@ export function RepoFAQSection(
         FAQ
       </ResponsiveText>
       <div className="flex flex-col gap-y-large">
-        <SingleAccordion label="Do you offer other orchestrators?">
-          <AppBody2 color="text-light">
+        <FAQItem label="Do you offer other orchestrators?">
+          <p>
             Minim qui eiusmod enim voluptate minim velit. Irure ullamco do
             proident nisi non laboris et. Ipsum ipsum excepteur pariatur magna.
-          </AppBody2>
-        </SingleAccordion>
-        <SingleAccordion label="How much does it cost to get started?">
-          <AppBody2 color="text-light">
+          </p>
+        </FAQItem>
+        <FAQItem label="How much does it cost to get started?">
+          <p>
             Esse aliqua velit enim id consequat ad ad. Aute aliquip deserunt ad
             laboris ipsum. Dolor aliqua ut quis est aute aute ullamco elit
             laborum ex qui. Id excepteur culpa pariatur dolore reprehenderit
-            nisi aute aliqua velit mollit. Tempor dolore irure incididunt est
-            aliqua sint ipsum duis deserunt elit velit elit occaecat. Proident
-            enim veniam Lorem quis aliquip aute cillum cupidatat Lorem
-            reprehenderit anim in esse. Non laborum mollit id nostrud veniam
-            elit duis adipisicing sunt occaecat adipisicing sit.
-          </AppBody2>
-        </SingleAccordion>
-        <SingleAccordion label="Become a partner">
-          <AppBody2 color="text-light">
+            nisi aute aliqua velit mollit.
+          </p>
+          <p>
+            Tempor dolore irure incididunt est aliqua sint ipsum duis deserunt
+            elit velit elit occaecat. Proident enim veniam Lorem quis aliquip
+            aute cillum cupidatat Lorem reprehenderit anim in esse.
+          </p>
+        </FAQItem>
+        <FAQItem label="Become a partner">
+          <p>
             Cillum veniam esse qui aute consectetur adipisicing qui laborum ad
             culpa veniam ex nisi in. Do in adipisicing consequat voluptate
-            excepteur cillum occaecat. Irure cillum tempor Lorem sit anim. Sint
-            sunt tempor ex enim. Dolor est in commodo fugiat excepteur aliquip
-            exercitation elit voluptate.
-          </AppBody2>
-        </SingleAccordion>
+            excepteur cillum occaecat.
+          </p>
+          <p>
+            Irure cillum tempor Lorem sit anim. Sint sunt tempor ex enim. Dolor
+            est in commodo fugiat excepteur aliquip exercitation elit voluptate.
+          </p>
+        </FAQItem>
       </div>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }

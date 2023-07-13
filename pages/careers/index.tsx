@@ -1,4 +1,4 @@
-import { type ComponentProps, type ReactNode } from 'react'
+import { type ComponentProps } from 'react'
 
 import {
   ArrowRightLeftIcon,
@@ -19,88 +19,20 @@ import { mqs } from '@src/breakpoints'
 import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { TextLimiter } from '@src/components/layout/TextLimiter'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { JobListingsSection } from '@src/components/page-sections/JobListingsSection'
+import { BasicPageHero } from '@src/components/PageHeros'
 import { ScrollToLink } from '@src/components/ScrollToLink'
-import { CenteredSectionHead, ResponsiveText } from '@src/components/Typography'
+import { CenteredSectionHead } from '@src/components/Typography'
 import { getJobListings } from '@src/data/getJobListings'
 import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { ValueCard } from '../../src/components/ValueCard'
 
-export function BasicPageHeader({
-  preHeading,
-  heading,
-  intro,
-  ctas,
-  ...props
-}: {
-  preHeading: ReactNode
-  heading: ReactNode
-  ctas: ReactNode
-  intro: ReactNode
-}) {
-  return (
-    <StandardPage {...props}>
-      <div
-        className={classNames(
-          'pt-xxxxlarge',
-          'pb-xxxlarge',
-          'md:pt-xxxxlarge',
-          'md:pb-xxxxlarge',
-          'lg:pt-xxxxxlarge',
-          'lg:pb-xxxxxxlarge'
-        )}
-      >
-        <Columns className="columns:items-center gap-y-xxxlarge">
-          <EqualColumn className="justify-start">
-            <TextLimiter className="flex flex-col gap-y-xlarge md:gap-y-xxlarge">
-              <div className="flex flex-col gap-y-medium">
-                <ResponsiveText
-                  className="[text-wrap:balance]"
-                  as="h1"
-                  textStyles={{ '': 'mLabel' }}
-                >
-                  {preHeading}
-                </ResponsiveText>
-                <ResponsiveText
-                  className="[text-wrap:balance]"
-                  as="h2"
-                  textStyles={{
-                    '': 'mHero2',
-                    md: 'mBigHeader',
-                  }}
-                >
-                  {heading}
-                </ResponsiveText>
-              </div>
-              <div>{ctas}</div>
-            </TextLimiter>
-          </EqualColumn>
-          <EqualColumn>
-            <TextLimiter>
-              <ResponsiveText
-                as="p"
-                textStyles={{ '': 'mBody1' }}
-                color="text-light"
-                className="[text-wrap:balance] "
-              >
-                {intro}
-              </ResponsiveText>
-            </TextLimiter>
-          </EqualColumn>
-        </Columns>
-      </div>
-    </StandardPage>
-  )
-}
-
-const StandardSection = styled.div(({ theme }) => ({
+export const StandardPageSection = styled.div(({ theme }) => ({
   paddingTop: theme.spacing.xxxxlarge,
   paddingBottom: theme.spacing.xxxxlarge,
   [mqs.md]: {
@@ -116,7 +48,7 @@ const StandardSection = styled.div(({ theme }) => ({
 function PhotosSection() {
   return (
     <div className="bg-fill-zero py-xxlarge">
-      <StandardPage>
+      <StandardPageWidth>
         <div
           className={classNames(
             'grid grid-cols-1 sm:grid-cols-2 gap-large',
@@ -144,7 +76,7 @@ function PhotosSection() {
             url="/images/careers/photo-group-2.jpg"
           />
         </div>
-      </StandardPage>
+      </StandardPageWidth>
     </div>
   )
 }
@@ -185,7 +117,7 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
         position="top middle"
         image="/images/gradients/gradient-bg-5.jpg"
       >
-        <BasicPageHeader
+        <BasicPageHero
           heading="Join us and build something incredible"
           intro={
             <p>
@@ -203,8 +135,8 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
         />
       </HeaderPad>
       <ColorModeProvider mode="light">
-        <StandardSection className="bg-fill-zero">
-          <StandardPage>
+        <StandardPageSection className="bg-fill-zero">
+          <StandardPageWidth>
             <CenteredSectionHead
               heading="What we value"
               intro="Our motivation is based on:"
@@ -267,11 +199,11 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
                 culpa excepteur ex commodo minim.{' '}
               </ValueCard>
             </div>
-          </StandardPage>
-        </StandardSection>
+          </StandardPageWidth>
+        </StandardPageSection>
       </ColorModeProvider>
-      <StandardSection className="bg-fill-zero">
-        <StandardPage>
+      <StandardPageSection className="bg-fill-zero">
+        <StandardPageWidth>
           <CenteredSectionHead
             heading="Our benefits"
             intro={
@@ -338,14 +270,14 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               culpa excepteur ex commodo minim.{' '}
             </BenefitCard>
           </div>
-        </StandardPage>
-      </StandardSection>
+        </StandardPageWidth>
+      </StandardPageSection>
       <ColorModeProvider mode="light">
-        <StandardSection
+        <StandardPageSection
           id="open-positions"
           className="bg-fill-zero"
         >
-          <StandardPage>
+          <StandardPageWidth>
             <CenteredSectionHead
               heading="Open positions"
               intro={
@@ -362,8 +294,8 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               )}
             />
             <JobListingsSection jobListings={jobs} />
-          </StandardPage>
-        </StandardSection>
+          </StandardPageWidth>
+        </StandardPageSection>
       </ColorModeProvider>
       <PhotosSection />
     </>

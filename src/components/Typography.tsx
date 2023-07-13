@@ -17,6 +17,8 @@ import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
 
+import { SingleAccordion } from './SingleAccordion'
+
 export const Heading1 = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.title2,
   [mqs.md]: {
@@ -137,6 +139,34 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
+const FAQBody = styled(AppBody2).attrs({
+  color: 'text-light',
+  as: 'div',
+})(({ theme }) => ({
+  maxWidth: 'var(--text-width-limit)',
+  '& :any-link': {
+    ...theme.partials.marketingText.inlineLink,
+  },
+  '& :is(p, ul, ol) + :is(p, ul, ol)': {
+    marginTop: theme.spacing.medium,
+  },
+}))
+
+export function FAQItem({
+  children,
+  ...props
+}: ComponentProps<typeof SingleAccordion>) {
+  return (
+    <SingleAccordion {...props}>
+      {typeof children === 'function' ? (
+        (isOpen) => <FAQBody>{children(isOpen)}</FAQBody>
+      ) : (
+        <FAQBody>{children}</FAQBody>
+      )}
+    </SingleAccordion>
+  )
+}
+
 export const Overline = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.overline,
@@ -225,13 +255,14 @@ const IntroTextSC = styled(ResponsiveText).attrs(() => ({
 
 const HeadingSC = styled(ResponsiveText)(({ theme: _ }) => ({
   textWrap: 'balance',
+  display: 'block',
 }))
 
 export function CenteredSectionHead({
-  preHeading: h1,
-  preHeadingProps: topLabelProps = {},
-  heading: h2,
-  headingProps: h2Props = {},
+  preHeading,
+  preHeadingProps = {},
+  heading,
+  headingProps = {},
   intro,
   introProps = {},
   ...props
@@ -245,27 +276,31 @@ export function CenteredSectionHead({
 } & ComponentProps<typeof SectionHeadSC>) {
   return (
     <SectionHeadSC {...props}>
-      {(h1 || h2) && (
+      {(preHeading || heading) && (
         <SectionHeadTopSC>
-          {h1 && (
+          {heading && (
             <HeadingSC
               as="h2"
-              textStyles={{ '': 'mLabel' }}
-              color="text-light"
-              {...topLabelProps}
-            >
-              {h1}
-            </HeadingSC>
-          )}
-          {h2 && (
-            <HeadingSC
-              as="h3"
               textStyles={{ '': 'mHero2', xl: 'mHero1' }}
               color="text"
               className="[text-wrap:balance]"
-              {...h2Props}
+              {...headingProps}
             >
-              {h2}
+              {preHeading && (
+                <>
+                  <HeadingSC
+                    as="strong"
+                    textStyles={{ '': 'mLabel' }}
+                    color="text-light"
+                    className="mb-medium"
+                    {...preHeadingProps}
+                  >
+                    {preHeading}
+                  </HeadingSC>
+                  <span className="sr-only"> – </span>
+                </>
+              )}
+              {heading}
             </HeadingSC>
           )}
         </SectionHeadTopSC>

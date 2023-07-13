@@ -17,7 +17,7 @@ import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
 import GithubStars from './GithubStars'
-import { FullPage } from './layout/FullPage'
+import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
@@ -208,7 +208,7 @@ const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
   },
 }))
 
-const PageHeaderInner = styled(FullPage).attrs(() => ({
+const PageHeaderInner = styled(FullPageWidth).attrs(() => ({
   as: 'header',
 }))(({ theme }) => ({
   height: 'var(--top-nav-height)',

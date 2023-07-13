@@ -14,7 +14,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import { StandardPage } from '@src/components/layout/FullPage'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { appUrl, stackUrl } from '@src/consts/routes'
 import { type getRepos } from '@src/data/getRepos'
 import { type getStacks } from '@src/data/getStacks'
@@ -87,7 +87,7 @@ export default function BuildStack({
   return (
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero">
-        <StandardPage className="py-xxxxlarge columns:py-xxxx">
+        <StandardPageWidth className="py-xxxxlarge columns:py-xxxx">
           <div className="text-center mb-xxlarge">
             <ResponsiveText
               textStyles={{ '': 'mTitle2', md: 'mTitle1', xxl: 'mHero2' }}
@@ -157,7 +157,7 @@ export default function BuildStack({
               Explore the Marketplace
             </Cta>
           </div>
-        </StandardPage>
+        </StandardPageWidth>
       </div>
     </ColorModeProvider>
   )

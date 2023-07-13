@@ -9,9 +9,9 @@ import styled from 'styled-components'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { PricingFAQSection } from '@src/components/page-sections/PricingFAQSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead, ResponsiveText } from '@src/components/Typography'
@@ -109,7 +109,7 @@ export function PlanCard({
 
 export function PlanCardsSection({ plans }: { plans: Plan[] }) {
   return (
-    <StandardPage className="flex flex-col gap-xlarge [text-wrap:balance] pb-xxlarge md:pb-xxxlarge">
+    <StandardPageWidth className="flex flex-col gap-xlarge [text-wrap:balance] pb-xxlarge md:pb-xxxlarge">
       <Columns className="gap-y-xlarge">
         {plans.map((plan) => (
           <EqualColumn key={plan.key}>
@@ -117,7 +117,7 @@ export function PlanCardsSection({ plans }: { plans: Plan[] }) {
           </EqualColumn>
         ))}
       </Columns>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }
 
@@ -142,7 +142,7 @@ export default function Pricing({
             'xxl:pb-xxxxxxlarge'
           )}
         >
-          <StandardPage
+          <StandardPageWidth
             className={classNames(
               'flex flex-col gap-xlarge [text-wrap:balance]',
               'pt-xxlarge pb-xxxlarge',
@@ -167,7 +167,7 @@ export default function Pricing({
             >
               Compare plans
             </ScrollToLink>
-          </StandardPage>
+          </StandardPageWidth>
           <PlanCardsSection plans={plans} />
         </div>
       </HeaderPad>
@@ -182,21 +182,21 @@ export default function Pricing({
           )}
         >
           <div>
-            <StandardPage className="pb-xxlarge md:pb-xxxlarge">
+            <StandardPageWidth className="pb-xxlarge md:pb-xxxlarge">
               <CenteredSectionHead
                 preHeading="Compare plans"
                 heading="Find the plan that is right for your business"
                 intro="Flexible plans for every stage of your business."
               />
-            </StandardPage>
+            </StandardPageWidth>
             <div id={compareId}>
               {/* Desktop Pricing table */}
-              <StandardPage className="hidden md:block">
+              <StandardPageWidth className="hidden md:block">
                 <PlanFeaturesTable
                   items={plansFeatures}
                   plans={plans}
                 />
-              </StandardPage>
+              </StandardPageWidth>
               {/* Desktop Pricing tables */}
               <div className="flex flex-col gap-y-xlarge md:hidden">
                 {plans.map((plan) => (

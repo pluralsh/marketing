@@ -26,9 +26,8 @@ import {
   type SetSearchParams,
   useSearchParams,
 } from '@src/components/hooks/useSearchParams'
-import { MarketplacePage } from '@src/components/layout/BasicPage'
-import { FullPage } from '@src/components/layout/FullPage'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import { FullPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { MarketplaceCarousel } from '@src/components/page-sections/MarketplaceCarousel'
 import { MarketplaceExtras } from '@src/components/page-sections/MarketplaceExtras'
@@ -80,6 +79,12 @@ export function getStackRepos(stack: MinStack) {
         !!repo
     )
 }
+
+export const MarketplacePage = styled.div((_) => ({
+  width: '100%',
+  position: 'relative',
+  marginBottom: 200,
+}))
 
 export const SearchBarArea = styled.div(({ theme }) => {
   const mB = theme.spacing.medium
@@ -370,7 +375,7 @@ export default function Marketplace({
   }
 
   return (
-    <FullPage as={HeaderPad}>
+    <FullPageWidth as={HeaderPad}>
       <MarketplacePage className="mb-xxxxlarge">
         <div className="my-xxlarge xxl:mb-[80px]">
           <Heading1
@@ -494,7 +499,7 @@ export default function Marketplace({
           </MainContent>
         </ContentContainer>
       </MarketplacePage>
-    </FullPage>
+    </FullPageWidth>
   )
 }
 

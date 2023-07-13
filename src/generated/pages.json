@@ -15,6 +15,9 @@
     "path": "/contact"
   },
   {
+    "path": "/demo-login"
+  },
+  {
     "path": "/"
   },
   {
@@ -22,5 +25,8 @@
   },
   {
     "path": "/pricing"
+  },
+  {
+    "path": "/product"
   }
 ]
