@@ -93,7 +93,9 @@ const ContributorCardSC = styled.a(({ theme }) => ({
     ...theme.partials.marketingText.body1,
     color: theme.colors.text,
   },
+  transition: 'all 0.2s ease',
   '&:hover': {
+    transition: 'all 0.25s cubic-bezier(.42,0,.59,.83)',
     borderColor: theme.colors['border-primary'],
     background: `${chroma(theme.colors['fill-two']).alpha(0.6)}`,
     boxShadow: mShadows.purple.modal,

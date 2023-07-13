@@ -352,6 +352,7 @@ const CtaSC = styled.a<{ $size: 'medium' | 'small' }>(({ theme, $size }) => ({
   cursor: 'pointer',
 
   '&:hover': {
+    textDecoration: 'underline',
     [CtaIcon]: {
       transform: 'translate(20%)',
     },
