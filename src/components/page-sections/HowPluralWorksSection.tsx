@@ -1,11 +1,16 @@
+import classNames from 'classnames'
+
 import {
+  ConnectorLineH,
+  ConnectorLineV,
   HowWorks,
   HowWorksImage,
   HowWorksImgCol,
   HowWorksItemCol,
   HowWorksSection,
   HowWorksStepCol,
-} from '@src/components/ProductStepNum'
+  IMAGE_MARGIN,
+} from '@src/components/HowPluralWorksComponents'
 
 import { BasicUl } from '../../../pages/product'
 
@@ -75,12 +80,33 @@ export function HowPluralWorksSection() {
             src="/animations/how-02-sm/index.html"
           />
           <HowWorksImage
-            className="hidden md:block"
+            className={classNames(
+              'hidden md:block',
+              'md:pb-[120px] lg:pb-[unset]'
+            )}
             title="how-plural-works-2"
             width={464}
             height={388}
             src="/animations/how-02/index.html"
-          />
+          >
+            <ConnectorLineV
+              className="hidden lg:block"
+              {...{
+                top: '40%',
+                bottom: `calc(-125px + ${IMAGE_MARGIN})`,
+                left: '64.2%',
+              }}
+            />
+            <ConnectorLineV
+              className=" lg:hidden"
+              {...{
+                top: '40%',
+                bottom: `calc(-245px + ${IMAGE_MARGIN})`,
+                left: '64.2%',
+              }}
+            />
+            <ConnectorLineV {...{ top: '-60%', bottom: '73%', left: '36%' }} />
+          </HowWorksImage>
         </HowWorksImgCol>
       </HowWorksSection>
       <HowWorksSection>
@@ -115,7 +141,29 @@ export function HowPluralWorksSection() {
             width={464}
             height={437}
             src="/animations/how-03/index.html"
-          />
+          >
+            <ConnectorLineV
+              {...{ top: '10%', bottom: '56.5%', left: '64.2%' }}
+            />
+            <ConnectorLineH
+              {...{
+                transformOrigin: '50% 0',
+                top: '43.5%',
+                bottom: 'auto',
+                left: '30%',
+                right: '35.8%',
+                overflow: 'hidden',
+              }}
+            />
+            <ConnectorLineV
+              {...{
+                top: '37%',
+                bottom: '-50%',
+                left: '24.1%',
+                transform: 'translate(-50%)',
+              }}
+            />
+          </HowWorksImage>
         </HowWorksImgCol>
       </HowWorksSection>
       <HowWorksSection>
@@ -146,7 +194,11 @@ export function HowPluralWorksSection() {
             width={464}
             height={304}
             src="/animations/how-04/index.html"
-          />
+          >
+            {' '}
+            <ConnectorLineV {...{}} /> <ConnectorLineV {...{}} />{' '}
+            <ConnectorLineV {...{}} />
+          </HowWorksImage>
         </HowWorksImgCol>
       </HowWorksSection>
     </HowWorks>

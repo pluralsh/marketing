@@ -177,7 +177,7 @@ export default function Index() {
                       title="hero-animation"
                       data-animation-frame
                       frameBorder="0"
-                      src="https://plural-external-public.s3.amazonaws.com/animations/hero1-iframe/index.html"
+                      src="/animations/hero1-iframe/index.html"
                     />
                   </div>
                 </HeroAnimationWrapSC>

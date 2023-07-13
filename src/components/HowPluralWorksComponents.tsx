@@ -5,6 +5,10 @@ import { type Merge } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
 
+const SHIFT_MQ = mqs.md
+
+export const IMAGE_MARGIN = '7%'
+
 const StepNumSC = styled.div((_) => ({
   '--step-diameter': '62px',
 
@@ -18,7 +22,7 @@ const StepNumSC = styled.div((_) => ({
   display: 'block',
   position: 'relative',
   boxShadow: '0 3px 6px rgba(0,0,0,.15),0 10px 20px rgba(0,0,0,.1)',
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     '--step-diameter': '40px',
   },
 }))
@@ -42,7 +46,7 @@ const StepNumTextSC = styled.div(({ theme }) => ({
   fontSize: '32.5px',
   paddingTop: '.05em',
   fontFamily: theme.fontFamilies.sans,
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     fontSize: '21px',
     marginLeft: 0,
   },
@@ -60,7 +64,7 @@ const CenterColSC = styled.div(({ theme }) => ({
 
   alignSelf: 'center',
   marginBottom: theme.spacing.large,
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     alignSelf: 'revert',
     marginBottom: 0,
   },
@@ -130,7 +134,7 @@ export const HowWorks = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   rowGap: theme.spacing.xxxxlarge,
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     rowGap: 0,
   },
 }))
@@ -143,14 +147,14 @@ export const HowWorksSection = styled.div((_) => ({
   display: 'flex',
   maxWidth: '460px',
   flexDirection: 'column',
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     maxWidth: '1000px',
     flexDirection: 'row',
   },
 }))
 
 const HowWorksColSC = styled.div(() => ({
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     flex: '0 420px',
     flexGrow: 0,
     flexShrink: 1,
@@ -161,7 +165,7 @@ const HowWorksColSC = styled.div(() => ({
 export const HowWorksItemCol = styled(HowWorksColSC)(({ theme }) => ({
   paddingBottom: theme.spacing.large,
   alignSelf: 'center',
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     alignSelf: 'revert',
     paddingBottom: theme.spacing.xxxlarge,
   },
@@ -179,7 +183,7 @@ export const HowWorksItemCol = styled(HowWorksColSC)(({ theme }) => ({
 
 export const HowWorksImgCol = styled(HowWorksColSC)(() => ({
   marginBottom: '0',
-  [mqs.md]: {
+  [SHIFT_MQ]: {
     order: -1,
     marginBottom: '13%',
   },
@@ -188,8 +192,8 @@ export const HowWorksImgCol = styled(HowWorksColSC)(() => ({
   },
 }))
 
-const HowWorksImagWrapSC = styled.div((_) => ({
-  margin: '-7%',
+const HowWorksImageWrapSC = styled.div((_) => ({
+  margin: `-${IMAGE_MARGIN}`,
   position: 'relative',
   '--width': '300px',
   '--height': '300px',
@@ -207,6 +211,7 @@ const HowWorksImageSC = styled.div<{ $width: number; $height: number }>(
       left: '0',
       width: '100%',
       height: '100%',
+      zIndex: 1,
     },
   })
 )
@@ -216,9 +221,10 @@ export function HowWorksImage({
   height,
   src,
   title,
+  children,
   ...props
 }: Merge<
-  ComponentProps<typeof HowWorksImagWrapSC>,
+  ComponentProps<typeof HowWorksImageWrapSC>,
   {
     width: number
     height: number
@@ -227,11 +233,12 @@ export function HowWorksImage({
   }
 >) {
   return (
-    <HowWorksImagWrapSC {...props}>
+    <HowWorksImageWrapSC {...props}>
       <HowWorksImageSC
         $width={width}
         $height={height}
       >
+        {children}
         <iframe
           title={title}
           data-animation-frame
@@ -239,6 +246,96 @@ export function HowWorksImage({
           src={src}
         />
       </HowWorksImageSC>
-    </HowWorksImagWrapSC>
+    </HowWorksImageWrapSC>
+  )
+}
+
+const ConnectorLineVSC = styled.div((_) => ({
+  width: '10px',
+  transformOrigin: '50% 0',
+  position: 'absolute',
+  overflow: 'hidden',
+  transform: 'translate(-50%)',
+  img: {
+    display: 'block',
+    transformOrigin: '50% 0',
+    position: 'absolute',
+    top: '0',
+    left: '50%',
+    transform: 'translate(-50%) scale(.1666)',
+  },
+}))
+
+const ConnectorLineHSC = styled.div((_) => ({
+  height: '10px',
+  transformOrigin: '50% 0',
+  position: 'absolute',
+  overflow: 'hidden',
+  transform: 'translateY(-50%)',
+  img: {
+    display: 'block',
+    transformOrigin: '50% 0',
+    position: 'absolute',
+    top: '50%',
+    left: '0',
+    transform: 'translate(0)scale(.16666)rotate(-90deg)translate(-50%)',
+  },
+}))
+
+export function ConnectorLineV({
+  top,
+  left,
+  bottom,
+  ...props
+}: Merge<
+  ComponentProps<typeof ConnectorLineVSC>,
+  {
+    top: string
+    left: string
+    bottom: string
+  }
+>) {
+  return (
+    <ConnectorLineVSC
+      style={{ top, left, bottom }}
+      {...props}
+    >
+      <img
+        src="/images/product/dotted-line-vertical.png"
+        loading="lazy"
+        width="6"
+        height="3992"
+        alt=""
+      />
+    </ConnectorLineVSC>
+  )
+}
+
+export function ConnectorLineH({
+  top,
+  left,
+  right,
+  ...props
+}: Merge<
+  ComponentProps<typeof ConnectorLineHSC>,
+  {
+    top: string
+    left: string
+    right: string
+  }
+>) {
+  return (
+    <ConnectorLineHSC
+      style={{ top, left, right }}
+      {...props}
+    >
+      <img
+        src="/images/product/dotted-line-vertical.png"
+        loading="lazy"
+        width="6"
+        height="3992"
+        alt=""
+      />
+    </ConnectorLineHSC>
   )
 }
