@@ -1,14 +1,6 @@
 import { type ComponentProps } from 'react'
 
-import {
-  ArrowRightLeftIcon,
-  ColorModeProvider,
-  GearTrainIcon,
-  PadlockLockedIcon,
-  PeopleIcon,
-  PersonIcon,
-  RocketIcon,
-} from '@pluralsh/design-system'
+import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
@@ -154,49 +146,50 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               )}
             >
               <ValueCard
-                icon={<ArrowRightLeftIcon />}
-                title="Collaboration"
+                iconUrl="/images/icons/careers/transparency.svg"
+                title="Transparency"
               >
-                Commodo dolore et voluptate sit ullamco aliqua. Voluptate tempor
-                magna in qui est. Ipsum veniam eiusmod commodo consectetur.
+                We believe in the power of transparency. We strive to provide
+                open and honest information about our processes, products, and
+                decisions.
               </ValueCard>
               <ValueCard
-                icon={<PersonIcon />}
-                title="Autonomy"
+                iconUrl="/images/icons/careers/kindness.svg"
+                title="Kindness and respect"
               >
-                Ipsum laboris mollit eu consectetur anim Lorem cillum proident
-                sunt ex ipsum deserunt fugiat.
+                We believe in the power of positive interactions and aim to
+                uplift and encourage one another, both within our team and the
+                wider community.
               </ValueCard>
               <ValueCard
-                icon={<PadlockLockedIcon />}
-                title="Trust"
+                iconUrl="/images/icons/careers/open-mindedness.svg"
+                title="Open mindedness"
               >
-                Sit consequat excepteur cillum voluptate exercitation. Qui non
-                sit laboris Lorem culpa exercitation. Excepteur exercitation do
-                mollit cupidatat mollit tempor.
+                We believe in the power of open-mindedness and embracing new
+                possibilities.
               </ValueCard>
               <ValueCard
-                icon={<PeopleIcon />}
-                title="Diversity"
+                iconUrl="/images/icons/careers/inclusivity.svg"
+                title="Inclusivity"
               >
-                Dolore pariatur consequat dolor sunt labore velit anim dolore et
-                est excepteur minim minim. Commodo dolore labore aliquip ea ad
-                aute reprehenderit elit quis culpa excepteur ex commodo minim.{' '}
+                We value the contributions of all community members and actively
+                work towards creating an environment that is accessible,
+                equitable, and supportive.
               </ValueCard>
               <ValueCard
-                icon={<GearTrainIcon />}
-                title="Efficiency"
+                iconUrl="/images/icons/careers/excellence.svg"
+                title="Excellence"
               >
-                Est laboris ea exercitation eiusmod culpa non non do
-                reprehenderit duis. In esse incididunt aliquip exercitation. Do
-                eu ullamco adipisicing.
+                We have a passion for excellence and continuously strive to
+                deliver the highest quality in everything we do.
               </ValueCard>
               <ValueCard
-                icon={<RocketIcon />}
-                title="Innovation"
+                iconUrl="/images/icons/careers/exploration.svg"
+                title="Exploration"
               >
-                Commodo dolore labore aliquip ea ad aute reprehenderit elit quis
-                culpa excepteur ex commodo minim.{' '}
+                We encourage exploration and foster an environment that embraces
+                diverse ideas, encourages constructive feedback, and values
+                continuous learning.
               </ValueCard>
             </div>
           </StandardPageWidth>

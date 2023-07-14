@@ -1,9 +1,4 @@
-import {
-  type ComponentProps,
-  type ReactElement,
-  type ReactNode,
-  cloneElement,
-} from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
 import styled from 'styled-components'
 
@@ -31,6 +26,12 @@ export const ValueCardIconSC = styled.div(({ theme }) => ({
   borderRadius: theme.borderRadiuses.medium,
   background: theme.colors['fill-zero'],
   color: theme.colors['icon-secondary'],
+  img: {
+    display: 'block',
+    maxWidth: 'unset',
+    width: 24,
+    height: 24,
+  },
 }))
 
 export const ValueCardTitleSC = styled.h4(({ theme }) => ({
@@ -42,21 +43,21 @@ export const ValueCardContentSC = styled.p(({ theme }) => ({
 }))
 
 export function ValueCard({
-  icon,
+  iconUrl,
   title,
   children,
   ...props
 }: {
-  icon: ReactElement
+  iconUrl: string
   title: ReactNode
   children: ReactNode
 } & ComponentProps<typeof ValueCardSC>) {
-  const iconClone = cloneElement(icon, { size: 24 })
-
   return (
     <ValueCardSC {...props}>
       <div className="top">
-        <ValueCardIconSC>{iconClone}</ValueCardIconSC>
+        <ValueCardIconSC>
+          <img src={iconUrl} />
+        </ValueCardIconSC>
         <ValueCardTitleSC>{title}</ValueCardTitleSC>
       </div>
       <ValueCardContentSC>{children}</ValueCardContentSC>
