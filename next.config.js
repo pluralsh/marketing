@@ -5,17 +5,17 @@ const withMarkdoc = require('@markdoc/next.js')(
     schemaPath: './src/markdoc',
   }
 )
-const withTM = require('next-transpile-modules')(
-  ['@pluralsh/design-system', 'honorable', 'honorable-theme-default'],
-  {
-    debug: false,
-  }
-)
 
 module.exports = () => {
-  const plugins = [withMarkdoc, withTM]
+  const plugins = [withMarkdoc]
 
   return plugins.reduce((acc, next) => next(acc), {
+    transpilePackages: [
+      '@pluralsh/design-system',
+      'honorable',
+      'honorable-theme-default',
+      'honorable-recipe-mapper',
+    ],
     reactStrictMode: false,
     compiler: {
       // https://nextjs.org/docs/advanced-features/compiler#styled-components
