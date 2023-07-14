@@ -23,7 +23,7 @@ import { TextLimiter } from '../layout/TextLimiter'
 import { CenteredSectionHead } from '../SectionHeads'
 import { Cta } from '../Typography'
 
-const ResourceCardBaseSC = styled.div<{ $clickable: boolean }>(
+export const ResourceCardBaseSC = styled.div<{ $clickable: boolean }>(
   ({ theme, $clickable = false }) => ({
     background: theme.colors['fill-two'],
     border: theme.borders['fill-one'],

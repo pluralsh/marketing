@@ -104,7 +104,10 @@ export function JobCard({
   tags?: unknown
 } & ComponentProps<typeof JobCardSC>) {
   return (
-    <JobCardSC {...props}>
+    <JobCardSC
+      $clickable={!!props.href}
+      {...props}
+    >
       <div className="top">
         <JobCardTitleSC>{title}</JobCardTitleSC>
         {location && <JobCardLocationSC>{location}</JobCardLocationSC>}
