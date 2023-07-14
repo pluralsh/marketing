@@ -31,6 +31,9 @@ export type Query = {
   callouts: Array<Callouts>;
   callouts_aggregated: Array<Callouts_Aggregated>;
   callouts_by_id?: Maybe<Callouts>;
+  case_studies: Array<Case_Studies>;
+  case_studies_aggregated: Array<Case_Studies_Aggregated>;
+  case_studies_by_id?: Maybe<Case_Studies>;
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
@@ -52,6 +55,9 @@ export type Query = {
   page_community?: Maybe<Page_Community>;
   page_legal?: Maybe<Page_Legal>;
   site_settings?: Maybe<Site_Settings>;
+  solutions_pages: Array<Solutions_Pages>;
+  solutions_pages_aggregated: Array<Solutions_Pages_Aggregated>;
+  solutions_pages_by_id?: Maybe<Solutions_Pages>;
   stacks: Array<Stacks>;
   stacks_aggregated: Array<Stacks_Aggregated>;
   stacks_by_id?: Maybe<Stacks>;
@@ -109,6 +115,32 @@ export type QueryCallouts_AggregatedArgs = {
 
 
 export type QueryCallouts_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCase_StudiesArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCase_Studies_AggregatedArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCase_Studies_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -265,6 +297,32 @@ export type QueryNav_List_AggregatedArgs = {
 
 
 export type QueryNav_List_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QuerySolutions_PagesArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_AggregatedArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -435,6 +493,73 @@ export type Callouts_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Case_Studies = {
+  __typename?: 'case_studies';
+  content?: Maybe<Scalars['String']['output']>;
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
+  hero_image?: Maybe<Directus_Files>;
+  id: Scalars['ID']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
+  stack_apps?: Maybe<Scalars['JSON']['output']>;
+  stack_apps_func?: Maybe<Count_Functions>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Case_StudiesHero_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Case_Studies_Aggregated = {
+  __typename?: 'case_studies_aggregated';
+  avg?: Maybe<Case_Studies_Aggregated_Fields>;
+  avgDistinct?: Maybe<Case_Studies_Aggregated_Fields>;
+  count?: Maybe<Case_Studies_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Case_Studies_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Case_Studies_Aggregated_Fields>;
+  min?: Maybe<Case_Studies_Aggregated_Fields>;
+  sum?: Maybe<Case_Studies_Aggregated_Fields>;
+  sumDistinct?: Maybe<Case_Studies_Aggregated_Fields>;
+};
+
+export type Case_Studies_Aggregated_Count = {
+  __typename?: 'case_studies_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  ctas?: Maybe<Scalars['Int']['output']>;
+  hero_image?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  stack_apps?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Case_Studies_Aggregated_Fields = {
+  __typename?: 'case_studies_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Case_Studies_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Case_Studies_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Case_Studies_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
+  hero_image?: InputMaybe<Directus_Files_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  stack_apps?: InputMaybe<String_Filter_Operators>;
+  stack_apps_func?: InputMaybe<Count_Function_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -1034,6 +1159,103 @@ export type Site_SettingsMain_NavArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages = {
+  __typename?: 'solutions_pages';
+  bullet_points?: Maybe<Scalars['JSON']['output']>;
+  bullet_points_func?: Maybe<Count_Functions>;
+  case_study?: Maybe<Case_Studies>;
+  content_1?: Maybe<Scalars['String']['output']>;
+  content_2?: Maybe<Scalars['String']['output']>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading_1?: Maybe<Scalars['String']['output']>;
+  heading_2?: Maybe<Scalars['String']['output']>;
+  hero_image?: Maybe<Directus_Files>;
+  id: Scalars['ID']['output'];
+  slug: Scalars['String']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Solutions_PagesCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_PagesHero_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages_Aggregated = {
+  __typename?: 'solutions_pages_aggregated';
+  avg?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  count?: Maybe<Solutions_Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solutions_Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  min?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  sum?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solutions_Pages_Aggregated_Fields>;
+};
+
+export type Solutions_Pages_Aggregated_Count = {
+  __typename?: 'solutions_pages_aggregated_count';
+  bullet_points?: Maybe<Scalars['Int']['output']>;
+  case_study?: Maybe<Scalars['Int']['output']>;
+  content_1?: Maybe<Scalars['Int']['output']>;
+  content_2?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  heading_1?: Maybe<Scalars['Int']['output']>;
+  heading_2?: Maybe<Scalars['Int']['output']>;
+  hero_image?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solutions_Pages_Aggregated_Fields = {
+  __typename?: 'solutions_pages_aggregated_fields';
+  case_study?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solutions_Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
+  bullet_points?: InputMaybe<String_Filter_Operators>;
+  bullet_points_func?: InputMaybe<Count_Function_Filter_Operators>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
+  content_1?: InputMaybe<String_Filter_Operators>;
+  content_2?: InputMaybe<String_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  heading_1?: InputMaybe<String_Filter_Operators>;
+  heading_2?: InputMaybe<String_Filter_Operators>;
+  hero_image?: InputMaybe<Directus_Files_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Stacks = {
