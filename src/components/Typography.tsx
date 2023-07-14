@@ -321,3 +321,7 @@ export const Cta = styled(
     )
   }
 )``
+
+export const InlineLink = styled.a(({ theme }) => ({
+  ...theme.partials.text.inlineLink,
+}))
