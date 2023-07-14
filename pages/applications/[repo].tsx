@@ -20,7 +20,7 @@ import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
 import BuildStack, {
@@ -42,7 +42,7 @@ import {
   Heading3,
   Overline,
 } from '@src/components/Typography'
-import { getAppMeta, getProviderIcon } from '@src/consts'
+import { QUICKSTART_VIDEO_URL, getAppMeta, getProviderIcon } from '@src/consts'
 import {
   type FullRepo,
   type MinRepo,
@@ -71,7 +71,7 @@ import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { ProviderIcon } from '../../src/components/ProviderIcon'
 import { RepoSocials } from '../../src/components/RepoSocials'
 
-const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=mFDA-718RhI'
+const DEFAULT_HERO_VIDEO = QUICKSTART_VIDEO_URL
 
 function isRecipe(
   recipe: RecipeFragment | null | undefined
@@ -163,9 +163,9 @@ export default function App({
 
   return (
     <HeaderPad as={GradientBG}>
-      <StandardPage>
+      <StandardPageWidth>
         <div className="py-[40px] md:pb-xxxlarge">
-          <BackButton />
+          <BackButton href="/marketplace" />
         </div>
         <Columns className="gap-y-xxlarge">
           <EqualColumn>
@@ -267,7 +267,7 @@ export default function App({
             </SingleAccordion>
           )}
         </div>
-      </StandardPage>
+      </StandardPageWidth>
       <ProductValueSection
         name={repo.displayName}
         isStack={false}

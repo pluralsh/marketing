@@ -1,0 +1,31 @@
+fragment MinJobListing on job_listings {
+  id
+  slug
+  job_title
+  department
+  tags
+  location
+}
+
+fragment FullJobListing on job_listings {
+  ...MinJobListing
+  content
+}
+
+query JobListings {
+  job_listings {
+    ...MinJobListing
+  }
+}
+
+query JobListing($slug: String) {
+  job_listings(filter: { slug: { _eq: $slug } }) {
+    ...FullJobListing
+  }
+}
+
+query JobListingSlugs {
+  job_listings {
+    slug
+  }
+}

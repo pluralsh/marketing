@@ -62,27 +62,24 @@ export const readMdFileCached = async (
   }
 }
 
-export const readMdPage = async (
-  page: MarkdownPageFragment
+export const ReadMdContent = async (
+  fileContent: string,
+  filePath?: unknown
 ): Promise<MarkdocPage | null> => {
   try {
-    const file = page.content
+    if (!fileContent) return null
 
-    if (!file) return null
-
-    const ast = Markdoc.parse(file)
+    const ast = Markdoc.parse(fileContent)
     const frontmatter = ast.attributes.frontmatter
       ? yaml.load(ast.attributes.frontmatter)
       : {}
-    const content = Markdoc.transform(ast, schemaConfig)
+    const mdTree = Markdoc.transform(ast, schemaConfig)
 
     const ret: MarkdocPage = JSON.parse(
       JSON.stringify({
-        content,
+        content: mdTree,
         frontmatter,
-        file: {
-          path: page.slug,
-        },
+        file: { path: filePath },
       })
     )
 
@@ -91,3 +88,7 @@ export const readMdPage = async (
     return null
   }
 }
+
+export const readMdPage = async (
+  page: MarkdownPageFragment
+): Promise<MarkdocPage | null> => ReadMdContent(page.content || '', page.slug)

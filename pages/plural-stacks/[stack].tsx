@@ -21,8 +21,8 @@ import { AppCard } from '@src/components/AppOrStackCard'
 import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
-import { StandardPage } from '@src/components/layout/FullPage'
 import { GradientBG } from '@src/components/layout/GradientBG'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { BackButton } from '@src/components/Nav'
 import BuildStackSection, {
   getStackTabData,
@@ -125,9 +125,9 @@ export default function Stack({
 
   return (
     <HeaderPad as={GradientBG}>
-      <StandardPage>
+      <StandardPageWidth>
         <div className="py-[40px] md:pb-xxxlarge">
-          <BackButton />
+          <BackButton href="/marketplace" />
         </div>
         <Columns className="gap-y-xxlarge">
           <EqualColumn>
@@ -261,7 +261,7 @@ export default function Stack({
             </EqualColumn>
           </Columns>
         </div>
-      </StandardPage>
+      </StandardPageWidth>
       <ProductValueSection
         name={stack.displayName}
         isStack
@@ -362,7 +362,7 @@ export function ProductValueSection({
   const fullName = isStack ? `the ${name} Stack` : name
 
   return (
-    <StandardPage>
+    <StandardPageWidth>
       <div>
         <Columns className="gap-y-xxxlarge">
           <EqualColumn>
@@ -399,6 +399,6 @@ export function ProductValueSection({
           />
         </div>
       </div>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }

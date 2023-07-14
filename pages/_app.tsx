@@ -37,6 +37,7 @@ export type GlobalPageProps = {
   metaTitleFull?: string
   metaDescription?: string
   footerVariant?: FooterVariant
+  showHeaderBG?: boolean
 }
 
 type MyAppProps = AppProps<GlobalPageProps & { globalProps: GlobalProps }>
@@ -46,8 +47,6 @@ export type MarkdocHeading = {
   level?: number
   title?: string
 }
-
-const docsStyledTheme = { ...styledTheme, ...{ docs: { topNavHeight: 72 } } }
 
 const useNavigate = () => {
   const router = useRouter()
@@ -110,7 +109,7 @@ function App({ Component, pageProps }: MyAppProps) {
           <SWRConfig value={gProps.swrConfig}>
             <BreakpointProvider>
               <ThemeProvider theme={honorableTheme}>
-                <StyledThemeProvider theme={docsStyledTheme}>
+                <StyledThemeProvider theme={styledTheme}>
                   <FillLevelProvider value={0}>{app}</FillLevelProvider>
                 </StyledThemeProvider>
               </ThemeProvider>

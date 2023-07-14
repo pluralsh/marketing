@@ -15,16 +15,33 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { mShadows } from '@src/styles/extraStyles'
 
 import DocumentFilledIcon from '../icons/DocumentFilledIcon'
 import PlayFilledIcon from '../icons/PlayFilledIcon'
 import { TextLimiter } from '../layout/TextLimiter'
-import { Cta, ResponsiveText } from '../Typography'
+import { CenteredSectionHead } from '../SectionHeads'
+import { Cta } from '../Typography'
 
-const ResourceCardSC = styled.div(({ theme }) => ({
-  background: theme.colors['fill-two'],
-  border: theme.borders['fill-one'],
-  borderRadius: theme.borderRadiuses.large,
+export const ResourceCardBaseSC = styled.div<{ $clickable: boolean }>(
+  ({ theme, $clickable = false }) => ({
+    background: theme.colors['fill-two'],
+    border: theme.borders['fill-one'],
+    borderRadius: theme.borderRadiuses.large,
+
+    transition: 'all 0.2s ease',
+    boxShadow: mShadows.light.slight,
+    ...($clickable
+      ? {
+          '&:hover': {
+            boxShadow: mShadows.light.moderate,
+          },
+        }
+      : {}),
+  })
+)
+
+const ResourceCardSC = styled(ResourceCardBaseSC)(({ theme }) => ({
   padding: theme.spacing.large,
   display: 'flex',
   flexDirection: 'column',
@@ -56,10 +73,10 @@ const ResourceCardSC = styled.div(({ theme }) => ({
   },
 }))
 
-const ResourceIconCardSC = styled.a(({ theme }) => ({
-  background: theme.colors['fill-two'],
-  border: theme.borders['fill-one'],
-  borderRadius: theme.borderRadiuses.large,
+const ResourceIconCardSC = styled(ResourceCardBaseSC).attrs({
+  as: 'a',
+  $clickable: true,
+})(({ theme }) => ({
   padding: theme.spacing.medium,
   display: 'flex',
   flexDirection: 'column',
@@ -152,13 +169,10 @@ function ResourceCard({
 export default function ResourcesSection() {
   return (
     <>
-      <ResponsiveText
-        as="h2"
-        className="mb-xxxlarge text-center"
-        textStyles={{ '': 'mHero2', md: 'mHero2', xl: 'mHero1' }}
-      >
-        Community resources
-      </ResponsiveText>
+      <CenteredSectionHead
+        heading="Community resources"
+        className="mb-xxxlarge"
+      />
       <div className="flex flex-col gap-xxlarge">
         <div className="grid gap-xlarge grid-cols-2 columns:gap-xxlarge columns:grid-cols-4">
           <ResourceIconCard

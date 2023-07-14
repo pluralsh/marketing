@@ -5,13 +5,13 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 
 import GithubStars from './GithubStars'
-import { FullPage } from './layout/FullPage'
+import { FullPageWidth } from './layout/LayoutHelpers'
 import { SocialLink } from './PageHeaderButtons'
 
 export function BasicFooter({ className }: { className?: string }) {
   return (
     <BasicFooterWrap className={className}>
-      <FullPage>
+      <FullPageWidth>
         <div className="socialIcons">
           <SocialLink
             className="discordIcon"
@@ -40,7 +40,7 @@ export function BasicFooter({ className }: { className?: string }) {
             Cookie Settings
           </FooterLink>
         </div>
-      </FullPage>
+      </FullPageWidth>
     </BasicFooterWrap>
   )
 }

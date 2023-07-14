@@ -7,7 +7,7 @@ https://www.plural.sh/blog/how-modeo-utilizes-plural-for-their-customers/
 import Link from 'next/link'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPage } from '@src/components/layout/FullPage'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { Cta, ResponsiveText } from '@src/components/Typography'
 import { appUrl } from '@src/consts/routes'
 import { type MinRepo } from '@src/data/getRepos'
@@ -16,7 +16,7 @@ import { AppCard } from '../AppOrStackCard'
 
 export function CaseStudySection({ apps }: { apps: MinRepo[] }) {
   return (
-    <StandardPage className="py-xxxlarge">
+    <StandardPageWidth className="py-xxxlarge">
       <Columns className="gap-y-xxlarge">
         <EqualColumn>
           <ResponsiveText
@@ -95,7 +95,7 @@ export function CaseStudySection({ apps }: { apps: MinRepo[] }) {
           </div>
         </EqualColumn>
       </Columns>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }
 

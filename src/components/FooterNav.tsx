@@ -7,7 +7,7 @@ import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
 
-import { FullPage } from './layout/FullPage'
+import { FullPageWidth } from './layout/LayoutHelpers'
 import { NewsletterSignupForm } from './NewsletterSignupForm'
 
 type NavItemT = {
@@ -172,7 +172,7 @@ export const FooterNavLink = styled(Link)(({ theme }) => ({
 
 export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => (
   <div {...props}>
-    <FullPage>
+    <FullPageWidth>
       <NavSections>
         {navItems.map((navItem) => (
           <NavSection key={navItem.heading}>
@@ -190,7 +190,7 @@ export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => (
           <NewsletterSignupForm />
         </NavSection>
       </NavSections>
-    </FullPage>
+    </FullPageWidth>
   </div>
 ))(({ theme }) => {
   const outlineOffset = -4

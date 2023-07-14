@@ -17,6 +17,8 @@ import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
 
+import { SingleAccordion } from './SingleAccordion'
+
 export const Heading1 = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.title2,
   [mqs.md]: {
@@ -137,6 +139,34 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
+const FAQBody = styled(AppBody2).attrs({
+  color: 'text-light',
+  as: 'div',
+})(({ theme }) => ({
+  maxWidth: 'var(--text-width-limit)',
+  '& :any-link': {
+    ...theme.partials.marketingText.inlineLink,
+  },
+  '& :is(p, ul, ol) + :is(p, ul, ol)': {
+    marginTop: theme.spacing.medium,
+  },
+}))
+
+export function FAQItem({
+  children,
+  ...props
+}: ComponentProps<typeof SingleAccordion>) {
+  return (
+    <SingleAccordion {...props}>
+      {typeof children === 'function' ? (
+        (isOpen) => <FAQBody>{children(isOpen)}</FAQBody>
+      ) : (
+        <FAQBody>{children}</FAQBody>
+      )}
+    </SingleAccordion>
+  )
+}
+
 export const Overline = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.overline,
@@ -195,54 +225,6 @@ export const Subtitle = forwardRef(
   )
 )
 
-const SectionHeadSC = styled.div(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  rowGap: theme.spacing.medium,
-  marginBottom: theme.spacing.xlarge,
-  textAlign: 'center',
-}))
-
-export function SectionHead({
-  h1,
-  h1Props = {},
-  h2,
-  h2Props = {},
-  ...props
-}: {
-  h1?: ReactNode
-  h1Props?: ComponentProps<typeof ResponsiveText>
-  h2?: ReactNode
-  h2Props?: ComponentProps<typeof ResponsiveText>
-} & ComponentProps<typeof SectionHeadSC>) {
-  return (
-    <SectionHeadSC {...props}>
-      {h1 && (
-        <ResponsiveText
-          as="h2"
-          textStyles={{ '': 'mLabel' }}
-          color="text-light"
-          className="[text-wrap:balance]"
-          {...h1Props}
-        >
-          {h1}
-        </ResponsiveText>
-      )}
-      {h2 && (
-        <ResponsiveText
-          as="h3"
-          textStyles={{ '': 'mHero2', xl: 'mHero1' }}
-          color="text"
-          className="[text-wrap:balance]"
-          {...h2Props}
-        >
-          {h2}
-        </ResponsiveText>
-      )}
-    </SectionHeadSC>
-  )
-}
-
 export const AppTitle = styled.h1(({ theme }) => ({
   ...theme.partials.marketingText.subtitle1,
   [mqs.md]: {
@@ -285,6 +267,7 @@ const CtaSC = styled.a<{ $size: 'medium' | 'small' }>(({ theme, $size }) => ({
   cursor: 'pointer',
 
   '&:hover': {
+    textDecoration: 'underline',
     [CtaIcon]: {
       transform: 'translate(20%)',
     },

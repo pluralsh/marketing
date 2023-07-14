@@ -80,6 +80,8 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
     '--menu-extra-bpad': '0px',
     '--page-x-pad': 'var(--page-x-pad-start)',
     '--top-nav-link-h-pad': 0,
+
+    '--text-width-limit': '896px',
     ...maxWidthCalc({
       nextBreakpoint: breakpoints.md,
       nextPageXPad: 'var(--page-x-pad-md)',

@@ -3,6 +3,7 @@ import {
   type ComponentProps,
   type ReactNode,
   forwardRef,
+  useCallback,
 } from 'react'
 
 import { ArrowRightIcon } from '@pluralsh/design-system'
@@ -62,7 +63,14 @@ export const ScrollToLink = forwardRef<
     children: ReactNode
   } & ComponentProps<typeof ScrollToLinkSC>
 >(({ scrollToTarget, children, options, ...props }, ref) => {
-  const onClick = useScrollTo(scrollToTarget, options)
+  const doScroll = useScrollTo(scrollToTarget, options)
+  const onClick = useCallback(
+    (e) => {
+      e.preventDefault()
+      doScroll()
+    },
+    [doScroll]
+  )
 
   const kids = Children.map(children, (child, i) => {
     if (i === Children.count(children) - 1 && typeof child === 'string') {
@@ -93,6 +101,9 @@ export const ScrollToLink = forwardRef<
     <ScrollToLinkSC
       onClick={onClick}
       ref={ref}
+      {...(typeof scrollToTarget === 'string'
+        ? { href: `#${scrollToTarget}` }
+        : {})}
       {...props}
     >
       {kids}

@@ -1,0 +1,105 @@
+import { type ReactNode } from 'react'
+
+import classNames from 'classnames'
+
+import { Columns, EqualColumn } from '@src/components/layout/Columns'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import { TextLimiter } from '@src/components/layout/TextLimiter'
+import { ResponsiveText } from '@src/components/Typography'
+
+export function HeroMainText({
+  preHeading,
+  heading,
+  ctas,
+  children,
+  ...props
+}: {
+  preHeading?: ReactNode
+  heading: ReactNode
+  ctas?: ReactNode
+  children?: ReactNode
+}) {
+  return (
+    <TextLimiter
+      className="flex flex-col gap-y-xlarge md:gap-y-xxlarge"
+      {...props}
+    >
+      <div className="flex flex-col gap-y-medium">
+        <ResponsiveText
+          className="[text-wrap:balance]"
+          as="h1"
+          textStyles={{
+            '': 'mHero2',
+            md: 'mBigHeader',
+          }}
+        >
+          {preHeading && (
+            <>
+              <ResponsiveText
+                className="[text-wrap:balance] block mb-medium"
+                as="strong"
+                textStyles={{ '': 'mLabel' }}
+              >
+                {preHeading}
+              </ResponsiveText>
+              <span className="sr-only"> – </span>
+            </>
+          )}
+          {heading}
+        </ResponsiveText>
+      </div>
+      {ctas && <div>{ctas}</div>}
+      {children && <div>{children}</div>}
+    </TextLimiter>
+  )
+}
+
+export function BasicPageHero({
+  preHeading,
+  heading,
+  intro,
+  ctas,
+  ...props
+}: {
+  preHeading?: ReactNode
+  heading: ReactNode
+  ctas?: ReactNode
+  intro?: ReactNode
+}) {
+  return (
+    <StandardPageWidth {...props}>
+      <div
+        className={classNames(
+          'pt-xxxxlarge',
+          'pb-xxxlarge',
+          'md:pt-xxxxlarge',
+          'md:pb-xxxxlarge',
+          'lg:pt-xxxxxlarge',
+          'lg:pb-xxxxxxlarge'
+        )}
+      >
+        <Columns className="columns:items-center gap-y-xxxlarge">
+          <EqualColumn className="justify-start">
+            <HeroMainText
+              preHeading={preHeading}
+              heading={heading}
+              ctas={ctas}
+            />
+          </EqualColumn>
+          <EqualColumn>
+            <TextLimiter>
+              <ResponsiveText
+                as="p"
+                textStyles={{ '': 'mBody1' }}
+                color="text-light"
+                className="[text-wrap:balance]"
+              >
+                {intro}
+              </ResponsiveText>
+            </TextLimiter>
+          </EqualColumn>
+        </Columns>
+      </div>
+    </StandardPageWidth>
+  )
+}

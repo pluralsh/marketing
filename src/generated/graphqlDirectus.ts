@@ -37,6 +37,9 @@ export type Query = {
   featured_contributors: Array<Featured_Contributors>;
   featured_contributors_aggregated: Array<Featured_Contributors_Aggregated>;
   featured_contributors_by_id?: Maybe<Featured_Contributors>;
+  job_listings: Array<Job_Listings>;
+  job_listings_aggregated: Array<Job_Listings_Aggregated>;
+  job_listings_by_id?: Maybe<Job_Listings>;
   markdown_pages: Array<Markdown_Pages>;
   markdown_pages_aggregated: Array<Markdown_Pages_Aggregated>;
   markdown_pages_by_id?: Maybe<Markdown_Pages>;
@@ -158,6 +161,32 @@ export type QueryFeatured_Contributors_AggregatedArgs = {
 
 
 export type QueryFeatured_Contributors_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryJob_ListingsArgs = {
+  filter?: InputMaybe<Job_Listings_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryJob_Listings_AggregatedArgs = {
+  filter?: InputMaybe<Job_Listings_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryJob_Listings_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -671,12 +700,68 @@ export type Featured_Contributors_Filter = {
   title?: InputMaybe<String_Filter_Operators>;
 };
 
+export type Job_Listings = {
+  __typename?: 'job_listings';
+  content?: Maybe<Scalars['String']['output']>;
+  department?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  job_title?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  tags?: Maybe<Scalars['JSON']['output']>;
+  tags_func?: Maybe<Count_Functions>;
+};
+
+export type Job_Listings_Aggregated = {
+  __typename?: 'job_listings_aggregated';
+  avg?: Maybe<Job_Listings_Aggregated_Fields>;
+  avgDistinct?: Maybe<Job_Listings_Aggregated_Fields>;
+  count?: Maybe<Job_Listings_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Job_Listings_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Job_Listings_Aggregated_Fields>;
+  min?: Maybe<Job_Listings_Aggregated_Fields>;
+  sum?: Maybe<Job_Listings_Aggregated_Fields>;
+  sumDistinct?: Maybe<Job_Listings_Aggregated_Fields>;
+};
+
+export type Job_Listings_Aggregated_Count = {
+  __typename?: 'job_listings_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  department?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  job_title?: Maybe<Scalars['Int']['output']>;
+  location?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  tags?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Job_Listings_Aggregated_Fields = {
+  __typename?: 'job_listings_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Job_Listings_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Job_Listings_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Job_Listings_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  department?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  job_title?: InputMaybe<String_Filter_Operators>;
+  location?: InputMaybe<String_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  tags?: InputMaybe<String_Filter_Operators>;
+  tags_func?: InputMaybe<Count_Function_Filter_Operators>;
+};
+
 export type Markdown_Pages = {
   __typename?: 'markdown_pages';
   content?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   markdown_page_id?: Maybe<Page_Legal>;
   slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -712,6 +797,7 @@ export type Markdown_Pages_Aggregated_Count = {
   id?: Maybe<Scalars['Int']['output']>;
   markdown_page_id?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
   subtitle?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
@@ -721,6 +807,7 @@ export type Markdown_Pages_Aggregated_Fields = {
   __typename?: 'markdown_pages_aggregated_fields';
   id?: Maybe<Scalars['Float']['output']>;
   markdown_page_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Markdown_Pages_Filter = {
@@ -730,6 +817,7 @@ export type Markdown_Pages_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   markdown_page_id?: InputMaybe<Page_Legal_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   subtitle?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
@@ -1130,6 +1218,27 @@ export type FeaturedContributorsQueryVariables = Exact<{ [key: string]: never; }
 
 export type FeaturedContributorsQuery = { __typename?: 'Query', featured_contributors: Array<{ __typename?: 'featured_contributors', id: string, name?: string | null, title?: string | null, social_github_url?: string | null, social_twitter_url?: string | null, social_linkedin_url?: string | null, content?: string | null, ctas?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
 
+export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
+
+export type FullJobListingFragment = { __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
+
+export type JobListingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type JobListingsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null }> };
+
+export type JobListingQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type JobListingQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null }> };
+
+export type JobListingSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type JobListingSlugsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', slug: string }> };
+
 export type CalloutFragment = { __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null };
 
 export type PageCommunityFragment = { __typename?: 'page_community', callouts?: Array<{ __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null } | null> | null };
@@ -1255,6 +1364,22 @@ export const FeaturedContributorFragmentDoc = gql`
   ctas
 }
     ${ImageFileFragmentDoc}`;
+export const MinJobListingFragmentDoc = gql`
+    fragment MinJobListing on job_listings {
+  id
+  slug
+  job_title
+  department
+  tags
+  location
+}
+    `;
+export const FullJobListingFragmentDoc = gql`
+    fragment FullJobListing on job_listings {
+  ...MinJobListing
+  content
+}
+    ${MinJobListingFragmentDoc}`;
 export const CalloutFragmentDoc = gql`
     fragment Callout on callouts {
   id
@@ -1494,6 +1619,109 @@ export function useFeaturedContributorsLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type FeaturedContributorsQueryHookResult = ReturnType<typeof useFeaturedContributorsQuery>;
 export type FeaturedContributorsLazyQueryHookResult = ReturnType<typeof useFeaturedContributorsLazyQuery>;
 export type FeaturedContributorsQueryResult = Apollo.QueryResult<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>;
+export const JobListingsDocument = gql`
+    query JobListings {
+  job_listings {
+    ...MinJobListing
+  }
+}
+    ${MinJobListingFragmentDoc}`;
+
+/**
+ * __useJobListingsQuery__
+ *
+ * To run a query within a React component, call `useJobListingsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useJobListingsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useJobListingsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useJobListingsQuery(baseOptions?: Apollo.QueryHookOptions<JobListingsQuery, JobListingsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<JobListingsQuery, JobListingsQueryVariables>(JobListingsDocument, options);
+      }
+export function useJobListingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<JobListingsQuery, JobListingsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<JobListingsQuery, JobListingsQueryVariables>(JobListingsDocument, options);
+        }
+export type JobListingsQueryHookResult = ReturnType<typeof useJobListingsQuery>;
+export type JobListingsLazyQueryHookResult = ReturnType<typeof useJobListingsLazyQuery>;
+export type JobListingsQueryResult = Apollo.QueryResult<JobListingsQuery, JobListingsQueryVariables>;
+export const JobListingDocument = gql`
+    query JobListing($slug: String) {
+  job_listings(filter: {slug: {_eq: $slug}}) {
+    ...FullJobListing
+  }
+}
+    ${FullJobListingFragmentDoc}`;
+
+/**
+ * __useJobListingQuery__
+ *
+ * To run a query within a React component, call `useJobListingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useJobListingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useJobListingQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useJobListingQuery(baseOptions?: Apollo.QueryHookOptions<JobListingQuery, JobListingQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<JobListingQuery, JobListingQueryVariables>(JobListingDocument, options);
+      }
+export function useJobListingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<JobListingQuery, JobListingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<JobListingQuery, JobListingQueryVariables>(JobListingDocument, options);
+        }
+export type JobListingQueryHookResult = ReturnType<typeof useJobListingQuery>;
+export type JobListingLazyQueryHookResult = ReturnType<typeof useJobListingLazyQuery>;
+export type JobListingQueryResult = Apollo.QueryResult<JobListingQuery, JobListingQueryVariables>;
+export const JobListingSlugsDocument = gql`
+    query JobListingSlugs {
+  job_listings {
+    slug
+  }
+}
+    `;
+
+/**
+ * __useJobListingSlugsQuery__
+ *
+ * To run a query within a React component, call `useJobListingSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useJobListingSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useJobListingSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useJobListingSlugsQuery(baseOptions?: Apollo.QueryHookOptions<JobListingSlugsQuery, JobListingSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<JobListingSlugsQuery, JobListingSlugsQueryVariables>(JobListingSlugsDocument, options);
+      }
+export function useJobListingSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<JobListingSlugsQuery, JobListingSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<JobListingSlugsQuery, JobListingSlugsQueryVariables>(JobListingSlugsDocument, options);
+        }
+export type JobListingSlugsQueryHookResult = ReturnType<typeof useJobListingSlugsQuery>;
+export type JobListingSlugsLazyQueryHookResult = ReturnType<typeof useJobListingSlugsLazyQuery>;
+export type JobListingSlugsQueryResult = Apollo.QueryResult<JobListingSlugsQuery, JobListingSlugsQueryVariables>;
 export const PageCommunityDocument = gql`
     query PageCommunity {
   page_community {

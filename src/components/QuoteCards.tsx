@@ -9,7 +9,7 @@ import { mqs } from '@src/breakpoints'
 
 import { CarouselDot, CarouselDots } from './CarouselDots'
 import useIndex from './hooks/useIndex'
-import { StandardPage } from './layout/FullPage'
+import { StandardPageWidth } from './layout/LayoutHelpers'
 import { Heading1 } from './Typography'
 
 type Quote = {
@@ -322,13 +322,13 @@ export const QuotesCarousel = styled(
 
 export function TestimonialsSection() {
   return (
-    <StandardPage>
+    <StandardPageWidth>
       <div className="my-xxxxxlarge">
         <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
           What companies are saying about Plural
         </Heading1>
         <QuotesCarousel />
       </div>
-    </StandardPage>
+    </StandardPageWidth>
   )
 }

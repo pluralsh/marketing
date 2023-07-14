@@ -4,10 +4,12 @@ import chroma from 'chroma-js'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
+import { mShadows } from '@src/styles/extraStyles'
+
 import { type CommunityContributor } from '../../data/getGithubData'
-import { StandardPage } from '../layout/FullPage'
 import { GradientBG } from '../layout/GradientBG'
-import { ResponsiveText } from '../Typography'
+import { StandardPageWidth } from '../layout/LayoutHelpers'
+import { CenteredSectionHead } from '../SectionHeads'
 
 export default function ContributorsSection({
   contributors,
@@ -19,18 +21,16 @@ export default function ContributorsSection({
       size="100% 100%"
       image="/images/gradients/gradient-bg-4.jpg"
     >
-      <StandardPage
+      <StandardPageWidth
         id="contributors-section"
         className="py-xxxxlarge xl:py-xxxxxxlarge"
       >
-        <ResponsiveText
-          className="mb-xxxlarge text-center"
-          textStyles={{ '': 'mHero2', md: 'mHero2', xl: 'mHero1' }}
-        >
-          Our contributors
-        </ResponsiveText>
+        <CenteredSectionHead
+          heading="Our contributors"
+          className="mb-xxxlarge"
+        />
         <ContributorsList contributors={contributors} />
-      </StandardPage>
+      </StandardPageWidth>
     </GradientBG>
   )
 }
@@ -92,6 +92,13 @@ const ContributorCardSC = styled.a(({ theme }) => ({
   '.login': {
     ...theme.partials.marketingText.body1,
     color: theme.colors.text,
+  },
+  transition: 'all 0.2s ease',
+  '&:hover': {
+    transition: 'all 0.25s cubic-bezier(.42,0,.59,.83)',
+    borderColor: theme.colors['border-primary'],
+    background: `${chroma(theme.colors['fill-two']).alpha(0.6)}`,
+    boxShadow: mShadows.purple.modal,
   },
 }))
 

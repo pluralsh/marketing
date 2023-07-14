@@ -52,3 +52,6 @@ export const getProviderIcon = ({
   `${PROVIDER_ICON_DIR}/${
     ProviderIcons[provider?.toUpperCase() || 'GENERIC'] ?? ProviderIcons.GENERIC
   }-${mode}.png`
+
+export const QUICKSTART_VIDEO_URL =
+  'https://www.youtube.com/watch?v=mFDA-718RhI'

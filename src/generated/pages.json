@@ -3,6 +3,9 @@
     "path": "/about"
   },
   {
+    "path": "/careers"
+  },
+  {
     "path": "/community"
   },
   {
@@ -12,15 +15,18 @@
     "path": "/contact"
   },
   {
+    "path": "/demo-login"
+  },
+  {
     "path": "/"
   },
   {
     "path": "/marketplace"
   },
   {
-    "path": "/newsletter-success"
+    "path": "/pricing"
   },
   {
-    "path": "/pricing"
+    "path": "/product"
   }
 ]

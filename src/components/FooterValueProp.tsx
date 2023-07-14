@@ -18,12 +18,12 @@ import styled, { useTheme } from 'styled-components'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 
-import { StandardPage } from './layout/FullPage'
+import { StandardPageWidth } from './layout/LayoutHelpers'
 import { TextLimiter } from './layout/TextLimiter'
 import { ResponsiveText } from './Typography'
 
 export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
-  <StandardPage>
+  <StandardPageWidth>
     <Columns
       {...props}
       className={classNames(props.className, 'gap-y-xxxlarge')}
@@ -81,7 +81,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
         </ValueProp>
       </EqualColumn>
     </Columns>
-  </StandardPage>
+  </StandardPageWidth>
 ))(({ theme: _ }) => ({}))
 
 function ValueProp({
