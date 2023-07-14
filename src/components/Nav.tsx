@@ -13,7 +13,6 @@ export const BackButton = styled(
       small
       startIcon={<ArrowLeftIcon />}
       as={Link}
-      href="/marketplace"
       {...props}
     >
       Back

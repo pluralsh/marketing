@@ -96,10 +96,6 @@ export function NewsletterSignupForm() {
         body,
       })
         .then((e) => {
-          console.log('e', e)
-          console.log('e.ok', e.ok)
-          console.log('e.status', e.status)
-          console.log('e.statusText', e.statusText)
           if (e.ok) {
             setResponse({
               type: 'success',
@@ -111,7 +107,6 @@ export function NewsletterSignupForm() {
           }
         })
         .catch((error) => {
-          console.log('error', error)
           setError(error)
         })
     },
@@ -190,7 +185,6 @@ export function NewsletterSignupForm() {
           ref={recaptchaRef}
           sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}
           onChange={(val) => {
-            console.log('recaptcha changed to', val)
             setRecaptchaVal(val)
           }}
         />

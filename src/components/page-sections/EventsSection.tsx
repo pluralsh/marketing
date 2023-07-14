@@ -230,6 +230,7 @@ function EventCard({
               (cta) =>
                 !!cta?.url && (
                   <CardCta
+                    key={`${cta.url}-${cta.label}`}
                     target="_blank"
                     href={cta.url}
                   >

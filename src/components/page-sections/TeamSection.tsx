@@ -5,13 +5,14 @@ import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
+import { mqs } from '@src/breakpoints'
 import { getImageUrl } from '@src/consts/routes'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
-import { FullPage, StandardPage } from '../layout/FullPage'
-import { TextLimiter } from '../layout/TextLimiter'
-import { ResponsiveText, SectionHead } from '../Typography'
+import { FullPageWidth, StandardPageWidth } from '../layout/LayoutHelpers'
+import { CenteredSectionHead } from '../SectionHeads'
+import { ResponsiveText } from '../Typography'
 
 const MemberSC = styled.li(({ theme }) => ({
   position: 'relative',
@@ -55,10 +56,34 @@ const MemberInfoSC = styled.div(({ theme }) => ({
   paddingBottom: theme.spacing.small,
 }))
 
-const TeamTabList = styled(TabList)(({ theme }) => ({
+// Using old inline-block layout technique so we can use 'text-wrap: balance'
+// to keep things looking nice when it breaks to multiple lines
+export const FilterTabList = styled(TabList)(({ theme }) => ({
   justifyContent: 'center',
   flexWrap: 'wrap',
+  display: 'block',
   gap: theme.spacing.xxsmall,
+  textAlign: 'center',
+  textWrap: 'balance',
+  marginBottom: -theme.spacing.xxsmall,
+  [mqs.md]: {
+    marginLeft: -theme.spacing.xxsmall / 2,
+    marginRight: -theme.spacing.xxsmall / 2,
+  },
+  '&&': {
+    display: 'block',
+  },
+  button: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
+    marginBottom: theme.spacing.xxsmall,
+    [mqs.md]: {
+      display: 'inline-block',
+      marginLeft: theme.spacing.xxsmall / 2,
+      marginRight: theme.spacing.xxsmall / 2,
+    },
+  },
 }))
 
 function Member({ member, ...props }: { member: TeamMemberFragment }) {
@@ -73,7 +98,13 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
               },
             }
           : {})}
-      />
+      >
+        <img
+          src=""
+          className="sr-only"
+          alt={`Portrait of ${member.name}`}
+        />
+      </div>
       <ColorModeProvider mode="dark">
         <MemberInfoSC>
           <ResponsiveText
@@ -132,45 +163,41 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
 
   return (
     <div>
-      <StandardPage className="mb-xxlarge md:mb-xxxxxlarge">
-        <SectionHead
-          h1="The team"
-          h2="Our compact yet remarkable team"
-          className=""
+      <StandardPageWidth className="mb-xxlarge md:mb-xxxxxlarge">
+        <CenteredSectionHead
+          preHeading="The team"
+          heading="Our compact yet remarkable team"
+          intro={
+            <p>
+              We’re a vibrant and dynamic team of employees, fueled by a passion
+              for tackling fascinating challenges in the realm of cloud
+              computing. As our team continues to grow, we thrive on exploring
+              the ever-evolving landscape of Kubernetes, Elixir, Go, and React.
+              With a shared enthusiasm for innovation and cutting-edge
+              technologies, we eagerly dive into complex projects, seeking out
+              novel solutions that push the boundaries of what’s possible.
+            </p>
+          }
         />
-        <TextLimiter className="mx-auto">
-          <ResponsiveText
-            textStyles={{ '': 'mBody2' }}
-            color="text-light"
-            className="text-center"
+      </StandardPageWidth>
+      <FullPageWidth>
+        <div className="mb-xxlarge xl:mb-xxxlarge">
+          <FilterTabList
+            stateRef={tabStateRef}
+            stateProps={tabStateProps}
           >
-            We’re a vibrant and dynamic team of employees, fueled by a passion
-            for tackling fascinating challenges in the realm of cloud computing.
-            As our team continues to grow, we thrive on exploring the
-            ever-evolving landscape of Kubernetes, Elixir, Go, and React. With a
-            shared enthusiasm for innovation and cutting-edge technologies, we
-            eagerly dive into complex projects, seeking out novel solutions that
-            push the boundaries of what’s possible.
-          </ResponsiveText>
-        </TextLimiter>
-      </StandardPage>
-      <FullPage>
-        <TeamTabList
-          className="mb-xxlarge xl:mb-xxxlarge"
-          stateRef={tabStateRef}
-          stateProps={tabStateProps}
-        >
-          {teamTabs.map((tab) => (
-            <ComponentLinkTab key={tab.key}>{tab.label}</ComponentLinkTab>
-          ))}
-        </TeamTabList>
+            {teamTabs.map((tab) => (
+              <ComponentLinkTab key={tab.key}>{tab.label}</ComponentLinkTab>
+            ))}
+          </FilterTabList>
+        </div>
         <TabPanel
           stateRef={tabStateRef}
           className=""
         >
           <TeamList members={filteredMembers} />
         </TabPanel>
-      </FullPage>
+      </FullPageWidth>
     </div>
   )
 }

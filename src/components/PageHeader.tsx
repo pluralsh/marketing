@@ -17,7 +17,7 @@ import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
 import GithubStars from './GithubStars'
-import { FullPage } from './layout/FullPage'
+import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
@@ -28,7 +28,7 @@ const Filler = styled.div((_) => ({
 
 export const PAGE_HEADER_ID = 'plural-page-header'
 
-export function PageHeader({ ...props }) {
+export function PageHeader({ showHeaderBG, ...props }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -53,7 +53,10 @@ export function PageHeader({ ...props }) {
   })
 
   return (
-    <HeaderWrap id={PAGE_HEADER_ID}>
+    <HeaderWrap
+      alwaysShowBG={showHeaderBG}
+      id={PAGE_HEADER_ID}
+    >
       <PageHeaderInner {...props}>
         <nav className="leftSection">
           <NextLink
@@ -120,12 +123,15 @@ export function PageHeader({ ...props }) {
   )
 }
 
-const HeaderWrap = styled(({ children, ...props }) => {
+const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
   const filterId = useId()
   const matrixId = `matrix-${filterId}`
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
+    if (alwaysShowBG) {
+      return
+    }
     const listener = (e) => {
       const scrolled = window.scrollY !== 0
 
@@ -141,12 +147,14 @@ const HeaderWrap = styled(({ children, ...props }) => {
     return () => {
       window.removeEventListener('scroll', listener)
     }
-  }, [])
+  }, [alwaysShowBG])
 
   return (
     <div {...props}>
       <div
-        className={classNames('backdrop', { show: hasScrolled })}
+        className={classNames('backdrop', {
+          show: alwaysShowBG || hasScrolled,
+        })}
         style={{
           backdropFilter: `blur(7.5px) url(#${filterId})`,
         }}
@@ -200,7 +208,7 @@ const HeaderWrap = styled(({ children, ...props }) => {
   },
 }))
 
-const PageHeaderInner = styled(FullPage).attrs(() => ({
+const PageHeaderInner = styled(FullPageWidth).attrs(() => ({
   as: 'header',
 }))(({ theme }) => ({
   height: 'var(--top-nav-height)',

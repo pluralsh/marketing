@@ -21,15 +21,12 @@ export function HubspotForm({
 
   useEffect(() => {
     const createForm = () => {
-      console.log('createForm', window.hbspt)
-      const ret = window?.hbspt?.forms?.create({
+      window?.hbspt?.forms?.create({
         region,
         portalId,
         formId,
         target: `#${id}`,
       })
-
-      console.log('createForm return', ret)
     }
 
     if (window?.hbspt?.forms.create) {

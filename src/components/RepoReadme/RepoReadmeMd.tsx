@@ -24,7 +24,7 @@ import MultilineCode from './Code'
 
 const MdA = styled.a(({ theme }) => ({
   '&, &:any-link': {
-    ...theme.partials.text.inlineLink,
+    ...theme.partials.marketingText.inlineLink,
   },
 }))
 

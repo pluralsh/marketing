@@ -8,7 +8,7 @@ import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HubspotForm } from '../src/components/HubspotForm'
-import { StandardPage } from '../src/components/layout/FullPage'
+import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
 
 import { ContactHeader } from './contact'
 
@@ -28,15 +28,15 @@ export default function Index() {
         image="/images/gradients/gradient-bg-4.jpg"
       >
         <ContactHeader
-          title="Drop us a note"
-          subtitle="Flexible and transparent pricing for everyone"
+          title="Contact our sales team"
+          subtitle="Our pricing is designed to be flexible and transparent, catering to the needs of all customers."
         />
       </HeaderPad>
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero py-xxxxlarge">
-          <StandardPage>
+          <StandardPageWidth>
             <HubspotForm formId="5c21c2a5-0e6b-462e-be7e-11bb53209dfc" />
-          </StandardPage>
+          </StandardPageWidth>
         </div>
       </ColorModeProvider>
     </>
