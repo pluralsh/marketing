@@ -10,7 +10,6 @@ import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
 import { BasicPageHero } from '@src/components/PageHeros'
 import { getImageUrl } from '@src/consts/routes'
-import { getRepos } from '@src/data/getRepos'
 import {
   type FaqItemFragment,
   FaqListDocument,
@@ -20,6 +19,9 @@ import {
   SolutionsDocument,
   type SolutionsQuery,
   type SolutionsQueryVariables,
+  SolutionsSlugsDocument,
+  type SolutionsSlugsQuery,
+  type SolutionsSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -68,6 +70,14 @@ export default function Solution({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await directusClient.query<
+    SolutionsSlugsQuery,
+    SolutionsSlugsQueryVariables
+  >({
+    query: SolutionsSlugsDocument,
+  })
+  const solutions = data.solutions_pages
+
   if (process.env.NODE_ENV === 'development') {
     return {
       paths: [],
@@ -75,10 +85,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 
-  const repos = (await getRepos()) || []
-
   return {
-    paths: repos.map((repo) => ({ params: { repo: repo?.name } })),
+    paths: solutions.map((solution) => ({
+      params: { solution: solution.slug },
+    })),
     fallback: true,
   }
 }

@@ -283,7 +283,14 @@ export default function App({
       {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
       <CompanyLogosSection className="mt-xxxxlarge" />
       <TestimonialsSection />
-      <ColorModeProvider mode="light">
+      <CaseStudyFAQSection
+        caseStudyProps={{
+          apps: caseStudyApps,
+          featuredArticle: appExtras?.case_study,
+        }}
+        faqProps={{ faqs }}
+      />
+      {/* <ColorModeProvider mode="light">
         <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
           <StandardPageWidth>
             <FeaturedArticleSection
@@ -293,8 +300,27 @@ export default function App({
           </StandardPageWidth>
           <StandardFAQSection faqs={faqs} />
         </StandardPageSection>
-      </ColorModeProvider>
+      </ColorModeProvider> */}
     </HeaderPad>
+  )
+}
+
+export function CaseStudyFAQSection({
+  caseStudyProps,
+  faqProps,
+}: {
+  caseStudyProps: ComponentProps<typeof FeaturedArticleSection>
+  faqProps: ComponentProps<typeof StandardFAQSection>
+}) {
+  return (
+    <ColorModeProvider mode="light">
+      <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
+        <StandardPageWidth>
+          <FeaturedArticleSection {...caseStudyProps} />
+        </StandardPageWidth>
+        <StandardFAQSection {...faqProps} />
+      </StandardPageSection>
+    </ColorModeProvider>
   )
 }
 

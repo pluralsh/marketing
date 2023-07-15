@@ -98,6 +98,9 @@ query AppExtras($name: String) {
 fragment StackExtras on stacks {
   name
   heroVideo
+  case_study {
+    ...FeaturedArticle
+  }
 }
 fragment StackDefaults on stack_defaults {
   case_study {

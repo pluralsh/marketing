@@ -14,6 +14,7 @@ import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/uti
 import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
+import { type MergeDeep } from 'type-fest'
 
 import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
@@ -27,7 +28,7 @@ import { BackButton } from '@src/components/Nav'
 import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
-import { getCaseStudyApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { RepoSocials } from '@src/components/RepoSocials'
@@ -45,6 +46,11 @@ import { appUrl } from '@src/consts/routes'
 import { type MinRepo, getRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
 import {
+  type FaqItemFragment,
+  FaqListDocument,
+  type FaqListQuery,
+  type FaqListQueryVariables,
+  type StackDefaultsFragment,
   StackExtrasDocument,
   type StackExtrasFragment,
   type StackExtrasQuery,
@@ -83,6 +89,7 @@ const StackAppsTabPanel = styled(TabPanel)((_) => ({}))
 export default function Stack({
   stack,
   stackExtras,
+  faqs,
   buildStackTabs,
   caseStudyApps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -269,7 +276,13 @@ export default function Stack({
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
       <CompanyLogosSection className="mt-xxxxlarge" />
       <TestimonialsSection />
-      <CaseStudyFAQSection caseStudyProps={{ apps: caseStudyApps }} />
+      <CaseStudyFAQSection
+        caseStudyProps={{
+          apps: caseStudyApps,
+          featuredArticle: stackExtras?.case_study,
+        }}
+        faqProps={{ faqs }}
+      />
     </HeaderPad>
   )
 }
@@ -295,7 +308,14 @@ export type StackPageProps = {
   stackExtras?: StackExtrasFragment
   buildStackTabs?: ReturnType<typeof getStackTabData>
   caseStudyApps: MinRepo[]
+  faqs: (FaqItemFragment | null)[]
 }
+
+const normalizeStackExtras = (extras: StackExtrasQuery) =>
+  ({
+    ...(extras.stack_defaults || {}),
+    ...(extras.stacks?.[0] || {}),
+  } as MergeDeep<StackDefaultsFragment, StackExtrasFragment>)
 
 export const getStaticProps: GetStaticProps<StackPageProps> = async (
   context
@@ -332,22 +352,37 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
 
   const buildStackTabs = getStackTabData({ repos, stacks })
 
+  const { data: faqData, error: faqError } = await directusClient.query<
+    FaqListQuery,
+    FaqListQueryVariables
+  >({
+    query: FaqListDocument,
+    variables: { slug: 'generic' },
+  })
+
+  const stackExtras = normalizeStackExtras(stackData) || {}
+
   return propsWithGlobalSettings({
     stack: thisStack
       ? {
           ...thisStack,
         }
       : null,
-    stackExtras: stackData?.stacks?.[0] || {},
+    stackExtras,
     ...getStackMeta(thisStack),
-    footerVariant: FooterVariant.kitchenSink,
+    faqs: faqData.collapsible_lists?.[0]?.items || [],
     buildStackTabs,
-    caseStudyApps: getCaseStudyApps(repos),
+    caseStudyApps: getFeaturedArticleApps(
+      repos,
+      (stackExtras.case_study?.stack_apps as string[]) || []
+    ),
+    footerVariant: FooterVariant.kitchenSink,
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [stacksError] : []),
       ...(stackError ? [stackError] : []),
       ...(appError ? [appError] : []),
+      ...(faqError ? [faqError] : []),
     ],
   })
 }
