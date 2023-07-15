@@ -12,7 +12,7 @@ import {
   IMAGE_MARGIN,
 } from '@src/components/HowPluralWorksComponents'
 
-import { BasicUl } from '../../../pages/product'
+import { BasicUl } from '../Typography'
 
 export function HowPluralWorksSection() {
   return (

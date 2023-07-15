@@ -13,6 +13,7 @@ const AppOrStackCard = styled.div<{
   $size: 'medium' | 'small' | 'xsmall'
   $active: 'boolean'
 }>(({ theme, $variant = 'app', $active = false, $size = 'medium' }) => ({
+  cursor: 'pointer',
   display: 'flex',
   rowGap: theme.spacing.xxsmall,
   flexDirection: 'column',

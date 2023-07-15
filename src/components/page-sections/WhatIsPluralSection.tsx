@@ -2,11 +2,11 @@ import { InlineCode } from '@pluralsh/design-system'
 
 import classNames from 'classnames'
 
-import { ArchitectureContentSC, BasicUl } from '@pages/product'
+import { ArchitectureContentSC } from '@pages/product'
 
 import { Columns, EqualColumn } from '../layout/Columns'
 import { CenteredSectionHead, SubsectionHead } from '../SectionHeads'
-import { Cta } from '../Typography'
+import { BasicUl, Cta } from '../Typography'
 
 export function WhatIsPluralSection() {
   return (

@@ -325,3 +325,33 @@ export const Cta = styled(
 export const InlineLink = styled.a(({ theme }) => ({
   ...theme.partials.text.inlineLink,
 }))
+
+export const BasicUl = styled.ul(({ theme }) => {
+  const indent = theme.spacing.large
+
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing.xsmall,
+    '*:is(p, ul, ol) + &': {
+      marginTop: theme.spacing.medium,
+    },
+    li: {
+      position: 'relative',
+      marginLeft: indent,
+      '::before': {
+        textAlign: 'center',
+        width: indent,
+        position: 'absolute',
+        content: '"•"',
+        left: -indent,
+      },
+    },
+  }
+})
+
+export const BasicP = styled.p(({ theme }) => ({
+  '*:is(p, ul, ol) + &': {
+    marginTop: theme.spacing.medium,
+  },
+}))

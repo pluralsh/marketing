@@ -27,7 +27,7 @@ import { BackButton } from '@src/components/Nav'
 import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
-import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
+import { getCaseStudyApps } from '@src/components/page-sections/FeaturedArticleSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { RepoSocials } from '@src/components/RepoSocials'

@@ -9,7 +9,7 @@ const withMarkdoc = require('@markdoc/next.js')(
 module.exports = () => {
   const plugins = [withMarkdoc]
 
-  return plugins.reduce((acc, next) => next(acc), {
+return plugins.reduce((acc, next) => next(acc), {
     transpilePackages: [
       '@pluralsh/design-system',
       'honorable',

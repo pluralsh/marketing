@@ -25,27 +25,6 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { HowPluralWorksSection } from '../src/components/page-sections/HowPluralWorksSection'
 import { HeroMainText } from '../src/components/PageHeros'
 
-export const BasicUl = styled.ul(({ theme }) => {
-  const indent = theme.spacing.large
-
-  return {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing.xsmall,
-    li: {
-      position: 'relative',
-      marginLeft: indent,
-      '::before': {
-        textAlign: 'center',
-        width: indent,
-        position: 'absolute',
-        content: '"•"',
-        left: -indent,
-      },
-    },
-  }
-})
-
 export const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
   color: theme.colors['text-light'],
   'h1, h2, h3, h4, h5, h6': {

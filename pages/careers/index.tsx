@@ -110,6 +110,7 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
         image="/images/gradients/gradient-bg-5.jpg"
       >
         <BasicPageHero
+          preHeading="Careers"
           heading="Join us and build something incredible"
           intro={
             <p>
@@ -123,7 +124,6 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               View open positions
             </ScrollToLink>
           }
-          preHeading="Careers"
         />
       </HeaderPad>
       <ColorModeProvider mode="light">

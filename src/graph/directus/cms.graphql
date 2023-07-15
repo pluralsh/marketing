@@ -48,6 +48,9 @@ fragment SiteSettings on site_settings {
     ...NavListDepth3
   }
   og_description
+  og_image {
+    ...ImageFile
+  }
 }
 
 query SiteSettings {
@@ -56,14 +59,39 @@ query SiteSettings {
   }
 }
 
+fragment FeaturedArticle on case_studies {
+  id
+  slug
+  label
+  title
+  content
+  ctas
+  stack_label
+  stack_apps
+  hero_image {
+    ...ImageFile
+  }
+}
+
 fragment AppExtras on apps {
   name
   heroVideo
+  case_study {
+    ...FeaturedArticle
+  }
+}
+fragment AppDefaults on app_defaults {
+  case_study {
+    ...FeaturedArticle
+  }
 }
 
 query AppExtras($name: String) {
   apps(filter: { name: { _eq: $name } }) {
     ...AppExtras
+  }
+  app_defaults {
+    ...AppDefaults
   }
 }
 
@@ -71,10 +99,18 @@ fragment StackExtras on stacks {
   name
   heroVideo
 }
+fragment StackDefaults on stack_defaults {
+  case_study {
+    ...FeaturedArticle
+  }
+}
 
 query StackExtras($name: String) {
   stacks(filter: { name: { _eq: $name } }) {
     ...StackExtras
+  }
+  stack_defaults {
+    ...StackDefaults
   }
 }
 
@@ -124,5 +160,53 @@ fragment FeaturedContributor on featured_contributors {
 query FeaturedContributors {
   featured_contributors {
     ...FeaturedContributor
+  }
+}
+
+fragment FaqItem on collapsibles {
+  id
+  label
+  content
+}
+
+fragment FaqList on collapsible_lists {
+  items {
+    ...FaqItem
+  }
+}
+
+query FaqList($slug: String) {
+  collapsible_lists(filter: { slug: { _eq: $slug } }) {
+    ...FaqList
+  }
+}
+
+fragment Solution on solutions_pages {
+  id
+  slug
+  title
+  description
+  heading_1
+  content_1
+  heading_2
+  content_2
+  hero_image {
+    ...ImageFile
+  }
+  case_study {
+    ...FeaturedArticle
+  }
+  bullet_points
+}
+
+query SolutionsSlugs {
+  solutions_pages {
+    slug
+  }
+}
+
+query Solutions($slug: String) {
+  solutions_pages(filter: { slug: { _eq: $slug } }) {
+    ...Solution
   }
 }

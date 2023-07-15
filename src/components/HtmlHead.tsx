@@ -29,9 +29,11 @@ function Favicons() {
 function OpenGraph({
   title,
   description,
+  image,
 }: {
   title: string
   description: string
+  image?: string
 }) {
   const router = useRouter()
 
@@ -39,7 +41,7 @@ function OpenGraph({
     <Head>
       <meta
         property="og:image"
-        content={`${process.env.NEXT_PUBLIC_ROOT_URL}/og_image.png`}
+        content={image || `${process.env.NEXT_PUBLIC_ROOT_URL}/og_image.png`}
       />
       <meta
         property="og:title"
@@ -60,9 +62,11 @@ function OpenGraph({
 function HtmlHead({
   title,
   description,
+  ogImage,
 }: {
   title: string
   description: string
+  ogImage?: string
 }) {
   return (
     <>
@@ -103,6 +107,7 @@ function HtmlHead({
       <OpenGraph
         title={title}
         description={description}
+        image={ogImage}
       />
     </>
   )

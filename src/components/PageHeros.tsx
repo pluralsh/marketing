@@ -5,17 +5,19 @@ import classNames from 'classnames'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { ResponsiveText } from '@src/components/Typography'
+import { Body1, ResponsiveText } from '@src/components/Typography'
 
 export function HeroMainText({
   preHeading,
   heading,
-  ctas,
+  description,
   children,
+  ctas,
   ...props
 }: {
   preHeading?: ReactNode
   heading: ReactNode
+  description?: ReactNode
   ctas?: ReactNode
   children?: ReactNode
 }) {
@@ -24,7 +26,7 @@ export function HeroMainText({
       className="flex flex-col gap-y-xlarge md:gap-y-xxlarge"
       {...props}
     >
-      <div className="flex flex-col gap-y-medium">
+      <div className="flex flex-col gap-y-xlarge">
         <ResponsiveText
           className="[text-wrap:balance]"
           as="h1"
@@ -47,6 +49,7 @@ export function HeroMainText({
           )}
           {heading}
         </ResponsiveText>
+        {description && <Body1 color="text-xlight">{description}</Body1>}
       </div>
       {ctas && <div>{ctas}</div>}
       {children && <div>{children}</div>}
@@ -57,12 +60,14 @@ export function HeroMainText({
 export function BasicPageHero({
   preHeading,
   heading,
+  description,
   intro,
   ctas,
   ...props
 }: {
   preHeading?: ReactNode
   heading: ReactNode
+  description?: ReactNode
   ctas?: ReactNode
   intro?: ReactNode
 }) {
@@ -83,6 +88,7 @@ export function BasicPageHero({
             <HeroMainText
               preHeading={preHeading}
               heading={heading}
+              description={description}
               ctas={ctas}
             />
           </EqualColumn>

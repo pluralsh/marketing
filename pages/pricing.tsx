@@ -7,16 +7,23 @@ import Link from 'next/link'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
+import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { PricingFAQSection } from '@src/components/page-sections/PricingFAQSection'
+import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
+import {
+  type FaqItemFragment,
+  FaqListDocument,
+  type FaqListQuery,
+  type FaqListQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { PlansFeaturesTable as PlanFeaturesTable } from '../src/components/page-sections/PlansFeaturesTables'
@@ -125,6 +132,7 @@ export function PlanCardsSection({ plans }: { plans: Plan[] }) {
 export default function Pricing({
   plans,
   plansFeatures,
+  faqs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const compareId = useId()
 
@@ -210,19 +218,26 @@ export default function Pricing({
               </div>
             </div>
           </div>
-          <PricingFAQSection />
+          <StandardFAQSection faqs={faqs} />
         </div>
       </ColorModeProvider>
     </>
   )
 }
 
-export type PricingPageProps = Pricing
+export type PricingPageProps = Pricing & { faqs: (FaqItemFragment | null)[] }
 
 export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   _context
 ) => {
   const { data: pricing, error: pricingError } = await getPricing()
+  const { data: faqData, error: faqError } = await directusClient.query<
+    FaqListQuery,
+    FaqListQueryVariables
+  >({
+    query: FaqListDocument,
+    variables: { slug: 'pricing' },
+  })
 
   if (!pricing) {
     return { notFound: true }
@@ -231,7 +246,11 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   return propsWithGlobalSettings({
     metaTitle: 'Pricing',
     ...pricing,
+    faqs: faqData.collapsible_lists?.[0]?.items || [],
     footerVariant: FooterVariant.kitchenSink,
-    errors: [...(pricingError ? [pricingError] : [])],
+    errors: [
+      ...(pricingError ? [pricingError] : []),
+      ...(faqError ? [faqError] : []),
+    ],
   })
 }
