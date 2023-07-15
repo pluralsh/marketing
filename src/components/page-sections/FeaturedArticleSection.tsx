@@ -25,8 +25,6 @@ export function FeaturedArticleSection({
   apps: MinRepo[]
   featuredArticle?: FeaturedArticleFragment | null | undefined
 }) {
-  console.log('FeaturedArticle', featuredArticle)
-  console.log('apps', apps)
   if (!featuredArticle) {
     return null
   }

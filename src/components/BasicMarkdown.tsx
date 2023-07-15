@@ -8,12 +8,10 @@ import ReactMarkdown from 'react-markdown'
 import { BasicP, BasicUl, InlineLink } from './Typography'
 
 export default memo(({ text }: { text?: string | null }) => {
-  console.log('text', text)
   text = text?.replace(/^\s+|\s+$/g, '')
   if (!text) {
     return null
   }
-  console.log('text', text)
 
   return (
     <ReactMarkdown
