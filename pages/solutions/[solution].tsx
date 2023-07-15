@@ -89,7 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: solutions.map((solution) => ({
       params: { solution: solution.slug },
     })),
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 
