@@ -20,6 +20,7 @@ import Fuse from 'fuse.js'
 import { isEmpty, orderBy, upperFirst } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
+import { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import { CardCta } from '@src/components/CardCta'
 import {
@@ -29,8 +30,8 @@ import {
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { FullPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
+import { FAQList } from '@src/components/page-sections/FAQList'
 import { MarketplaceCarousel } from '@src/components/page-sections/MarketplaceCarousel'
-import { MarketplaceExtras } from '@src/components/page-sections/MarketplaceExtras'
 import MarketplaceFilters from '@src/components/page-sections/MarketplaceFilters'
 import {
   MarketSearchTabKey,
@@ -39,7 +40,7 @@ import {
 } from '@src/components/page-sections/MarketplaceSearchBar'
 import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
-import { Body1, Heading1, Subtitle } from '@src/components/Typography'
+import { Body1, Heading1, Heading2, Subtitle } from '@src/components/Typography'
 import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -47,6 +48,12 @@ import {
   getSearchMetadata,
 } from '@src/data/getSearchMetadata'
 import { type MinStack, getStacks, stacksCache } from '@src/data/getStacks'
+import {
+  type FaqItemFragment,
+  FaqListDocument,
+  type FaqListQuery,
+  type FaqListQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { type MinRepoFragment } from '@src/generated/graphqlPlural'
 import {
   type GlobalProps,
@@ -59,6 +66,7 @@ type PageProps = {
   categories: Categories
   tags: Tags
   globalProps: GlobalProps
+  faqs: (FaqItemFragment | null)[]
 }
 const reposSearchOptions = {
   keys: ['name', 'description', 'tags.tag'],
@@ -498,7 +506,12 @@ export default function Marketplace({
             <AddAppCard />
           </Sidecar>
           <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
-            <MarketplaceExtras />
+            <div {...props}>
+              <Heading2 className="mb-xlarge">
+                Don’t see what you’re looking for?
+              </Heading2>
+              <FAQList faqs={props.faqs} />
+            </div>
           </MainContent>
         </ContentContainer>
       </MarketplacePage>
@@ -579,6 +592,13 @@ const PBody2 = styled.p(({ theme }) => ({
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const { data: repos, error: reposError } = await until(() => getRepos())
   const { data: stacks, error: stacksError } = await until(() => getStacks())
+  const { data: faqData, error: faqError } = await directusClient.query<
+    FaqListQuery,
+    FaqListQueryVariables
+  >({
+    query: FaqListDocument,
+    variables: { slug: 'marketplace' },
+  })
 
   const { categories, tags } = await getSearchMetadata()
 
@@ -587,9 +607,11 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     stacks: stacks || stacksCache.filtered,
     tags: tags || [],
     categories: categories || [],
+    faqs: faqData.collapsible_lists?.[0]?.items || [],
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),
+      ...(faqError ? [faqError] : []),
     ],
   })
 }

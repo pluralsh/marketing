@@ -25,12 +25,25 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  app_defaults?: Maybe<App_Defaults>;
   apps: Array<Apps>;
   apps_aggregated: Array<Apps_Aggregated>;
   apps_by_id?: Maybe<Apps>;
   callouts: Array<Callouts>;
   callouts_aggregated: Array<Callouts_Aggregated>;
   callouts_by_id?: Maybe<Callouts>;
+  case_studies: Array<Case_Studies>;
+  case_studies_aggregated: Array<Case_Studies_Aggregated>;
+  case_studies_by_id?: Maybe<Case_Studies>;
+  collapsible_lists: Array<Collapsible_Lists>;
+  collapsible_lists_aggregated: Array<Collapsible_Lists_Aggregated>;
+  collapsible_lists_by_id?: Maybe<Collapsible_Lists>;
+  collapsibles: Array<Collapsibles>;
+  collapsibles_aggregated: Array<Collapsibles_Aggregated>;
+  collapsibles_by_id?: Maybe<Collapsibles>;
+  company_logos: Array<Company_Logos>;
+  company_logos_aggregated: Array<Company_Logos_Aggregated>;
+  company_logos_by_id?: Maybe<Company_Logos>;
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
@@ -52,6 +65,10 @@ export type Query = {
   page_community?: Maybe<Page_Community>;
   page_legal?: Maybe<Page_Legal>;
   site_settings?: Maybe<Site_Settings>;
+  solutions_pages: Array<Solutions_Pages>;
+  solutions_pages_aggregated: Array<Solutions_Pages_Aggregated>;
+  solutions_pages_by_id?: Maybe<Solutions_Pages>;
+  stack_defaults?: Maybe<Stack_Defaults>;
   stacks: Array<Stacks>;
   stacks_aggregated: Array<Stacks_Aggregated>;
   stacks_by_id?: Maybe<Stacks>;
@@ -109,6 +126,110 @@ export type QueryCallouts_AggregatedArgs = {
 
 
 export type QueryCallouts_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCase_StudiesArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCase_Studies_AggregatedArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCase_Studies_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCollapsible_ListsArgs = {
+  filter?: InputMaybe<Collapsible_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCollapsible_Lists_AggregatedArgs = {
+  filter?: InputMaybe<Collapsible_Lists_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCollapsible_Lists_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCollapsiblesArgs = {
+  filter?: InputMaybe<Collapsibles_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCollapsibles_AggregatedArgs = {
+  filter?: InputMaybe<Collapsibles_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCollapsibles_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCompany_LogosArgs = {
+  filter?: InputMaybe<Company_Logos_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCompany_Logos_AggregatedArgs = {
+  filter?: InputMaybe<Company_Logos_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCompany_Logos_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -269,6 +390,32 @@ export type QueryNav_List_By_IdArgs = {
 };
 
 
+export type QuerySolutions_PagesArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_AggregatedArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryStacksArgs = {
   filter?: InputMaybe<Stacks_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -320,11 +467,44 @@ export type QueryTeam_Members_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
+export type App_Defaults = {
+  __typename?: 'app_defaults';
+  case_study?: Maybe<Case_Studies>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type App_DefaultsCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Apps = {
   __typename?: 'apps';
+  case_study?: Maybe<Case_Studies>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type AppsCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Apps_Aggregated = {
@@ -343,22 +523,32 @@ export type Apps_Aggregated = {
 
 export type Apps_Aggregated_Count = {
   __typename?: 'apps_aggregated_count';
+  /** Use to override default case study on individual app page */
+  case_study?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Apps_Aggregated_Fields = {
   __typename?: 'apps_aggregated_fields';
+  /** Use to override default case study on individual app page */
+  case_study?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Apps_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Boolean_Filter_Operators = {
@@ -436,6 +626,298 @@ export type Callouts_Filter = {
   sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Case_Studies = {
+  __typename?: 'case_studies';
+  content?: Maybe<Scalars['String']['output']>;
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
+  hero_image?: Maybe<Directus_Files>;
+  id: Scalars['ID']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  stack_apps?: Maybe<Scalars['JSON']['output']>;
+  stack_apps_func?: Maybe<Count_Functions>;
+  stack_label?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Case_StudiesHero_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Case_Studies_Aggregated = {
+  __typename?: 'case_studies_aggregated';
+  avg?: Maybe<Case_Studies_Aggregated_Fields>;
+  avgDistinct?: Maybe<Case_Studies_Aggregated_Fields>;
+  count?: Maybe<Case_Studies_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Case_Studies_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Case_Studies_Aggregated_Fields>;
+  min?: Maybe<Case_Studies_Aggregated_Fields>;
+  sum?: Maybe<Case_Studies_Aggregated_Fields>;
+  sumDistinct?: Maybe<Case_Studies_Aggregated_Fields>;
+};
+
+export type Case_Studies_Aggregated_Count = {
+  __typename?: 'case_studies_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  ctas?: Maybe<Scalars['Int']['output']>;
+  hero_image?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  label?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  stack_apps?: Maybe<Scalars['Int']['output']>;
+  stack_label?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Case_Studies_Aggregated_Fields = {
+  __typename?: 'case_studies_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Case_Studies_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Case_Studies_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Case_Studies_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
+  hero_image?: InputMaybe<Directus_Files_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  label?: InputMaybe<String_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  stack_apps?: InputMaybe<String_Filter_Operators>;
+  stack_apps_func?: InputMaybe<Count_Function_Filter_Operators>;
+  stack_label?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Collapsible_Lists = {
+  __typename?: 'collapsible_lists';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  items?: Maybe<Array<Maybe<Collapsibles>>>;
+  items_func?: Maybe<Count_Functions>;
+  slug: Scalars['String']['output'];
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Collapsible_ListsItemsArgs = {
+  filter?: InputMaybe<Collapsibles_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Collapsible_Lists_Aggregated = {
+  __typename?: 'collapsible_lists_aggregated';
+  avg?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+  avgDistinct?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+  count?: Maybe<Collapsible_Lists_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Collapsible_Lists_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+  min?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+  sum?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+  sumDistinct?: Maybe<Collapsible_Lists_Aggregated_Fields>;
+};
+
+export type Collapsible_Lists_Aggregated_Count = {
+  __typename?: 'collapsible_lists_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  items?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Collapsible_Lists_Aggregated_Fields = {
+  __typename?: 'collapsible_lists_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Collapsible_Lists_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Collapsible_Lists_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Collapsible_Lists_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  items?: InputMaybe<Collapsibles_Filter>;
+  items_func?: InputMaybe<Count_Function_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Collapsibles = {
+  __typename?: 'collapsibles';
+  collapsible_id?: Maybe<Collapsible_Lists>;
+  content?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type CollapsiblesCollapsible_IdArgs = {
+  filter?: InputMaybe<Collapsible_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Collapsibles_Aggregated = {
+  __typename?: 'collapsibles_aggregated';
+  avg?: Maybe<Collapsibles_Aggregated_Fields>;
+  avgDistinct?: Maybe<Collapsibles_Aggregated_Fields>;
+  count?: Maybe<Collapsibles_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Collapsibles_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Collapsibles_Aggregated_Fields>;
+  min?: Maybe<Collapsibles_Aggregated_Fields>;
+  sum?: Maybe<Collapsibles_Aggregated_Fields>;
+  sumDistinct?: Maybe<Collapsibles_Aggregated_Fields>;
+};
+
+export type Collapsibles_Aggregated_Count = {
+  __typename?: 'collapsibles_aggregated_count';
+  collapsible_id?: Maybe<Scalars['Int']['output']>;
+  content?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  label?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Collapsibles_Aggregated_Fields = {
+  __typename?: 'collapsibles_aggregated_fields';
+  collapsible_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Collapsibles_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Collapsibles_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Collapsibles_Filter>>>;
+  collapsible_id?: InputMaybe<Collapsible_Lists_Filter>;
+  content?: InputMaybe<String_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  label?: InputMaybe<String_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Company_Logos = {
+  __typename?: 'company_logos';
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  logo?: Maybe<Directus_Files>;
+  name: Scalars['String']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Company_LogosLogoArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Company_Logos_Aggregated = {
+  __typename?: 'company_logos_aggregated';
+  avg?: Maybe<Company_Logos_Aggregated_Fields>;
+  avgDistinct?: Maybe<Company_Logos_Aggregated_Fields>;
+  count?: Maybe<Company_Logos_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Company_Logos_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Company_Logos_Aggregated_Fields>;
+  min?: Maybe<Company_Logos_Aggregated_Fields>;
+  sum?: Maybe<Company_Logos_Aggregated_Fields>;
+  sumDistinct?: Maybe<Company_Logos_Aggregated_Fields>;
+};
+
+export type Company_Logos_Aggregated_Count = {
+  __typename?: 'company_logos_aggregated_count';
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  logo?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Company_Logos_Aggregated_Fields = {
+  __typename?: 'company_logos_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Company_Logos_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Company_Logos_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Company_Logos_Filter>>>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  logo?: InputMaybe<Directus_Files_Filter>;
+  name?: InputMaybe<String_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  url?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Count_Function_Filter_Operators = {
@@ -1020,9 +1502,12 @@ export type Page_Legal_Filter = {
 
 export type Site_Settings = {
   __typename?: 'site_settings';
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   main_nav?: Maybe<Nav_List>;
   og_description?: Maybe<Scalars['String']['output']>;
+  og_image?: Maybe<Directus_Files>;
   user_updated?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1036,11 +1521,151 @@ export type Site_SettingsMain_NavArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
+export type Site_SettingsOg_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages = {
+  __typename?: 'solutions_pages';
+  bullet_points?: Maybe<Scalars['JSON']['output']>;
+  bullet_points_func?: Maybe<Count_Functions>;
+  case_study?: Maybe<Case_Studies>;
+  content_1?: Maybe<Scalars['String']['output']>;
+  content_2?: Maybe<Scalars['String']['output']>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading_1?: Maybe<Scalars['String']['output']>;
+  heading_2?: Maybe<Scalars['String']['output']>;
+  hero_image?: Maybe<Directus_Files>;
+  id: Scalars['ID']['output'];
+  slug: Scalars['String']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Solutions_PagesCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_PagesHero_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages_Aggregated = {
+  __typename?: 'solutions_pages_aggregated';
+  avg?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  count?: Maybe<Solutions_Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solutions_Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  min?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  sum?: Maybe<Solutions_Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solutions_Pages_Aggregated_Fields>;
+};
+
+export type Solutions_Pages_Aggregated_Count = {
+  __typename?: 'solutions_pages_aggregated_count';
+  bullet_points?: Maybe<Scalars['Int']['output']>;
+  case_study?: Maybe<Scalars['Int']['output']>;
+  content_1?: Maybe<Scalars['Int']['output']>;
+  content_2?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  heading_1?: Maybe<Scalars['Int']['output']>;
+  heading_2?: Maybe<Scalars['Int']['output']>;
+  hero_image?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solutions_Pages_Aggregated_Fields = {
+  __typename?: 'solutions_pages_aggregated_fields';
+  case_study?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solutions_Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
+  bullet_points?: InputMaybe<String_Filter_Operators>;
+  bullet_points_func?: InputMaybe<Count_Function_Filter_Operators>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
+  content_1?: InputMaybe<String_Filter_Operators>;
+  content_2?: InputMaybe<String_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  heading_1?: InputMaybe<String_Filter_Operators>;
+  heading_2?: InputMaybe<String_Filter_Operators>;
+  hero_image?: InputMaybe<Directus_Files_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Stack_Defaults = {
+  __typename?: 'stack_defaults';
+  case_study?: Maybe<Case_Studies>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Stack_DefaultsCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Stacks = {
   __typename?: 'stacks';
+  case_study?: Maybe<Case_Studies>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type StacksCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Stacks_Aggregated = {
@@ -1059,22 +1684,32 @@ export type Stacks_Aggregated = {
 
 export type Stacks_Aggregated_Count = {
   __typename?: 'stacks_aggregated_count';
+  /** Use to override default case study for individual stack */
+  case_study?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Stacks_Aggregated_Fields = {
   __typename?: 'stacks_aggregated_fields';
+  /** Use to override default case study for individual stack */
+  case_study?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Stacks_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type String_Filter_Operators = {
@@ -1177,30 +1812,36 @@ export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: b
 
 export type NavListDepth3Fragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null };
+export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null } | null };
+export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
-export type AppExtrasFragment = { __typename?: 'apps', name: string, heroVideo?: string | null };
+export type FeaturedArticleFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type AppExtrasFragment = { __typename?: 'apps', name?: string | null, heroVideo?: string | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+
+export type AppDefaultsFragment = { __typename?: 'app_defaults', case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
 export type AppExtrasQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type AppExtrasQuery = { __typename?: 'Query', apps: Array<{ __typename?: 'apps', name: string, heroVideo?: string | null }> };
+export type AppExtrasQuery = { __typename?: 'Query', apps: Array<{ __typename?: 'apps', name?: string | null, heroVideo?: string | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }>, app_defaults?: { __typename?: 'app_defaults', case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null };
 
-export type StackExtrasFragment = { __typename?: 'stacks', name?: string | null, heroVideo?: string | null };
+export type StackExtrasFragment = { __typename?: 'stacks', name?: string | null, heroVideo?: string | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+
+export type StackDefaultsFragment = { __typename?: 'stack_defaults', case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
 export type StackExtrasQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type StackExtrasQuery = { __typename?: 'Query', stacks: Array<{ __typename?: 'stacks', name?: string | null, heroVideo?: string | null }> };
+export type StackExtrasQuery = { __typename?: 'Query', stacks: Array<{ __typename?: 'stacks', name?: string | null, heroVideo?: string | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }>, stack_defaults?: { __typename?: 'stack_defaults', case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null };
 
 export type ImageFileFragment = { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null };
 
@@ -1217,6 +1858,31 @@ export type FeaturedContributorsQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type FeaturedContributorsQuery = { __typename?: 'Query', featured_contributors: Array<{ __typename?: 'featured_contributors', id: string, name?: string | null, title?: string | null, social_github_url?: string | null, social_twitter_url?: string | null, social_linkedin_url?: string | null, content?: string | null, ctas?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
+
+export type FaqItemFragment = { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null };
+
+export type FaqListFragment = { __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null> | null };
+
+export type FaqListQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type FaqListQuery = { __typename?: 'Query', collapsible_lists: Array<{ __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null> | null }> };
+
+export type SolutionFragment = { __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, heading_1?: string | null, content_1?: string | null, heading_2?: string | null, content_2?: string | null, bullet_points?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+
+export type SolutionsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string }> };
+
+export type SolutionsQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, heading_1?: string | null, content_1?: string | null, heading_2?: string | null, content_2?: string | null, bullet_points?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }> };
 
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
 
@@ -1304,26 +1970,6 @@ export const NavListDepth3FragmentDoc = gql`
   }
 }
     ${NavListFragmentDoc}`;
-export const SiteSettingsFragmentDoc = gql`
-    fragment SiteSettings on site_settings {
-  main_nav(sort: ["sort"]) {
-    ...NavListDepth3
-  }
-  og_description
-}
-    ${NavListDepth3FragmentDoc}`;
-export const AppExtrasFragmentDoc = gql`
-    fragment AppExtras on apps {
-  name
-  heroVideo
-}
-    `;
-export const StackExtrasFragmentDoc = gql`
-    fragment StackExtras on stacks {
-  name
-  heroVideo
-}
-    `;
 export const ImageFileFragmentDoc = gql`
     fragment ImageFile on directus_files {
   id
@@ -1337,6 +1983,65 @@ export const ImageFileFragmentDoc = gql`
   filesize
 }
     `;
+export const SiteSettingsFragmentDoc = gql`
+    fragment SiteSettings on site_settings {
+  main_nav(sort: ["sort"]) {
+    ...NavListDepth3
+  }
+  og_description
+  og_image {
+    ...ImageFile
+  }
+}
+    ${NavListDepth3FragmentDoc}
+${ImageFileFragmentDoc}`;
+export const FeaturedArticleFragmentDoc = gql`
+    fragment FeaturedArticle on case_studies {
+  id
+  slug
+  label
+  title
+  content
+  ctas
+  stack_label
+  stack_apps
+  hero_image {
+    ...ImageFile
+  }
+}
+    ${ImageFileFragmentDoc}`;
+export const AppExtrasFragmentDoc = gql`
+    fragment AppExtras on apps {
+  name
+  heroVideo
+  case_study {
+    ...FeaturedArticle
+  }
+}
+    ${FeaturedArticleFragmentDoc}`;
+export const AppDefaultsFragmentDoc = gql`
+    fragment AppDefaults on app_defaults {
+  case_study {
+    ...FeaturedArticle
+  }
+}
+    ${FeaturedArticleFragmentDoc}`;
+export const StackExtrasFragmentDoc = gql`
+    fragment StackExtras on stacks {
+  name
+  heroVideo
+  case_study {
+    ...FeaturedArticle
+  }
+}
+    ${FeaturedArticleFragmentDoc}`;
+export const StackDefaultsFragmentDoc = gql`
+    fragment StackDefaults on stack_defaults {
+  case_study {
+    ...FeaturedArticle
+  }
+}
+    ${FeaturedArticleFragmentDoc}`;
 export const TeamMemberFragmentDoc = gql`
     fragment TeamMember on team_members {
   id
@@ -1364,6 +2069,40 @@ export const FeaturedContributorFragmentDoc = gql`
   ctas
 }
     ${ImageFileFragmentDoc}`;
+export const FaqItemFragmentDoc = gql`
+    fragment FaqItem on collapsibles {
+  id
+  label
+  content
+}
+    `;
+export const FaqListFragmentDoc = gql`
+    fragment FaqList on collapsible_lists {
+  items {
+    ...FaqItem
+  }
+}
+    ${FaqItemFragmentDoc}`;
+export const SolutionFragmentDoc = gql`
+    fragment Solution on solutions_pages {
+  id
+  slug
+  title
+  description
+  heading_1
+  content_1
+  heading_2
+  content_2
+  hero_image {
+    ...ImageFile
+  }
+  case_study {
+    ...FeaturedArticle
+  }
+  bullet_points
+}
+    ${ImageFileFragmentDoc}
+${FeaturedArticleFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
   id
@@ -1486,8 +2225,12 @@ export const AppExtrasDocument = gql`
   apps(filter: {name: {_eq: $name}}) {
     ...AppExtras
   }
+  app_defaults {
+    ...AppDefaults
+  }
 }
-    ${AppExtrasFragmentDoc}`;
+    ${AppExtrasFragmentDoc}
+${AppDefaultsFragmentDoc}`;
 
 /**
  * __useAppExtrasQuery__
@@ -1521,8 +2264,12 @@ export const StackExtrasDocument = gql`
   stacks(filter: {name: {_eq: $name}}) {
     ...StackExtras
   }
+  stack_defaults {
+    ...StackDefaults
+  }
 }
-    ${StackExtrasFragmentDoc}`;
+    ${StackExtrasFragmentDoc}
+${StackDefaultsFragmentDoc}`;
 
 /**
  * __useStackExtrasQuery__
@@ -1619,6 +2366,110 @@ export function useFeaturedContributorsLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type FeaturedContributorsQueryHookResult = ReturnType<typeof useFeaturedContributorsQuery>;
 export type FeaturedContributorsLazyQueryHookResult = ReturnType<typeof useFeaturedContributorsLazyQuery>;
 export type FeaturedContributorsQueryResult = Apollo.QueryResult<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>;
+export const FaqListDocument = gql`
+    query FaqList($slug: String) {
+  collapsible_lists(filter: {slug: {_eq: $slug}}) {
+    ...FaqList
+  }
+}
+    ${FaqListFragmentDoc}`;
+
+/**
+ * __useFaqListQuery__
+ *
+ * To run a query within a React component, call `useFaqListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFaqListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFaqListQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFaqListQuery(baseOptions?: Apollo.QueryHookOptions<FaqListQuery, FaqListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FaqListQuery, FaqListQueryVariables>(FaqListDocument, options);
+      }
+export function useFaqListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqListQuery, FaqListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FaqListQuery, FaqListQueryVariables>(FaqListDocument, options);
+        }
+export type FaqListQueryHookResult = ReturnType<typeof useFaqListQuery>;
+export type FaqListLazyQueryHookResult = ReturnType<typeof useFaqListLazyQuery>;
+export type FaqListQueryResult = Apollo.QueryResult<FaqListQuery, FaqListQueryVariables>;
+export const SolutionsSlugsDocument = gql`
+    query SolutionsSlugs {
+  solutions_pages {
+    slug
+  }
+}
+    `;
+
+/**
+ * __useSolutionsSlugsQuery__
+ *
+ * To run a query within a React component, call `useSolutionsSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSolutionsSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSolutionsSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSolutionsSlugsQuery(baseOptions?: Apollo.QueryHookOptions<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
+      }
+export function useSolutionsSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
+        }
+export type SolutionsSlugsQueryHookResult = ReturnType<typeof useSolutionsSlugsQuery>;
+export type SolutionsSlugsLazyQueryHookResult = ReturnType<typeof useSolutionsSlugsLazyQuery>;
+export type SolutionsSlugsQueryResult = Apollo.QueryResult<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>;
+export const SolutionsDocument = gql`
+    query Solutions($slug: String) {
+  solutions_pages(filter: {slug: {_eq: $slug}}) {
+    ...Solution
+  }
+}
+    ${SolutionFragmentDoc}`;
+
+/**
+ * __useSolutionsQuery__
+ *
+ * To run a query within a React component, call `useSolutionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSolutionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSolutionsQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useSolutionsQuery(baseOptions?: Apollo.QueryHookOptions<SolutionsQuery, SolutionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
+      }
+export function useSolutionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionsQuery, SolutionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
+        }
+export type SolutionsQueryHookResult = ReturnType<typeof useSolutionsQuery>;
+export type SolutionsLazyQueryHookResult = ReturnType<typeof useSolutionsLazyQuery>;
+export type SolutionsQueryResult = Apollo.QueryResult<SolutionsQuery, SolutionsQueryVariables>;
 export const JobListingsDocument = gql`
     query JobListings {
   job_listings {

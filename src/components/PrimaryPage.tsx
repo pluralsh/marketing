@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 
 import { type GlobalPageProps } from '@pages/_app'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
+import { getImageUrl } from '@src/consts/routes'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
 
 import { type GlobalProps } from '../utils/getGlobalProps'
@@ -31,6 +32,9 @@ export default function PrimaryPage({
         ? `${PAGE_TITLE_PREFIX}${metaTitle}${PAGE_TITLE_SUFFIX}`
         : ROOT_TITLE),
     description: metaDescription || siteSettings?.og_description || '',
+    ...(siteSettings?.og_image
+      ? { ogImage: getImageUrl(siteSettings?.og_image) }
+      : {}),
   }
   const navData = siteSettings?.main_nav?.subnav || []
 

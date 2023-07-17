@@ -13,7 +13,9 @@ import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/uti
 import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
+import { type MergeDeep } from 'type-fest'
 
+import { StandardPageSection } from '@pages/careers'
 import { ProductValueSection } from '@pages/plural-stacks/[stack]'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
@@ -27,10 +29,10 @@ import BuildStack, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import {
-  CaseStudySection,
-  getCaseStudyApps,
-} from '@src/components/page-sections/CaseStudySection'
-import { RepoFAQSection } from '@src/components/page-sections/RepoFAQSection'
+  FeaturedArticleSection,
+  getFeaturedArticleApps,
+} from '@src/components/page-sections/FeaturedArticleSection'
+import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
 import { SingleAccordion } from '@src/components/SingleAccordion'
@@ -51,10 +53,15 @@ import {
 } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import {
+  type AppDefaultsFragment,
   AppExtrasDocument,
   type AppExtrasFragment,
   type AppExtrasQuery,
   type AppExtrasQueryVariables,
+  type FaqItemFragment,
+  FaqListDocument,
+  type FaqListQuery,
+  type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import {
   type Recipe,
@@ -138,6 +145,7 @@ export default function App({
   recipes,
   buildStackTabs,
   caseStudyApps,
+  faqs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const tabs =
@@ -275,22 +283,43 @@ export default function App({
       {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
       <CompanyLogosSection className="mt-xxxxlarge" />
       <TestimonialsSection />
-      <CaseStudyFAQSection caseStudyProps={{ apps: caseStudyApps }} />
+      <CaseStudyFAQSection
+        caseStudyProps={{
+          apps: caseStudyApps,
+          featuredArticle: appExtras?.case_study,
+        }}
+        faqProps={{ faqs }}
+      />
+      {/* <ColorModeProvider mode="light">
+        <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
+          <StandardPageWidth>
+            <FeaturedArticleSection
+              apps={caseStudyApps}
+              featuredArticle={appExtras?.case_study}
+            />
+          </StandardPageWidth>
+          <StandardFAQSection faqs={faqs} />
+        </StandardPageSection>
+      </ColorModeProvider> */}
     </HeaderPad>
   )
 }
 
 export function CaseStudyFAQSection({
   caseStudyProps,
+  faqProps,
 }: {
-  caseStudyProps: ComponentProps<typeof CaseStudySection>
+  caseStudyProps: ComponentProps<typeof FeaturedArticleSection>
+  faqProps: ComponentProps<typeof StandardFAQSection>
 }) {
   return (
     <ColorModeProvider mode="light">
-      <div className="bg-fill-zero gap-xlarge mt-xxxlarge mb-xlarge columns:mt-xxxxxxlarge columns:gap-xxxxxlarge columns:mb-xxxxxlarge">
-        <CaseStudySection {...caseStudyProps} />
-        <RepoFAQSection className="py-xxxlarge" />
-      </div>
+      <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
+        <StandardPageWidth>
+          <FeaturedArticleSection {...caseStudyProps} />
+        </StandardPageWidth>
+        <StandardFAQSection {...faqProps} />
+      </StandardPageSection>
     </ColorModeProvider>
   )
 }
@@ -317,7 +346,14 @@ export type AppPageProps = {
   recipes?: Recipe[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
   caseStudyApps: MinRepo[]
+  faqs: (FaqItemFragment | null)[]
 }
+
+const normalizeAppExtras = (extras: AppExtrasQuery) =>
+  ({
+    ...(extras.app_defaults || {}),
+    ...(extras.apps?.[0] || {}),
+  } as MergeDeep<AppDefaultsFragment, AppExtrasFragment>)
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo
@@ -365,23 +401,38 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       ?.map((edge) => edge?.node)
       .filter((r): r is Recipe => !!r && !r?.private) || []
 
+  const appExtras = normalizeAppExtras(appData) || {}
+
+  const { data: faqData, error: faqError } = await directusClient.query<
+    FaqListQuery,
+    FaqListQueryVariables
+  >({
+    query: FaqListDocument,
+    variables: { slug: 'generic' },
+  })
+
   return propsWithGlobalSettings({
     repo: thisRepo
       ? {
           ...thisRepo,
         }
       : null,
-    appExtras: appData?.apps?.[0] || {},
+    appExtras,
     recipes,
     ...getAppMeta(thisRepo),
-    footerVariant: FooterVariant.kitchenSink,
+    faqs: faqData.collapsible_lists?.[0]?.items || [],
     buildStackTabs,
-    caseStudyApps: getCaseStudyApps(repos),
+    caseStudyApps: getFeaturedArticleApps(
+      repos,
+      (appExtras.case_study?.stack_apps as string[]) || []
+    ),
+    footerVariant: FooterVariant.kitchenSink,
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),
       ...(repoError ? [repoError] : []),
       ...(appError ? [appError] : []),
+      ...(faqError ? [faqError] : []),
     ],
   })
 }

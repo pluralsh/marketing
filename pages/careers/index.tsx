@@ -110,6 +110,7 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
         image="/images/gradients/gradient-bg-5.jpg"
       >
         <BasicPageHero
+          preHeading="Careers"
           heading="Join us and build something incredible"
           intro={
             <p>
@@ -123,7 +124,6 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               View open positions
             </ScrollToLink>
           }
-          preHeading="Careers"
         />
       </HeaderPad>
       <ColorModeProvider mode="light">
@@ -221,46 +221,46 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               iconUrl="/images/icons/careers/remote-work.svg"
               title="Flexible and fully remote"
             >
-              Commodo dolore et voluptate sit ullamco aliqua. Voluptate tempor
-              magna in qui est. Ipsum veniam eiusmod commodo consectetur.
+              Headquartered in NYC, but fully remote from Pacific to Central
+              European Time. Choose to work from wherever you want, whenever you
+              want.
             </BenefitCard>
             <BenefitCard
               iconUrl="/images/icons/careers/pto.svg"
               title="Unlimited paid time off for the whole team"
             >
-              Ipsum laboris mollit eu consectetur anim Lorem cillum proident
-              sunt ex ipsum deserunt fugiat.
+              We believe that taking breaks is important for our team to be the
+              most effective, so we’ve got unlimited time off, plus sick leave
+              and generous parental leave.
             </BenefitCard>
             <BenefitCard
               iconUrl="/images/icons/careers/laptop.svg"
               title="Gear up"
             >
-              Sit consequat excepteur cillum voluptate exercitation. Qui non sit
-              laboris Lorem culpa exercitation. Excepteur exercitation do mollit
-              cupidatat mollit tempor.
+              We’ll cover any equipment you need and a stipend for your work
+              from home setup too.
             </BenefitCard>
             <BenefitCard
               iconUrl="/images/icons/careers/healthcare.svg"
               title="Healthcare, vision, and dental insurance"
             >
-              Dolore pariatur consequat dolor sunt labore velit anim dolore et
-              est excepteur minim minim. Commodo dolore labore aliquip ea ad
-              aute reprehenderit elit quis culpa excepteur ex commodo minim.{' '}
+              Fully covered by Plural!
             </BenefitCard>
             <BenefitCard
               iconUrl="/images/icons/careers/globe.svg"
               title="Let’s get together"
             >
-              Est laboris ea exercitation eiusmod culpa non non do reprehenderit
-              duis. In esse incididunt aliquip exercitation. Do eu ullamco
-              adipisicing.
+              We organize regular, fully paid company off-sites around the
+              world. It’s a time for everyone to get to know each other better,
+              bond as a team, and have those strategy and working sessions that
+              are just better in person. Our last one was in New Orleans!
             </BenefitCard>
             <BenefitCard
               iconUrl="/images/icons/careers/growth.svg"
               title="Growth suppport"
             >
-              Commodo dolore labore aliquip ea ad aute reprehenderit elit quis
-              culpa excepteur ex commodo minim.{' '}
+              Personal and career development reimbursement. We also sponsor and
+              pay for conferences and networking events.
             </BenefitCard>
           </div>
         </StandardPageWidth>
@@ -275,7 +275,7 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               heading="Open positions"
               intro={
                 <p>
-                  We're actively seeking passionate individuals to join our team
+                  We’re actively seeking passionate individuals to join our team
                   and contribute to our mission. Explore our open positions and
                   unlock exciting opportunities to make a meaningful impact.
                 </p>
