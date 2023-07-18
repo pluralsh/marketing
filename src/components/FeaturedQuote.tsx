@@ -10,7 +10,9 @@ import { ResponsiveText } from './Typography'
 const FeaturedQuoteSC = styled.div(({ theme }) => ({
   paddingTop: theme.spacing.xxxxxxlarge,
   paddingBottom: theme.spacing.xxxxxxlarge,
-  backgroundColor: theme.colors['fill-two'],
+  // Used fill-two in Product page comp, but think that's a mistake
+  // backgroundColor: theme.colors['fill-two'],
+  backgroundColor: theme.colors['fill-zero'],
   '.contentArea': {
     display: 'flex',
     flexDirection: 'column',

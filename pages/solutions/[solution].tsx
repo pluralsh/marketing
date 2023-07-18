@@ -16,7 +16,7 @@ import { Checklist2, Checklist2Item } from '@src/components/Checklist'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
+import { ColumnsMd, EqualColumn } from '@src/components/layout/Columns'
 import {
   StandardPageSection,
   StandardPageWidth,
@@ -25,13 +25,14 @@ import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { HowPluralWorksMiniSection } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import {
   CenteredSectionHead,
   SubsectionHead,
 } from '@src/components/SectionHeads'
 import { ShadowedCard } from '@src/components/ShadowedCard'
-import { Body1, Body2, Cta } from '@src/components/Typography'
+import { Body2, Cta } from '@src/components/Typography'
 import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
@@ -117,16 +118,16 @@ export default function Solution({
                 heading={solution.heading_1}
                 intro={<BasicMarkdown text={solution.content_1} />}
               />
-              <Columns
-                className={classNames('gap-y-large', 'columns:items-center')}
+              <ColumnsMd
+                className={classNames('gap-y-large', 'md:items-center')}
               >
-                <EqualColumn className="flex flex-col gap-y-large">
+                <EqualColumn className="flex flex-col gap-y-large basis-1/2">
                   <SubsectionHead heading={solution.heading_2} />
                   <Body2>
                     <BasicMarkdown text={solution.content_2} />
                   </Body2>
                 </EqualColumn>
-                <EqualColumn>
+                <EqualColumn className="basis-1/2">
                   <ShadowedCard
                     className={classNames(
                       'p-large',
@@ -146,7 +147,7 @@ export default function Solution({
                     </Cta>
                   </ShadowedCard>
                 </EqualColumn>
-              </Columns>
+              </ColumnsMd>
               <CompanyLogosSection
                 logos={globalProps.siteSettings?.partner_logos?.items}
                 heading="Used by fast-moving teams at"
@@ -155,30 +156,7 @@ export default function Solution({
           </StandardPageWidth>
         </StandardPageSection>
       </ColorModeProvider>
-      <StandardPageSection className="bg-fill-zero">
-        <StandardPageWidth>
-          <Columns
-            className={classNames('gap-y-large', 'columns:items-center')}
-          >
-            <EqualColumn className="flex flex-col gap-y-large">
-              <div className="flex flex-col gap-y-large md:gap-y-xlarge">
-                <SubsectionHead heading="How Plural works" />
-                <Body1 color="text-xlight">
-                  We make it easy to securely deploy and manage open-source
-                  applications in your cloud.
-                </Body1>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div>Thing 1</div>
-                <div>Thing 2</div>
-                <div>Thing 3</div>
-                <div>Thing 4</div>
-              </div>
-            </EqualColumn>
-            <EqualColumn>Image goes here</EqualColumn>
-          </Columns>
-        </StandardPageWidth>
-      </StandardPageSection>
+      <HowPluralWorksMiniSection />
       <CaseStudyFAQSection
         caseStudyProps={{ featuredArticle: caseStudy, apps: caseStudyApps }}
         faqProps={{ faqs }}
