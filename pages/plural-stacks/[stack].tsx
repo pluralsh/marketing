@@ -43,13 +43,14 @@ import {
 } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
 import { appUrl } from '@src/consts/routes'
-import { type MinRepo, getRepos, normalizeRepo } from '@src/data/getRepos'
+import { type TinyRepo, getTinyRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
 import {
   type FaqItemFragment,
   FaqListDocument,
   type FaqListQuery,
   type FaqListQueryVariables,
+  type QuoteFragment,
   type StackDefaultsFragment,
   StackExtrasDocument,
   type StackExtrasFragment,
@@ -57,11 +58,15 @@ import {
   type StackExtrasQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import {
-  type MinRepoFragment,
+  type BasicRepoFragment,
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
-import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import {
+  type GlobalProps,
+  propsWithGlobalSettings,
+} from '@src/utils/getGlobalProps'
 import { startsWithVowel } from '@src/utils/text'
+import { notNil } from '@src/utils/typescript'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { Columns, EqualColumn } from '../../src/components/layout/Columns'
@@ -88,10 +93,13 @@ const StackAppsTabPanel = styled(TabPanel)((_) => ({}))
 
 export default function Stack({
   stack,
-  stackExtras,
+  quotes,
+  heroVideo,
+  caseStudy,
   faqs,
   buildStackTabs,
   caseStudyApps,
+  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const providers =
@@ -114,7 +122,7 @@ export default function Stack({
 
   const apps = stack?.collections?.[0]?.bundles
     ?.map((bundle) => bundle?.recipe.repository)
-    .filter((repo): repo is MinRepoFragment => !!repo)
+    .filter((repo): repo is BasicRepoFragment => !!repo)
     .map((repo) => normalizeRepo(repo))
 
   const appsTabStateRef = useRef<any>()
@@ -179,7 +187,7 @@ export default function Stack({
           <EqualColumn>
             <Embed
               className="m-0 p-0"
-              url={stackExtras?.heroVideo || DEFAULT_HERO_VIDEO}
+              url={heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
           </EqualColumn>
@@ -274,12 +282,15 @@ export default function Stack({
         isStack
       />
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <CompanyLogosSection className="mt-xxxxlarge" />
-      <TestimonialsSection />
+      <CompanyLogosSection
+        className="mt-xxxxlarge"
+        logos={globalProps.siteSettings?.partner_logos?.items}
+      />
+      <TestimonialsSection quotes={quotes} />
       <CaseStudyFAQSection
         caseStudyProps={{
           apps: caseStudyApps,
-          featuredArticle: stackExtras?.case_study,
+          featuredArticle: caseStudy,
         }}
         faqProps={{ faqs }}
       />
@@ -304,11 +315,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export type StackPageProps = {
-  stack?: FullStack | null
-  stackExtras?: StackExtrasFragment
+  stack: FullStack | null
+  quotes: QuoteFragment[] | null
+  heroVideo: Exclude<
+    ReturnType<typeof normalizeStackExtras>['heroVideo'],
+    undefined
+  >
+  caseStudy: Exclude<
+    ReturnType<typeof normalizeStackExtras>['case_study'],
+    undefined
+  >
   buildStackTabs?: ReturnType<typeof getStackTabData>
-  caseStudyApps: MinRepo[]
+  caseStudyApps: TinyRepo[]
   faqs: (FaqItemFragment | null)[]
+  globalProps: GlobalProps
 }
 
 const normalizeStackExtras = (extras: StackExtrasQuery) =>
@@ -325,11 +345,7 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
   if (!stackName || typeof stackName !== 'string') {
     return { notFound: true }
   }
-  const { data: repos, error: reposError } = await until(() => getRepos())
-
-  // const { data: repo, error: repoError } = await until(() =>
-  //   getFullRepo(`${repoName}`)
-  // )
+  const { data: repos, error: reposError } = await until(() => getTinyRepos())
 
   const { data: stacks, error: stacksError } = await until(() => getStacks())
   const { data: stack, error: stackError } = await until(() =>
@@ -368,7 +384,10 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
           ...thisStack,
         }
       : null,
-    stackExtras,
+    heroVideo: stackExtras.heroVideo || null,
+    caseStudy: stackExtras.case_study || null,
+    quotes:
+      stackExtras.quotes?.items?.map((q) => q?.item).filter(notNil) || null,
     ...getStackMeta(thisStack),
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     buildStackTabs,

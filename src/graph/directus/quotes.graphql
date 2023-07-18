@@ -1,0 +1,22 @@
+fragment Quote on quotes {
+  id
+  quote
+  name
+  title
+  company
+  portrait {
+    ...ImageFile
+  }
+  logo {
+    ...ImageFile
+  }
+}
+
+fragment QuoteList on quote_lists {
+  slug
+  items {
+    item {
+      ...Quote
+    }
+  }
+}

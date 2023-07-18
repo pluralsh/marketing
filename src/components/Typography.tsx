@@ -10,6 +10,7 @@ import {
   type styledTheme,
   useNavigationContext,
 } from '@pluralsh/design-system'
+import Link from 'next/link'
 
 import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
@@ -170,6 +171,15 @@ export function FAQItem({
 export const Overline = styled.p.withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.text.overline,
+    ...(color
+      ? { color: theme.colors[color] || theme.colors['text-xlight'] }
+      : { color: theme.colors['text-xlight'] }),
+  })
+)
+
+export const ComponentLink = styled(Link).withConfig(textPropFilter)(
+  ({ theme, color }) => ({
+    ...theme.partials.marketingText.componentLink,
     ...(color
       ? { color: theme.colors[color] || theme.colors['text-xlight'] }
       : { color: theme.colors['text-xlight'] }),

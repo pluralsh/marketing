@@ -1,4 +1,11 @@
-import { Button, ColorModeProvider } from '@pluralsh/design-system'
+import {
+  Button,
+  ColorModeProvider,
+  GitHubLogoIcon,
+  GitLabLogoIcon,
+  GoogleLogoIcon,
+} from '@pluralsh/design-system'
+import { type InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Script from 'next/script'
@@ -7,18 +14,22 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import {
+  StandardPageSection,
+  StandardPageWidth,
+} from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { MassiveQuote } from '@src/components/MassiveQuote'
-import { RepoFAQSection } from '@src/components/page-sections/RepoFAQSection'
+import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralSection'
 import { QuickstartDemoCard } from '@src/components/QuickstartDemoCard'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { Body2, InlineLink } from '@src/components/Typography'
+import { ComponentLink } from '@src/components/Typography'
+import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -36,19 +47,6 @@ export const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
   },
   '& :is(p, ul) + :is(p, ul)': {
     marginTop: theme.spacing.medium,
-  },
-}))
-
-export const StandardPageSection = styled.div(({ theme }) => ({
-  paddingTop: theme.spacing.xxxxlarge,
-  paddingBottom: theme.spacing.xxxxlarge,
-  [mqs.md]: {
-    paddingTop: theme.spacing.xxxxxlarge,
-    paddingBottom: theme.spacing.xxxxxlarge,
-  },
-  [mqs.xxl]: {
-    paddingTop: theme.spacing.xxxxxxlarge,
-    paddingBottom: theme.spacing.xxxxxxlarge,
   },
 }))
 
@@ -93,7 +91,10 @@ const HeroAnimationWrapSC = styled(AnimationWrapSC)((_) => ({
   },
 }))
 
-export default function Index() {
+export default function Index({
+  featuredQuote,
+  faqs,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   useAnimationPauser()
 
   return (
@@ -185,15 +186,7 @@ export default function Index() {
           </StandardPageWidth>
         </StandardPageSection>
       </ColorModeProvider>
-      <MassiveQuote
-        content={
-          <>
-            This is awesome. You saved me hours of further DevOps work for our
-            v1 release. Just to say, I really love Plural.
-          </>
-        }
-        attributions={['Ismael Goulani', 'Co-foundeer of MODEO']}
-      />
+      {featuredQuote && <FeaturedQuote quote={featuredQuote} />}
       <ColorModeProvider mode="light">
         <StandardPageSection
           id="open-positions"
@@ -211,48 +204,52 @@ export default function Index() {
             <StandardPageWidth>
               <div className={classNames('flex flex-col gap-xlarge')}>
                 <CenteredSectionHead heading="Try Plural for free" />
-                <div className="flex justify-center">
-                  <Button
-                    secondary
-                    large
-                    as="a"
-                    href="https://accounts.google.com/o/oauth2/v2/auth?client_id=657418122889-q0c9relgrgb4ae0u2houbjk3e6n420lv.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgoogle&response_type=code&scope=profile+email"
-                    target="_blank"
-                  >
-                    Continue with Google
-                  </Button>
-                  <Button
-                    secondary
-                    large
-                    as="a"
-                    href="https://github.com/login/oauth/authorize?client_id=06d6a9dd27bd2eaac3e8&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgithub&response_type=code&scope=user+user%3Aemail+user%3Aname"
-                    target="_blank"
-                  >
-                    Continue with GitHub
-                  </Button>
-                  <Button
-                    secondary
-                    large
-                    as="a"
-                    href="https://gitlab.com/oauth/authorize?client_id=96dc439ce4bfab647a07b96878210015ab83f173b7f5162218954a95b8c10ebe&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgitlab&response_type=code&scope=api+profile+email+openid"
-                    target="_blank"
-                  >
-                    Continue with GitLab
-                  </Button>
-                </div>
-                <Body2 as="div">
-                  <InlineLink
-                    as="a"
+                <div className="text-center flex flex-wrap flex-col gap-y-small mx-auto">
+                  <div className="flex flex-col md:flex-row justify-center gap-y-small gap-x-large">
+                    <Button
+                      startIcon={<GoogleLogoIcon fullColor />}
+                      secondary
+                      as="a"
+                      href="https://accounts.google.com/o/oauth2/v2/auth?client_id=657418122889-q0c9relgrgb4ae0u2houbjk3e6n420lv.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgoogle&response_type=code&scope=profile+email"
+                      target="_blank"
+                    >
+                      Continue with Google
+                    </Button>
+                    <Button
+                      startIcon={
+                        <GitHubLogoIcon
+                          size="18"
+                          color="icon-default"
+                        />
+                      }
+                      secondary
+                      as="a"
+                      href="https://github.com/login/oauth/authorize?client_id=06d6a9dd27bd2eaac3e8&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgithub&response_type=code&scope=user+user%3Aemail+user%3Aname"
+                      target="_blank"
+                    >
+                      Continue with GitHub
+                    </Button>
+                    <Button
+                      startIcon={<GitLabLogoIcon fullColor />}
+                      secondary
+                      as="a"
+                      href="https://gitlab.com/oauth/authorize?client_id=96dc439ce4bfab647a07b96878210015ab83f173b7f5162218954a95b8c10ebe&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgitlab&response_type=code&scope=api+profile+email+openid"
+                      target="_blank"
+                    >
+                      Continue with GitLab
+                    </Button>
+                  </div>
+                  <ComponentLink
                     href="https://app.plural.sh/signup"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Sign up with email
-                  </InlineLink>
-                </Body2>
+                  </ComponentLink>
+                </div>
               </div>
             </StandardPageWidth>
-            <RepoFAQSection />
+            {faqs && <StandardFAQSection faqs={faqs} />}
             <StandardPageWidth>
               <div
                 className={classNames(
@@ -298,8 +295,14 @@ export default function Index() {
   )
 }
 
-export const getStaticProps = async () =>
-  propsWithGlobalSettings({
+export const getStaticProps = async () => {
+  const { data: pageData, error: pageDataError } = await getProductPageData()
+
+  return propsWithGlobalSettings({
+    featuredQuote: pageData?.featured_quote,
+    faqs: pageData?.faq?.items,
     footerVariant: FooterVariant.kitchenSink,
     pageTitle: 'How Plural works',
+    errors: [...(pageDataError ? [pageDataError] : [])],
   })
+}

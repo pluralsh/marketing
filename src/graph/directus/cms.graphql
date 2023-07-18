@@ -43,6 +43,28 @@ fragment NavListDepth3 on nav_list {
   }
 }
 
+fragment CompanyLogo on company_logos {
+  slug
+  name
+  logo_light {
+    ...ImageFile
+  }
+  logo_dark {
+    ...ImageFile
+  }
+  url
+  width
+}
+
+fragment LogoList on company_logo_lists {
+  slug
+  items {
+    item {
+      ...CompanyLogo
+    }
+  }
+}
+
 fragment SiteSettings on site_settings {
   main_nav(sort: ["sort"]) {
     ...NavListDepth3
@@ -50,6 +72,9 @@ fragment SiteSettings on site_settings {
   og_description
   og_image {
     ...ImageFile
+  }
+  partner_logos {
+    ...LogoList
   }
 }
 
@@ -84,6 +109,9 @@ fragment AppDefaults on app_defaults {
   case_study {
     ...FeaturedArticle
   }
+  quotes {
+    ...QuoteList
+  }
 }
 
 query AppExtras($name: String) {
@@ -105,6 +133,9 @@ fragment StackExtras on stacks {
 fragment StackDefaults on stack_defaults {
   case_study {
     ...FeaturedArticle
+  }
+  quotes {
+    ...QuoteList
   }
 }
 
@@ -200,6 +231,9 @@ fragment Solution on solutions_pages {
     ...FeaturedArticle
   }
   bullet_points
+  featured_quote {
+    ...Quote
+  }
 }
 
 query SolutionsSlugs {

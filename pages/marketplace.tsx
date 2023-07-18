@@ -41,7 +41,7 @@ import {
 import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
 import { Body1, Heading1, Heading2, Subtitle } from '@src/components/Typography'
-import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
+import { type BasicRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
   type Tags,
@@ -54,14 +54,14 @@ import {
   type FaqListQuery,
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
-import { type MinRepoFragment } from '@src/generated/graphqlPlural'
+import { type BasicRepoFragment } from '@src/generated/graphqlPlural'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
 
 type PageProps = {
-  repositories: MinRepo[]
+  repositories: BasicRepo[]
   stacks: MinStack[]
   categories: Categories
   tags: Tags
@@ -83,7 +83,7 @@ export function getStackRepos(stack: MinStack) {
   return stack.collections?.[0]?.bundles
     ?.map((bundle) => bundle?.recipe?.repository)
     .filter(
-      (repo: MinRepoFragment | null | undefined): repo is MinRepoFragment =>
+      (repo: BasicRepoFragment | null | undefined): repo is BasicRepoFragment =>
         !!repo
     )
 }
@@ -601,6 +601,12 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   })
 
   const { categories, tags } = await getSearchMetadata()
+
+  console.log('errors', [
+    ...(reposError ? [reposError] : []),
+    ...(stacksError ? [reposError] : []),
+    ...(faqError ? [faqError] : []),
+  ])
 
   return propsWithGlobalSettings({
     repositories: repos || reposCache.filtered,

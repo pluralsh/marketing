@@ -37,3 +37,16 @@ export function StandardPageWidth({ children, ...props }) {
     </FullPageWidth>
   )
 }
+
+export const StandardPageSection = styled.div(({ theme }) => ({
+  paddingTop: theme.spacing.xxxxlarge,
+  paddingBottom: theme.spacing.xxxxlarge,
+  [mqs.md]: {
+    paddingTop: theme.spacing.xxxxxlarge,
+    paddingBottom: theme.spacing.xxxxxlarge,
+  },
+  [mqs.xxl]: {
+    paddingTop: theme.spacing.xxxxxxlarge,
+    paddingBottom: theme.spacing.xxxxxxlarge,
+  },
+}))

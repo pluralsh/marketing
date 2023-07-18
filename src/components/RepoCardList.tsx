@@ -20,7 +20,7 @@ import { drop, isEmpty } from 'lodash-es'
 import { getStackRepos } from '@pages/marketplace'
 import { breakpointIsGreaterOrEqual } from '@src/breakpoints'
 import { appUrl, stackUrl } from '@src/consts/routes'
-import { type MinRepo, fakeDisplayName } from '@src/data/getRepos'
+import { type BasicRepo, fakeDisplayName } from '@src/data/getRepos'
 import { type MinStack } from '@src/data/getStacks'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
@@ -105,7 +105,7 @@ export function RepoCard({
   wideFeatures = true,
   ...props
 }: {
-  repository: MinRepo
+  repository: BasicRepo
   urlParams?: string
   wideFeatures: boolean
 }) {

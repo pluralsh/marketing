@@ -20,7 +20,7 @@ export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 // Functions to use in Array.filter() that will inform the type checker that
 // null and undefined values are guaranteed filtered out
 
-export function notNil<T>(value: T | null | undefined): value is T {
+export function notNil<T>(value: T): value is NonNullable<T> {
   return !isNil(value)
 }
 
@@ -32,4 +32,4 @@ export function notNilAnd<T>(filterFunc: (value: T) => boolean) {
 
 export type Omit$Props<
   T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
-> = ConditionalExcept<ComponentProps<T>, `${string}`>
+> = ConditionalExcept<ComponentProps<T>, `$${string}`>

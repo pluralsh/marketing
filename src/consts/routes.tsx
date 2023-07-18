@@ -24,11 +24,13 @@ export function jobUrl(jobSlug: string) {
 }
 
 export function getImageUrl(
-  image: Pick<ImageFileFragment, 'filename_disk' | 'filename_download'>
+  image?: Pick<ImageFileFragment, 'filename_disk' | 'filename_download'> | null
 ) {
-  return urlJoin(
-    FILE_BASE_URL,
-    image.filename_disk || '',
-    image.filename_download || ''
-  )
+  return image
+    ? urlJoin(
+        FILE_BASE_URL,
+        image.filename_disk || '',
+        image.filename_download || ''
+      )
+    : null
 }

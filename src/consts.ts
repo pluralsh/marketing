@@ -1,6 +1,6 @@
 import { type GlobalPageProps } from '@pages/_app'
 
-import { type MinRepo } from './data/getRepos'
+import { type BasicRepo } from './data/getRepos'
 import { type MinStack } from './data/getStacks'
 
 export const ROOT_TITLE =
@@ -8,7 +8,7 @@ export const ROOT_TITLE =
 export const PAGE_TITLE_PREFIX = 'Plural | '
 export const PAGE_TITLE_SUFFIX = ''
 
-export const getAppMeta = (repo: MinRepo): GlobalPageProps => {
+export const getAppMeta = (repo: BasicRepo): GlobalPageProps => {
   const displayName = repo.displayName || repo.name
 
   if (!displayName) return {}

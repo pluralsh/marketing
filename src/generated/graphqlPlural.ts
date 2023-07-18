@@ -1365,6 +1365,7 @@ export type IntegrationWebhookEdge = {
 export type Invite = {
   __typename?: 'Invite';
   account?: Maybe<Account>;
+  admin?: Maybe<Scalars['Boolean']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   existing: Scalars['Boolean']['output'];
   expiresAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1377,6 +1378,7 @@ export type Invite = {
 };
 
 export type InviteAttributes = {
+  admin?: InputMaybe<Scalars['Boolean']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   inviteGroups?: InputMaybe<Array<InputMaybe<BindingAttributes>>>;
 };
@@ -1623,7 +1625,8 @@ export enum NotificationType {
   IncidentUpdate = 'INCIDENT_UPDATE',
   Locked = 'LOCKED',
   Mention = 'MENTION',
-  Message = 'MESSAGE'
+  Message = 'MESSAGE',
+  Pending = 'PENDING'
 }
 
 export type OauthAttributes = {
@@ -5029,7 +5032,9 @@ export type RecipesQuery = { __typename?: 'RootQueryType', recipes?: { __typenam
 
 export type PublisherFragment = { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null };
 
-export type MinRepoFragment = { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, homepage?: string | null, gitUrl?: string | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null };
+export type TinyRepoFragment = { __typename?: 'Repository', id: string, name: string, category?: Category | null, darkIcon?: string | null, icon?: string | null };
+
+export type BasicRepoFragment = { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, homepage?: string | null, gitUrl?: string | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null };
 
 export type FullRepoFragment = { __typename?: 'Repository', readme?: string | null, mainBranch?: string | null, category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, homepage?: string | null, gitUrl?: string | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null };
 
@@ -5037,6 +5042,11 @@ export type ReposQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', category?: Category | null, darkIcon?: string | null, description?: string | null, icon?: string | null, id: string, name: string, private?: boolean | null, releaseStatus?: ReleaseStatus | null, trending?: boolean | null, verified?: boolean | null, homepage?: string | null, gitUrl?: string | null, publisher?: { __typename?: 'Publisher', id?: string | null, name: string, phone?: string | null, avatar?: string | null, description?: string | null, backgroundColor?: string | null } | null, tags?: Array<{ __typename?: 'Tag', tag: string } | null> | null, recipes?: Array<{ __typename?: 'Recipe', name: string, private?: boolean | null } | null> | null, community?: { __typename?: 'Community', discord?: string | null, slack?: string | null, homepage?: string | null, gitUrl?: string | null, twitter?: string | null } | null, license?: { __typename?: 'License', name?: string | null, url?: string | null } | null } | null } | null> | null } | null };
+
+export type TinyReposQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TinyReposQuery = { __typename?: 'RootQueryType', repositories?: { __typename?: 'RepositoryConnection', edges?: Array<{ __typename?: 'RepositoryEdge', node?: { __typename?: 'Repository', id: string, name: string, category?: Category | null, darkIcon?: string | null, icon?: string | null } | null } | null> | null } | null };
 
 export type RepoQueryVariables = Exact<{
   name?: InputMaybe<Scalars['String']['input']>;
@@ -5141,6 +5151,15 @@ export const RecipeFragmentDoc = gql`
   }
 }
     ${RecipeSectionFragmentDoc}`;
+export const TinyRepoFragmentDoc = gql`
+    fragment TinyRepo on Repository {
+  id
+  name
+  category
+  darkIcon
+  icon
+}
+    `;
 export const PublisherFragmentDoc = gql`
     fragment Publisher on Publisher {
   id
@@ -5157,8 +5176,8 @@ export const MinRecipeFragmentDoc = gql`
   private
 }
     `;
-export const MinRepoFragmentDoc = gql`
-    fragment MinRepo on Repository {
+export const BasicRepoFragmentDoc = gql`
+    fragment BasicRepo on Repository {
   category
   darkIcon
   description
@@ -5196,11 +5215,11 @@ export const MinRepoFragmentDoc = gql`
 ${MinRecipeFragmentDoc}`;
 export const FullRepoFragmentDoc = gql`
     fragment FullRepo on Repository {
-  ...MinRepo
+  ...BasicRepo
   readme
   mainBranch
 }
-    ${MinRepoFragmentDoc}`;
+    ${BasicRepoFragmentDoc}`;
 export const CategoryFragmentDoc = gql`
     fragment Category on CategoryInfo {
   category
@@ -5226,7 +5245,7 @@ export const StackCollectionFragmentDoc = gql`
   bundles {
     recipe {
       repository {
-        ...MinRepo
+        ...BasicRepo
         tags {
           tag
         }
@@ -5234,7 +5253,7 @@ export const StackCollectionFragmentDoc = gql`
     }
   }
 }
-    ${MinRepoFragmentDoc}`;
+    ${BasicRepoFragmentDoc}`;
 export const MinStackFragmentDoc = gql`
     fragment MinStack on Stack {
   id
@@ -5371,12 +5390,12 @@ export const ReposDocument = gql`
   repositories(first: 5000) {
     edges {
       node {
-        ...MinRepo
+        ...BasicRepo
       }
     }
   }
 }
-    ${MinRepoFragmentDoc}`;
+    ${BasicRepoFragmentDoc}`;
 
 /**
  * __useReposQuery__
@@ -5404,6 +5423,44 @@ export function useReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Repo
 export type ReposQueryHookResult = ReturnType<typeof useReposQuery>;
 export type ReposLazyQueryHookResult = ReturnType<typeof useReposLazyQuery>;
 export type ReposQueryResult = Apollo.QueryResult<ReposQuery, ReposQueryVariables>;
+export const TinyReposDocument = gql`
+    query TinyRepos {
+  repositories(first: 5000) {
+    edges {
+      node {
+        ...TinyRepo
+      }
+    }
+  }
+}
+    ${TinyRepoFragmentDoc}`;
+
+/**
+ * __useTinyReposQuery__
+ *
+ * To run a query within a React component, call `useTinyReposQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTinyReposQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTinyReposQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTinyReposQuery(baseOptions?: Apollo.QueryHookOptions<TinyReposQuery, TinyReposQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TinyReposQuery, TinyReposQueryVariables>(TinyReposDocument, options);
+      }
+export function useTinyReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TinyReposQuery, TinyReposQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TinyReposQuery, TinyReposQueryVariables>(TinyReposDocument, options);
+        }
+export type TinyReposQueryHookResult = ReturnType<typeof useTinyReposQuery>;
+export type TinyReposLazyQueryHookResult = ReturnType<typeof useTinyReposLazyQuery>;
+export type TinyReposQueryResult = Apollo.QueryResult<TinyReposQuery, TinyReposQueryVariables>;
 export const RepoDocument = gql`
     query Repo($name: String) {
   repository(name: $name) {

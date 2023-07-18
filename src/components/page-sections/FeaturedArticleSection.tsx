@@ -1,9 +1,3 @@
-/*
-https://www.plural.sh/blog/fnatic-deploys-data-stack-with-plural/
-https://www.plural.sh/blog/digitas-standardized-application-deployment-by-using-plural/
-https://www.plural.sh/blog/how-modeo-utilizes-plural-for-their-customers/
-*/
-
 import Link from 'next/link'
 
 import { isEmpty } from 'lodash-es'
@@ -11,7 +5,7 @@ import { isEmpty } from 'lodash-es'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { Body2, Cta, ResponsiveText } from '@src/components/Typography'
 import { appUrl, getImageUrl } from '@src/consts/routes'
-import { type MinRepo } from '@src/data/getRepos'
+import { type TinyRepo } from '@src/data/getRepos'
 import { type FeaturedArticleFragment } from '@src/generated/graphqlDirectus'
 
 import { AppCard } from '../AppOrStackCard'
@@ -22,12 +16,13 @@ export function FeaturedArticleSection({
   apps,
   featuredArticle,
 }: {
-  apps: MinRepo[]
+  apps: TinyRepo[]
   featuredArticle?: FeaturedArticleFragment | null | undefined
 }) {
   if (!featuredArticle) {
     return null
   }
+  const heroUrl = getImageUrl(featuredArticle.hero_image)
 
   return (
     <Columns className="gap-y-xxlarge">
@@ -59,9 +54,7 @@ export function FeaturedArticleSection({
       </EqualColumn>
       <EqualColumn>
         <div className="rounded-large overflow-hidden">
-          {featuredArticle.hero_image && (
-            <img src={getImageUrl(featuredArticle.hero_image)} />
-          )}
+          {heroUrl && <img src={heroUrl} />}
         </div>
         {!isEmpty(apps) && (
           <div className="mt-large">
@@ -94,6 +87,6 @@ export function FeaturedArticleSection({
 }
 
 export const getFeaturedArticleApps = (
-  repos: MinRepo[] | null,
+  repos: TinyRepo[] | null | undefined,
   appList: string[]
 ) => repos?.filter((repo) => appList.includes(repo.name)) || []
