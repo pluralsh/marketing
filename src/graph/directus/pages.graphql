@@ -61,3 +61,16 @@ query LegalPageSlugs {
     }
   }
 }
+
+fragment PageHomepage on page_homepage {
+  quotes {
+    ...QuoteList
+  }
+  featured_articles
+}
+
+query PageHomepage {
+  page_homepage {
+    ...PageHomepage
+  }
+}

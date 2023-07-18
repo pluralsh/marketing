@@ -109,3 +109,49 @@ export function BasicPageHero({
     </StandardPageWidth>
   )
 }
+
+export function HomePageHero({
+  preHeading,
+  heading,
+  description,
+  intro,
+  ctas,
+  ...props
+}: {
+  preHeading?: ReactNode
+  heading: ReactNode
+  description?: ReactNode
+  ctas?: ReactNode
+  intro?: ReactNode
+}) {
+  return (
+    <StandardPageWidth {...props}>
+      <div
+        className={classNames(
+          'pt-xxxxlarge',
+          'pb-xxxlarge',
+          'md:pt-xxxxlarge',
+          'md:pb-xxxxlarge',
+          'lg:pt-xxxxxlarge',
+          'lg:pb-xxxxxxlarge',
+          'text-center'
+        )}
+      >
+        <HeroMainText
+          preHeading={preHeading}
+          heading={heading}
+          description={description}
+          ctas={ctas}
+        />
+        <ResponsiveText
+          as="p"
+          textStyles={{ '': 'mBody1' }}
+          color="text-light"
+          className="[text-wrap:balance]"
+        >
+          {intro}
+        </ResponsiveText>
+      </div>
+    </StandardPageWidth>
+  )
+}

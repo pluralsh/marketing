@@ -69,6 +69,7 @@ export type Query = {
   nav_list_aggregated: Array<Nav_List_Aggregated>;
   nav_list_by_id?: Maybe<Nav_List>;
   page_community?: Maybe<Page_Community>;
+  page_homepage?: Maybe<Page_Homepage>;
   page_legal?: Maybe<Page_Legal>;
   page_product?: Maybe<Page_Product>;
   quote_lists: Array<Quote_Lists>;
@@ -1782,6 +1783,30 @@ export type Page_Community_Filter = {
   user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
+export type Page_Homepage = {
+  __typename?: 'page_homepage';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  featured_articles?: Maybe<Scalars['String']['output']>;
+  featured_articles_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  quotes?: Maybe<Quote_Lists>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Page_HomepageQuotesArgs = {
+  filter?: InputMaybe<Quote_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Page_Legal = {
   __typename?: 'page_legal';
   id: Scalars['ID']['output'];
@@ -2541,6 +2566,13 @@ export type LegalPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', slug?: string | null } | null> | null } | null };
 
+export type PageHomepageFragment = { __typename?: 'page_homepage', featured_articles?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
+
+export type PageHomepageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', featured_articles?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
+
 export type QuoteFragment = { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type QuoteListFragment = { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null };
@@ -2845,6 +2877,14 @@ export const PageLegalFragmentDoc = gql`
   }
 }
     ${MarkdownPageFragmentDoc}`;
+export const PageHomepageFragmentDoc = gql`
+    fragment PageHomepage on page_homepage {
+  quotes {
+    ...QuoteList
+  }
+  featured_articles
+}
+    ${QuoteListFragmentDoc}`;
 export const EventsDocument = gql`
     query Events {
   events {
@@ -3404,3 +3444,37 @@ export function useLegalPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type LegalPageSlugsQueryHookResult = ReturnType<typeof useLegalPageSlugsQuery>;
 export type LegalPageSlugsLazyQueryHookResult = ReturnType<typeof useLegalPageSlugsLazyQuery>;
 export type LegalPageSlugsQueryResult = Apollo.QueryResult<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>;
+export const PageHomepageDocument = gql`
+    query PageHomepage {
+  page_homepage {
+    ...PageHomepage
+  }
+}
+    ${PageHomepageFragmentDoc}`;
+
+/**
+ * __usePageHomepageQuery__
+ *
+ * To run a query within a React component, call `usePageHomepageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageHomepageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageHomepageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePageHomepageQuery(baseOptions?: Apollo.QueryHookOptions<PageHomepageQuery, PageHomepageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageHomepageQuery, PageHomepageQueryVariables>(PageHomepageDocument, options);
+      }
+export function usePageHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageHomepageQuery, PageHomepageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageHomepageQuery, PageHomepageQueryVariables>(PageHomepageDocument, options);
+        }
+export type PageHomepageQueryHookResult = ReturnType<typeof usePageHomepageQuery>;
+export type PageHomepageLazyQueryHookResult = ReturnType<typeof usePageHomepageLazyQuery>;
+export type PageHomepageQueryResult = Apollo.QueryResult<PageHomepageQuery, PageHomepageQueryVariables>;
