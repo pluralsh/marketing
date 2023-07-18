@@ -312,15 +312,17 @@ export function CaseStudyFAQSection({
   caseStudyProps,
   faqProps,
 }: {
-  caseStudyProps: ComponentProps<typeof FeaturedArticleSection>
+  caseStudyProps?: ComponentProps<typeof FeaturedArticleSection>
   faqProps: ComponentProps<typeof StandardFAQSection>
 }) {
   return (
     <ColorModeProvider mode="light">
       <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
-        <StandardPageWidth>
-          <FeaturedArticleSection {...caseStudyProps} />
-        </StandardPageWidth>
+        {caseStudyProps?.featuredArticle && (
+          <StandardPageWidth>
+            <FeaturedArticleSection {...caseStudyProps} />
+          </StandardPageWidth>
+        )}
         <StandardFAQSection {...faqProps} />
       </StandardPageSection>
     </ColorModeProvider>
