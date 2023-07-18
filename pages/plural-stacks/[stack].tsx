@@ -19,7 +19,6 @@ import { type MergeDeep } from 'type-fest'
 import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
 import { AppCard } from '@src/components/AppOrStackCard'
-import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
@@ -29,17 +28,15 @@ import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { RepoSocials } from '@src/components/RepoSocials'
 import {
   AppTitle,
   Body1,
-  Body2,
-  Cta,
   Overline,
   ResponsiveText,
-  Title2,
 } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
 import { appUrl } from '@src/consts/routes'
@@ -72,6 +69,8 @@ import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { Columns, EqualColumn } from '../../src/components/layout/Columns'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { TextLimiter } from '../../src/components/layout/TextLimiter'
+
+// import { ProductValueSection } from './ProductValueSection'
 
 const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=LOUshNTgPV0'
 
@@ -198,7 +197,7 @@ export default function Stack({
             'flex-col',
             // 'gap-large',
             'py-xxxxlarge',
-            'xl:py-[192px]'
+            'xl:py-xxxxxxlarge'
           )}
         >
           <Columns className="mb-small">
@@ -277,10 +276,12 @@ export default function Stack({
           </Columns>
         </div>
       </StandardPageWidth>
-      <ProductValueSection
+
+      <HPWMiniSectionAppStacks />
+      {/* <ProductValueSection
         name={stack.displayName}
         isStack
-      />
+      /> */}
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
       <CompanyLogosSection
         className="mt-xxxxlarge"
@@ -404,55 +405,4 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
       ...(faqError ? [faqError] : []),
     ],
   })
-}
-
-export function ProductValueSection({
-  name,
-  isStack,
-}: {
-  name: string
-  isStack: boolean
-}) {
-  const fullName = isStack ? `the ${name} Stack` : name
-
-  return (
-    <StandardPageWidth>
-      <div>
-        <Columns className="gap-y-xxxlarge">
-          <EqualColumn>
-            <TextLimiter className="flex flex-col gap-large">
-              <Title2>Open-source and free to use</Title2>
-              <Body2>
-                Plural automates the deployment and operation of {fullName} in
-                your cloud. Get up and running with your {fullName} instance in
-                minutes and let Plural deploy {fullName} and all its
-                dependencies into your cloud with all of the day-2 operations
-                handled out of the box.
-              </Body2>
-              <Cta href="https://www.plural.sh/demo-login">
-                Explore {fullName} on Plural in live demo environment
-              </Cta>
-            </TextLimiter>
-          </EqualColumn>
-          <EqualColumn className="flex flex-col gap-large">
-            <Checklist>
-              <ChecklistItem>Automated upgrades</ChecklistItem>
-              <ChecklistItem>
-                Transparent pricing and cost management
-              </ChecklistItem>
-              <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
-              <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
-              <ChecklistItem>Log management </ChecklistItem>
-            </Checklist>
-          </EqualColumn>
-        </Columns>
-        <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-          <img
-            src="/images/application/product-value@2x.png"
-            alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-          />
-        </div>
-      </div>
-    </StandardPageWidth>
-  )
 }

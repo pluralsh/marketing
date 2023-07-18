@@ -25,7 +25,7 @@ import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
-import { HowPluralWorksMiniSection } from '@src/components/page-sections/HowPluralWorksMiniSection'
+import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import {
   CenteredSectionHead,
@@ -156,7 +156,7 @@ export default function Solution({
           </StandardPageWidth>
         </StandardPageSection>
       </ColorModeProvider>
-      <HowPluralWorksMiniSection />
+      <HPWMiniSectionSolutions />
       <CaseStudyFAQSection
         caseStudyProps={{ featuredArticle: caseStudy, apps: caseStudyApps }}
         faqProps={{ faqs }}

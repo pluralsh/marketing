@@ -19,7 +19,7 @@ import { type Merge } from 'type-fest'
 import { mqs } from '@src/breakpoints'
 
 import { Columns, EqualColumn } from '../layout/Columns'
-import { StandardPageSection, StandardPageWidth } from '../layout/LayoutHelpers'
+import { StandardPageWidth } from '../layout/LayoutHelpers'
 import { TextLimiter } from '../layout/TextLimiter'
 import { SubsectionHead } from '../SectionHeads'
 import { Body1, Body2, Cta, ResponsiveText } from '../Typography'
@@ -73,82 +73,78 @@ function HowWorksInfo({
   )
 }
 
-export function HowPluralWorksMiniSection() {
+function HowPluralWorksMiniSection() {
   return (
-    <StandardPageSection className="bg-fill-zero overflow-hidden">
-      <div className={classNames('relative flex flex-col gap-y-xxxlarge')}>
-        <StandardPageWidth className="columns:basis-1/2">
-          <Columns
-            className={classNames('gap-y-large', 'columns:items-center')}
+    <div className={classNames('relative flex flex-col gap-y-xxxlarge')}>
+      <StandardPageWidth className="columns:basis-1/2">
+        <Columns className={classNames('gap-y-large', 'columns:items-center')}>
+          <EqualColumn
+            className={classNames(
+              'flex flex-col gap-y-xxxlarge',
+              'max-w-[380px] sm:max-w-[540px] mx-auto columns:max-w-[unset]'
+            )}
           >
-            <EqualColumn
+            <TextLimiter className="flex flex-col gap-y-large md:gap-y-xlarge">
+              <SubsectionHead heading="How Plural works" />
+              <Body1 color="text-xlight">
+                We make it easy to securely deploy and manage open-source
+                applications in your cloud.
+              </Body1>
+            </TextLimiter>
+            <div
               className={classNames(
-                'flex flex-col gap-y-xxxlarge',
-                'max-w-[380px] sm:max-w-[540px] mx-auto columns:max-w-[unset]'
+                'grid grid-cols-1',
+                'sm:grid-cols-2',
+                'gap-y-xxlarge sm:gap-y-xxxlarge',
+                'gap-x-xxlarge justify-between'
               )}
             >
-              <TextLimiter className="flex flex-col gap-y-large md:gap-y-xlarge">
-                <SubsectionHead heading="How Plural works" />
-                <Body1 color="text-xlight">
-                  We make it easy to securely deploy and manage open-source
-                  applications in your cloud.
-                </Body1>
-              </TextLimiter>
-              <div
-                className={classNames(
-                  'grid grid-cols-1',
-                  'sm:grid-cols-2',
-                  'gap-y-xxlarge sm:gap-y-xxxlarge',
-                  'gap-x-xxlarge justify-between'
-                )}
+              <HowWorksInfo
+                heading="Select from 90+ open-source applications"
+                icon={<BrowseAppsIcon />}
               >
-                <HowWorksInfo
-                  heading="Select from 90+ open-source applications"
-                  icon={<BrowseAppsIcon />}
-                >
-                  Get any stack you want running in minutes, and never think
-                  about upgrades again.
-                </HowWorksInfo>
-                <HowWorksInfo
-                  heading="Securely deployed on your cloud with your git"
-                  icon={<PadlockLockedIcon />}
-                >
-                  You control everything. No need to share your cloud account,
-                  keys or data.
-                </HowWorksInfo>
-                <HowWorksInfo
-                  heading="Designed to be fully customizable"
-                  icon={<CliIcon />}
-                >
-                  Built on Kubernetes and using standard infrastructure as code
-                  with Terraform and Helm.
-                </HowWorksInfo>
-                <HowWorksInfo
-                  heading="Maintain & Scale with Plural Console"
-                  icon={<ApiIcon />}
-                >
-                  Interactive runbooks, dashboards, and Kubernetes api
-                  visualizers give an easy-to-use toolset to manage application
-                  operations.{' '}
-                </HowWorksInfo>
-              </div>
-              <Cta href="/product">Learn more</Cta>
-            </EqualColumn>
-            <EqualColumn />
-          </Columns>
-        </StandardPageWidth>
-        <SomethingSC>
-          <img
-            alt="Screenshot of app installation in Plural app"
-            src="/images/how-plural-works/how-plural-works-screen.png"
-          />
-        </SomethingSC>
-      </div>
-    </StandardPageSection>
+                Get any stack you want running in minutes, and never think about
+                upgrades again.
+              </HowWorksInfo>
+              <HowWorksInfo
+                heading="Securely deployed on your cloud with your git"
+                icon={<PadlockLockedIcon />}
+              >
+                You control everything. No need to share your cloud account,
+                keys or data.
+              </HowWorksInfo>
+              <HowWorksInfo
+                heading="Designed to be fully customizable"
+                icon={<CliIcon />}
+              >
+                Built on Kubernetes and using standard infrastructure as code
+                with Terraform and Helm.
+              </HowWorksInfo>
+              <HowWorksInfo
+                heading="Maintain & Scale with Plural Console"
+                icon={<ApiIcon />}
+              >
+                Interactive runbooks, dashboards, and Kubernetes api visualizers
+                give an easy-to-use toolset to manage application operations.{' '}
+              </HowWorksInfo>
+            </div>
+            <Cta href="/product">Learn more</Cta>
+          </EqualColumn>
+          <EqualColumn />
+        </Columns>
+      </StandardPageWidth>
+      <ImageAreaSC>
+        <img
+          alt="Screenshot of app installation in Plural app"
+          src="/images/how-plural-works/how-plural-works-screen.png"
+        />
+      </ImageAreaSC>
+    </div>
   )
 }
 
-const SomethingSC = styled.div(({ theme }) => ({
+const ImageAreaSC = styled.div(({ theme }) => ({
+  paddingLeft: theme.spacing.large,
   [mqs.columns]: {
     position: 'absolute',
     display: 'flex',
@@ -158,7 +154,6 @@ const SomethingSC = styled.div(({ theme }) => ({
     top: 0,
     right: 0,
     bottom: 0,
-    paddingLeft: theme.spacing.large,
     img: {
       display: 'block',
       width: '100%',
@@ -166,3 +161,48 @@ const SomethingSC = styled.div(({ theme }) => ({
     },
   },
 }))
+
+const HPWMiniSectionSolutionsSC = styled.div(({ theme }) => ({
+  backgroundColor: theme.colors['fill-zero'],
+  paddingTop: theme.spacing.xxxxlarge,
+  overflow: 'hidden',
+  [mqs.md]: {
+    paddingTop: theme.spacing.xxxxxlarge,
+  },
+  [mqs.columns]: {
+    paddingBottom: theme.spacing.xxxxxlarge,
+  },
+  [mqs.xxl]: {
+    paddingTop: theme.spacing.xxxxxxlarge,
+    paddingBottom: theme.spacing.xxxxxxlarge,
+  },
+}))
+
+export function HPWMiniSectionSolutions() {
+  return (
+    <HPWMiniSectionSolutionsSC>
+      <HowPluralWorksMiniSection />
+    </HPWMiniSectionSolutionsSC>
+  )
+}
+
+const HPWMiniSectionAppStacksSC = styled.div(({ theme }) => ({
+  paddingTop: theme.spacing.xxlarge,
+  [mqs.md]: {
+    paddingTop: theme.spacing.xxxxlarge,
+  },
+  [mqs.columns]: {
+    paddingBottom: theme.spacing.xxxxxlarge,
+  },
+  [mqs.xxl]: {
+    paddingBottom: theme.spacing.xxxxxxlarge,
+  },
+}))
+
+export function HPWMiniSectionAppStacks() {
+  return (
+    <HPWMiniSectionAppStacksSC>
+      <HowPluralWorksMiniSection />
+    </HPWMiniSectionAppStacksSC>
+  )
+}

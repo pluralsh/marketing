@@ -15,7 +15,7 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 import { type MergeDeep } from 'type-fest'
 
-import { ProductValueSection } from '@pages/plural-stacks/[stack]'
+// import { ProductValueSection } from '@pages/plural-stacks/ProductValueSection'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
@@ -34,6 +34,7 @@ import {
   FeaturedArticleSection,
   getFeaturedArticleApps,
 } from '@src/components/page-sections/FeaturedArticleSection'
+import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
@@ -226,7 +227,7 @@ export default function App({
             'flex-col',
             'gap-large',
             'py-xxxxlarge',
-            'xl:py-[192px]'
+            'xl:py-xxxxxxlarge'
           )}
         >
           <Columns className={classNames('gap-y-xxxlarge')}>
@@ -287,10 +288,7 @@ export default function App({
           )}
         </div>
       </StandardPageWidth>
-      <ProductValueSection
-        name={repo.displayName}
-        isStack={false}
-      />
+      <HPWMiniSectionAppStacks />
       {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
       <CompanyLogosSection
         className="mt-xxxxlarge"

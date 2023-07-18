@@ -24,6 +24,7 @@ import {
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
+import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralSection'
 import { QuickstartDemoCard } from '@src/components/QuickstartDemoCard'
@@ -33,7 +34,6 @@ import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-import { HowPluralWorksSection } from '../src/components/page-sections/HowPluralWorksSection'
 import { HeroMainText } from '../src/components/PageHeros'
 
 export const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
@@ -173,7 +173,7 @@ export default function Index({
             heading="How Plural works"
             className="md:mb-xxlarge mb-xxlarge"
           />
-          <HowPluralWorksSection />
+          <HPWMiniSectionAppStacks />
         </StandardPageWidth>
       </StandardPageSection>
       <ColorModeProvider mode="light">

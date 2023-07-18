@@ -108,11 +108,12 @@ export function StackCard({
         </div>
       </div>
       <div className="stackApps">
-        {(stack.collections?.[0]?.bundles || []).map((b) => {
+        {(stack.collections?.[0]?.bundles || []).map((b, i) => {
           const repo = b?.recipe.repository
 
           return (
             <AppIcon
+              key={repo?.id || i}
               size="xxsmall"
               url={repo?.icon || repo?.darkIcon || ''}
             />
