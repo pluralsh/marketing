@@ -31,9 +31,9 @@ import BuildStack, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import {
-  FeaturedArticleSection,
-  getFeaturedArticleApps,
-} from '@src/components/page-sections/FeaturedArticleSection'
+  CaseStudySection,
+  getCaseStudyApps,
+} from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { TestimonialsSection } from '@src/components/QuoteCards'
@@ -79,7 +79,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-import { notNil } from '@src/utils/typescript'
+import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { GradientBG } from '../../src/components/layout/GradientBG'
@@ -310,7 +310,7 @@ export function CaseStudyFAQSection({
   caseStudyProps,
   faqProps,
 }: {
-  caseStudyProps?: ComponentProps<typeof FeaturedArticleSection>
+  caseStudyProps?: ComponentProps<typeof CaseStudySection>
   faqProps: ComponentProps<typeof StandardFAQSection>
 }) {
   return (
@@ -318,7 +318,7 @@ export function CaseStudyFAQSection({
       <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
         {caseStudyProps?.featuredArticle && (
           <StandardPageWidth>
-            <FeaturedArticleSection {...caseStudyProps} />
+            <CaseStudySection {...caseStudyProps} />
           </StandardPageWidth>
         )}
         <StandardFAQSection {...faqProps} />
@@ -431,12 +431,12 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       : null,
     caseStudy: appExtras.case_study || null,
     heroVideo: appExtras.heroVideo || null,
-    quotes: appExtras.quotes?.items?.map((q) => q?.item).filter(notNil) || null,
+    quotes: normalizeQuotes(appExtras.quotes),
     recipes,
     ...getAppMeta(thisRepo),
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     buildStackTabs,
-    caseStudyApps: getFeaturedArticleApps(
+    caseStudyApps: getCaseStudyApps(
       repos,
       (appExtras.case_study?.stack_apps as string[]) || []
     ),

@@ -30,7 +30,7 @@ export function getImageUrl(
     ? urlJoin(
         FILE_BASE_URL,
         image.filename_disk || '',
-        image.filename_download || ''
+        encodeURI(image.filename_download) || ''
       )
     : null
 }

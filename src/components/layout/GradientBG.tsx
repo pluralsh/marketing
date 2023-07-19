@@ -1,6 +1,7 @@
-import { type ReactNode } from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
 import styled from 'styled-components'
+import { type Merge } from 'type-fest'
 
 const GradientBGSC = styled.div<{
   $position?: string
@@ -45,12 +46,15 @@ export function GradientBG({
   image,
   size,
   ...props
-}: {
-  children: ReactNode
-  position?: string
-  image?: string
-  size?: string
-}) {
+}: Merge<
+  ComponentProps<typeof GradientBGSC>,
+  {
+    children: ReactNode
+    position?: string
+    image?: string
+    size?: string
+  }
+>) {
   return (
     <GradientBGSC
       $position={position}

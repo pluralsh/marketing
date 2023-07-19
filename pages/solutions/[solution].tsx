@@ -24,7 +24,7 @@ import {
 import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
-import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import {
@@ -37,11 +37,11 @@ import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import {
+  type CaseStudyFragment,
   type FaqItemFragment,
   FaqListDocument,
   type FaqListQuery,
   type FaqListQueryVariables,
-  type FeaturedArticleFragment,
   type QuoteFragment,
   type SolutionFragment,
   SolutionsDocument,
@@ -150,7 +150,6 @@ export default function Solution({
               </ColumnsMd>
               <CompanyLogosSection
                 logos={globalProps.siteSettings?.partner_logos?.items}
-                heading="Used by fast-moving teams at"
               />
             </div>
           </StandardPageWidth>
@@ -195,7 +194,7 @@ export type AppPageProps = {
   solution: SolutionFragment
   faqs: (FaqItemFragment | null)[]
   globalProps: GlobalProps
-  caseStudy: FeaturedArticleFragment | null
+  caseStudy: CaseStudyFragment | null
   featuredQuote: QuoteFragment | null
   caseStudyApps: TinyRepo[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
@@ -240,7 +239,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     metaDescription: solution.description || null,
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     caseStudy: solution.case_study || null,
-    caseStudyApps: getFeaturedArticleApps(
+    caseStudyApps: getCaseStudyApps(
       repos,
       (solution.case_study?.stack_apps as string[]) || []
     ),

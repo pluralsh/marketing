@@ -1,10 +1,4 @@
-import {
-  Button,
-  ColorModeProvider,
-  GitHubLogoIcon,
-  GitLabLogoIcon,
-  GoogleLogoIcon,
-} from '@pluralsh/design-system'
+import { Button, ColorModeProvider } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -14,6 +8,7 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { QuickstartDemoCard } from '@src/components/ArticleCard'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -27,13 +22,12 @@ import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralSection'
-import { QuickstartDemoCard } from '@src/components/QuickstartDemoCard'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { ComponentLink } from '@src/components/Typography'
 import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
+import { TryPluralForFreeSection } from '../src/components/page-sections/TryPluralForFreeSection'
 import { HeroMainText } from '../src/components/PageHeros'
 
 export const ArchitectureContentSC = styled(TextLimiter)(({ theme }) => ({
@@ -201,54 +195,8 @@ export default function Index({
             <StandardPageWidth>
               <QuickstartDemoCard />
             </StandardPageWidth>
-            <StandardPageWidth>
-              <div className={classNames('flex flex-col gap-xlarge')}>
-                <CenteredSectionHead heading="Try Plural for free" />
-                <div className="text-center flex flex-wrap flex-col gap-y-small mx-auto">
-                  <div className="flex flex-col md:flex-row justify-center gap-y-small gap-x-large">
-                    <Button
-                      startIcon={<GoogleLogoIcon fullColor />}
-                      secondary
-                      as="a"
-                      href="https://accounts.google.com/o/oauth2/v2/auth?client_id=657418122889-q0c9relgrgb4ae0u2houbjk3e6n420lv.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgoogle&response_type=code&scope=profile+email"
-                      target="_blank"
-                    >
-                      Continue with Google
-                    </Button>
-                    <Button
-                      startIcon={
-                        <GitHubLogoIcon
-                          size="18"
-                          color="icon-default"
-                        />
-                      }
-                      secondary
-                      as="a"
-                      href="https://github.com/login/oauth/authorize?client_id=06d6a9dd27bd2eaac3e8&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgithub&response_type=code&scope=user+user%3Aemail+user%3Aname"
-                      target="_blank"
-                    >
-                      Continue with GitHub
-                    </Button>
-                    <Button
-                      startIcon={<GitLabLogoIcon fullColor />}
-                      secondary
-                      as="a"
-                      href="https://gitlab.com/oauth/authorize?client_id=96dc439ce4bfab647a07b96878210015ab83f173b7f5162218954a95b8c10ebe&redirect_uri=https%3A%2F%2Fapp.plural.sh%2Foauth%2Fcallback%2Fgitlab&response_type=code&scope=api+profile+email+openid"
-                      target="_blank"
-                    >
-                      Continue with GitLab
-                    </Button>
-                  </div>
-                  <ComponentLink
-                    href="https://app.plural.sh/signup"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Sign up with email
-                  </ComponentLink>
-                </div>
-              </div>
-            </StandardPageWidth>
+            <TryPluralForFreeSection />
+
             {faqs && <StandardFAQSection faqs={faqs} />}
             <StandardPageWidth>
               <div

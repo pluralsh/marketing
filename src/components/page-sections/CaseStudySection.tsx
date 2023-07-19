@@ -6,18 +6,18 @@ import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { Body2, Cta, ResponsiveText } from '@src/components/Typography'
 import { appUrl, getImageUrl } from '@src/consts/routes'
 import { type TinyRepo } from '@src/data/getRepos'
-import { type FeaturedArticleFragment } from '@src/generated/graphqlDirectus'
+import { type CaseStudyFragment } from '@src/generated/graphqlDirectus'
 
 import { AppCard } from '../AppOrStackCard'
 import BasicMarkdown from '../BasicMarkdown'
 import { SubsectionHead } from '../SectionHeads'
 
-export function FeaturedArticleSection({
+export function CaseStudySection({
   apps,
   featuredArticle,
 }: {
   apps: TinyRepo[]
-  featuredArticle?: FeaturedArticleFragment | null | undefined
+  featuredArticle?: CaseStudyFragment | null | undefined
 }) {
   if (!featuredArticle) {
     return null
@@ -86,7 +86,7 @@ export function FeaturedArticleSection({
   )
 }
 
-export const getFeaturedArticleApps = (
+export const getCaseStudyApps = (
   repos: TinyRepo[] | null | undefined,
   appList: string[]
 ) => repos?.filter((repo) => appList.includes(repo.name)) || []

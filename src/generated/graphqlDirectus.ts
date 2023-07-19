@@ -29,6 +29,9 @@ export type Query = {
   apps: Array<Apps>;
   apps_aggregated: Array<Apps_Aggregated>;
   apps_by_id?: Maybe<Apps>;
+  article_cards: Array<Article_Cards>;
+  article_cards_aggregated: Array<Article_Cards_Aggregated>;
+  article_cards_by_id?: Maybe<Article_Cards>;
   callouts: Array<Callouts>;
   callouts_aggregated: Array<Callouts_Aggregated>;
   callouts_by_id?: Maybe<Callouts>;
@@ -70,6 +73,9 @@ export type Query = {
   nav_list_by_id?: Maybe<Nav_List>;
   page_community?: Maybe<Page_Community>;
   page_homepage?: Maybe<Page_Homepage>;
+  page_homepage_case_studies: Array<Page_Homepage_Case_Studies>;
+  page_homepage_case_studies_aggregated: Array<Page_Homepage_Case_Studies_Aggregated>;
+  page_homepage_case_studies_by_id?: Maybe<Page_Homepage_Case_Studies>;
   page_legal?: Maybe<Page_Legal>;
   page_product?: Maybe<Page_Product>;
   quote_lists: Array<Quote_Lists>;
@@ -117,6 +123,32 @@ export type QueryApps_AggregatedArgs = {
 
 
 export type QueryApps_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryArticle_CardsArgs = {
+  filter?: InputMaybe<Article_Cards_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryArticle_Cards_AggregatedArgs = {
+  filter?: InputMaybe<Article_Cards_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryArticle_Cards_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -459,6 +491,32 @@ export type QueryNav_List_By_IdArgs = {
 };
 
 
+export type QueryPage_Homepage_Case_StudiesArgs = {
+  filter?: InputMaybe<Page_Homepage_Case_Studies_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPage_Homepage_Case_Studies_AggregatedArgs = {
+  filter?: InputMaybe<Page_Homepage_Case_Studies_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPage_Homepage_Case_Studies_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryQuote_ListsArgs = {
   filter?: InputMaybe<Quote_Lists_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -707,6 +765,116 @@ export type Apps_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
   user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Article_Cards = {
+  __typename?: 'article_cards';
+  article_card_id?: Maybe<Page_Homepage>;
+  author?: Maybe<Scalars['String']['output']>;
+  ctas?: Maybe<Scalars['JSON']['output']>;
+  ctas_func?: Maybe<Count_Functions>;
+  date?: Maybe<Scalars['Date']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_func?: Maybe<Date_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  thumbnail?: Maybe<Directus_Files>;
+  url?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Article_CardsArticle_Card_IdArgs = {
+  filter?: InputMaybe<Page_Homepage_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Article_CardsThumbnailArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Article_Cards_Aggregated = {
+  __typename?: 'article_cards_aggregated';
+  avg?: Maybe<Article_Cards_Aggregated_Fields>;
+  avgDistinct?: Maybe<Article_Cards_Aggregated_Fields>;
+  count?: Maybe<Article_Cards_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Article_Cards_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Article_Cards_Aggregated_Fields>;
+  min?: Maybe<Article_Cards_Aggregated_Fields>;
+  sum?: Maybe<Article_Cards_Aggregated_Fields>;
+  sumDistinct?: Maybe<Article_Cards_Aggregated_Fields>;
+};
+
+export type Article_Cards_Aggregated_Count = {
+  __typename?: 'article_cards_aggregated_count';
+  article_card_id?: Maybe<Scalars['Int']['output']>;
+  author?: Maybe<Scalars['Int']['output']>;
+  ctas?: Maybe<Scalars['Int']['output']>;
+  date?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  heading?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  thumbnail?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+  videoUrl?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Article_Cards_Aggregated_Fields = {
+  __typename?: 'article_cards_aggregated_fields';
+  article_card_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Article_Cards_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Article_Cards_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Article_Cards_Filter>>>;
+  article_card_id?: InputMaybe<Page_Homepage_Filter>;
+  author?: InputMaybe<String_Filter_Operators>;
+  ctas?: InputMaybe<String_Filter_Operators>;
+  ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date?: InputMaybe<Date_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_func?: InputMaybe<Date_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  heading?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  thumbnail?: InputMaybe<Directus_Files_Filter>;
+  url?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+  videoUrl?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Boolean_Filter_Operators = {
@@ -1252,6 +1420,23 @@ export type Date_Filter_Operators = {
   _null?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type Date_Function_Filter_Operators = {
+  day?: InputMaybe<Number_Filter_Operators>;
+  month?: InputMaybe<Number_Filter_Operators>;
+  week?: InputMaybe<Number_Filter_Operators>;
+  weekday?: InputMaybe<Number_Filter_Operators>;
+  year?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Date_Functions = {
+  __typename?: 'date_functions';
+  day?: Maybe<Scalars['Int']['output']>;
+  month?: Maybe<Scalars['Int']['output']>;
+  week?: Maybe<Scalars['Int']['output']>;
+  weekday?: Maybe<Scalars['Int']['output']>;
+  year?: Maybe<Scalars['Int']['output']>;
+};
+
 export type Datetime_Function_Filter_Operators = {
   day?: InputMaybe<Number_Filter_Operators>;
   hour?: InputMaybe<Number_Filter_Operators>;
@@ -1298,7 +1483,6 @@ export type Directus_Files = {
   tags_func?: Maybe<Count_Functions>;
   title?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
-  uploaded_by?: Maybe<Scalars['String']['output']>;
   uploaded_on?: Maybe<Scalars['Date']['output']>;
   uploaded_on_func?: Maybe<Datetime_Functions>;
   width?: Maybe<Scalars['Int']['output']>;
@@ -1328,7 +1512,6 @@ export type Directus_Files_Filter = {
   tags_func?: InputMaybe<Count_Function_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
   type?: InputMaybe<String_Filter_Operators>;
-  uploaded_by?: InputMaybe<String_Filter_Operators>;
   uploaded_on?: InputMaybe<Date_Filter_Operators>;
   uploaded_on_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   width?: InputMaybe<Number_Filter_Operators>;
@@ -1785,16 +1968,26 @@ export type Page_Community_Filter = {
 
 export type Page_Homepage = {
   __typename?: 'page_homepage';
+  article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
+  article_cards_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  featured_articles?: Maybe<Scalars['String']['output']>;
-  featured_articles_func?: Maybe<Count_Functions>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
   user_created?: Maybe<Scalars['String']['output']>;
   user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Page_HomepageArticle_CardsArgs = {
+  filter?: InputMaybe<Article_Cards_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -1805,6 +1998,78 @@ export type Page_HomepageQuotesArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Page_Homepage_Case_Studies = {
+  __typename?: 'page_homepage_case_studies';
+  collection?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  item?: Maybe<Page_Homepage_Case_Studies_Item_Union>;
+  page_homepage_id?: Maybe<Page_Homepage>;
+};
+
+
+export type Page_Homepage_Case_StudiesPage_Homepage_IdArgs = {
+  filter?: InputMaybe<Page_Homepage_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Page_Homepage_Case_Studies_Aggregated = {
+  __typename?: 'page_homepage_case_studies_aggregated';
+  avg?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+  avgDistinct?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+  count?: Maybe<Page_Homepage_Case_Studies_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Page_Homepage_Case_Studies_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+  min?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+  sum?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+  sumDistinct?: Maybe<Page_Homepage_Case_Studies_Aggregated_Fields>;
+};
+
+export type Page_Homepage_Case_Studies_Aggregated_Count = {
+  __typename?: 'page_homepage_case_studies_aggregated_count';
+  collection?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  item?: Maybe<Scalars['Int']['output']>;
+  page_homepage_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Page_Homepage_Case_Studies_Aggregated_Fields = {
+  __typename?: 'page_homepage_case_studies_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  page_homepage_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Page_Homepage_Case_Studies_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Page_Homepage_Case_Studies_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Case_Studies_Filter>>>;
+  collection?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  item__case_studies?: InputMaybe<Case_Studies_Filter>;
+  page_homepage_id?: InputMaybe<Page_Homepage_Filter>;
+};
+
+export type Page_Homepage_Case_Studies_Item_Union = Case_Studies;
+
+export type Page_Homepage_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
+  article_cards?: InputMaybe<Article_Cards_Filter>;
+  article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  quotes?: InputMaybe<Quote_Lists_Filter>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Page_Legal = {
@@ -2450,7 +2715,7 @@ export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
 
-export type FeaturedArticleFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type CaseStudyFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type AppExtrasFragment = { __typename?: 'apps', name?: string | null, heroVideo?: string | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
@@ -2566,12 +2831,14 @@ export type LegalPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', slug?: string | null } | null> | null } | null };
 
-export type PageHomepageFragment = { __typename?: 'page_homepage', featured_articles?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
+export type ArticleCardFragment = { __typename?: 'article_cards', heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type PageHomepageFragment = { __typename?: 'page_homepage', quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
 
 export type PageHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', featured_articles?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
+export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null } | null };
 
 export type QuoteFragment = { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -2672,8 +2939,8 @@ export const SiteSettingsFragmentDoc = gql`
     ${NavListDepth3FragmentDoc}
 ${ImageFileFragmentDoc}
 ${LogoListFragmentDoc}`;
-export const FeaturedArticleFragmentDoc = gql`
-    fragment FeaturedArticle on case_studies {
+export const CaseStudyFragmentDoc = gql`
+    fragment CaseStudy on case_studies {
   id
   slug
   label
@@ -2692,10 +2959,10 @@ export const AppExtrasFragmentDoc = gql`
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
-    ${FeaturedArticleFragmentDoc}`;
+    ${CaseStudyFragmentDoc}`;
 export const QuoteFragmentDoc = gql`
     fragment Quote on quotes {
   id
@@ -2724,33 +2991,33 @@ export const QuoteListFragmentDoc = gql`
 export const AppDefaultsFragmentDoc = gql`
     fragment AppDefaults on app_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   quotes {
     ...QuoteList
   }
 }
-    ${FeaturedArticleFragmentDoc}
+    ${CaseStudyFragmentDoc}
 ${QuoteListFragmentDoc}`;
 export const StackExtrasFragmentDoc = gql`
     fragment StackExtras on stacks {
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
-    ${FeaturedArticleFragmentDoc}`;
+    ${CaseStudyFragmentDoc}`;
 export const StackDefaultsFragmentDoc = gql`
     fragment StackDefaults on stack_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   quotes {
     ...QuoteList
   }
 }
-    ${FeaturedArticleFragmentDoc}
+    ${CaseStudyFragmentDoc}
 ${QuoteListFragmentDoc}`;
 export const TeamMemberFragmentDoc = gql`
     fragment TeamMember on team_members {
@@ -2793,7 +3060,7 @@ export const SolutionFragmentDoc = gql`
     ...ImageFile
   }
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   bullet_points
   featured_quote {
@@ -2801,7 +3068,7 @@ export const SolutionFragmentDoc = gql`
   }
 }
     ${ImageFileFragmentDoc}
-${FeaturedArticleFragmentDoc}
+${CaseStudyFragmentDoc}
 ${QuoteFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
@@ -2877,14 +3144,31 @@ export const PageLegalFragmentDoc = gql`
   }
 }
     ${MarkdownPageFragmentDoc}`;
+export const ArticleCardFragmentDoc = gql`
+    fragment ArticleCard on article_cards {
+  heading
+  description
+  thumbnail {
+    ...ImageFile
+  }
+  videoUrl
+  date
+  author
+  ctas
+  url
+}
+    ${ImageFileFragmentDoc}`;
 export const PageHomepageFragmentDoc = gql`
     fragment PageHomepage on page_homepage {
   quotes {
     ...QuoteList
   }
-  featured_articles
+  article_cards {
+    ...ArticleCard
+  }
 }
-    ${QuoteListFragmentDoc}`;
+    ${QuoteListFragmentDoc}
+${ArticleCardFragmentDoc}`;
 export const EventsDocument = gql`
     query Events {
   events {

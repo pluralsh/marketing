@@ -84,7 +84,7 @@ query SiteSettings {
   }
 }
 
-fragment FeaturedArticle on case_studies {
+fragment CaseStudy on case_studies {
   id
   slug
   label
@@ -102,12 +102,12 @@ fragment AppExtras on apps {
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
 fragment AppDefaults on app_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   quotes {
     ...QuoteList
@@ -127,12 +127,12 @@ fragment StackExtras on stacks {
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
 fragment StackDefaults on stack_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   quotes {
     ...QuoteList
@@ -228,7 +228,7 @@ fragment Solution on solutions_pages {
     ...ImageFile
   }
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   bullet_points
   featured_quote {

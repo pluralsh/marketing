@@ -62,11 +62,26 @@ query LegalPageSlugs {
   }
 }
 
+fragment ArticleCard on article_cards {
+  heading
+  description
+  thumbnail {
+    ...ImageFile
+  }
+  videoUrl
+  date
+  author
+  ctas
+  url
+}
+
 fragment PageHomepage on page_homepage {
   quotes {
     ...QuoteList
   }
-  featured_articles
+  article_cards {
+    ...ArticleCard
+  }
 }
 
 query PageHomepage {

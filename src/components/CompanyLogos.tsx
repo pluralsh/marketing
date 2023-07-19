@@ -40,7 +40,7 @@ export function CompanyLogosSection({
           className="mb-large md:mb-xxlarge text-center"
           color={theme.mode === 'light' ? 'text-light' : 'text-xlight'}
         >
-          {heading || 'Companies using Plural'}
+          {heading || 'Used by fast-moving teams at'}
         </TextLabel>
         <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
           {logos?.map((logo) => {

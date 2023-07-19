@@ -27,7 +27,7 @@ import { BackButton } from '@src/components/Nav'
 import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
-import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
@@ -62,8 +62,8 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
+import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 import { startsWithVowel } from '@src/utils/text'
-import { notNil } from '@src/utils/typescript'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { Columns, EqualColumn } from '../../src/components/layout/Columns'
@@ -387,12 +387,11 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
       : null,
     heroVideo: stackExtras.heroVideo || null,
     caseStudy: stackExtras.case_study || null,
-    quotes:
-      stackExtras.quotes?.items?.map((q) => q?.item).filter(notNil) || null,
+    quotes: normalizeQuotes(stackExtras.quotes),
     ...getStackMeta(thisStack),
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     buildStackTabs,
-    caseStudyApps: getFeaturedArticleApps(
+    caseStudyApps: getCaseStudyApps(
       repos,
       (stackExtras.case_study?.stack_apps as string[]) || []
     ),
