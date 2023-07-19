@@ -247,10 +247,12 @@ export const getStaticProps = async () => {
   const { data: pageData, error: pageDataError } = await getProductPageData()
 
   return propsWithGlobalSettings({
+    metaTitle: 'How Plural works',
+    metaDescription:
+      'Plural is an open-source, unified, application deployment platform that stands up a Kubernetes cluster and selected applications in the cloud provider of your choice.',
     featuredQuote: pageData?.featured_quote,
     faqs: pageData?.faq?.items,
     footerVariant: FooterVariant.kitchenSink,
-    pageTitle: 'How Plural works',
     errors: [...(pageDataError ? [pageDataError] : [])],
   })
 }

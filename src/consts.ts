@@ -4,7 +4,7 @@ import { type BasicRepo } from './data/getRepos'
 import { type MinStack } from './data/getStacks'
 
 export const ROOT_TITLE =
-  'Plural | Deploy, maintain, and scale the open-source applications you love'
+  'Plural | Open-source application deployment, faster than ever without sacrificing compliance.'
 export const PAGE_TITLE_PREFIX = 'Plural | '
 export const PAGE_TITLE_SUFFIX = ''
 
@@ -25,8 +25,8 @@ export const getStackMeta = (stack: MinStack): GlobalPageProps => {
   if (!displayName) return {}
 
   return {
-    metaTitleFull: `Deploying ${displayName} stack on Kubernetes`,
-    metaDescription: `Use Plural to deploy and manage the ${displayName} stack on Kubernetes, in your cloud.`,
+    metaTitleFull: `Deploying the ${displayName} Stack on Kubernetes`,
+    metaDescription: `Use Plural to deploy and manage the ${displayName} Stack on Kubernetes, in your cloud.`,
   }
 }
 

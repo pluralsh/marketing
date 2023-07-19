@@ -609,6 +609,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
   ])
 
   return propsWithGlobalSettings({
+    metaTitle: 'Explore the open-source marketplace',
+    metaDescription:
+      'Discover over 90 open-source applications ready to deploy in your cloud in minutes.',
     repositories: repos || reposCache.filtered,
     stacks: stacks || stacksCache.filtered,
     tags: tags || [],

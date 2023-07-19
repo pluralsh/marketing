@@ -245,6 +245,7 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
 
   return propsWithGlobalSettings({
     metaTitle: 'Pricing',
+    metaDescription: 'Flexible plans for every stage of your business',
     ...pricing,
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     footerVariant: FooterVariant.kitchenSink,

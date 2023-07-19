@@ -235,7 +235,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
 
   return propsWithGlobalSettings({
     solution,
-    metaTitle: solution.title || null,
+    metaTitle: `Solution${solution.title ? ` – ${solution.title}` : ''}`,
     metaDescription: solution.description || null,
     faqs: faqData.collapsible_lists?.[0]?.items || [],
     caseStudy: solution.case_study || null,

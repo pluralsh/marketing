@@ -45,5 +45,8 @@ export default function Index() {
 
 export const getStaticProps = async () =>
   propsWithGlobalSettings({
+    metaTitle: 'Contact sales',
+    metaDescription:
+      'Plural offers packages to teams of all sizes and flexible and transparent pricing for everyone.',
     footerVariant: FooterVariant.kitchenSink,
   })

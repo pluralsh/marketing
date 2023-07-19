@@ -287,6 +287,9 @@ export const getStaticProps = async () => {
   const { data: jobs, error: jobsError } = await getJobListings()
 
   return propsWithGlobalSettings({
+    metaTitle: 'Careers',
+    metaDescription:
+      'We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We’re always interested in hiring new talent!',
     footerVariant: FooterVariant.kitchenSink,
     jobs: jobs || [],
     errors: [...(jobsError ? [jobsError] : [])],
