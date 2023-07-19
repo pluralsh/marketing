@@ -82,7 +82,6 @@ export function ArticleCard({
   const thumbUrl = getImageUrl(thumbnail)
 
   return (
-    // @ts-expect-error
     <ArticleCardSC
       $size={size}
       {...(url && !videoUrl

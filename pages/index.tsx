@@ -5,7 +5,7 @@ import Link from 'next/link'
 import classNames from 'classnames'
 
 import { directusClient } from '@src/apollo-client'
-import { ArticleCard, ArticleCardNoBorder } from '@src/components/ArticleCard'
+import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
