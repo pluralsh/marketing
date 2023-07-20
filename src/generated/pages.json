@@ -24,6 +24,9 @@
     "path": "/marketplace"
   },
   {
+    "path": "/plural-deployments-early-access"
+  },
+  {
     "path": "/pricing"
   },
   {

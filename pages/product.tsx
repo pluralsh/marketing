@@ -19,7 +19,7 @@ import {
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
+import { HowPluralWorksSection } from '@src/components/page-sections/HowPluralWorksSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -167,7 +167,7 @@ export default function Index({
             heading="How Plural works"
             className="md:mb-xxlarge mb-xxlarge"
           />
-          <HPWMiniSectionAppStacks />
+          <HowPluralWorksSection />
         </StandardPageWidth>
       </StandardPageSection>
       <ColorModeProvider mode="light">

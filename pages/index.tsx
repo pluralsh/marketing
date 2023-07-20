@@ -1,21 +1,38 @@
-import { type ComponentProps } from 'react'
+import {
+  type ComponentProps,
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+} from 'react'
 
-import { Button, ColorModeProvider } from '@pluralsh/design-system'
+import {
+  Button,
+  CheckedShieldIcon,
+  CloudIcon,
+  ColorModeProvider,
+  LogsIcon,
+  PadlockLockedIcon,
+} from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import classNames from 'classnames'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { directusClient } from '@src/apollo-client'
+import { mqs } from '@src/breakpoints'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FooterVariant } from '@src/components/FooterFull'
+import PersonCheck from '@src/components/icons/PersonCheck'
+import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
-import { Body1, Heading1 } from '@src/components/Typography'
+import { CenteredSectionHead } from '@src/components/SectionHeads'
+import { ShadowedCard } from '@src/components/ShadowedCard'
+import { Body2, ResponsiveText } from '@src/components/Typography'
 import {
   PageHomepageDocument,
   type PageHomepageQuery,
@@ -26,7 +43,6 @@ import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 
 import {
   StandardPageSection,
-  StandardPageSectionBtm,
   StandardPageWidth,
 } from '../src/components/layout/LayoutHelpers'
 
@@ -120,6 +136,239 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   )
 }
 
+const FeatureSC = styled(Columns)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  // flexDirection: 'column',
+  rowGap: theme.spacing.xxxlarge,
+  [mqs.columns]: {
+    '&:nth-child(2n+1)': {
+      flexDirection: 'row-reverse',
+    },
+  },
+}))
+
+function Feature({
+  heading,
+  children,
+  image,
+}: {
+  heading: ReactNode
+  children: ReactNode
+  image?: ReactNode
+}) {
+  return (
+    <FeatureSC>
+      <EqualColumn className="flex flex-col gap-y-xlarge">
+        <ResponsiveText
+          className="[text-wrap:balance]"
+          textStyles={{ '': 'mTitle1' }}
+        >
+          {heading}
+        </ResponsiveText>
+        <Body2 as="div">{children}</Body2>
+      </EqualColumn>
+      <EqualColumn className="w-full">
+        <div className="bg-blue-700 w-full h-[200px]">{image}</div>
+      </EqualColumn>
+    </FeatureSC>
+  )
+}
+
+const BuildSecurelyCardSC = styled(ShadowedCard)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '',
+  textAlign: 'center',
+  ...theme.partials.text.body2Bold,
+  color: theme.colors['text-light'],
+  '& > *': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 120,
+    paddingLeft: theme.spacing.medium,
+    paddingRight: theme.spacing.medium,
+    maxWidth: 240,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    '&:first-child': {
+      paddingTop: theme.spacing.xlarge,
+    },
+    '&:last-child': {
+      paddingBottom: theme.spacing.xlarge,
+    },
+  },
+}))
+
+function BuildSecurelyCard({
+  icon,
+  heading,
+  ...props
+}: {
+  icon: ReactElement
+  heading: ReactNode
+} & ComponentProps<typeof BuildSecurelyCardSC>) {
+  const theme = useTheme()
+  const iconClone = cloneElement(icon, {
+    size: 48,
+    color: theme.colors['icon-primary'],
+  })
+
+  return (
+    <BuildSecurelyCardSC {...props}>
+      <div>{iconClone}</div>
+      <div className="text">{heading}</div>
+    </BuildSecurelyCardSC>
+  )
+}
+
+const BuildSecurelyGridSC = styled.div(({ theme }) => ({
+  display: 'grid',
+  gap: theme.spacing.medium,
+  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+  textWrap: 'balance',
+  [mqs.xs]: {
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    '& > *': {
+      '&:nth-child(n + 5)': {
+        gridColumn: 'span 2',
+      },
+    },
+  },
+  [mqs.md]: {
+    gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+    '& > *': {
+      '&, &:nth-child(n)': {
+        gridColumn: 'span 2',
+      },
+      '&:nth-child(n+4)': {
+        gridColumn: 'span 3',
+      },
+    },
+  },
+  [mqs.lg]: {
+    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+    '& > *': {
+      '&, &:nth-child(n)': {
+        gridColumn: 'span 1',
+      },
+    },
+  },
+}))
+
+function BuildSecurely() {
+  return (
+    <div className="flex flex-col gap-y-xxxxlarge">
+      <CenteredSectionHead
+        heading="Build securely from day zero"
+        intro={
+          <div className="[text-wrap:balance]">
+            We’re not a SaaS. You control everything. No need to share your
+            cloud account, keys or data.
+          </div>
+        }
+      />
+      <BuildSecurelyGridSC>
+        <BuildSecurelyCard
+          icon={<CloudIcon />}
+          heading="Deployed on your cloud"
+        />
+        <BuildSecurelyCard
+          icon={<PadlockLockedIcon />}
+          heading="No need to share your cloud account keys"
+        />
+        <BuildSecurelyCard
+          icon={<CheckedShieldIcon />}
+          heading="Security scanned and hardened images"
+        />
+        <BuildSecurelyCard
+          icon={<LogsIcon />}
+          heading="Customize deployments to suit your setup"
+        />
+        <BuildSecurelyCard
+          icon={<PersonCheck />}
+          heading="User authentication enabled out of the box"
+        />
+      </BuildSecurelyGridSC>
+    </div>
+  )
+}
+
+function FeaturesSection() {
+  return (
+    <ColorModeProvider mode="light">
+      <StandardPageSection className="bg-fill-zero">
+        <StandardPageWidth>
+          <div className="flex flex-col gap-y-xxxxlarge md:gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+            <CenteredSectionHead
+              preHeading="Features"
+              heading="Get all the control, flexibility, and security that comes from self-hosting, with none of the hassle."
+            />
+            <Feature
+              heading="Easy setup, effortless deployments"
+              image="blah"
+            >
+              <p>
+                Install Plural using our CLI or our cloud shell in minutes and
+                then choose from 90+ production-grade, open-source applications
+                to deploy in your environment.
+              </p>
+            </Feature>
+            <Feature
+              heading="For the security and privacy conscious"
+              image=""
+            >
+              <p>
+                Plural is built for secure deployments, featuring
+                security-scanned and hardened images, seamless integration with
+                your SAML gateway, turnkey user authentication, centralized user
+                management, and granular RBAC.
+              </p>
+            </Feature>
+            <Feature
+              heading="Fully customizable deployments"
+              image=""
+            >
+              <p>
+                We know that everyone’s requirements are a little different.
+                That’s why everything is customizable in Plural. Want to change
+                the network setup? How about using a different storage layer? No
+                sweat. Better yet, all configuration is stored in Git, providing
+                a natural development workflow to rework and customize
+                applications.
+              </p>
+            </Feature>
+            <Feature
+              heading="Take the hassle out of upgrades and scaling"
+              image=""
+            >
+              <p>
+                Never have the headache of manually upgrading applications
+                again. Plural’s built in dependency tree ensures all
+                dependencies are upgraded in the correct order, with no
+                downtime. Need to scale? That’s 1-click with our operational
+                runbooks.
+              </p>
+            </Feature>
+            <Feature
+              heading="Built for production"
+              image=""
+            >
+              <p>
+                Harness Complete Performance Insights: Plural's Native
+                Integrations with Prometheus, Datadog, and More. Streamline
+                Testing and Rollouts with Effortless Multi-Cluster Deploys from
+                Dev to Prod.
+              </p>
+            </Feature>
+          </div>
+        </StandardPageWidth>
+      </StandardPageSection>
+    </ColorModeProvider>
+  )
+}
+
 export default function Index({
   quotes,
   globalProps,
@@ -163,25 +412,23 @@ export default function Index({
             </div>
           }
         />
-        <StandardPageWidth>
-          <HeroImages />
-        </StandardPageWidth>
-      </HeaderPad>
-      <ColorModeProvider mode="light">
-        <StandardPageSection className="bg-fill-zero">
+        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pt-xxxxxlarge lg:pb-xxlarge">
           <StandardPageWidth>
-            <div className="flex flex-col gap-x-medium gap-y-xlarge ">
-              <Heading1>Home page</Heading1>
-              <Body1>This is some body text</Body1>
-            </div>
+            <HeroImages />
+          </StandardPageWidth>
+        </div>
+        <StandardPageSection>
+          <StandardPageWidth>
+            <BuildSecurely />
           </StandardPageWidth>
         </StandardPageSection>
-      </ColorModeProvider>
+      </HeaderPad>
+      <FeaturesSection />
       <GradientBG
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
-        className="pb-xxxxxlarge -my-xxxxxlarge"
+        className="pb-xxxxxlarge -mb-xxxxxlarge"
       >
         <StandardPageSection className="flex flex-col gap-y-xxxlarge">
           <CompanyLogosSection
@@ -192,7 +439,7 @@ export default function Index({
       </GradientBG>
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero">
-          <StandardPageSectionBtm>
+          <StandardPageSection padTop={false}>
             <StandardPageWidth className="relative z-[1]">
               <div className="grid grid-cols-1 items-stretch columns:grid-cols-3 gap-xlarge">
                 {articleCards?.map((c, i) => {
@@ -208,7 +455,7 @@ export default function Index({
                 })}
               </div>
             </StandardPageWidth>{' '}
-          </StandardPageSectionBtm>
+          </StandardPageSection>
         </div>
       </ColorModeProvider>
     </>
