@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { InlineCode } from '@pluralsh/design-system'
+import { InlineCode, isExternalUrl } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import ReactMarkdown from 'react-markdown'
@@ -21,6 +21,9 @@ export default memo(({ text }: { text?: string | null }) => {
         a: ({ node: _, ...props }) => (
           <InlineLink
             as={Link}
+            {...(isExternalUrl(props.href)
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
             {...(props as any)}
           />
         ),

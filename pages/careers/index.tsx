@@ -5,15 +5,16 @@ import Head from 'next/head'
 import Script from 'next/script'
 
 import classNames from 'classnames'
-import styled from 'styled-components'
 
-import { mqs } from '@src/breakpoints'
 import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import {
+  StandardPageSection,
+  StandardPageWidth,
+} from '@src/components/layout/LayoutHelpers'
 import { JobListingsSection } from '@src/components/page-sections/JobListingsSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import { ScrollToLink } from '@src/components/ScrollToLink'
@@ -23,19 +24,6 @@ import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { ValueCard } from '../../src/components/ValueCard'
-
-export const StandardPageSection = styled.div(({ theme }) => ({
-  paddingTop: theme.spacing.xxxxlarge,
-  paddingBottom: theme.spacing.xxxxlarge,
-  [mqs.md]: {
-    paddingTop: theme.spacing.xxxxxlarge,
-    paddingBottom: theme.spacing.xxxxxlarge,
-  },
-  [mqs.xxl]: {
-    paddingTop: theme.spacing.xxxxxxlarge,
-    paddingBottom: theme.spacing.xxxxxxlarge,
-  },
-}))
 
 function PhotosSection() {
   return (
@@ -299,6 +287,9 @@ export const getStaticProps = async () => {
   const { data: jobs, error: jobsError } = await getJobListings()
 
   return propsWithGlobalSettings({
+    metaTitle: 'Careers',
+    metaDescription:
+      'We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We’re always interested in hiring new talent!',
     footerVariant: FooterVariant.kitchenSink,
     jobs: jobs || [],
     errors: [...(jobsError ? [jobsError] : [])],

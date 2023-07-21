@@ -15,23 +15,26 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 import { type MergeDeep } from 'type-fest'
 
-import { StandardPageSection } from '@pages/careers'
-import { ProductValueSection } from '@pages/plural-stacks/[stack]'
+// import { ProductValueSection } from '@pages/plural-stacks/ProductValueSection'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import {
+  StandardPageSection,
+  StandardPageWidth,
+} from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
 import BuildStack, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
 import {
-  FeaturedArticleSection,
-  getFeaturedArticleApps,
-} from '@src/components/page-sections/FeaturedArticleSection'
+  CaseStudySection,
+  getCaseStudyApps,
+} from '@src/components/page-sections/CaseStudySection'
+import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
@@ -46,10 +49,11 @@ import {
 } from '@src/components/Typography'
 import { QUICKSTART_VIDEO_URL, getAppMeta, getProviderIcon } from '@src/consts'
 import {
+  type BasicRepo,
   type FullRepo,
-  type MinRepo,
+  type TinyRepo,
   getFullRepo,
-  getRepos,
+  getTinyRepos,
 } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import {
@@ -62,6 +66,7 @@ import {
   FaqListDocument,
   type FaqListQuery,
   type FaqListQueryVariables,
+  type QuoteFragment,
 } from '@src/generated/graphqlDirectus'
 import {
   type Recipe,
@@ -70,7 +75,11 @@ import {
   type RecipesQuery,
   type RecipesQueryVariables,
 } from '@src/generated/graphqlPlural'
-import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import {
+  type GlobalProps,
+  propsWithGlobalSettings,
+} from '@src/utils/getGlobalProps'
+import { normalizeM2mItems, normalizeQuotes } from '@src/utils/normalizeQuotes'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { GradientBG } from '../../src/components/layout/GradientBG'
@@ -87,7 +96,7 @@ function isRecipe(
 }
 
 const AppPageTitle = styled(
-  ({ app, ...props }: { app: MinRepo } & ComponentProps<'div'>) => {
+  ({ app, ...props }: { app: BasicRepo } & ComponentProps<'div'>) => {
     const theme = useTheme()
     const iconProps = {
       url:
@@ -141,11 +150,14 @@ export type ProviderProps = {
 
 export default function App({
   repo,
-  appExtras,
+  heroVideo,
+  caseStudy,
+  quotes,
   recipes,
   buildStackTabs,
   caseStudyApps,
   faqs,
+  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const tabs =
@@ -204,7 +216,7 @@ export default function App({
           <EqualColumn>
             <Embed
               className="m-0 p-0"
-              url={appExtras?.heroVideo || DEFAULT_HERO_VIDEO}
+              url={heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
           </EqualColumn>
@@ -215,7 +227,7 @@ export default function App({
             'flex-col',
             'gap-large',
             'py-xxxxlarge',
-            'xl:py-[192px]'
+            'xl:py-xxxxxxlarge'
           )}
         >
           <Columns className={classNames('gap-y-xxxlarge')}>
@@ -276,31 +288,20 @@ export default function App({
           )}
         </div>
       </StandardPageWidth>
-      <ProductValueSection
-        name={repo.displayName}
-        isStack={false}
-      />
+      <HPWMiniSectionAppStacks />
       {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
-      <CompanyLogosSection className="mt-xxxxlarge" />
-      <TestimonialsSection />
+      <CompanyLogosSection
+        className="mt-xxxxlarge"
+        logos={globalProps.siteSettings?.partner_logos?.items}
+      />
+      <TestimonialsSection quotes={quotes} />
       <CaseStudyFAQSection
         caseStudyProps={{
           apps: caseStudyApps,
-          featuredArticle: appExtras?.case_study,
+          featuredArticle: caseStudy,
         }}
         faqProps={{ faqs }}
       />
-      {/* <ColorModeProvider mode="light">
-        <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
-          <StandardPageWidth>
-            <FeaturedArticleSection
-              apps={caseStudyApps}
-              featuredArticle={appExtras?.case_study}
-            />
-          </StandardPageWidth>
-          <StandardFAQSection faqs={faqs} />
-        </StandardPageSection>
-      </ColorModeProvider> */}
     </HeaderPad>
   )
 }
@@ -309,15 +310,17 @@ export function CaseStudyFAQSection({
   caseStudyProps,
   faqProps,
 }: {
-  caseStudyProps: ComponentProps<typeof FeaturedArticleSection>
+  caseStudyProps?: ComponentProps<typeof CaseStudySection>
   faqProps: ComponentProps<typeof StandardFAQSection>
 }) {
   return (
     <ColorModeProvider mode="light">
       <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
-        <StandardPageWidth>
-          <FeaturedArticleSection {...caseStudyProps} />
-        </StandardPageWidth>
+        {caseStudyProps?.featuredArticle && (
+          <StandardPageWidth>
+            <CaseStudySection {...caseStudyProps} />
+          </StandardPageWidth>
+        )}
         <StandardFAQSection {...faqProps} />
       </StandardPageSection>
     </ColorModeProvider>
@@ -332,7 +335,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 
-  const repos = (await getRepos()) || []
+  const repos = (await getTinyRepos()) || []
 
   return {
     paths: repos.map((repo) => ({ params: { repo: repo?.name } })),
@@ -342,11 +345,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export type AppPageProps = {
   repo?: FullRepo | null
-  appExtras?: AppExtrasFragment
+  quotes: QuoteFragment[] | null
+  heroVideo: Exclude<
+    ReturnType<typeof normalizeAppExtras>['heroVideo'],
+    undefined
+  >
+  caseStudy: Exclude<
+    ReturnType<typeof normalizeAppExtras>['case_study'],
+    undefined
+  >
   recipes?: Recipe[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
-  caseStudyApps: MinRepo[]
+  caseStudyApps: TinyRepo[]
   faqs: (FaqItemFragment | null)[]
+  globalProps: GlobalProps
 }
 
 const normalizeAppExtras = (extras: AppExtrasQuery) =>
@@ -358,7 +370,7 @@ const normalizeAppExtras = (extras: AppExtrasQuery) =>
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo
 
-  const { data: repos, error: reposError } = await until(() => getRepos())
+  const { data: repos, error: reposError } = await until(() => getTinyRepos())
 
   const { data: repo, error: repoError } = await until(() =>
     getFullRepo(`${repoName}`)
@@ -417,19 +429,21 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
           ...thisRepo,
         }
       : null,
-    appExtras,
+    caseStudy: appExtras.case_study || null,
+    heroVideo: appExtras.heroVideo || null,
+    quotes: normalizeQuotes(appExtras.quotes),
     recipes,
     ...getAppMeta(thisRepo),
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     buildStackTabs,
-    caseStudyApps: getFeaturedArticleApps(
+    caseStudyApps: getCaseStudyApps(
       repos,
       (appExtras.case_study?.stack_apps as string[]) || []
     ),
     footerVariant: FooterVariant.kitchenSink,
     errors: [
       ...(reposError ? [reposError] : []),
-      ...(stacksError ? [reposError] : []),
+      ...(stacksError ? [stacksError] : []),
       ...(repoError ? [repoError] : []),
       ...(appError ? [appError] : []),
       ...(faqError ? [faqError] : []),

@@ -32,25 +32,31 @@ function OpenGraph({
   image,
 }: {
   title: string
-  description: string
-  image?: string
+  description?: string | null
+  image?: string | null
 }) {
   const router = useRouter()
 
   return (
     <Head>
-      <meta
-        property="og:image"
-        content={image || `${process.env.NEXT_PUBLIC_ROOT_URL}/og_image.png`}
-      />
-      <meta
-        property="og:title"
-        content={title}
-      />
-      <meta
-        property="og:description"
-        content={description}
-      />
+      {image && (
+        <meta
+          property="og:image"
+          content={image || `${process.env.NEXT_PUBLIC_ROOT_URL}/og_image.png`}
+        />
+      )}
+      {title && (
+        <meta
+          property="og:title"
+          content={title}
+        />
+      )}
+      {description && (
+        <meta
+          property="og:description"
+          content={description}
+        />
+      )}
       <meta
         property="og:url"
         content={`${process.env.NEXT_PUBLIC_ROOT_URL}${router.pathname}`}
@@ -65,8 +71,8 @@ function HtmlHead({
   ogImage,
 }: {
   title: string
-  description: string
-  ogImage?: string
+  description: string | null
+  ogImage?: string | null
 }) {
   return (
     <>
@@ -76,10 +82,12 @@ function HtmlHead({
           name="title"
           content={title}
         />
-        <meta
-          name="description"
-          content={description}
-        />
+        {description && (
+          <meta
+            name="description"
+            content={description}
+          />
+        )}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"

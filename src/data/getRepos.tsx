@@ -6,8 +6,8 @@ import { filterMapNodes } from '@src/utils/graphql'
 
 import client from '../apollo-client'
 import {
+  type BasicRepoFragment,
   type FullRepoFragment,
-  type MinRepoFragment,
   type RecipeFragment,
   type RecipeSectionFragment,
   RepoDocument,
@@ -16,20 +16,32 @@ import {
   ReposDocument,
   type ReposQuery,
   type ReposQueryVariables,
+  type TinyRepoFragment,
+  TinyReposDocument,
+  type TinyReposQuery,
+  type TinyReposQueryVariables,
 } from '../generated/graphqlPlural'
 
 const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']
 
-export type MinRepo = ReturnType<
-  typeof normalizeRepo<Exclude<MinRepoFragment, null | undefined>>
+export type BasicRepo = ReturnType<
+  typeof normalizeRepo<Exclude<BasicRepoFragment, null | undefined>>
 >
+
+export type TinyRepo = ReturnType<typeof normalizeTinyRepo>
 
 export type FullRepo = ReturnType<
   typeof normalizeRepo<Exclude<FullRepoFragment, null | undefined>>
 >
 
 export const reposCache: {
-  filtered: MinRepo[]
+  filtered: BasicRepo[]
+} = {
+  filtered: [],
+}
+
+export const tinyReposCache: {
+  filtered: TinyRepo[]
 } = {
   filtered: [],
 }
@@ -77,23 +89,32 @@ export function normalizeRepo<
   const { recipes, ...props } = repo
 
   const nRecipes = normalizeRecipes(recipes)
-  const community = props.community || ({} as typeof props.community)
+  const community: FullRepoFragment['community'] = { ...props.community } || {}
+
+  if (!community?.gitUrl && props.gitUrl) {
+    community.gitUrl = props.gitUrl
+  }
+  if (!community?.homepage && props.homepage) {
+    community.homepage = props.homepage
+  }
 
   return {
     ...props,
     ...(nRecipes ? { recipes: nRecipes } : {}),
-    recipes,
+    ...(recipes ? { recipes } : {}),
     displayName:
       ((repo as any).displayName as string) || fakeDisplayName(repo?.name),
     community: {
       ...community,
-      ...(!community?.gitUrl && props.gitUrl //
-        ? { gitUrl: props.gitUrl }
-        : {}),
-      ...(!community?.homepage && props.homepage //
-        ? { homepage: props.homepage }
-        : {}),
     },
+  }
+}
+
+export function normalizeTinyRepo(repo: TinyRepoFragment) {
+  return {
+    ...repo,
+    displayName:
+      ((repo as any).displayName as string) || fakeDisplayName(repo?.name),
   }
 }
 
@@ -101,6 +122,12 @@ function filterRepo<
   T extends { name?: string; recipes?: any[] | null } | null | undefined
 >(repo: T): boolean {
   return !!repo && !inRemoveList(repo?.name) && !isEmpty(repo?.recipes)
+}
+
+function filterTinyRepo<
+  T extends { name?: string; recipes?: any[] | null } | null | undefined
+>(repo: T): boolean {
+  return !!repo && !inRemoveList(repo?.name)
 }
 
 const normalizeRecipes = (recipes: FullRepoFragment['recipes']) =>
@@ -122,23 +149,58 @@ const normalizeRepos = memoizeOne((data: ReposQuery) =>
   filterMapNodes(data?.repositories, filterRepo, normalizeRepo)
 )
 
-export async function getRepos(): Promise<MinRepo[]> {
+export const normalizeTinyRepos = (data: TinyReposQuery) =>
+  filterMapNodes(data?.repositories, filterTinyRepo, normalizeTinyRepo)
+
+export async function getRepos(): Promise<BasicRepo[]> {
   const { data, error } = await client.query<ReposQuery, ReposQueryVariables>({
     query: ReposDocument,
   })
 
-  if (error) {
-    throw new Error(`${error.name}: ${error.message}`)
-  }
-  const filteredRepos = normalizeRepos(data) as MinRepo[]
+  const filteredRepos: BasicRepo[] | undefined | null = normalizeRepos(data)
 
   if (filteredRepos && filteredRepos.length > 0) {
     reposCache.filtered = filteredRepos
 
-    return filteredRepos || []
+    return filteredRepos
+  }
+  if (!isEmpty(reposCache.filtered)) {
+    console.warn('getRepos(): No repos returned, using cached data')
+
+    return reposCache.filtered
+  }
+  if (error) {
+    throw new Error(`getRepos() – ${error.name}: ${error.message}`)
   }
 
-  throw new Error('No repos found')
+  throw new Error('getRepos() – No repos found')
+}
+
+export async function getTinyRepos(): Promise<TinyRepo[]> {
+  const { data, error } = await client.query<
+    TinyReposQuery,
+    TinyReposQueryVariables
+  >({
+    query: TinyReposDocument,
+  })
+
+  const filteredRepos: TinyRepo[] | undefined | null = normalizeTinyRepos(data)
+
+  if (filteredRepos && filteredRepos.length > 0) {
+    tinyReposCache.filtered = filteredRepos
+
+    return filteredRepos
+  }
+  if (!isEmpty(tinyReposCache.filtered)) {
+    console.warn('getTinyRepos(): No repos returned, using cached data')
+
+    return tinyReposCache.filtered
+  }
+
+  if (error) {
+    throw new Error(`getTinyRepos() – ${error.name}: ${error.message}`)
+  }
+  throw new Error('getTinyRepos() – No repos found')
 }
 
 const fullRepoCache: Record<string, FullRepo> = {}
@@ -156,7 +218,7 @@ export async function getFullRepo(repoName: string): Promise<FullRepo> {
     ? normalizeRepo(data.repository)
     : fullRepoCache[repoName] || undefined
 
-  if (!filterRepo(repo)) throw new Error('No repo found')
+  if (!filterRepo(repo)) throw new Error('getFullRepo() – No repo found')
   fullRepoCache[repoName] = repo
 
   return repo

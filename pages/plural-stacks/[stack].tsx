@@ -19,7 +19,6 @@ import { type MergeDeep } from 'type-fest'
 import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
 import { AppCard } from '@src/components/AppOrStackCard'
-import { Checklist, ChecklistItem } from '@src/components/Checklist'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
@@ -28,28 +27,27 @@ import { BackButton } from '@src/components/Nav'
 import BuildStackSection, {
   getStackTabData,
 } from '@src/components/page-sections/BuildStackSection'
-import { getFeaturedArticleApps } from '@src/components/page-sections/FeaturedArticleSection'
+import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
+import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { RepoSocials } from '@src/components/RepoSocials'
 import {
   AppTitle,
   Body1,
-  Body2,
-  Cta,
   Overline,
   ResponsiveText,
-  Title2,
 } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
 import { appUrl } from '@src/consts/routes'
-import { type MinRepo, getRepos, normalizeRepo } from '@src/data/getRepos'
+import { type TinyRepo, getTinyRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
 import {
   type FaqItemFragment,
   FaqListDocument,
   type FaqListQuery,
   type FaqListQueryVariables,
+  type QuoteFragment,
   type StackDefaultsFragment,
   StackExtrasDocument,
   type StackExtrasFragment,
@@ -57,16 +55,22 @@ import {
   type StackExtrasQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import {
-  type MinRepoFragment,
+  type BasicRepoFragment,
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
-import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import {
+  type GlobalProps,
+  propsWithGlobalSettings,
+} from '@src/utils/getGlobalProps'
+import { normalizeM2mItems, normalizeQuotes } from '@src/utils/normalizeQuotes'
 import { startsWithVowel } from '@src/utils/text'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { Columns, EqualColumn } from '../../src/components/layout/Columns'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 import { TextLimiter } from '../../src/components/layout/TextLimiter'
+
+// import { ProductValueSection } from './ProductValueSection'
 
 const DEFAULT_HERO_VIDEO = 'https://www.youtube.com/watch?v=LOUshNTgPV0'
 
@@ -88,10 +92,13 @@ const StackAppsTabPanel = styled(TabPanel)((_) => ({}))
 
 export default function Stack({
   stack,
-  stackExtras,
+  quotes,
+  heroVideo,
+  caseStudy,
   faqs,
   buildStackTabs,
   caseStudyApps,
+  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const providers =
@@ -114,7 +121,7 @@ export default function Stack({
 
   const apps = stack?.collections?.[0]?.bundles
     ?.map((bundle) => bundle?.recipe.repository)
-    .filter((repo): repo is MinRepoFragment => !!repo)
+    .filter((repo): repo is BasicRepoFragment => !!repo)
     .map((repo) => normalizeRepo(repo))
 
   const appsTabStateRef = useRef<any>()
@@ -179,7 +186,7 @@ export default function Stack({
           <EqualColumn>
             <Embed
               className="m-0 p-0"
-              url={stackExtras?.heroVideo || DEFAULT_HERO_VIDEO}
+              url={heroVideo || DEFAULT_HERO_VIDEO}
               aspectRatio="16 / 9"
             />
           </EqualColumn>
@@ -190,7 +197,7 @@ export default function Stack({
             'flex-col',
             // 'gap-large',
             'py-xxxxlarge',
-            'xl:py-[192px]'
+            'xl:py-xxxxxxlarge'
           )}
         >
           <Columns className="mb-small">
@@ -269,17 +276,22 @@ export default function Stack({
           </Columns>
         </div>
       </StandardPageWidth>
-      <ProductValueSection
+
+      <HPWMiniSectionAppStacks />
+      {/* <ProductValueSection
         name={stack.displayName}
         isStack
-      />
+      /> */}
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <CompanyLogosSection className="mt-xxxxlarge" />
-      <TestimonialsSection />
+      <CompanyLogosSection
+        className="mt-xxxxlarge"
+        logos={globalProps.siteSettings?.partner_logos?.items}
+      />
+      <TestimonialsSection quotes={quotes} />
       <CaseStudyFAQSection
         caseStudyProps={{
           apps: caseStudyApps,
-          featuredArticle: stackExtras?.case_study,
+          featuredArticle: caseStudy,
         }}
         faqProps={{ faqs }}
       />
@@ -304,11 +316,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export type StackPageProps = {
-  stack?: FullStack | null
-  stackExtras?: StackExtrasFragment
+  stack: FullStack | null
+  quotes: QuoteFragment[] | null
+  heroVideo: Exclude<
+    ReturnType<typeof normalizeStackExtras>['heroVideo'],
+    undefined
+  >
+  caseStudy: Exclude<
+    ReturnType<typeof normalizeStackExtras>['case_study'],
+    undefined
+  >
   buildStackTabs?: ReturnType<typeof getStackTabData>
-  caseStudyApps: MinRepo[]
+  caseStudyApps: TinyRepo[]
   faqs: (FaqItemFragment | null)[]
+  globalProps: GlobalProps
 }
 
 const normalizeStackExtras = (extras: StackExtrasQuery) =>
@@ -325,11 +346,7 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
   if (!stackName || typeof stackName !== 'string') {
     return { notFound: true }
   }
-  const { data: repos, error: reposError } = await until(() => getRepos())
-
-  // const { data: repo, error: repoError } = await until(() =>
-  //   getFullRepo(`${repoName}`)
-  // )
+  const { data: repos, error: reposError } = await until(() => getTinyRepos())
 
   const { data: stacks, error: stacksError } = await until(() => getStacks())
   const { data: stack, error: stackError } = await until(() =>
@@ -368,11 +385,13 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
           ...thisStack,
         }
       : null,
-    stackExtras,
+    heroVideo: stackExtras.heroVideo || null,
+    caseStudy: stackExtras.case_study || null,
+    quotes: normalizeQuotes(stackExtras.quotes),
     ...getStackMeta(thisStack),
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     buildStackTabs,
-    caseStudyApps: getFeaturedArticleApps(
+    caseStudyApps: getCaseStudyApps(
       repos,
       (stackExtras.case_study?.stack_apps as string[]) || []
     ),
@@ -385,55 +404,4 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
       ...(faqError ? [faqError] : []),
     ],
   })
-}
-
-export function ProductValueSection({
-  name,
-  isStack,
-}: {
-  name: string
-  isStack: boolean
-}) {
-  const fullName = isStack ? `the ${name} Stack` : name
-
-  return (
-    <StandardPageWidth>
-      <div>
-        <Columns className="gap-y-xxxlarge">
-          <EqualColumn>
-            <TextLimiter className="flex flex-col gap-large">
-              <Title2>Open-source and free to use</Title2>
-              <Body2>
-                Plural automates the deployment and operation of {fullName} in
-                your cloud. Get up and running with your {fullName} instance in
-                minutes and let Plural deploy {fullName} and all its
-                dependencies into your cloud with all of the day-2 operations
-                handled out of the box.
-              </Body2>
-              <Cta href="https://www.plural.sh/demo-login">
-                Explore {fullName} on Plural in live demo environment
-              </Cta>
-            </TextLimiter>
-          </EqualColumn>
-          <EqualColumn className="flex flex-col gap-large">
-            <Checklist>
-              <ChecklistItem>Automated upgrades</ChecklistItem>
-              <ChecklistItem>
-                Transparent pricing and cost management
-              </ChecklistItem>
-              <ChecklistItem>Prebuilt dashboards, extendable </ChecklistItem>
-              <ChecklistItem>Prebuilt runbooks, extendable </ChecklistItem>
-              <ChecklistItem>Log management </ChecklistItem>
-            </Checklist>
-          </EqualColumn>
-        </Columns>
-        <div className="pt-xxxlarge mx-[-5.6%] my-[-2%]">
-          <img
-            src="/images/application/product-value@2x.png"
-            alt="Screenshots of the Plural Console app, showing dashboards for Applications, Nodes and cost"
-          />
-        </div>
-      </div>
-    </StandardPageWidth>
-  )
 }

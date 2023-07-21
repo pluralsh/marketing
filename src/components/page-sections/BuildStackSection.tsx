@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import { mqs } from '@src/breakpoints'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { appUrl, stackUrl } from '@src/consts/routes'
-import { type getRepos } from '@src/data/getRepos'
+import { type getTinyRepos } from '@src/data/getRepos'
 import { type getStacks } from '@src/data/getStacks'
 
 import { AppCard, StackCard } from '../AppOrStackCard'
@@ -26,7 +26,7 @@ export const getStackTabData = ({
   repos,
   stacks,
 }: {
-  repos?: Awaited<ReturnType<typeof getRepos>> | null
+  repos?: Awaited<ReturnType<typeof getTinyRepos>> | null
   stacks?: Awaited<ReturnType<typeof getStacks>> | null
 }) => [
   {

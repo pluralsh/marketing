@@ -111,7 +111,7 @@ function ContributorCard({
     <ContributorCardSC
       href={contributor.html_url}
       target="_blank"
-      rel="noreferrer nofollow"
+      rel="noopener noreferrer"
     >
       <div
         className="portrait"

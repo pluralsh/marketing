@@ -7,7 +7,15 @@ fragment Publisher on Publisher {
   backgroundColor
 }
 
-fragment MinRepo on Repository {
+fragment TinyRepo on Repository {
+  id
+  name
+  category
+  darkIcon
+  icon
+}
+
+fragment BasicRepo on Repository {
   category
   darkIcon
   description
@@ -40,13 +48,10 @@ fragment MinRepo on Repository {
     name
     url
   }
-  # Remove later when repositories q is public
-  # readme
-  # mainBranch
 }
 
 fragment FullRepo on Repository {
-  ...MinRepo
+  ...BasicRepo
   readme
   mainBranch
 }
@@ -55,7 +60,7 @@ query Repos {
   repositories(first: 5000) {
     edges {
       node {
-        ...MinRepo
+        ...BasicRepo
       }
     }
   }
@@ -65,7 +70,17 @@ query Repos {
   repositories(first: 5000) {
     edges {
       node {
-        ...MinRepo
+        ...BasicRepo
+      }
+    }
+  }
+}
+
+query TinyRepos {
+  repositories(first: 5000) {
+    edges {
+      node {
+        ...TinyRepo
       }
     }
   }

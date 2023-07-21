@@ -1,6 +1,7 @@
-import { type ReactNode } from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
 import classNames from 'classnames'
+import { type Merge } from 'type-fest'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
@@ -13,17 +14,24 @@ export function HeroMainText({
   description,
   children,
   ctas,
+  className,
   ...props
-}: {
-  preHeading?: ReactNode
-  heading: ReactNode
-  description?: ReactNode
-  ctas?: ReactNode
-  children?: ReactNode
-}) {
+}: Merge<
+  ComponentProps<typeof TextLimiter>,
+  {
+    preHeading?: ReactNode
+    heading: ReactNode
+    description?: ReactNode
+    ctas?: ReactNode
+    children?: ReactNode
+  }
+>) {
   return (
     <TextLimiter
-      className="flex flex-col gap-y-xlarge md:gap-y-xxlarge"
+      className={classNames(
+        'flex flex-col gap-y-xlarge md:gap-y-xxlarge',
+        className
+      )}
       {...props}
     >
       <div className="flex flex-col gap-y-xlarge">
@@ -105,6 +113,51 @@ export function BasicPageHero({
             </TextLimiter>
           </EqualColumn>
         </Columns>
+      </div>
+    </StandardPageWidth>
+  )
+}
+
+export function HomePageHero({
+  preHeading,
+  heading,
+  description,
+  // intro,
+  padTop = true,
+  padBottom = true,
+  ctas,
+  ...props
+}: {
+  preHeading?: ReactNode
+  heading: ReactNode
+  description?: ReactNode
+  ctas?: ReactNode
+  padTop?: boolean
+  padBottom?: boolean
+  // intro?: ReactNode
+}) {
+  return (
+    <StandardPageWidth {...props}>
+      <div
+        className={classNames(
+          'text-center',
+          {
+            [classNames('pt-xxxxlarge', 'md:pt-xxxxlarge', 'lg:pt-xxxxxlarge')]:
+              padTop,
+          },
+          {
+            [classNames('pb-xxxlarge', 'md:pb-xxxxlarge', 'lg:pb-xxxxxxlarge')]:
+              padBottom,
+          }
+        )}
+      >
+        <HeroMainText
+          preHeading={preHeading}
+          heading={heading}
+          description={<div className="text-center">{description}</div>}
+          ctas={ctas}
+          className="mx-auto"
+        />
       </div>
     </StandardPageWidth>
   )

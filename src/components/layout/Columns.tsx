@@ -27,3 +27,20 @@ export function Columns({ className, ...props }: ComponentProps<'div'>) {
     />
   )
 }
+
+export function ColumnsMd({ className, ...props }: ComponentProps<'div'>) {
+  return (
+    <div
+      className={classNames([
+        'flex',
+        'flex-col',
+        'gap-x-large',
+        'md:flex-row',
+        'md:gap-x-xlarge',
+        'xl:gap-x-xxlarge',
+        className,
+      ])}
+      {...props}
+    />
+  )
+}

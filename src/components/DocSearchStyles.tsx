@@ -144,7 +144,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
     display: 'block',
     width: 16,
     height: 16,
-    backgroundImage: 'url(/images/search-icon.svg)',
+    backgroundImage: 'url(/images/icons/search-icon.svg)',
     backgroundSize: 'contain',
   },
   '.DocSearch-Search-Icon': {

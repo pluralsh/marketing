@@ -314,7 +314,6 @@ export type Directus_Files = {
   tags_func?: Maybe<Count_Functions>;
   title?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
-  uploaded_by?: Maybe<Scalars['String']['output']>;
   uploaded_on?: Maybe<Scalars['Date']['output']>;
   uploaded_on_func?: Maybe<Datetime_Functions>;
   width?: Maybe<Scalars['Int']['output']>;
@@ -354,7 +353,6 @@ export type Directus_Files_Aggregated_Count = {
   tags?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
   type?: Maybe<Scalars['Int']['output']>;
-  uploaded_by?: Maybe<Scalars['Int']['output']>;
   uploaded_on?: Maybe<Scalars['Int']['output']>;
   width?: Maybe<Scalars['Int']['output']>;
 };
@@ -391,7 +389,6 @@ export type Directus_Files_Filter = {
   tags_func?: InputMaybe<Count_Function_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
   type?: InputMaybe<String_Filter_Operators>;
-  uploaded_by?: InputMaybe<String_Filter_Operators>;
   uploaded_on?: InputMaybe<Date_Filter_Operators>;
   uploaded_on_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   width?: InputMaybe<Number_Filter_Operators>;

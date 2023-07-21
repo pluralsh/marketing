@@ -43,6 +43,28 @@ fragment NavListDepth3 on nav_list {
   }
 }
 
+fragment CompanyLogo on company_logos {
+  slug
+  name
+  logo_light {
+    ...ImageFile
+  }
+  logo_dark {
+    ...ImageFile
+  }
+  url
+  width
+}
+
+fragment LogoList on company_logo_lists {
+  slug
+  items {
+    item {
+      ...CompanyLogo
+    }
+  }
+}
+
 fragment SiteSettings on site_settings {
   main_nav(sort: ["sort"]) {
     ...NavListDepth3
@@ -50,6 +72,9 @@ fragment SiteSettings on site_settings {
   og_description
   og_image {
     ...ImageFile
+  }
+  partner_logos {
+    ...LogoList
   }
 }
 
@@ -59,7 +84,7 @@ query SiteSettings {
   }
 }
 
-fragment FeaturedArticle on case_studies {
+fragment CaseStudy on case_studies {
   id
   slug
   label
@@ -77,12 +102,15 @@ fragment AppExtras on apps {
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
 fragment AppDefaults on app_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
+  }
+  quotes {
+    ...QuoteList
   }
 }
 
@@ -99,12 +127,15 @@ fragment StackExtras on stacks {
   name
   heroVideo
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
 }
 fragment StackDefaults on stack_defaults {
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
+  }
+  quotes {
+    ...QuoteList
   }
 }
 
@@ -174,7 +205,9 @@ fragment FaqItem on collapsibles {
 
 fragment FaqList on collapsible_lists {
   items {
-    ...FaqItem
+    item {
+      ...FaqItem
+    }
   }
 }
 
@@ -197,9 +230,12 @@ fragment Solution on solutions_pages {
     ...ImageFile
   }
   case_study {
-    ...FeaturedArticle
+    ...CaseStudy
   }
   bullet_points
+  featured_quote {
+    ...Quote
+  }
 }
 
 query SolutionsSlugs {

@@ -41,7 +41,7 @@ import {
 import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
 import { Body1, Heading1, Heading2, Subtitle } from '@src/components/Typography'
-import { type MinRepo, getRepos, reposCache } from '@src/data/getRepos'
+import { type BasicRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
   type Tags,
@@ -54,14 +54,15 @@ import {
   type FaqListQuery,
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
-import { type MinRepoFragment } from '@src/generated/graphqlPlural'
+import { type BasicRepoFragment } from '@src/generated/graphqlPlural'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
+import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 type PageProps = {
-  repositories: MinRepo[]
+  repositories: BasicRepo[]
   stacks: MinStack[]
   categories: Categories
   tags: Tags
@@ -83,7 +84,7 @@ export function getStackRepos(stack: MinStack) {
   return stack.collections?.[0]?.bundles
     ?.map((bundle) => bundle?.recipe?.repository)
     .filter(
-      (repo: MinRepoFragment | null | undefined): repo is MinRepoFragment =>
+      (repo: BasicRepoFragment | null | undefined): repo is BasicRepoFragment =>
         !!repo
     )
 }
@@ -602,12 +603,21 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
 
   const { categories, tags } = await getSearchMetadata()
 
+  console.log('errors', [
+    ...(reposError ? [reposError] : []),
+    ...(stacksError ? [reposError] : []),
+    ...(faqError ? [faqError] : []),
+  ])
+
   return propsWithGlobalSettings({
+    metaTitle: 'Explore the open-source marketplace',
+    metaDescription:
+      'Discover over 90 open-source applications ready to deploy in your cloud in minutes.',
     repositories: repos || reposCache.filtered,
     stacks: stacks || stacksCache.filtered,
     tags: tags || [],
     categories: categories || [],
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),

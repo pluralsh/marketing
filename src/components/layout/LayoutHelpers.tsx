@@ -1,3 +1,5 @@
+import { type ComponentProps } from 'react'
+
 import styled from 'styled-components'
 
 import { breakpoints, mqs } from '@src/breakpoints'
@@ -35,5 +37,38 @@ export function StandardPageWidth({ children, ...props }) {
     <FullPageWidth {...props}>
       <StandardPageInner>{children}</StandardPageInner>
     </FullPageWidth>
+  )
+}
+
+const StandardPageSectionSC = styled.div<{
+  $padTop?: boolean
+  $padBottom?: boolean
+}>(({ $padTop: padTop = true, $padBottom: padBottom = true, theme }) => ({
+  paddingTop: padTop ? theme.spacing.xxxxlarge : undefined,
+  paddingBottom: padBottom ? theme.spacing.xxxxlarge : undefined,
+  [mqs.md]: {
+    paddingTop: padTop ? theme.spacing.xxxxxlarge : undefined,
+    paddingBottom: padBottom ? theme.spacing.xxxxxlarge : undefined,
+  },
+  [mqs.xxl]: {
+    paddingTop: padTop ? theme.spacing.xxxxxxlarge : undefined,
+    paddingBottom: padBottom ? theme.spacing.xxxxxxlarge : undefined,
+  },
+}))
+
+export function StandardPageSection({
+  padTop = true,
+  padBottom = true,
+  ...props
+}: {
+  padTop?: boolean
+  padBottom?: boolean
+} & ComponentProps<typeof StandardPageSectionSC>) {
+  return (
+    <StandardPageSectionSC
+      $padBottom={padBottom}
+      $padTop={padTop}
+      {...props}
+    />
   )
 }

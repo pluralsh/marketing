@@ -19,6 +19,21 @@ query PageCommunity {
   }
 }
 
+fragment PageProduct on page_product {
+  featured_quote {
+    ...Quote
+  }
+  faq {
+    ...FaqList
+  }
+}
+
+query PageProduct {
+  page_product {
+    ...PageProduct
+  }
+}
+
 fragment MarkdownPage on markdown_pages {
   id
   slug
@@ -44,5 +59,33 @@ query LegalPageSlugs {
     pages {
       slug
     }
+  }
+}
+
+fragment ArticleCard on article_cards {
+  heading
+  description
+  thumbnail {
+    ...ImageFile
+  }
+  videoUrl
+  date
+  author
+  ctas
+  url
+}
+
+fragment PageHomepage on page_homepage {
+  quotes {
+    ...QuoteList
+  }
+  article_cards {
+    ...ArticleCard
+  }
+}
+
+query PageHomepage {
+  page_homepage {
+    ...PageHomepage
   }
 }

@@ -302,10 +302,11 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   }
 
   return propsWithGlobalSettings({
-    metaTitle: 'About',
+    metaTitle: 'Our mission',
+    metaDescription:
+      'We are building a flexible, scalable solution to application delivery.',
     teamMembers,
     footerVariant: FooterVariant.kitchenSink,
-
     errors: [...(teamMembersError ? [teamMembersError] : [])],
   })
 }

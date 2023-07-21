@@ -166,7 +166,9 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
   const { data: events, error: eventsError } = await getEvents()
 
   return propsWithGlobalSettings({
-    metaTitle: 'Community',
+    metaTitle: 'Join the community',
+    metaDescription:
+      'The Plural community is built to support all Plural users through discussions, educational resources, and events.',
     contributors,
     featuredContributors,
     footerVariant: FooterVariant.kitchenSink,

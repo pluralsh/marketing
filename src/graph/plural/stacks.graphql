@@ -4,7 +4,7 @@ fragment StackCollection on StackCollection {
   bundles {
     recipe {
       repository {
-        ...MinRepo
+        ...BasicRepo
         tags {
           tag
         }

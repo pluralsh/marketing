@@ -12,12 +12,14 @@ export function HubspotForm({
   region = 'na1',
   portalId = '22363579',
   formId,
+  uniqueKey,
 }: {
   region?: string
   portalId?: string
   formId: string
+  uniqueKey?: string
 }) {
-  const id = `hbspt-f-${portalId}-${formId}`
+  const id = `hbspt-f_${portalId}_${formId}_${uniqueKey}`
 
   useEffect(() => {
     const createForm = () => {

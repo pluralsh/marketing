@@ -115,7 +115,7 @@ function ResourceIconCard({
   return (
     <ResourceIconCardSC
       target="_blank"
-      rel="nofollow noreferrer"
+      rel="noopener noreferrer"
       {...props}
     >
       <FillLevelProvider value={2}>

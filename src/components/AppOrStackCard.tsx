@@ -5,7 +5,7 @@ import { AppIcon, Chip, StackIcon } from '@pluralsh/design-system'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import { type MinRepo } from '@src/data/getRepos'
+import { type TinyRepo } from '@src/data/getRepos'
 import { type MinStack } from '@src/data/getStacks'
 
 const AppOrStackCard = styled.div<{
@@ -108,11 +108,12 @@ export function StackCard({
         </div>
       </div>
       <div className="stackApps">
-        {(stack.collections?.[0]?.bundles || []).map((b) => {
+        {(stack.collections?.[0]?.bundles || []).map((b, i) => {
           const repo = b?.recipe.repository
 
           return (
             <AppIcon
+              key={repo?.id || i}
               size="xxsmall"
               url={repo?.icon || repo?.darkIcon || ''}
             />
@@ -132,7 +133,7 @@ export const AppCard = forwardRef(
       ...props
     }: {
       active?: boolean
-      app: MinRepo
+      app: TinyRepo
       size?: ComponentProps<typeof AppOrStackCard>['$size']
     } & ComponentProps<typeof AppOrStackCard>,
     ref

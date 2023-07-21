@@ -6,12 +6,12 @@ import {
   GitHubIcon,
 } from '@pluralsh/design-system'
 
-import { type FullRepo, type MinRepo } from '@src/data/getRepos'
+import { type BasicRepo, type FullRepo } from '@src/data/getRepos'
 
 export function RepoSocials({
   repo,
 }: {
-  repo?: (MinRepo & Partial<Pick<FullRepo, 'license'>>) | null
+  repo?: (BasicRepo & Partial<Pick<FullRepo, 'license'>>) | null
 }) {
   if (!repo) {
     return null
