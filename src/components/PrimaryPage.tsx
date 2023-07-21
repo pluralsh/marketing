@@ -45,8 +45,8 @@ export default function PrimaryPage({
         <PageHeader
           showHeaderBG={pageProps.showHeaderBG}
           promoBanner={{
-            content: globalProps.siteSettings?.promo_banner_content,
-            url: globalProps.siteSettings?.promo_banner_url,
+            content: siteSettings?.promo_banner_content,
+            url: siteSettings?.promo_banner_url,
           }}
         />
         {children}
