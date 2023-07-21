@@ -55,6 +55,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
+import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
@@ -237,7 +238,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     solution,
     metaTitle: `Solution${solution.title ? ` – ${solution.title}` : ''}`,
     metaDescription: solution.description || null,
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     caseStudy: solution.case_study || null,
     caseStudyApps: getCaseStudyApps(
       repos,

@@ -59,6 +59,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
+import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 type PageProps = {
   repositories: BasicRepo[]
@@ -616,7 +617,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     stacks: stacks || stacksCache.filtered,
     tags: tags || [],
     categories: categories || [],
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     errors: [
       ...(reposError ? [reposError] : []),
       ...(stacksError ? [reposError] : []),

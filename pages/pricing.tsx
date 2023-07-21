@@ -25,6 +25,7 @@ import {
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 import { PlansFeaturesTable as PlanFeaturesTable } from '../src/components/page-sections/PlansFeaturesTables'
 
@@ -247,7 +248,7 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
     metaTitle: 'Pricing',
     metaDescription: 'Flexible plans for every stage of your business',
     ...pricing,
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     footerVariant: FooterVariant.kitchenSink,
     errors: [
       ...(pricingError ? [pricingError] : []),

@@ -79,7 +79,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-import { normalizeQuotes } from '@src/utils/normalizeQuotes'
+import { normalizeM2mItems, normalizeQuotes } from '@src/utils/normalizeQuotes'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
 import { GradientBG } from '../../src/components/layout/GradientBG'
@@ -434,7 +434,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     quotes: normalizeQuotes(appExtras.quotes),
     recipes,
     ...getAppMeta(thisRepo),
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     buildStackTabs,
     caseStudyApps: getCaseStudyApps(
       repos,
