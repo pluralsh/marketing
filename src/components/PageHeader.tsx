@@ -1,4 +1,10 @@
-import { type ComponentProps, useEffect, useId, useState } from 'react'
+import {
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useId,
+  useState,
+} from 'react'
 
 import {
   Button,
@@ -12,6 +18,7 @@ import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import { useKey } from 'rooks'
 import styled, { useTheme } from 'styled-components'
+import { type Merge } from 'type-fest'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
@@ -21,7 +28,7 @@ import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
-import { PromoBanner } from './PromoBanner'
+import { PromoBanner, type PromoBannerProps } from './PromoBanner'
 
 const Filler = styled.div((_) => ({
   flexGrow: 1,
@@ -29,15 +36,14 @@ const Filler = styled.div((_) => ({
 
 export const PAGE_HEADER_ID = 'plural-page-header'
 
-const PromoBannerSC = styled.div(({ theme }) => ({
-  ...theme.partials.marketingText.body2,
-}))
-
-export function PromoBanner(props: ComponentProps<typeof PromoBannerSC>) {
-  return <PromoBannerSC {...props} />
-}
-
-export function PageHeader({ showHeaderBG, ...props }) {
+export function PageHeader({
+  showHeaderBG,
+  promoBanner,
+  ...props
+}: {
+  showHeaderBG?: boolean
+  promoBanner?: PromoBannerProps
+}) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -66,7 +72,7 @@ export function PageHeader({ showHeaderBG, ...props }) {
       alwaysShowBG={showHeaderBG}
       id={PAGE_HEADER_ID}
     >
-      <PromoBanner>Promo banner content</PromoBanner>
+      <PromoBanner {...promoBanner}>Promo banner content</PromoBanner>
       <PageHeaderInner {...props}>
         <nav className="leftSection">
           <NextLink
@@ -133,7 +139,45 @@ export function PageHeader({ showHeaderBG, ...props }) {
   )
 }
 
-const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
+const HeaderWrapSC = styled.div(({ theme }) => ({
+  top: 0,
+  left: 0,
+  right: 0,
+  height: `var(--top-nav-main-height)`,
+  position: 'fixed',
+  zIndex: theme.zIndexes.modal - 100,
+  '.content': {
+    position: 'relative',
+    zIndex: 1,
+  },
+  '.backdrop': {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    transform: 'translateY(calc(var(--top-nav-banner-height) - 100%))',
+    transition: 'all 0.2s ease-out',
+    '&.show': {
+      transform: 'translateY(var(--top-nav-banner-height))',
+    },
+  },
+  '& > .hide': {
+    display: 'none',
+  },
+}))
+
+function HeaderWrap({
+  children,
+  alwaysShowBG = false,
+  ...props
+}: Merge<
+  ComponentProps<typeof HeaderWrapSC>,
+  {
+    children: ReactNode
+    alwaysShowBG?: boolean
+  }
+>) {
   const filterId = useId()
   const matrixId = `matrix-${filterId}`
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -160,7 +204,7 @@ const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
   }, [alwaysShowBG])
 
   return (
-    <div {...props}>
+    <HeaderWrapSC {...props}>
       <div
         className={classNames('backdrop', {
           show: alwaysShowBG || hasScrolled,
@@ -188,40 +232,14 @@ const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
         </filter>
       </svg>
       <div className="content">{children}</div>
-    </div>
+    </HeaderWrapSC>
   )
-})(({ theme }) => ({
-  top: 0,
-  left: 0,
-  right: 0,
-  height: `var(--top-nav-height)`,
-  position: 'fixed',
-  zIndex: theme.zIndexes.modal - 100,
-  '.content': {
-    position: 'relative',
-    zIndex: 1,
-  },
-  '.backdrop': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    transform: 'translateY(-100%)',
-    transition: 'all 0.2s ease-out',
-    '&.show': {
-      transform: 'translateY(0)',
-    },
-  },
-  '& > .hide': {
-    display: 'none',
-  },
-}))
+}
 
 const PageHeaderInner = styled(FullPageWidth).attrs(() => ({
   as: 'header',
 }))(({ theme }) => ({
-  height: 'var(--top-nav-height)',
+  height: 'var(--top-nav-main-height)',
   width: '100%',
   display: 'flex',
   alignItems: 'center',

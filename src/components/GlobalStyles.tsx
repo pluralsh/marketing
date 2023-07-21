@@ -76,7 +76,10 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
     '--page-x-pad-xxl': '48px',
     '--page-x-pad-max': '96px',
 
-    '--top-nav-height': '72px',
+    '--top-nav-main-height': '72px',
+    '--top-nav-banner-height': '0px',
+    '--top-nav-height':
+      'calc(var(--top-nav-main-height) + var(--top-nav-banner-height))',
     '--menu-extra-bpad': '0px',
     '--page-x-pad': 'var(--page-x-pad-start)',
     '--top-nav-link-h-pad': 0,
@@ -98,7 +101,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
   },
   [mqs.lg]: {
     ':root': {
-      '--top-nav-height': '80px',
+      '--top-nav-main-height': '80px',
       '--top-nav-link-h-pad': `${theme.spacing.small}px`,
       '--page-x-pad': `var(--page-x-pad-lg)`,
       ...maxWidthCalc({
