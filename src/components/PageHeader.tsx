@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { type ComponentProps, useEffect, useId, useState } from 'react'
 
 import {
   Button,
@@ -21,12 +21,21 @@ import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
+import { PromoBanner } from './PromoBanner'
 
 const Filler = styled.div((_) => ({
   flexGrow: 1,
 }))
 
 export const PAGE_HEADER_ID = 'plural-page-header'
+
+const PromoBannerSC = styled.div(({ theme }) => ({
+  ...theme.partials.marketingText.body2,
+}))
+
+export function PromoBanner(props: ComponentProps<typeof PromoBannerSC>) {
+  return <PromoBannerSC {...props} />
+}
 
 export function PageHeader({ showHeaderBG, ...props }) {
   const theme = useTheme()
@@ -57,6 +66,7 @@ export function PageHeader({ showHeaderBG, ...props }) {
       alwaysShowBG={showHeaderBG}
       id={PAGE_HEADER_ID}
     >
+      <PromoBanner>Promo banner content</PromoBanner>
       <PageHeaderInner {...props}>
         <nav className="leftSection">
           <NextLink

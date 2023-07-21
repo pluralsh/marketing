@@ -76,6 +76,8 @@ fragment SiteSettings on site_settings {
   partner_logos {
     ...LogoList
   }
+  promo_banner_content
+  promo_banner_url
 }
 
 query SiteSettings {
