@@ -148,14 +148,14 @@ const FeatureSC = styled(Columns)(({ theme }) => ({
   },
 }))
 
-function Feature({
+export function Feature({
   heading,
   children,
-  image,
+  imageUrl,
 }: {
   heading: ReactNode
   children: ReactNode
-  image?: ReactNode
+  imageUrl?: string
 }) {
   return (
     <FeatureSC>
@@ -169,7 +169,14 @@ function Feature({
         <Body2 as="div">{children}</Body2>
       </EqualColumn>
       <EqualColumn className="w-full">
-        <div className="bg-blue-700 w-full h-[200px]">{image}</div>
+        <div
+          className={classNames('w-full', {
+            'min-h-[250px]': !imageUrl,
+            'bg-fill-one': !imageUrl,
+          })}
+        >
+          {imageUrl && <img src={imageUrl} />}
+        </div>
       </EqualColumn>
     </FeatureSC>
   )
@@ -305,10 +312,7 @@ function FeaturesSection() {
               preHeading="Features"
               heading="Get all the control, flexibility, and security that comes from self-hosting, with none of the hassle."
             />
-            <Feature
-              heading="Easy setup, effortless deployments"
-              image="blah"
-            >
+            <Feature heading="Easy setup, effortless deployments">
               <p>
                 Install Plural using our CLI or our cloud shell in minutes and
                 then choose from 90+ production-grade, open-source applications
@@ -317,7 +321,7 @@ function FeaturesSection() {
             </Feature>
             <Feature
               heading="For the security and privacy conscious"
-              image=""
+              imageUrl=""
             >
               <p>
                 Plural is built for secure deployments, featuring
@@ -328,7 +332,7 @@ function FeaturesSection() {
             </Feature>
             <Feature
               heading="Fully customizable deployments"
-              image=""
+              imageUrl=""
             >
               <p>
                 We know that everyone’s requirements are a little different.
@@ -341,7 +345,7 @@ function FeaturesSection() {
             </Feature>
             <Feature
               heading="Take the hassle out of upgrades and scaling"
-              image=""
+              imageUrl=""
             >
               <p>
                 Never have the headache of manually upgrading applications
@@ -353,7 +357,7 @@ function FeaturesSection() {
             </Feature>
             <Feature
               heading="Built for production"
-              image=""
+              imageUrl=""
             >
               <p>
                 Harness Complete Performance Insights: Plural's Native
@@ -443,12 +447,15 @@ export default function Index({
             <StandardPageWidth className="relative z-[1]">
               <div className="grid grid-cols-1 items-stretch columns:grid-cols-3 gap-xlarge">
                 {articleCards?.map((c, i) => {
-                  const small = !(i === 0 || i === articleCards.length - 1)
+                  const first = i === 0
+                  const last = i === articleCards.length - 1
+                  const medium = first || last
 
                   return (
                     <ArticleCardNoBorder
-                      className={classNames({ 'columns:col-span-3': !small })}
-                      size={small ? 'small' : 'medium'}
+                      className={classNames({ 'columns:col-span-3': medium })}
+                      size={medium ? 'medium' : 'small'}
+                      reverse={first}
                       {...c}
                     />
                   )

@@ -26,6 +26,7 @@ import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
+import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 import { TryPluralForFreeSection } from '../src/components/page-sections/TryPluralForFreeSection'
 import { HeroMainText } from '../src/components/PageHeros'
@@ -251,7 +252,7 @@ export const getStaticProps = async () => {
     metaDescription:
       'Plural is an open-source, unified, application deployment platform that stands up a Kubernetes cluster and selected applications in the cloud provider of your choice.',
     featuredQuote: pageData?.featured_quote,
-    faqs: pageData?.faq?.items,
+    faqs: normalizeM2mItems(pageData?.faq),
     footerVariant: FooterVariant.kitchenSink,
     errors: [...(pageDataError ? [pageDataError] : [])],
   })

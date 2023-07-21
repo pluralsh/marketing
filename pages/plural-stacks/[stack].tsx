@@ -62,7 +62,7 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-import { normalizeQuotes } from '@src/utils/normalizeQuotes'
+import { normalizeM2mItems, normalizeQuotes } from '@src/utils/normalizeQuotes'
 import { startsWithVowel } from '@src/utils/text'
 
 import { CompanyLogosSection } from '../../src/components/CompanyLogos'
@@ -389,7 +389,7 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
     caseStudy: stackExtras.case_study || null,
     quotes: normalizeQuotes(stackExtras.quotes),
     ...getStackMeta(thisStack),
-    faqs: faqData.collapsible_lists?.[0]?.items || [],
+    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     buildStackTabs,
     caseStudyApps: getCaseStudyApps(
       repos,

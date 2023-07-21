@@ -205,7 +205,9 @@ fragment FaqItem on collapsibles {
 
 fragment FaqList on collapsible_lists {
   items {
-    ...FaqItem
+    item {
+      ...FaqItem
+    }
   }
 }
 

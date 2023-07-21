@@ -1,6 +1,7 @@
 import { type ComponentProps } from 'react'
 
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import styled from 'styled-components'
 import { type Merge } from 'type-fest'
@@ -16,42 +17,43 @@ import { SubsectionHead } from './SectionHeads'
 import { ShadowedCard } from './ShadowedCard'
 import { Body1, Cta } from './Typography'
 
-const ArticleCardSC = styled(ShadowedCard)<{ $size: 'medium' | 'small' }>(
-  ({ $size, theme }) => ({
-    overflow: 'hidden',
+const ArticleCardSC = styled(ShadowedCard)<{
+  $size: 'medium' | 'small'
+  $reverse: boolean
+}>(({ $size, $reverse = false, theme }) => ({
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 0,
+  img: {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    opacity: 0,
+  },
+  '.content': {
+    padding: theme.spacing.xlarge,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: 460,
     display: 'flex',
     flexDirection: 'column',
-    gap: 0,
-    img: {
-      display: 'block',
-      margin: 0,
-      padding: 0,
-      opacity: 0,
-    },
-    '.content': {
-      padding: theme.spacing.xlarge,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      maxWidth: 460,
-      display: 'flex',
-      flexDirection: 'column',
-      rowGap: theme.spacing.large,
-    },
-    ...($size !== 'small'
-      ? {
-          [mqs.columns]: {
-            flexDirection: 'row',
-            '& > *': {
-              width: '50%',
-            },
-            '.content': {
-              marginLeft: 0,
-            },
+    rowGap: theme.spacing.large,
+  },
+  ...($size !== 'small'
+    ? {
+        [mqs.columns]: {
+          flexDirection: $reverse ? 'row-reverse' : 'row',
+          '& > *': {
+            width: '50%',
           },
-        }
-      : {}),
-  })
-)
+          '.content': {
+            marginLeft: 0,
+          },
+        },
+      }
+    : {}),
+}))
 
 export function QuickstartDemoCard() {
   return (
@@ -73,17 +75,29 @@ export function ArticleCard({
   url,
   author,
   date,
+  preHeading,
+  reverse = false,
   size = 'medium',
   ...props
 }: Merge<
-  ComponentProps<typeof ArticleCardSC>,
-  ArticleCardFragment & { size?: 'medium' | 'small' }
+  Merge<
+    ComponentProps<typeof ArticleCardSC>,
+    ArticleCardFragment & {
+      size?: 'medium' | 'small'
+      preHeading?: string
+      reverse?: boolean
+    }
+  >,
+  { thumbnail?: ArticleCardFragment['thumbnail'] | string }
 >) {
-  const thumbUrl = getImageUrl(thumbnail)
+  const thumbUrl =
+    typeof thumbnail === 'string' ? thumbnail : getImageUrl(thumbnail)
+  const locale = useRouter().locale || 'en-us'
 
   return (
     <ArticleCardSC
       $size={size}
+      $reverse={reverse}
       {...(url && !videoUrl
         ? {
             as: Link,
@@ -117,21 +131,34 @@ export function ArticleCard({
       <div className="content">
         <SubsectionHead
           preHeading={
-            videoUrl ? (
+            preHeading ||
+            (videoUrl ? (
               'Video demo'
             ) : (
-              <>{[date.toString(), author].filter((v) => !!v).join(' | ')}</>
-            )
+              <>
+                {[
+                  new Date(date).toLocaleDateString(locale, {
+                    dateStyle: 'medium',
+                  }),
+                  author ? `By ${author}` : null,
+                ]
+                  .filter((v) => !!v)
+                  .join(' | ')}
+              </>
+            ))
           }
           heading={heading}
           headingProps={{ textStyles: { '': 'mTitle1' } }}
         />
-        <Body1 color="text-light">{description}</Body1>
+        {description && <Body1 color="text-light">{description}</Body1>}
         {ctas?.map((cta) => (
           <Cta
             target="_blank"
             rel="noopener noreferrer"
             href={cta?.url}
+            download={
+              typeof cta?.download === 'boolean' ? cta?.download : undefined
+            }
           >
             {cta.label}
           </Cta>
