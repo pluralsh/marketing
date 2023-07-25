@@ -1,6 +1,8 @@
 import { ColorModeProvider } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 
+import { Feature } from 'FeaturesSection'
+
 import { ArticleCard } from '@src/components/ArticleCard'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
@@ -19,8 +21,6 @@ import { BasicUl, Body1, Body2 } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
-
-import { Feature } from '.'
 
 function SignUpSection({ containerId }: { containerId: string }) {
   return (

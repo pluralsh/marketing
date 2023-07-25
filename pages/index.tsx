@@ -25,14 +25,12 @@ import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FooterVariant } from '@src/components/FooterFull'
 import PersonCheck from '@src/components/icons/PersonCheck'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ShadowedCard } from '@src/components/ShadowedCard'
-import { Body2, ResponsiveText } from '@src/components/Typography'
 import {
   PageHomepageDocument,
   type PageHomepageQuery,
@@ -45,6 +43,7 @@ import {
   StandardPageSection,
   StandardPageWidth,
 } from '../src/components/layout/LayoutHelpers'
+import { HomepageFeaturesSection } from '../src/components/page-sections/HomepageFeaturesSection'
 
 const HeroImagesSC = styled.div(({ theme: _theme }) => {
   const baseWidth = 1432
@@ -133,52 +132,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
         <img src="/images/homepage/hero-nodes.png" />
       </div>
     </HeroImagesSC>
-  )
-}
-
-const FeatureSC = styled(Columns)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  // flexDirection: 'column',
-  rowGap: theme.spacing.xxxlarge,
-  [mqs.columns]: {
-    '&:nth-child(2n+1)': {
-      flexDirection: 'row-reverse',
-    },
-  },
-}))
-
-export function Feature({
-  heading,
-  children,
-  imageUrl,
-}: {
-  heading: ReactNode
-  children: ReactNode
-  imageUrl?: string
-}) {
-  return (
-    <FeatureSC>
-      <EqualColumn className="flex flex-col gap-y-xlarge">
-        <ResponsiveText
-          className="[text-wrap:balance]"
-          textStyles={{ '': 'mTitle1' }}
-        >
-          {heading}
-        </ResponsiveText>
-        <Body2 as="div">{children}</Body2>
-      </EqualColumn>
-      <EqualColumn className="w-full">
-        <div
-          className={classNames('w-full', {
-            'min-h-[250px]': !imageUrl,
-            'bg-fill-one': !imageUrl,
-          })}
-        >
-          {imageUrl && <img src={imageUrl} />}
-        </div>
-      </EqualColumn>
-    </FeatureSC>
   )
 }
 
@@ -302,77 +255,6 @@ function BuildSecurely() {
   )
 }
 
-function FeaturesSection() {
-  return (
-    <ColorModeProvider mode="light">
-      <StandardPageSection className="bg-fill-zero">
-        <StandardPageWidth>
-          <div className="flex flex-col gap-y-xxxxlarge md:gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-            <CenteredSectionHead
-              preHeading="Features"
-              heading="Get all the control, flexibility, and security that comes from self-hosting, with none of the hassle."
-            />
-            <Feature heading="Easy setup, effortless deployments">
-              <p>
-                Install Plural using our CLI or our cloud shell in minutes and
-                then choose from 90+ production-grade, open-source applications
-                to deploy in your environment.
-              </p>
-            </Feature>
-            <Feature
-              heading="For the security and privacy conscious"
-              imageUrl=""
-            >
-              <p>
-                Plural is built for secure deployments, featuring
-                security-scanned and hardened images, seamless integration with
-                your SAML gateway, turnkey user authentication, centralized user
-                management, and granular RBAC.
-              </p>
-            </Feature>
-            <Feature
-              heading="Fully customizable deployments"
-              imageUrl=""
-            >
-              <p>
-                We know that everyone’s requirements are a little different.
-                That’s why everything is customizable in Plural. Want to change
-                the network setup? How about using a different storage layer? No
-                sweat. Better yet, all configuration is stored in Git, providing
-                a natural development workflow to rework and customize
-                applications.
-              </p>
-            </Feature>
-            <Feature
-              heading="Take the hassle out of upgrades and scaling"
-              imageUrl=""
-            >
-              <p>
-                Never have the headache of manually upgrading applications
-                again. Plural’s built in dependency tree ensures all
-                dependencies are upgraded in the correct order, with no
-                downtime. Need to scale? That’s 1-click with our operational
-                runbooks.
-              </p>
-            </Feature>
-            <Feature
-              heading="Built for production"
-              imageUrl=""
-            >
-              <p>
-                Harness Complete Performance Insights: Plural's Native
-                Integrations with Prometheus, Datadog, and More. Streamline
-                Testing and Rollouts with Effortless Multi-Cluster Deploys from
-                Dev to Prod.
-              </p>
-            </Feature>
-          </div>
-        </StandardPageWidth>
-      </StandardPageSection>
-    </ColorModeProvider>
-  )
-}
-
 export default function Index({
   quotes,
   globalProps,
@@ -416,7 +298,7 @@ export default function Index({
             </div>
           }
         />
-        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pt-xxxxxlarge lg:pb-xxlarge">
+        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pt-0 lg:pb-xxlarge">
           <StandardPageWidth>
             <HeroImages />
           </StandardPageWidth>
@@ -427,7 +309,7 @@ export default function Index({
           </StandardPageWidth>
         </StandardPageSection>
       </HeaderPad>
-      <FeaturesSection />
+      <HomepageFeaturesSection />
       <GradientBG
         size="cover"
         position="bottom middle"

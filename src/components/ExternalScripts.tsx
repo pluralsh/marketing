@@ -49,7 +49,7 @@ function HubSpot() {
 
   return (
     <Script
-      type="text/plain"
+      type="text/plain" // text/plain prevents loading until Cookiebot determines prefs
       data-cookieconsent="statistics"
       strategy="afterInteractive"
       id="hs-script-loader"
@@ -60,10 +60,27 @@ function HubSpot() {
   )
 }
 
+function Clearbit() {
+  return (
+    <Script
+      type="text/plain" // text/plain prevents loading until Cookiebot determines prefs
+      data-cookieconsent="statistics"
+      async
+      src="https://tag.clearbitscripts.com/v1/pk_f7a55ef5149a4b9142a485385b8b0c96/tags.js"
+      referrerPolicy="strict-origin-when-cross-origin"
+    />
+  )
+}
+
 export default function ExternalScripts() {
   if (process.env.NEXT_PUBLIC_DEV_MODE) {
     return null
   }
 
-  return <HubSpot />
+  return (
+    <>
+      <HubSpot />
+      <Clearbit />
+    </>
+  )
 }

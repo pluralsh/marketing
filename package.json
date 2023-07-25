@@ -46,6 +46,7 @@
     "chroma-js": "2.4.2",
     "classnames": "2.3.2",
     "deep-freeze": "0.0.1",
+    "framer-motion": "10.13.1",
     "fuse.js": "6.6.2",
     "graphql": "16.7.1",
     "highlight.js": "11.8.0",
