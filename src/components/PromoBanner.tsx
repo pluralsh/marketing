@@ -1,4 +1,4 @@
-import { type ComponentProps, useState } from 'react'
+import { type ComponentProps, useEffect, useState } from 'react'
 
 import {
   ArrowRightIcon,
@@ -106,6 +106,25 @@ export function PromoBanner({
 }: Merge<ComponentProps<typeof PromoBannerSC>, PromoBannerProps>) {
   const [isOpen, setIsOpen] = useState(true)
 
+  useEffect(() => {
+    const listener = (e) => {
+      const scrolled = window.scrollY !== 0
+
+      if (e.currentTarget.scroll) {
+        setIsOpen(!scrolled)
+      }
+    }
+    const scrolled = window.scrollY !== 0
+
+    setIsOpen(!scrolled)
+
+    window.addEventListener('scroll', listener, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', listener)
+    }
+  }, [])
+
   if (!content) {
     return null
   }
@@ -136,9 +155,9 @@ export function PromoBanner({
             />
           </ArrowSC>
         </PromoBannerLink>
-        <CloseButtonSC onClick={() => setIsOpen(false)}>
+        {/* <CloseButtonSC onClick={() => setIsOpen(false)}>
           <CloseIcon />
-        </CloseButtonSC>
+        </CloseButtonSC> */}
       </PromoBannerSC>
     </>
   )
