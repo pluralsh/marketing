@@ -39,9 +39,10 @@ export function CaseStudySection({
         {!isEmpty(featuredArticle.ctas) && (
           <div className="mt-large">
             {featuredArticle.ctas?.map(
-              (cta) =>
+              (cta, i) =>
                 cta?.url && (
                   <Cta
+                    key={`${cta.label}-${cta.url}-${i}`}
                     target="_blank"
                     href={cta.url}
                   >

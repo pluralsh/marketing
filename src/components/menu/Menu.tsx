@@ -5,7 +5,11 @@ import React, {
   useRef,
 } from 'react'
 
-import { CaretDownIcon, useFloatingDropdown } from '@pluralsh/design-system'
+import {
+  CaretDownIcon,
+  FillLevelProvider,
+  useFloatingDropdown,
+} from '@pluralsh/design-system'
 
 import { type Node } from '@react-types/shared'
 import { type AriaMenuProps } from 'react-aria'
@@ -175,7 +179,7 @@ function MenuDropdown<T extends object>({
   )
 }
 
-const DropdownCard = styled.div.attrs({ fillLevel: 1 })(({ theme }) => ({
+const DropdownCardSC = styled.div(({ theme }) => ({
   overflowX: 'hidden',
   overflowY: 'auto',
   paddingTop: theme.spacing.xsmall,
@@ -185,6 +189,14 @@ const DropdownCard = styled.div.attrs({ fillLevel: 1 })(({ theme }) => ({
   borderRadius: theme.borderRadiuses.large,
   backgroundColor: theme.colors['fill-one'],
 }))
+
+function DropdownCard(props: ComponentProps<typeof DropdownCardSC>) {
+  return (
+    <FillLevelProvider value={1}>
+      <DropdownCardSC {...props} />
+    </FillLevelProvider>
+  )
+}
 
 export function MenuItem<T extends object>({
   item,

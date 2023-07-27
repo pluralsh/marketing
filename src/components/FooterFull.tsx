@@ -27,7 +27,7 @@ export function FullFooter({
   const showValueProp = variant === FooterVariant.kitchenSink
 
   return (
-    <StickyFooter className={className}>
+    <StickyFooterSC className={className}>
       {showValueProp && (
         <div className="pt-xxxlarge md:py-xxxxlarge">
           <FooterValueProp />
@@ -41,13 +41,11 @@ export function FullFooter({
         {showNav && <FooterNav />}
         <BasicFooter />
       </div>
-    </StickyFooter>
+    </StickyFooterSC>
   )
 }
 
-const StickyFooter = styled.footer.attrs(() => ({
-  as: 'footer',
-}))(({ theme }) => ({
+const StickyFooterSC = styled.footer(({ theme }) => ({
   '--v-gap': `${theme.spacing.xxlarge}px`,
   display: 'flex',
   flexDirection: 'column',

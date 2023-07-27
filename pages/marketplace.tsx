@@ -603,12 +603,6 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
 
   const { categories, tags } = await getSearchMetadata()
 
-  console.log('errors', [
-    ...(reposError ? [reposError] : []),
-    ...(stacksError ? [reposError] : []),
-    ...(faqError ? [faqError] : []),
-  ])
-
   return propsWithGlobalSettings({
     metaTitle: 'Explore the open-source marketplace',
     metaDescription:

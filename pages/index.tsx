@@ -334,16 +334,28 @@ export default function Index({
                   const medium = first || last
 
                   return (
-                    <ArticleCardNoBorder
-                      className={classNames({ 'columns:col-span-3': medium })}
-                      size={medium ? 'medium' : 'small'}
-                      reverse={first}
-                      {...c}
-                    />
+                    c && (
+                      <ArticleCardNoBorder
+                        key={c.id}
+                        className={classNames({ 'columns:col-span-3': medium })}
+                        size={medium ? 'medium' : 'small'}
+                        reverse={first}
+                        {...{
+                          author: c.author,
+                          ctas: c.ctas,
+                          date: c.date,
+                          description: c.description,
+                          heading: c.heading,
+                          thumbnail: c.thumbnail,
+                          url: c.url,
+                          videoUrl: c.videoUrl,
+                        }}
+                      />
+                    )
                   )
                 })}
               </div>
-            </StandardPageWidth>{' '}
+            </StandardPageWidth>
           </StandardPageSection>
         </div>
       </ColorModeProvider>

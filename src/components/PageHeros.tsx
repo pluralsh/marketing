@@ -57,7 +57,14 @@ export function HeroMainText({
           )}
           {heading}
         </ResponsiveText>
-        {description && <Body1 color="text-xlight">{description}</Body1>}
+        {description && (
+          <Body1
+            as="div"
+            color="text-xlight"
+          >
+            {description}
+          </Body1>
+        )}
       </div>
       {ctas && <div>{ctas}</div>}
       {children && <div>{children}</div>}
@@ -103,7 +110,7 @@ export function BasicPageHero({
           <EqualColumn>
             <TextLimiter>
               <ResponsiveText
-                as="p"
+                as="div"
                 textStyles={{ '': 'mBody1' }}
                 color="text-light"
                 className="[text-wrap:balance]"

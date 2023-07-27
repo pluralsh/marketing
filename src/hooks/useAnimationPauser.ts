@@ -28,8 +28,6 @@ export function useAnimationPauser(selector = 'iframe[data-animation-frame]') {
     const listener = () => {
       if (typeof timeout !== 'number') {
         iframeWindows.forEach((win) => {
-          console.log('try to pause', win)
-
           win.postMessage('pause', '*')
         })
       } else {

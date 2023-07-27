@@ -4,12 +4,7 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 
 import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
-import {
-  type Variants,
-  type ViewportOptions,
-  motion,
-  useScroll,
-} from 'framer-motion'
+import { type Variants, motion } from 'framer-motion'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -18,7 +13,7 @@ import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { Body2, ResponsiveText } from '@src/components/Typography'
 import { mShadows } from '@src/styles/extraStyles'
 
-import { StandardPageSection, StandardPageWidth } from '../layout/LayoutHelpers'
+import { StandardPageWidth } from '../layout/LayoutHelpers'
 
 const PERSPECTIVE = 1400
 
@@ -233,8 +228,6 @@ function FeaturesImage({
   height: number
   direction?: 1 | -1
 } & ComponentProps<typeof MultiImageWrapSC>) {
-  console.log('multip')
-
   return (
     <MultiImageSC
       $aspectRatio={`${width} / ${height}`}

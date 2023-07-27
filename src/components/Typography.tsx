@@ -140,10 +140,7 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
-const FAQBody = styled(AppBody2).attrs({
-  color: 'text-light',
-  as: 'div',
-})(({ theme }) => ({
+const FAQBodySC = styled(AppBody2)(({ theme }) => ({
   maxWidth: 'var(--text-width-limit)',
   '& :any-link': {
     ...theme.partials.marketingText.inlineLink,
@@ -152,6 +149,16 @@ const FAQBody = styled(AppBody2).attrs({
     marginTop: theme.spacing.medium,
   },
 }))
+
+function FAQBody(props: ComponentProps<typeof FAQBodySC>) {
+  return (
+    <FAQBodySC
+      color="text-light"
+      as="div"
+      {...props}
+    />
+  )
+}
 
 export function FAQItem({
   children,

@@ -72,8 +72,11 @@ export function PageHeader({
       alwaysShowBG={showHeaderBG}
       id={PAGE_HEADER_ID}
     >
-      <PromoBanner {...promoBanner}>Promo banner content</PromoBanner>
-      <PageHeaderInner {...props}>
+      <PromoBanner {...promoBanner} />
+      <PageHeaderInnerSC
+        as="header"
+        {...props}
+      >
         <nav className="leftSection">
           <NextLink
             href="/"
@@ -134,7 +137,7 @@ export function PageHeader({
           isOpen={menuIsOpen}
           setIsOpen={setMenuIsOpen}
         />
-      </PageHeaderInner>
+      </PageHeaderInnerSC>
     </HeaderWrap>
   )
 }
@@ -236,9 +239,7 @@ function HeaderWrap({
   )
 }
 
-const PageHeaderInner = styled(FullPageWidth).attrs(() => ({
-  as: 'header',
-}))(({ theme }) => ({
+const PageHeaderInnerSC = styled(FullPageWidth)(({ theme }) => ({
   height: 'var(--top-nav-main-height)',
   width: '100%',
   display: 'flex',

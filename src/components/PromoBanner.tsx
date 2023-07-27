@@ -1,10 +1,6 @@
 import { type ComponentProps, useEffect, useState } from 'react'
 
-import {
-  ArrowRightIcon,
-  CloseIcon,
-  isExternalUrl,
-} from '@pluralsh/design-system'
+import { ArrowRightIcon, isExternalUrl } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import { type Maybe } from 'graphql/jsutils/Maybe'
@@ -55,20 +51,20 @@ const ArrowSC = styled.div(({ theme }) => ({
   transition: 'transform 0.2s ease',
 }))
 
-const CloseButtonSC = styled.div(({ theme }) => ({
-  ...theme.partials.marketingText.body2,
-  zIndex: 1,
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  width: theme.spacing.xlarge,
-  height: theme.spacing.xlarge,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
-  color: 'white',
-}))
+// const CloseButtonSC = styled.div(({ theme }) => ({
+//   ...theme.partials.marketingText.body2,
+//   zIndex: 1,
+//   position: 'absolute',
+//   top: 0,
+//   right: 0,
+//   width: theme.spacing.xlarge,
+//   height: theme.spacing.xlarge,
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   cursor: 'pointer',
+//   color: 'white',
+// }))
 
 const GlobalStyle = createGlobalStyle<{ $isOpen: boolean }>(
   ({ $isOpen, theme }) => {

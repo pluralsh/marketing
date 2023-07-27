@@ -58,34 +58,48 @@ const ArticleCardSC = styled(ShadowedCard)<{
 export function QuickstartDemoCard() {
   return (
     <ArticleCard
-      heading="Plural Quickstart Demo"
-      videoUrl={QUICKSTART_VIDEO_URL}
-      description="This guide goes over how to get started with Plural using our in-browser Cloud Shell."
-      ctas={[{ label: 'Browse all', url: 'ArticleCard' }]}
+      card={{
+        heading: 'Plural Quickstart Demo',
+        videoUrl: QUICKSTART_VIDEO_URL,
+        description:
+          'This guide goes over how to get started with Plural using our in-browser Cloud Shell.',
+        ctas: [{ label: 'Browse all', url: 'ArticleCard' }],
+      }}
     />
   )
 }
 
 export function ArticleCard({
-  ctas,
-  thumbnail,
-  heading,
-  description,
-  videoUrl,
-  url,
-  author,
-  date,
-  preHeading,
   reverse = false,
   size = 'medium',
+  preHeading,
+  //
+  heading,
+  description,
+  url,
+  ctas,
+  thumbnail,
+  videoUrl,
+  author,
+  date,
   ...props
 }: Merge<
   Merge<
     ComponentProps<typeof ArticleCardSC>,
-    ArticleCardFragment & {
+    Pick<
+      ArticleCardFragment,
+      | 'heading'
+      | 'description'
+      | 'url'
+      | 'ctas'
+      | 'thumbnail'
+      | 'videoUrl'
+      | 'author'
+      | 'date'
+    > & {
       size?: 'medium' | 'small'
-      preHeading?: string
       reverse?: boolean
+      preHeading?: string
     }
   >,
   { thumbnail?: ArticleCardFragment['thumbnail'] | string }
@@ -151,8 +165,9 @@ export function ArticleCard({
           headingProps={{ textStyles: { '': 'mTitle1' } }}
         />
         {description && <Body1 color="text-light">{description}</Body1>}
-        {ctas?.map((cta) => (
+        {ctas?.map((cta, i) => (
           <Cta
+            key={`${cta.label}-${cta.url}-${i}`}
             target="_blank"
             rel="noopener noreferrer"
             href={cta?.url}

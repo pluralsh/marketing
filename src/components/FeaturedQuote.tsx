@@ -26,10 +26,14 @@ const FeaturedQuoteSC = styled.div(({ theme }) => ({
   },
 }))
 
-const IconStarSC = styled.img.attrs({ src: '/images/icons/star.svg' })((_) => ({
+const IconStarSC = styled.img((_) => ({
   width: 20,
   height: 20,
 }))
+
+function IconStar() {
+  return <IconStarSC src="/images/icons/star.svg" />
+}
 
 export function FeaturedQuote({
   quote,
@@ -44,11 +48,11 @@ export function FeaturedQuote({
       <StandardPageWidth>
         <div className="contentArea">
           <div className="stars">
-            <IconStarSC />
-            <IconStarSC />
-            <IconStarSC />
-            <IconStarSC />
-            <IconStarSC />
+            <IconStar />
+            <IconStar />
+            <IconStar />
+            <IconStar />
+            <IconStar />
           </div>
           <ResponsiveText
             textStyles={{ '': 'mHero2', md: 'mHero1', xl: 'mBigHeader' }}
