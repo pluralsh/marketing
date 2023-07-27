@@ -4,7 +4,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
   ':root': {
     '--docsearch-primary-color': theme.colors['action-primary'],
     '--docsearch-text-color': 'rgb(28, 30, 33)',
-    '--docsearch-spacing': theme.spacing.medium,
+    '--docsearch-spacing': `${theme.spacing.medium}px`,
     '--docsearch-icon-stroke-width': '1.4',
     '--docsearch-highlight-color': theme.colors['action-primary'],
     '--docsearch-muted-color': 'rgb(150, 159, 175)',
@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
     '--docsearch-searchbox-shadow': `inset 0 0 0 1px ${theme.colors.border}`,
 
     /* hit */
-    '--docsearch-hit-height': theme.spacing.xxxlarge,
+    '--docsearch-hit-height': `${theme.spacing.xxxlarge}px`,
     '--docsearch-hit-color': 'rgb(68, 73, 80)',
     '--docsearch-hit-active-color': '#fff',
     '--docsearch-hit-background': '#fff',
