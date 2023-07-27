@@ -29,7 +29,7 @@ export function FullFooter({
   return (
     <StickyFooterSC className={className}>
       {showValueProp && (
-        <div className="pt-xxxlarge md:py-xxxxlarge">
+        <div className="pt-xxxxxlarge pb-xlarge md:pt-xxxxxxlarge md:pb-xxxxlarge">
           <FooterValueProp />
         </div>
       )}
@@ -46,7 +46,7 @@ export function FullFooter({
 }
 
 const StickyFooterSC = styled.footer(({ theme }) => ({
-  '--v-gap': `${theme.spacing.xxlarge}px`,
+  '--v-gap': `${theme.spacing.large}px`,
   display: 'flex',
   flexDirection: 'column',
   rowGap: 'var(--v-gap)',
