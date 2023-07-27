@@ -1,10 +1,4 @@
-import {
-  type ComponentProps,
-  type ReactNode,
-  useEffect,
-  useId,
-  useState,
-} from 'react'
+import { type ComponentProps, type ReactNode, useEffect, useState } from 'react'
 
 import {
   Button,
@@ -15,9 +9,10 @@ import {
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import chroma from 'chroma-js'
 import classNames from 'classnames'
 import { useKey } from 'rooks'
-import styled, { useTheme } from 'styled-components'
+import styled, { StyleSheetManager, useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
@@ -29,6 +24,8 @@ import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
 import { PromoBanner, type PromoBannerProps } from './PromoBanner'
+
+const DARKEN_FILTER_ID = 'svg-darken-filter'
 
 const Filler = styled.div((_) => ({
   flexGrow: 1,
@@ -142,18 +139,11 @@ export function PageHeader({
   )
 }
 
-const HeaderWrapSC = styled.div(({ theme }) => ({
-  top: 0,
-  left: 0,
-  right: 0,
-  height: `var(--top-nav-main-height)`,
-  position: 'fixed',
-  zIndex: theme.zIndexes.modal - 100,
-  '.content': {
-    position: 'relative',
-    zIndex: 1,
-  },
-  '.backdrop': {
+const BackdropSC = styled.div(({ theme }) => {
+  const backdropFilter = `blur(7.5px) url(#${DARKEN_FILTER_ID})`
+  const basicBackdropFilter = `blur(7.5px)`
+
+  return {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -164,6 +154,43 @@ const HeaderWrapSC = styled.div(({ theme }) => ({
     '&.show': {
       transform: 'translateY(var(--top-nav-banner-height))',
     },
+    backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.83)}`,
+    // Use basic filter on Safari (doesn't support svg filters)
+    [`@supports (-webkit-backdrop-filter: ${basicBackdropFilter})`]: {
+      '-webkitBackdropFilter': basicBackdropFilter,
+    },
+    // Use advanced filter on browsers that support unprefixed backdrop-filter
+    // Only tested on Chrome
+    [`@supports (backdrop-filter: ${backdropFilter})`]: {
+      backdropFilter,
+      backgroundColor: 'transparent',
+    },
+    // Downgrade Firefox to basic filter because its feColorMatrix rendering is ugly
+    [`@-moz-document url-prefix()`]: {
+      backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.83)}`,
+      backdropFilter: basicBackdropFilter,
+    },
+  }
+})
+
+function Backdrop(props: Omit<ComponentProps<typeof BackdropSC>, 'children'>) {
+  return (
+    <StyleSheetManager disableVendorPrefixes>
+      <BackdropSC {...props} />
+    </StyleSheetManager>
+  )
+}
+
+const HeaderWrapSC = styled.div(({ theme }) => ({
+  top: 0,
+  left: 0,
+  right: 0,
+  height: `var(--top-nav-main-height)`,
+  position: 'fixed',
+  zIndex: theme.zIndexes.modal - 100,
+  '.content': {
+    position: 'relative',
+    zIndex: 1,
   },
   '& > .hide': {
     display: 'none',
@@ -181,8 +208,6 @@ function HeaderWrap({
     alwaysShowBG?: boolean
   }
 >) {
-  const filterId = useId()
-  const matrixId = `matrix-${filterId}`
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
@@ -208,24 +233,17 @@ function HeaderWrap({
 
   return (
     <HeaderWrapSC {...props}>
-      <div
-        className={classNames('backdrop', {
-          show: alwaysShowBG || hasScrolled,
-        })}
-        style={{
-          backdropFilter: `blur(7.5px) url(#${filterId})`,
-        }}
-      />
+      <Backdrop className={classNames({ show: alwaysShowBG || hasScrolled })} />
       <svg
         className="hide"
         xmlns="http://www.w3.org/2000/svg"
       >
         <filter
-          id={filterId}
+          id={DARKEN_FILTER_ID}
           colorInterpolationFilters="sRGB"
         >
           <feColorMatrix
-            id={matrixId}
+            id={`${DARKEN_FILTER_ID}-matrix`}
             type="matrix"
             values="0.220  0.000 -0.030  0.000  0.070 
                     0.000  0.220 -0.050  0.000  0.070 
