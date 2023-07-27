@@ -155,6 +155,10 @@ export default function FeaturedContributorsSection({
 }: {
   featuredContributors: FeaturedContributorFragment[]
 }) {
+  if (!isEmpty(featuredContributors)) {
+    return null
+  }
+
   return (
     <div>
       <ResponsiveText

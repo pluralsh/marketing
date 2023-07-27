@@ -102,6 +102,10 @@ function CalloutCard({
 }
 
 export default function CalloutsSection({ callouts }: { callouts: Callouts }) {
+  if (isEmpty(callouts)) {
+    return null
+  }
+
   return (
     <div className="flex flex-col gap-medium">
       {(callouts || []).map(
