@@ -67,3 +67,12 @@ export function isValidEmail(email: string | null | undefined): boolean {
 
   return emailRegex.test(email)
 }
+
+export function splitOnSpacesInclusive(str: string) {
+  if (typeof str !== 'string') {
+    return [str]
+  }
+  const regexp = /(^\s*)?[^\s]+?(\s+|$)/g
+
+  return [...str.matchAll(regexp)].map((v) => v[0])
+}

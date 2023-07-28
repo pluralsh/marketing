@@ -1,5 +1,4 @@
 import {
-  Children,
   type ComponentProps,
   type ReactNode,
   forwardRef,
@@ -10,6 +9,7 @@ import { ArrowRightIcon } from '@pluralsh/design-system'
 
 import styled, { css, keyframes } from 'styled-components'
 
+import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { useScrollTo } from './hooks/useScrollTo'
 
 const scrollToLinkIconAnim = keyframes({
@@ -72,31 +72,6 @@ export const ScrollToLink = forwardRef<
     [doScroll]
   )
 
-  const kids = Children.map(children, (child, i) => {
-    if (i === Children.count(children) - 1 && typeof child === 'string') {
-      const splitChild = child.split(/(?<=\s)/)
-
-      if (splitChild.length >= 1) {
-        return [
-          ...splitChild.slice(0, -1),
-          <span style={{ whiteSpace: 'nowrap' }}>
-            {...splitChild.slice(-1)}
-            <ScrollToLinkIcon />
-          </span>,
-        ]
-      }
-
-      return (
-        <>
-          {child}
-          <ScrollToLinkIcon />
-        </>
-      )
-    }
-
-    return child
-  })
-
   return (
     <ScrollToLinkSC
       onClick={onClick}
@@ -106,7 +81,9 @@ export const ScrollToLink = forwardRef<
         : {})}
       {...props}
     >
-      {kids}
+      <AttachLastWordToElt elt={<ScrollToLinkIcon />}>
+        {children}
+      </AttachLastWordToElt>
     </ScrollToLinkSC>
   )
 })
