@@ -27,9 +27,7 @@ import {
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { BackButton } from '@src/components/Nav'
-import BuildStack, {
-  getStackTabData,
-} from '@src/components/page-sections/BuildStackSection'
+import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import {
   CaseStudySection,
   getCaseStudyApps,
@@ -56,6 +54,7 @@ import {
   getTinyRepos,
 } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
+import { getStackTabData } from '@src/data/getStackTabData'
 import {
   type AppDefaultsFragment,
   AppExtrasDocument,
@@ -289,7 +288,7 @@ export default function App({
         </div>
       </StandardPageWidth>
       <HPWMiniSectionAppStacks />
-      {buildStackTabs && <BuildStack tabs={buildStackTabs} />}
+      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
       <CompanyLogosSection
         className="mt-xxxxlarge"
         logos={globalProps.siteSettings?.partner_logos?.items}

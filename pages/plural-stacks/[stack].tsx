@@ -24,9 +24,7 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { BackButton } from '@src/components/Nav'
-import BuildStackSection, {
-  getStackTabData,
-} from '@src/components/page-sections/BuildStackSection'
+import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { ProviderIcon } from '@src/components/ProviderIcon'
@@ -42,6 +40,7 @@ import { getProviderIcon, getStackMeta } from '@src/consts'
 import { appUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos, normalizeRepo } from '@src/data/getRepos'
 import { type FullStack, getFullStack, getStacks } from '@src/data/getStacks'
+import { getStackTabData } from '@src/data/getStackTabData'
 import {
   type FaqItemFragment,
   FaqListDocument,
