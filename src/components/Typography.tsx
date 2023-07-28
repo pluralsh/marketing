@@ -1,9 +1,4 @@
-import {
-  Children,
-  type ComponentProps,
-  type ReactNode,
-  forwardRef,
-} from 'react'
+import { type ComponentProps, type ReactNode, forwardRef } from 'react'
 
 import {
   ArrowRightIcon,
@@ -18,6 +13,7 @@ import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
 
+import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
 
 export const Heading1 = styled.h1(({ theme }) => ({
@@ -140,10 +136,7 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
-const FAQBody = styled(AppBody2).attrs({
-  color: 'text-light',
-  as: 'div',
-})(({ theme }) => ({
+const FAQBodySC = styled(AppBody2)(({ theme }) => ({
   maxWidth: 'var(--text-width-limit)',
   '& :any-link': {
     ...theme.partials.marketingText.inlineLink,
@@ -152,6 +145,16 @@ const FAQBody = styled(AppBody2).attrs({
     marginTop: theme.spacing.medium,
   },
 }))
+
+function FAQBody(props: ComponentProps<typeof FAQBodySC>) {
+  return (
+    <FAQBodySC
+      color="text-light"
+      as="div"
+      {...props}
+    />
+  )
+}
 
 export function FAQItem({
   children,
@@ -295,38 +298,13 @@ export const Cta = styled(
   } & ComponentProps<'a'>) => {
     const { Link } = useNavigationContext()
 
-    const kids = Children.map(children, (child, i) => {
-      if (i === Children.count(children) - 1 && typeof child === 'string') {
-        const splitChild = child.split(/(?<=\s)/)
-
-        if (splitChild.length >= 1) {
-          return [
-            ...splitChild.slice(0, -1),
-            <span style={{ whiteSpace: 'nowrap' }}>
-              {...splitChild.slice(-1)}
-              <CtaIcon />
-            </span>,
-          ]
-        }
-
-        return (
-          <>
-            {child}
-            <CtaIcon />
-          </>
-        )
-      }
-
-      return child
-    })
-
     return (
       <CtaSC
         as={Link}
         $size={size}
         {...props}
       >
-        {kids}
+        <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
       </CtaSC>
     )
   }

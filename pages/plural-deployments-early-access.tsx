@@ -11,16 +11,15 @@ import {
   StandardPageSection,
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
+import { Feature } from '@src/components/page-sections/HomepageFeaturesSection'
 import {
   CenteredSectionHead,
   SubsectionHead,
 } from '@src/components/SectionHeads'
-import { BasicUl, Body1, Body2 } from '@src/components/Typography'
+import { BasicUl, Body1, Body2, InlineLink } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
-
-import { Feature } from '.'
 
 function SignUpSection({ containerId }: { containerId: string }) {
   return (
@@ -149,7 +148,7 @@ export default function Legal(
 
             <Feature
               heading="Point and click cluster creation with cluster API"
-              imageUrl="/images/cont-deploy/create-cluster-m.png"
+              graphic={<img src="/images/cont-deploy/create-cluster-m.png" />}
             >
               <BasicUl>
                 <li>
@@ -169,7 +168,7 @@ export default function Legal(
             </Feature>
             <Feature
               heading="Deploy from git in one click"
-              imageUrl="/images/cont-deploy/deploy-service.png"
+              graphic={<img src="/images/cont-deploy/deploy-service.png" />}
             >
               <BasicUl>
                 <li>
@@ -178,12 +177,12 @@ export default function Legal(
                 </li>
                 <li>
                   First class support for{' '}
-                  <a
+                  <InlineLink
                     href="https://cdk8s.io"
                     className="inline-link"
                   >
-                    https://cdk8s.io
-                  </a>
+                    cdk8s.io
+                  </InlineLink>{' '}
                   to provide a robust Kubernetes authoring experience with unit
                   testability and package management
                 </li>

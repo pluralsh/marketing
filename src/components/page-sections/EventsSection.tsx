@@ -246,6 +246,9 @@ function EventCard({
 }
 
 export default function EventsSection({ events }: { events: PluralEvent[] }) {
+  if (isEmpty(events)) {
+    return null
+  }
   const sortedEvents = (events || []).sort(
     (a, b) =>
       new Date(a.start_date).getTime() - new Date(b.start_date).getTime()

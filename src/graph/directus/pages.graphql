@@ -63,6 +63,7 @@ query LegalPageSlugs {
 }
 
 fragment ArticleCard on article_cards {
+  id
   heading
   description
   thumbnail {

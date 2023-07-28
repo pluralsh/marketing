@@ -133,10 +133,10 @@ function FeaturedContributorCard({
       {!isEmpty(contributor?.ctas) && (
         <div className="ctas">
           {contributor?.ctas?.map(
-            (cta) =>
+            (cta, i) =>
               !!cta?.url && (
                 <Cta
-                  key={`${cta.label}-${cta.url}`}
+                  key={`${cta.label}-${cta.url}-${i}`}
                   target="_blank"
                   href={cta.url}
                 >
@@ -155,6 +155,10 @@ export default function FeaturedContributorsSection({
 }: {
   featuredContributors: FeaturedContributorFragment[]
 }) {
+  if (!isEmpty(featuredContributors)) {
+    return null
+  }
+
   return (
     <div>
       <ResponsiveText

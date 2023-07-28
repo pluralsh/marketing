@@ -53,7 +53,7 @@ function ContributorsList({
       )}
     >
       {contributors.map((contributor) => (
-        <li>
+        <li key={contributor.id}>
           <ContributorCard contributor={contributor} />
         </li>
       ))}

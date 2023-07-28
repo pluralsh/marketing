@@ -30,11 +30,16 @@ const CalloutCardSC = styled.div(({ theme }) => ({
       flexDirection: 'row-reverse',
     },
   },
-  '.mainArea': {
+  '.mainColumn': {
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: theme.spacing.xlarge,
+    flexGrow: 1,
+  },
+  '.mainContent': {
     display: 'flex',
     flexDirection: 'column',
     rowGap: theme.spacing.small,
-    flexGrow: 1,
   },
   '.title': {
     ...theme.partials.marketingText.title1,
@@ -63,30 +68,33 @@ function CalloutCard({
               <Chip severity="info">{callout.category}</Chip>
             </div>
           )}
-          <div className="mainArea">
-            {callout.title && (
-              <TextLimiter className="title">{callout.title}</TextLimiter>
-            )}
-            {callout.content && (
-              <TextLimiter className="content">{callout.content}</TextLimiter>
-            )}{' '}
-          </div>
-
-          {!isEmpty(callout?.ctas) && (
-            <div className="ctas">
-              {callout?.ctas?.map(
-                (cta) =>
-                  !!cta?.url && (
-                    <Cta
-                      target="_blank"
-                      href={cta.url}
-                    >
-                      {cta.label || cta.url}
-                    </Cta>
-                  )
+          <div className="mainColumn">
+            <div className="mainContent">
+              {callout.title && (
+                <TextLimiter className="title">{callout.title}</TextLimiter>
+              )}
+              {callout.content && (
+                <TextLimiter className="content">{callout.content}</TextLimiter>
               )}
             </div>
-          )}
+
+            {!isEmpty(callout?.ctas) && (
+              <div className="ctas">
+                {callout?.ctas?.map(
+                  (cta, i) =>
+                    !!cta?.url && (
+                      <Cta
+                        key={`${cta.label}-${cta.url}-${i}`}
+                        target="_blank"
+                        href={cta.url}
+                      >
+                        {cta.label || cta.url}
+                      </Cta>
+                    )
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </FillLevelProvider>
     </CalloutCardSC>
@@ -94,6 +102,10 @@ function CalloutCard({
 }
 
 export default function CalloutsSection({ callouts }: { callouts: Callouts }) {
+  if (isEmpty(callouts)) {
+    return null
+  }
+
   return (
     <div className="flex flex-col gap-medium">
       {(callouts || []).map(

@@ -21,9 +21,7 @@ import {
   StandardPageSection,
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
-import BuildStackSection, {
-  getStackTabData,
-} from '@src/components/page-sections/BuildStackSection'
+import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
@@ -36,6 +34,7 @@ import { Body2, Cta } from '@src/components/Typography'
 import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
+import { getStackTabData } from '@src/data/getStackTabData'
 import {
   type CaseStudyFragment,
   type FaqItemFragment,

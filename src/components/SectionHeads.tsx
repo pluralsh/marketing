@@ -16,11 +16,8 @@ const SectionHeadTopSC = styled.div(({ theme }) => ({
   rowGap: theme.spacing.medium,
   textAlign: 'center',
 }))
-const IntroTextSC = styled(ResponsiveText).attrs(() => ({
-  as: 'div',
-  color: 'text-light',
-  textStyles: { '': 'mBody2' },
-}))(({ theme }) => ({
+
+const IntroTextSC = styled(ResponsiveText)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   rowGap: theme.spacing.medium,
@@ -29,6 +26,18 @@ const IntroTextSC = styled(ResponsiveText).attrs(() => ({
   marginLeft: 'auto',
   marginRight: 'auto',
 }))
+
+function IntroText(props: ComponentProps<typeof IntroTextSC>) {
+  return (
+    <IntroTextSC
+      as="div"
+      color="text-light"
+      textStyles={{ '': 'mBody2' }}
+      {...props}
+    />
+  )
+}
+
 const HeadingSC = styled(ResponsiveText)(({ theme: _ }) => ({
   textWrap: 'balance',
   display: 'block',
@@ -81,7 +90,7 @@ export function CenteredSectionHead({
           )}
         </SectionHeadTopSC>
       )}
-      {intro && <IntroTextSC {...introProps}>{intro}</IntroTextSC>}
+      {intro && <IntroText {...introProps}>{intro}</IntroText>}
     </SectionHeadSC>
   )
 }

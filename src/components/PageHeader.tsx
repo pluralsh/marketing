@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { type ComponentProps, type ReactNode, useEffect, useState } from 'react'
 
 import {
   Button,
@@ -9,9 +9,11 @@ import {
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import chroma from 'chroma-js'
 import classNames from 'classnames'
 import { useKey } from 'rooks'
-import styled, { useTheme } from 'styled-components'
+import styled, { StyleSheetManager, useTheme } from 'styled-components'
+import { type Merge } from 'type-fest'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
@@ -21,6 +23,9 @@ import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
+import { PromoBanner, type PromoBannerProps } from './PromoBanner'
+
+const DARKEN_FILTER_ID = 'svg-darken-filter'
 
 const Filler = styled.div((_) => ({
   flexGrow: 1,
@@ -28,7 +33,14 @@ const Filler = styled.div((_) => ({
 
 export const PAGE_HEADER_ID = 'plural-page-header'
 
-export function PageHeader({ showHeaderBG, ...props }) {
+export function PageHeader({
+  showHeaderBG,
+  promoBanner,
+  ...props
+}: {
+  showHeaderBG?: boolean
+  promoBanner?: PromoBannerProps
+}) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { pathname } = useRouter()
@@ -57,7 +69,11 @@ export function PageHeader({ showHeaderBG, ...props }) {
       alwaysShowBG={showHeaderBG}
       id={PAGE_HEADER_ID}
     >
-      <PageHeaderInner {...props}>
+      <PromoBanner {...promoBanner} />
+      <PageHeaderInnerSC
+        as="header"
+        {...props}
+      >
         <nav className="leftSection">
           <NextLink
             href="/"
@@ -118,14 +134,80 @@ export function PageHeader({ showHeaderBG, ...props }) {
           isOpen={menuIsOpen}
           setIsOpen={setMenuIsOpen}
         />
-      </PageHeaderInner>
+      </PageHeaderInnerSC>
     </HeaderWrap>
   )
 }
 
-const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
-  const filterId = useId()
-  const matrixId = `matrix-${filterId}`
+const BackdropSC = styled.div(({ theme }) => {
+  const backdropFilter = `blur(7.5px) url(#${DARKEN_FILTER_ID})`
+  const basicBackdropFilter = `blur(7.5px)`
+
+  return {
+    position: 'absolute',
+    top: -10,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    transform: 'translateY(calc(var(--top-nav-banner-height) - 100%))',
+    transition: 'all 0.2s ease-out',
+    '&.show': {
+      transform: 'translateY(var(--top-nav-banner-height))',
+    },
+    backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.83)}`,
+    // Use basic filter on Safari (doesn't support svg filters)
+    [`@supports (-webkit-backdrop-filter: ${basicBackdropFilter})`]: {
+      '-webkitBackdropFilter': basicBackdropFilter,
+    },
+    // Use advanced filter on browsers that support unprefixed backdrop-filter
+    // Only tested on Chrome
+    [`@supports (backdrop-filter: ${backdropFilter})`]: {
+      backdropFilter,
+      backgroundColor: 'transparent',
+    },
+    // Downgrade Firefox to basic filter because its feColorMatrix rendering is ugly
+    [`@-moz-document url-prefix()`]: {
+      backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.83)}`,
+      backdropFilter: basicBackdropFilter,
+    },
+  }
+})
+
+function Backdrop(props: Omit<ComponentProps<typeof BackdropSC>, 'children'>) {
+  return (
+    <StyleSheetManager disableVendorPrefixes>
+      <BackdropSC {...props} />
+    </StyleSheetManager>
+  )
+}
+
+const HeaderWrapSC = styled.div(({ theme }) => ({
+  top: 0,
+  left: 0,
+  right: 0,
+  height: `var(--top-nav-main-height)`,
+  position: 'fixed',
+  zIndex: theme.zIndexes.modal - 100,
+  '.content': {
+    position: 'relative',
+    zIndex: 1,
+  },
+  '& > .hide': {
+    display: 'none',
+  },
+}))
+
+function HeaderWrap({
+  children,
+  alwaysShowBG = false,
+  ...props
+}: Merge<
+  ComponentProps<typeof HeaderWrapSC>,
+  {
+    children: ReactNode
+    alwaysShowBG?: boolean
+  }
+>) {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
@@ -150,25 +232,18 @@ const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
   }, [alwaysShowBG])
 
   return (
-    <div {...props}>
-      <div
-        className={classNames('backdrop', {
-          show: alwaysShowBG || hasScrolled,
-        })}
-        style={{
-          backdropFilter: `blur(7.5px) url(#${filterId})`,
-        }}
-      />
+    <HeaderWrapSC {...props}>
+      <Backdrop className={classNames({ show: alwaysShowBG || hasScrolled })} />
       <svg
         className="hide"
         xmlns="http://www.w3.org/2000/svg"
       >
         <filter
-          id={filterId}
+          id={DARKEN_FILTER_ID}
           colorInterpolationFilters="sRGB"
         >
           <feColorMatrix
-            id={matrixId}
+            id={`${DARKEN_FILTER_ID}-matrix`}
             type="matrix"
             values="0.220  0.000 -0.030  0.000  0.070 
                     0.000  0.220 -0.050  0.000  0.070 
@@ -178,40 +253,12 @@ const HeaderWrap = styled(({ children, alwaysShowBG = false, ...props }) => {
         </filter>
       </svg>
       <div className="content">{children}</div>
-    </div>
+    </HeaderWrapSC>
   )
-})(({ theme }) => ({
-  top: 0,
-  left: 0,
-  right: 0,
-  height: `var(--top-nav-height)`,
-  position: 'fixed',
-  zIndex: theme.zIndexes.modal - 100,
-  '.content': {
-    position: 'relative',
-    zIndex: 1,
-  },
-  '.backdrop': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    transform: 'translateY(-100%)',
-    transition: 'all 0.2s ease-out',
-    '&.show': {
-      transform: 'translateY(0)',
-    },
-  },
-  '& > .hide': {
-    display: 'none',
-  },
-}))
+}
 
-const PageHeaderInner = styled(FullPageWidth).attrs(() => ({
-  as: 'header',
-}))(({ theme }) => ({
-  height: 'var(--top-nav-height)',
+const PageHeaderInnerSC = styled(FullPageWidth)(({ theme }) => ({
+  height: 'var(--top-nav-main-height)',
   width: '100%',
   display: 'flex',
   alignItems: 'center',

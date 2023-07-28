@@ -73,10 +73,7 @@ const ResourceCardSC = styled(ResourceCardBaseSC)(({ theme }) => ({
   },
 }))
 
-const ResourceIconCardSC = styled(ResourceCardBaseSC).attrs({
-  as: 'a',
-  $clickable: true,
-})(({ theme }) => ({
+const ResourceIconCardSC = styled(ResourceCardBaseSC)(({ theme }) => ({
   padding: theme.spacing.medium,
   display: 'flex',
   flexDirection: 'column',
@@ -114,6 +111,8 @@ function ResourceIconCard({
 
   return (
     <ResourceIconCardSC
+      as="a"
+      $clickable
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -149,9 +148,10 @@ function ResourceCard({
         {!isEmpty(ctas) && (
           <div className="ctas">
             {ctas?.map(
-              (cta) =>
+              (cta, i) =>
                 !!cta?.url && (
                   <Cta
+                    key={`${cta.label}-${cta.url}-${i}`}
                     target="_blank"
                     href={cta.url}
                   >

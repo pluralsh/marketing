@@ -42,7 +42,13 @@ export default function PrimaryPage({
     <NavDataProvider value={navData}>
       <PagePropsContext.Provider value={pageProps}>
         <HtmlHead {...headProps} />
-        <PageHeader showHeaderBG={pageProps.showHeaderBG} />
+        <PageHeader
+          showHeaderBG={pageProps.showHeaderBG}
+          promoBanner={{
+            content: siteSettings?.promo_banner_content,
+            url: siteSettings?.promo_banner_url,
+          }}
+        />
         {children}
         <ExternalScripts />
         <FullFooter variant={pageProps.footerVariant} />

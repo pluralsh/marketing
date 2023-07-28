@@ -31,15 +31,15 @@ const navItems = [
       },
       {
         children: 'Pricing',
-        href: 'https://github.com/pricing',
+        href: '/pricing',
       },
       {
         children: 'Support',
-        href: 'https://github.com/support',
+        href: '/contact',
       },
       {
         children: 'Live demo',
-        href: 'https://www.plural.sh/demo-login',
+        href: '/demo-login',
       },
     ],
   },
@@ -48,22 +48,20 @@ const navItems = [
     links: [
       {
         children: 'About',
-        href: 'https://app.plural.sh/login',
-        target: '_blank',
+        href: '/about',
       },
       {
         children: 'Join the team',
         href: '/careers',
-        target: '_blank',
       },
       {
         children: 'In the news',
-        href: '/blog',
+        href: 'https://www.plural.sh/blog',
         target: '_blank',
       },
       {
         children: 'Support',
-        href: '/community',
+        href: '/contact',
       },
     ],
   },
@@ -82,7 +80,7 @@ const navItems = [
       },
       {
         children: 'Releases',
-        href: 'https://github.com/pluralsh/plural',
+        href: 'https://github.com/pluralsh/plural/releases',
         target: '_blank',
       },
     ] as const,
@@ -107,7 +105,7 @@ const navItems = [
       },
       {
         children: 'Email',
-        href: 'https://www.plural.sh/contact',
+        href: '/contact',
         target: '_blank',
       },
     ],
