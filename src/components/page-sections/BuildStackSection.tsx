@@ -33,7 +33,7 @@ export default function BuildStackSection({
   return (
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero">
-        <StandardPageWidth className="py-xxxxlarge columns:py-xxxx">
+        <StandardPageWidth className="py-xxxxxlarge columns:py-xxxxxxlarge">
           <div className="text-center mb-xxlarge">
             <ResponsiveText
               textStyles={{ '': 'mTitle2', md: 'mTitle1', xxl: 'mHero2' }}
