@@ -1,18 +1,27 @@
-import { type ComponentProps, type ReactNode, useMemo, useRef } from 'react'
+import {
+  type ComponentProps,
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+  forwardRef,
+  useMemo,
+  useRef,
+} from 'react'
 
 import { ColorModeProvider } from '@pluralsh/design-system'
 
 import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
-import { type Variants, motion } from 'framer-motion'
+import { type Variants, motion, useInView } from 'framer-motion'
 import styled from 'styled-components'
 
-import { mqs } from '@src/breakpoints'
+import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { Body2, ResponsiveText } from '@src/components/Typography'
 import { mShadows } from '@src/styles/extraStyles'
 
+import { useBreakpoint } from '../contexts/BreakpointProvider'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
 const PERSPECTIVE = 1400
@@ -36,12 +45,45 @@ export function Feature({
 }: {
   heading: ReactNode
   children: ReactNode
-  graphic: ReactNode
+  graphic: ReactElement
 }) {
+  const headingRef = useRef<any>(null)
+  const imageRef = useRef<any>(null)
+
+  const headingInView = useInView(headingRef, {
+    once: true,
+    amount: 1,
+    margin: '80px 0px -25%',
+  })
+  const imageInView = useInView(imageRef, {
+    once: true,
+    amount: 0.75,
+    margin: '80px 0px -10%',
+  })
+
+  const breakpoint = useBreakpoint()
+
+  console.log(
+    'breakpointIsGreaterOrEqual(breakpoint, columns)',
+    breakpointIsGreaterOrEqual(breakpoint, 'columns')
+  )
+  const isInView = breakpointIsGreaterOrEqual(breakpoint, 'columns')
+    ? imageInView || headingInView
+    : imageInView // refine later for mobile
+
+  if (image?.type === FeaturesImage) {
+    image = cloneElement(image, { inView: isInView, ref: imageRef })
+    console.log('image', image)
+  }
+  console.log('imageInView', imageInView)
+  console.log('isInView', isInView)
+  console.log('imageRef', imageRef.current)
+
   return (
     <FeatureSC>
       <EqualColumn className="flex flex-col gap-y-xlarge">
         <ResponsiveText
+          ref={headingRef}
           className="[text-wrap:balance]"
           textStyles={{ '': 'mTitle1' }}
         >
@@ -73,7 +115,7 @@ const MultiImageSC = styled.div<{ $aspectRatio: string }>(
 )
 const MultiImageWrapSC = styled.div<
   ImgPropsSC & { $round: boolean; $direction: 1 | -1 }
->(({ $width, $top, $left, $height, $round, $direction = 1 }) => ({
+>(({ $width, $top, $left, $height, $round }) => ({
   top: $top,
   left: $left,
   height: $height,
@@ -154,6 +196,7 @@ const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
 }))
 
 function MultiImageImg({
+  inView,
   top,
   left,
   height,
@@ -162,13 +205,10 @@ function MultiImageImg({
   animOffset,
   direction,
   ...attrs
-}: ImgProps & { direction: -1 | 1 } & ComponentProps<typeof MultiImageWrapSC>) {
-  const ref = useRef<HTMLDivElement>(null)
-  // const { scrollYProgress, ...scrollProps } = useScroll({
-  //   target: ref,
-  //   // @ts-expect-error
-  //   offset: ['end end', 'start start'],
-  // })
+}: ImgProps & {
+  direction: -1 | 1
+  inView: boolean
+} & ComponentProps<typeof MultiImageWrapSC>) {
   const variants = useMemo(
     () => cardVariants({ delay: animOffset * 0.1, direction }),
     [animOffset, direction]
@@ -176,10 +216,7 @@ function MultiImageImg({
 
   return (
     <MotionDiv
-      ref={ref}
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 'some' }}
+      animate={inView ? 'onscreen' : 'offscreen'}
       variants={variants}
     >
       <MultiImageWrapSC
@@ -216,25 +253,33 @@ function MultiImageImg({
   )
 }
 
-function FeaturesImage({
-  images,
-  width,
-  height,
-  direction = 1,
-  ...props
-}: {
-  images: ImageProps[]
-  width: number
-  height: number
-  direction?: 1 | -1
-} & ComponentProps<typeof MultiImageWrapSC>) {
-  return (
+const FeaturesImage = forwardRef(
+  (
+    {
+      images,
+      width,
+      height,
+      direction = 1,
+      inView = true,
+      ...props
+    }: {
+      images: ImageProps[]
+      width: number
+      height: number
+      direction?: 1 | -1
+      inView?: boolean
+    } & ComponentProps<typeof MultiImageWrapSC>,
+    ref
+  ) => (
     <MultiImageSC
+      ref={ref}
+      className="rootRef"
       $aspectRatio={`${width} / ${height}`}
       {...props}
     >
       {images.map((img, i) => (
         <MultiImageImg
+          inView={inView}
           key={i}
           src={img.url}
           top={`${(img.top * 100) / height}%`}
@@ -248,7 +293,8 @@ function FeaturesImage({
       ))}
     </MultiImageSC>
   )
-}
+)
+
 export function HomepageFeaturesSection() {
   return (
     <ColorModeProvider mode="light">
