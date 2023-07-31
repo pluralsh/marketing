@@ -107,8 +107,8 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       img: {
         transform: [
           'rotateY(-5deg)',
-          // // 'rotateX(0deg)',
-          // // 'rotateZ(0deg)',
+          // 'rotateX(0deg)',
+          // 'rotateZ(0deg)',
           'translateZ(100px)',
           'translateX(-2%)',
           'translateY(-2%)',

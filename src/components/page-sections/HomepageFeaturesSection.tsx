@@ -84,9 +84,9 @@ const MultiImageWrapSC = styled.div<
   boxShadow: mShadows.light.slight,
   transformStyle: 'preserve-3d',
   perspective: PERSPECTIVE,
-  [mqs.columns]: {
-    transform: `rotateY(${$direction * -12.5}deg)`,
-  },
+  // [mqs.columns]: {
+  //   transform: `rotateY(${$direction * -12.5}deg)`,
+  // },
 }))
 
 const MultiImageVideoSC = styled.video<{ $round?: boolean }>(
@@ -135,8 +135,8 @@ const cardVariants = ({
     opacity: 1,
     transition: {
       type: 'spring',
-      bounce: 0.4,
-      duration: 0.8,
+      bounce: 0.2,
+      duration: 1,
       delay,
     },
   },
