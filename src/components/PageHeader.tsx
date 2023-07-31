@@ -22,7 +22,7 @@ import GithubStars from './GithubStars'
 import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
-import { HamburgerButton, SearchButton, SocialLink } from './PageHeaderButtons'
+import { HamburgerButton, SocialLink } from './PageHeaderButtons'
 import { PromoBanner, type PromoBannerProps } from './PromoBanner'
 
 const DARKEN_FILTER_ID = 'svg-darken-filter'
@@ -122,7 +122,7 @@ export function PageHeader({
               Sign in
             </Button>
           </div>
-          <SearchButton />
+          {/* <SearchButton /> */}
           <HamburgerButton
             isOpen={menuIsOpen}
             onClick={() => {
