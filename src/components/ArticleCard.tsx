@@ -1,4 +1,4 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, type ReactNode } from 'react'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -58,13 +58,20 @@ const ArticleCardSC = styled(ShadowedCard)<{
 export function QuickstartDemoCard() {
   return (
     <ArticleCard
-      card={{
-        heading: 'Plural Quickstart Demo',
-        videoUrl: QUICKSTART_VIDEO_URL,
-        description:
-          'This guide goes over how to get started with Plural using our in-browser Cloud Shell.',
-        ctas: [{ label: 'Browse all', url: 'ArticleCard' }],
-      }}
+      heading="Plural Quickstart Demo"
+      videoUrl={QUICKSTART_VIDEO_URL}
+      description={
+        <>
+          This guide goes over how to get started with Plural using our
+          in-browser Cloud Shell.
+        </>
+      }
+      ctas={[
+        {
+          label: 'Browse all',
+          url: 'https://www.youtube.com/@pluralsh/videos',
+        },
+      ]}
     />
   )
 }
@@ -84,29 +91,28 @@ export function ArticleCard({
   date,
   ...props
 }: Merge<
-  Merge<
-    ComponentProps<typeof ArticleCardSC>,
-    Pick<
-      ArticleCardFragment,
-      | 'heading'
-      | 'description'
-      | 'url'
-      | 'ctas'
-      | 'thumbnail'
-      | 'videoUrl'
-      | 'author'
-      | 'date'
-    > & {
-      size?: 'medium' | 'small'
-      reverse?: boolean
-      preHeading?: string
-    }
-  >,
-  { thumbnail?: ArticleCardFragment['thumbnail'] | string }
+  ComponentProps<typeof ArticleCardSC>,
+  Pick<
+    ArticleCardFragment,
+    'heading' | 'url' | 'ctas' | 'videoUrl' | 'author' | 'date'
+  > & {
+    thumbnail?: ArticleCardFragment['thumbnail'] | string
+    description?: ArticleCardFragment['description'] | ReactNode
+    size?: 'medium' | 'small'
+    reverse?: boolean
+    preHeading?: string
+  }
 >) {
   const thumbUrl =
     typeof thumbnail === 'string' ? thumbnail : getImageUrl(thumbnail)
   const locale = useRouter().locale || 'en-us'
+  const dateObj = new Date(date)
+
+  const dateString = Number.isNaN(dateObj.valueOf())
+    ? null
+    : dateObj.toLocaleDateString(locale, {
+        dateStyle: 'medium',
+      })
 
   return (
     <ArticleCardSC
@@ -150,12 +156,7 @@ export function ArticleCard({
               'Video demo'
             ) : (
               <>
-                {[
-                  new Date(date).toLocaleDateString(locale, {
-                    dateStyle: 'medium',
-                  }),
-                  author ? `By ${author}` : null,
-                ]
+                {[dateString || null, author ? `By ${author}` : null]
                   .filter((v) => !!v)
                   .join(' | ')}
               </>

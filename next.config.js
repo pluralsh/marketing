@@ -22,7 +22,6 @@ module.exports = () => {
       styledComponents: {
         ssr: true,
         displayName: true,
-        // minify: false,
       },
       emotion: true,
     },
