@@ -75,11 +75,11 @@ export default function Legal({
               </ResponsiveText>
               {subtitle && (
                 <ResponsiveText
-                  as="p"
+                  as="div"
                   textStyles={{ '': 'mBody1' }}
                   color="text-light"
                 >
-                  <TextLimiter>{subtitle}</TextLimiter>
+                  <TextLimiter as="p">{subtitle}</TextLimiter>
                 </ResponsiveText>
               )}
             </div>
@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
     footerVariant: FooterVariant.kitchenSink,
     metaTitle: page.title,
     title: page.title,
-    subittle: page.subtitle,
+    subtitle: page.subtitle,
     markdoc,
     errors: [...(pageDataError ? [pageDataError] : [])],
   })

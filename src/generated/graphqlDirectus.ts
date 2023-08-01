@@ -675,11 +675,8 @@ export type QueryTeam_Members_By_IdArgs = {
 export type App_Defaults = {
   __typename?: 'app_defaults';
   case_study?: Maybe<Case_Studies>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -705,12 +702,9 @@ export type App_DefaultsQuotesArgs = {
 export type Apps = {
   __typename?: 'apps';
   case_study?: Maybe<Case_Studies>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -741,11 +735,9 @@ export type Apps_Aggregated_Count = {
   __typename?: 'apps_aggregated_count';
   /** Use to override default case study on individual app page */
   case_study?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Apps_Aggregated_Fields = {
@@ -759,12 +751,9 @@ export type Apps_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
   case_study?: InputMaybe<Case_Studies_Filter>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Article_Cards = {
@@ -774,20 +763,13 @@ export type Article_Cards = {
   ctas?: Maybe<Scalars['JSON']['output']>;
   ctas_func?: Maybe<Count_Functions>;
   date?: Maybe<Scalars['Date']['output']>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
   date_func?: Maybe<Date_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   description?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
   thumbnail?: Maybe<Directus_Files>;
   url?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
   videoUrl?: Maybe<Scalars['String']['output']>;
 };
 
@@ -831,17 +813,12 @@ export type Article_Cards_Aggregated_Count = {
   author?: Maybe<Scalars['Int']['output']>;
   ctas?: Maybe<Scalars['Int']['output']>;
   date?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   heading?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   thumbnail?: Maybe<Scalars['Int']['output']>;
   url?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
   videoUrl?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -860,20 +837,13 @@ export type Article_Cards_Filter = {
   ctas?: InputMaybe<String_Filter_Operators>;
   ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
   date?: InputMaybe<Date_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_func?: InputMaybe<Date_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   heading?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
   thumbnail?: InputMaybe<Directus_Files_Filter>;
   url?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
   videoUrl?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -893,7 +863,6 @@ export type Callouts = {
   ctas_func?: Maybe<Count_Functions>;
   id: Scalars['ID']['output'];
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -929,7 +898,6 @@ export type Callouts_Aggregated_Count = {
   ctas?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -950,7 +918,6 @@ export type Callouts_Filter = {
   ctas_func?: InputMaybe<Count_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -1029,17 +996,10 @@ export type Case_Studies_Filter = {
 
 export type Collapsible_Lists = {
   __typename?: 'collapsible_lists';
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   items?: Maybe<Array<Maybe<Collapsible_Lists_Items>>>;
   items_func?: Maybe<Count_Functions>;
   slug: Scalars['String']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1068,14 +1028,9 @@ export type Collapsible_Lists_Aggregated = {
 
 export type Collapsible_Lists_Aggregated_Count = {
   __typename?: 'collapsible_lists_aggregated_count';
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   items?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Collapsible_Lists_Aggregated_Fields = {
@@ -1086,17 +1041,10 @@ export type Collapsible_Lists_Aggregated_Fields = {
 export type Collapsible_Lists_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Collapsible_Lists_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Collapsible_Lists_Filter>>>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   items?: InputMaybe<Collapsible_Lists_Items_Filter>;
   items_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Collapsible_Lists_Items = {
@@ -1164,17 +1112,10 @@ export type Collapsibles = {
   __typename?: 'collapsibles';
   collapsible_id?: Maybe<Collapsible_Lists>;
   content?: Maybe<Scalars['String']['output']>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   label?: Maybe<Scalars['String']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1205,15 +1146,10 @@ export type Collapsibles_Aggregated_Count = {
   __typename?: 'collapsibles_aggregated_count';
   collapsible_id?: Maybe<Scalars['Int']['output']>;
   content?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   label?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Collapsibles_Aggregated_Fields = {
@@ -1228,33 +1164,19 @@ export type Collapsibles_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Collapsibles_Filter>>>;
   collapsible_id?: InputMaybe<Collapsible_Lists_Filter>;
   content?: InputMaybe<String_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   label?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Company_Logo_Lists = {
   __typename?: 'company_logo_lists';
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   items?: Maybe<Array<Maybe<Company_Logo_Lists_Items>>>;
   items_func?: Maybe<Count_Functions>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1283,15 +1205,10 @@ export type Company_Logo_Lists_Aggregated = {
 
 export type Company_Logo_Lists_Aggregated_Count = {
   __typename?: 'company_logo_lists_aggregated_count';
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   items?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Company_Logo_Lists_Aggregated_Fields = {
@@ -1303,18 +1220,11 @@ export type Company_Logo_Lists_Aggregated_Fields = {
 export type Company_Logo_Lists_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   items?: InputMaybe<Company_Logo_Lists_Items_Filter>;
   items_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Company_Logo_Lists_Items = {
@@ -1380,8 +1290,6 @@ export type Company_Logo_Lists_Items_Item_Union = Company_Logos;
 
 export type Company_Logos = {
   __typename?: 'company_logos';
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   logo_dark?: Maybe<Directus_Files>;
   logo_light?: Maybe<Directus_Files>;
@@ -1427,7 +1335,6 @@ export type Company_Logos_Aggregated = {
 
 export type Company_Logos_Aggregated_Count = {
   __typename?: 'company_logos_aggregated_count';
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   logo_dark?: Maybe<Scalars['Int']['output']>;
   logo_light?: Maybe<Scalars['Int']['output']>;
@@ -1446,8 +1353,6 @@ export type Company_Logos_Aggregated_Fields = {
 export type Company_Logos_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Company_Logos_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Company_Logos_Filter>>>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   logo_dark?: InputMaybe<Directus_Files_Filter>;
   logo_light?: InputMaybe<Directus_Files_Filter>;
@@ -1595,7 +1500,6 @@ export type Events = {
   sort?: Maybe<Scalars['Int']['output']>;
   start_date?: Maybe<Scalars['Date']['output']>;
   start_date_func?: Maybe<Datetime_Functions>;
-  status?: Maybe<Scalars['String']['output']>;
   /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
   timezone?: Maybe<Scalars['String']['output']>;
 };
@@ -1627,7 +1531,6 @@ export type Events_Aggregated_Count = {
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   start_date?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   /** Must be TZ value from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones */
   timezone?: Maybe<Scalars['Int']['output']>;
 };
@@ -1655,7 +1558,6 @@ export type Events_Filter = {
   sort?: InputMaybe<Number_Filter_Operators>;
   start_date?: InputMaybe<Date_Filter_Operators>;
   start_date_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
   timezone?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -1796,7 +1698,6 @@ export type Markdown_Pages = {
   markdown_page_id?: Maybe<Page_Legal>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -1832,7 +1733,6 @@ export type Markdown_Pages_Aggregated_Count = {
   markdown_page_id?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   subtitle?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
 };
@@ -1852,7 +1752,6 @@ export type Markdown_Pages_Filter = {
   markdown_page_id?: InputMaybe<Page_Legal_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
   subtitle?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
 };
@@ -1994,13 +1893,7 @@ export type Page_Community = {
   __typename?: 'page_community';
   callouts?: Maybe<Array<Maybe<Callouts>>>;
   callouts_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2018,27 +1911,15 @@ export type Page_Community_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Page_Community_Filter>>>;
   callouts?: InputMaybe<Callouts_Filter>;
   callouts_func?: InputMaybe<Count_Function_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Page_Homepage = {
   __typename?: 'page_homepage';
   article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
   article_cards_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2066,14 +1947,8 @@ export type Page_Homepage_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
   article_cards?: InputMaybe<Article_Cards_Filter>;
   article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   quotes?: InputMaybe<Quote_Lists_Filter>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Page_Legal = {
@@ -2103,15 +1978,9 @@ export type Page_Legal_Filter = {
 
 export type Page_Product = {
   __typename?: 'page_product';
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   faq?: Maybe<Collapsible_Lists>;
   featured_quote?: Maybe<Quotes>;
   id: Scalars['ID']['output'];
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2136,17 +2005,10 @@ export type Page_ProductFeatured_QuoteArgs = {
 
 export type Quote_Lists = {
   __typename?: 'quote_lists';
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   items?: Maybe<Array<Maybe<Quote_Lists_Items>>>;
   items_func?: Maybe<Count_Functions>;
   slug: Scalars['String']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2169,30 +2031,18 @@ export type Quote_Lists_Aggregated = {
 
 export type Quote_Lists_Aggregated_Count = {
   __typename?: 'quote_lists_aggregated_count';
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   items?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Quote_Lists_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Quote_Lists_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Quote_Lists_Filter>>>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<String_Filter_Operators>;
   items?: InputMaybe<Quote_Lists_Items_Filter>;
   items_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Quote_Lists_Items = {
@@ -2258,20 +2108,13 @@ export type Quote_Lists_Items_Item_Union = Quotes;
 export type Quotes = {
   __typename?: 'quotes';
   company?: Maybe<Scalars['String']['output']>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   logo?: Maybe<Directus_Files>;
   name?: Maybe<Scalars['String']['output']>;
   portrait?: Maybe<Directus_Files>;
   quote?: Maybe<Scalars['String']['output']>;
   quote_id?: Maybe<Quote_Lists>;
-  status?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  user_created?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2321,18 +2164,13 @@ export type Quotes_Aggregated = {
 export type Quotes_Aggregated_Count = {
   __typename?: 'quotes_aggregated_count';
   company?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   logo?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
   portrait?: Maybe<Scalars['Int']['output']>;
   quote?: Maybe<Scalars['Int']['output']>;
   quote_id?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Quotes_Aggregated_Fields = {
@@ -2344,34 +2182,25 @@ export type Quotes_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Quotes_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Quotes_Filter>>>;
   company?: InputMaybe<String_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   logo?: InputMaybe<Directus_Files_Filter>;
   name?: InputMaybe<String_Filter_Operators>;
   portrait?: InputMaybe<Directus_Files_Filter>;
   quote?: InputMaybe<String_Filter_Operators>;
   quote_id?: InputMaybe<Quote_Lists_Filter>;
-  status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Site_Settings = {
   __typename?: 'site_settings';
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
-  id: Scalars['ID']['output'];
   main_nav?: Maybe<Nav_List>;
   og_description?: Maybe<Scalars['String']['output']>;
   og_image?: Maybe<Directus_Files>;
+  og_image_community?: Maybe<Directus_Files>;
+  og_image_marketplace?: Maybe<Directus_Files>;
   partner_logos?: Maybe<Company_Logo_Lists>;
   promo_banner_content?: Maybe<Scalars['String']['output']>;
   promo_banner_url?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2386,6 +2215,26 @@ export type Site_SettingsMain_NavArgs = {
 
 
 export type Site_SettingsOg_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Site_SettingsOg_Image_CommunityArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Site_SettingsOg_Image_MarketplaceArgs = {
   filter?: InputMaybe<Directus_Files_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2411,8 +2260,6 @@ export type Solutions_Pages = {
   case_study?: Maybe<Case_Studies>;
   content_1?: Maybe<Scalars['String']['output']>;
   content_2?: Maybe<Scalars['String']['output']>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   description?: Maybe<Scalars['String']['output']>;
   featured_quote?: Maybe<Quotes>;
   heading_1?: Maybe<Scalars['String']['output']>;
@@ -2474,7 +2321,6 @@ export type Solutions_Pages_Aggregated_Count = {
   case_study?: Maybe<Scalars['Int']['output']>;
   content_1?: Maybe<Scalars['Int']['output']>;
   content_2?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   featured_quote?: Maybe<Scalars['Int']['output']>;
   heading_1?: Maybe<Scalars['Int']['output']>;
@@ -2502,8 +2348,6 @@ export type Solutions_Pages_Filter = {
   case_study?: InputMaybe<Case_Studies_Filter>;
   content_1?: InputMaybe<String_Filter_Operators>;
   content_2?: InputMaybe<String_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
   featured_quote?: InputMaybe<Quotes_Filter>;
   heading_1?: InputMaybe<String_Filter_Operators>;
@@ -2518,11 +2362,8 @@ export type Solutions_Pages_Filter = {
 export type Stack_Defaults = {
   __typename?: 'stack_defaults';
   case_study?: Maybe<Case_Studies>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2548,12 +2389,9 @@ export type Stack_DefaultsQuotesArgs = {
 export type Stacks = {
   __typename?: 'stacks';
   case_study?: Maybe<Case_Studies>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
   heroVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
-  user_updated?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2584,11 +2422,9 @@ export type Stacks_Aggregated_Count = {
   __typename?: 'stacks_aggregated_count';
   /** Use to override default case study for individual stack */
   case_study?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Stacks_Aggregated_Fields = {
@@ -2602,12 +2438,9 @@ export type Stacks_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Stacks_Filter>>>;
   case_study?: InputMaybe<Case_Studies_Filter>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
-  user_updated?: InputMaybe<String_Filter_Operators>;
 };
 
 export type String_Filter_Operators = {
@@ -2637,7 +2470,6 @@ export type Team_Members = {
   portrait?: Maybe<Directus_Files>;
   pronouns?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2673,7 +2505,6 @@ export type Team_Members_Aggregated_Count = {
   portrait?: Maybe<Scalars['Int']['output']>;
   pronouns?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -2693,7 +2524,6 @@ export type Team_Members_Filter = {
   portrait?: InputMaybe<Directus_Files_Filter>;
   pronouns?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -2714,12 +2544,12 @@ export type CompanyLogoFragment = { __typename?: 'company_logos', slug?: string 
 
 export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null };
 
-export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
+export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_marketplace?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_community?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
 
 export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
+export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_marketplace?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_community?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
 
 export type CaseStudyFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -2936,6 +2766,12 @@ export const SiteSettingsFragmentDoc = gql`
   }
   og_description
   og_image {
+    ...ImageFile
+  }
+  og_image_marketplace {
+    ...ImageFile
+  }
+  og_image_community {
     ...ImageFile
   }
   partner_logos {

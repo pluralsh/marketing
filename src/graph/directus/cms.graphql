@@ -73,6 +73,12 @@ fragment SiteSettings on site_settings {
   og_image {
     ...ImageFile
   }
+  og_image_marketplace {
+    ...ImageFile
+  }
+  og_image_community {
+    ...ImageFile
+  }
   partner_logos {
     ...LogoList
   }

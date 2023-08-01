@@ -14,8 +14,8 @@ export const getAppMeta = (repo: BasicRepo): GlobalPageProps => {
   if (!displayName) return {}
 
   return {
-    metaTitleFull: `Deploying ${displayName} on Kubernetes`,
-    metaDescription: `Use Plural to deploy and manage ${displayName} on Kubernetes, in your cloud.`,
+    metaTitleFull: `Deploying ${displayName} on Plural`,
+    metaDescription: `Use Plural to securely deploy and manage ${displayName} on Kubernetes, in your cloud.`,
   }
 }
 
@@ -25,8 +25,8 @@ export const getStackMeta = (stack: MinStack): GlobalPageProps => {
   if (!displayName) return {}
 
   return {
-    metaTitleFull: `Deploying the ${displayName} Stack on Kubernetes`,
-    metaDescription: `Use Plural to deploy and manage the ${displayName} Stack on Kubernetes, in your cloud.`,
+    metaTitleFull: `Deploying the ${displayName} stack on Plural`,
+    metaDescription: `Use Plural to securely deploy and manage the ${displayName} stack on Kubernetes, in your cloud.`,
   }
 }
 
