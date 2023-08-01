@@ -420,7 +420,8 @@ export default function Index({
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
-        className="pb-xxxxxxlarge -mb-xxxxxlarge"
+        // Needs matching negative top margin in first-item of following section
+        className="pb-xxxxxxlarge"
       >
         <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
           <CompanyLogosSection
@@ -443,7 +444,13 @@ export default function Index({
                     c && (
                       <ArticleCardNoBorder
                         key={c.id}
-                        className={classNames({ 'columns:col-span-3': medium })}
+                        className={classNames({
+                          'columns:col-span-3': medium,
+                          // Needs matching positive bottom padding in previous section
+                          // Negative margin has to be on this first item instead of any wrappers
+                          // to visual issue with GradientBackground on Safari
+                          '-mt-xxxxxlarge': i === 0,
+                        })}
                         size={medium ? 'medium' : 'small'}
                         reverse={first}
                         {...{
