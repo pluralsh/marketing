@@ -151,6 +151,8 @@ type ImgProps = {
 }
 type ImgPropsSC = PrefixKeys<ImgProps, '$'>
 
+const STAGGER = 0.25
+
 const cardVariants = ({
   delay = 0,
   direction = 1,
@@ -159,9 +161,10 @@ const cardVariants = ({
   direction: 1 | -1
 }): Variants => ({
   offscreen: {
-    rotateY: 45 * direction,
+    rotateY: 15 * direction,
     scale: 0.85,
     opacity: 0,
+    transition: { type: 'linear', duration: 0 },
   },
   onscreen: {
     rotateY: 0,
@@ -169,8 +172,8 @@ const cardVariants = ({
     opacity: 1,
     transition: {
       type: 'spring',
-      bounce: 0.2,
-      duration: 1,
+      bounce: 0.15,
+      duration: 1.8,
       delay,
     },
   },
@@ -202,7 +205,7 @@ function MultiImageImg({
   inView: boolean
 } & ComponentProps<typeof MultiImageWrapSC>) {
   const variants = useMemo(
-    () => cardVariants({ delay: animOffset * 0.1, direction }),
+    () => cardVariants({ delay: animOffset * STAGGER, direction }),
     [animOffset, direction]
   )
 
@@ -210,6 +213,7 @@ function MultiImageImg({
     <MotionDiv
       animate={inView ? 'onscreen' : 'offscreen'}
       variants={variants}
+      className="opacity-0"
     >
       <MultiImageWrapSC
         $top={top}
