@@ -142,7 +142,10 @@ const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
 const heroVariants = ({ delay = 0 }: { delay: number }): Variants => ({
   offscreen: {
     opacity: 0,
-    translateZ: 500,
+    translateZ: 350,
+    // Need to set zero-length transition here to make sure
+    // state is set immediately on page load
+    transition: { type: 'linear', duration: 0 },
   },
   onscreen: {
     translateZ: 0,
@@ -150,8 +153,8 @@ const heroVariants = ({ delay = 0 }: { delay: number }): Variants => ({
     opacity: 1,
     transition: {
       type: 'spring',
-      bounce: 0.2,
-      duration: 1,
+      bounce: 0.15,
+      duration: 2.25,
       delay,
     },
   },
@@ -193,7 +196,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   const ref = useRef<any>(null)
 
   const inView = useInView(ref, { once: true, margin: '-80px 0px -40%' })
-  const stagger = 0.3
+  const stagger = 0.25
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -226,7 +229,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg3"
         inView={inView}
-        delay={2 * stagger}
+        delay={1.75 * stagger}
         parallax={0.75}
         scrollYProgress={scrollYProgress}
       >
