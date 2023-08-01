@@ -53,7 +53,7 @@ export function Feature({
   const headingInView = useInView(headingRef, {
     once: true,
     amount: 1,
-    margin: '80px 0px -25%',
+    margin: '-80px 0px -25%',
   })
   const imageInView = useInView(imageRef, {
     once: true,
@@ -63,21 +63,13 @@ export function Feature({
 
   const breakpoint = useBreakpoint()
 
-  console.log(
-    'breakpointIsGreaterOrEqual(breakpoint, columns)',
-    breakpointIsGreaterOrEqual(breakpoint, 'columns')
-  )
   const isInView = breakpointIsGreaterOrEqual(breakpoint, 'columns')
     ? imageInView || headingInView
     : imageInView // refine later for mobile
 
   if (image?.type === FeaturesImage) {
     image = cloneElement(image, { inView: isInView, ref: imageRef })
-    console.log('image', image)
   }
-  console.log('imageInView', imageInView)
-  console.log('isInView', isInView)
-  console.log('imageRef', imageRef.current)
 
   return (
     <FeatureSC>
@@ -308,7 +300,7 @@ export function HomepageFeaturesSection() {
           <div
             className={classNames(
               'flex flex-col',
-              'gap-y-xxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
+              'gap-y-xxxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
             )}
           >
             <CenteredSectionHead
@@ -343,7 +335,7 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Install Plural using our CLI or our cloud shell in minutes and
+                Install Plural in minutes using our CLI or our cloud shell and
                 then choose from 90+ production-grade, open-source applications
                 to deploy in your environment.
               </p>
@@ -380,7 +372,7 @@ export function HomepageFeaturesSection() {
                 Plural is built for secure deployments, featuring
                 security-scanned and hardened images, seamless integration with
                 your SAML gateway, turnkey user authentication, centralized user
-                management, and granular RBAC.
+                management, and granular Role Based Access Control.
               </p>
             </Feature>
             <Feature
@@ -467,10 +459,10 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Harness Complete Performance Insights: Plural's Native
-                Integrations with Prometheus, Datadog, and More. Streamline
-                Testing and Rollouts with Effortless Multi-Cluster Deploys from
-                Dev to Prod.
+                It’s never been easier to manage multiple applications. Get
+                comprehensive operational insights with native integrations to
+                Prometheus and Datadog, and manage deployments to multiple
+                clusters.
               </p>
             </Feature>
           </div>
