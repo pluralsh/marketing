@@ -22,7 +22,10 @@ import { AppCard } from '@src/components/AppOrStackCard'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
-import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import {
+  StandardPageSection,
+  StandardPageWidth,
+} from '@src/components/layout/LayoutHelpers'
 import { BackButton } from '@src/components/Nav'
 import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
@@ -282,11 +285,12 @@ export default function Stack({
         isStack
       /> */}
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <CompanyLogosSection
-        className="mt-xxxxlarge"
-        logos={globalProps.siteSettings?.partner_logos?.items}
-      />
-      <TestimonialsSection quotes={quotes} />
+      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+        <CompanyLogosSection
+          logos={globalProps.siteSettings?.partner_logos?.items}
+        />
+        <TestimonialsSection quotes={quotes || []} />
+      </StandardPageSection>
       <CaseStudyFAQSection
         caseStudyProps={{
           apps: caseStudyApps,

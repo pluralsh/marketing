@@ -289,11 +289,12 @@ export default function App({
       </StandardPageWidth>
       <HPWMiniSectionAppStacks />
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <CompanyLogosSection
-        className="mt-xxxxlarge"
-        logos={globalProps.siteSettings?.partner_logos?.items}
-      />
-      <TestimonialsSection quotes={quotes} />
+      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+        <CompanyLogosSection
+          logos={globalProps.siteSettings?.partner_logos?.items}
+        />
+        <TestimonialsSection quotes={quotes || []} />
+      </StandardPageSection>
       <CaseStudyFAQSection
         caseStudyProps={{
           apps: caseStudyApps,

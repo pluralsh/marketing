@@ -245,12 +245,10 @@ export function TestimonialsSection({
 >) {
   return (
     <StandardPageWidth {...props}>
-      <div className="my-xxxxxlarge">
-        <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-          What companies are saying about Plural
-        </Heading1>
-        <QuotesCarousel quotes={quotes} />
-      </div>
+      <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+        What companies are saying about Plural
+      </Heading1>
+      <QuotesCarousel quotes={quotes} />
     </StandardPageWidth>
   )
 }

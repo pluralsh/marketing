@@ -3,6 +3,7 @@ import {
   type ReactElement,
   type ReactNode,
   cloneElement,
+  useRef,
 } from 'react'
 
 import {
@@ -17,6 +18,13 @@ import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import classNames from 'classnames'
+import {
+  type Variants,
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
 import styled, { useTheme } from 'styled-components'
 
 import { directusClient } from '@src/apollo-client'
@@ -74,15 +82,15 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       width: `${(512 * 100) / baseWidth}%`,
       left: `${(930 * 100) / baseWidth}%`,
       top: `${(35 * 100) / baseHeight}%`,
-      img: {
+      '.endTransform': {
         transform: [
           'rotateY(-10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
           'translateZ(-100px)',
-          'translateX(7%)',
+          'translateX(-2%)',
           'translateY(-10px)',
-          'scale(1.1)',
+          'scale(1.07)',
         ].join(' '),
       },
     },
@@ -90,13 +98,13 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       width: `${(880.84 * 100) / baseWidth}%`,
       left: `${(0 * 100) / baseWidth}%`,
       top: `${(0 * 100) / baseHeight}%`,
-      img: {
+      '.endTransform': {
         transform: [
           'rotateY(10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
-          // 'translateZ(100px)',
-          // 'scale(0.90)',
+          'translateX(2%)',
+          'scale(0.98)',
         ].join(' '),
       },
     },
@@ -104,13 +112,13 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       width: `${(840 * 100) / baseWidth}%`,
       left: `${(563 * 100) / baseWidth}%`,
       top: `${(226 * 100) / baseHeight}%`,
-      img: {
+      '.endTransform': {
         transform: [
           'rotateY(-5deg)',
-          // // 'rotateX(0deg)',
-          // // 'rotateZ(0deg)',
+          // 'rotateX(0deg)',
+          // 'rotateZ(0deg)',
           'translateZ(100px)',
-          'translateX(-2%)',
+          'translateX(-4%)',
           'translateY(-2%)',
           'scale(0.90)',
         ].join(' '),
@@ -119,18 +127,111 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
   }
 })
 
-function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
+const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
+  // position: 'absolute',
+  // top: 0,
+  // right: 0,
+  // bottom: 0,
+  // left: 0,
+  // transformOrigin: '100% 50% -300px',
+  // // transformStyle: 'flat',
+  // perspective: PERSPECTIVE,
+  opacity: 0,
+}))
+
+const heroVariants = ({ delay = 0 }: { delay: number }): Variants => ({
+  offscreen: {
+    opacity: 0,
+    translateZ: 500,
+  },
+  onscreen: {
+    translateZ: 0,
+    // scale: 1,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      bounce: 0.2,
+      duration: 1,
+      delay,
+    },
+  },
+})
+
+function HeroIn({
+  children,
+  inView,
+  className,
+  delay,
+  scrollYProgress,
+  parallax,
+}) {
+  const variants = heroVariants({ delay })
+  const translateY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`${20 * parallax}%`, `${-20 * parallax}%`]
+  )
+
   return (
-    <HeroImagesSC {...props}>
-      <div className="heroImg heroImg1">
+    <motion.div
+      style={{ translateY }}
+      className={classNames('heroImg', className)}
+    >
+      <div className="endTransform">
+        <MotionDiv
+          animate={inView ? 'onscreen' : 'offscreen'}
+          variants={variants}
+        >
+          {children}
+        </MotionDiv>
+      </div>
+    </motion.div>
+  )
+}
+
+function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
+  const ref = useRef<any>(null)
+
+  const inView = useInView(ref, { once: true, margin: '-80px 0px -40%' })
+  const stagger = 0.3
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+
+  return (
+    <HeroImagesSC
+      ref={ref}
+      {...props}
+    >
+      <HeroIn
+        className="heroImg1"
+        inView={inView}
+        delay={0 * stagger}
+        scrollYProgress={scrollYProgress}
+        parallax={-1.25}
+      >
         <img src="/images/homepage/hero-configuration.png" />
-      </div>
-      <div className="heroImg heroImg2">
+      </HeroIn>
+      <HeroIn
+        className="heroImg2"
+        inView={inView}
+        delay={1 * stagger}
+        parallax={0}
+        scrollYProgress={scrollYProgress}
+      >
         <img src="/images/homepage/hero-apps.png" />
-      </div>
-      <div className="heroImg heroImg3">
+      </HeroIn>
+      <HeroIn
+        className="heroImg3"
+        inView={inView}
+        delay={2 * stagger}
+        parallax={0.75}
+        scrollYProgress={scrollYProgress}
+      >
         <img src="/images/homepage/hero-nodes.png" />
-      </div>
+      </HeroIn>
     </HeroImagesSC>
   )
 }
@@ -270,7 +371,12 @@ export default function Index({
         className="[perspective:1000px]"
       >
         <HomePageHero
-          heading="Secure, self-hosted applications in your cloud with no compromises"
+          heading={
+            <>
+              Deploy secure self-hosted applications in your cloud with no
+              compromises
+            </>
+          }
           description={
             <div className="[text-wrap:balance]">
               Build compliant, production-ready, infrastructure faster than
@@ -314,9 +420,9 @@ export default function Index({
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
-        className="pb-xxxxxlarge -mb-xxxxxlarge"
+        className="pb-xxxxxxlarge -mb-xxxxxlarge"
       >
-        <StandardPageSection className="flex flex-col gap-y-xxxlarge">
+        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
           <CompanyLogosSection
             logos={globalProps.siteSettings?.partner_logos?.items}
           />

@@ -16,8 +16,22 @@ const CompanyLogosSectionSC = styled.div(({ theme: _ }) => ({
   },
 }))
 
-const LogoSC = styled.div(() => ({
-  display: 'block',
+// Using old inline-block layout technique so we can use 'text-wrap: balance'
+// to keep things looking nice when it breaks to multiple lines
+const LogosListSC = styled.ul(({ theme }) => ({
+  textAlign: 'center',
+  textWrap: 'balance',
+  marginBottom: -theme.spacing.xxlarge,
+  marginLeft: -theme.spacing.xxlarge / 2,
+  marginRight: -theme.spacing.xxlarge / 2,
+}))
+const LogoSC = styled.div(({ theme }) => ({
+  display: 'inline-block',
+  margin: 0,
+  padding: 0,
+  marginLeft: theme.spacing.xxlarge / 2,
+  marginRight: theme.spacing.xxlarge / 2,
+  marginBottom: theme.spacing.xxlarge,
 }))
 
 export function CompanyLogosSection({
@@ -42,7 +56,7 @@ export function CompanyLogosSection({
         >
           {heading || 'Used by fast-moving teams at'}
         </TextLabel>
-        <ul className="flex flex-wrap gap-xxlarge items-center justify-center">
+        <LogosListSC>
           {logos?.map((logo) => {
             if (!logo?.item) {
               return null
@@ -81,7 +95,7 @@ export function CompanyLogosSection({
               )
             )
           })}
-        </ul>
+        </LogosListSC>
       </CompanyLogosSectionSC>
     </StandardPageWidth>
   )

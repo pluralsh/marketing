@@ -13,9 +13,10 @@ import { useRouter } from 'next/router'
 
 import styled from 'styled-components'
 
+import { getTopNavHeight } from '../utils/getTopNavHeight'
 import { exists } from '../utils/typescript'
 
-import type { MarkdocHeading } from '../../pages/_app'
+import type { MarkdocHeading } from '@pages/_app'
 
 const Title = styled.h2(({ theme }) => ({
   ...theme.partials.marketingText.label,
@@ -169,11 +170,7 @@ function TableOfContentsBase({
 
       return
     }
-    const topNavHeight = Number(
-      getComputedStyle(document.documentElement)
-        ?.getPropertyValue('--top-nav-height')
-        ?.replace(/[^0-9]/g, '') || 0
-    )
+    const topNavHeight = getTopNavHeight()
 
     let scrollToHash = ''
 

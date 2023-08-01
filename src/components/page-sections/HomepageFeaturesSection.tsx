@@ -1,18 +1,27 @@
-import { type ComponentProps, type ReactNode, useMemo, useRef } from 'react'
+import {
+  type ComponentProps,
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+  forwardRef,
+  useMemo,
+  useRef,
+} from 'react'
 
 import { ColorModeProvider } from '@pluralsh/design-system'
 
 import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
-import { type Variants, motion } from 'framer-motion'
+import { type Variants, motion, useInView } from 'framer-motion'
 import styled from 'styled-components'
 
-import { mqs } from '@src/breakpoints'
+import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { Body2, ResponsiveText } from '@src/components/Typography'
 import { mShadows } from '@src/styles/extraStyles'
 
+import { useBreakpoint } from '../contexts/BreakpointProvider'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
 const PERSPECTIVE = 1400
@@ -36,12 +45,37 @@ export function Feature({
 }: {
   heading: ReactNode
   children: ReactNode
-  graphic: ReactNode
+  graphic: ReactElement
 }) {
+  const headingRef = useRef<any>(null)
+  const imageRef = useRef<any>(null)
+
+  const headingInView = useInView(headingRef, {
+    once: true,
+    amount: 1,
+    margin: '-80px 0px -25%',
+  })
+  const imageInView = useInView(imageRef, {
+    once: true,
+    amount: 0.75,
+    margin: '80px 0px -10%',
+  })
+
+  const breakpoint = useBreakpoint()
+
+  const isInView = breakpointIsGreaterOrEqual(breakpoint, 'columns')
+    ? imageInView || headingInView
+    : imageInView // refine later for mobile
+
+  if (image?.type === FeaturesImage) {
+    image = cloneElement(image, { inView: isInView, ref: imageRef })
+  }
+
   return (
     <FeatureSC>
       <EqualColumn className="flex flex-col gap-y-xlarge">
         <ResponsiveText
+          ref={headingRef}
           className="[text-wrap:balance]"
           textStyles={{ '': 'mTitle1' }}
         >
@@ -73,7 +107,7 @@ const MultiImageSC = styled.div<{ $aspectRatio: string }>(
 )
 const MultiImageWrapSC = styled.div<
   ImgPropsSC & { $round: boolean; $direction: 1 | -1 }
->(({ $width, $top, $left, $height, $round, $direction = 1 }) => ({
+>(({ $width, $top, $left, $height, $round }) => ({
   top: $top,
   left: $left,
   height: $height,
@@ -84,9 +118,9 @@ const MultiImageWrapSC = styled.div<
   boxShadow: mShadows.light.slight,
   transformStyle: 'preserve-3d',
   perspective: PERSPECTIVE,
-  [mqs.columns]: {
-    transform: `rotateY(${$direction * -12.5}deg)`,
-  },
+  // [mqs.columns]: {
+  //   transform: `rotateY(${$direction * -12.5}deg)`,
+  // },
 }))
 
 const MultiImageVideoSC = styled.video<{ $round?: boolean }>(
@@ -135,8 +169,8 @@ const cardVariants = ({
     opacity: 1,
     transition: {
       type: 'spring',
-      bounce: 0.4,
-      duration: 0.8,
+      bounce: 0.2,
+      duration: 1,
       delay,
     },
   },
@@ -154,6 +188,7 @@ const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
 }))
 
 function MultiImageImg({
+  inView,
   top,
   left,
   height,
@@ -162,13 +197,10 @@ function MultiImageImg({
   animOffset,
   direction,
   ...attrs
-}: ImgProps & { direction: -1 | 1 } & ComponentProps<typeof MultiImageWrapSC>) {
-  const ref = useRef<HTMLDivElement>(null)
-  // const { scrollYProgress, ...scrollProps } = useScroll({
-  //   target: ref,
-  //   // @ts-expect-error
-  //   offset: ['end end', 'start start'],
-  // })
+}: ImgProps & {
+  direction: -1 | 1
+  inView: boolean
+} & ComponentProps<typeof MultiImageWrapSC>) {
   const variants = useMemo(
     () => cardVariants({ delay: animOffset * 0.1, direction }),
     [animOffset, direction]
@@ -176,10 +208,7 @@ function MultiImageImg({
 
   return (
     <MotionDiv
-      ref={ref}
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 'some' }}
+      animate={inView ? 'onscreen' : 'offscreen'}
       variants={variants}
     >
       <MultiImageWrapSC
@@ -216,25 +245,33 @@ function MultiImageImg({
   )
 }
 
-function FeaturesImage({
-  images,
-  width,
-  height,
-  direction = 1,
-  ...props
-}: {
-  images: ImageProps[]
-  width: number
-  height: number
-  direction?: 1 | -1
-} & ComponentProps<typeof MultiImageWrapSC>) {
-  return (
+const FeaturesImage = forwardRef(
+  (
+    {
+      images,
+      width,
+      height,
+      direction = 1,
+      inView = true,
+      ...props
+    }: {
+      images: ImageProps[]
+      width: number
+      height: number
+      direction?: 1 | -1
+      inView?: boolean
+    } & ComponentProps<typeof MultiImageWrapSC>,
+    ref
+  ) => (
     <MultiImageSC
+      ref={ref}
+      className="rootRef"
       $aspectRatio={`${width} / ${height}`}
       {...props}
     >
       {images.map((img, i) => (
         <MultiImageImg
+          inView={inView}
           key={i}
           src={img.url}
           top={`${(img.top * 100) / height}%`}
@@ -248,7 +285,8 @@ function FeaturesImage({
       ))}
     </MultiImageSC>
   )
-}
+)
+
 export function HomepageFeaturesSection() {
   return (
     <ColorModeProvider mode="light">
@@ -262,7 +300,7 @@ export function HomepageFeaturesSection() {
           <div
             className={classNames(
               'flex flex-col',
-              'gap-y-xxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
+              'gap-y-xxxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
             )}
           >
             <CenteredSectionHead
@@ -297,7 +335,7 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Install Plural using our CLI or our cloud shell in minutes and
+                Install Plural in minutes using our CLI or our cloud shell and
                 then choose from 90+ production-grade, open-source applications
                 to deploy in your environment.
               </p>
@@ -334,7 +372,7 @@ export function HomepageFeaturesSection() {
                 Plural is built for secure deployments, featuring
                 security-scanned and hardened images, seamless integration with
                 your SAML gateway, turnkey user authentication, centralized user
-                management, and granular RBAC.
+                management, and granular Role Based Access Control.
               </p>
             </Feature>
             <Feature
@@ -421,10 +459,10 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Harness Complete Performance Insights: Plural's Native
-                Integrations with Prometheus, Datadog, and More. Streamline
-                Testing and Rollouts with Effortless Multi-Cluster Deploys from
-                Dev to Prod.
+                It’s never been easier to manage multiple applications. Get
+                comprehensive operational insights with native integrations to
+                Prometheus and Datadog, and manage deployments to multiple
+                clusters.
               </p>
             </Feature>
           </div>

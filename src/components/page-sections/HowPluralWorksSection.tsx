@@ -50,24 +50,21 @@ export function HowPluralWorksSection() {
           showConnector
         />
         <HowWorksItemCol>
-          <h4>Bring your cloud & add your Git credentials</h4>
+          <h4>Your Cloud. Your Git Repository. No credentials shared.</h4>
           <BasicUl>
             <li>
-              Plural uses your cloud credentials to create your infrastructure
-              in your own cloud. All cloud credentials are stored securely using
-              symmetric encryption.
+              Plural leverages your cloud provider SDK and it's assigned IAM
+              role to orchestrate deployments.
             </li>
             <li>
-              Plural creates versioned infrastructure-as-code which makes it
-              easy to track what’s changing and roll back between versions.
-            </li>
-            <li>
-              IAC is stored in your SCM. Apps are fully ejectable so you can
+              All Infrastructure-as-code is stored in your source code
+              repository. We support Github, GitLab, BitBucket, and more. We
+              don’t store any credentials. Apps are fully ejectable so you can
               walk away from Plural at any time.
             </li>
             <li>
-              Customize the config of apps deployed by Plural for greater
-              control of your deployment.
+              Customize every aspect of the apps for greater control of your
+              deployment.
             </li>
           </BasicUl>
         </HowWorksItemCol>
