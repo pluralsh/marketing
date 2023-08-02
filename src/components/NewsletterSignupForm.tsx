@@ -115,6 +115,7 @@ export function NewsletterSignupForm() {
 
   return (
     <form
+      id="email-form"
       onSubmit={submitEmail}
       action="/forms/newsletter.html"
       method="POST"
@@ -142,7 +143,7 @@ export function NewsletterSignupForm() {
       </label>
       <Input
         id={emailInputId}
-        inputProps={{ name: 'email' }}
+        inputProps={{ name: 'email', type: 'email' }}
         placeholder="Email address"
         onChange={(e) => {
           setEmail(e?.target?.value)
