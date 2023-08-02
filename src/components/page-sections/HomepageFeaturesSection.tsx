@@ -8,8 +8,10 @@ import {
   useRef,
 } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import { Button, ColorModeProvider } from '@pluralsh/design-system'
+import Link from 'next/link'
 
+import { isExternalUrl } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
 import { type Variants, motion, useInView } from 'framer-motion'
@@ -18,7 +20,7 @@ import styled from 'styled-components'
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { Body2, ResponsiveText } from '@src/components/Typography'
+import { Body2, Overline, ResponsiveText } from '@src/components/Typography'
 import { mShadows } from '@src/styles/extraStyles'
 
 import { useBreakpoint } from '../contexts/BreakpointProvider'
@@ -469,9 +471,66 @@ export function HomepageFeaturesSection() {
                 clusters.
               </p>
             </Feature>
+            <DeepDive />
           </div>
         </StandardPageWidth>
       </div>
     </ColorModeProvider>
+  )
+}
+
+function DeepDiveButton(props: ComponentProps<typeof Button>) {
+  return (
+    <li>
+      <Button
+        secondary
+        large
+        as={Link}
+        {...(isExternalUrl(props?.href) ? { target: '_blank' } : {})}
+        {...props}
+      />
+    </li>
+  )
+}
+const DeepDiveSC = styled.ul(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing.large,
+  ul: {
+    textAlign: 'center',
+    textWrap: 'balance',
+    ...theme.partials.reset.list,
+    margin: `${-theme.spacing.large / 2}px`,
+    li: {
+      ...theme.partials.reset.li,
+      display: 'inline-block',
+      margin: `${theme.spacing.large / 2}px`,
+    },
+  },
+}))
+
+function DeepDive() {
+  return (
+    <DeepDiveSC>
+      <Overline
+        className="text-center"
+        as="h3"
+      >
+        Deep dive into the product
+      </Overline>
+      <ul>
+        <DeepDiveButton href="/product">How Plural works</DeepDiveButton>
+        <DeepDiveButton href="https://www.youtube.com/@pluralsh/videos">
+          Demo videos
+        </DeepDiveButton>
+        <DeepDiveButton href="https://docs.plural.sh/getting-started/quickstart">
+          Quickstart guide
+        </DeepDiveButton>
+        <DeepDiveButton href="https://docs.plural.sh/operations/security">
+          Security concepts
+        </DeepDiveButton>
+        <DeepDiveButton href="/marketplace">Application catalog</DeepDiveButton>
+      </ul>
+    </DeepDiveSC>
   )
 }

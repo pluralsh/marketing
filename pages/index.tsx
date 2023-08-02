@@ -17,6 +17,7 @@ import {
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
+import { until } from '@open-draft/until'
 import classNames from 'classnames'
 import {
   type Variants,
@@ -31,14 +32,20 @@ import { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
+import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import PersonCheck from '@src/components/icons/PersonCheck'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import BuildStackSection from '@src/components/page-sections/BuildStackSection'
+import { DevOpsEfficiencySection } from '@src/components/page-sections/DevOpsEfficiencySection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ShadowedCard } from '@src/components/ShadowedCard'
+import { getTinyRepos } from '@src/data/getRepos'
+import { getStacks } from '@src/data/getStacks'
+import { getStackTabData } from '@src/data/getStackTabData'
 import {
   PageHomepageDocument,
   type PageHomepageQuery,
@@ -361,8 +368,10 @@ function BuildSecurely() {
 
 export default function Index({
   quotes,
-  globalProps,
+  featuredQuote,
+  buildStackTabs,
   articleCards,
+  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -419,6 +428,9 @@ export default function Index({
         </StandardPageSection>
       </HeaderPad>
       <HomepageFeaturesSection />
+      <DevOpsEfficiencySection />
+      <FeaturedQuote quote={featuredQuote} />
+      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
       <GradientBG
         size="cover"
         position="bottom middle"
@@ -486,6 +498,10 @@ export const getStaticProps = async () => {
   >({
     query: PageHomepageDocument,
   })
+  const { data: repos, error: reposError } = await until(() => getTinyRepos())
+  const { data: stacks, error: stacksError } = await until(() => getStacks())
+
+  const buildStackTabs = getStackTabData({ repos, stacks })
 
   const page = data.page_homepage
 
@@ -495,8 +511,13 @@ export const getStaticProps = async () => {
       'Open-source application deployment, faster than ever without sacrificing compliance.',
     articleCards: data.page_homepage?.article_cards || null,
     quotes: normalizeQuotes(page?.quotes),
-
+    featuredQuote: page?.featured_quote || null,
+    buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
-    errors: [...(error ? [`${error}`] : [])],
+    errors: [
+      ...(error ? [`${error}`] : []),
+      ...(stacksError ? [stacksError] : []),
+      ...(reposError ? [reposError] : []),
+    ],
   })
 }

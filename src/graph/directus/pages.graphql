@@ -83,6 +83,9 @@ fragment PageHomepage on page_homepage {
   article_cards {
     ...ArticleCard
   }
+  featured_quote {
+    ...Quote
+  }
 }
 
 query PageHomepage {
