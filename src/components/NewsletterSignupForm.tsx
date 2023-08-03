@@ -85,14 +85,6 @@ export function NewsletterSignupForm() {
       }
       const body = new URLSearchParams(formData as any).toString()
 
-      // if (process.env.NODE_ENV === 'development') {
-      //   setResponse({
-      //     type: 'error',
-      //     message: 'Must be server-deployed to submit form.',
-      //   })
-
-      //   return
-      // }
       fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

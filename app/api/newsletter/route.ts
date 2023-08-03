@@ -28,8 +28,6 @@ async function isCaptchaValid(captchaVal) {
 
     return response.success
   } catch (e) {
-    // logger.error('Contact: reCAPTCHA:', e)
-
     return false
   }
 }
