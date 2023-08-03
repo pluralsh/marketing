@@ -49,14 +49,14 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
     nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: www-test.plural.sh
+    - host: www.plural.sh
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
    - secretName: netlify-proxy-tls
      hosts:
-       - www-test.plural.sh
+       - www.plural.sh
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
