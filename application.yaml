@@ -4,7 +4,7 @@ metadata:
   name: marketing-website-netlify-proxy
   namespace: argo-cd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: "marketingsite=ghcr.io/pluralsh/marketing"
+    argocd-image-updater.argoproj.io/image-list: "marketingsite=ghcr.io/pluralsh/marketing-proxy"
     argocd-image-updater.argoproj.io/marketingsite.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/marketingsite.helm.image-tag: image.tag
     argocd-image-updater.argoproj.io/write-back-method: argocd # can also be git

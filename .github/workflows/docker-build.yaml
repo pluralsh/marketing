@@ -27,7 +27,7 @@ jobs:
         id: latest_tag
         uses: DavidSpek/gha-get-docker-hub-tags@0.1.15
         with:
-          img: 'ghcr.io/pluralsh/marketing'
+          img: 'ghcr.io/pluralsh/marketing-proxy'
       -
         name: Docker meta
         id: meta
@@ -35,7 +35,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ghcr.io/pluralsh/marketing
+            ghcr.io/pluralsh/marketing-proxy
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
