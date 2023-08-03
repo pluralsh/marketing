@@ -30,13 +30,20 @@
       "@pages/*": [
         "pages/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "pages/**/*",
+    "app/**/*",
     "src/**/*",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

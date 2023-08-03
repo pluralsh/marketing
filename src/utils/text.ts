@@ -1,7 +1,5 @@
 import type { Provider } from '../generated/graphqlPlural'
 
-export * from '@pluralsh/design-system'
-
 export function removeTrailingSlashes(str) {
   if (typeof str !== 'string') {
     return str

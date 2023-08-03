@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 
 import {
-  type ReadonlyURLSearchParams,
+  ReadonlyURLSearchParams,
   useSearchParams as useNextSearchParams,
 } from 'next/navigation'
 import { useRouter } from 'next/router'
@@ -21,7 +21,7 @@ export const useSearchParams = (): [
 
   const func = useCallback(
     (p) => {
-      const oldParams = new URLSearchParams(searchParams.toString())
+      const oldParams = new URLSearchParams(searchParams?.toString())
       const newParams =
         typeof p === 'function' ? p(oldParams) : new URLSearchParams(p)
 
@@ -32,5 +32,11 @@ export const useSearchParams = (): [
     [router, searchParams]
   )
 
-  return useMemo(() => [searchParams, func], [searchParams, func])
+  return useMemo(
+    () => [
+      searchParams || new ReadonlyURLSearchParams(new URLSearchParams()),
+      func,
+    ],
+    [searchParams, func]
+  )
 }
