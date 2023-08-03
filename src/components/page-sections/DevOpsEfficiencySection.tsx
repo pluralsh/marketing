@@ -54,7 +54,7 @@ export function DevOpsEfficiencySection() {
               intro={
                 <p>
                   Building great infrastructure takes time. Set up services on
-                  Kubernetes, and secure, scale and maintain your applications
+                  Kubernetes, and secure, scale, and maintain your applications
                   in your cloud with 9× less time, meaning your team can focus
                   on delivering value, not building the boilerplate to keep the
                   lights on.

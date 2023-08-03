@@ -336,7 +336,7 @@ function BuildSecurely() {
         intro={
           <div className="[text-wrap:balance]">
             We’re not a SaaS. You control everything. No need to share your
-            cloud account, keys or data.
+            cloud account, keys, or data.
           </div>
         }
       />
@@ -351,7 +351,7 @@ function BuildSecurely() {
         />
         <BuildSecurelyCard
           icon={<CheckedShieldIcon />}
-          heading="Security scanned and hardened images"
+          heading="Security-scanned and hardened images"
         />
         <BuildSecurelyCard
           icon={<LogsIcon />}
@@ -391,8 +391,7 @@ export default function Index({
           }
           description={
             <div className="[text-wrap:balance]">
-              Build compliant, production-ready, infrastructure faster than
-              ever.
+              Build compliant, production-ready infrastructure faster than ever.
             </div>
           }
           ctas={
