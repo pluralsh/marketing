@@ -3,6 +3,8 @@ import { GitHubLogoIcon } from '@pluralsh/design-system'
 import styled from 'styled-components'
 import useSWR from 'swr'
 
+import { abbrNum } from '@src/utils/abbrNum'
+
 import { ButtonFillTwo } from './PageHeaderButtons'
 
 type GithubRepoData = {
@@ -124,7 +126,7 @@ export default function GithubStars({ account = 'pluralsh', repo = 'plural' }) {
           rel="noreferrer noopener"
           href={`https://github.com/${account}/${repo}/stargazers`}
         >
-          {data?.stargazers_count}
+          {abbrNum(data?.stargazers_count, 1)}
         </a>
       )}
     </GithubLink>
