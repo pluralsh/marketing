@@ -107,21 +107,21 @@ const MultiImageSC = styled.div<{ $aspectRatio: string }>(
     position: 'relative',
   })
 )
-const MultiImageWrapSC = styled.div<
-  ImgPropsSC & { $round: boolean; $direction: 1 | -1 }
->(({ $width, $top, $left, $height, $round }) => ({
-  top: $top,
-  left: $left,
-  height: $height,
-  width: $width,
-  position: 'absolute',
-  // Keep box shadow looking correct
-  // when containing rounded images
-  borderRadius: 10,
-  boxShadow: mShadows.light.moderate,
-  transformStyle: 'preserve-3d',
-  perspective: PERSPECTIVE,
-}))
+const MultiImageWrapSC = styled.div<ImgPropsSC & { $direction: 1 | -1 }>(
+  ({ $width, $top, $left, $height }) => ({
+    top: $top,
+    left: $left,
+    height: $height,
+    width: $width,
+    position: 'absolute',
+    // Keep box shadow looking correct
+    // when containing rounded images
+    borderRadius: 10,
+    boxShadow: mShadows.light.moderate,
+    transformStyle: 'preserve-3d',
+    perspective: PERSPECTIVE,
+  })
+)
 
 const MultiImageVideoSC = styled.video<{ $round?: boolean }>(
   ({ $round = true }) => ({
