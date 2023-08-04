@@ -115,14 +115,12 @@ const MultiImageWrapSC = styled.div<
   height: $height,
   width: $width,
   position: 'absolute',
-  borderRadius: $round ? '4px' : 0,
-  overflow: 'hidden',
-  boxShadow: mShadows.light.slight,
+  // Keep box shadow looking correct
+  // when containing rounded images
+  borderRadius: 10,
+  boxShadow: mShadows.light.moderate,
   transformStyle: 'preserve-3d',
   perspective: PERSPECTIVE,
-  // [mqs.columns]: {
-  //   transform: `rotateY(${$direction * -12.5}deg)`,
-  // },
 }))
 
 const MultiImageVideoSC = styled.video<{ $round?: boolean }>(
@@ -188,7 +186,6 @@ const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
   bottom: 0,
   left: 0,
   transformOrigin: '100% 50% -300px',
-  // transformStyle: 'flat',
   perspective: PERSPECTIVE,
 }))
 
@@ -223,7 +220,6 @@ function MultiImageImg({
         $height={height}
         $width={width}
         $direction={direction}
-        poster={`${src.replace(/\.mp4$/, '')}_poster.png`}
         className="graphic"
         {...attrs}
       >
@@ -233,6 +229,7 @@ function MultiImageImg({
             muted
             loop
             playsInline
+            poster={`${src.replace(/\.mp4$/, '')}_poster.png`}
           >
             <source
               src={src}
@@ -414,16 +411,16 @@ export function HomepageFeaturesSection() {
               graphic={
                 <FeaturesImage
                   direction={-1}
-                  width={2034}
-                  height={1186}
+                  width={1200}
+                  height={696}
                   images={[
                     {
                       top: 0,
                       left: 0,
-                      width: 2034,
-                      height: 1186,
+                      width: 1200,
+                      height: 696,
                       attrs: {},
-                      url: '/images/homepage/features/upgrades-1.png',
+                      url: '/images/homepage/features/upgrades-1.mp4',
                     },
                   ]}
                 />
@@ -456,9 +453,9 @@ export function HomepageFeaturesSection() {
                       top: 243.6,
                       left: 403.8,
                       width: 274,
-                      height: 204,
+                      height: 210.09,
                       attrs: {},
-                      url: '/images/homepage/features/production-2.png',
+                      url: '/images/homepage/features/production-2.mp4',
                     },
                   ]}
                 />
