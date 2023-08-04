@@ -1,5 +1,7 @@
 import { type ComponentProps, type ReactNode } from 'react'
 
+import { WrapWithIf } from '@pluralsh/design-system'
+
 import styled, { useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
@@ -21,17 +23,13 @@ const CompanyLogosSectionSC = styled.div(({ theme: _ }) => ({
 const LogosListSC = styled.ul(({ theme }) => ({
   textAlign: 'center',
   textWrap: 'balance',
-  marginBottom: -theme.spacing.xxlarge,
-  marginLeft: -theme.spacing.xxlarge / 2,
-  marginRight: -theme.spacing.xxlarge / 2,
+  margin: -theme.spacing.xxlarge / 2,
 }))
-const LogoSC = styled.div(({ theme }) => ({
+const LogoSC = styled.li(({ theme }) => ({
   display: 'inline-block',
-  margin: 0,
   padding: 0,
-  marginLeft: theme.spacing.xxlarge / 2,
-  marginRight: theme.spacing.xxlarge / 2,
-  marginBottom: theme.spacing.xxlarge,
+  margin: theme.spacing.xxlarge / 2,
+  verticalAlign: 'middle',
 }))
 
 export function CompanyLogosSection({
@@ -75,22 +73,24 @@ export function CompanyLogosSection({
 
             return (
               imgUrl && (
-                <LogoSC
-                  {...(url
-                    ? {
-                        as: 'a',
-                        href: url,
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                      }
-                    : {})}
-                  key={slug}
-                >
-                  <img
-                    src={imgUrl}
-                    alt={name}
-                    style={{ width: `${width ?? 50}px` }}
-                  />
+                <LogoSC key={slug}>
+                  <WrapWithIf
+                    condition={!!url}
+                    wrapper={
+                      // eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/control-has-associated-label
+                      <a
+                        href={url || ''}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    }
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={name}
+                      style={{ width: `${width ?? 50}px` }}
+                    />
+                  </WrapWithIf>
                 </LogoSC>
               )
             )

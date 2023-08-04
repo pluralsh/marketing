@@ -338,9 +338,9 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Install Plural in minutes using our CLI or our cloud shell and
-                then choose from 90+ production-grade, open-source applications
-                to deploy in your environment.
+                Install Plural in minutes using our CLI or cloud shell. Then
+                choose from 90+ production-grade, open-source applications to
+                deploy in your environment.
               </p>
             </Feature>
             <Feature
@@ -400,10 +400,9 @@ export function HomepageFeaturesSection() {
               <p>
                 We know that everyone’s requirements are a little different.
                 That’s why everything is customizable in Plural. Want to change
-                the network setup? How about using a different storage layer? No
-                sweat. Better yet, all configuration is stored in Git, providing
-                a natural development workflow to rework and customize
-                applications.
+                the network setup? Or use a different storage layer? Configure
+                it all in your Git repository, providing a natural development
+                workflow to rework and customize applications.
               </p>
             </Feature>
             <Feature
@@ -428,10 +427,9 @@ export function HomepageFeaturesSection() {
             >
               <p>
                 Never have the headache of manually upgrading applications
-                again. Plural’s built in dependency tree ensures all
-                dependencies are upgraded in the correct order, with no
-                downtime. Need to scale? That’s 1-click with our operational
-                runbooks.
+                again. Plural’s built-in dependency tree ensures all
+                dependencies upgrade in the correct order, with no downtime.
+                Need to scale? That’s one click with our operational runbooks.
               </p>
             </Feature>
             <Feature

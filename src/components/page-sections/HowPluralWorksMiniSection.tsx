@@ -111,7 +111,7 @@ function HowPluralWorksMiniSection() {
                 icon={<PadlockLockedIcon />}
               >
                 You control everything. No need to share your cloud account,
-                keys or data.
+                keys, or data.
               </HowWorksInfo>
               <HowWorksInfo
                 heading="Designed to be fully customizable"
