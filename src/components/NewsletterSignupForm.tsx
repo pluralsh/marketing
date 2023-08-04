@@ -52,6 +52,12 @@ export function NewsletterSignupForm() {
       message: `There was a problem subscribing to the newsletter: ${error}`,
     })
   }
+
+  function resetRecaptcha() {
+    recaptchaRef?.current?.reset()
+    setRecaptchaVal('')
+  }
+
   const submitEmail = useCallback<FormEventHandler<HTMLFormElement>>(
     (event) => {
       event.preventDefault()
@@ -79,35 +85,31 @@ export function NewsletterSignupForm() {
       }
       const body = new URLSearchParams(formData as any).toString()
 
-      recaptchaRef?.current?.reset()
-      setRecaptchaVal('')
-
-      if (process.env.NODE_ENV === 'development') {
-        setResponse({
-          type: 'error',
-          message: 'Must be server-deployed to submit form.',
-        })
-
-        return
-      }
-      fetch('/forms/newsletter.html', {
+      fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body,
       })
-        .then((e) => {
-          if (e.ok) {
+        .then((res) => {
+          if (res.ok) {
             setResponse({
               type: 'success',
               message: 'Thank you for subscribing to the newsletter',
             })
             setEmail('')
           } else {
-            setError(e.statusText)
+            res.json().then((resObj) => {
+              if (resObj?.error?.type === 'captcha') {
+                setRecaptchaVal('')
+              }
+              setError(resObj?.error?.message || 'Unknown issue')
+            })
           }
+          resetRecaptcha()
         })
         .catch((error) => {
           setError(error)
+          resetRecaptcha()
         })
     },
     [recaptchaVal]

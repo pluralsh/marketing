@@ -50,7 +50,7 @@ function HubSpot() {
   return (
     <Script
       type="text/plain" // text/plain prevents loading until Cookiebot determines prefs
-      data-cookieconsent="statistics"
+      data-cookieconsent="marketing"
       strategy="afterInteractive"
       id="hs-script-loader"
       async
@@ -64,7 +64,7 @@ function Clearbit() {
   return (
     <Script
       type="text/plain" // text/plain prevents loading until Cookiebot determines prefs
-      data-cookieconsent="statistics"
+      data-cookieconsent="marketing"
       async
       src="https://tag.clearbitscripts.com/v1/pk_f7a55ef5149a4b9142a485385b8b0c96/tags.js"
       referrerPolicy="strict-origin-when-cross-origin"
