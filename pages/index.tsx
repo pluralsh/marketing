@@ -78,7 +78,7 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     },
     '.heroImg': {
       position: 'absolute',
-
+      pointerEvents: 'none',
       img: {
         display: 'block',
         width: '100%',
