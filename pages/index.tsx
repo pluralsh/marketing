@@ -400,7 +400,7 @@ export default function Index({
                 large
                 primary
                 as={Link}
-                href="https://plural.sh"
+                href="https://app.plural.sh/signup"
               >
                 Start deploying
               </Button>
