@@ -39,7 +39,7 @@
     "@markdoc/markdoc": "0.3.0",
     "@markdoc/next.js": "0.2.2",
     "@open-draft/until": "2.1.0",
-    "@pluralsh/design-system": "2.0.2",
+    "@pluralsh/design-system": "2.1.1",
     "@react-types/shared": "3.18.1",
     "@tanstack/react-table": "8.9.3",
     "@tanstack/react-virtual": "3.0.0-beta.48",
