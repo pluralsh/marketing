@@ -1,55 +1,37 @@
-import { Children, memo } from 'react'
+import { Children, useMemo } from 'react'
 
 import {
-  Blockquote,
-  Code,
-  Div,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  Li,
-  Ol,
-  P,
-  Ul,
-} from 'honorable'
+  InlineCode,
+  Code as MultilineCode,
+  isExternalUrl,
+  removeTrailingSlashes,
+} from '@pluralsh/design-system'
+import { Div } from 'honorable'
 
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import styled from 'styled-components'
 
-import MultilineCode from './Code'
+type MarkdownProps = {
+  text: string
+  gitUrl?: string
+  mainBranch?: string
+}
 
-const MdA = styled.a(({ theme }) => ({
-  '&, &:any-link': {
-    ...theme.partials.marketingText.inlineLink,
-  },
-}))
-
-const MdImg = styled(({ src, gitUrl, mainBranch, ...props }) => {
-  // Convert local image paths to full path on github
-  // Only works if primary git branch is named "master"
-  if (gitUrl && src && !src.match(/^https*/)) {
-    src = `${gitUrl}/raw/${mainBranch}/${src}`
+const render = ({ component: Component, props: extraProps }: any) =>
+  function renderComponent({ node: _, ...props }: any) {
+    return (
+      <Component
+        {...{
+          ...props,
+          ...extraProps,
+        }}
+      />
+    )
   }
 
-  return (
-    <img
-      src={src}
-      {...props}
-    />
-  )
-})((_) => ({
-  '&&': {
-    display: 'inline',
-    maxWidth: '100%',
-  },
-}))
-
-function getLastStringChild(children, depth = 0) {
-  let lastChild: string | null = null
+function getLastStringChild(children: any, depth = 0): any {
+  let lastChild: any = null
 
   Children.forEach(children, (child) => {
     if (typeof child === 'string') {
@@ -62,11 +44,13 @@ function getLastStringChild(children, depth = 0) {
   return lastChild
 }
 
-function MdPre({ children, ...props }) {
+function MarkdownPreformatted({ children, ...props }: any) {
   let lang
 
-  if (children.props?.className?.startsWith('lang-')) {
-    lang = children.props.className.slice(5)
+  const className = children?.[0]?.props?.className
+
+  if (className && typeof className === 'string') {
+    lang = /language-(\w+)/.exec(className)?.[1] || ''
   }
   const stringChild = getLastStringChild(children) || ''
 
@@ -81,161 +65,214 @@ function MdPre({ children, ...props }) {
     </Div>
   )
 }
+const commonCfg = { shouldForwardProp: () => true }
 
-const toReactMarkdownComponent = ({
-  component: Component,
-  props,
-}: {
-  component?: any
-  props?: any
-}) =>
-  function renderComponent(p) {
-    return (
-      <Component
-        {...{
-          ...p,
-          ...(props ?? {}),
-        }}
-      />
-    )
+const MdBlockquote = styled.blockquote.withConfig(commonCfg)(({ theme }) => ({
+  position: 'relative',
+  ...theme.partials.text.body1,
+  color: theme.colors['text-light'],
+  margin: 0,
+  marginLeft: theme.spacing.xlarge - 1,
+  borderLeft: `2px solid ${theme.colors.border}`,
+  padding: '0',
+  paddingLeft: theme.spacing.xlarge - 1,
+  boxShadow: 'none',
+  '& p': {
+    ...theme.partials.text.body1,
+    color: theme.colors['text-light'],
+  },
+}))
+const MdUl = styled.ul.withConfig(commonCfg)(({ theme }) => ({
+  listStyle: 'initial',
+  paddingLeft: theme.spacing.xlarge,
+  marginBottom: theme.spacing.small,
+}))
+const MdOl = styled.ol.withConfig(commonCfg)(({ theme }) => ({
+  listStyle: 'initial',
+  paddingLeft: theme.spacing.xlarge,
+  marginBottom: theme.spacing.small,
+}))
+const MdLi = styled.li.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body2LooseLineHeight,
+  marginTop: theme.spacing.xxsmall,
+}))
+const MdH1 = styled.h1.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.title2,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdH2 = styled.h2.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.subtitle1,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdH3 = styled.h3.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.subtitle2,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdH4 = styled.h4.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body1Bold,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdH5 = styled.h5.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body1Bold,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdH6 = styled.h6.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body1Bold,
+  color: theme.colors.text,
+  marginTop: theme.spacing.large,
+  marginBottom: theme.spacing.small,
+  ':first-of-type': { marginTop: 0 },
+}))
+const MdImg = styled.img(() => ({ display: 'inline', maxWidth: '100%' }))
+const MdP = styled.p.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body2LooseLineHeight,
+  marginBottom: theme.spacing.medium,
+}))
+const MdDiv = styled.div.withConfig(commonCfg)(({ theme }) => ({
+  ...theme.partials.text.body2LooseLineHeight,
+  marginBottom: theme.spacing.medium,
+}))
+const MdA = styled.a.withConfig(commonCfg)(({ theme }) => ({
+  display: 'inline',
+  ...theme.partials.marketingText.inlineLink,
+}))
+const MdSpan = styled.span.withConfig(commonCfg)((_p) => ({
+  verticalAlign: 'bottom',
+}))
+const MdHr = styled.hr.withConfig(commonCfg)(({ theme }) => ({
+  '&::before': {
+    content: '""',
+    display: 'table',
+  },
+  '&::after': {
+    content: '""',
+    clear: 'both',
+    display: 'table',
+  },
+  height: '1px',
+  backgroundColor: theme.colors.border,
+  border: 0,
+  padding: 0,
+  margin: `${theme.spacing.xlarge}px ${theme.spacing.large}px`,
+}))
+const MdDetails = styled.details(({ theme }) => ({
+  ...theme.partials.text.body2LooseLineHeight,
+  summary: {
+    ...theme.partials.text.overline,
+    marginBottom: theme.spacing.medium,
+    '&::marker': {
+      color: theme.colors['text-xlight'],
+    },
+  },
+}))
+
+function MarkdownImage({
+  src,
+  gitUrl,
+  style,
+  mainBranch = 'master',
+  ...props
+}: any) {
+  // Convert local image paths to full path on github
+  if (gitUrl && src && !isExternalUrl(src)) {
+    src = src.replace(/^\//, '')
+    src = `${removeTrailingSlashes(gitUrl)}/raw/${mainBranch}/${src}`
   }
 
-export default memo(
-  ({
-    text,
-    gitUrl,
-    mainBranch,
-  }: {
-    text: string
-    gitUrl: string
-    mainBranch: string
-  }) => (
-    <Div>
+  return (
+    <MdImg
+      src={src}
+      maxWidth="100%"
+      display="inline"
+      {...props}
+      style={{ ...style, maxWidth: '100%' }}
+    />
+  )
+}
+
+function MarkdownLink({
+  href,
+  gitUrl,
+  mainBranch,
+  ...props
+}: {
+  href: string
+  gitUrl: string
+  mainBranch: string
+}) {
+  // Convert local readme hrefs to full path on github
+  if (gitUrl && href && !isExternalUrl(href)) {
+    // Remove potential starting slash
+    href = href.replace(/^\//, '')
+    href = `${removeTrailingSlashes(gitUrl)}/blob/${mainBranch}/${href}`
+  }
+
+  return (
+    <MdA
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      href={href}
+    />
+  )
+}
+
+function Markdown({ text, gitUrl, mainBranch }: MarkdownProps) {
+  return useMemo(
+    () => (
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         components={{
-          blockquote: toReactMarkdownComponent({
-            component: Blockquote,
-            props: {
-              borderLeft: '4px solid',
-              borderColor: 'border',
-              mx: 0,
-              pl: '1em',
-            },
+          blockquote: render({ component: MdBlockquote }),
+          ul: render({ component: MdUl }),
+          ol: render({ component: MdOl }),
+          li: render({ component: MdLi }),
+          h1: render({ component: MdH1 }),
+          h2: render({ component: MdH2 }),
+          h3: render({ component: MdH3 }),
+          h4: render({ component: MdH4 }),
+          h5: render({ component: MdH5 }),
+          h6: render({ component: MdH6 }),
+          img: render({
+            component: MarkdownImage,
+            props: { gitUrl, mainBranch },
           }),
-          ul: toReactMarkdownComponent({
-            component: Ul,
-            props: { paddingLeft: 'xlarge', marginBottom: 'small' },
+          p: render({ component: MdP }),
+          div: render({ component: MdDiv }),
+          a: render({
+            component: MarkdownLink,
+            props: { gitUrl, mainBranch },
           }),
-          ol: toReactMarkdownComponent({
-            component: Ol,
-            props: { paddingLeft: 'xlarge', marginBottom: 'small' },
+          span: render({ component: MdSpan }),
+          code: render({ component: InlineCode }),
+          pre: render({
+            component: MarkdownPreformatted,
+            props: { marginBottom: 'medium' },
           }),
-          li: toReactMarkdownComponent({
-            component: Li,
-            props: { body1: true, marginTop: 'xxsmall' },
-          }),
-          h1: toReactMarkdownComponent({
-            component: H1,
-            props: {
-              title2: true,
-              color: 'text',
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          h2: toReactMarkdownComponent({
-            component: H2,
-            props: {
-              subtitle1: true,
-              color: 'text',
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          h3: toReactMarkdownComponent({
-            component: H3,
-            props: {
-              subtitle2: true,
-              color: 'text',
-              bold: true,
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          h4: toReactMarkdownComponent({
-            component: H4,
-            props: {
-              body1: true,
-              color: 'text',
-              bold: true,
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          h5: toReactMarkdownComponent({
-            component: H5,
-            props: {
-              body1: true,
-              color: 'text',
-              bold: true,
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          h6: toReactMarkdownComponent({
-            component: H6,
-            props: {
-              body1: true,
-              bold: true,
-              color: 'text',
-              marginTop: 'large',
-              marginBottom: 'small',
-              ':first-of-type': { marginTop: '0px' },
-            },
-          }),
-          img: (props) => (
-            <MdImg
-              {...{
-                ...props,
-                ...{
-                  gitUrl,
-                  mainBranch,
-                  style: { maxWidth: '100%' },
-                },
-              }}
-            />
-          ),
-          p: toReactMarkdownComponent({
-            component: P,
-            props: { body2: true, marginBottom: 'medium' },
-          }),
-          div: toReactMarkdownComponent({
-            component: Div,
-            props: { body2: true, marginBottom: 'medium' },
-          }),
-          a: toReactMarkdownComponent({
-            component: MdA,
-            props: {
-              // inline: true,
-              // display: 'inline',
-              target: '_blank',
-            },
-          }),
-          span: toReactMarkdownComponent({
-            props: { style: { verticalAlign: 'bottom' } },
-          }),
-          code: toReactMarkdownComponent({ component: Code }),
-          pre: toReactMarkdownComponent({ component: MdPre }),
+          hr: render({ component: MdHr }),
+          details: render({ component: MdDetails }),
         }}
       >
         {text}
       </ReactMarkdown>
-    </Div>
+    ),
+    [text, gitUrl, mainBranch]
   )
-)
+}
+
+export default Markdown
