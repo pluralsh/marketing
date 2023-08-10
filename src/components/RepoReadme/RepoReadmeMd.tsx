@@ -31,7 +31,7 @@ const render = ({ component: Component, props: extraProps }: any) =>
   }
 
 function getLastStringChild(children: any, depth = 0): any {
-  let lastChild = null
+  let lastChild: any = null
 
   Children.forEach(children, (child) => {
     if (typeof child === 'string') {
