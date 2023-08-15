@@ -70,7 +70,7 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     transformStyle: 'preserve-3d',
     perspective: '1200px',
     transformOrigin: 'center',
-    transform: 'rotateY(-00deg) rotateX(0deg)  rotateZ(0deg)',
+    transform: 'rotateY(-00deg) rotateX(0deg) rotateZ(0deg)',
 
     position: 'relative',
     width: '100%',
@@ -395,7 +395,6 @@ export default function Index({
         position="50% 50%"
         size="cover"
         image="/images/gradients/gradient-bg-2.jpg"
-        className="[perspective:1000px]"
       >
         <HomePageHero
           heading={

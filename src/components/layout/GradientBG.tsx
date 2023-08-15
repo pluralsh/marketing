@@ -15,6 +15,11 @@ const GradientBGSC = styled.div<{
     $image: image = '/images/gradients/gradient-bg-1.jpg',
   }) => ({
     position: 'relative',
+    '.bg': {
+      // Make sure background doesn't intersect 3d objects in older Safari
+      transform: `translateZ(-1000px)`,
+      perspective: 'none',
+    },
     '.bg, .bg::after': {
       '--blur-amount': '0px',
       overflow: 'hidden',

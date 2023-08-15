@@ -116,12 +116,12 @@ const MultiImageWrapSC = styled.div<ImgPropsSC & { $direction: 1 | -1 }>(
     height: $height,
     width: $width,
     position: 'absolute',
+    transformStyle: 'preserve-3d',
+    perspective: PERSPECTIVE,
     // Keep box shadow looking correct
     // when containing rounded images
     borderRadius: 10,
     boxShadow: mShadows.light.moderate,
-    transformStyle: 'preserve-3d',
-    perspective: PERSPECTIVE,
   })
 )
 
