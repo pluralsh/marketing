@@ -16,6 +16,8 @@ import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
 import { type Variants, motion, useInView } from 'framer-motion'
 import styled from 'styled-components'
+// @ts-expect-error
+import useMobileDetect from 'use-mobile-detect-hook'
 
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -159,25 +161,35 @@ const cardVariants = ({
 }: {
   delay: number
   direction: 1 | -1
-}): Variants => ({
-  offscreen: {
-    rotateY: 15 * direction,
-    scale: 0.85,
-    opacity: 0,
-    transition: { type: 'linear', duration: 0 },
-  },
-  onscreen: {
+}): Variants => {
+  const end = {
     rotateY: 0,
     scale: 1,
     opacity: 1,
-    transition: {
-      type: 'spring',
-      bounce: 0.15,
-      duration: 1.8,
-      delay,
+  }
+
+  return {
+    offscreen: {
+      rotateY: 15 * direction,
+      scale: 0.85,
+      opacity: 0,
+      transition: { type: 'linear', duration: 0 },
     },
-  },
-})
+    onscreen: {
+      ...end,
+      transition: {
+        type: 'spring',
+        bounce: 0.15,
+        duration: 1.8,
+        delay,
+      },
+    },
+    mobile: {
+      ...end,
+      transition: { type: 'linear', duration: 0 },
+    },
+  }
+}
 
 const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
   position: 'absolute',
@@ -208,9 +220,11 @@ function MultiImageImg({
     [animOffset, direction]
   )
 
+  const isMobile = useMobileDetect().isMobile()
+
   return (
     <MotionDiv
-      animate={inView ? 'onscreen' : 'offscreen'}
+      animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
       variants={variants}
       className="opacity-0"
     >

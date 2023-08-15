@@ -27,6 +27,8 @@ import {
   useTransform,
 } from 'framer-motion'
 import styled, { useTheme } from 'styled-components'
+// @ts-expect-error
+import useMobileDetect from 'use-mobile-detect-hook'
 
 import { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
@@ -146,26 +148,38 @@ const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
   opacity: 0,
 }))
 
-const heroVariants = ({ delay = 0 }: { delay: number }): Variants => ({
-  offscreen: {
-    opacity: 0,
+const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
+  const start = {
     translateZ: 350,
-    // Need to set zero-length transition here to make sure
-    // state is set immediately on page load
-    transition: { type: 'linear', duration: 0 },
-  },
-  onscreen: {
+    opacity: 0,
+  }
+  const end = {
     translateZ: 0,
-    // scale: 1,
     opacity: 1,
-    transition: {
-      type: 'spring',
-      bounce: 0.15,
-      duration: 2.25,
-      delay,
+  }
+
+  return {
+    offscreen: {
+      ...start,
+      // Need to set zero-length transition here to make sure
+      // state is set immediately on page load
+      transition: { type: 'linear', duration: 0 },
     },
-  },
-})
+    onscreen: {
+      ...end,
+      transition: {
+        type: 'spring',
+        bounce: 0.15,
+        duration: 2.25,
+        delay,
+      },
+    },
+    mobile: {
+      ...end,
+      transition: { type: 'linear', duration: 0 },
+    },
+  }
+}
 
 function HeroIn({
   children,
@@ -181,6 +195,7 @@ function HeroIn({
     [0, 1],
     [`${20 * parallax}%`, `${-20 * parallax}%`]
   )
+  const isMobile = useMobileDetect().isMobile()
 
   return (
     <motion.div
@@ -189,7 +204,7 @@ function HeroIn({
     >
       <div className="endTransform">
         <MotionDiv
-          animate={inView ? 'onscreen' : 'offscreen'}
+          animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
           variants={variants}
         >
           {children}
