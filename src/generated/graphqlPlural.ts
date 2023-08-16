@@ -847,6 +847,10 @@ export type EntityAttributes = {
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export enum ExternalOidcProvider {
+  GithubActions = 'GITHUB_ACTIONS'
+}
+
 export type File = {
   __typename?: 'File';
   blob: Scalars['String']['output'];
@@ -1772,6 +1776,16 @@ export type OidcStepResponse = {
   repository?: Maybe<Repository>;
 };
 
+export type OidcTrustRelationship = {
+  __typename?: 'OidcTrustRelationship';
+  id: Scalars['ID']['output'];
+  insertedAt?: Maybe<Scalars['DateTime']['output']>;
+  issuer: Scalars['String']['output'];
+  scopes?: Maybe<Array<Scalars['String']['output']>>;
+  trust: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
 export type OnboardingChecklist = {
   __typename?: 'OnboardingChecklist';
   dismissed?: Maybe<Scalars['Boolean']['output']>;
@@ -2680,6 +2694,7 @@ export type RootMutationType = {
   createTerraform?: Maybe<Terraform>;
   createTest?: Maybe<Test>;
   createToken?: Maybe<PersistedToken>;
+  createTrustRelationship?: Maybe<OidcTrustRelationship>;
   createUpgrade?: Maybe<Upgrade>;
   createUserEvent?: Maybe<Scalars['Boolean']['output']>;
   createWebhook?: Maybe<Webhook>;
@@ -2714,6 +2729,7 @@ export type RootMutationType = {
   deleteStack?: Maybe<Stack>;
   deleteTerraform?: Maybe<Terraform>;
   deleteToken?: Maybe<PersistedToken>;
+  deleteTrustRelationship?: Maybe<OidcTrustRelationship>;
   deleteUser?: Maybe<User>;
   destroyCluster?: Maybe<Scalars['Boolean']['output']>;
   deviceLogin?: Maybe<DeviceLogin>;
@@ -3007,6 +3023,11 @@ export type RootMutationTypeCreateTestArgs = {
 };
 
 
+export type RootMutationTypeCreateTrustRelationshipArgs = {
+  attributes: TrustRelationshipAttributes;
+};
+
+
 export type RootMutationTypeCreateUpgradeArgs = {
   attributes: UpgradeAttributes;
   queue: Scalars['String']['input'];
@@ -3159,6 +3180,11 @@ export type RootMutationTypeDeleteTerraformArgs = {
 
 
 export type RootMutationTypeDeleteTokenArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootMutationTypeDeleteTrustRelationshipArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -3594,6 +3620,7 @@ export type RootQueryType = {
   oidcConsent?: Maybe<OidcStepResponse>;
   oidcLogin?: Maybe<OidcStepResponse>;
   oidcLogins?: Maybe<OidcLoginConnection>;
+  oidcToken?: Maybe<Scalars['String']['output']>;
   platformMetrics?: Maybe<PlatformMetrics>;
   platformPlans?: Maybe<Array<Maybe<PlatformPlan>>>;
   platformSubscription?: Maybe<PlatformSubscription>;
@@ -3932,6 +3959,13 @@ export type RootQueryTypeOidcLoginsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type RootQueryTypeOidcTokenArgs = {
+  email: Scalars['String']['input'];
+  idToken: Scalars['String']['input'];
+  provider: ExternalOidcProvider;
 };
 
 
@@ -4634,6 +4668,12 @@ export enum TestType {
   Git = 'GIT'
 }
 
+export type TrustRelationshipAttributes = {
+  issuer: Scalars['String']['input'];
+  scopes?: InputMaybe<Array<Scalars['String']['input']>>;
+  trust: Scalars['String']['input'];
+};
+
 export type UpdatablePlanAttributes = {
   default?: InputMaybe<Scalars['Boolean']['input']>;
   serviceLevels?: InputMaybe<Array<InputMaybe<ServiceLevelAttributes>>>;
@@ -4785,6 +4825,7 @@ export type User = {
   publisher?: Maybe<Publisher>;
   roles?: Maybe<Roles>;
   serviceAccount?: Maybe<Scalars['Boolean']['output']>;
+  trustRelationships?: Maybe<OidcTrustRelationship>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
