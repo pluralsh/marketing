@@ -52,15 +52,11 @@ export function BasicMarkdoc({
     }
     const ast = Markdoc.parse(text)
 
-    console.log({ ast })
-
     return Markdoc.transform(ast, {
       ...transformConfig({ renderP }),
       variables,
     })
   }, [renderP, text, variables])
-
-  console.log({ content })
 
   if (!content) {
     return null
