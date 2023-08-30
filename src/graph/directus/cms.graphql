@@ -109,11 +109,16 @@ fragment CaseStudy on case_studies {
 fragment AppExtras on apps {
   name
   heroVideo
+  hero_text
+  secondary_title
+  secondary_text
   case_study {
     ...CaseStudy
   }
 }
 fragment AppDefaults on app_defaults {
+  secondary_title
+  secondary_text
   case_study {
     ...CaseStudy
   }
