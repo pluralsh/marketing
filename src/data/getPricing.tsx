@@ -53,6 +53,7 @@ const proPlanBase: Plan = {
     { label: 'Audit logs' },
     { label: 'VPN' },
     { label: 'Emergency hotfixes' },
+    { label: 'Database backup & restore' },
   ],
   cta: {
     label: 'Start free trial',
