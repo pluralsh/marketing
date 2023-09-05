@@ -430,6 +430,14 @@ export type Cluster = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** pending upgrades for each installed app */
   upgradeInfo?: Maybe<Array<Maybe<UpgradeInfo>>>;
+  /** CPU/Memory history for this cluster */
+  usageHistory?: Maybe<Array<Maybe<ClusterUsageHistory>>>;
+};
+
+
+/** A Kubernetes cluster that can be used to deploy applications on with Plural. */
+export type ClusterUsageHistoryArgs = {
+  begin: Scalars['DateTime']['input'];
 };
 
 /** Input for creating or updating a cluster. */
@@ -486,6 +494,17 @@ export type ClusterInformationAttributes = {
   gitCommit?: InputMaybe<Scalars['String']['input']>;
   platform?: InputMaybe<Scalars['String']['input']>;
   version?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** A record of the utilization in a given cluster */
+export type ClusterUsageHistory = {
+  __typename?: 'ClusterUsageHistory';
+  account?: Maybe<Account>;
+  cluster?: Maybe<Cluster>;
+  cpu?: Maybe<Scalars['Int']['output']>;
+  insertedAt?: Maybe<Scalars['DateTime']['output']>;
+  memory?: Maybe<Scalars['Int']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type Community = {
@@ -1252,6 +1271,7 @@ export type Installation = {
   license?: Maybe<Scalars['String']['output']>;
   /** The license key for the application. */
   licenseKey?: Maybe<Scalars['String']['output']>;
+  locked?: Maybe<Scalars['Boolean']['output']>;
   /** The OIDC provider for the application. */
   oidcProvider?: Maybe<OidcProvider>;
   /** The last ping time of an installed application. */
@@ -1260,6 +1280,7 @@ export type Installation = {
   repository?: Maybe<Repository>;
   /** The subscription for the application. */
   subscription?: Maybe<RepositorySubscription>;
+  synced?: Maybe<Scalars['Boolean']['output']>;
   /** The tag to track for auto upgrades. */
   trackTag: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1999,6 +2020,7 @@ export type PlanFeatureAttributes = {
 export type PlanFeatures = {
   __typename?: 'PlanFeatures';
   audit?: Maybe<Scalars['Boolean']['output']>;
+  databaseManagement?: Maybe<Scalars['Boolean']['output']>;
   userManagement?: Maybe<Scalars['Boolean']['output']>;
   vpn?: Maybe<Scalars['Boolean']['output']>;
 };
@@ -2768,6 +2790,7 @@ export type RootMutationType = {
   signup?: Maybe<User>;
   ssoCallback?: Maybe<User>;
   stopShell?: Maybe<Scalars['Boolean']['output']>;
+  synced?: Maybe<Scalars['Boolean']['output']>;
   transferDemoProject?: Maybe<DemoProject>;
   /** transfers ownership of a cluster to a service account */
   transferOwnership?: Maybe<Cluster>;
@@ -3366,6 +3389,11 @@ export type RootMutationTypeSignupArgs = {
 export type RootMutationTypeSsoCallbackArgs = {
   code: Scalars['String']['input'];
   deviceToken?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type RootMutationTypeSyncedArgs = {
+  repository: Scalars['String']['input'];
 };
 
 
@@ -4825,7 +4853,7 @@ export type User = {
   publisher?: Maybe<Publisher>;
   roles?: Maybe<Roles>;
   serviceAccount?: Maybe<Scalars['Boolean']['output']>;
-  trustRelationships?: Maybe<OidcTrustRelationship>;
+  trustRelationships?: Maybe<Array<Maybe<OidcTrustRelationship>>>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 

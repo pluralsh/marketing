@@ -677,6 +677,8 @@ export type App_Defaults = {
   case_study?: Maybe<Case_Studies>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
+  secondary_text?: Maybe<Scalars['String']['output']>;
+  secondary_title?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -703,8 +705,14 @@ export type Apps = {
   __typename?: 'apps';
   case_study?: Maybe<Case_Studies>;
   heroVideo?: Maybe<Scalars['String']['output']>;
+  /** Optional - Default comes from main Plural API */
+  hero_text?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
+  /** Optional - Default set in App Defaults */
+  secondary_text?: Maybe<Scalars['String']['output']>;
+  /** Optional - Default set in App Defaults */
+  secondary_title?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -736,8 +744,14 @@ export type Apps_Aggregated_Count = {
   /** Use to override default case study on individual app page */
   case_study?: Maybe<Scalars['Int']['output']>;
   heroVideo?: Maybe<Scalars['Int']['output']>;
+  /** Optional - Default comes from main Plural API */
+  hero_text?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   name?: Maybe<Scalars['Int']['output']>;
+  /** Optional - Default set in App Defaults */
+  secondary_text?: Maybe<Scalars['Int']['output']>;
+  /** Optional - Default set in App Defaults */
+  secondary_title?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Apps_Aggregated_Fields = {
@@ -752,8 +766,11 @@ export type Apps_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Apps_Filter>>>;
   case_study?: InputMaybe<Case_Studies_Filter>;
   heroVideo?: InputMaybe<String_Filter_Operators>;
+  hero_text?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   name?: InputMaybe<String_Filter_Operators>;
+  secondary_text?: InputMaybe<String_Filter_Operators>;
+  secondary_title?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Article_Cards = {
