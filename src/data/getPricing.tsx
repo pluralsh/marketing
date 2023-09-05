@@ -49,6 +49,7 @@ const proPlanBase: Plan = {
     { label: 'Multi-cluster management' },
     { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
+    { label: 'Backup/Restore' },
     { label: 'Audit logs' },
     { label: 'VPN' },
     { label: 'Emergency hotfixes' },
@@ -147,6 +148,24 @@ const plansFeatures: PlansFeatures = [
     },
   },
   {
+    label: 'VPN',
+    definition: 'Virtual private network',
+    values: {
+      free: { checked: false },
+      pro: { checked: true },
+      enterprise: { checked: true },
+    },
+  },
+  {
+    label: 'Backup/Restore',
+    definition: 'Point-in-time backup and restore for application databases',
+    values: {
+      free: { checked: false },
+      pro: { checked: true },
+      enterprise: { checked: true },
+    },
+  },
+  {
     label: 'Service accounts',
     values: {
       free: { checked: false },
@@ -225,15 +244,6 @@ const plansFeatures: PlansFeatures = [
       free: { label: 'Google OAuth + OIDC' },
       pro: { label: 'Google OAuth + OIDC' },
       enterprise: { label: 'SSO + Google OAuth + OIDC' },
-    },
-  },
-  {
-    label: 'VPN',
-    definition: 'Virtual private network',
-    values: {
-      free: { checked: false },
-      pro: { checked: true },
-      enterprise: { checked: true },
     },
   },
   {
