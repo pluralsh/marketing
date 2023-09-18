@@ -272,9 +272,10 @@ export default function App({
                 <div className="flex flex-col gap-medium">
                   <Body2 className="columns:mt-[17px]">
                     Deploying {repo.displayName} is a matter of executing these
-                    2 commands:
+                    3 commands:
                   </Body2>
                   <Code tabs={tabs} />
+                  <Code>plural build</Code>
                   <Code>
                     {`plural deploy --commit "deploying ${repo.name}"`}
                   </Code>
