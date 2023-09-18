@@ -112,7 +112,7 @@ export function WhatIsPluralSection() {
       </Columns>
       <div
         className={classNames(
-          'pt-xxxxxxlarge',
+          'mt-xxxxxxlarge',
           'overflow-hidden',
           'rounded-large'
         )}
