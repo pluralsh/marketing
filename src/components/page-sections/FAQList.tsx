@@ -12,7 +12,10 @@ export function FAQList({ faqs }: { faqs: (FaqItemFragment | null)[] }) {
     <div className="flex flex-col gap-large">
       {faqs.map((faq) =>
         faq ? (
-          <FAQItem label={faq.label}>
+          <FAQItem
+            key={faq.id}
+            label={faq.label}
+          >
             <BasicMarkdown text={faq.content} />
           </FAQItem>
         ) : null

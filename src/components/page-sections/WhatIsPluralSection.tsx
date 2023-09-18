@@ -99,21 +99,32 @@ export function WhatIsPluralSection() {
           <Cta href="https://docs.plural.sh">Explore the docs</Cta>
         </EqualColumn>
         <EqualColumn>
-          <div
-            className={classNames(
-              'overflow-hidden rounded-large'
-              // `sticky top-[calc(var(--top-nav-height)+16px)]`
-            )}
-          >
+          <div className={classNames('overflow-hidden rounded-large')}>
             <img
               className="block w-full"
               src="/images/product/architecture.png"
-              width="1765"
-              height="2172"
+              width="1696"
+              height="2188"
+              alt=""
             />
           </div>
         </EqualColumn>
       </Columns>
+      <div
+        className={classNames(
+          'mt-xxxxxxlarge',
+          'overflow-hidden',
+          'rounded-large'
+        )}
+      >
+        <img
+          className="block w-full"
+          src="/images/product/lifecycle.png"
+          width="2865"
+          height="1991"
+          alt=""
+        />
+      </div>
     </>
   )
 }

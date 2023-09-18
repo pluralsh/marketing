@@ -49,7 +49,6 @@ const proPlanBase: Plan = {
     { label: 'Multi-cluster management' },
     { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
-    { label: 'Backup/Restore' },
     { label: 'Audit logs' },
     { label: 'VPN' },
     { label: 'Emergency hotfixes' },

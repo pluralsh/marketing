@@ -18,6 +18,7 @@ import { type MergeDeep } from 'type-fest'
 // import { ProductValueSection } from '@pages/plural-stacks/ProductValueSection'
 import client, { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
+import { BasicMarkdoc } from '@src/components/BasicMarkdoc'
 import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -107,16 +108,18 @@ const AppPageTitle = styled(
     return (
       <div {...props}>
         <div className="icon">
-          <AppIcon
-            className="smallIcon"
-            size="small"
-            {...iconProps}
-          />
-          <AppIcon
-            className="largeIcon"
-            size="medium"
-            {...iconProps}
-          />
+          <div className="smallIcon">
+            <AppIcon
+              size="small"
+              {...iconProps}
+            />
+          </div>
+          <div className="largeIcon">
+            <AppIcon
+              size="medium"
+              {...iconProps}
+            />
+          </div>
         </div>
         <AppTitle>{app.displayName}</AppTitle>
       </div>
@@ -126,15 +129,15 @@ const AppPageTitle = styled(
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing.small,
-  '.icon > *:nth-child(2)': {
+  '.icon > .largeIcon': {
     display: 'none',
   },
   [mqs.md]: {
     '.icon': {
-      '& > *:nth-child(1)': {
+      '& > .smallIcon': {
         display: 'none',
       },
-      '& > *:nth-child(2)': {
+      '& > .largeIcon': {
         display: 'flex',
       },
     },
@@ -150,6 +153,9 @@ export type ProviderProps = {
 export default function App({
   repo,
   heroVideo,
+  heroText,
+  secondaryTitle,
+  secondaryText,
   caseStudy,
   quotes,
   recipes,
@@ -190,10 +196,18 @@ export default function App({
           <EqualColumn>
             <TextLimiter className="flex flex-col gap-large">
               <AppPageTitle app={repo} />
-              <Body1 color="text-light">
-                {repo.description}
-                {/* Orchestrate all your applications to work in harmony with{' '}
-                {repo.displayName} on Plural. */}
+              <Body1
+                as="div"
+                color="text-light"
+              >
+                {heroText ? (
+                  <BasicMarkdoc
+                    text={heroText}
+                    variables={{ appName: repo.displayName }}
+                  />
+                ) : (
+                  <p>{repo.description}</p>
+                )}
               </Body1>
               <div className="flex flex-col gap-medium">
                 <Overline>Available providers</Overline>
@@ -236,17 +250,17 @@ export default function App({
                   className="mb-large"
                   as="h2"
                 >
-                  Why use {repo.displayName} on Plural?
+                  <BasicMarkdoc
+                    text={secondaryTitle}
+                    renderP={false}
+                    variables={{ appName: repo.displayName }}
+                  />
                 </Heading3>
-                <Body2>
-                  You’re likely spending time weighing the benefits of
-                  self-hosting with the convenience and cost of managed
-                  services. Skip the pro-con discussions and get the best of
-                  both worlds with Plural. Automate and orchestrate your ETL, ML
-                  jobs, and DevOps tasks without taking on the Ops burden or
-                  managed service cost. Especially if you’re handling PII data,
-                  you’ll need everything to stay within your own VPC, which is
-                  best done with self-hosting open-source.
+                <Body2 as="div">
+                  <BasicMarkdoc
+                    text={secondaryText}
+                    variables={{ appName: repo.displayName }}
+                  />
                 </Body2>
                 <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
                   <RepoSocials repo={repo} />
@@ -258,9 +272,10 @@ export default function App({
                 <div className="flex flex-col gap-medium">
                   <Body2 className="columns:mt-[17px]">
                     Deploying {repo.displayName} is a matter of executing these
-                    2 commands:
+                    3 commands:
                   </Body2>
                   <Code tabs={tabs} />
+                  <Code>plural build</Code>
                   <Code>
                     {`plural deploy --commit "deploying ${repo.name}"`}
                   </Code>
@@ -350,6 +365,18 @@ export type AppPageProps = {
     ReturnType<typeof normalizeAppExtras>['heroVideo'],
     undefined
   >
+  heroText: Exclude<
+    ReturnType<typeof normalizeAppExtras>['hero_text'],
+    undefined
+  >
+  secondaryTitle: Exclude<
+    ReturnType<typeof normalizeAppExtras>['secondary_title'],
+    undefined
+  >
+  secondaryText: Exclude<
+    ReturnType<typeof normalizeAppExtras>['secondary_text'],
+    undefined
+  >
   caseStudy: Exclude<
     ReturnType<typeof normalizeAppExtras>['case_study'],
     undefined
@@ -364,7 +391,9 @@ export type AppPageProps = {
 const normalizeAppExtras = (extras: AppExtrasQuery) =>
   ({
     ...(extras.app_defaults || {}),
-    ...(extras.apps?.[0] || {}),
+    ...Object.fromEntries(
+      Object.entries(extras.apps?.[0] || {}).filter(([_, val]) => !!val)
+    ),
   } as MergeDeep<AppDefaultsFragment, AppExtrasFragment>)
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
@@ -431,6 +460,9 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       : null,
     caseStudy: appExtras.case_study || null,
     heroVideo: appExtras.heroVideo || null,
+    heroText: appExtras.hero_text || null,
+    secondaryText: appExtras.secondary_text || null,
+    secondaryTitle: appExtras.secondary_title || null,
     quotes: normalizeQuotes(appExtras.quotes),
     recipes,
     ...getAppMeta(thisRepo),
