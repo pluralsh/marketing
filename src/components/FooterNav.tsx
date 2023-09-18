@@ -26,7 +26,7 @@ const navItems = [
       },
       {
         children: 'GitHub',
-        href: 'https://github.com/plural.sh',
+        href: 'https://github.com/pluralsh/plural',
         target: '_blank',
       },
       {
