@@ -15,6 +15,9 @@
     "path": "/contact"
   },
   {
+    "path": "/continuous-deployment"
+  },
+  {
     "path": "/demo-login"
   },
   {
@@ -22,9 +25,6 @@
   },
   {
     "path": "/marketplace"
-  },
-  {
-    "path": "/plural-deployments-early-access"
   },
   {
     "path": "/pricing"
