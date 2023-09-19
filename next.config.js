@@ -37,6 +37,11 @@ module.exports = () => {
           destination: '/careers/hire/senior-account-executive',
           permanent: true,
         },
+        {
+          source: '/plural-deployments-early-access',
+          destination: '/continuous-deployment',
+          permanent: true,
+        },
       ]
     },
   })
