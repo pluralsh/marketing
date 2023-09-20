@@ -6,6 +6,8 @@ import {
   GitHubIcon,
 } from '@pluralsh/design-system'
 
+import { isEmpty } from 'lodash-es'
+
 import { type BasicRepo, type FullRepo } from '@src/data/getRepos'
 
 export function RepoSocials({
@@ -55,15 +57,17 @@ export function RepoSocials({
           License
         </Button>
       )}
-      <Button
-        as="a"
-        target="_blank"
-        href={`https://docs.plural.sh/applications/${repo.name}`}
-        tertiary
-        startIcon={<DocumentIcon />}
-      >
-        Installing {repo.displayName} docs
-      </Button>
+      {!isEmpty(repo.recipes) && (
+        <Button
+          as="a"
+          target="_blank"
+          href={`https://docs.plural.sh/applications/${repo.name}`}
+          tertiary
+          startIcon={<DocumentIcon />}
+        >
+          Installing {repo.displayName} docs
+        </Button>
+      )}
     </>
   )
 }
