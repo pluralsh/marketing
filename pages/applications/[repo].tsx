@@ -165,7 +165,7 @@ export default function App({
   globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
-  const tabs =
+  const recipeTabs =
     recipes?.filter(isRecipe).map((recipe) => ({
       key: recipe.name,
       label:
@@ -211,9 +211,9 @@ export default function App({
               </Body1>
               <div className="flex flex-col gap-medium">
                 <Overline>Available providers</Overline>
-                {!isEmpty(tabs) && (
+                {!isEmpty(recipeTabs) ? (
                   <div className="flex gap-small">
-                    {tabs.map((provider) => (
+                    {recipeTabs.map((provider) => (
                       <ProviderIcon
                         key={provider.key}
                         label={provider.label}
@@ -222,6 +222,8 @@ export default function App({
                       />
                     ))}
                   </div>
+                ) : (
+                  <Body2>Coming soon</Body2>
                 )}
               </div>
             </TextLimiter>
@@ -268,25 +270,27 @@ export default function App({
               </TextLimiter>
             </EqualColumn>
             <EqualColumn>
-              {tabs && tabs.length > 0 && (
-                <div className="flex flex-col gap-medium">
-                  <Body2 className="columns:mt-[17px]">
-                    Deploying {repo.displayName} is a matter of executing these
-                    3 commands:
-                  </Body2>
-                  <Code tabs={tabs} />
-                  <Code>plural build</Code>
-                  <Code>
-                    {`plural deploy --commit "deploying ${repo.name}"`}
-                  </Code>
-                </div>
+              {!isEmpty(recipeTabs) && (
+                <>
+                  <div className="flex flex-col gap-medium">
+                    <Body2 className="columns:mt-[17px]">
+                      Deploying {repo.displayName} is a matter of executing
+                      these 3 commands:
+                    </Body2>
+                    <Code tabs={recipeTabs} />
+                    <Code>plural build</Code>
+                    <Code>
+                      {`plural deploy --commit "deploying ${repo.name}"`}
+                    </Code>
+                  </div>{' '}
+                  <Cta
+                    className="mt-xlarge"
+                    href={`https://docs.plural.sh/applications/${repo.name}`}
+                  >
+                    Read the install documentation
+                  </Cta>
+                </>
               )}
-              <Cta
-                className="mt-xlarge"
-                href={`https://docs.plural.sh/applications/${repo.name}`}
-              >
-                Read the install documentation
-              </Cta>
             </EqualColumn>
           </Columns>
           {repo?.readme && (

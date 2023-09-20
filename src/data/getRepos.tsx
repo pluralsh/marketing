@@ -23,6 +23,7 @@ import {
 } from '../generated/graphqlPlural'
 
 const REMOVE_LIST = ['bootstrap', 'test-harness', 'gcp-config-connector']
+const ALLOW_LIST = ['kubeflow']
 
 export type BasicRepo = ReturnType<
   typeof normalizeRepo<Exclude<BasicRepoFragment, null | undefined>>
@@ -83,6 +84,10 @@ function inRemoveList(repoName?: string) {
   return !!REMOVE_LIST.find((name) => name === repoName)
 }
 
+function inAllowList(repoName?: string) {
+  return !!ALLOW_LIST.find((name) => name === repoName)
+}
+
 export function normalizeRepo<
   T extends SetOptional<FullRepoFragment, keyof Omit<FullRepoFragment, 'name'>>
 >(repo: T) {
@@ -121,7 +126,11 @@ export function normalizeTinyRepo(repo: TinyRepoFragment) {
 function filterRepo<
   T extends { name?: string; recipes?: any[] | null } | null | undefined
 >(repo: T): boolean {
-  return !!repo && !inRemoveList(repo?.name) && !isEmpty(repo?.recipes)
+  return (
+    !!repo &&
+    !inRemoveList(repo?.name) &&
+    (!isEmpty(repo?.recipes) || inAllowList(repo?.name))
+  )
 }
 
 function filterTinyRepo<

@@ -136,9 +136,11 @@ export default function Solution({
                   >
                     <Checklist2>
                       {solution.bullet_points.map(
-                        (bullet) =>
+                        (bullet, i) =>
                           bullet?.content && (
-                            <Checklist2Item>{bullet.content}</Checklist2Item>
+                            <Checklist2Item key={i}>
+                              {bullet.content}
+                            </Checklist2Item>
                           )
                       )}
                     </Checklist2>
