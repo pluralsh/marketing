@@ -66,7 +66,7 @@ function Clearbit() {
       type="text/plain" // text/plain prevents loading until Cookiebot determines prefs
       data-cookieconsent="marketing"
       async
-      src="https://tag.clearbitscripts.com/v1/pk_f7a55ef5149a4b9142a485385b8b0c96/tags.js"
+      src="https://tag.clearbitscripts.com/v1/pk_7a9f6312488a429ca6602e03b4a66c9c/tags.js"
       referrerPolicy="strict-origin-when-cross-origin"
     />
   )
