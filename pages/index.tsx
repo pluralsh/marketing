@@ -440,8 +440,6 @@ export default function Index({
   articleCards,
   globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('articleCards', articleCards)
-
   return (
     <>
       <HeaderPad
