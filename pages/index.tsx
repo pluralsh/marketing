@@ -38,6 +38,7 @@ import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
+import { LearnAboutPluralSection } from '@src/components/LearnAboutPluralSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -493,7 +494,7 @@ export default function Index({
             <BuildSecurely />
           </StandardPageWidth>
           <CompanyLogosSection
-            className="pt-xxlarge"
+            className="pt-xxxxxlarge"
             logos={globalProps.siteSettings?.partner_logos?.items}
           />
         </StandardPageSection>
@@ -550,6 +551,15 @@ export default function Index({
           </StandardPageSection>
         </div>
       </ColorModeProvider>
+      <GradientBG
+        size="cover"
+        position="bottom middle"
+        image="/images/gradients/gradient-bg-2.jpg"
+      >
+        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+          <LearnAboutPluralSection />
+        </StandardPageSection>
+      </GradientBG>
     </>
   )
 }
