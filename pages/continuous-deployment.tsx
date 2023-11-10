@@ -21,38 +21,6 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
 
-function SignUpSection({ containerId }: { containerId: string }) {
-  return (
-    <ColorModeProvider
-      mode="light"
-      className="bg-fill-zero"
-    >
-      <StandardPageSection className="">
-        <StandardPageWidth>
-          <Columns>
-            <EqualColumn className="flex flex-col gap-y-large">
-              <SubsectionHead
-                heading="Sign up for continuous deployment early access"
-                headingProps={{ as: 'h1' }}
-              />
-              <Body1 className="[text-wrap:balance]">
-                An end-to-end solution for managing Kubernetes clusters and
-                application deployment. Join our early access community today.
-              </Body1>
-            </EqualColumn>
-            <EqualColumn>
-              <HubspotForm
-                uniqueKey={containerId}
-                formId="48ee95b2-8ce1-41cb-86bd-b9ae7a9f7fb6"
-              />
-            </EqualColumn>
-          </Columns>
-        </StandardPageWidth>
-      </StandardPageSection>
-    </ColorModeProvider>
-  )
-}
-
 export default function Legal(
   _props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
@@ -64,58 +32,26 @@ export default function Legal(
         position="top middle"
         image="/images/gradients/gradient-bg-1.jpg"
       >
-        {/* <HomePageHero
-          padBottom={false}
-          heading={metaTitle}
-          description={
-            <div className="[text-wrap:balance]">
-              An end-to-end solution for managing Kubernetes clusters and
-              application deployment. Join our early access community today.
-            </div>
-          }
-        /> */}
         <img
           className=" "
           src="/images/cont-deploy/deployments-hero.png"
           alt=""
         />
       </HeaderPad>
-
-      <SignUpSection containerId="1" />
-
       <StandardPageSection className="bg-fill-zero">
         <StandardPageWidth>
           <div className="flex flex-col gap-y-xxxxlarge md:gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-            <div className="mx-auto max-w-[960px]">
-              <ArticleCard
-                preHeading="Whitepaper"
-                heading="Accelerate Kubernetes adoption with Plural Continuous Deployment"
-                ctas={[
-                  {
-                    label: 'Read the whitepaper',
-                    url: '/downloads/Whitepaper%20-%20Accelerate%20Kubernetes%20Adoption%20with%20Plural%20Continuous%20Deployment.pdf',
-                    // download: true,
-                  },
-                ]}
-                thumbnail="/images/cont-deploy/whitepaper.png"
-              />
-            </div>
-
             <div className="flex flex-col gap-y-xxlarge">
               <CenteredSectionHead
-                heading="Plural Continuous Deployment"
+                heading="Plural deployments"
                 intro={
-                  <>
-                    Deploy and manage your software with Plural Continuous
-                    Deployment. An end-to-end solution for managing Kubernetes
-                    clusters and application deployment on your cloud.
-                  </>
+                  <>Deploy and manage your software with Plural on your cloud</>
                 }
               />
               <div>
                 <img
                   className="block w-full"
-                  src="/images/cont-deploy/diagram.png"
+                  src="/images/cont-deploy/architecture.png"
                   aria-describedby="cd-diagram-content"
                 />
                 <div
@@ -153,7 +89,7 @@ export default function Legal(
               <BasicUl>
                 <li>
                   Rapidly create new Kubernetes environments across any cloud
-                  without ever having to write code
+                  without ever having to write terraform
                 </li>
                 <li>
                   Managed, zero downtime upgrades with cluster api
@@ -193,7 +129,7 @@ export default function Legal(
             <div className="flex flex-col gap-y-xxlarge">
               <div className="flex flex-col gap-y-xlarge text-center">
                 <SubsectionHead
-                  heading="Move code to production with powerful pipelines"
+                  heading="Move Code to Production with Powerful Pipelines"
                   headingProps={{ className: 'text-center' }}
                 />
                 <Body2 as="p">
@@ -227,17 +163,24 @@ export default function Legal(
                 />
               </div>
             </div>
-            {/* <div className="mx-auto max-w-[960px]"> */}
-            <Embed
-              url="https://www.youtube.com/watch?v=yh9DMwjtOhQ"
-              aspectRatio="16 / 9"
-            />
-            {/* </div> */}
+
+            <div>
+              <ArticleCard
+                preHeading="Whitepaper"
+                heading="Accelerate Kubernetes adoption with Plural Continuous Deployment"
+                ctas={[
+                  {
+                    label: 'Read the whitepaper',
+                    url: '/downloads/Whitepaper%20-%20Accelerate%20Kubernetes%20Adoption%20with%20Plural%20Continuous%20Deployment.pdf',
+                    // download: true,
+                  },
+                ]}
+                thumbnail="/images/cont-deploy/whitepaper.png"
+              />
+            </div>
           </div>
         </StandardPageWidth>
       </StandardPageSection>
-
-      <SignUpSection containerId="2" />
     </>
   )
 }
