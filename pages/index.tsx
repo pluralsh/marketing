@@ -8,7 +8,6 @@ import {
 
 import {
   Button,
-  CheckedShieldIcon,
   CloudIcon,
   ClusterIcon,
   ColorModeProvider,
@@ -38,7 +37,6 @@ import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import PersonCheck from '@src/components/icons/PersonCheck'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import BuildStackSection from '@src/components/page-sections/BuildStackSection'
