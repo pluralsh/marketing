@@ -59,7 +59,9 @@ export function WhatIsPluralSection() {
               generate a fully functional git repository with all the
               infrastructure as code needed to deploy any of your applications
               with Plural. This allows you to stand up any open source stack
+              {/* @ts-ignore */}
               with just <InlineCode>plural build</InlineCode> and{' '}
+              {/* @ts-ignore */}
               <InlineCode>plural deploy</InlineCode>, and never even have to
               give us cloud credentials, since the infrastructure as code lives
               in your local workstation.

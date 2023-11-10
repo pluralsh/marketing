@@ -170,7 +170,8 @@ export default function App({
       key: recipe.name,
       label:
         providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-        recipe.provider,
+        recipe.provider ||
+        '',
       language: 'shell',
       content: `plural bundle install ${repo?.name} ${recipe.name}`,
       iconLight: getProviderIcon({ provider: recipe?.provider, mode: 'light' }),
