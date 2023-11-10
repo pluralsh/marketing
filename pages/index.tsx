@@ -10,7 +10,9 @@ import {
   Button,
   CheckedShieldIcon,
   CloudIcon,
+  ClusterIcon,
   ColorModeProvider,
+  GitMergeIcon,
   LogsIcon,
   PadlockLockedIcon,
 } from '@pluralsh/design-system'
@@ -348,7 +350,7 @@ function BuildSecurely() {
   return (
     <div className="flex flex-col gap-y-xxxxlarge">
       <CenteredSectionHead
-        heading="Build securely from day zero"
+        heading="Secure, flexible, and easy"
         intro={
           <div className="[text-wrap:balance]">
             We’re not a SaaS. You control everything. No need to share your
@@ -358,24 +360,24 @@ function BuildSecurely() {
       />
       <BuildSecurelyGridSC>
         <BuildSecurelyCard
-          icon={<CloudIcon />}
-          heading="Deployed on your cloud"
-        />
-        <BuildSecurelyCard
           icon={<PadlockLockedIcon />}
-          heading="No need to share your cloud account keys"
+          heading="Self-hosted and secure in your cloud"
         />
         <BuildSecurelyCard
-          icon={<CheckedShieldIcon />}
-          heading="Security-scanned and hardened images"
+          icon={<CloudIcon />}
+          heading="Multi-cloud and multi-cluster support"
+        />
+        <BuildSecurelyCard
+          icon={<GitMergeIcon />}
+          heading="Build release pipelines with no scripts"
         />
         <BuildSecurelyCard
           icon={<LogsIcon />}
-          heading="Customize deployments to suit your setup"
+          heading="Fully customizable with resources defined in Git"
         />
         <BuildSecurelyCard
-          icon={<PersonCheck />}
-          heading="User authentication enabled out of the box"
+          icon={<ClusterIcon />}
+          heading="Full visibility into your service and cluster fleet"
         />
       </BuildSecurelyGridSC>
     </div>
