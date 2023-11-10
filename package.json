@@ -2,7 +2,7 @@
   "name": "plural-marketing-site",
   "private": true,
   "engines": {
-    "node": "18.12.1"
+    "node": "18.18.2"
   },
   "scripts": {
     "dev": "run-s generate:pageindex dev:watch",
@@ -56,9 +56,8 @@
     "lodash-es": "4.17.21",
     "memoize-one": "6.0.0",
     "moment-timezone": "0.5.43",
-    "next": "13.4.12",
+    "next": "14.0.2",
     "next-compose-plugins": "2.2.1",
-    "next-transpile-modules": "10.0.1",
     "octokit": "3.1.0",
     "posthog-js": "1.75.2",
     "query-string": "8.1.0",
