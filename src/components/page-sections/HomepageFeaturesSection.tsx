@@ -495,7 +495,7 @@ function DeepDiveButton(props: ComponentProps<typeof Button>) {
         secondary
         large
         as={Link}
-        {...(isExternalUrl(props?.href) ? { target: '_blank' } : {})}
+        {...(isExternalUrl((props as any)?.href) ? { target: '_blank' } : {})}
         {...props}
       />
     </li>

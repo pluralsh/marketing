@@ -89,14 +89,14 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     },
     '.heroImg1': {
       width: `${(512 * 100) / baseWidth}%`,
-      left: `${(930 * 100) / baseWidth}%`,
-      top: `${(35 * 100) / baseHeight}%`,
+      left: `${(960 * 100) / baseWidth}%`,
+      top: `${(160 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(-10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
-          'translateZ(-100px)',
+          'translateZ(00px)',
           'translateX(-2%)',
           'translateY(-10px)',
           'scale(1.07)',
@@ -104,14 +104,15 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       },
     },
     '.heroImg2': {
-      width: `${(880.84 * 100) / baseWidth}%`,
-      left: `${(0 * 100) / baseWidth}%`,
-      top: `${(0 * 100) / baseHeight}%`,
+      width: `${(1200 * 100) / baseWidth}%`,
+      left: `${(-20 * 100) / baseWidth}%`,
+      top: `${(-10 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
+          'translateZ(-100px)',
           'translateX(2%)',
           'scale(0.98)',
         ].join(' '),
@@ -120,7 +121,7 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     '.heroImg3': {
       width: `${(840 * 100) / baseWidth}%`,
       left: `${(563 * 100) / baseWidth}%`,
-      top: `${(226 * 100) / baseHeight}%`,
+      top: `${(300 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(-5deg)',
@@ -233,7 +234,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg1"
         inView={inView}
-        delay={0 * stagger}
+        delay={1 * stagger}
         scrollYProgress={scrollYProgress}
         parallax={-1.25}
       >
@@ -242,11 +243,11 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg2"
         inView={inView}
-        delay={1 * stagger}
+        delay={0 * stagger}
         parallax={0}
         scrollYProgress={scrollYProgress}
       >
-        <img src="/images/homepage/hero-apps.png" />
+        <img src="/images/homepage/hero-services.png" />
       </HeroIn>
       <HeroIn
         className="heroImg3"
@@ -398,14 +399,15 @@ export default function Index({
       >
         <HomePageHero
           heading={
-            <>
-              Deploy secure self-hosted applications in your cloud with no
-              compromises
-            </>
+            <>The easiest way to deploy and manage services on Kubernetes</>
           }
           description={
             <div className="[text-wrap:balance]">
-              Build compliant, production-ready infrastructure faster than ever.
+              Plural is the first end-to-end platform for deploying software on{' '}
+              <span className="whitespace-nowrap">Kubernetes –</span> to public
+              or private clouds. Provision your fleet, deploy your applications,
+              construct release pipelines, and manage all your services in a
+              single pane of glass.
             </div>
           }
           ctas={
