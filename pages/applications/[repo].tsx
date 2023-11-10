@@ -398,7 +398,7 @@ const normalizeAppExtras = (extras: AppExtrasQuery) =>
     ...Object.fromEntries(
       Object.entries(extras.apps?.[0] || {}).filter(([_, val]) => !!val)
     ),
-  } as MergeDeep<AppDefaultsFragment, AppExtrasFragment>)
+  }) as MergeDeep<AppDefaultsFragment, AppExtrasFragment>
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo

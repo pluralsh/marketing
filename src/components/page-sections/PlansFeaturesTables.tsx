@@ -71,6 +71,7 @@ export function PlansFeaturesRow({
         <LineItemHead>{item.label}</LineItemHead>
       </th>
       {plans.map((plan) => (
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label
         <td key={plan.key}>
           <PlanFeature item={item.values[plan.key]} />
         </td>
@@ -229,6 +230,7 @@ export function PlansFeaturesTable({
     >
       <tr className="columnHeads">
         {!isOnePlan && (
+          // eslint-disable-next-line jsx-a11y/control-has-associated-label
           <td className="tableHead">
             <PlanHeading />
           </td>

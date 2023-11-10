@@ -349,8 +349,8 @@ export default function Marketplace({
         .filter((repository) => {
           if (!tags.length) return true
 
-          const repositoryTags = repository?.tags?.map((t) =>
-            t?.tag.toLowerCase()
+          const repositoryTags = repository?.tags?.map(
+            (t) => t?.tag.toLowerCase()
           )
 
           return tags.some((tag) => repositoryTags?.includes(tag))

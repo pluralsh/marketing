@@ -6,9 +6,7 @@ import yaml from 'js-yaml'
 
 import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
 
-import { config as schemaConfig } from './mdSchema'
-
-import type { MarkdocPage } from './mdSchema'
+import { type MarkdocPage, config as schemaConfig } from './mdSchema'
 
 const fileCache = new Map<string, MarkdocPage | null>()
 

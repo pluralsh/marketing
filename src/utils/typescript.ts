@@ -31,5 +31,5 @@ export function notNilAnd<T>(filterFunc: (value: T) => boolean) {
 }
 
 export type Omit$Props<
-  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>,
 > = ConditionalExcept<ComponentProps<T>, `$${string}`>

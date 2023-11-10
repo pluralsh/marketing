@@ -23,7 +23,7 @@ type ContentType = {
 }
 
 const LearnAboutCardSC = styled(Link)<{ $variant: 'default' | 'active' }>(
-  ({ theme, $variant: variant }) => ({
+  ({ theme }) => ({
     boxSizing: 'border-box',
     borderRadius: theme.borderRadiuses.large,
     transition: 'all 0.5s ease',

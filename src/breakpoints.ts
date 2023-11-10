@@ -26,7 +26,7 @@ export type Breakpoint = keyof Breakpoints
 
 type MQ<
   K extends string,
-  T extends number
+  T extends number,
 > = `@media screen and (min-width: ${T}px) /* ${K} */`
 
 type MQs<BPs extends Record<string, number>> = {

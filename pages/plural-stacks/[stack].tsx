@@ -339,7 +339,7 @@ const normalizeStackExtras = (extras: StackExtrasQuery) =>
   ({
     ...(extras.stack_defaults || {}),
     ...(extras.stacks?.[0] || {}),
-  } as MergeDeep<StackDefaultsFragment, StackExtrasFragment>)
+  }) as MergeDeep<StackDefaultsFragment, StackExtrasFragment>
 
 export const getStaticProps: GetStaticProps<StackPageProps> = async (
   context

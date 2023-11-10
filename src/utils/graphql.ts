@@ -113,15 +113,18 @@ function filterMapNodes<N, M>(
   }
   const { edges } = connection
 
-  return (edges || []).reduce((prev, edge) => {
-    if (edge?.node && (filter ? filter(edge.node) : true)) {
-      prev.push(map ? map(edge.node) : edge.node)
+  return (edges || []).reduce(
+    (prev, edge) => {
+      if (edge?.node && (filter ? filter(edge.node) : true)) {
+        prev.push(map ? map(edge.node) : edge.node)
+
+        return prev
+      }
 
       return prev
-    }
-
-    return prev
-  }, [] as (N | M)[])
+    },
+    [] as (N | M)[]
+  )
 }
 
 export { filterMapNodes }

@@ -1,11 +1,7 @@
-import { ColorModeProvider } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 
 import { ArticleCard } from '@src/components/ArticleCard'
-import Embed from '@src/components/Embed'
 import { FooterVariant } from '@src/components/FooterFull'
-import { HubspotForm } from '@src/components/HubspotForm'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import {
   StandardPageSection,
@@ -16,7 +12,7 @@ import {
   CenteredSectionHead,
   SubsectionHead,
 } from '@src/components/SectionHeads'
-import { BasicUl, Body1, Body2, InlineLink } from '@src/components/Typography'
+import { BasicUl, Body2, InlineLink } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
