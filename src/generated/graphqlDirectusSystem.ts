@@ -505,6 +505,11 @@ export function useFieldDefaultsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FieldDefaultsQuery, FieldDefaultsQueryVariables>(FieldDefaultsDocument, options);
         }
+export function useFieldDefaultsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FieldDefaultsQuery, FieldDefaultsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FieldDefaultsQuery, FieldDefaultsQueryVariables>(FieldDefaultsDocument, options);
+        }
 export type FieldDefaultsQueryHookResult = ReturnType<typeof useFieldDefaultsQuery>;
 export type FieldDefaultsLazyQueryHookResult = ReturnType<typeof useFieldDefaultsLazyQuery>;
+export type FieldDefaultsSuspenseQueryHookResult = ReturnType<typeof useFieldDefaultsSuspenseQuery>;
 export type FieldDefaultsQueryResult = Apollo.QueryResult<FieldDefaultsQuery, FieldDefaultsQueryVariables>;

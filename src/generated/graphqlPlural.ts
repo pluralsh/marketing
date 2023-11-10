@@ -2024,6 +2024,7 @@ export type PlanFeatureAttributes = {
 export type PlanFeatures = {
   __typename?: 'PlanFeatures';
   audit?: Maybe<Scalars['Boolean']['output']>;
+  cd?: Maybe<Scalars['Boolean']['output']>;
   databaseManagement?: Maybe<Scalars['Boolean']['output']>;
   userManagement?: Maybe<Scalars['Boolean']['output']>;
   vpn?: Maybe<Scalars['Boolean']['output']>;
@@ -5405,8 +5406,13 @@ export function useListArtifactsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<ListArtifactsQuery, ListArtifactsQueryVariables>(ListArtifactsDocument, options);
         }
+export function useListArtifactsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ListArtifactsQuery, ListArtifactsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ListArtifactsQuery, ListArtifactsQueryVariables>(ListArtifactsDocument, options);
+        }
 export type ListArtifactsQueryHookResult = ReturnType<typeof useListArtifactsQuery>;
 export type ListArtifactsLazyQueryHookResult = ReturnType<typeof useListArtifactsLazyQuery>;
+export type ListArtifactsSuspenseQueryHookResult = ReturnType<typeof useListArtifactsSuspenseQuery>;
 export type ListArtifactsQueryResult = Apollo.QueryResult<ListArtifactsQuery, ListArtifactsQueryVariables>;
 export const PlatformPlansDocument = gql`
     query PlatformPlans {
@@ -5439,8 +5445,13 @@ export function usePlatformPlansLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PlatformPlansQuery, PlatformPlansQueryVariables>(PlatformPlansDocument, options);
         }
+export function usePlatformPlansSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PlatformPlansQuery, PlatformPlansQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PlatformPlansQuery, PlatformPlansQueryVariables>(PlatformPlansDocument, options);
+        }
 export type PlatformPlansQueryHookResult = ReturnType<typeof usePlatformPlansQuery>;
 export type PlatformPlansLazyQueryHookResult = ReturnType<typeof usePlatformPlansLazyQuery>;
+export type PlatformPlansSuspenseQueryHookResult = ReturnType<typeof usePlatformPlansSuspenseQuery>;
 export type PlatformPlansQueryResult = Apollo.QueryResult<PlatformPlansQuery, PlatformPlansQueryVariables>;
 export const RecipesDocument = gql`
     query Recipes($repoName: String!) {
@@ -5478,8 +5489,13 @@ export function useRecipesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Re
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<RecipesQuery, RecipesQueryVariables>(RecipesDocument, options);
         }
+export function useRecipesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<RecipesQuery, RecipesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<RecipesQuery, RecipesQueryVariables>(RecipesDocument, options);
+        }
 export type RecipesQueryHookResult = ReturnType<typeof useRecipesQuery>;
 export type RecipesLazyQueryHookResult = ReturnType<typeof useRecipesLazyQuery>;
+export type RecipesSuspenseQueryHookResult = ReturnType<typeof useRecipesSuspenseQuery>;
 export type RecipesQueryResult = Apollo.QueryResult<RecipesQuery, RecipesQueryVariables>;
 export const ReposDocument = gql`
     query Repos {
@@ -5516,8 +5532,13 @@ export function useReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Repo
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<ReposQuery, ReposQueryVariables>(ReposDocument, options);
         }
+export function useReposSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ReposQuery, ReposQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ReposQuery, ReposQueryVariables>(ReposDocument, options);
+        }
 export type ReposQueryHookResult = ReturnType<typeof useReposQuery>;
 export type ReposLazyQueryHookResult = ReturnType<typeof useReposLazyQuery>;
+export type ReposSuspenseQueryHookResult = ReturnType<typeof useReposSuspenseQuery>;
 export type ReposQueryResult = Apollo.QueryResult<ReposQuery, ReposQueryVariables>;
 export const TinyReposDocument = gql`
     query TinyRepos {
@@ -5554,8 +5575,13 @@ export function useTinyReposLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<TinyReposQuery, TinyReposQueryVariables>(TinyReposDocument, options);
         }
+export function useTinyReposSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<TinyReposQuery, TinyReposQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<TinyReposQuery, TinyReposQueryVariables>(TinyReposDocument, options);
+        }
 export type TinyReposQueryHookResult = ReturnType<typeof useTinyReposQuery>;
 export type TinyReposLazyQueryHookResult = ReturnType<typeof useTinyReposLazyQuery>;
+export type TinyReposSuspenseQueryHookResult = ReturnType<typeof useTinyReposSuspenseQuery>;
 export type TinyReposQueryResult = Apollo.QueryResult<TinyReposQuery, TinyReposQueryVariables>;
 export const RepoDocument = gql`
     query Repo($name: String) {
@@ -5589,8 +5615,13 @@ export function useRepoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RepoQ
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<RepoQuery, RepoQueryVariables>(RepoDocument, options);
         }
+export function useRepoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<RepoQuery, RepoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<RepoQuery, RepoQueryVariables>(RepoDocument, options);
+        }
 export type RepoQueryHookResult = ReturnType<typeof useRepoQuery>;
 export type RepoLazyQueryHookResult = ReturnType<typeof useRepoLazyQuery>;
+export type RepoSuspenseQueryHookResult = ReturnType<typeof useRepoSuspenseQuery>;
 export type RepoQueryResult = Apollo.QueryResult<RepoQuery, RepoQueryVariables>;
 export const CategoriesDocument = gql`
     query Categories {
@@ -5623,8 +5654,13 @@ export function useCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, options);
         }
+export function useCategoriesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, options);
+        }
 export type CategoriesQueryHookResult = ReturnType<typeof useCategoriesQuery>;
 export type CategoriesLazyQueryHookResult = ReturnType<typeof useCategoriesLazyQuery>;
+export type CategoriesSuspenseQueryHookResult = ReturnType<typeof useCategoriesSuspenseQuery>;
 export type CategoriesQueryResult = Apollo.QueryResult<CategoriesQuery, CategoriesQueryVariables>;
 export const TagsDocument = gql`
     query Tags($cursor: String) {
@@ -5666,8 +5702,13 @@ export function useTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsQ
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<TagsQuery, TagsQueryVariables>(TagsDocument, options);
         }
+export function useTagsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<TagsQuery, TagsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<TagsQuery, TagsQueryVariables>(TagsDocument, options);
+        }
 export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
 export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
+export type TagsSuspenseQueryHookResult = ReturnType<typeof useTagsSuspenseQuery>;
 export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
 export const StacksDocument = gql`
     query Stacks($featured: Boolean) {
@@ -5709,8 +5750,13 @@ export function useStacksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Sta
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
         }
+export function useStacksSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<StacksQuery, StacksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<StacksQuery, StacksQueryVariables>(StacksDocument, options);
+        }
 export type StacksQueryHookResult = ReturnType<typeof useStacksQuery>;
 export type StacksLazyQueryHookResult = ReturnType<typeof useStacksLazyQuery>;
+export type StacksSuspenseQueryHookResult = ReturnType<typeof useStacksSuspenseQuery>;
 export type StacksQueryResult = Apollo.QueryResult<StacksQuery, StacksQueryVariables>;
 export const StackDocument = gql`
     query Stack($name: String!, $provider: Provider = AWS) {
@@ -5745,6 +5791,11 @@ export function useStackLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Stac
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<StackQuery, StackQueryVariables>(StackDocument, options);
         }
+export function useStackSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<StackQuery, StackQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<StackQuery, StackQueryVariables>(StackDocument, options);
+        }
 export type StackQueryHookResult = ReturnType<typeof useStackQuery>;
 export type StackLazyQueryHookResult = ReturnType<typeof useStackLazyQuery>;
+export type StackSuspenseQueryHookResult = ReturnType<typeof useStackSuspenseQuery>;
 export type StackQueryResult = Apollo.QueryResult<StackQuery, StackQueryVariables>;
