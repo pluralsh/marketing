@@ -289,8 +289,6 @@ export const FeaturesImage = forwardRef(
           ? img.right
           : `${(img.right * 100) / width}%`
 
-        console.log('imgBottom', imgBottom)
-
         return (
           <MultiImageImg
             inView={inView}

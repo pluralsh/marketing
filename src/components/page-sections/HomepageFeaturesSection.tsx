@@ -28,10 +28,9 @@ import { FeaturesImage } from './FeaturesImage'
 const FeatureSC = styled(Columns)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  // flexDirection: 'column',
   rowGap: theme.spacing.xxxlarge,
   [mqs.columns]: {
-    '&:nth-child(2n+1)': {
+    '&:nth-child(2n)': {
       flexDirection: 'row-reverse',
     },
   },
@@ -113,6 +112,7 @@ export function HomepageFeaturesSection() {
               heading="Easily create, import and view your clusters "
               graphic={
                 <FeaturesImage
+                  direction={-1}
                   width={654}
                   height={370}
                   images={[
@@ -151,25 +151,25 @@ export function HomepageFeaturesSection() {
               heading="Deploy from Git in one click"
               graphic={
                 <FeaturesImage
-                  direction={-1}
-                  width={654}
-                  height={400}
+                  width={721}
+                  height={394}
                   images={[
                     {
+                      right: 0,
                       top: 0,
-                      left: 262,
-                      width: 392,
-                      height: 382,
+                      width: '94%',
+                      aspectRatio: '2660 / 1466',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/security-1.png',
+                      url: '/images/homepage/features/git-repos.png',
                     },
                     {
-                      top: 67,
+                      bottom: 0,
                       left: 0,
-                      width: 273,
-                      height: 327.420098824,
+                      width: '38%',
+                      aspectRatio: '1208 / 1026',
                       attrs: {},
-                      url: '/images/homepage/features/security-2.mp4',
+                      url: '/images/homepage/features/deploy-service.mp4',
                     },
                   ]}
                 />
@@ -188,16 +188,17 @@ export function HomepageFeaturesSection() {
               heading="Build powerful pipelines with no scripting"
               graphic={
                 <FeaturesImage
-                  width={2034}
-                  height={1166}
+                  direction={-1}
+                  width={2724}
+                  height={1404}
                   images={[
                     {
                       top: 0,
                       left: 0,
-                      width: 2034,
-                      height: 1166,
+                      width: '100%',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/customizable-1.mp4',
+                      url: '/images/homepage/features/pipelines.png',
                     },
                   ]}
                 />
@@ -215,17 +216,16 @@ export function HomepageFeaturesSection() {
               heading="Full visibility into clusters and services with Plural Console"
               graphic={
                 <FeaturesImage
-                  direction={-1}
-                  width={1200}
-                  height={696}
+                  width={2660}
+                  height={1414}
                   images={[
                     {
                       top: 0,
                       left: 0,
-                      width: 1200,
-                      height: 696,
+                      width: '100%',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/upgrades-1.mp4',
+                      url: '/images/homepage/features/cluster-services.png',
                     },
                   ]}
                 />
@@ -243,6 +243,7 @@ export function HomepageFeaturesSection() {
               heading="End to end lifecycle management"
               graphic={
                 <FeaturesImage
+                  direction={-1}
                   width={1841}
                   height={896}
                   images={[

@@ -246,7 +246,7 @@ export function TestimonialsSection({
   return (
     <StandardPageWidth {...props}>
       <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
-        Developers love us
+        What companies are saying about us
       </Heading1>
       <QuotesCarousel quotes={quotes} />
     </StandardPageWidth>

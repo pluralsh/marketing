@@ -35,12 +35,9 @@ import { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
-import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import BuildStackSection from '@src/components/page-sections/BuildStackSection'
-import { DevOpsEfficiencySection } from '@src/components/page-sections/DevOpsEfficiencySection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -382,13 +379,68 @@ function BuildSecurely() {
   )
 }
 
+const CARD_LAYOUTS = [
+  [{ size: 'medium', reverse: false }],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+] as const
+
 export default function Index({
   quotes,
-  featuredQuote,
-  buildStackTabs,
+  // featuredQuote,
+  // buildStackTabs,
   articleCards,
   globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  console.log('articleCards', articleCards)
+
   return (
     <>
       <HeaderPad
@@ -440,49 +492,45 @@ export default function Index({
           <StandardPageWidth>
             <BuildSecurely />
           </StandardPageWidth>
+          <CompanyLogosSection
+            className="pt-xxlarge"
+            logos={globalProps.siteSettings?.partner_logos?.items}
+          />
         </StandardPageSection>
       </HeaderPad>
       <HomepageFeaturesSection />
-      <DevOpsEfficiencySection />
-      <FeaturedQuote quote={featuredQuote} />
-      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
+      {/* <DevOpsEfficiencySection /> */}
+      {/* <FeaturedQuote quote={featuredQuote} /> */}
+      {/* {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />} */}
       <GradientBG
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
-        // Needs matching negative top margin in first-item of following section
-        className="pb-xxxxxxlarge"
       >
         <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-          <CompanyLogosSection
-            logos={globalProps.siteSettings?.partner_logos?.items}
-          />
           <TestimonialsSection quotes={quotes || []} />
         </StandardPageSection>
       </GradientBG>
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero">
-          <StandardPageSection padTop={false}>
+          <StandardPageSection>
             <StandardPageWidth className="relative z-[1]">
               <div className="grid grid-cols-1 items-stretch columns:grid-cols-3 gap-xlarge">
                 {articleCards?.map((c, i) => {
-                  const first = i === 0
-                  const last = i === articleCards.length - 1
-                  const medium = first || last
+                  const size =
+                    CARD_LAYOUTS[articleCards.length]?.[i]?.size || 'medium'
+                  const reverse =
+                    CARD_LAYOUTS[articleCards.length]?.[i]?.reverse || false
 
                   return (
                     c && (
                       <ArticleCardNoBorder
                         key={c.id}
                         className={classNames({
-                          'columns:col-span-3': medium,
-                          // Needs matching positive bottom padding in previous section
-                          // Negative margin has to be on this first item instead of any wrappers
-                          // to visual issue with GradientBackground on Safari
-                          '-mt-xxxxxlarge': i === 0,
+                          'columns:col-span-3': size === 'medium',
                         })}
-                        size={medium ? 'medium' : 'small'}
-                        reverse={first}
+                        size={size}
+                        reverse={reverse}
                         {...{
                           author: c.author,
                           ctas: c.ctas,
