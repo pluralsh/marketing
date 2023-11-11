@@ -3085,13 +3085,8 @@ export function useEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Eve
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<EventsQuery, EventsQueryVariables>(EventsDocument, options);
         }
-export function useEventsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<EventsQuery, EventsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<EventsQuery, EventsQueryVariables>(EventsDocument, options);
-        }
 export type EventsQueryHookResult = ReturnType<typeof useEventsQuery>;
 export type EventsLazyQueryHookResult = ReturnType<typeof useEventsLazyQuery>;
-export type EventsSuspenseQueryHookResult = ReturnType<typeof useEventsSuspenseQuery>;
 export type EventsQueryResult = Apollo.QueryResult<EventsQuery, EventsQueryVariables>;
 export const SiteSettingsDocument = gql`
     query SiteSettings {
@@ -3124,13 +3119,8 @@ export function useSiteSettingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<SiteSettingsQuery, SiteSettingsQueryVariables>(SiteSettingsDocument, options);
         }
-export function useSiteSettingsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SiteSettingsQuery, SiteSettingsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<SiteSettingsQuery, SiteSettingsQueryVariables>(SiteSettingsDocument, options);
-        }
 export type SiteSettingsQueryHookResult = ReturnType<typeof useSiteSettingsQuery>;
 export type SiteSettingsLazyQueryHookResult = ReturnType<typeof useSiteSettingsLazyQuery>;
-export type SiteSettingsSuspenseQueryHookResult = ReturnType<typeof useSiteSettingsSuspenseQuery>;
 export type SiteSettingsQueryResult = Apollo.QueryResult<SiteSettingsQuery, SiteSettingsQueryVariables>;
 export const AppExtrasDocument = gql`
     query AppExtras($name: String) {
@@ -3168,13 +3158,8 @@ export function useAppExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<AppExtrasQuery, AppExtrasQueryVariables>(AppExtrasDocument, options);
         }
-export function useAppExtrasSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AppExtrasQuery, AppExtrasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<AppExtrasQuery, AppExtrasQueryVariables>(AppExtrasDocument, options);
-        }
 export type AppExtrasQueryHookResult = ReturnType<typeof useAppExtrasQuery>;
 export type AppExtrasLazyQueryHookResult = ReturnType<typeof useAppExtrasLazyQuery>;
-export type AppExtrasSuspenseQueryHookResult = ReturnType<typeof useAppExtrasSuspenseQuery>;
 export type AppExtrasQueryResult = Apollo.QueryResult<AppExtrasQuery, AppExtrasQueryVariables>;
 export const StackExtrasDocument = gql`
     query StackExtras($name: String) {
@@ -3212,13 +3197,8 @@ export function useStackExtrasLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<StackExtrasQuery, StackExtrasQueryVariables>(StackExtrasDocument, options);
         }
-export function useStackExtrasSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<StackExtrasQuery, StackExtrasQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<StackExtrasQuery, StackExtrasQueryVariables>(StackExtrasDocument, options);
-        }
 export type StackExtrasQueryHookResult = ReturnType<typeof useStackExtrasQuery>;
 export type StackExtrasLazyQueryHookResult = ReturnType<typeof useStackExtrasLazyQuery>;
-export type StackExtrasSuspenseQueryHookResult = ReturnType<typeof useStackExtrasSuspenseQuery>;
 export type StackExtrasQueryResult = Apollo.QueryResult<StackExtrasQuery, StackExtrasQueryVariables>;
 export const TeamMembersDocument = gql`
     query TeamMembers {
@@ -3251,13 +3231,8 @@ export function useTeamMembersLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
         }
-export function useTeamMembersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<TeamMembersQuery, TeamMembersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
-        }
 export type TeamMembersQueryHookResult = ReturnType<typeof useTeamMembersQuery>;
 export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLazyQuery>;
-export type TeamMembersSuspenseQueryHookResult = ReturnType<typeof useTeamMembersSuspenseQuery>;
 export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;
 export const FeaturedContributorsDocument = gql`
     query FeaturedContributors {
@@ -3290,13 +3265,8 @@ export function useFeaturedContributorsLazyQuery(baseOptions?: Apollo.LazyQueryH
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>(FeaturedContributorsDocument, options);
         }
-export function useFeaturedContributorsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>(FeaturedContributorsDocument, options);
-        }
 export type FeaturedContributorsQueryHookResult = ReturnType<typeof useFeaturedContributorsQuery>;
 export type FeaturedContributorsLazyQueryHookResult = ReturnType<typeof useFeaturedContributorsLazyQuery>;
-export type FeaturedContributorsSuspenseQueryHookResult = ReturnType<typeof useFeaturedContributorsSuspenseQuery>;
 export type FeaturedContributorsQueryResult = Apollo.QueryResult<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>;
 export const FaqListDocument = gql`
     query FaqList($slug: String) {
@@ -3330,13 +3300,8 @@ export function useFaqListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Fa
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FaqListQuery, FaqListQueryVariables>(FaqListDocument, options);
         }
-export function useFaqListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FaqListQuery, FaqListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FaqListQuery, FaqListQueryVariables>(FaqListDocument, options);
-        }
 export type FaqListQueryHookResult = ReturnType<typeof useFaqListQuery>;
 export type FaqListLazyQueryHookResult = ReturnType<typeof useFaqListLazyQuery>;
-export type FaqListSuspenseQueryHookResult = ReturnType<typeof useFaqListSuspenseQuery>;
 export type FaqListQueryResult = Apollo.QueryResult<FaqListQuery, FaqListQueryVariables>;
 export const SolutionsSlugsDocument = gql`
     query SolutionsSlugs {
@@ -3369,13 +3334,8 @@ export function useSolutionsSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
         }
-export function useSolutionsSlugsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
-        }
 export type SolutionsSlugsQueryHookResult = ReturnType<typeof useSolutionsSlugsQuery>;
 export type SolutionsSlugsLazyQueryHookResult = ReturnType<typeof useSolutionsSlugsLazyQuery>;
-export type SolutionsSlugsSuspenseQueryHookResult = ReturnType<typeof useSolutionsSlugsSuspenseQuery>;
 export type SolutionsSlugsQueryResult = Apollo.QueryResult<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>;
 export const SolutionsDocument = gql`
     query Solutions($slug: String) {
@@ -3409,13 +3369,8 @@ export function useSolutionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
         }
-export function useSolutionsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SolutionsQuery, SolutionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
-        }
 export type SolutionsQueryHookResult = ReturnType<typeof useSolutionsQuery>;
 export type SolutionsLazyQueryHookResult = ReturnType<typeof useSolutionsLazyQuery>;
-export type SolutionsSuspenseQueryHookResult = ReturnType<typeof useSolutionsSuspenseQuery>;
 export type SolutionsQueryResult = Apollo.QueryResult<SolutionsQuery, SolutionsQueryVariables>;
 export const JobListingsDocument = gql`
     query JobListings {
@@ -3448,13 +3403,8 @@ export function useJobListingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<JobListingsQuery, JobListingsQueryVariables>(JobListingsDocument, options);
         }
-export function useJobListingsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<JobListingsQuery, JobListingsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<JobListingsQuery, JobListingsQueryVariables>(JobListingsDocument, options);
-        }
 export type JobListingsQueryHookResult = ReturnType<typeof useJobListingsQuery>;
 export type JobListingsLazyQueryHookResult = ReturnType<typeof useJobListingsLazyQuery>;
-export type JobListingsSuspenseQueryHookResult = ReturnType<typeof useJobListingsSuspenseQuery>;
 export type JobListingsQueryResult = Apollo.QueryResult<JobListingsQuery, JobListingsQueryVariables>;
 export const JobListingDocument = gql`
     query JobListing($slug: String) {
@@ -3488,13 +3438,8 @@ export function useJobListingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<JobListingQuery, JobListingQueryVariables>(JobListingDocument, options);
         }
-export function useJobListingSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<JobListingQuery, JobListingQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<JobListingQuery, JobListingQueryVariables>(JobListingDocument, options);
-        }
 export type JobListingQueryHookResult = ReturnType<typeof useJobListingQuery>;
 export type JobListingLazyQueryHookResult = ReturnType<typeof useJobListingLazyQuery>;
-export type JobListingSuspenseQueryHookResult = ReturnType<typeof useJobListingSuspenseQuery>;
 export type JobListingQueryResult = Apollo.QueryResult<JobListingQuery, JobListingQueryVariables>;
 export const JobListingSlugsDocument = gql`
     query JobListingSlugs {
@@ -3527,13 +3472,8 @@ export function useJobListingSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<JobListingSlugsQuery, JobListingSlugsQueryVariables>(JobListingSlugsDocument, options);
         }
-export function useJobListingSlugsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<JobListingSlugsQuery, JobListingSlugsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<JobListingSlugsQuery, JobListingSlugsQueryVariables>(JobListingSlugsDocument, options);
-        }
 export type JobListingSlugsQueryHookResult = ReturnType<typeof useJobListingSlugsQuery>;
 export type JobListingSlugsLazyQueryHookResult = ReturnType<typeof useJobListingSlugsLazyQuery>;
-export type JobListingSlugsSuspenseQueryHookResult = ReturnType<typeof useJobListingSlugsSuspenseQuery>;
 export type JobListingSlugsQueryResult = Apollo.QueryResult<JobListingSlugsQuery, JobListingSlugsQueryVariables>;
 export const PageCommunityDocument = gql`
     query PageCommunity {
@@ -3566,13 +3506,8 @@ export function usePageCommunityLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PageCommunityQuery, PageCommunityQueryVariables>(PageCommunityDocument, options);
         }
-export function usePageCommunitySuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageCommunityQuery, PageCommunityQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<PageCommunityQuery, PageCommunityQueryVariables>(PageCommunityDocument, options);
-        }
 export type PageCommunityQueryHookResult = ReturnType<typeof usePageCommunityQuery>;
 export type PageCommunityLazyQueryHookResult = ReturnType<typeof usePageCommunityLazyQuery>;
-export type PageCommunitySuspenseQueryHookResult = ReturnType<typeof usePageCommunitySuspenseQuery>;
 export type PageCommunityQueryResult = Apollo.QueryResult<PageCommunityQuery, PageCommunityQueryVariables>;
 export const PageProductDocument = gql`
     query PageProduct {
@@ -3605,13 +3540,8 @@ export function usePageProductLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PageProductQuery, PageProductQueryVariables>(PageProductDocument, options);
         }
-export function usePageProductSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageProductQuery, PageProductQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<PageProductQuery, PageProductQueryVariables>(PageProductDocument, options);
-        }
 export type PageProductQueryHookResult = ReturnType<typeof usePageProductQuery>;
 export type PageProductLazyQueryHookResult = ReturnType<typeof usePageProductLazyQuery>;
-export type PageProductSuspenseQueryHookResult = ReturnType<typeof usePageProductSuspenseQuery>;
 export type PageProductQueryResult = Apollo.QueryResult<PageProductQuery, PageProductQueryVariables>;
 export const PageLegalDocument = gql`
     query PageLegal {
@@ -3644,13 +3574,8 @@ export function usePageLegalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PageLegalQuery, PageLegalQueryVariables>(PageLegalDocument, options);
         }
-export function usePageLegalSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageLegalQuery, PageLegalQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<PageLegalQuery, PageLegalQueryVariables>(PageLegalDocument, options);
-        }
 export type PageLegalQueryHookResult = ReturnType<typeof usePageLegalQuery>;
 export type PageLegalLazyQueryHookResult = ReturnType<typeof usePageLegalLazyQuery>;
-export type PageLegalSuspenseQueryHookResult = ReturnType<typeof usePageLegalSuspenseQuery>;
 export type PageLegalQueryResult = Apollo.QueryResult<PageLegalQuery, PageLegalQueryVariables>;
 export const LegalPageSlugsDocument = gql`
     query LegalPageSlugs {
@@ -3685,13 +3610,8 @@ export function useLegalPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>(LegalPageSlugsDocument, options);
         }
-export function useLegalPageSlugsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>(LegalPageSlugsDocument, options);
-        }
 export type LegalPageSlugsQueryHookResult = ReturnType<typeof useLegalPageSlugsQuery>;
 export type LegalPageSlugsLazyQueryHookResult = ReturnType<typeof useLegalPageSlugsLazyQuery>;
-export type LegalPageSlugsSuspenseQueryHookResult = ReturnType<typeof useLegalPageSlugsSuspenseQuery>;
 export type LegalPageSlugsQueryResult = Apollo.QueryResult<LegalPageSlugsQuery, LegalPageSlugsQueryVariables>;
 export const PageHomepageDocument = gql`
     query PageHomepage {
@@ -3724,11 +3644,6 @@ export function usePageHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PageHomepageQuery, PageHomepageQueryVariables>(PageHomepageDocument, options);
         }
-export function usePageHomepageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageHomepageQuery, PageHomepageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<PageHomepageQuery, PageHomepageQueryVariables>(PageHomepageDocument, options);
-        }
 export type PageHomepageQueryHookResult = ReturnType<typeof usePageHomepageQuery>;
 export type PageHomepageLazyQueryHookResult = ReturnType<typeof usePageHomepageLazyQuery>;
-export type PageHomepageSuspenseQueryHookResult = ReturnType<typeof usePageHomepageSuspenseQuery>;
 export type PageHomepageQueryResult = Apollo.QueryResult<PageHomepageQuery, PageHomepageQueryVariables>;
