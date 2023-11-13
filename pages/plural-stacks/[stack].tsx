@@ -60,6 +60,7 @@ import {
   type BasicRepoFragment,
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
+import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
@@ -400,12 +401,12 @@ export const getStaticProps: GetStaticProps<StackPageProps> = async (
       (stackExtras.case_study?.stack_apps as string[]) || []
     ),
     footerVariant: FooterVariant.kitchenSink,
-    errors: [
-      ...(reposError ? [reposError] : []),
-      ...(stacksError ? [stacksError] : []),
-      ...(stackError ? [stackError] : []),
-      ...(appError ? [appError] : []),
-      ...(faqError ? [faqError] : []),
-    ],
+    errors: combineErrors([
+      reposError,
+      stacksError,
+      stackError,
+      appError,
+      faqError,
+    ]),
   })
 }

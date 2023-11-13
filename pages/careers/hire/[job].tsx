@@ -16,6 +16,7 @@ import { getJobListing, getJobListingSlugs } from '@src/data/getJobListings'
 import { type FullJobListingFragment } from '@src/generated/graphqlDirectus'
 import { ReadMdContent } from '@src/markdoc/mdParser'
 import { type MarkdocPage } from '@src/markdoc/mdSchema'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 const PAGE_PARAM_NAME = 'job' as const
@@ -118,6 +119,6 @@ export const getStaticProps: GetStaticProps<JobPageProps> = async (context) => {
     footerVariant: FooterVariant.kitchenSink,
     job,
     markdoc,
-    errors: [...(jobError ? [jobError] : [])],
+    errors: combineErrors([jobError]),
   })
 }

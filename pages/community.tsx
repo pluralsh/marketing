@@ -28,6 +28,7 @@ import { getContributors } from '@src/data/getGithubData'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
+import { combineErrors } from '../src/utils/combineErrors'
 
 export default function Community({
   contributors,
@@ -174,11 +175,19 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
     footerVariant: FooterVariant.kitchenSink,
     events: events || [],
     callouts: pageData.callouts,
-    errors: [
-      ...(githubError ? [githubError] : []),
-      ...(eventsError ? [eventsError] : []),
-      ...(featuredContributorsError ? [featuredContributorsError] : []),
-      ...(pageDataError ? [pageDataError] : []),
-    ],
+    errors: combineErrors([
+      githubError,
+      eventsError,
+      featuredContributorsError,
+      pageDataError,
+    ]),
   })
+}
+
+type BaseError = {
+  name: string
+  message: string
+}
+export type FullError = BaseError & {
+  graphQLErrors?: readonly BaseError[] | undefined
 }

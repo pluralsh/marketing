@@ -75,6 +75,7 @@ import {
   type RecipesQuery,
   type RecipesQueryVariables,
 } from '@src/generated/graphqlPlural'
+import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
@@ -478,12 +479,12 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       (appExtras.case_study?.stack_apps as string[]) || []
     ),
     footerVariant: FooterVariant.kitchenSink,
-    errors: [
-      ...(reposError ? [reposError] : []),
-      ...(stacksError ? [stacksError] : []),
-      ...(repoError ? [repoError] : []),
-      ...(appError ? [appError] : []),
-      ...(faqError ? [faqError] : []),
-    ],
+    errors: combineErrors([
+      reposError,
+      stacksError,
+      repoError,
+      appError,
+      faqError,
+    ]),
   })
 }

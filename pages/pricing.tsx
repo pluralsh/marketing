@@ -24,6 +24,7 @@ import {
   type FaqListQuery,
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
@@ -255,9 +256,6 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
     ...pricing,
     faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
     footerVariant: FooterVariant.kitchenSink,
-    errors: [
-      ...(pricingError ? [pricingError] : []),
-      ...(faqError ? [faqError] : []),
-    ],
+    errors: combineErrors([pricingError, faqError]),
   })
 }

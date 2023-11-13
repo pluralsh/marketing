@@ -21,6 +21,7 @@ import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getJobListings } from '@src/data/getJobListings'
 import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { ValueCard } from '../../src/components/ValueCard'
@@ -292,6 +293,6 @@ export const getStaticProps = async () => {
       'We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We’re always interested in hiring new talent!',
     footerVariant: FooterVariant.kitchenSink,
     jobs: jobs || [],
-    errors: [...(jobsError ? [jobsError.message] : [])],
+    errors: combineErrors([jobsError]),
   })
 }

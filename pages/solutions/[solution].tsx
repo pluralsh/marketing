@@ -50,6 +50,7 @@ import {
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
@@ -248,11 +249,6 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     featuredQuote: solution.featured_quote || null,
     buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
-    errors: [
-      ...(solutionError ? [solutionError] : []),
-      ...(faqError ? [faqError] : []),
-      ...(reposError ? [reposError] : []),
-      ...(stacksError ? [stacksError] : []),
-    ],
+    errors: combineErrors([solutionError, faqError, reposError, stacksError]),
   })
 }

@@ -59,6 +59,7 @@ import {
   StandardPageWidth,
 } from '../src/components/layout/LayoutHelpers'
 import { HomepageFeaturesSection } from '../src/components/page-sections/HomepageFeaturesSection'
+import { combineErrors } from '../src/utils/combineErrors'
 
 const HeroImagesSC = styled.div(({ theme: _theme }) => {
   const baseWidth = 1432
@@ -585,10 +586,6 @@ export const getStaticProps = async () => {
     featuredQuote: page?.featured_quote || null,
     buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
-    errors: [
-      ...(error ? [`${error}`] : []),
-      ...(stacksError ? [stacksError] : []),
-      ...(reposError ? [reposError] : []),
-    ],
+    errors: combineErrors([error, stacksError, reposError]),
   })
 }

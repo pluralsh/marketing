@@ -25,6 +25,7 @@ import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralS
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
@@ -254,6 +255,6 @@ export const getStaticProps = async () => {
     featuredQuote: pageData?.featured_quote,
     faqs: normalizeM2mItems(pageData?.faq),
     footerVariant: FooterVariant.kitchenSink,
-    errors: [...(pageDataError ? [pageDataError] : [])],
+    errors: combineErrors([pageDataError]),
   })
 }
