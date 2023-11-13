@@ -295,7 +295,7 @@ export type PricingPageProps = { teamMembers: TeamMemberFragment[] }
 export const getStaticProps: GetStaticProps<PricingPageProps> = async (
   _context
 ) => {
-  const { data: teamMembers, error: teamMembersError } = await getTeamMembers()
+  const { data: teamMembers } = await getTeamMembers()
 
   if (!teamMembers) {
     return { notFound: true }
@@ -307,6 +307,5 @@ export const getStaticProps: GetStaticProps<PricingPageProps> = async (
       'We are building a flexible, scalable solution to application delivery.',
     teamMembers,
     footerVariant: FooterVariant.kitchenSink,
-    errors: [...(teamMembersError ? [teamMembersError] : [])],
   })
 }

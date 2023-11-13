@@ -292,6 +292,6 @@ export const getStaticProps = async () => {
       'We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We’re always interested in hiring new talent!',
     footerVariant: FooterVariant.kitchenSink,
     jobs: jobs || [],
-    errors: [...(jobsError ? [jobsError] : [])],
+    errors: [...(jobsError ? [jobsError.message] : [])],
   })
 }
