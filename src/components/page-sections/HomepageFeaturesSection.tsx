@@ -139,9 +139,9 @@ export function HomepageFeaturesSection() {
             >
               <p>
                 Instantly spin up and view clusters across multiple cloud
-                providers and accounts without writing Terraform. Exposed as a
-                single GraphQL API that can be Integrated with any
-                infrastructure as code provider or fronted by a Kubernetes
+                providers and accounts without writing Terraform. We expose a
+                single GraphQL API that can be integrated with any
+                infrastructure-as-code provider or fronted by a Kubernetes
                 operator for GitOps management. Already have K8s clusters? No
                 sweat. Use our bring-your-own-Kubernetes option to ingest your
                 clusters for Plural to manage.
@@ -177,9 +177,7 @@ export function HomepageFeaturesSection() {
             >
               <p>
                 Import your Git repositories and deploy services to clusters in
-                a couple of clicks. First class support for CDK8’s to provide a
-                robust Kubernetes authoring experience with unit testability and
-                package management. Take advantage of our customization options
+                a couple of clicks. Take advantage of our customization options
                 and centralized secrets management to configure your deployment
                 exactly the way you want it.
               </p>
@@ -234,7 +232,7 @@ export function HomepageFeaturesSection() {
               <p>
                 Gain insight without compromising Kubernetes security best
                 practices like private control planes using outbound
-                bidirectional GRPC. Leverage our Kubernetes auth proxy to drill
+                bidirectional gRPC. Leverage our Kubernetes auth proxy to drill
                 into any Kubernetes resource to have a complete understanding of
                 your entire environment(s).
               </p>
@@ -261,7 +259,7 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Managed, zero downtime upgrades with Cluster API reconciliation
+                Managed, zero-downtime upgrades with Cluster API reconciliation
                 loops; don’t worry about sloppy and fragile terraform rollouts.
                 Handle Kubernetes API deprecations with ease with our built-in
                 deprecation detection.

@@ -88,7 +88,7 @@ export default function Legal(
                   without ever having to write terraform
                 </li>
                 <li>
-                  Managed, zero downtime upgrades with cluster api
+                  Managed, zero-downtime upgrades with cluster api
                   reconciliation loops, don’t worry about sloppy and fragile
                   terraform rollouts
                 </li>
