@@ -31,8 +31,9 @@ const freePlanBase: Plan = {
   price: 'Free',
   features: [
     { label: 'Free forever' },
-    { label: 'Unlimited apps' },
-    { label: 'Up to 5 users' },
+    { label: 'Unlimited open-source apps' },
+    { label: 'Up to 2 users' },
+    { label: '1 cluster' },
     { label: 'OAuth integration' },
     { label: 'Community support' },
   ],
@@ -42,10 +43,12 @@ const freePlanBase: Plan = {
 const proPlanBase: Plan = {
   key: 'pro',
   label: 'Pro',
-  price: '$399 / cluster, + $49 / user / month',
+  price:
+    '$399 / cluster, + $8 / user / month, + $200 / pack of 5 services / month',
   features: [
     { label: 'Everything in Open-source plan' },
     { label: '24 hour SLA’s' },
+    { label: 'Continuous Deployment features' },
     { label: 'Multi-cluster management' },
     { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
@@ -89,7 +92,7 @@ export type PlansFeatures = {
 
 const plansFeatures: PlansFeatures = [
   {
-    label: 'Apps',
+    label: 'Open-Source Apps',
     values: {
       free: { label: 'Unlimited' },
       pro: { label: 'Unlimited' },
@@ -100,7 +103,7 @@ const plansFeatures: PlansFeatures = [
     key: 'clusters',
     label: 'Clusters',
     values: {
-      free: { label: 'Free' },
+      free: { label: '1 cluster free' },
       pro: { label: '$399/cluster/month' },
       enterprise: { label: 'Unlimited' },
     },
@@ -109,8 +112,17 @@ const plansFeatures: PlansFeatures = [
     key: 'users',
     label: 'User accounts',
     values: {
-      free: { label: 'Up to 5 users' },
-      pro: { label: '$49/user/month' },
+      free: { label: 'Up to 2 users' },
+      pro: { label: '$8/user/month' },
+      enterprise: { label: 'Unlimited' },
+    },
+  },
+  {
+    key: 'services',
+    label: 'Services',
+    values: {
+      free: { checked: false },
+      pro: { label: '$200/pack of 5 services/month' },
       enterprise: { label: 'Unlimited' },
     },
   },
@@ -359,7 +371,8 @@ async function getPricingInner(
   }
 
   return {
-    plans: [freePlanBase, proPlan, enterprisePlanBase],
+    // TODO: reinstate this to proPlan once APIs are in place
+    plans: [freePlanBase, proPlanBase, enterprisePlanBase],
     plansFeatures: features,
   }
 }
