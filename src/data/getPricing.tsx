@@ -359,20 +359,20 @@ async function getPricingInner(
   })
   const proPlan: Plan = {
     ...proPlanBase,
-    ...(clusterMonthlyPricing && userMonthlyPricing
-      ? {
-          price: `$${
-            Math.round(clusterMonthlyPricing * 100) / 100
-          } / cluster, + $${
-            Math.round(userMonthlyPricing * 100) / 100
-          } / user / month`,
-        }
-      : {}),
+    // TODO: Add this back once APIs are in place
+    // ...(clusterMonthlyPricing && userMonthlyPricing
+    //   ? {
+    //       price: `$${
+    //         Math.round(clusterMonthlyPricing * 100) / 100
+    //       } / cluster, + $${
+    //         Math.round(userMonthlyPricing * 100) / 100
+    //       } / user / month`,
+    //     }
+    //   : {}),
   }
 
   return {
-    // TODO: reinstate this to proPlan once APIs are in place
-    plans: [freePlanBase, proPlanBase, enterprisePlanBase],
+    plans: [freePlanBase, proPlan, enterprisePlanBase],
     plansFeatures: features,
   }
 }

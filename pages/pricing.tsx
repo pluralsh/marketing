@@ -90,7 +90,12 @@ export function PlanCard({
             color="text-xlight"
             textStyles={{ '': 'mLabel' }}
           >
-            {price}
+            {price.split(', ').map((line, i, arr) => (
+              <>
+                {line}
+                {i !== arr.length - 1 && <br />}
+              </>
+            ))}
           </ResponsiveText>
         </div>
         {features && (
