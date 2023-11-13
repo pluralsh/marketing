@@ -12,14 +12,19 @@ import {
 } from '@pluralsh/design-system'
 
 import { type Node } from '@react-types/shared'
-import { type AriaMenuProps } from 'react-aria'
-import { useButton, useMenu, useMenuItem, useMenuTrigger } from 'react-aria'
+import {
+  type AriaMenuProps,
+  useButton,
+  useMenu,
+  useMenuItem,
+  useMenuTrigger,
+} from 'react-aria'
 import {
   type MenuTriggerProps,
   type TreeState,
+  useMenuTriggerState,
   useTreeState,
 } from 'react-stately'
-import { useMenuTriggerState } from 'react-stately'
 import styled from 'styled-components'
 
 import { MainLinkBase } from '../Navigation'

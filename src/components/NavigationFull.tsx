@@ -1,5 +1,10 @@
-import type { Dispatch, SetStateAction } from 'react'
-import { createContext, useEffect, useMemo } from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
+  createContext,
+  useEffect,
+  useMemo,
+} from 'react'
 
 import { usePrevious } from '@pluralsh/design-system'
 import { useRouter } from 'next/router'

@@ -59,9 +59,8 @@ export async function getSearchMetadata(): Promise<{
   tags: Tags
   categories: Categories
 }> {
-  const { data: categories, error: categoriesError } = await until(
-    getCategories
-  )
+  const { data: categories, error: categoriesError } =
+    await until(getCategories)
   const { data: tags, error: tagsError } = await until(getTags)
 
   if (categoriesError) {

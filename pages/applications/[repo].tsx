@@ -170,7 +170,8 @@ export default function App({
       key: recipe.name,
       label:
         providerToProviderName[recipe?.provider?.toUpperCase() || ''] ||
-        recipe.provider,
+        recipe.provider ||
+        '',
       language: 'shell',
       content: `plural bundle install ${repo?.name} ${recipe.name}`,
       iconLight: getProviderIcon({ provider: recipe?.provider, mode: 'light' }),
@@ -398,7 +399,7 @@ const normalizeAppExtras = (extras: AppExtrasQuery) =>
     ...Object.fromEntries(
       Object.entries(extras.apps?.[0] || {}).filter(([_, val]) => !!val)
     ),
-  } as MergeDeep<AppDefaultsFragment, AppExtrasFragment>)
+  }) as MergeDeep<AppDefaultsFragment, AppExtrasFragment>
 
 export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const repoName = context?.params?.repo

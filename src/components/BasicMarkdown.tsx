@@ -27,6 +27,7 @@ export default memo(({ text }: { text?: string | null }) => {
             {...(props as any)}
           />
         ),
+        // @ts-ignore
         code: ({ node: _, ...props }) => <InlineCode {...props} />,
       }}
     >

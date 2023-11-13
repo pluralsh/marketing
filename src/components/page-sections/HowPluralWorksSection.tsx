@@ -57,7 +57,7 @@ export function HowPluralWorksSection() {
               role to orchestrate deployments.
             </li>
             <li>
-              All Infrastructure-as-code is stored in your source code
+              All infrastructure-as-code is stored in your source code
               repository. We support Github, GitLab, BitBucket, and more. We
               don’t store any credentials. Apps are fully ejectable so you can
               walk away from Plural at any time.

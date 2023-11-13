@@ -76,7 +76,7 @@ function hasValidTypeParam(
 
 export function useSearchTabKey(): [
   MarketSearchTabKey,
-  (k: MarketSearchTabKey) => void
+  (k: MarketSearchTabKey) => void,
 ] {
   const [searchParams, setSearchParams] = useSearchParams()
 

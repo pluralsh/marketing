@@ -76,7 +76,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
           title="Fully open-source"
           icon={<EmojiIcon />}
         >
-          We are a community first company. We are and always will be
+          We are a community-first company. We are and always will be
           open-source.
         </ValueProp>
       </EqualColumn>

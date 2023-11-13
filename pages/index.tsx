@@ -8,9 +8,10 @@ import {
 
 import {
   Button,
-  CheckedShieldIcon,
   CloudIcon,
+  ClusterIcon,
   ColorModeProvider,
+  GitMergeIcon,
   LogsIcon,
   PadlockLockedIcon,
 } from '@pluralsh/design-system'
@@ -34,13 +35,10 @@ import { directusClient } from '@src/apollo-client'
 import { mqs } from '@src/breakpoints'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
-import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import PersonCheck from '@src/components/icons/PersonCheck'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import BuildStackSection from '@src/components/page-sections/BuildStackSection'
-import { DevOpsEfficiencySection } from '@src/components/page-sections/DevOpsEfficiencySection'
+import { LearnAboutPluralSection } from '@src/components/LearnAboutPluralSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -89,14 +87,14 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     },
     '.heroImg1': {
       width: `${(512 * 100) / baseWidth}%`,
-      left: `${(930 * 100) / baseWidth}%`,
-      top: `${(35 * 100) / baseHeight}%`,
+      left: `${(960 * 100) / baseWidth}%`,
+      top: `${(160 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(-10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
-          'translateZ(-100px)',
+          'translateZ(00px)',
           'translateX(-2%)',
           'translateY(-10px)',
           'scale(1.07)',
@@ -104,14 +102,15 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       },
     },
     '.heroImg2': {
-      width: `${(880.84 * 100) / baseWidth}%`,
-      left: `${(0 * 100) / baseWidth}%`,
-      top: `${(0 * 100) / baseHeight}%`,
+      width: `${(1200 * 100) / baseWidth}%`,
+      left: `${(-20 * 100) / baseWidth}%`,
+      top: `${(-10 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(10deg)',
           // 'rotateX(0deg)',
           // 'rotateZ(0deg)',
+          'translateZ(-100px)',
           'translateX(2%)',
           'scale(0.98)',
         ].join(' '),
@@ -120,7 +119,7 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
     '.heroImg3': {
       width: `${(840 * 100) / baseWidth}%`,
       left: `${(563 * 100) / baseWidth}%`,
-      top: `${(226 * 100) / baseHeight}%`,
+      top: `${(300 * 100) / baseHeight}%`,
       '.endTransform': {
         transform: [
           'rotateY(-5deg)',
@@ -233,7 +232,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg1"
         inView={inView}
-        delay={0 * stagger}
+        delay={1 * stagger}
         scrollYProgress={scrollYProgress}
         parallax={-1.25}
       >
@@ -242,11 +241,11 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg2"
         inView={inView}
-        delay={1 * stagger}
+        delay={0 * stagger}
         parallax={0}
         scrollYProgress={scrollYProgress}
       >
-        <img src="/images/homepage/hero-apps.png" />
+        <img src="/images/homepage/hero-services.png" />
       </HeroIn>
       <HeroIn
         className="heroImg3"
@@ -347,7 +346,7 @@ function BuildSecurely() {
   return (
     <div className="flex flex-col gap-y-xxxxlarge">
       <CenteredSectionHead
-        heading="Build securely from day zero"
+        heading="Secure, flexible, and easy"
         intro={
           <div className="[text-wrap:balance]">
             We’re not a SaaS. You control everything. No need to share your
@@ -357,34 +356,87 @@ function BuildSecurely() {
       />
       <BuildSecurelyGridSC>
         <BuildSecurelyCard
-          icon={<CloudIcon />}
-          heading="Deployed on your cloud"
-        />
-        <BuildSecurelyCard
           icon={<PadlockLockedIcon />}
-          heading="No need to share your cloud account keys"
+          heading="Self-hosted and secure in your cloud"
         />
         <BuildSecurelyCard
-          icon={<CheckedShieldIcon />}
-          heading="Security-scanned and hardened images"
+          icon={<CloudIcon />}
+          heading="Multi-cloud and multi-cluster support"
+        />
+        <BuildSecurelyCard
+          icon={<GitMergeIcon />}
+          heading="Build release pipelines with no scripts"
         />
         <BuildSecurelyCard
           icon={<LogsIcon />}
-          heading="Customize deployments to suit your setup"
+          heading="Fully customizable with resources defined in Git"
         />
         <BuildSecurelyCard
-          icon={<PersonCheck />}
-          heading="User authentication enabled out of the box"
+          icon={<ClusterIcon />}
+          heading="Full visibility into your service and cluster fleet"
         />
       </BuildSecurelyGridSC>
     </div>
   )
 }
 
+const CARD_LAYOUTS = [
+  [{ size: 'medium', reverse: false }],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: false },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+  [
+    { size: 'medium', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'small', reverse: false },
+    { size: 'medium', reverse: true },
+  ],
+] as const
+
 export default function Index({
   quotes,
-  featuredQuote,
-  buildStackTabs,
+  // featuredQuote,
+  // buildStackTabs,
   articleCards,
   globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -398,14 +450,15 @@ export default function Index({
       >
         <HomePageHero
           heading={
-            <>
-              Deploy secure self-hosted applications in your cloud with no
-              compromises
-            </>
+            <>The easiest way to deploy and manage services on Kubernetes</>
           }
           description={
             <div className="[text-wrap:balance]">
-              Build compliant, production-ready infrastructure faster than ever.
+              Plural is the first end-to-end platform for deploying software on{' '}
+              <span className="whitespace-nowrap">Kubernetes –</span> to public
+              or private clouds. Provision your fleet, deploy your applications,
+              construct release pipelines, and manage all your services in a
+              single pane of glass.
             </div>
           }
           ctas={
@@ -438,49 +491,45 @@ export default function Index({
           <StandardPageWidth>
             <BuildSecurely />
           </StandardPageWidth>
+          <CompanyLogosSection
+            className="pt-xxxxxlarge"
+            logos={globalProps.siteSettings?.partner_logos?.items}
+          />
         </StandardPageSection>
       </HeaderPad>
       <HomepageFeaturesSection />
-      <DevOpsEfficiencySection />
-      <FeaturedQuote quote={featuredQuote} />
-      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
+      {/* <DevOpsEfficiencySection /> */}
+      {/* <FeaturedQuote quote={featuredQuote} /> */}
+      {/* {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />} */}
       <GradientBG
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
-        // Needs matching negative top margin in first-item of following section
-        className="pb-xxxxxxlarge"
       >
         <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-          <CompanyLogosSection
-            logos={globalProps.siteSettings?.partner_logos?.items}
-          />
           <TestimonialsSection quotes={quotes || []} />
         </StandardPageSection>
       </GradientBG>
       <ColorModeProvider mode="light">
         <div className="bg-fill-zero">
-          <StandardPageSection padTop={false}>
+          <StandardPageSection>
             <StandardPageWidth className="relative z-[1]">
               <div className="grid grid-cols-1 items-stretch columns:grid-cols-3 gap-xlarge">
                 {articleCards?.map((c, i) => {
-                  const first = i === 0
-                  const last = i === articleCards.length - 1
-                  const medium = first || last
+                  const size =
+                    CARD_LAYOUTS[articleCards.length]?.[i]?.size || 'medium'
+                  const reverse =
+                    CARD_LAYOUTS[articleCards.length]?.[i]?.reverse || false
 
                   return (
                     c && (
                       <ArticleCardNoBorder
                         key={c.id}
                         className={classNames({
-                          'columns:col-span-3': medium,
-                          // Needs matching positive bottom padding in previous section
-                          // Negative margin has to be on this first item instead of any wrappers
-                          // to visual issue with GradientBackground on Safari
-                          '-mt-xxxxxlarge': i === 0,
+                          'columns:col-span-3': size === 'medium',
                         })}
-                        size={medium ? 'medium' : 'small'}
-                        reverse={first}
+                        size={size}
+                        reverse={reverse}
                         {...{
                           author: c.author,
                           ctas: c.ctas,
@@ -500,6 +549,15 @@ export default function Index({
           </StandardPageSection>
         </div>
       </ColorModeProvider>
+      <GradientBG
+        size="cover"
+        position="bottom middle"
+        image="/images/gradients/gradient-bg-2.jpg"
+      >
+        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+          <LearnAboutPluralSection />
+        </StandardPageSection>
+      </GradientBG>
     </>
   )
 }

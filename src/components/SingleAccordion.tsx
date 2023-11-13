@@ -3,13 +3,13 @@ import {
   type HTMLAttributes,
   type ReactElement,
   type ReactNode,
+  cloneElement,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
-import React from 'react'
 
 import { Card, CaretDownIcon } from '@pluralsh/design-system'
 
@@ -37,66 +37,67 @@ function AccordionTriggerUnstyled({
   )
 }
 
-const AccordionTrigger = styled(AccordionTriggerUnstyled)(
-  ({ theme, unstyled }) => {
-    const focusInset = theme.spacing.xsmall
-    const padding = theme.spacing.medium
-    const bottomPadOpen = unstyled ? padding : theme.spacing.small
-    const bottomPadClosed = padding
-    const bottomPadDiff = bottomPadClosed - bottomPadOpen
+const AccordionTrigger = styled(AccordionTriggerUnstyled)(({
+  theme,
+  unstyled,
+}) => {
+  const focusInset = theme.spacing.xsmall
+  const padding = theme.spacing.medium
+  const bottomPadOpen = unstyled ? padding : theme.spacing.small
+  const bottomPadClosed = padding
+  const bottomPadDiff = bottomPadClosed - bottomPadOpen
 
-    return {
-      display: 'flex',
-      gap: theme.spacing.medium,
-      padding,
-      // transition: `paddingBottom ${paddingTransition}`,
-      ...theme.partials.text.body2Bold,
-      color: theme.colors.text,
-      '&[aria-expanded="true"]': {
-        paddingBottom: bottomPadOpen,
+  return {
+    display: 'flex',
+    gap: theme.spacing.medium,
+    padding,
+    // transition: `paddingBottom ${paddingTransition}`,
+    ...theme.partials.text.body2Bold,
+    color: theme.colors.text,
+    '&[aria-expanded="true"]': {
+      paddingBottom: bottomPadOpen,
+    },
+    '.content': {
+      flexGrow: 1,
+    },
+    '.icon > *:first-child': {
+      transform: 'scale(100%)',
+      transition: 'transform 0.4 ease',
+    },
+    '&:focus-visible': {
+      outline: 'none',
+      position: 'relative',
+      '&::after': {
+        ...theme.partials.focus.insetAbsolute,
+        borderRadius: theme.borderRadiuses.medium,
+        top: focusInset,
+        bottom: focusInset,
+        left: focusInset,
+        right: focusInset,
       },
-      '.content': {
-        flexGrow: 1,
+      '&[aria-expanded="true"]::after': {
+        bottom: focusInset - bottomPadDiff,
       },
+    },
+    '&:hover': {
       '.icon > *:first-child': {
-        transform: 'scale(100%)',
-        transition: 'transform 0.4 ease',
+        transform: 'scale(115%)',
       },
-      '&:focus-visible': {
-        outline: 'none',
-        position: 'relative',
-        '&::after': {
-          ...theme.partials.focus.insetAbsolute,
-          borderRadius: theme.borderRadiuses.medium,
-          top: focusInset,
-          bottom: focusInset,
-          left: focusInset,
-          right: focusInset,
-        },
-        '&[aria-expanded="true"]::after': {
-          bottom: focusInset - bottomPadDiff,
-        },
-      },
-      '&:hover': {
-        '.icon > *:first-child': {
-          transform: 'scale(115%)',
-        },
-      },
-      '.icon': {
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-        marginLeft: theme.spacing.xsmall,
-        transformOrigin: '50% 50%',
-        transform: 'scaleY(100%)',
-        transition: 'transform 0.2s ease',
-      },
-      '&[aria-expanded="true"] .icon': {
-        transform: 'scaleY(-100%)',
-      },
-    }
+    },
+    '.icon': {
+      display: 'flex',
+      alignItems: 'center',
+      position: 'relative',
+      marginLeft: theme.spacing.xsmall,
+      transformOrigin: '50% 50%',
+      transform: 'scaleY(100%)',
+      transition: 'transform 0.2s ease',
+    },
+    '&[aria-expanded="true"] .icon': {
+      transform: 'scaleY(-100%)',
+    },
   }
-)
+})
 
 function AccordionContentUnstyled({
   isOpen,
@@ -242,7 +243,7 @@ export function SingleAccordion({
   }
 
   const trigger = triggerButton ? (
-    React.cloneElement(triggerButton, finalTriggerProps)
+    cloneElement(triggerButton, finalTriggerProps)
   ) : (
     <AccordionTrigger
       unstyled={unstyled}

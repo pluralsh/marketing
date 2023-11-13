@@ -15,7 +15,6 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 import { MarkdocContextProvider } from '@pluralsh/design-system/dist/markdoc'
-import { SSRProvider } from 'react-aria'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
 
@@ -103,21 +102,19 @@ function App({ Component, pageProps }: MyAppProps) {
   )
 
   return (
-    <SSRProvider>
-      <MarkdocContextProvider value={{ variant: 'docs' }}>
-        <NavigationContextProvider value={navContextVal}>
-          <SWRConfig value={gProps.swrConfig}>
-            <BreakpointProvider>
-              <ThemeProvider theme={honorableTheme}>
-                <StyledThemeProvider theme={styledTheme}>
-                  <FillLevelProvider value={0}>{app}</FillLevelProvider>
-                </StyledThemeProvider>
-              </ThemeProvider>
-            </BreakpointProvider>
-          </SWRConfig>
-        </NavigationContextProvider>
-      </MarkdocContextProvider>
-    </SSRProvider>
+    <MarkdocContextProvider value={{ variant: 'docs' }}>
+      <NavigationContextProvider value={navContextVal}>
+        <SWRConfig value={gProps.swrConfig}>
+          <BreakpointProvider>
+            <ThemeProvider theme={honorableTheme}>
+              <StyledThemeProvider theme={styledTheme}>
+                <FillLevelProvider value={0}>{app}</FillLevelProvider>
+              </StyledThemeProvider>
+            </ThemeProvider>
+          </BreakpointProvider>
+        </SWRConfig>
+      </NavigationContextProvider>
+    </MarkdocContextProvider>
   )
 }
 

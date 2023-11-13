@@ -14,7 +14,7 @@ export type SetSearchParams = (
 
 export const useSearchParams = (): [
   ReadonlyURLSearchParams,
-  SetSearchParams
+  SetSearchParams,
 ] => {
   const router = useRouter()
   const searchParams = useNextSearchParams()

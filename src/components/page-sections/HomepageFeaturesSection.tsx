@@ -3,8 +3,6 @@ import {
   type ReactElement,
   type ReactNode,
   cloneElement,
-  forwardRef,
-  useMemo,
   useRef,
 } from 'react'
 
@@ -12,31 +10,27 @@ import { Button, ColorModeProvider } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import { isExternalUrl } from '@pluralsh/design-system/dist/markdoc/utils/text'
-import { type PrefixKeys } from '@pluralsh/design-system/dist/utils/ts-utils'
 import classNames from 'classnames'
-import { type Variants, motion, useInView } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import styled from 'styled-components'
-// @ts-expect-error
-import useMobileDetect from 'use-mobile-detect-hook'
 
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { Body2, Overline, ResponsiveText } from '@src/components/Typography'
-import { mShadows } from '@src/styles/extraStyles'
+import { Body2, ResponsiveText } from '@src/components/Typography'
 
 import { useBreakpoint } from '../contexts/BreakpointProvider'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
-const PERSPECTIVE = 1400
+import { DeepDive } from './DeepDive'
+import { FeaturesImage } from './FeaturesImage'
 
 const FeatureSC = styled(Columns)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  // flexDirection: 'column',
   rowGap: theme.spacing.xxxlarge,
   [mqs.columns]: {
-    '&:nth-child(2n+1)': {
+    '&:nth-child(2n)': {
       flexDirection: 'row-reverse',
     },
   },
@@ -93,216 +87,6 @@ export function Feature({
     </FeatureSC>
   )
 }
-type ImageProps = {
-  url: string
-  top: number
-  left: number
-  width: number
-  height: number
-  attrs: ComponentProps<typeof MultiImageSC>
-}
-const MultiImageSC = styled.div<{ $aspectRatio: string }>(
-  ({ $aspectRatio }) => ({
-    width: '100%',
-    aspectRatio: $aspectRatio,
-    perspective: PERSPECTIVE,
-    position: 'relative',
-  })
-)
-const MultiImageWrapSC = styled.div<ImgPropsSC & { $direction: 1 | -1 }>(
-  ({ $width, $top, $left, $height }) => ({
-    top: $top,
-    left: $left,
-    height: $height,
-    width: $width,
-    position: 'absolute',
-    transformStyle: 'preserve-3d',
-    perspective: PERSPECTIVE,
-    // Keep box shadow looking correct
-    // when containing rounded images
-    borderRadius: 10,
-    boxShadow: mShadows.light.moderate,
-  })
-)
-
-const MultiImageVideoSC = styled.video<{ $round?: boolean }>(
-  ({ $round = true }) => ({
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    borderRadius: $round ? 4 : 0,
-    overflow: 'hidden',
-  })
-)
-
-const MultiImageImgSC = styled.img<{ $round?: boolean }>(
-  ({ $round = false }) => ({
-    display: 'block',
-    borderRadius: $round ? 4 : 0,
-  })
-)
-
-type ImgProps = {
-  top: string
-  left: string
-  width: string
-  height: string
-  src: string
-}
-type ImgPropsSC = PrefixKeys<ImgProps, '$'>
-
-const STAGGER = 0.25
-
-const cardVariants = ({
-  delay = 0,
-  direction = 1,
-}: {
-  delay: number
-  direction: 1 | -1
-}): Variants => {
-  const end = {
-    rotateY: 0,
-    scale: 1,
-    opacity: 1,
-  }
-
-  return {
-    offscreen: {
-      rotateY: 15 * direction,
-      scale: 0.85,
-      opacity: 0,
-      transition: { type: 'linear', duration: 0 },
-    },
-    onscreen: {
-      ...end,
-      transition: {
-        type: 'spring',
-        bounce: 0.15,
-        duration: 1.8,
-        delay,
-      },
-    },
-    mobile: {
-      ...end,
-      transition: { type: 'linear', duration: 0 },
-    },
-  }
-}
-
-const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  transformOrigin: '100% 50% -300px',
-  perspective: PERSPECTIVE,
-}))
-
-function MultiImageImg({
-  inView,
-  top,
-  left,
-  height,
-  width,
-  src,
-  animOffset,
-  direction,
-  ...attrs
-}: ImgProps & {
-  direction: -1 | 1
-  inView: boolean
-} & ComponentProps<typeof MultiImageWrapSC>) {
-  const variants = useMemo(
-    () => cardVariants({ delay: animOffset * STAGGER, direction }),
-    [animOffset, direction]
-  )
-
-  const isMobile = useMobileDetect().isMobile()
-
-  return (
-    <MotionDiv
-      animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
-      variants={variants}
-      className="opacity-0"
-    >
-      <MultiImageWrapSC
-        $top={top}
-        $left={left}
-        $height={height}
-        $width={width}
-        $direction={direction}
-        className="graphic"
-        {...attrs}
-      >
-        {src.match(/\.mp4$/) ? (
-          <MultiImageVideoSC
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={`${src.replace(/\.mp4$/, '')}_poster.png`}
-          >
-            <source
-              src={src}
-              type="video/mp4"
-              className="graphic"
-            />
-          </MultiImageVideoSC>
-        ) : (
-          <MultiImageImgSC
-            src={src}
-            {...attrs}
-          />
-        )}
-      </MultiImageWrapSC>
-    </MotionDiv>
-  )
-}
-
-const FeaturesImage = forwardRef(
-  (
-    {
-      images,
-      width,
-      height,
-      direction = 1,
-      inView = true,
-      ...props
-    }: {
-      images: ImageProps[]
-      width: number
-      height: number
-      direction?: 1 | -1
-      inView?: boolean
-    } & ComponentProps<typeof MultiImageWrapSC>,
-    ref
-  ) => (
-    <MultiImageSC
-      ref={ref}
-      className="rootRef"
-      $aspectRatio={`${width} / ${height}`}
-      {...props}
-    >
-      {images.map((img, i) => (
-        <MultiImageImg
-          inView={inView}
-          key={i}
-          src={img.url}
-          top={`${(img.top * 100) / height}%`}
-          left={`${(img.left * 100) / width}%`}
-          height={`${(img.height * 100) / height}%`}
-          width={`${(img.width * 100) / width}%`}
-          animOffset={i}
-          direction={direction}
-          {...img.attrs}
-        />
-      ))}
-    </MultiImageSC>
-  )
-)
 
 export function HomepageFeaturesSection() {
   return (
@@ -321,163 +105,164 @@ export function HomepageFeaturesSection() {
             )}
           >
             <CenteredSectionHead
-              preHeading="Features"
-              heading="Get all the control, flexibility, and security that comes from self-hosting, with none of the hassle."
+              // preHeading="Features"
+              heading="Provision and manage Kubernetes clusters. Continuously deploy services. At scale."
             />
             <Feature
-              heading="Easy setup, effortless deployments"
-              graphic={
-                <FeaturesImage
-                  width={678}
-                  height={440.28}
-                  images={[
-                    {
-                      top: 56.18,
-                      left: 0,
-                      width: 540.14,
-                      height: 384.1,
-                      attrs: {},
-                      url: '/images/homepage/features/easy-setup-1.png',
-                    },
-                    {
-                      top: 0,
-                      left: 310,
-                      width: 368,
-                      height: 391,
-                      attrs: {},
-                      url: '/images/homepage/features/easy-setup-2.mp4',
-                    },
-                  ]}
-                />
-              }
-            >
-              <p>
-                Install Plural in minutes using our CLI or cloud shell. Then
-                choose from 90+ production-grade, open-source applications to
-                deploy in your environment.
-              </p>
-            </Feature>
-            <Feature
-              heading="For the security and privacy conscious"
+              heading="Easily create, import and view your clusters "
               graphic={
                 <FeaturesImage
                   direction={-1}
                   width={654}
-                  height={400}
+                  height={370}
                   images={[
                     {
                       top: 0,
-                      left: 262,
-                      width: 392,
-                      height: 382,
+                      left: 0,
+                      width: '93%',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/security-1.png',
+                      url: '/images/homepage/features/clusters.png',
                     },
                     {
-                      top: 67,
-                      left: 0,
-                      width: 273,
-                      height: 327.420098824,
+                      bottom: 0,
+                      right: 0,
+                      width: '43%',
+                      aspectRatio: '894 / 874',
                       attrs: {},
-                      url: '/images/homepage/features/security-2.mp4',
+                      round: true,
+                      url: '/images/homepage/features/create-cluster.mp4',
                     },
                   ]}
                 />
               }
             >
               <p>
-                Plural is built for secure deployments, featuring
-                security-scanned and hardened images, seamless integration with
-                your SAML gateway, turnkey user authentication, centralized user
-                management, and granular Role Based Access Control.
+                Instantly spin up and view clusters across multiple cloud
+                providers and accounts without writing Terraform. We expose a
+                single GraphQL API that can be integrated with any
+                infrastructure-as-code provider or fronted by a Kubernetes
+                operator for GitOps management. Already have K8s clusters? No
+                sweat. Use our bring-your-own-Kubernetes option to ingest your
+                clusters for Plural to manage.
               </p>
             </Feature>
             <Feature
-              heading="Fully customizable deployments"
+              heading="Deploy from Git in one click"
               graphic={
                 <FeaturesImage
-                  width={2034}
-                  height={1166}
+                  width={721}
+                  height={394}
                   images={[
                     {
+                      right: 0,
                       top: 0,
-                      left: 0,
-                      width: 2034,
-                      height: 1166,
+                      width: '94%',
+                      aspectRatio: '2660 / 1466',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/customizable-1.mp4',
+                      url: '/images/homepage/features/git-repos.png',
+                    },
+                    {
+                      bottom: 0,
+                      left: 0,
+                      width: '38%',
+                      aspectRatio: '1208 / 1026',
+                      attrs: {},
+                      url: '/images/homepage/features/deploy-service.mp4',
                     },
                   ]}
                 />
               }
             >
               <p>
-                We know that everyone’s requirements are a little different.
-                That’s why everything is customizable in Plural. Want to change
-                the network setup? Or use a different storage layer? Configure
-                it all in your Git repository, providing a natural development
-                workflow to rework and customize applications.
+                Import your Git repositories and deploy services to clusters in
+                a couple of clicks. Take advantage of our customization options
+                and centralized secrets management to configure your deployment
+                exactly the way you want it.
               </p>
             </Feature>
             <Feature
-              heading="Take the hassle out of upgrades and scaling"
+              heading="Build powerful pipelines with no scripting"
               graphic={
                 <FeaturesImage
                   direction={-1}
-                  width={1200}
-                  height={696}
+                  width={2724}
+                  height={1404}
                   images={[
                     {
                       top: 0,
                       left: 0,
-                      width: 1200,
-                      height: 696,
+                      width: '100%',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/upgrades-1.mp4',
+                      url: '/images/homepage/features/pipelines.png',
                     },
                   ]}
                 />
               }
             >
               <p>
-                Never have the headache of manually upgrading applications
-                again. Plural’s built-in dependency tree ensures all
-                dependencies upgrade in the correct order, with no downtime.
-                Need to scale? That’s one click with our operational runbooks.
+                Our Enterprise-grade GitOps continuous deployment is awesome.
+                Configure promotions between environments with no scripting
+                required. Build gated promotions. Trigger pipelines on events.
+                Fully automate your path to production with secure secret
+                injection.
               </p>
             </Feature>
             <Feature
-              heading="Built for production"
+              heading="Full visibility into clusters and services with Plural Console"
               graphic={
                 <FeaturesImage
-                  width={678}
-                  height={448}
+                  width={2660}
+                  height={1414}
                   images={[
                     {
                       top: 0,
                       left: 0,
-                      width: 632.26,
-                      height: 431.72,
+                      width: '100%',
+                      round: true,
                       attrs: {},
-                      url: '/images/homepage/features/production-1.png',
-                    },
-                    {
-                      top: 243.6,
-                      left: 403.8,
-                      width: 274,
-                      height: 210.09,
-                      attrs: {},
-                      url: '/images/homepage/features/production-2.mp4',
+                      url: '/images/homepage/features/cluster-services.png',
                     },
                   ]}
                 />
               }
             >
               <p>
-                It’s never been easier to manage multiple applications. Get
-                comprehensive operational insights with native integrations to
-                Prometheus and Datadog, and manage deployments to multiple
-                clusters.
+                Gain insight without compromising Kubernetes security best
+                practices like private control planes using outbound
+                bidirectional gRPC. Leverage our Kubernetes auth proxy to drill
+                into any Kubernetes resource to have a complete understanding of
+                your entire environment(s).
+              </p>
+            </Feature>
+            <Feature
+              heading="End to end lifecycle management"
+              graphic={
+                <FeaturesImage
+                  direction={-1}
+                  width={1841}
+                  height={896}
+                  images={[
+                    {
+                      top: 0,
+                      left: 0,
+                      width: 1841,
+                      height: 896,
+                      attrs: {},
+                      round: true,
+                      url: '/images/homepage/features/deprecations-1.png',
+                    },
+                  ]}
+                />
+              }
+            >
+              <p>
+                Managed, zero-downtime upgrades with Cluster API reconciliation
+                loops; don’t worry about sloppy and fragile terraform rollouts.
+                Handle Kubernetes API deprecations with ease with our built-in
+                deprecation detection.
               </p>
             </Feature>
             <DeepDive />
@@ -488,58 +273,16 @@ export function HomepageFeaturesSection() {
   )
 }
 
-function DeepDiveButton(props: ComponentProps<typeof Button>) {
+export function DeepDiveButton(props: ComponentProps<typeof Button>) {
   return (
     <li>
       <Button
         secondary
         large
         as={Link}
-        {...(isExternalUrl(props?.href) ? { target: '_blank' } : {})}
+        {...(isExternalUrl((props as any)?.href) ? { target: '_blank' } : {})}
         {...props}
       />
     </li>
-  )
-}
-const DeepDiveSC = styled.ul(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing.large,
-  ul: {
-    textAlign: 'center',
-    textWrap: 'balance',
-    ...theme.partials.reset.list,
-    margin: `${-theme.spacing.large / 2}px`,
-    li: {
-      ...theme.partials.reset.li,
-      display: 'inline-block',
-      margin: `${theme.spacing.large / 2}px`,
-    },
-  },
-}))
-
-function DeepDive() {
-  return (
-    <DeepDiveSC>
-      <Overline
-        className="text-center"
-        as="h3"
-      >
-        Deep dive into the product
-      </Overline>
-      <ul>
-        <DeepDiveButton href="/product">How Plural works</DeepDiveButton>
-        <DeepDiveButton href="https://www.youtube.com/@pluralsh/videos">
-          Demo videos
-        </DeepDiveButton>
-        <DeepDiveButton href="https://docs.plural.sh/getting-started/quickstart">
-          Quickstart guide
-        </DeepDiveButton>
-        <DeepDiveButton href="https://docs.plural.sh/operations/security">
-          Security concepts
-        </DeepDiveButton>
-        <DeepDiveButton href="/marketplace">Application catalog</DeepDiveButton>
-      </ul>
-    </DeepDiveSC>
   )
 }

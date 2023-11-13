@@ -89,7 +89,7 @@ function inAllowList(repoName?: string) {
 }
 
 export function normalizeRepo<
-  T extends SetOptional<FullRepoFragment, keyof Omit<FullRepoFragment, 'name'>>
+  T extends SetOptional<FullRepoFragment, keyof Omit<FullRepoFragment, 'name'>>,
 >(repo: T) {
   const { recipes, ...props } = repo
 
@@ -124,7 +124,7 @@ export function normalizeTinyRepo(repo: TinyRepoFragment) {
 }
 
 function filterRepo<
-  T extends { name?: string; recipes?: any[] | null } | null | undefined
+  T extends { name?: string; recipes?: any[] | null } | null | undefined,
 >(repo: T): boolean {
   return (
     !!repo &&
@@ -134,7 +134,7 @@ function filterRepo<
 }
 
 function filterTinyRepo<
-  T extends { name?: string; recipes?: any[] | null } | null | undefined
+  T extends { name?: string; recipes?: any[] | null } | null | undefined,
 >(repo: T): boolean {
   return !!repo && !inRemoveList(repo?.name)
 }

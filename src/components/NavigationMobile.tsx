@@ -10,10 +10,8 @@ import { type NavListFragment } from '@src/generated/graphqlDirectus'
 import GithubStars from './GithubStars'
 import useScrollLock from './hooks/useScrollLock'
 import { MainLink } from './Navigation'
-import { NavigationFull } from './NavigationFull'
+import { type NavContextValue, NavigationFull } from './NavigationFull'
 import { SocialLink } from './PageHeaderButtons'
-
-import type { NavContextValue } from './NavigationFull'
 
 const MobileMainLink = styled(MainLink)(({ theme }) => ({
   paddingLeft: 0,
