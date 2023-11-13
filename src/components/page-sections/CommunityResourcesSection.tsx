@@ -15,6 +15,7 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { DISCORD_LINK } from '@src/consts'
 import { mShadows } from '@src/styles/extraStyles'
 
 import DocumentFilledIcon from '../icons/DocumentFilledIcon'
@@ -178,7 +179,7 @@ export default function ResourcesSection() {
           <ResourceIconCard
             icon={<DiscordIcon />}
             label="Discord"
-            href="https://discord.gg/pluralsh"
+            href={DISCORD_LINK}
           />
           <ResourceIconCard
             icon={<GitHubLogoIcon />}

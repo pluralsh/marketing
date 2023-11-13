@@ -18,6 +18,7 @@ import EventsSection from '@src/components/page-sections/EventsSection'
 import FeaturedContributorsSection from '@src/components/page-sections/FeaturedContributorsSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
 import { ResponsiveText } from '@src/components/Typography'
+import { DISCORD_LINK } from '@src/consts'
 import {
   type Callouts,
   getCommunityPageData,
@@ -84,7 +85,7 @@ export default function Community({
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<DiscordIcon size={20} />}
-                href="https://discord.gg/pluralsh"
+                href={DISCORD_LINK}
               >
                 Discord
               </Button>
