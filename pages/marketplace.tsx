@@ -55,6 +55,7 @@ import {
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
 import { type BasicRepoFragment } from '@src/generated/graphqlPlural'
+import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
@@ -612,10 +613,6 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     tags: tags || [],
     categories: categories || [],
     faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
-    errors: [
-      ...(reposError ? [reposError] : []),
-      ...(stacksError ? [reposError] : []),
-      ...(faqError ? [faqError] : []),
-    ],
+    errors: combineErrors([reposError, stacksError, faqError]),
   })
 }

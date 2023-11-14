@@ -17,6 +17,7 @@ import { getLegalPageData, getLegalPageSlugs } from '@src/data/getLegalPageData'
 import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
 import { readMdPage } from '@src/markdoc/mdParser'
 import { type MarkdocPage } from '@src/markdoc/mdSchema'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
@@ -133,6 +134,6 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
     title: page.title,
     subtitle: page.subtitle,
     markdoc,
-    errors: [...(pageDataError ? [pageDataError] : [])],
+    errors: combineErrors([pageDataError]),
   })
 }

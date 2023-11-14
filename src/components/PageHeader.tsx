@@ -15,6 +15,8 @@ import { useKey } from 'rooks'
 import styled, { StyleSheetManager, useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
+import { DISCORD_LINK } from '@src/consts'
+
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
@@ -95,7 +97,7 @@ export function PageHeader({
           <div className="socialIcons">
             <SocialLink
               className="discordIcon"
-              href="https://discord.gg/pluralsh"
+              href={DISCORD_LINK}
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={0}

@@ -7,6 +7,7 @@ export const ROOT_TITLE =
   'Plural | Open-source application deployment, faster than ever without sacrificing compliance.'
 export const PAGE_TITLE_PREFIX = 'Plural | '
 export const PAGE_TITLE_SUFFIX = ''
+export const DISCORD_LINK = 'https://discord.com/invite/bEBAMXV64s'
 
 export const getAppMeta = (repo: BasicRepo): GlobalPageProps => {
   const displayName = repo.displayName || repo.name

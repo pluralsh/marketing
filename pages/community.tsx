@@ -18,6 +18,7 @@ import EventsSection from '@src/components/page-sections/EventsSection'
 import FeaturedContributorsSection from '@src/components/page-sections/FeaturedContributorsSection'
 import { ScrollToLink } from '@src/components/ScrollToLink'
 import { ResponsiveText } from '@src/components/Typography'
+import { DISCORD_LINK } from '@src/consts'
 import {
   type Callouts,
   getCommunityPageData,
@@ -28,6 +29,7 @@ import { getContributors } from '@src/data/getGithubData'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
+import { combineErrors } from '../src/utils/combineErrors'
 
 export default function Community({
   contributors,
@@ -83,7 +85,7 @@ export default function Community({
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<DiscordIcon size={20} />}
-                href="https://discord.gg/pluralsh"
+                href={DISCORD_LINK}
               >
                 Discord
               </Button>
@@ -174,11 +176,19 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
     footerVariant: FooterVariant.kitchenSink,
     events: events || [],
     callouts: pageData.callouts,
-    errors: [
-      ...(githubError ? [githubError] : []),
-      ...(eventsError ? [eventsError] : []),
-      ...(featuredContributorsError ? [featuredContributorsError] : []),
-      ...(pageDataError ? [pageDataError] : []),
-    ],
+    errors: combineErrors([
+      githubError,
+      eventsError,
+      featuredContributorsError,
+      pageDataError,
+    ]),
   })
+}
+
+type BaseError = {
+  name: string
+  message: string
+}
+export type FullError = BaseError & {
+  graphQLErrors?: readonly BaseError[] | undefined
 }

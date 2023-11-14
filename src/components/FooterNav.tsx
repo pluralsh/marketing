@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
+import { DISCORD_LINK } from '@src/consts'
 
 import { FullPageWidth } from './layout/LayoutHelpers'
 import { NewsletterSignupForm } from './NewsletterSignupForm'
@@ -90,7 +91,7 @@ const navItems = [
     links: [
       {
         children: 'Discord',
-        href: 'https://discord.gg/pluralsh',
+        href: DISCORD_LINK,
         target: '_blank',
       },
       {

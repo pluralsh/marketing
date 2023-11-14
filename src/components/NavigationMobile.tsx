@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
+import { DISCORD_LINK } from '@src/consts'
 import { useNavData } from '@src/contexts/NavDataContext'
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
@@ -98,7 +99,7 @@ function PluralMenuContent({
       <NavList navData={navData} />
       <SocialIcons>
         <SocialLink
-          href="https://discord.gg/pluralsh"
+          href={DISCORD_LINK}
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={0}

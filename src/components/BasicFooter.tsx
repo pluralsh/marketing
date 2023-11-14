@@ -3,6 +3,7 @@ import { DiscordIcon } from '@pluralsh/design-system'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { DISCORD_LINK } from '@src/consts'
 
 import GithubStars from './GithubStars'
 import { FullPageWidth } from './layout/LayoutHelpers'
@@ -15,7 +16,7 @@ export function BasicFooter({ className }: { className?: string }) {
         <div className="socialIcons">
           <SocialLink
             className="discordIcon"
-            href="https://discord.gg/pluralsh"
+            href={DISCORD_LINK}
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={0}

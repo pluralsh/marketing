@@ -10,6 +10,8 @@ import {
 import { REVALIDATE_TIME } from '@src/consts'
 import { getSiteSettings } from '@src/data/getSiteSettings'
 
+import { combineErrors } from './combineErrors'
+
 async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
     getGithubDataServer()
@@ -28,7 +30,7 @@ async function getGlobalProps() {
     swrConfig: {
       fallback: swrFallback,
     },
-    errors: [...(githubError ? [githubError] : [])],
+    errors: combineErrors([githubError]),
   }
 }
 type AsyncReturnType<T extends (...args: any) => Promise<any>> = T extends (
