@@ -121,7 +121,7 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   },
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "yarn@3.7.0",
   "lint-staged": {
     "./{src,pages}/**/*.{js,jsx,ts,tsx,graphql,md,mdpart}": "prettier --write"
   }
