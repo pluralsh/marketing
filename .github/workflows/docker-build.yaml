@@ -60,6 +60,8 @@ jobs:
   update-service:
     needs: [docker-build]
     runs-on: plrl-github-actions-runner
+    container:
+      image: ubuntu:22.04
     env:
       PLURAL_CONSOLE_TOKEN: ${{ secrets.PLURAL_CONSOLE_TOKEN }}
       PLURAL_CONSOLE_URL: ${{ secrets.PLURAL_CONSOLE_URL }}
