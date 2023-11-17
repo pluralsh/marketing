@@ -22,12 +22,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - 
-        name: Get latest tag
-        id: latest_tag
-        uses: DavidSpek/gha-get-docker-hub-tags@0.1.15
-        with:
-          img: 'ghcr.io/pluralsh/marketing-proxy'
       -
         name: Docker meta
         id: meta
@@ -41,7 +35,6 @@ jobs:
             type=sha
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{raw}},value=${{ steps.latest_tag.outputs.new_patch }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
