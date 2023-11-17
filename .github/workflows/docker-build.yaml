@@ -2,7 +2,7 @@ name: docker-build
 
 on:
   push:
-    branches: [ main, cd-setup ]
+    branches: [ main ]
 
 jobs:
   docker-build:
