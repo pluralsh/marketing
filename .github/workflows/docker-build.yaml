@@ -68,7 +68,7 @@ jobs:
       uses: actions/checkout@v4
     - name: installing plural
       uses: pluralsh/setup-plural@v0.2.0
-    - name: current sha
-      run: git rev-parse --short HEAD
+    - name: Using short sha
+      run: echo ${GITHUB_SHA::7}
     - name: Update service
-      run:  plural cd services update @mgmt/marketing --conf tag=sha-$(git rev-parse --short HEAD)
+      run:  plural cd services update @mgmt/marketing --conf tag=sha-${GITHUB_SHA::7}
