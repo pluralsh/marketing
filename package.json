@@ -93,7 +93,7 @@
     "@graphql-codegen/client-preset": "4.1.0",
     "@next/bundle-analyzer": "13.4.12",
     "@pluralsh/eslint-config-typescript": "2.5.56",
-    "@pluralsh/stylelint-config": "2.0.5",
+    "@pluralsh/stylelint-config": "2.0.10",
     "@types/node": "20.4.2",
     "@types/react-dom": "18.2.7",
     "@types/styled-components": "5.1.30",
