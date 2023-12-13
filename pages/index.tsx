@@ -451,7 +451,7 @@ export default function Index({
       >
         <HomePageHero
           heading={
-            <>The easiest way to deploy and manage services on Kubernetes</>
+            <>DevOps teams leverage Plural to easily manage and orchestrate Kubernetes clusters from a single, intuitive interface. Accelerate your DevOps pipeline with automated deployment workflows while enforcing consistent and granular security policies cluster-wide to meet compliance requirements.</>
           }
           description={
             <div className="[text-wrap:balance]">
