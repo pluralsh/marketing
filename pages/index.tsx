@@ -450,7 +450,7 @@ export default function Index({
         image="/images/gradients/gradient-bg-2.jpg"
       >
         <HomePageHero
-          heading={<>Self-Hosted Kubernetes Fleet Management</>}
+          heading={<>Self-hosted Kubernetes fleet management</>}
           description={
             <div className="[text-wrap:balance]">
               DevOps teams leverage Plural to easily manage and orchestrate
