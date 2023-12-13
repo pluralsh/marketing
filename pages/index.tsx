@@ -450,15 +450,14 @@ export default function Index({
         image="/images/gradients/gradient-bg-2.jpg"
       >
         <HomePageHero
-          heading={
-            <>Self-Hosted Kubernetes Fleet Management</>
-          }
+          heading={<>Self-Hosted Kubernetes Fleet Management</>}
           description={
             <div className="[text-wrap:balance]">
-              DevOps teams leverage Plural to easily manage and orchestrate Kubernetes 
-              clusters from a single, intuitive interface. Accelerate your DevOps 
-              pipeline with automated deployment workflows while enforcing consistent 
-              and granular security policies cluster-wide to meet compliance requirements.
+              DevOps teams leverage Plural to easily manage and orchestrate
+              Kubernetes clusters from a single, intuitive interface. Accelerate
+              your DevOps pipeline with automated deployment workflows while
+              enforcing consistent and granular security policies cluster-wide
+              to meet compliance requirements.
             </div>
           }
           ctas={
