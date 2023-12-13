@@ -451,15 +451,14 @@ export default function Index({
       >
         <HomePageHero
           heading={
-            <>DevOps teams leverage Plural to easily manage and orchestrate Kubernetes clusters from a single, intuitive interface. Accelerate your DevOps pipeline with automated deployment workflows while enforcing consistent and granular security policies cluster-wide to meet compliance requirements.</>
+            <>Self-Hosted Kubernetes Fleet Management</>
           }
           description={
             <div className="[text-wrap:balance]">
-              Plural is the first end-to-end platform for deploying software on{' '}
-              <span className="whitespace-nowrap">Kubernetes –</span> to public
-              or private clouds. Provision your fleet, deploy your applications,
-              construct release pipelines, and manage all your services in a
-              single pane of glass.
+              DevOps teams leverage Plural to easily manage and orchestrate Kubernetes 
+              clusters from a single, intuitive interface. Accelerate your DevOps 
+              pipeline with automated deployment workflows while enforcing consistent 
+              and granular security policies cluster-wide to meet compliance requirements.
             </div>
           }
           ctas={
