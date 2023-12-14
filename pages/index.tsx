@@ -455,8 +455,8 @@ export default function Index({
             <div className="[text-wrap:balance]">
               Manage and orchestrate your Kubernetes clusters from a single,
               intuitive interface. Accelerate your DevOps pipeline with
-              automated deployment workflows and enforce compliance requirements
-              with cluster-wide, granular security policies.
+              automated deployment workflows, and enforce compliance
+              requirements with cluster-wide, granular security policies.
             </div>
           }
           ctas={
