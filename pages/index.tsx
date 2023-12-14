@@ -450,16 +450,13 @@ export default function Index({
         image="/images/gradients/gradient-bg-2.jpg"
       >
         <HomePageHero
-          heading={
-            <>The easiest way to deploy and manage services on Kubernetes</>
-          }
+          heading={<>Self-hosted Kubernetes fleet management</>}
           description={
             <div className="[text-wrap:balance]">
-              Plural is the first end-to-end platform for deploying software on{' '}
-              <span className="whitespace-nowrap">Kubernetes –</span> to public
-              or private clouds. Provision your fleet, deploy your applications,
-              construct release pipelines, and manage all your services in a
-              single pane of glass.
+              Manage and orchestrate your Kubernetes clusters from a single,
+              intuitive interface. Accelerate your DevOps pipeline with
+              automated deployment workflows, and enforce compliance
+              requirements with cluster-wide, granular security policies.
             </div>
           }
           ctas={
