@@ -350,7 +350,7 @@ function BuildSecurely() {
         heading="Secure, flexible, and easy"
         intro={
           <div className="[text-wrap:balance]">
-            Secure and scalable pull-based architecture. A single pane of glass 
+            Secure and scalable pull-based architecture. A single pane of glass
             to understand and maintain complex Kubernetes fleets.
           </div>
         }
