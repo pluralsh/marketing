@@ -350,8 +350,8 @@ function BuildSecurely() {
         heading="Secure, flexible, and easy"
         intro={
           <div className="[text-wrap:balance]">
-            We’re not a SaaS. You control everything. No need to share your
-            cloud account, keys, or data.
+            Secure and scalable pull-based architecture. A single pane of glass
+            to understand and maintain complex Kubernetes fleets.
           </div>
         }
       />
