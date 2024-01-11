@@ -183,7 +183,7 @@ export default function Legal(
 
 export const getStaticProps = async () =>
   propsWithGlobalSettings({
-    metaTitle: 'Continuous deployment early access',
+    metaTitle: 'Kubernetes fleet management',
     metaDescription:
       'An end-to-end solution for managing Kubernetes clusters and application deployment.',
     footerVariant: FooterVariant.kitchenSink,
