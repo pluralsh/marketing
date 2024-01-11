@@ -39,7 +39,12 @@ module.exports = () => {
         },
         {
           source: '/plural-deployments-early-access',
-          destination: '/continuous-deployment',
+          destination: '/kubernetes-fleet-management',
+          permanent: true,
+        },
+        {
+          source: '/continuous-deployment',
+          destination: '/kubernetes-fleet-management',
           permanent: true,
         },
       ]
