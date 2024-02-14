@@ -465,17 +465,9 @@ export default function Index({
                 large
                 primary
                 as={Link}
-                href="https://app.plural.sh/signup"
+                href="/contact-sales"
               >
-                Start deploying
-              </Button>
-              <Button
-                large
-                secondary
-                as={Link}
-                href="/demo-login"
-              >
-                Explore demo environment
+                Book a demo today
               </Button>
             </div>
           }

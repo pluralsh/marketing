@@ -27,7 +27,7 @@ export type Plan = {
 
 const freePlanBase: Plan = {
   key: 'free',
-  label: 'Open-source',
+  label: 'OSS Apps Only',
   price: 'Free',
   features: [
     { label: 'Free forever' },
@@ -44,24 +44,21 @@ const proPlanBase: Plan = {
   key: 'pro',
   label: 'Pro',
   price:
-    '$399 / cluster, + $8 / user / month, + $200 / pack of 5 services / month',
+    '$399 / cluster / month, + $8 / user / month, + $200 / pack of 5 services / month',
   features: [
-    { label: 'Everything in Open-source plan' },
-    { label: '24 hour SLA’s' },
+    { label: 'Everything in Free plan' },
+    { label: 'Up to 2 clusters' },
     { label: 'Continuous Deployment features' },
     { label: 'Multi-cluster management' },
     { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
-    { label: 'Audit logs' },
     { label: 'VPN' },
-    { label: 'Emergency hotfixes' },
+    { label: '' },
+    { label: '' },
   ],
   cta: {
     label: 'Start free trial',
     url: 'https://app.plural.sh/account/billing',
-  },
-  violator: {
-    label: 'Most popular',
   },
   isFeatured: true,
 }
@@ -73,12 +70,13 @@ const enterprisePlanBase: Plan = {
   features: [
     { label: 'Everything in Pro plan' },
     { label: '4 hour SLAs' },
-    { label: 'Dedicated SRE' },
+    { label: 'Dedicated Account Team' },
     { label: 'SAML integration' },
     { label: 'Commercial license' },
     { label: 'Cost optimization' },
   ],
   cta: { label: 'Contact sales', url: '/contact-sales' },
+  isFeatured: true,
 }
 
 export type PlanFeatureValue = { label?: string; checked?: boolean }
@@ -91,14 +89,6 @@ export type PlansFeatures = {
 }[]
 
 const plansFeatures: PlansFeatures = [
-  {
-    label: 'Open-Source Apps',
-    values: {
-      free: { label: 'Unlimited' },
-      pro: { label: 'Unlimited' },
-      enterprise: { label: 'Unlimited' },
-    },
-  },
   {
     key: 'clusters',
     label: 'Clusters',
@@ -185,6 +175,14 @@ const plansFeatures: PlansFeatures = [
     },
   },
   {
+    label: 'Open-Source Apps',
+    values: {
+      free: { label: 'Unlimited' },
+      pro: { label: 'Unlimited' },
+      enterprise: { label: 'Unlimited' },
+    },
+  },
+  {
     label: 'Discord Forum',
     values: {
       free: { checked: true },
@@ -228,7 +226,7 @@ const plansFeatures: PlansFeatures = [
     label: 'Emergency Hotfixes',
     values: {
       free: { checked: false },
-      pro: { checked: true },
+      pro: { checked: false },
       enterprise: { checked: true },
     },
   },
@@ -237,7 +235,7 @@ const plansFeatures: PlansFeatures = [
     definition: 'Service-level agreements',
     values: {
       free: { checked: false },
-      pro: { label: '24 hours' },
+      pro: { checked: false },
       enterprise: { label: '4 hours' },
     },
   },
@@ -245,8 +243,8 @@ const plansFeatures: PlansFeatures = [
     label: 'Coverage',
     values: {
       free: { label: 'Best effort' },
-      pro: { label: '9-5 Business hours' },
-      enterprise: { label: 'Custom' },
+      pro: { label: 'Best effort' },
+      enterprise: { label: '24/7 available' },
     },
   },
   {
@@ -295,7 +293,7 @@ const plansFeatures: PlansFeatures = [
     label: 'Training',
     values: {
       free: { checked: false },
-      pro: { label: 'Available' },
+      pro: { checked: false },
       enterprise: { label: 'Available' },
     },
   },
