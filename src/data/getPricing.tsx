@@ -53,8 +53,6 @@ const proPlanBase: Plan = {
     { label: 'Dev → Prod promotion flows' },
     { label: 'Advanced user management' },
     { label: 'VPN' },
-    { label: '' },
-    { label: '' },
   ],
   cta: {
     label: 'Start free trial',
