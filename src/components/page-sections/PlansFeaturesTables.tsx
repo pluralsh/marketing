@@ -162,6 +162,9 @@ const PlansFeaturesTableSC = styled.table<{ $numPlans: number }>(
     display: 'grid',
     alignItems: 'stretch',
     gridTemplateColumns: `auto ${new Array($numPlans).fill('1fr').join(' ')}`,
+    'tbody,thead': {
+      display: 'contents',
+    },
     'tr,th,td': {
       padding: 0,
       margin: 0,
@@ -228,32 +231,35 @@ export function PlansFeaturesTable({
       $numPlans={plans.length}
       {...props}
     >
-      <tr className="columnHeads">
-        {!isOnePlan && (
-          // eslint-disable-next-line jsx-a11y/control-has-associated-label
-          <td className="tableHead">
-            <PlanHeading />
-          </td>
-        )}
-        {plans.map((plan) => (
-          <th
-            key={plan.key}
-            className="tableHead"
-            scope="col"
-            {...(isOnePlan ? { colSpan: 2, 'aria-colspan': 2 } : {})}
-          >
-            <PlanHeading plan={plan} />
-          </th>
+      <thead>
+        <tr className="columnHeads">
+          {!isOnePlan && (
+            <th className="tableHead">
+              <span className="sr-only">Feature</span>
+            </th>
+          )}
+          {plans.map((plan) => (
+            <th
+              key={plan.key}
+              className="tableHead"
+              scope="col"
+              {...(isOnePlan ? { colSpan: 2, 'aria-colspan': 2 } : {})}
+            >
+              <PlanHeading plan={plan} />
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item, i) => (
+          <PlansFeaturesRow
+            key={`${item.label}-${i}`}
+            className="tableContent"
+            plans={plans}
+            item={item}
+          />
         ))}
-      </tr>
-      {items.map((item, i) => (
-        <PlansFeaturesRow
-          key={`${item.label}-${i}`}
-          className="tableContent"
-          plans={plans}
-          item={item}
-        />
-      ))}
+      </tbody>
     </PlansFeaturesTableSC>
   )
 }
