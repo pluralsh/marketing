@@ -145,9 +145,7 @@ export default function Solution({
                           )
                       )}
                     </Checklist2>
-                    <Cta href="/demo-login">
-                      Explore our live demo environment
-                    </Cta>
+                    <Cta href="/contact-sales">Book a demo today</Cta>
                   </ShadowedCard>
                 </EqualColumn>
               </ColumnsMd>

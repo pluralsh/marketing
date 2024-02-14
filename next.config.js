@@ -47,6 +47,11 @@ module.exports = () => {
           destination: '/kubernetes-fleet-management',
           permanent: true,
         },
+        {
+          source: '/demo-login',
+          destination: '/contact-sales',
+          permanent: true,
+        },
       ]
     },
   })

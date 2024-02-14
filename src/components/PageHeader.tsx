@@ -109,7 +109,7 @@ export function PageHeader({
           <div className="buttons">
             <Button
               as="a"
-              href="https://app.plural.sh/signup"
+              href="/contact-sales"
               primary
               fontFamily={theme.fontFamilies.sans}
             >

@@ -139,9 +139,9 @@ export default function Index({
                         secondary
                         large
                         as={Link}
-                        href="/demo-login"
+                        href="/contact-sales"
                       >
-                        Explore demo environment
+                        Book a demo
                       </Button>
                     </div>
                   }
