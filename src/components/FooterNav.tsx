@@ -39,8 +39,8 @@ const navItems = [
         href: '/contact',
       },
       {
-        children: 'Live demo',
-        href: '/demo-login',
+        children: 'Book a demo',
+        href: '/contact-sales',
       },
     ],
   },

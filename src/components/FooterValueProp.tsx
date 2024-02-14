@@ -51,9 +51,9 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
             secondary
             large
             as={Link}
-            href="/demo-login"
+            href="/contact-sales"
           >
-            Explore live demo
+            Book a demo
           </Button>
         </div>
       </EqualColumn>
