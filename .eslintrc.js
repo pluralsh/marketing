@@ -4,8 +4,10 @@ module.exports = {
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
   },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: true,
+    tsconfigRootDir: __dirname,
   },
   extends: ['@pluralsh/eslint-config-typescript', 'prettier'],
   globals: {
