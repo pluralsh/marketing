@@ -32,7 +32,7 @@ export function ContactHeader({
           'lg:pb-xxxxxxlarge'
         )}
       >
-        <Columns className="columns:items-center gap-y-medium">
+        <Columns className="gap-y-medium columns:items-center">
           <EqualColumn className="justify-start">
             <TextLimiter>
               <ResponsiveText

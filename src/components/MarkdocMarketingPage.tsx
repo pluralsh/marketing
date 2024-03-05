@@ -104,7 +104,7 @@ export function MarkdocMarketingPage({
     : null
 
   return (
-    <div className="w-[100] flex gap-xlarge justify-between">
+    <div className="flex w-[100] justify-between gap-xlarge">
       <TextLimiter className="basis-[896px]">
         {preContent}
         <MarkdocComponent
@@ -114,7 +114,7 @@ export function MarkdocMarketingPage({
         {postContent}
       </TextLimiter>
       {toc && (
-        <div className="hidden relative basis-[200px] flex-grow flex-shrink-0 columns:block">
+        <div className="relative hidden flex-shrink-0 flex-grow basis-[200px] columns:block">
           <TableOfContents toc={toc} />
         </div>
       )}

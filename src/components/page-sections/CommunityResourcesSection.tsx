@@ -175,7 +175,7 @@ export default function ResourcesSection() {
         className="mb-xxxlarge"
       />
       <div className="flex flex-col gap-xxlarge">
-        <div className="grid gap-xlarge grid-cols-2 columns:gap-xxlarge columns:grid-cols-4">
+        <div className="grid grid-cols-2 gap-xlarge columns:grid-cols-4 columns:gap-xxlarge">
           <ResourceIconCard
             icon={<DiscordIcon />}
             label="Discord"

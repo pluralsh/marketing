@@ -234,7 +234,7 @@ export function LearnAboutPluralSection({
 }: Omit<ComponentProps<typeof StandardPageWidth>, 'children'>) {
   return (
     <StandardPageWidth {...props}>
-      <Heading1 className="mb-xxlarge md:mb-xxxxlarge text-center">
+      <Heading1 className="mb-xxlarge text-center md:mb-xxxxlarge">
         Learn more about Plural
       </Heading1>
       <Carousel contentList={contentList} />

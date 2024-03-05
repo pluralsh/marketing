@@ -350,8 +350,8 @@ export default function Marketplace({
         .filter((repository) => {
           if (!tags.length) return true
 
-          const repositoryTags = repository?.tags?.map(
-            (t) => t?.tag.toLowerCase()
+          const repositoryTags = repository?.tags?.map((t) =>
+            t?.tag.toLowerCase()
           )
 
           return tags.some((tag) => repositoryTags?.includes(tag))
@@ -578,8 +578,8 @@ function SidecarCard({
         variant === 'fill-one'
           ? 'fill-one'
           : variant === 'feature'
-          ? 'linear-gradient(342.58deg, rgba(73, 79, 242, 0.5) 6.13%, rgba(73, 79, 242, 0) 101.49%), #21242C'
-          : 'transparent'
+            ? 'linear-gradient(342.58deg, rgba(73, 79, 242, 0.5) 6.13%, rgba(73, 79, 242, 0) 101.49%), #21242C'
+            : 'transparent'
       }
       {...props}
     />

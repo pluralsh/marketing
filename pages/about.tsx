@@ -40,9 +40,9 @@ export default function About({
           <StandardPageWidth
             className={classNames(
               'flex flex-col gap-xlarge',
-              'pt-xxlarge pb-xxxxxlarge',
-              'md:pt-xxxxlarge md:pb-xxxxxlarge',
-              'xl:pt-xxxxlarge xl:pb-xxxxxxlarge'
+              'pb-xxxxxlarge pt-xxlarge',
+              'md:pb-xxxxxlarge md:pt-xxxxlarge',
+              'xl:pb-xxxxxxlarge xl:pt-xxxxlarge'
             )}
           >
             <ResponsiveText
@@ -102,7 +102,7 @@ export default function About({
               >
                 We&rsquo;re backed by incredible investors
               </ResponsiveText>
-              <div className="mx-auto flex flex-col gap-y-xxxxlarge items-center md:flex-row md:justify-between md:items:center max-w-[852px]">
+              <div className="md:items:center mx-auto flex max-w-[852px] flex-col items-center gap-y-xxxxlarge md:flex-row md:justify-between">
                 <div>
                   <img
                     className="w-[188px] fill-marketing-white"
@@ -131,9 +131,9 @@ export default function About({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge',
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >

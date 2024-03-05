@@ -22,8 +22,8 @@ const AppOrStackCard = styled.div<{
     $size === 'small'
       ? theme.spacing.small
       : $size === 'xsmall'
-      ? theme.spacing.xsmall
-      : theme.spacing.large,
+        ? theme.spacing.xsmall
+        : theme.spacing.large,
   paddingBottom: $variant === 'stack' ? theme.spacing.small : undefined,
   '&, &:focus-visible': {
     backgroundColor: $active
@@ -152,8 +152,8 @@ export const AppCard = forwardRef(
             size === 'xsmall'
               ? 'xxsmall'
               : size === 'small'
-              ? 'xsmall'
-              : 'small'
+                ? 'xsmall'
+                : 'small'
           }
           url={app.icon || app.darkIcon || ''}
         />

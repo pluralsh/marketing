@@ -120,7 +120,7 @@ export default function Index({
               'xl:pb-[240px]'
             )}
           >
-            <Columns className="columns:items-center gap-y-xxxlarge">
+            <Columns className="gap-y-xxxlarge columns:items-center">
               <EqualColumn className="justify-start">
                 <HeroMainText
                   preHeading="Product"
@@ -167,7 +167,7 @@ export default function Index({
         <StandardPageWidth>
           <CenteredSectionHead
             heading="How Plural works"
-            className="md:mb-xxlarge mb-xxlarge"
+            className="mb-xxlarge md:mb-xxlarge"
           />
           <HowPluralWorksSection />
         </StandardPageWidth>
@@ -203,7 +203,7 @@ export default function Index({
             <StandardPageWidth>
               <div
                 className={classNames(
-                  'flex flex-col gap-xlarge justify-center items-center',
+                  'flex flex-col items-center justify-center gap-xlarge',
                   'md:flex-row'
                 )}
               >

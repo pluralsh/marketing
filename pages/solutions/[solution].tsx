@@ -122,7 +122,7 @@ export default function Solution({
               <ColumnsMd
                 className={classNames('gap-y-large', 'md:items-center')}
               >
-                <EqualColumn className="flex flex-col gap-y-large basis-1/2">
+                <EqualColumn className="flex basis-1/2 flex-col gap-y-large">
                   <SubsectionHead heading={solution.heading_2} />
                   <Body2>
                     <BasicMarkdown text={solution.content_2} />

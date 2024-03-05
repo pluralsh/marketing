@@ -125,8 +125,8 @@ export const MultiImageWrapSC = styled.div<
           ? ROUND - 1
           : 0
         : typeof $round === 'number'
-        ? $round
-        : ROUND - 1,
+          ? $round
+          : ROUND - 1,
     boxShadow: mShadows.light.moderate,
   })
 )
@@ -145,8 +145,8 @@ export const MultiImageVideoSC = styled.video<{
         ? ROUND
         : 0
       : typeof $round === 'number'
-      ? $round
-      : ROUND,
+        ? $round
+        : ROUND,
   overflow: 'hidden',
 }))
 
@@ -159,8 +159,8 @@ export const MultiImageImgSC = styled.img<{ $round?: boolean }>(
           ? ROUND
           : 0
         : typeof $round === 'number'
-        ? $round
-        : 0,
+          ? $round
+          : 0,
   })
 )
 
@@ -262,8 +262,8 @@ export const FeaturesImage = forwardRef(
         const imgHeight = isNil(img.height)
           ? undefined
           : typeof img.height === 'string'
-          ? img.height
-          : `${(img.height * 100) / height}%`
+            ? img.height
+            : `${(img.height * 100) / height}%`
         const imgWidth =
           typeof img.width === 'string'
             ? img.width
@@ -271,23 +271,23 @@ export const FeaturesImage = forwardRef(
         const imgTop = isNil(img.top)
           ? undefined
           : typeof img.top === 'string'
-          ? img.top
-          : `${(img.top * 100) / height}%`
+            ? img.top
+            : `${(img.top * 100) / height}%`
         const imgLeft = isNil(img.left)
           ? undefined
           : typeof img.left === 'string'
-          ? img.left
-          : `${(img.left * 100) / width}%`
+            ? img.left
+            : `${(img.left * 100) / width}%`
         const imgBottom = isNil(img.bottom)
           ? undefined
           : typeof img.bottom === 'string'
-          ? img.bottom
-          : `${(img.bottom * 100) / width}%`
+            ? img.bottom
+            : `${(img.bottom * 100) / width}%`
         const imgRight = isNil(img.right)
           ? undefined
           : typeof img.right === 'string'
-          ? img.right
-          : `${(img.right * 100) / width}%`
+            ? img.right
+            : `${(img.right * 100) / width}%`
 
         return (
           <MultiImageImg

@@ -61,7 +61,7 @@ export function DevOpsEfficiencySection() {
                 </p>
               }
             />
-            <div className="grid flex-col md:grid-cols-2 gap-xxlarge">
+            <div className="grid flex-col gap-xxlarge md:grid-cols-2">
               <GraphCardSC>
                 <ResponsiveText
                   as="h4"

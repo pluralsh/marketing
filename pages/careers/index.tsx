@@ -32,7 +32,7 @@ function PhotosSection() {
       <StandardPageWidth>
         <div
           className={classNames(
-            'grid grid-cols-1 sm:grid-cols-2 gap-large',
+            'grid grid-cols-1 gap-large sm:grid-cols-2',
             'columns:grid-cols-4'
           )}
         >
@@ -42,17 +42,17 @@ function PhotosSection() {
             url="/images/careers/photo-1.jpg"
           />
           <Photo
-            className="columns:row-span-2 columns:col-start-4"
+            className="columns:col-start-4 columns:row-span-2"
             ratios={{ '': '2 / 3', columns: null }}
             url="/images/careers/photo-2.jpg"
           />{' '}
           <Photo
-            className="sm:col-span-2 columns:row-start-1 columns:col-start-2"
+            className="sm:col-span-2 columns:col-start-2 columns:row-start-1"
             ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
             url="/images/careers/photo-group-1.jpg"
           />{' '}
           <Photo
-            className="sm:col-span-2 columns:row-start-2 columns:col-start-2"
+            className="sm:col-span-2 columns:col-start-2 columns:row-start-2"
             ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
             url="/images/careers/photo-group-2.jpg"
           />
@@ -70,7 +70,7 @@ function Photo({
   return (
     <div
       className={classNames(
-        'overflow-hidden rounded-large relative',
+        'relative overflow-hidden rounded-large',
         className
       )}
     >

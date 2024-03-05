@@ -93,9 +93,9 @@ export default function Legal({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge',
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >

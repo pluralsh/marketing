@@ -46,7 +46,7 @@ export function HeroMainText({
           {preHeading && (
             <>
               <ResponsiveText
-                className="[text-wrap:balance] block mb-medium"
+                className="mb-medium block [text-wrap:balance]"
                 as="strong"
                 textStyles={{ '': 'mLabel' }}
               >
@@ -98,7 +98,7 @@ export function BasicPageHero({
           'lg:pb-xxxxxxlarge'
         )}
       >
-        <Columns className="columns:items-center gap-y-xxxlarge">
+        <Columns className="gap-y-xxxlarge columns:items-center">
           <EqualColumn className="justify-start">
             <HeroMainText
               preHeading={preHeading}

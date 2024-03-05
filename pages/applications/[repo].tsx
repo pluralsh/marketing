@@ -266,7 +266,7 @@ export default function App({
                     variables={{ appName: repo.displayName }}
                   />
                 </Body2>
-                <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                <div className="mt-large flex flex-col flex-wrap justify-start gap-medium md:flex-row [&>*]:w-[max-content]">
                   <RepoSocials repo={repo} />
                 </div>
               </TextLimiter>
@@ -297,7 +297,7 @@ export default function App({
           </Columns>
           {repo?.readme && (
             <SingleAccordion label={`${repo.displayName}’s readme`}>
-              <div className="pt-medium pb-xlarge mx-auto max-w-[800px]">
+              <div className="mx-auto max-w-[800px] pb-xlarge pt-medium">
                 <RepoReadmeMd
                   text={repo.readme ?? ''}
                   gitUrl={repo.gitUrl ?? ''}
@@ -310,7 +310,7 @@ export default function App({
       </StandardPageWidth>
       <HPWMiniSectionAppStacks />
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-y-xxxxxlarge bg-fill-zero xxl:gap-y-xxxxxxlarge">
         <CompanyLogosSection
           logos={globalProps.siteSettings?.partner_logos?.items}
         />
@@ -336,7 +336,7 @@ export function CaseStudyFAQSection({
 }) {
   return (
     <ColorModeProvider mode="light">
-      <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-xxxlarge bg-fill-zero md:gap-xxxxlarge columns:gap-xxxxxlarge">
         {caseStudyProps?.featuredArticle && (
           <StandardPageWidth>
             <CaseStudySection {...caseStudyProps} />

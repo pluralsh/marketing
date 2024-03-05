@@ -124,7 +124,7 @@ export function PlanCard({
 
 export function PlanCardsSection({ plans }: { plans: Plan[] }) {
   return (
-    <StandardPageWidth className="flex flex-col gap-xlarge [text-wrap:balance] pb-xxlarge md:pb-xxxlarge">
+    <StandardPageWidth className="flex flex-col gap-xlarge pb-xxlarge [text-wrap:balance] md:pb-xxxlarge">
       <Columns className="gap-y-xlarge">
         {plans.map((plan) => (
           <EqualColumn key={plan.key}>
@@ -161,9 +161,9 @@ export default function Pricing({
           <StandardPageWidth
             className={classNames(
               'flex flex-col gap-xlarge [text-wrap:balance]',
-              'pt-xxlarge pb-xxxlarge',
-              'md:pt-xxxxlarge md:pb-xxxlarge',
-              'xxl:pt-xxxxlarge xxl:pb-xxxxlarge'
+              'pb-xxxlarge pt-xxlarge',
+              'md:pb-xxxlarge md:pt-xxxxlarge',
+              'xxl:pb-xxxxlarge xxl:pt-xxxxlarge'
             )}
           >
             <ResponsiveText
@@ -192,9 +192,9 @@ export default function Pricing({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge'
           )}
         >
           <div>

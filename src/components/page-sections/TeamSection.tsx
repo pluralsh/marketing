@@ -206,8 +206,8 @@ export function TeamList({ members }: { members: TeamMemberFragment[] }) {
   return (
     <ul
       className={classNames(
-        'm-0 p-0 grid',
-        'grid-cols1 sm:grid-cols-2 lg:grid-cols-3 xl::grid-cols-4 max:grid-cols4',
+        'm-0 grid p-0',
+        'grid-cols1 max:grid-cols4 sm:grid-cols-2 lg:grid-cols-3 xl::grid-cols-4',
         'gap-large xl:gap-xlarge xxl:gap-xxlarge'
       )}
     >

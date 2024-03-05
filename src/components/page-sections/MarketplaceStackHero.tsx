@@ -67,9 +67,9 @@ export default function StackHero({ stack }: { stack: MinStack }) {
       $bgSuffix="@2x.jpg"
     >
       <div className="contentWrap">
-        <div className="flex flex-col p-large gap-small">
+        <div className="flex flex-col gap-small p-large">
           <div className="flex flex-row gap-medium">
-            <div className="flex flex-col gap-xsmall grow">
+            <div className="flex grow flex-col gap-xsmall">
               <Heading1>{stack.displayName}</Heading1>
               {numApps ? <TextLabel>{numApps} Apps</TextLabel> : null}
             </div>

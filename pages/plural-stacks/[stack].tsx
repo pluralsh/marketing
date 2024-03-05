@@ -262,7 +262,7 @@ export default function Stack({
                 >
                   {curApp?.description}
                 </ResponsiveText>
-                <div className="flex flex-wrap flex-col items-center md:items-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                <div className="flex flex-col flex-wrap items-center gap-medium md:flex-row md:items-start [&>*]:w-[max-content]">
                   <RepoSocials repo={curApp} />
                 </div>
                 <div className="flex">
@@ -287,7 +287,7 @@ export default function Stack({
         isStack
       /> */}
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-y-xxxxxlarge bg-fill-zero xxl:gap-y-xxxxxxlarge">
         <CompanyLogosSection
           logos={globalProps.siteSettings?.partner_logos?.items}
         />

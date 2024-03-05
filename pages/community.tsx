@@ -77,7 +77,7 @@ export default function Community({
                 journey.
               </ResponsiveText>
             </div>
-            <div className="flex gap-large flex-wrap">
+            <div className="flex flex-wrap gap-large">
               <Button
                 large
                 secondary
@@ -101,7 +101,7 @@ export default function Community({
                 Github
               </Button>
             </div>
-            <div className="flex gap-large flex-wrap">
+            <div className="flex flex-wrap gap-large">
               <ScrollToLink scrollToTarget="resources-section">
                 Resources
               </ScrollToLink>
@@ -113,7 +113,7 @@ export default function Community({
         </StandardPageWidth>
       </HeaderPad>
       <div className="bg-fill-zero">
-        <StandardPageWidth className="pt-xxxxlarge pb-xxxxxxlarge">
+        <StandardPageWidth className="pb-xxxxxxlarge pt-xxxxlarge">
           <div className="flex flex-col gap-y-xxlarge">
             <CalloutsSection callouts={callouts} />
             <EventsSection events={events} />
@@ -129,9 +129,9 @@ export default function Community({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge',
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >

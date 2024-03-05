@@ -49,7 +49,7 @@ export function CompanyLogosSection({
     <StandardPageWidth>
       <CompanyLogosSectionSC {...props}>
         <TextLabel
-          className="mb-large md:mb-xxlarge text-center"
+          className="mb-large text-center md:mb-xxlarge"
           color={theme.mode === 'light' ? 'text-light' : 'text-xlight'}
         >
           {heading || 'Used by fast-moving teams at'}

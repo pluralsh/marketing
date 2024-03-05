@@ -39,7 +39,7 @@ export default function BuildStackSection({
     <ColorModeProvider mode="light">
       <div className="bg-fill-zero">
         <StandardPageWidth className="py-xxxxxlarge columns:py-xxxxxxlarge">
-          <div className="text-center mb-xxlarge">
+          <div className="mb-xxlarge text-center">
             <ResponsiveText
               textStyles={{ '': 'mTitle2', md: 'mTitle1', xxl: 'mHero2' }}
             >
@@ -70,7 +70,7 @@ export default function BuildStackSection({
             </StackTabList>
             <TabPanel
               stateRef={tabStateRef}
-              className="grid gap-large grid-cols-1 md:grid-cols-3"
+              className="grid grid-cols-1 gap-large md:grid-cols-3"
             >
               {curTab?.stacks?.map((stack) => (
                 <StackCard
