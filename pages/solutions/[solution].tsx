@@ -7,7 +7,6 @@ import {
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import classNames from 'classnames'
 
 import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
@@ -50,6 +49,7 @@ import {
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,

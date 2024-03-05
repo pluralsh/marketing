@@ -2,7 +2,7 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
@@ -25,7 +25,7 @@ export function ContactHeader({
   return (
     <StandardPageWidth>
       <div
-        className={classNames(
+        className={clsx(
           'pt-xxxxlarge',
           'pb-xxxxxlarge',
           'lg:pt-xxxxxlarge',

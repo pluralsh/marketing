@@ -1,4 +1,9 @@
-import { type ComponentProps, type ReactNode, forwardRef } from 'react'
+import {
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactNode,
+  forwardRef,
+} from 'react'
 
 import {
   ArrowRightIcon,
@@ -12,33 +17,29 @@ import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
+import { cn } from '@src/utils/cn'
 
 import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
+import { Slot } from './Slot'
 
-export const Heading1 = styled.h1(({ theme }) => ({
-  ...theme.partials.marketingText.title2,
-  [mqs.md]: {
-    ...theme.partials.marketingText.title1,
-  },
-  [mqs.xxl]: {
-    ...theme.partials.marketingText.hero2,
-  },
-}))
+export const Heading1 = forwardRef<
+  HTMLHeadingElement,
+  HTMLAttributes<HTMLHeadingElement> & { asChild?: boolean }
+>(({ className, asChild, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'h1'
 
-export const Heading2 = styled.h2(({ theme }) => ({
-  ...theme.partials.marketingText.title2,
-  [mqs.md]: {
-    ...theme.partials.marketingText.title1,
-  },
-}))
-
-export const Heading3 = styled.h2(({ theme }) => ({
-  ...theme.partials.marketingText.title1,
-  [mqs.xxl]: {
-    ...theme.partials.marketingText.hero2,
-  },
-}))
+  return (
+    <Comp
+      ref={ref}
+      className={cn(
+        'text-mktg-title-2 md:text-mktg-title-1 xxl:text-mktg-hero-2',
+        className
+      )}
+      {...props}
+    />
+  )
+})
 
 const APP_PREFIX = 'a' as const
 const MARKETING_PREFIX = 'm' as const
@@ -197,6 +198,7 @@ export const TextLabel = styled.h4.withConfig(textPropFilter)(
       : { color: theme.colors['text-xlight'] }),
   })
 )
+
 const SubtitleWrap = styled.h2((_) => ({
   display: 'flex',
   position: 'relative',
@@ -238,12 +240,21 @@ export const Subtitle = forwardRef(
   )
 )
 
-export const AppTitle = styled.h1(({ theme }) => ({
-  ...theme.partials.marketingText.subtitle1,
-  [mqs.md]: {
-    ...theme.partials.marketingText.hero1,
-  },
-}))
+export function AppTitle({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <h1
+      className={cn('text-mktg-subtitle-1 md:text-mktg-hero-1', className)}
+      {...props}
+    >
+      hi
+      {children}
+    </h1>
+  )
+}
 
 const CtaIcon = styled((props) => (
   <span {...props}>

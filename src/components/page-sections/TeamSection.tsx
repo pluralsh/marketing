@@ -2,12 +2,12 @@ import { useCallback, useRef, useState } from 'react'
 
 import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
 import { getImageUrl } from '@src/consts/routes'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 
 import { ComponentLinkTab } from '../ComponentLinkTab'
 import { FullPageWidth, StandardPageWidth } from '../layout/LayoutHelpers'

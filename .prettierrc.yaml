@@ -10,3 +10,4 @@ overrides:
       parser: 'markdown'
 plugins:
   - 'prettier-plugin-tailwindcss'
+tailwindFunctions: ['clsx', 'cn', 'classNames']

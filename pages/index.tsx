@@ -19,7 +19,6 @@ import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import classNames from 'classnames'
 import {
   type Variants,
   motion,
@@ -51,6 +50,7 @@ import {
   type PageHomepageQuery,
   type PageHomepageQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 

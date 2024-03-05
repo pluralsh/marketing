@@ -13,10 +13,10 @@ import {
 } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import classNames from 'classnames'
 import styled, { useTheme } from 'styled-components'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
+import { cn as classNames } from '@src/utils/cn'
 
 import { StandardPageWidth } from './layout/LayoutHelpers'
 import { TextLimiter } from './layout/TextLimiter'

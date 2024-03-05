@@ -4,8 +4,6 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
-import classNames from 'classnames'
-
 import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
@@ -21,6 +19,7 @@ import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getJobListings } from '@src/data/getJobListings'
 import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 

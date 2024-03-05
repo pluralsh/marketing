@@ -40,7 +40,7 @@ import {
 } from '@src/components/page-sections/MarketplaceSearchBar'
 import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
-import { Body1, Heading1, Heading2, Subtitle } from '@src/components/Typography'
+import { Body1, Heading1, Subtitle } from '@src/components/Typography'
 import { type BasicRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -389,10 +389,10 @@ export default function Marketplace({
       <MarketplacePage className="mb-xxxxlarge">
         <div className="my-xxlarge xxl:mb-[80px]">
           <Heading1
-            as="h1"
+            asChild
             className="mb-medium"
           >
-            Explore the open-source marketplace
+            <h1>Explore the open-source marketplace</h1>
           </Heading1>
           <TextLimiter>
             <Body1
@@ -508,10 +508,10 @@ export default function Marketplace({
             <AddAppCard />
           </Sidecar>
           <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
-            <div {...props}>
-              <Heading2 className="mb-xlarge">
+            <div>
+              <h2 className="text-mktg-title-2 mb-xlarge md:text-mktg-title-1">
                 Don’t see what you’re looking for?
-              </Heading2>
+              </h2>
               <FAQList faqs={props.faqs} />
             </div>
           </MainContent>

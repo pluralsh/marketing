@@ -3,8 +3,6 @@ import { type ReactNode } from 'react'
 import { ColorModeProvider } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
-import classNames from 'classnames'
-
 import { FooterVariant } from '@src/components/FooterFull'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
@@ -12,9 +10,10 @@ import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { Cta, ResponsiveText } from '@src/components/Typography'
+import { Cta } from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
@@ -45,44 +44,25 @@ export default function About({
               'xl:pb-xxxxxxlarge xl:pt-xxxxlarge'
             )}
           >
-            <ResponsiveText
-              className="mb-medium"
-              as="h1"
-              color="text-xlight"
-              textStyles={{
-                '': 'mLabel',
-              }}
-            >
+            <h1 className="text-mktg-label mb-medium text-text-xlight">
               Our mission
-            </ResponsiveText>
+            </h1>
             <Columns className="gap-y-xxxxlarge columns:items-center">
               <EqualColumn>
                 <TextLimiter>
-                  <ResponsiveText
-                    className="[text-wrap:balance]"
-                    as="h2"
-                    textStyles={{
-                      '': 'mHero2',
-                      md: 'mHero1',
-                    }}
-                  >
+                  <h2 className="text-mktg-hero-2 [text-wrap:balance] md:text-mktg-hero-1">
                     We are building a flexible, scalable solution to application
                     delivery.
-                  </ResponsiveText>
+                  </h2>
                 </TextLimiter>
               </EqualColumn>
               <EqualColumn>
                 <TextLimiter>
-                  <ResponsiveText
-                    as="p"
-                    textStyles={{ '': 'mBody1' }}
-                    color="text-light"
-                    className="mb-xlarge"
-                  >
+                  <p className="text-mktg-body-1 mb-xlarge text-text-light">
                     At Plural, we believe that there is a better way to solve
                     the third major constraint—distributed systems operational
                     cost—that benefits OSS developers and DevOps teams alike.
-                  </ResponsiveText>
+                  </p>
                   <Cta
                     target="_blank"
                     href="https://www.plural.sh/blog/what-is-plural/"
@@ -95,13 +75,9 @@ export default function About({
           </StandardPageWidth>
           <StandardPageWidth>
             <div className="text-center">
-              <ResponsiveText
-                textStyles={{ '': 'aOverline' }}
-                color="text-light"
-                className="mb-xxlarge"
-              >
+              <h2 className="text-overline mb-xxlarge text-text-light">
                 We&rsquo;re backed by incredible investors
-              </ResponsiveText>
+              </h2>
               <div className="md:items:center mx-auto flex max-w-[852px] flex-col items-center gap-y-xxxxlarge md:flex-row md:justify-between">
                 <div>
                   <img
@@ -152,13 +128,6 @@ export default function About({
               }
               className="mb-xxxxlarge text-center"
             />
-            <TextLimiter className="mx-auto">
-              <ResponsiveText
-                textStyles={{ '': 'mBody2' }}
-                color="text-light"
-                className=""
-              />
-            </TextLimiter>
             <img
               alt="The Plural team standing together on a sidewalk in the French Quarter of New Orleans."
               src="/images/about/team.jpg"
@@ -271,21 +240,10 @@ mission to build something unique."
 function Value({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-y-xxlarge">
-      <ResponsiveText
-        as="h3"
-        textStyles={{ '': 'mTitle1' }}
-        color="text"
-      >
-        {label}
-      </ResponsiveText>
-      <ResponsiveText
-        as="div"
-        textStyles={{ '': 'mBody1' }}
-        color="text-light"
-        className="flex flex-col gap-medium"
-      >
+      <h3 className="text-mktg-title-1 text-text">{label}</h3>
+      <div className="text-mktg-body-1 flex flex-col gap-medium text-text-light">
         {children}
-      </ResponsiveText>
+      </div>
     </div>
   )
 }

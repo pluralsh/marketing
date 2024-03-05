@@ -90,6 +90,8 @@ export function StackCard({
   stack: MinStack
   size?: ComponentProps<typeof AppOrStackCard>['$size']
 } & ComponentProps<typeof AppOrStackCard>) {
+  return <div>thing</div>
+
   return (
     <AppOrStackCard
       $variant="stack"
@@ -97,7 +99,7 @@ export function StackCard({
       {...props}
     >
       <div className="stackTitleBox">
-        <div className="title"> {stack.displayName}</div>
+        <div className="title">hihi {stack.displayName}</div>
         <div>
           <Chip
             size="small"

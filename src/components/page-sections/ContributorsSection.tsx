@@ -1,10 +1,10 @@
 import { type ComponentProps } from 'react'
 
 import chroma from 'chroma-js'
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mShadows } from '@src/styles/extraStyles'
+import { cn as classNames } from '@src/utils/cn'
 
 import { type CommunityContributor } from '../../data/getGithubData'
 import { GradientBG } from '../layout/GradientBG'

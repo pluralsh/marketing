@@ -6,8 +6,6 @@ import {
 } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
-import classNames from 'classnames'
-
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
@@ -26,6 +24,7 @@ import {
 import { type PluralEvent, getEvents } from '@src/data/getEvents'
 import { getFeaturedContributors } from '@src/data/getFeaturedContributors'
 import { getContributors } from '@src/data/getGithubData'
+import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'

@@ -5,11 +5,10 @@ import {
   GoogleLogoIcon,
 } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
-
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ComponentLink } from '@src/components/Typography'
+import { cn as classNames } from '@src/utils/cn'
 
 export function TryPluralForFreeSection() {
   return (

@@ -2,7 +2,7 @@ import Link from '@pluralsh/design-system/dist/markdoc/components/Link'
 
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { Body1, Heading1 } from '@src/components/Typography'
+import { Heading1 } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 export default function Plural404() {
@@ -10,10 +10,10 @@ export default function Plural404() {
     <StandardPageWidth as={HeaderPad}>
       <div className="flex flex-col gap-y-medium ">
         <Heading1>Page not found</Heading1>
-        <Body1>
+        <p className="text-mktg-body-1 text-text-light">
           Sorry, this page doesn't appear to exist. Would you like to vist the{' '}
           <Link href="/">home page</Link>?
-        </Body1>
+        </p>
       </div>
     </StandardPageWidth>
   )

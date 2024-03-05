@@ -12,11 +12,11 @@ import {
   PadlockLockedIcon,
 } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 import { type Merge } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
+import { cn as classNames } from '@src/utils/cn'
 
 import { Columns, EqualColumn } from '../layout/Columns'
 import { StandardPageWidth } from '../layout/LayoutHelpers'

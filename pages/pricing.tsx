@@ -4,7 +4,6 @@ import { Button, Chip, ColorModeProvider } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { directusClient } from '@src/apollo-client'
@@ -24,6 +23,7 @@ import {
   type FaqListQuery,
   type FaqListQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'

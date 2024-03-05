@@ -5,8 +5,6 @@ import {
   type InferGetStaticPropsType,
 } from 'next'
 
-import classNames from 'classnames'
-
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
@@ -17,6 +15,7 @@ import { getLegalPageData, getLegalPageSlugs } from '@src/data/getLegalPageData'
 import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
 import { readMdPage } from '@src/markdoc/mdParser'
 import { type MarkdocPage } from '@src/markdoc/mdSchema'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 

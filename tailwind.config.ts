@@ -28,12 +28,15 @@ const screens = mapKeys(
   (_, key) => key
 )
 
-const typ = Object.fromEntries(
-  Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
+const typ = Object.fromEntries([
+  ...Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
     `.text-${kebabCase(selector)}`,
     styles,
-  ])
-)
+  ]),
+  ...Object.entries(styledTheme.partials.marketingText).map(
+    ([selector, styles]) => [`.text-mktg-${kebabCase(selector)}`, styles]
+  ),
+])
 
 export default {
   content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],

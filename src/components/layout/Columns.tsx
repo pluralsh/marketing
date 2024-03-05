@@ -1,6 +1,6 @@
 import { type ComponentProps } from 'react'
 
-import classNames from 'classnames'
+import { cn as classNames } from '@src/utils/cn'
 
 export function EqualColumn({ className, ...props }: ComponentProps<'div'>) {
   return (

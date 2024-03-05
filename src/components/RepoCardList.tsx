@@ -119,7 +119,7 @@ export function RepoCard({
           : 'xl:col-span-2'
       }
       variant="marketing"
-      as={Link}
+      forwardedAs={Link}
       href={`${appUrl(repo.name)}${urlParams ? `?${urlParams}` : ''}`}
       color="text"
       textDecoration="none"

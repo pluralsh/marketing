@@ -1,5 +1,3 @@
-import classNames from 'classnames'
-
 import {
   ConnectorLineH,
   ConnectorLineV,
@@ -11,6 +9,7 @@ import {
   HowWorksStepCol,
   IMAGE_MARGIN,
 } from '@src/components/HowPluralWorksComponents'
+import { cn as classNames } from '@src/utils/cn'
 
 import { BasicUl } from '../Typography'
 

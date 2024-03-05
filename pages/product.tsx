@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Script from 'next/script'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -25,6 +24,7 @@ import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralS
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'

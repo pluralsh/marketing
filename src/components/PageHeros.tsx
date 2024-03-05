@@ -1,12 +1,11 @@
 import { type ComponentProps, type ReactNode } from 'react'
 
-import classNames from 'classnames'
 import { type Merge } from 'type-fest'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { Body1, ResponsiveText } from '@src/components/Typography'
+import { cn as classNames } from '@src/utils/cn'
 
 export function HeroMainText({
   preHeading,
@@ -35,35 +34,19 @@ export function HeroMainText({
       {...props}
     >
       <div className="flex flex-col gap-y-xlarge">
-        <ResponsiveText
-          className="[text-wrap:balance]"
-          as="h1"
-          textStyles={{
-            '': 'mHero2',
-            md: 'mBigHeader',
-          }}
-        >
+        <h1 className="text-mktg-hero-2 [text-wrap:balance] md:text-mktg-big-header">
           {preHeading && (
             <>
-              <ResponsiveText
-                className="mb-medium block [text-wrap:balance]"
-                as="strong"
-                textStyles={{ '': 'mLabel' }}
-              >
+              <strong className="text-mktg-label mb-medium block [text-wrap:balance]">
                 {preHeading}
-              </ResponsiveText>
+              </strong>
               <span className="sr-only"> – </span>
             </>
           )}
           {heading}
-        </ResponsiveText>
+        </h1>
         {description && (
-          <Body1
-            as="div"
-            color="text-xlight"
-          >
-            {description}
-          </Body1>
+          <div className="text-mktg-body-1 text-text-xlight">{description}</div>
         )}
       </div>
       {ctas && <div>{ctas}</div>}
@@ -109,14 +92,9 @@ export function BasicPageHero({
           </EqualColumn>
           <EqualColumn>
             <TextLimiter>
-              <ResponsiveText
-                as="div"
-                textStyles={{ '': 'mBody1' }}
-                color="text-light"
-                className="[text-wrap:balance]"
-              >
+              <div className="text-mktg-body-1 text-text-light [text-wrap:balance]">
                 {intro}
-              </ResponsiveText>
+              </div>
             </TextLimiter>
           </EqualColumn>
         </Columns>

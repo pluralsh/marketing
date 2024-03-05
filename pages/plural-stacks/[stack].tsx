@@ -11,7 +11,6 @@ import { useRouter } from 'next/router'
 
 import { until } from '@open-draft/until'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
-import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 import { type MergeDeep } from 'type-fest'
@@ -60,6 +59,7 @@ import {
   type BasicRepoFragment,
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
