@@ -32,7 +32,7 @@ export function isSubrouteOf(route: string, compareRoute: string) {
   return route.startsWith(compareRoute)
 }
 
-export const providerToProviderIcon: Record<Provider, string> = {
+export const providerToProviderName: Record<Provider, string> = {
   GCP: 'GCP',
   AWS: 'AWS',
   AZURE: 'Azure',
@@ -41,6 +41,7 @@ export const providerToProviderIcon: Record<Provider, string> = {
   CUSTOM: 'Custom',
   KUBERNETES: 'Kubernetes',
   GENERIC: 'Generic',
+  LINODE: 'Linode',
 }
 
 export function toHtmlId(str) {
