@@ -1,7 +1,8 @@
 import { semanticColorCssVars, styledTheme } from '@pluralsh/design-system'
 
-import { mapKeys, mapValues } from 'lodash-es'
+import { kebabCase, mapKeys, mapValues } from 'lodash-es'
 import { type Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
 import { breakpoints } from './src/breakpoints'
 
@@ -27,6 +28,13 @@ const screens = mapKeys(
   (_, key) => key
 )
 
+const typ = Object.fromEntries(
+  Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
+    `.text-${kebabCase(selector)}`,
+    styles,
+  ])
+)
+
 export default {
   content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
   theme: {
@@ -36,5 +44,9 @@ export default {
     borderRadius,
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addComponents }) => {
+      addComponents(typ as any)
+    }),
+  ],
 } satisfies Config
