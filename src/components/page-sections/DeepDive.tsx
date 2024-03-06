@@ -1,48 +1,59 @@
-import styled from 'styled-components'
+import { type ComponentProps } from 'react'
 
-import { Overline } from '@src/components/Typography'
+import { Button } from '@pluralsh/design-system'
+import Link from 'next/link'
 
-import { DeepDiveButton } from './HomepageFeaturesSection'
+import { isExternalUrl } from '@src/utils/text'
 
-const DeepDiveSC = styled.ul(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing.large,
-  ul: {
-    textAlign: 'center',
-    textWrap: 'balance',
-    ...theme.partials.reset.list,
-    margin: `${-theme.spacing.large / 2}px`,
-    li: {
-      ...theme.partials.reset.li,
-      display: 'inline-block',
-      margin: `${theme.spacing.large / 2}px`,
-    },
-  },
-}))
+export function DeepDiveButton({
+  className,
+  ...props
+}: ComponentProps<typeof Button>) {
+  return (
+    <Button
+      className={className}
+      secondary
+      large
+      as={Link}
+      {...(isExternalUrl((props as any)?.href) ? { target: '_blank' } : {})}
+      {...props}
+    />
+  )
+}
 
 export function DeepDive() {
+  const liClass = 'p-0 inline-block m-[calc(theme(space.large)*0.5)]'
+
   return (
-    <DeepDiveSC>
-      <Overline
-        className="text-center"
-        as="h3"
-      >
+    <ul className="flex flex-col gap-large">
+      <h3 className="txt-overline text-center text-text-xlight">
         Deep dive into the product
-      </Overline>
-      <ul>
-        <DeepDiveButton href="/product">How Plural works</DeepDiveButton>
-        <DeepDiveButton href="https://www.youtube.com/@pluralsh/videos">
-          Demo videos
-        </DeepDiveButton>
-        <DeepDiveButton href="https://docs.plural.sh/getting-started/quickstart">
-          Quickstart guide
-        </DeepDiveButton>
-        <DeepDiveButton href="https://docs.plural.sh/operations/security">
-          Security concepts
-        </DeepDiveButton>
-        <DeepDiveButton href="/marketplace">Application catalog</DeepDiveButton>
+      </h3>
+      <ul className="m-[calc(theme(space.large)*-0.5)] list-none p-0 text-center [text-wrap:balance]">
+        <li className={liClass}>
+          <DeepDiveButton href="/product">How Plural works</DeepDiveButton>
+        </li>
+        <li className={liClass}>
+          <DeepDiveButton href="https://www.youtube.com/@pluralsh/videos">
+            Demo videos
+          </DeepDiveButton>
+        </li>
+        <li className={liClass}>
+          <DeepDiveButton href="https://docs.plural.sh/getting-started/quickstart">
+            Quickstart guide
+          </DeepDiveButton>
+        </li>
+        <li className={liClass}>
+          <DeepDiveButton href="https://docs.plural.sh/operations/security">
+            Security concepts
+          </DeepDiveButton>
+        </li>
+        <li className={liClass}>
+          <DeepDiveButton href="/marketplace">
+            Application catalog
+          </DeepDiveButton>
+        </li>
       </ul>
-    </DeepDiveSC>
+    </ul>
   )
 }

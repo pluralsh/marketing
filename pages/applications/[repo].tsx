@@ -271,10 +271,11 @@ export default function App({
                     <Code>
                       {`plural deploy --commit "deploying ${repo.name}"`}
                     </Code>
-                  </div>{' '}
+                  </div>
                   <Cta
                     className="mt-xlarge"
                     href={`https://docs.plural.sh/applications/${repo.name}`}
+                    target="_blank"
                   >
                     Read the install documentation
                   </Cta>

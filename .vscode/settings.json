@@ -11,7 +11,7 @@
     "css": "css"
   },
   "eslint.nodePath": ".yarn/sdks",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "dotenv.enableAutocloaking": false,
   "prettier.documentSelectors": ["*.{js,jsx,ts,tsx,graphql,md,mdpart}"],
@@ -19,5 +19,9 @@
     "*.md": "markdoc",
     "*.mdpart": "markdoc"
   },
-  "tailwindCSS.classAttributes": ["className", ".*[Ss]tyle.*", ".*[Cc]lass.*"]
+  "tailwindCSS.classAttributes": [
+    "className",
+    ".*[Ss]tyle.*",
+    ".*[Cc]lass.*"
+  ]
 }

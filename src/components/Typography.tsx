@@ -16,7 +16,6 @@ import { Slot } from '@radix-ui/react-slot'
 import clsx from 'clsx'
 import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
-import { twMerge } from 'tailwind-merge'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
@@ -143,21 +142,14 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
-const FAQBodySC = styled(AppBody2)(({ theme }) => ({
-  maxWidth: 'var(--text-width-limit)',
-  '& :any-link': {
-    ...theme.partials.marketingText.inlineLink,
-  },
-  '& :is(p, ul, ol) + :is(p, ul, ol)': {
-    marginTop: theme.spacing.medium,
-  },
-}))
-
-function FAQBody(props: ComponentProps<typeof FAQBodySC>) {
+function FAQBody({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <FAQBodySC
+    <div
+      className={cn(
+        'txt-body-2 max-w-[var(--text-width-limit)] text-text-light [&_:is(p,ul,ol)+:is(p,ul,ol)]:mt-medium',
+        className
+      )}
       color="text-light"
-      as="div"
       {...props}
     />
   )
@@ -177,15 +169,6 @@ export function FAQItem({
     </SingleAccordion>
   )
 }
-
-export const Overline = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
-    ...theme.partials.text.overline,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors['text-xlight'] }
-      : { color: theme.colors['text-xlight'] }),
-  })
-)
 
 export const ComponentLink = styled(Link).withConfig(textPropFilter)(
   ({ theme, color }) => ({
@@ -256,7 +239,6 @@ export function AppTitle({
       className={cn('txt-mktg-subtitle-1 md:txt-mktg-hero-1', className)}
       {...props}
     >
-      hi
       {children}
     </h1>
   )
@@ -282,19 +264,8 @@ function CtaIcon({ className, ...props }: { className?: string; props?: any }) {
   )
 }
 
-const thing = twMerge('txt-mktg-body-2-bold')
-
-console.log('thing', thing)
-
-const CtaSC = styled.a<{ $size: 'medium' | 'small' }>((_) => ({
-  '&:hover': {
-    [`& *[${CTA_ICON_ATTR}]`]: {
-      transform: 'translate(20%)',
-    },
-  },
-}))
-
 export function Cta({
+  className,
   children,
   size = 'medium',
   ...props
@@ -305,19 +276,19 @@ export function Cta({
   const { Link } = useNavigationContext()
 
   return (
-    <CtaSC
-      as={Link}
-      $size={size}
+    <Link
       className={clsx(
         'block cursor-pointer gap-medium hover:underline',
+        '[&_*[data-cta-icon]]:hover:translate-x-[20%]',
         size === 'small'
           ? 'txt-mktg-standalone-link text-text-light visited:text-text-light'
-          : 'txt-mktg-body-2-bold text-text visited:text-text'
+          : 'txt-mktg-body-2-bold text-text visited:text-text',
+        className
       )}
       {...props}
     >
       <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
-    </CtaSC>
+    </Link>
   )
 }
 

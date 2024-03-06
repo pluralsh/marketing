@@ -1,15 +1,7 @@
-import {
-  type ComponentProps,
-  type ReactElement,
-  type ReactNode,
-  cloneElement,
-  useRef,
-} from 'react'
+import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
-import { Button, ColorModeProvider } from '@pluralsh/design-system'
-import Link from 'next/link'
+import { ColorModeProvider } from '@pluralsh/design-system'
 
-import { isExternalUrl } from '@pluralsh/design-system/dist/markdoc/utils/text'
 import { useInView } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -270,19 +262,5 @@ export function HomepageFeaturesSection() {
         </StandardPageWidth>
       </div>
     </ColorModeProvider>
-  )
-}
-
-export function DeepDiveButton(props: ComponentProps<typeof Button>) {
-  return (
-    <li>
-      <Button
-        secondary
-        large
-        as={Link}
-        {...(isExternalUrl((props as any)?.href) ? { target: '_blank' } : {})}
-        {...props}
-      />
-    </li>
   )
 }
