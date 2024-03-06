@@ -19,7 +19,6 @@ import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import classNames from 'classnames'
 import {
   type Variants,
   motion,
@@ -51,6 +50,7 @@ import {
   type PageHomepageQuery,
   type PageHomepageQueryVariables,
 } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 
@@ -460,7 +460,7 @@ export default function Index({
             </div>
           }
           ctas={
-            <div className="flex gap-large flex-wrap justify-center">
+            <div className="flex flex-wrap justify-center gap-large">
               <Button
                 large
                 primary
@@ -472,7 +472,7 @@ export default function Index({
             </div>
           }
         />
-        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pt-0 lg:pb-xxlarge">
+        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pb-xxlarge lg:pt-0">
           <StandardPageWidth>
             <HeroImages />
           </StandardPageWidth>
@@ -504,7 +504,7 @@ export default function Index({
         <div className="bg-fill-zero">
           <StandardPageSection>
             <StandardPageWidth className="relative z-[1]">
-              <div className="grid grid-cols-1 items-stretch columns:grid-cols-3 gap-xlarge">
+              <div className="grid grid-cols-1 items-stretch gap-xlarge columns:grid-cols-3">
                 {articleCards?.map((c, i) => {
                   const size =
                     CARD_LAYOUTS[articleCards.length]?.[i]?.size || 'medium'

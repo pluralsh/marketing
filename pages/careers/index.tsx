@@ -4,8 +4,6 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
-import classNames from 'classnames'
-
 import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
@@ -21,6 +19,7 @@ import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getJobListings } from '@src/data/getJobListings'
 import { type MinJobListingFragment } from '@src/generated/graphqlDirectus'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -32,7 +31,7 @@ function PhotosSection() {
       <StandardPageWidth>
         <div
           className={classNames(
-            'grid grid-cols-1 sm:grid-cols-2 gap-large',
+            'grid grid-cols-1 gap-large sm:grid-cols-2',
             'columns:grid-cols-4'
           )}
         >
@@ -42,17 +41,17 @@ function PhotosSection() {
             url="/images/careers/photo-1.jpg"
           />
           <Photo
-            className="columns:row-span-2 columns:col-start-4"
+            className="columns:col-start-4 columns:row-span-2"
             ratios={{ '': '2 / 3', columns: null }}
             url="/images/careers/photo-2.jpg"
           />{' '}
           <Photo
-            className="sm:col-span-2 columns:row-start-1 columns:col-start-2"
+            className="sm:col-span-2 columns:col-start-2 columns:row-start-1"
             ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
             url="/images/careers/photo-group-1.jpg"
           />{' '}
           <Photo
-            className="sm:col-span-2 columns:row-start-2 columns:col-start-2"
+            className="sm:col-span-2 columns:col-start-2 columns:row-start-2"
             ratios={{ '': '1 / 1', sm: '2 / 1', columns: '5 / 2' }}
             url="/images/careers/photo-group-2.jpg"
           />
@@ -70,7 +69,7 @@ function Photo({
   return (
     <div
       className={classNames(
-        'overflow-hidden rounded-large relative',
+        'relative overflow-hidden rounded-large',
         className
       )}
     >

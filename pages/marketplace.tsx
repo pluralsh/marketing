@@ -40,7 +40,7 @@ import {
 } from '@src/components/page-sections/MarketplaceSearchBar'
 import StackHero from '@src/components/page-sections/MarketplaceStackHero'
 import { RepoCard, RepoCardList, StackCard } from '@src/components/RepoCardList'
-import { Body1, Heading1, Heading2, Subtitle } from '@src/components/Typography'
+import { Body1, Heading1, Subtitle } from '@src/components/Typography'
 import { type BasicRepo, getRepos, reposCache } from '@src/data/getRepos'
 import {
   type Categories,
@@ -350,8 +350,8 @@ export default function Marketplace({
         .filter((repository) => {
           if (!tags.length) return true
 
-          const repositoryTags = repository?.tags?.map(
-            (t) => t?.tag.toLowerCase()
+          const repositoryTags = repository?.tags?.map((t) =>
+            t?.tag.toLowerCase()
           )
 
           return tags.some((tag) => repositoryTags?.includes(tag))
@@ -389,10 +389,10 @@ export default function Marketplace({
       <MarketplacePage className="mb-xxxxlarge">
         <div className="my-xxlarge xxl:mb-[80px]">
           <Heading1
-            as="h1"
+            asChild
             className="mb-medium"
           >
-            Explore the open-source marketplace
+            <h1>Explore the open-source marketplace</h1>
           </Heading1>
           <TextLimiter>
             <Body1
@@ -508,10 +508,10 @@ export default function Marketplace({
             <AddAppCard />
           </Sidecar>
           <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
-            <div {...props}>
-              <Heading2 className="mb-xlarge">
+            <div>
+              <h2 className="txt-mktg-title-2 mb-xlarge md:txt-mktg-title-1">
                 Don’t see what you’re looking for?
-              </Heading2>
+              </h2>
               <FAQList faqs={props.faqs} />
             </div>
           </MainContent>
@@ -527,11 +527,11 @@ function AddAppCard() {
       <SidecarCardTitle className="mb-small">
         Add an application
       </SidecarCardTitle>
-      <PBody2 className="mb-small">
+      <p className="txt-body-2 mb-small text-text-light">
         Is something missing from the Plural marketplace? Are you a vendor who
         wants to add your solution? We'd love for you to onboard your
         application.
-      </PBody2>
+      </p>
       <CardCta
         target="_blank"
         href="https://docs.plural.sh/adding-new-application"
@@ -578,8 +578,8 @@ function SidecarCard({
         variant === 'fill-one'
           ? 'fill-one'
           : variant === 'feature'
-          ? 'linear-gradient(342.58deg, rgba(73, 79, 242, 0.5) 6.13%, rgba(73, 79, 242, 0) 101.49%), #21242C'
-          : 'transparent'
+            ? 'linear-gradient(342.58deg, rgba(73, 79, 242, 0.5) 6.13%, rgba(73, 79, 242, 0) 101.49%), #21242C'
+            : 'transparent'
       }
       {...props}
     />

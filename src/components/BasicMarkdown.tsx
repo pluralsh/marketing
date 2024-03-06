@@ -16,8 +16,18 @@ export default memo(({ text }: { text?: string | null }) => {
   return (
     <ReactMarkdown
       components={{
-        ul: ({ node: _, ...props }) => <BasicUl {...props} />,
-        p: ({ node: _, ...props }) => <BasicP {...props} />,
+        ul: ({ node: _, ref, ...props }) => (
+          <BasicUl
+            ref={ref as any}
+            {...props}
+          />
+        ),
+        p: ({ node: _, ref, ...props }) => (
+          <BasicP
+            ref={ref as any}
+            {...props}
+          />
+        ),
         a: ({ node: _, ...props }) => (
           <InlineLink
             as={Link}

@@ -6,8 +6,6 @@ import {
 } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 
-import classNames from 'classnames'
-
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
@@ -26,6 +24,7 @@ import {
 import { type PluralEvent, getEvents } from '@src/data/getEvents'
 import { getFeaturedContributors } from '@src/data/getFeaturedContributors'
 import { getContributors } from '@src/data/getGithubData'
+import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
@@ -77,7 +76,7 @@ export default function Community({
                 journey.
               </ResponsiveText>
             </div>
-            <div className="flex gap-large flex-wrap">
+            <div className="flex flex-wrap gap-large">
               <Button
                 large
                 secondary
@@ -101,7 +100,7 @@ export default function Community({
                 Github
               </Button>
             </div>
-            <div className="flex gap-large flex-wrap">
+            <div className="flex flex-wrap gap-large">
               <ScrollToLink scrollToTarget="resources-section">
                 Resources
               </ScrollToLink>
@@ -113,7 +112,7 @@ export default function Community({
         </StandardPageWidth>
       </HeaderPad>
       <div className="bg-fill-zero">
-        <StandardPageWidth className="pt-xxxxlarge pb-xxxxxxlarge">
+        <StandardPageWidth className="pb-xxxxxxlarge pt-xxxxlarge">
           <div className="flex flex-col gap-y-xxlarge">
             <CalloutsSection callouts={callouts} />
             <EventsSection events={events} />
@@ -129,9 +128,9 @@ export default function Community({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge',
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >

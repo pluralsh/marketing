@@ -5,8 +5,6 @@ import {
   type InferGetStaticPropsType,
 } from 'next'
 
-import classNames from 'classnames'
-
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
@@ -17,6 +15,7 @@ import { getLegalPageData, getLegalPageSlugs } from '@src/data/getLegalPageData'
 import { type MarkdownPageFragment } from '@src/generated/graphqlDirectus'
 import { readMdPage } from '@src/markdoc/mdParser'
 import { type MarkdocPage } from '@src/markdoc/mdSchema'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
@@ -93,9 +92,9 @@ export default function Legal({
           className={classNames(
             'bg-fill-zero',
             'flex flex-col',
-            'py-xxxxlarge gap-y-xxxxlarge',
-            'md:py-xxxxxlarge md:gap-y-xxxxxlarge',
-            'xxl:py-xxxxxxlarge xxl:gap-y-xxxxxxlarge',
+            'gap-y-xxxxlarge py-xxxxlarge',
+            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
+            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >

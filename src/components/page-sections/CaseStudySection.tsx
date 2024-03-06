@@ -54,7 +54,7 @@ export function CaseStudySection({
         )}
       </EqualColumn>
       <EqualColumn>
-        <div className="rounded-large overflow-hidden">
+        <div className="overflow-hidden rounded-large">
           {heroUrl && <img src={heroUrl} />}
         </div>
         {!isEmpty(apps) && (
@@ -68,7 +68,7 @@ export function CaseStudySection({
                 {featuredArticle.stack_label}
               </ResponsiveText>
             )}
-            <div className="w-full grid gap-small grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+            <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-small">
               {apps.map((app) => (
                 <AppCard
                   as={Link}

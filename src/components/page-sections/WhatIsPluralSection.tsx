@@ -1,8 +1,7 @@
 import { InlineCode } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
-
 import { ArchitectureContentSC } from '@pages/product'
+import { cn as classNames } from '@src/utils/cn'
 
 import { Columns, EqualColumn } from '../layout/Columns'
 import { CenteredSectionHead, SubsectionHead } from '../SectionHeads'

@@ -1,39 +1,39 @@
-import { type ComponentProps, forwardRef } from 'react'
+import {
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  forwardRef,
+} from 'react'
 
 import { CaretRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
-import styled from 'styled-components'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
-export const CardCtaSC = styled.a(({ theme }) => ({
-  ...theme.partials.marketingText.standaloneLink,
-  fontSize: 12,
-  display: 'flex',
-  flexDirection: 'row',
-  columnGap: theme.spacing.small,
-  paddingTop: theme.spacing.xsmall,
-  paddingBottom: theme.spacing.xsmall,
-  '._chevron': {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}))
+import { type AsChildProps } from '@src/utils/AsChildProps'
+import { cn } from '@src/utils/cn'
 
-export const CardCta = forwardRef(
-  ({ children, ...props }: ComponentProps<any>, ref) => {
-    const { Link } = useNavigationContext()
+export const CardCta = forwardRef<
+  HTMLAnchorElement,
+  AsChildProps<ComponentPropsWithoutRef<'a'>>
+>(({ children, asChild, className, ...props }: ComponentProps<any>, ref) => {
+  const { Link } = useNavigationContext()
+  const Comp = asChild ? Slot : Link
 
-    return (
-      <CardCtaSC
-        as={Link}
-        ref={ref}
-        {...props}
-      >
+  return (
+    <Comp
+      ref={ref}
+      className={cn(
+        'txt-mktg-standalone-link flex flex-row gap-x-small py-xsmall text-[12px]',
+        className
+      )}
+      data-card-cta
+      {...props}
+    >
+      <Slottable>
         <div>{children}</div>
-        <div className="_chevron">
-          <CaretRightIcon size={12} />
-        </div>
-      </CardCtaSC>
-    )
-  }
-)
+      </Slottable>
+      <div className="flex items-center justify-center">
+        <CaretRightIcon size={12} />
+      </div>
+    </Comp>
+  )
+})

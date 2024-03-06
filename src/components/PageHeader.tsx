@@ -10,12 +10,12 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 import chroma from 'chroma-js'
-import classNames from 'classnames'
 import { useKey } from 'rooks'
 import styled, { StyleSheetManager, useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
 import { DISCORD_LINK } from '@src/consts'
+import { cn as classNames } from '@src/utils/cn'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 

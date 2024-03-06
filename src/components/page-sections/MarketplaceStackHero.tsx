@@ -6,7 +6,7 @@ import { mqs } from '@src/breakpoints'
 import { stackUrl } from '@src/consts/routes'
 import { type MinStack } from '@src/data/getStacks'
 
-import { CardCta, CardCtaSC } from '../CardCta'
+import { CardCta } from '../CardCta'
 import { AppBody1, Heading1, TextLabel } from '../Typography'
 
 const knownStacks = new Set(['data', 'devops', 'security', 'observability'])
@@ -49,7 +49,7 @@ const StackHeroSC = styled.div<{
     backgroundImage: `url(${$bgPrefix}-xl${$bgSuffix})`,
     backgroundPosition: 'right center',
   },
-  [`&:hover ${CardCtaSC}`]: {
+  [`&:hover [data-card-cta]`]: {
     textDecoration: 'underline',
   },
 }))
@@ -67,9 +67,9 @@ export default function StackHero({ stack }: { stack: MinStack }) {
       $bgSuffix="@2x.jpg"
     >
       <div className="contentWrap">
-        <div className="flex flex-col p-large gap-small">
+        <div className="flex flex-col gap-small p-large">
           <div className="flex flex-row gap-medium">
-            <div className="flex flex-col gap-xsmall grow">
+            <div className="flex grow flex-col gap-xsmall">
               <Heading1>{stack.displayName}</Heading1>
               {numApps ? <TextLabel>{numApps} Apps</TextLabel> : null}
             </div>
@@ -85,7 +85,9 @@ export default function StackHero({ stack }: { stack: MinStack }) {
             </div>
           </div>
           <AppBody1 className="max-w-[320px]">{stack.description}</AppBody1>
-          <CardCta as="div">View stack</CardCta>
+          <CardCta asChild>
+            <div>View stack</div>
+          </CardCta>
         </div>
       </div>
     </StackHeroSC>

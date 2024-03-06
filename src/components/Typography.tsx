@@ -1,4 +1,9 @@
-import { type ComponentProps, type ReactNode, forwardRef } from 'react'
+import {
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactNode,
+  forwardRef,
+} from 'react'
 
 import {
   ArrowRightIcon,
@@ -7,38 +12,36 @@ import {
 } from '@pluralsh/design-system'
 import Link from 'next/link'
 
+import { Slot } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
+import { type AsChildProps } from '@src/utils/AsChildProps'
+import { cn } from '@src/utils/cn'
 
 import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
 
-export const Heading1 = styled.h1(({ theme }) => ({
-  ...theme.partials.marketingText.title2,
-  [mqs.md]: {
-    ...theme.partials.marketingText.title1,
-  },
-  [mqs.xxl]: {
-    ...theme.partials.marketingText.hero2,
-  },
-}))
+export const Heading1 = forwardRef<
+  HTMLHeadingElement,
+  AsChildProps<HTMLAttributes<HTMLHeadingElement>>
+>(({ className, asChild, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'h1'
 
-export const Heading2 = styled.h2(({ theme }) => ({
-  ...theme.partials.marketingText.title2,
-  [mqs.md]: {
-    ...theme.partials.marketingText.title1,
-  },
-}))
-
-export const Heading3 = styled.h2(({ theme }) => ({
-  ...theme.partials.marketingText.title1,
-  [mqs.xxl]: {
-    ...theme.partials.marketingText.hero2,
-  },
-}))
+  return (
+    <Comp
+      ref={ref}
+      className={cn(
+        'txt-mktg-title-2 md:txt-mktg-title-1 xxl:txt-mktg-hero-2',
+        className
+      )}
+      {...props}
+    />
+  )
+})
 
 const APP_PREFIX = 'a' as const
 const MARKETING_PREFIX = 'm' as const
@@ -136,21 +139,14 @@ export const AppBody2 = styled.p.withConfig(textPropFilter)(
   })
 )
 
-const FAQBodySC = styled(AppBody2)(({ theme }) => ({
-  maxWidth: 'var(--text-width-limit)',
-  '& :any-link': {
-    ...theme.partials.marketingText.inlineLink,
-  },
-  '& :is(p, ul, ol) + :is(p, ul, ol)': {
-    marginTop: theme.spacing.medium,
-  },
-}))
-
-function FAQBody(props: ComponentProps<typeof FAQBodySC>) {
+function FAQBody({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <FAQBodySC
+    <div
+      className={cn(
+        'txt-body-2 max-w-[var(--text-width-limit)] text-text-light [&_:is(p,ul,ol)+:is(p,ul,ol)]:mt-medium',
+        className
+      )}
       color="text-light"
-      as="div"
       {...props}
     />
   )
@@ -171,15 +167,6 @@ export function FAQItem({
   )
 }
 
-export const Overline = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
-    ...theme.partials.text.overline,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors['text-xlight'] }
-      : { color: theme.colors['text-xlight'] }),
-  })
-)
-
 export const ComponentLink = styled(Link).withConfig(textPropFilter)(
   ({ theme, color }) => ({
     ...theme.partials.marketingText.componentLink,
@@ -197,6 +184,7 @@ export const TextLabel = styled.h4.withConfig(textPropFilter)(
       : { color: theme.colors['text-xlight'] }),
   })
 )
+
 const SubtitleWrap = styled.h2((_) => ({
   display: 'flex',
   position: 'relative',
@@ -238,77 +226,68 @@ export const Subtitle = forwardRef(
   )
 )
 
-export const AppTitle = styled.h1(({ theme }) => ({
-  ...theme.partials.marketingText.subtitle1,
-  [mqs.md]: {
-    ...theme.partials.marketingText.hero1,
-  },
-}))
+export function AppTitle({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <h1
+      className={cn('txt-mktg-subtitle-1 md:txt-mktg-hero-1', className)}
+      {...props}
+    >
+      {children}
+    </h1>
+  )
+}
 
-const CtaIcon = styled((props) => (
-  <span {...props}>
-    <ArrowRightIcon
-      size={18}
-      // color={theme.colors.text}
-    />
-  </span>
-))(({ theme }) => ({
-  display: 'inline-block',
-  position: 'relative',
-  top: 2,
-  marginLeft: theme.spacing.medium,
-  transition: 'transform 0.2s ease',
-}))
+const CTA_ICON_ATTR = 'data-cta-icon'
 
-const CtaSC = styled.a<{ $size: 'medium' | 'small' }>(({ theme, $size }) => ({
-  display: 'block',
-  gap: theme.spacing.medium,
-  ...($size === 'small'
-    ? {
-        ...theme.partials.marketingText.standaloneLink,
-        '&, &:any-link': {
-          color: theme.colors['text-light'],
-        },
-      }
-    : {
-        ...theme.partials.marketingText.body2Bold,
-        fontWeight: 500,
-        '&, &:any-link': {
-          color: theme.colors.text,
-        },
-      }),
-  cursor: 'pointer',
+function CtaIcon({ className, ...props }: { className?: string; props?: any }) {
+  return (
+    <span
+      className={cn(
+        'relative top-[2px] ml-medium inline-block transition-transform duration-200 ease-in-out',
+        className
+      )}
+      {...{ [CTA_ICON_ATTR]: true }}
+      {...props}
+    >
+      <ArrowRightIcon
+        size={18}
+        // color={theme.colors.text}
+      />
+    </span>
+  )
+}
 
-  '&:hover': {
-    textDecoration: 'underline',
-    [CtaIcon]: {
-      transform: 'translate(20%)',
-    },
-  },
-}))
+export function Cta({
+  className,
+  children,
+  size = 'medium',
+  ...props
+}: {
+  size?: 'medium' | 'small'
+  children: ReactNode
+} & ComponentProps<typeof Link>) {
+  const { Link } = useNavigationContext()
 
-export const Cta = styled(
-  ({
-    children,
-    size = 'medium',
-    ...props
-  }: {
-    size?: 'medium' | 'small'
-    children: ReactNode
-  } & ComponentProps<'a'>) => {
-    const { Link } = useNavigationContext()
-
-    return (
-      <CtaSC
-        as={Link}
-        $size={size}
-        {...props}
-      >
-        <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
-      </CtaSC>
-    )
-  }
-)``
+  return (
+    <Link
+      className={clsx(
+        'block cursor-pointer gap-medium hover:underline',
+        '[&_*[data-cta-icon]]:hover:translate-x-[20%]',
+        size === 'small'
+          ? 'txt-mktg-standalone-link text-text-light visited:text-text-light'
+          : 'txt-mktg-body-2-bold text-text visited:text-text',
+        className
+      )}
+      {...props}
+    >
+      <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
+    </Link>
+  )
+}
 
 export const InlineLink = styled.a(({ theme }) => ({
   ...theme.partials.text.inlineLink,

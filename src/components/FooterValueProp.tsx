@@ -13,10 +13,10 @@ import {
 } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import classNames from 'classnames'
 import styled, { useTheme } from 'styled-components'
 
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
+import { cn as classNames } from '@src/utils/cn'
 
 import { StandardPageWidth } from './layout/LayoutHelpers'
 import { TextLimiter } from './layout/TextLimiter'
@@ -37,7 +37,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
             Build and scale infrastructure within minutes.
           </ResponsiveText>
         </TextLimiter>
-        <div className="flex gap-medium mt-xlarge">
+        <div className="mt-xlarge flex gap-medium">
           <Button
             primary
             large
@@ -106,14 +106,14 @@ function ValueProp({
       <ResponsiveText
         as="h3"
         textStyles={{ '': 'mSubtitle1' }}
-        className="self-center mt-[-0.15em]"
+        className="mt-[-0.15em] self-center"
       >
         <TextLimiter as="span">{title}</TextLimiter>
       </ResponsiveText>
       <ResponsiveText
         as="p"
         textStyles={{ '': 'mBody2' }}
-        className="grid col-start-2"
+        className="col-start-2 grid"
       >
         <TextLimiter as="span">{children}</TextLimiter>
       </ResponsiveText>

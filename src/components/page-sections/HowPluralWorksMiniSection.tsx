@@ -12,11 +12,11 @@ import {
   PadlockLockedIcon,
 } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 import { type Merge } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
+import { cn as classNames } from '@src/utils/cn'
 
 import { Columns, EqualColumn } from '../layout/Columns'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
@@ -81,7 +81,7 @@ function HowPluralWorksMiniSection() {
           <EqualColumn
             className={classNames(
               'flex flex-col gap-y-xxxlarge',
-              'max-w-[380px] sm:max-w-[540px] mx-auto columns:max-w-[unset]'
+              'mx-auto max-w-[380px] sm:max-w-[540px] columns:max-w-[unset]'
             )}
           >
             <TextLimiter className="flex flex-col gap-y-large md:gap-y-xlarge">
@@ -96,7 +96,7 @@ function HowPluralWorksMiniSection() {
                 'grid grid-cols-1',
                 'sm:grid-cols-2',
                 'gap-y-xxlarge sm:gap-y-xxxlarge',
-                'gap-x-xxlarge justify-between'
+                'justify-between gap-x-xxlarge'
               )}
             >
               <HowWorksInfo

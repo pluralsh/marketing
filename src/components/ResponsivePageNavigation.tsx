@@ -3,11 +3,11 @@ import { type ComponentProps, type Dispatch, type SetStateAction } from 'react'
 import { Button, CaretLeftIcon, CaretRightIcon } from '@pluralsh/design-system'
 import { type ButtonProps } from 'honorable'
 
-import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { cn as classNames } from '@src/utils/cn'
 
 export function PageButton({
   selected,

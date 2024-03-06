@@ -5,19 +5,18 @@ import {
   GoogleLogoIcon,
 } from '@pluralsh/design-system'
 
-import classNames from 'classnames'
-
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ComponentLink } from '@src/components/Typography'
+import { cn as classNames } from '@src/utils/cn'
 
 export function TryPluralForFreeSection() {
   return (
     <StandardPageWidth>
       <div className={classNames('flex flex-col gap-xlarge')}>
         <CenteredSectionHead heading="Try Plural for free" />
-        <div className="text-center flex flex-wrap flex-col gap-y-small mx-auto">
-          <div className="flex flex-col md:flex-row justify-center gap-y-small gap-x-large">
+        <div className="mx-auto flex flex-col flex-wrap gap-y-small text-center">
+          <div className="flex flex-col justify-center gap-x-large gap-y-small md:flex-row">
             <Button
               startIcon={<GoogleLogoIcon fullColor />}
               secondary

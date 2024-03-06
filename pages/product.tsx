@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Script from 'next/script'
 
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -25,6 +24,7 @@ import { WhatIsPluralSection } from '@src/components/page-sections/WhatIsPluralS
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getProductPageData } from '@src/data/getProductPageData'
 import { useAnimationPauser } from '@src/hooks/useAnimationPauser'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
@@ -120,7 +120,7 @@ export default function Index({
               'xl:pb-[240px]'
             )}
           >
-            <Columns className="columns:items-center gap-y-xxxlarge">
+            <Columns className="gap-y-xxxlarge columns:items-center">
               <EqualColumn className="justify-start">
                 <HeroMainText
                   preHeading="Product"
@@ -167,7 +167,7 @@ export default function Index({
         <StandardPageWidth>
           <CenteredSectionHead
             heading="How Plural works"
-            className="md:mb-xxlarge mb-xxlarge"
+            className="mb-xxlarge md:mb-xxlarge"
           />
           <HowPluralWorksSection />
         </StandardPageWidth>
@@ -203,7 +203,7 @@ export default function Index({
             <StandardPageWidth>
               <div
                 className={classNames(
-                  'flex flex-col gap-xlarge justify-center items-center',
+                  'flex flex-col items-center justify-center gap-xlarge',
                   'md:flex-row'
                 )}
               >

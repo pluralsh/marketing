@@ -11,7 +11,6 @@ import { useRouter } from 'next/router'
 
 import { until } from '@open-draft/until'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
-import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 import { type MergeDeep } from 'type-fest'
@@ -33,12 +32,7 @@ import { HPWMiniSectionAppStacks } from '@src/components/page-sections/HowPlural
 import { ProviderIcon } from '@src/components/ProviderIcon'
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import { RepoSocials } from '@src/components/RepoSocials'
-import {
-  AppTitle,
-  Body1,
-  Overline,
-  ResponsiveText,
-} from '@src/components/Typography'
+import { AppTitle } from '@src/components/Typography'
 import { getProviderIcon, getStackMeta } from '@src/consts'
 import { appUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos, normalizeRepo } from '@src/data/getRepos'
@@ -60,6 +54,7 @@ import {
   type BasicRepoFragment,
   type StackCollectionFragment,
 } from '@src/generated/graphqlPlural'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
@@ -153,13 +148,11 @@ export default function Stack({
                 Build {startsWithVowel(stack.displayName) ? 'an' : 'a'}{' '}
                 {stack.displayName} Stack with Plural
               </AppTitle>
-              <Body1 color="text-light">
-                {stack.description}
-                {/* Orchestrate all your applications to work in harmony with{' '}
-                {repo.displayName} on Plural. */}
-              </Body1>
+              <p className="txt-body-1 text-text-light">{stack.description}</p>
               <div className="flex flex-col gap-medium">
-                <Overline>Available providers</Overline>
+                <h3 className="txt-overline text-text-xlight">
+                  Available providers
+                </h3>
                 {!isEmpty(providers) && (
                   <div className="flex gap-small">
                     {providers.map((provider) => (
@@ -194,23 +187,10 @@ export default function Stack({
             />
           </EqualColumn>
         </Columns>
-        <div
-          className={classNames(
-            'flex',
-            'flex-col',
-            // 'gap-large',
-            'py-xxxxlarge',
-            'xl:py-xxxxxxlarge'
-          )}
-        >
+        <div className="flex flex-col py-xxxxlarge xl:py-xxxxxxlarge">
           <Columns className="mb-small">
             <EqualColumn>
-              <ResponsiveText
-                color="text-xlight"
-                textStyles={{ '': 'mLabel' }}
-              >
-                The stack
-              </ResponsiveText>
+              <h2 className="txt-mktg-label text-text-xlight">The stack</h2>
             </EqualColumn>
             <EqualColumn />
           </Columns>
@@ -247,22 +227,13 @@ export default function Stack({
                 className="flex flex-col gap-large"
                 stateRef={appsTabStateRef}
               >
-                <ResponsiveText
-                  as="h3"
-                  textStyles={{ '': 'mTitle1' }}
-                  className="text-center md:text-left"
-                >
+                <h3 className="txt-mktg-title-1 text-center md:text-left">
                   About {curApp?.displayName}
-                </ResponsiveText>
-                <ResponsiveText
-                  as="p"
-                  color="text-xlight"
-                  textStyles={{ '': 'mBody2' }}
-                  className="text-center md:text-left"
-                >
+                </h3>
+                <p className="txt-mktg-body-2 text-center text-text-xlight md:text-left">
                   {curApp?.description}
-                </ResponsiveText>
-                <div className="flex flex-wrap flex-col items-center md:items-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                </p>
+                <div className="flex flex-col flex-wrap items-center gap-medium md:flex-row md:items-start [&>*]:w-[max-content]">
                   <RepoSocials repo={curApp} />
                 </div>
                 <div className="flex">
@@ -287,7 +258,7 @@ export default function Stack({
         isStack
       /> */}
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-y-xxxxxlarge bg-fill-zero xxl:gap-y-xxxxxxlarge">
         <CompanyLogosSection
           logos={globalProps.siteSettings?.partner_logos?.items}
         />

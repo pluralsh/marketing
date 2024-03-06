@@ -29,7 +29,7 @@ export function FullFooter({
   return (
     <StickyFooterSC className={className}>
       {showValueProp && (
-        <div className="pt-xxxxxlarge pb-xlarge md:pt-xxxxxxlarge md:pb-xxxxlarge">
+        <div className="pb-xlarge pt-xxxxxlarge md:pb-xxxxlarge md:pt-xxxxxxlarge">
           <FooterValueProp />
         </div>
       )}

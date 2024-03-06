@@ -22,8 +22,8 @@ const AppOrStackCard = styled.div<{
     $size === 'small'
       ? theme.spacing.small
       : $size === 'xsmall'
-      ? theme.spacing.xsmall
-      : theme.spacing.large,
+        ? theme.spacing.xsmall
+        : theme.spacing.large,
   paddingBottom: $variant === 'stack' ? theme.spacing.small : undefined,
   '&, &:focus-visible': {
     backgroundColor: $active
@@ -90,6 +90,8 @@ export function StackCard({
   stack: MinStack
   size?: ComponentProps<typeof AppOrStackCard>['$size']
 } & ComponentProps<typeof AppOrStackCard>) {
+  return <div>thing</div>
+
   return (
     <AppOrStackCard
       $variant="stack"
@@ -97,7 +99,7 @@ export function StackCard({
       {...props}
     >
       <div className="stackTitleBox">
-        <div className="title"> {stack.displayName}</div>
+        <div className="title">hihi {stack.displayName}</div>
         <div>
           <Chip
             size="small"
@@ -152,8 +154,8 @@ export const AppCard = forwardRef(
             size === 'xsmall'
               ? 'xxsmall'
               : size === 'small'
-              ? 'xsmall'
-              : 'small'
+                ? 'xsmall'
+                : 'small'
           }
           url={app.icon || app.darkIcon || ''}
         />

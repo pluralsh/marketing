@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 
 import { until } from '@open-draft/until'
 import { providerToProviderName } from '@pluralsh/design-system/dist/markdoc/utils/text'
-import classNames from 'classnames'
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 import { type MergeDeep } from 'type-fest'
@@ -38,14 +37,7 @@ import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSec
 import { TestimonialsSection } from '@src/components/QuoteCards'
 import RepoReadmeMd from '@src/components/RepoReadme/RepoReadmeMd'
 import { SingleAccordion } from '@src/components/SingleAccordion'
-import {
-  AppTitle,
-  Body1,
-  Body2,
-  Cta,
-  Heading3,
-  Overline,
-} from '@src/components/Typography'
+import { AppTitle, Cta } from '@src/components/Typography'
 import { QUICKSTART_VIDEO_URL, getAppMeta, getProviderIcon } from '@src/consts'
 import {
   type BasicRepo,
@@ -75,6 +67,7 @@ import {
   type RecipesQuery,
   type RecipesQueryVariables,
 } from '@src/generated/graphqlPlural'
+import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
@@ -198,10 +191,7 @@ export default function App({
           <EqualColumn>
             <TextLimiter className="flex flex-col gap-large">
               <AppPageTitle app={repo} />
-              <Body1
-                as="div"
-                color="text-light"
-              >
+              <div className="txt-mktg-body-1 text-text-light">
                 {heroText ? (
                   <BasicMarkdoc
                     text={heroText}
@@ -210,9 +200,9 @@ export default function App({
                 ) : (
                   <p>{repo.description}</p>
                 )}
-              </Body1>
+              </div>
               <div className="flex flex-col gap-medium">
-                <Overline>Available providers</Overline>
+                <p className="txt-overline">Available providers</p>
                 {!isEmpty(recipeTabs) ? (
                   <div className="flex gap-small">
                     {recipeTabs.map((provider) => (
@@ -225,7 +215,7 @@ export default function App({
                     ))}
                   </div>
                 ) : (
-                  <Body2>Coming soon</Body2>
+                  <p className="txt-mktg-body-2 text-text-light">Coming soon</p>
                 )}
               </div>
             </TextLimiter>
@@ -250,23 +240,20 @@ export default function App({
           <Columns className={classNames('gap-y-xxxlarge')}>
             <EqualColumn>
               <TextLimiter>
-                <Heading3
-                  className="mb-large"
-                  as="h2"
-                >
+                <h2 className="txt-mktg-title-1 mb-large xxl:txt-mktg-hero-2">
                   <BasicMarkdoc
                     text={secondaryTitle}
                     renderP={false}
                     variables={{ appName: repo.displayName }}
                   />
-                </Heading3>
-                <Body2 as="div">
+                </h2>
+                <div className="txt-mktg-body-2 text-text-light">
                   <BasicMarkdoc
                     text={secondaryText}
                     variables={{ appName: repo.displayName }}
                   />
-                </Body2>
-                <div className="mt-large flex flex-wrap flex-col justify-start md:flex-row gap-medium [&>*]:w-[max-content]">
+                </div>
+                <div className="mt-large flex flex-col flex-wrap justify-start gap-medium md:flex-row [&>*]:w-[max-content]">
                   <RepoSocials repo={repo} />
                 </div>
               </TextLimiter>
@@ -275,19 +262,20 @@ export default function App({
               {!isEmpty(recipeTabs) && (
                 <>
                   <div className="flex flex-col gap-medium">
-                    <Body2 className="columns:mt-[17px]">
+                    <div className="txt-mktg-body-2 text-text-light columns:mt-[17px]">
                       Deploying {repo.displayName} is a matter of executing
                       these 3 commands:
-                    </Body2>
+                    </div>
                     <Code tabs={recipeTabs} />
                     <Code>plural build</Code>
                     <Code>
                       {`plural deploy --commit "deploying ${repo.name}"`}
                     </Code>
-                  </div>{' '}
+                  </div>
                   <Cta
                     className="mt-xlarge"
                     href={`https://docs.plural.sh/applications/${repo.name}`}
+                    target="_blank"
                   >
                     Read the install documentation
                   </Cta>
@@ -297,7 +285,7 @@ export default function App({
           </Columns>
           {repo?.readme && (
             <SingleAccordion label={`${repo.displayName}’s readme`}>
-              <div className="pt-medium pb-xlarge mx-auto max-w-[800px]">
+              <div className="mx-auto max-w-[800px] pb-xlarge pt-medium">
                 <RepoReadmeMd
                   text={repo.readme ?? ''}
                   gitUrl={repo.gitUrl ?? ''}
@@ -310,7 +298,7 @@ export default function App({
       </StandardPageWidth>
       <HPWMiniSectionAppStacks />
       {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
-      <StandardPageSection className="bg-fill-zero flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-y-xxxxxlarge bg-fill-zero xxl:gap-y-xxxxxxlarge">
         <CompanyLogosSection
           logos={globalProps.siteSettings?.partner_logos?.items}
         />
@@ -336,7 +324,7 @@ export function CaseStudyFAQSection({
 }) {
   return (
     <ColorModeProvider mode="light">
-      <StandardPageSection className="flex flex-col bg-fill-zero gap-xxxlarge md:gap-xxxxlarge columns:gap-xxxxxlarge">
+      <StandardPageSection className="flex flex-col gap-xxxlarge bg-fill-zero md:gap-xxxxlarge columns:gap-xxxxxlarge">
         {caseStudyProps?.featuredArticle && (
           <StandardPageWidth>
             <CaseStudySection {...caseStudyProps} />
