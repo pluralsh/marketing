@@ -18,5 +18,6 @@
   "files.associations": {
     "*.md": "markdoc",
     "*.mdpart": "markdoc"
-  }
+  },
+  "tailwindCSS.classAttributes": ["className", ".*[Ss]tyle.*", ".*[Cc]lass.*"]
 }

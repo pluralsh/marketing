@@ -28,15 +28,46 @@ const screens = mapKeys(
   (_, key) => key
 )
 
+/**
+ * Deep sorts the keys of an object alphabetically while putting members that
+ * are objects at the end
+ *
+ * @param obj - The object to sort
+ */
+function sortStyleKeys<T extends Record<string, any>>(obj: T): T {
+  const keys = Object.keys(obj).sort((a, b) => {
+    if (typeof obj[a] === 'object' && typeof obj[b] !== 'object') {
+      return 1
+    }
+    if (typeof obj[b] === 'object' && typeof obj[a] !== 'object') {
+      return -1
+    }
+
+    return a.localeCompare(b, 'en')
+  })
+
+  return Object.fromEntries(
+    keys.map((key) => {
+      if (typeof obj[key] === 'object') {
+        return [key, sortStyleKeys(obj[key])]
+      }
+
+      return [key, obj[key]]
+    })
+  ) as T
+}
+
+// Sorting the keys makes the generated tailwind classes easier to read
 const textStyles = Object.fromEntries([
-  ...Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
-    `.txt-${kebabCase(selector)}`,
-    styles,
-  ]),
-  ...Object.entries(styledTheme.partials.marketingText).map(
-    ([selector, styles]) => [`.txt-mktg-${kebabCase(selector)}`, styles]
+  ...Object.entries(sortStyleKeys(styledTheme.partials.text)).map(
+    ([selector, styles]) => [`${kebabCase(selector)}`, styles]
+  ),
+  ...Object.entries(sortStyleKeys(styledTheme.partials.marketingText)).map(
+    ([selector, styles]) => [`mktg-${kebabCase(selector)}`, styles]
   ),
 ])
+
+export const textStyleKeys = Object.keys(textStyles)
 
 export default {
   content: ['./src/components/**/*.{jsx,tsx}', './pages/**/*.{jsx,tsx}'],
@@ -49,7 +80,7 @@ export default {
   },
   plugins: [
     plugin(({ addComponents }) => {
-      addComponents(textStyles as any)
+      addComponents(mapKeys(textStyles, (_, key) => `.txt-${key}`) as any)
     }),
   ],
 } satisfies Config
