@@ -527,11 +527,11 @@ function AddAppCard() {
       <SidecarCardTitle className="mb-small">
         Add an application
       </SidecarCardTitle>
-      <PBody2 className="mb-small">
+      <p className="txt-body-2 mb-small text-text-light">
         Is something missing from the Plural marketplace? Are you a vendor who
         wants to add your solution? We'd love for you to onboard your
         application.
-      </PBody2>
+      </p>
       <CardCta
         target="_blank"
         href="https://docs.plural.sh/adding-new-application"

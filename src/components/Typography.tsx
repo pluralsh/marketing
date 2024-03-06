@@ -19,14 +19,11 @@ import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
+import { type AsChildProps } from '@src/utils/AsChildProps'
 import { cn } from '@src/utils/cn'
 
 import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
-
-export type AsChildProps<DefaultElementProps> = {
-  asChild?: boolean
-} & DefaultElementProps
 
 export const Heading1 = forwardRef<
   HTMLHeadingElement,
