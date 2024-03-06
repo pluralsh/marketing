@@ -28,9 +28,9 @@ export const CardCta = forwardRef<
       data-card-cta
       {...props}
     >
-      <div>
-        <Slottable>{children}</Slottable>
-      </div>
+      <Slottable>
+        <div>{children}</div>
+      </Slottable>
       <div className="flex items-center justify-center">
         <CaretRightIcon size={12} />
       </div>
