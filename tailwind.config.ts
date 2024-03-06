@@ -30,11 +30,11 @@ const screens = mapKeys(
 
 const textStyles = Object.fromEntries([
   ...Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
-    `.text-${kebabCase(selector)}`,
+    `.txt-${kebabCase(selector)}`,
     styles,
   ]),
   ...Object.entries(styledTheme.partials.marketingText).map(
-    ([selector, styles]) => [`.text-mktg-${kebabCase(selector)}`, styles]
+    ([selector, styles]) => [`.txt-mktg-${kebabCase(selector)}`, styles]
   ),
 ])
 

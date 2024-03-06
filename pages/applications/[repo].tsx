@@ -191,7 +191,7 @@ export default function App({
           <EqualColumn>
             <TextLimiter className="flex flex-col gap-large">
               <AppPageTitle app={repo} />
-              <div className="text-mktg-body-1 text-text-light">
+              <div className="txt-mktg-body-1 text-text-light">
                 {heroText ? (
                   <BasicMarkdoc
                     text={heroText}
@@ -202,7 +202,7 @@ export default function App({
                 )}
               </div>
               <div className="flex flex-col gap-medium">
-                <p className="text-overline">Available providers</p>
+                <p className="txt-overline">Available providers</p>
                 {!isEmpty(recipeTabs) ? (
                   <div className="flex gap-small">
                     {recipeTabs.map((provider) => (
@@ -215,9 +215,7 @@ export default function App({
                     ))}
                   </div>
                 ) : (
-                  <p className="text-mktg-body-2 text-text-light">
-                    Coming soon
-                  </p>
+                  <p className="txt-mktg-body-2 text-text-light">Coming soon</p>
                 )}
               </div>
             </TextLimiter>
@@ -242,14 +240,14 @@ export default function App({
           <Columns className={classNames('gap-y-xxxlarge')}>
             <EqualColumn>
               <TextLimiter>
-                <h2 className="text-mktg-title-1 mb-large xxl:text-mktg-hero-2">
+                <h2 className="txt-mktg-title-1 mb-large xxl:txt-mktg-hero-2">
                   <BasicMarkdoc
                     text={secondaryTitle}
                     renderP={false}
                     variables={{ appName: repo.displayName }}
                   />
                 </h2>
-                <div className="text-mktg-body-2 text-text-light">
+                <div className="txt-mktg-body-2 text-text-light">
                   <BasicMarkdoc
                     text={secondaryText}
                     variables={{ appName: repo.displayName }}
@@ -264,7 +262,7 @@ export default function App({
               {!isEmpty(recipeTabs) && (
                 <>
                   <div className="flex flex-col gap-medium">
-                    <div className="text-mktg-body-2 text-text-light columns:mt-[17px]">
+                    <div className="txt-mktg-body-2 text-text-light columns:mt-[17px]">
                       Deploying {repo.displayName} is a matter of executing
                       these 3 commands:
                     </div>

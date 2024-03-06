@@ -509,7 +509,7 @@ export default function Marketplace({
           </Sidecar>
           <MainContent className="mt-xxlarge md:mt-[80px] xxl:mt-xxxxlarge">
             <div>
-              <h2 className="text-mktg-title-2 mb-xlarge md:text-mktg-title-1">
+              <h2 className="txt-mktg-title-2 mb-xlarge md:txt-mktg-title-1">
                 Don’t see what you’re looking for?
               </h2>
               <FAQList faqs={props.faqs} />

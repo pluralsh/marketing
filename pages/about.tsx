@@ -44,13 +44,13 @@ export default function About({
               'xl:pb-xxxxxxlarge xl:pt-xxxxlarge'
             )}
           >
-            <h1 className="text-mktg-label mb-medium text-text-xlight">
+            <h1 className="txt-mktg-label mb-medium text-text-xlight">
               Our mission
             </h1>
             <Columns className="gap-y-xxxxlarge columns:items-center">
               <EqualColumn>
                 <TextLimiter>
-                  <h2 className="text-mktg-hero-2 [text-wrap:balance] md:text-mktg-hero-1">
+                  <h2 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-hero-1">
                     We are building a flexible, scalable solution to application
                     delivery.
                   </h2>
@@ -58,7 +58,7 @@ export default function About({
               </EqualColumn>
               <EqualColumn>
                 <TextLimiter>
-                  <p className="text-mktg-body-1 mb-xlarge text-text-light">
+                  <p className="txt-mktg-body-1 mb-xlarge text-text-light">
                     At Plural, we believe that there is a better way to solve
                     the third major constraint—distributed systems operational
                     cost—that benefits OSS developers and DevOps teams alike.
@@ -75,7 +75,7 @@ export default function About({
           </StandardPageWidth>
           <StandardPageWidth>
             <div className="text-center">
-              <h2 className="text-overline mb-xxlarge text-text-light">
+              <h2 className="txt-overline mb-xxlarge text-text-light">
                 We&rsquo;re backed by incredible investors
               </h2>
               <div className="md:items:center mx-auto flex max-w-[852px] flex-col items-center gap-y-xxxxlarge md:flex-row md:justify-between">
@@ -240,8 +240,8 @@ mission to build something unique."
 function Value({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-y-xxlarge">
-      <h3 className="text-mktg-title-1 text-text">{label}</h3>
-      <div className="text-mktg-body-1 flex flex-col gap-medium text-text-light">
+      <h3 className="txt-mktg-title-1 text-text">{label}</h3>
+      <div className="txt-mktg-body-1 flex flex-col gap-medium text-text-light">
         {children}
       </div>
     </div>

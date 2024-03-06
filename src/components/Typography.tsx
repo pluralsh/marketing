@@ -13,8 +13,10 @@ import {
 import Link from 'next/link'
 
 import { Slot } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
+import { twMerge } from 'tailwind-merge'
 import { type PascalCase } from 'type-fest'
 
 import { type Breakpoint, mqs } from '@src/breakpoints'
@@ -37,7 +39,7 @@ export const Heading1 = forwardRef<
     <Comp
       ref={ref}
       className={cn(
-        'text-mktg-title-2 md:text-mktg-title-1 xxl:text-mktg-hero-2',
+        'txt-mktg-title-2 md:txt-mktg-title-1 xxl:txt-mktg-hero-2',
         className
       )}
       {...props}
@@ -251,7 +253,7 @@ export function AppTitle({
 }: HTMLAttributes<HTMLDivElement>) {
   return (
     <h1
-      className={cn('text-mktg-subtitle-1 md:text-mktg-hero-1', className)}
+      className={cn('txt-mktg-subtitle-1 md:txt-mktg-hero-1', className)}
       {...props}
     >
       hi
@@ -260,70 +262,64 @@ export function AppTitle({
   )
 }
 
-const CtaIcon = styled((props) => (
-  <span {...props}>
-    <ArrowRightIcon
-      size={18}
-      // color={theme.colors.text}
-    />
-  </span>
-))(({ theme }) => ({
-  display: 'inline-block',
-  position: 'relative',
-  top: 2,
-  marginLeft: theme.spacing.medium,
-  transition: 'transform 0.2s ease',
-}))
+const CTA_ICON_ATTR = 'data-cta-icon'
 
-const CtaSC = styled.a<{ $size: 'medium' | 'small' }>(({ theme, $size }) => ({
-  display: 'block',
-  gap: theme.spacing.medium,
-  ...($size === 'small'
-    ? {
-        ...theme.partials.marketingText.standaloneLink,
-        '&, &:any-link': {
-          color: theme.colors['text-light'],
-        },
-      }
-    : {
-        ...theme.partials.marketingText.body2Bold,
-        fontWeight: 500,
-        '&, &:any-link': {
-          color: theme.colors.text,
-        },
-      }),
-  cursor: 'pointer',
+function CtaIcon({ className, ...props }: { className?: string; props?: any }) {
+  return (
+    <span
+      className={cn(
+        'relative top-[2px] ml-medium inline-block transition-transform duration-200 ease-in-out',
+        className
+      )}
+      {...{ [CTA_ICON_ATTR]: true }}
+      {...props}
+    >
+      <ArrowRightIcon
+        size={18}
+        // color={theme.colors.text}
+      />
+    </span>
+  )
+}
 
+const thing = twMerge('txt-mktg-body-2-bold')
+
+console.log('thing', thing)
+
+const CtaSC = styled.a<{ $size: 'medium' | 'small' }>((_) => ({
   '&:hover': {
-    textDecoration: 'underline',
-    [CtaIcon]: {
+    [`& *[${CTA_ICON_ATTR}]`]: {
       transform: 'translate(20%)',
     },
   },
 }))
 
-export const Cta = styled(
-  ({
-    children,
-    size = 'medium',
-    ...props
-  }: {
-    size?: 'medium' | 'small'
-    children: ReactNode
-  } & ComponentProps<'a'>) => {
-    const { Link } = useNavigationContext()
+export function Cta({
+  children,
+  size = 'medium',
+  ...props
+}: {
+  size?: 'medium' | 'small'
+  children: ReactNode
+} & ComponentProps<typeof Link>) {
+  const { Link } = useNavigationContext()
 
-    return (
-      <CtaSC
-        as={Link}
-        $size={size}
-        {...props}
-      >
-        <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
-      </CtaSC>
-    )
-  }
-)``
+  return (
+    <CtaSC
+      as={Link}
+      $size={size}
+      className={clsx(
+        'block cursor-pointer gap-medium hover:underline',
+        size === 'small'
+          ? 'txt-mktg-standalone-link text-text-light visited:text-text-light'
+          : 'txt-mktg-body-2-bold text-text visited:text-text'
+      )}
+      {...props}
+    >
+      <AttachLastWordToElt elt={<CtaIcon />}>{children}</AttachLastWordToElt>
+    </CtaSC>
+  )
+}
 
 export const InlineLink = styled.a(({ theme }) => ({
   ...theme.partials.text.inlineLink,
