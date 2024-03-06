@@ -12,6 +12,7 @@ import {
 } from '@pluralsh/design-system'
 import Link from 'next/link'
 
+import { Slot } from '@radix-ui/react-slot'
 import { lowerFirst } from 'lodash-es'
 import styled, { type DefaultTheme } from 'styled-components'
 import { type PascalCase } from 'type-fest'
@@ -21,11 +22,14 @@ import { cn } from '@src/utils/cn'
 
 import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
-import { Slot } from './Slot'
+
+export type AsChildProps<DefaultElementProps> = {
+  asChild?: boolean
+} & DefaultElementProps
 
 export const Heading1 = forwardRef<
   HTMLHeadingElement,
-  HTMLAttributes<HTMLHeadingElement> & { asChild?: boolean }
+  AsChildProps<HTMLAttributes<HTMLHeadingElement>>
 >(({ className, asChild, ...props }, ref) => {
   const Comp = asChild ? Slot : 'h1'
 

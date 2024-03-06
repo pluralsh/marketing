@@ -28,7 +28,7 @@ const screens = mapKeys(
   (_, key) => key
 )
 
-const typ = Object.fromEntries([
+const textStyles = Object.fromEntries([
   ...Object.entries(styledTheme.partials.text).map(([selector, styles]) => [
     `.text-${kebabCase(selector)}`,
     styles,
@@ -49,7 +49,7 @@ export default {
   },
   plugins: [
     plugin(({ addComponents }) => {
-      addComponents(typ as any)
+      addComponents(textStyles as any)
     }),
   ],
 } satisfies Config
