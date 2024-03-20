@@ -91,7 +91,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
-    "@next/bundle-analyzer": "13.4.12",
+    "@next/bundle-analyzer": "13.4.19",
     "@pluralsh/eslint-config-typescript": "2.5.183",
     "@pluralsh/stylelint-config": "2.0.10",
     "@radix-ui/react-slot": "1.0.2",
@@ -105,7 +105,7 @@
     "concurrently": "8.2.0",
     "cross-env": "7.0.3",
     "eslint": "8.56.0",
-    "eslint-config-next": "14.1.0",
+    "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.1",
     "eslint-plugin-import": "2.29.1",
