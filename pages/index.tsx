@@ -450,13 +450,11 @@ export default function Index({
         image="/images/gradients/gradient-bg-2.jpg"
       >
         <HomePageHero
-          heading={<>Self-hosted Kubernetes fleet management</>}
+          heading={<>Managing Kubernetes can be a cluster—</>}
           description={
             <div className="[text-wrap:balance]">
-              Manage and orchestrate your Kubernetes clusters from a single,
-              intuitive interface. Accelerate your DevOps pipeline with
-              automated deployment workflows, and enforce compliance
-              requirements with cluster-wide, granular security policies.
+              Plural reduces cluster upgrade cycles from months to hours at
+              enterprise scale with streamlined dependency management.
             </div>
           }
           ctas={
