@@ -26,7 +26,7 @@ export function HeroMainText({
   }
 >) {
   return (
-    <TextLimiter
+    <div
       className={classNames(
         'flex flex-col gap-y-xlarge md:gap-y-xxlarge',
         className
@@ -45,13 +45,23 @@ export function HeroMainText({
           )}
           {heading}
         </h1>
-        {description && (
-          <div className="txt-mktg-body-1 text-text-xlight">{description}</div>
-        )}
+        <TextLimiter
+          className={classNames(
+            'flex flex-col gap-y-xlarge md:gap-y-xxlarge',
+            className
+          )}
+          {...props}
+        >
+          {description && (
+            <div className="txt-mktg-body-1 text-text-xlight">
+              {description}
+            </div>
+          )}
+        </TextLimiter>
       </div>
       {ctas && <div>{ctas}</div>}
       {children && <div>{children}</div>}
-    </TextLimiter>
+    </div>
   )
 }
 
