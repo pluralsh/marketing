@@ -90,19 +90,19 @@ export function PageHeader({
           <div className="buttons">
             <Button
               as="a"
-              href="/contact-sales"
-              primary
-              fontFamily={theme.fontFamilies.sans}
-            >
-              Get started
-            </Button>
-            <Button
-              as="a"
               href="https://app.plural.sh/login"
               secondary
               fontFamily={theme.fontFamilies.sans}
             >
-              Sign in
+              Log in
+            </Button>
+            <Button
+              as="a"
+              href="/contact-sales"
+              primary
+              fontFamily={theme.fontFamilies.sans}
+            >
+              Book a demo today
             </Button>
           </div>
           {/* <SearchButton /> */}
