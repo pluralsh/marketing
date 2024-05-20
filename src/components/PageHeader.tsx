@@ -1,11 +1,6 @@
 import { type ComponentProps, type ReactNode, useEffect, useState } from 'react'
 
-import {
-  Button,
-  DiscordIcon,
-  PluralLogoFull,
-  usePrevious,
-} from '@pluralsh/design-system'
+import { Button, PluralLogoFull, usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -14,17 +9,15 @@ import { useKey } from 'rooks'
 import styled, { StyleSheetManager, useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
-import { DISCORD_LINK } from '@src/consts'
 import { cn as classNames } from '@src/utils/cn'
 
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
-import GithubStars from './GithubStars'
 import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
-import { HamburgerButton, SocialLink } from './PageHeaderButtons'
+import { HamburgerButton } from './PageHeaderButtons'
 import { PromoBanner, type PromoBannerProps } from './PromoBanner'
 
 const DARKEN_FILTER_ID = 'svg-darken-filter'
@@ -94,18 +87,6 @@ export function PageHeader({
         </nav>
         <Filler />
         <section className="rightSection">
-          <div className="socialIcons">
-            <SocialLink
-              className="discordIcon"
-              href={DISCORD_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              tabIndex={0}
-            >
-              <DiscordIcon size={16} />
-            </SocialLink>
-            <GithubStars />
-          </div>
           <div className="buttons">
             <Button
               as="a"
