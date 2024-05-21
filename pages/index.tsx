@@ -1,41 +1,23 @@
-import {
-  type ComponentProps,
-  type ReactElement,
-  type ReactNode,
-  cloneElement,
-  useRef,
-} from 'react'
+import { type ComponentProps, useRef } from 'react'
 
-import {
-  Button,
-  CloudIcon,
-  ClusterIcon,
-  ColorModeProvider,
-  GitMergeIcon,
-  LogsIcon,
-  PadlockLockedIcon,
-} from '@pluralsh/design-system'
+import { Button, ColorModeProvider } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
 import { type Variants, motion, useInView } from 'framer-motion'
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
 
 import { directusClient } from '@src/apollo-client'
-import { mqs } from '@src/breakpoints'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
-import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { LearnAboutPluralSection } from '@src/components/LearnAboutPluralSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
-import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { ShadowedCard } from '@src/components/ShadowedCard'
 import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
@@ -178,126 +160,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   )
 }
 
-const BuildSecurelyCardSC = styled(ShadowedCard)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '',
-  textAlign: 'center',
-  ...theme.partials.text.body2Bold,
-  color: theme.colors['text-light'],
-  '& > *': {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 120,
-    paddingLeft: theme.spacing.medium,
-    paddingRight: theme.spacing.medium,
-    maxWidth: 240,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    '&:first-child': {
-      paddingTop: theme.spacing.xlarge,
-    },
-    '&:last-child': {
-      paddingBottom: theme.spacing.xlarge,
-    },
-  },
-}))
-
-function BuildSecurelyCard({
-  icon,
-  heading,
-  ...props
-}: {
-  icon: ReactElement
-  heading: ReactNode
-} & ComponentProps<typeof BuildSecurelyCardSC>) {
-  const theme = useTheme()
-  const iconClone = cloneElement(icon, {
-    size: 48,
-    color: theme.colors['icon-primary'],
-  })
-
-  return (
-    <BuildSecurelyCardSC {...props}>
-      <div>{iconClone}</div>
-      <div className="text">{heading}</div>
-    </BuildSecurelyCardSC>
-  )
-}
-
-const BuildSecurelyGridSC = styled.div(({ theme }) => ({
-  display: 'grid',
-  gap: theme.spacing.medium,
-  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-  textWrap: 'balance',
-  [mqs.xs]: {
-    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    '& > *': {
-      '&:nth-child(n + 5)': {
-        gridColumn: 'span 2',
-      },
-    },
-  },
-  [mqs.md]: {
-    gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-    '& > *': {
-      '&, &:nth-child(n)': {
-        gridColumn: 'span 2',
-      },
-      '&:nth-child(n+4)': {
-        gridColumn: 'span 3',
-      },
-    },
-  },
-  [mqs.lg]: {
-    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
-    '& > *': {
-      '&, &:nth-child(n)': {
-        gridColumn: 'span 1',
-      },
-    },
-  },
-}))
-
-function BuildSecurely() {
-  return (
-    <div className="flex flex-col gap-y-xxxxlarge">
-      <CenteredSectionHead
-        heading="Secure, flexible, and easy"
-        intro={
-          <div className="[text-wrap:balance]">
-            Secure and scalable pull-based architecture. A single pane of glass
-            to understand and maintain complex Kubernetes fleets.
-          </div>
-        }
-      />
-      <BuildSecurelyGridSC>
-        <BuildSecurelyCard
-          icon={<PadlockLockedIcon />}
-          heading="Self-hosted and secure in your cloud"
-        />
-        <BuildSecurelyCard
-          icon={<CloudIcon />}
-          heading="Multi-cloud and multi-cluster support"
-        />
-        <BuildSecurelyCard
-          icon={<GitMergeIcon />}
-          heading="Build release pipelines with no scripts"
-        />
-        <BuildSecurelyCard
-          icon={<LogsIcon />}
-          heading="Fully customizable with resources defined in Git"
-        />
-        <BuildSecurelyCard
-          icon={<ClusterIcon />}
-          heading="Full visibility into your service and cluster fleet"
-        />
-      </BuildSecurelyGridSC>
-    </div>
-  )
-}
-
 const CARD_LAYOUTS = [
   [{ size: 'medium', reverse: false }],
   [
@@ -356,7 +218,6 @@ export default function Index({
   // featuredQuote,
   // buildStackTabs,
   articleCards,
-  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -392,15 +253,6 @@ export default function Index({
             <HeroImages />
           </StandardPageWidth>
         </div>
-        <StandardPageSection>
-          <StandardPageWidth>
-            <BuildSecurely />
-          </StandardPageWidth>
-          <CompanyLogosSection
-            className="pt-xxxxxlarge"
-            logos={globalProps.siteSettings?.partner_logos?.items}
-          />
-        </StandardPageSection>
       </HeaderPad>
       <HomepageFeaturesSection />
       {/* <DevOpsEfficiencySection /> */}
