@@ -18,6 +18,7 @@ import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { LearnAboutPluralSection } from '@src/components/LearnAboutPluralSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { TestimonialsSection } from '@src/components/QuoteCards'
+import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
@@ -251,6 +252,34 @@ export default function Index({
         <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pb-xxlarge lg:pt-0">
           <StandardPageWidth>
             <HeroImages />
+            <Button
+              large
+              floating
+              as={Link}
+              href="/contact-sales"
+              className="mx-auto mb-xxxxxxlarge w-fit"
+            >
+              Watch demo video
+            </Button>
+            <CenteredSectionHead
+              heading={
+                <div>
+                  Enterprise Kubernetes <br /> management, accelerated.
+                </div>
+              }
+              intro={
+                <p>
+                  Plural is designed for DevOps and platform engineering teams
+                  to automate and streamline the lifecycle management of
+                  Kubernetes fleets. Plural provides a single pane of glass
+                  interface for managing multiple clusters, automating upgrades,
+                  and provides advanced monitoring and security features, making
+                  Kubernetes accessible to engineers of all skill levels and
+                  reducing upgrade times.
+                </p>
+              }
+              className="mb-xxxxlarge text-center"
+            />
           </StandardPageWidth>
         </div>
       </HeaderPad>
