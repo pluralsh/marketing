@@ -19,13 +19,7 @@ import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import {
-  type Variants,
-  motion,
-  useInView,
-  useScroll,
-  useTransform,
-} from 'framer-motion'
+import { type Variants, motion, useInView } from 'framer-motion'
 import styled, { useTheme } from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
@@ -62,21 +56,13 @@ import { HomepageFeaturesSection } from '../src/components/page-sections/Homepag
 import { combineErrors } from '../src/utils/combineErrors'
 
 const HeroImagesSC = styled.div(({ theme: _theme }) => {
-  const baseWidth = 1432
-  const baseHeight = 683
+  const baseWidth = 1147
 
   return {
-    transformStyle: 'preserve-3d',
-    perspective: '1200px',
     transformOrigin: 'center',
-    transform: 'rotateY(-00deg) rotateX(0deg) rotateZ(0deg)',
-
     position: 'relative',
     width: '100%',
     aspectRatio: '2 / 1',
-    '& *': {
-      transformStyle: 'preserve-3d',
-    },
     '.heroImg': {
       position: 'absolute',
       pointerEvents: 'none',
@@ -87,74 +73,34 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       },
     },
     '.heroImg1': {
-      width: `${(512 * 100) / baseWidth}%`,
-      left: `${(960 * 100) / baseWidth}%`,
-      top: `${(160 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(-10deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(00px)',
-          'translateX(-2%)',
-          'translateY(-10px)',
-          'scale(1.07)',
-        ].join(' '),
-      },
+      width: `80%`,
+      maxWidth: baseWidth,
+      left: `50%`,
+      top: `0`,
+      transform: 'translateX(-50%)',
     },
     '.heroImg2': {
-      width: `${(1200 * 100) / baseWidth}%`,
-      left: `${(-20 * 100) / baseWidth}%`,
-      top: `${(-10 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(10deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(-100px)',
-          'translateX(2%)',
-          'scale(0.98)',
-        ].join(' '),
-      },
+      width: `30%`,
+      left: `5%`,
+      top: `16%`,
+      maxWidth: 413,
     },
     '.heroImg3': {
-      width: `${(840 * 100) / baseWidth}%`,
-      left: `${(563 * 100) / baseWidth}%`,
-      top: `${(300 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(-5deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(100px)',
-          'translateX(-4%)',
-          'translateY(-2%)',
-          'scale(0.90)',
-        ].join(' '),
-      },
+      width: `32%`,
+      right: `8%`,
+      top: `-7%`,
+      maxWidth: 468,
+      overflow: 'hidden',
+      borderRadius: _theme.borderRadiuses.large,
     },
   }
 })
 
-const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
-  // position: 'absolute',
-  // top: 0,
-  // right: 0,
-  // bottom: 0,
-  // left: 0,
-  // transformOrigin: '100% 50% -300px',
-  // // transformStyle: 'flat',
-  // perspective: PERSPECTIVE,
-  opacity: 0,
-}))
-
 const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
   const start = {
-    translateZ: 350,
     opacity: 0,
   }
   const end = {
-    translateZ: 0,
     opacity: 1,
   }
 
@@ -181,35 +127,17 @@ const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
   }
 }
 
-function HeroIn({
-  children,
-  inView,
-  className,
-  delay,
-  scrollYProgress,
-  parallax,
-}) {
+function HeroIn({ children, inView, className, delay }) {
   const variants = heroVariants({ delay })
-  const translateY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [`${20 * parallax}%`, `${-20 * parallax}%`]
-  )
   const isMobile = useMobileDetect().isMobile()
 
   return (
     <motion.div
-      style={{ translateY }}
       className={classNames('heroImg', className)}
+      animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
+      variants={variants}
     >
-      <div className="endTransform">
-        <MotionDiv
-          animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
-          variants={variants}
-        >
-          {children}
-        </MotionDiv>
-      </div>
+      {children}
     </motion.div>
   )
 }
@@ -220,11 +148,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   const inView = useInView(ref, { once: true, margin: '-80px 0px -40%' })
   const stagger = 0.25
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  })
-
   return (
     <HeroImagesSC
       ref={ref}
@@ -233,29 +156,23 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       <HeroIn
         className="heroImg1"
         inView={inView}
-        delay={1 * stagger}
-        scrollYProgress={scrollYProgress}
-        parallax={-1.25}
+        delay={0 * stagger}
       >
-        <img src="/images/homepage/hero-configuration.png" />
+        <img src="/images/homepage/hero-home.png" />
       </HeroIn>
       <HeroIn
         className="heroImg2"
         inView={inView}
-        delay={0 * stagger}
-        parallax={0}
-        scrollYProgress={scrollYProgress}
+        delay={1 * stagger}
       >
-        <img src="/images/homepage/hero-services.png" />
+        <img src="/images/homepage/hero-popup.png" />
       </HeroIn>
       <HeroIn
         className="heroImg3"
         inView={inView}
         delay={1.75 * stagger}
-        parallax={0.75}
-        scrollYProgress={scrollYProgress}
       >
-        <img src="/images/homepage/hero-nodes.png" />
+        <img src="/images/homepage/hero-cpu.png" />
       </HeroIn>
     </HeroImagesSC>
   )
