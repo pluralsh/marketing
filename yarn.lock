@@ -4276,9 +4276,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pluralsh/design-system@npm:3.23.0":
-  version: 3.23.0
-  resolution: "@pluralsh/design-system@npm:3.23.0"
+"@pluralsh/design-system@npm:3.37.0":
+  version: 3.37.0
+  resolution: "@pluralsh/design-system@npm:3.37.0"
   dependencies:
     "@floating-ui/react-dom-interactions": 0.13.3
     "@loomhq/loom-embed": 1.5.0
@@ -4286,7 +4286,7 @@ __metadata:
     "@monaco-editor/react": 4.6.0
     "@react-aria/utils": 3.23.0
     "@react-hooks-library/core": 0.6.0
-    "@react-spring/web": ^9.7.3
+    "@react-spring/web": 9.7.3
     "@react-stately/utils": 3.9.0
     "@react-types/shared": 3.22.0
     "@tanstack/match-sorter-utils": 8.8.4
@@ -4326,7 +4326,7 @@ __metadata:
     react-dom: ">=18.2.0"
     react-transition-group: ">=4.4.5"
     styled-components: ">=5.3.11"
-  checksum: 58f802eea7d24175bfc0436b34c9cc7a6e5e4f3e639492a4effc58f9a98db64fa3d6557c21b2e25dc0edf6dff279b635561543f47189b1b6e9701667edfc329a
+  checksum: 9650e6c3e024e73aa39f7a7e81ae5bccc9b7cad46b167fe256c90f34f65b05a4e459170bac27f002c2774cea4048c90dc3dda7bb2796f91acecf4b6c22ffa99a
   languageName: node
   linkType: hard
 
@@ -5272,7 +5272,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-spring/web@npm:^9.7.3, @react-spring/web@npm:~9.7.3":
+"@react-spring/web@npm:9.7.3, @react-spring/web@npm:~9.7.3":
   version: 9.7.3
   resolution: "@react-spring/web@npm:9.7.3"
   dependencies:
@@ -13750,7 +13750,7 @@ __metadata:
     "@markdoc/next.js": 0.2.2
     "@next/bundle-analyzer": 13.4.12
     "@open-draft/until": 2.1.0
-    "@pluralsh/design-system": 3.23.0
+    "@pluralsh/design-system": 3.37.0
     "@pluralsh/eslint-config-typescript": 2.5.183
     "@pluralsh/stylelint-config": 2.0.10
     "@radix-ui/react-slot": 1.0.2
