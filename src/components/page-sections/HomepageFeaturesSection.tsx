@@ -1,20 +1,31 @@
 import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import {
+  AppsIcon,
+  ClusterIcon,
+  ColorModeProvider,
+  DashboardIcon,
+  DocumentIcon,
+  KeyIcon,
+  KubernetesIcon,
+  NetworkInIcon,
+  PadlockLockedIcon,
+  StatusOkIcon,
+  UpdatesIcon,
+  WarningShieldIcon,
+} from '@pluralsh/design-system'
 
 import { useInView } from 'framer-motion'
 import styled from 'styled-components'
 
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { Body2, ResponsiveText } from '@src/components/Typography'
 import { cn as classNames } from '@src/utils/cn'
 
 import { useBreakpoint } from '../contexts/BreakpointProvider'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
-import { DeepDive } from './DeepDive'
 import { FeaturesImage } from './FeaturesImage'
 
 const FeatureSC = styled(Columns)(({ theme }) => ({
@@ -63,7 +74,7 @@ export function Feature({
 
   return (
     <FeatureSC>
-      <EqualColumn className="flex flex-col gap-y-xlarge">
+      <EqualColumn className="flex flex-col gap-y-medium">
         <ResponsiveText
           ref={headingRef}
           className="[text-wrap:balance]"
@@ -77,6 +88,33 @@ export function Feature({
         <div className={classNames('w-full')}>{image}</div>
       </EqualColumn>
     </FeatureSC>
+  )
+}
+
+function FeatureItem({
+  icon,
+  title,
+  description,
+}: {
+  icon: ReactNode
+  title: string
+  description: string
+}) {
+  return (
+    <div className="mt-large flex items-center gap-xsmall">
+      <ColorModeProvider mode="dark">
+        <div
+          className="rounded-full flex items-center justify-center rounded-medium bg-fill-one p-xsmall text-icon-light"
+          aria-hidden
+        >
+          {icon}
+        </div>
+      </ColorModeProvider>
+      <div>
+        <h4 className="txt-body-2-bold text-text">{title}</h4>
+        <p className="txt-body-2 text-text-light">{description}</p>
+      </div>
+    </div>
   )
 }
 
@@ -96,12 +134,8 @@ export function HomepageFeaturesSection() {
               'gap-y-xxxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
             )}
           >
-            <CenteredSectionHead
-              // preHeading="Features"
-              heading="Provision and manage Kubernetes clusters. Continuously deploy services. At scale."
-            />
             <Feature
-              heading="Easily create, import and view your clusters "
+              heading="K8s upgrade cycles from months to hours"
               graphic={
                 <FeaturesImage
                   direction={-1}
@@ -130,17 +164,22 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Instantly spin up and view clusters across multiple cloud
-                providers and accounts without writing Terraform. We expose a
-                single GraphQL API that can be integrated with any
-                infrastructure-as-code provider or fronted by a Kubernetes
-                operator for GitOps management. Already have K8s clusters? No
-                sweat. Use our bring-your-own-Kubernetes option to ingest your
-                clusters for Plural to manage.
+                Transform your Kubernetes upgrade process from months to hours
+                with Plural's innovative single-pane-of-glass interface.{' '}
               </p>
+              <FeatureItem
+                icon={<UpdatesIcon size={16} />}
+                title="Automated dependency management"
+                description="Automatically detects and manages dependencies to streamline upgrades"
+              />
+              <FeatureItem
+                icon={<DashboardIcon size={16} />}
+                title="Compatibility matrices"
+                description="Ensures version compatibility across all components"
+              />
             </Feature>
             <Feature
-              heading="Deploy from Git in one click"
+              heading="Level-up your security and compliance"
               graphic={
                 <FeaturesImage
                   width={721}
@@ -168,14 +207,28 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Import your Git repositories and deploy services to clusters in
-                a couple of clicks. Take advantage of our customization options
-                and centralized secrets management to configure your deployment
-                exactly the way you want it.
+                Automate updates and enforce policies using OPA Gatekeeper and
+                manage access through RBAC and OIDC, safeguarding your data and
+                applications.{' '}
               </p>
+              <FeatureItem
+                icon={<KeyIcon size={16} />}
+                title="Automated updates"
+                description="Keeps your systems up-to-date with the latest security patches"
+              />
+              <FeatureItem
+                icon={<WarningShieldIcon size={16} />}
+                title="Policy enforcement"
+                description="Utilizes OPA Gatekeeper to enforce security policies across your deployments"
+              />
+              <FeatureItem
+                icon={<DocumentIcon size={16} />}
+                title="Compliance assurance"
+                description="Helps your organization meet critical compliance standards effortlessly"
+              />
             </Feature>
             <Feature
-              heading="Build powerful pipelines with no scripting"
+              heading="Simple K8s management for all levels"
               graphic={
                 <FeaturesImage
                   direction={-1}
@@ -195,15 +248,27 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Our Enterprise-grade GitOps continuous deployment is awesome.
-                Configure promotions between environments with no scripting
-                required. Build gated promotions. Trigger pipelines on events.
-                Fully automate your path to production with secure secret
-                injection.
+                Automate cluster maintenance to focus on innovation rather than
+                upkeep.
               </p>
+              <FeatureItem
+                icon={<ClusterIcon size={16} />}
+                title="Automated cluster maintenance"
+                description="Streamlines updates and dependency management, reducing manual efforts"
+              />
+              <FeatureItem
+                icon={<AppsIcon size={16} />}
+                title="User-friendly interface"
+                description="Makes managing Kubernetes accessible to engineers at all levels"
+              />
+              <FeatureItem
+                icon={<StatusOkIcon size={16} />}
+                title="Operational efficiency"
+                description="Automate routine maintenance tasks to free up engineering resources"
+              />
             </Feature>
             <Feature
-              heading="Full visibility into clusters and services with Plural Console"
+              heading="Self-hosted for maximum security"
               graphic={
                 <FeaturesImage
                   width={2660}
@@ -222,42 +287,26 @@ export function HomepageFeaturesSection() {
               }
             >
               <p>
-                Gain insight without compromising Kubernetes security best
-                practices like private control planes using outbound
-                bidirectional gRPC. Leverage our Kubernetes auth proxy to drill
-                into any Kubernetes resource to have a complete understanding of
-                your entire environment(s).
+                Our lightweight, easy-to-install architecture supports any K8s
+                distribution or hosting environment, allowing for secure, and
+                even airgapped deployments tailored to your needs.
               </p>
+              <FeatureItem
+                icon={<KubernetesIcon size={16} />}
+                title="Distribution agnostic"
+                description="Compatible with any Kubernetes distribution or hosting environment"
+              />
+              <FeatureItem
+                icon={<PadlockLockedIcon size={16} />}
+                title="Enhanced security"
+                description="Supports airgapped deployments for maximum security"
+              />
+              <FeatureItem
+                icon={<NetworkInIcon size={16} />}
+                title="Pull-based agent architecture"
+                description="Leverages an egress-only network model for easy and secure networking with unlimited scale"
+              />
             </Feature>
-            <Feature
-              heading="End to end lifecycle management"
-              graphic={
-                <FeaturesImage
-                  direction={-1}
-                  width={1841}
-                  height={896}
-                  images={[
-                    {
-                      top: 0,
-                      left: 0,
-                      width: 1841,
-                      height: 896,
-                      attrs: {},
-                      round: true,
-                      url: '/images/homepage/features/deprecations-1.png',
-                    },
-                  ]}
-                />
-              }
-            >
-              <p>
-                Managed, zero-downtime upgrades with Cluster API reconciliation
-                loops; don’t worry about sloppy and fragile terraform rollouts.
-                Handle Kubernetes API deprecations with ease with our built-in
-                deprecation detection.
-              </p>
-            </Feature>
-            <DeepDive />
           </div>
         </StandardPageWidth>
       </div>
