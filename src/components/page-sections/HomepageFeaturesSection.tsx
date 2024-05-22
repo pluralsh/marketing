@@ -138,26 +138,27 @@ export function HomepageFeaturesSection() {
               heading="K8s upgrade cycles from months to hours"
               graphic={
                 <FeaturesImage
+                  shadow
                   direction={-1}
                   width={654}
                   height={370}
                   images={[
                     {
                       top: 0,
-                      left: 0,
-                      width: '93%',
+                      right: 0,
+                      width: '90%',
                       round: true,
                       attrs: {},
-                      url: '/images/homepage/features/clusters.png',
+                      url: '/images/homepage/features/console-home.png',
                     },
                     {
-                      bottom: 0,
-                      right: 0,
-                      width: '43%',
-                      aspectRatio: '894 / 874',
+                      left: '0%',
+                      bottom: '-10%',
+                      width: '60%',
+                      aspectRatio: '1818 / 1208',
                       attrs: {},
                       round: true,
-                      url: '/images/homepage/features/create-cluster.mp4',
+                      url: '/images/homepage/features/upgrade-plan.png',
                     },
                   ]}
                 />
@@ -182,25 +183,27 @@ export function HomepageFeaturesSection() {
               heading="Level-up your security and compliance"
               graphic={
                 <FeaturesImage
+                  shadow
                   width={721}
                   height={394}
                   images={[
                     {
-                      right: 0,
+                      left: 0,
                       top: 0,
                       width: '94%',
-                      aspectRatio: '2660 / 1466',
+                      aspectRatio: '2794 / 1656',
                       round: true,
                       attrs: {},
-                      url: '/images/homepage/features/git-repos.png',
+                      url: '/images/homepage/features/policies.png',
                     },
                     {
-                      bottom: 0,
-                      left: 0,
-                      width: '38%',
-                      aspectRatio: '1208 / 1026',
+                      top: '10%',
+                      right: 0,
+                      round: true,
+                      width: '70%',
+                      aspectRatio: '1122 / 320',
                       attrs: {},
-                      url: '/images/homepage/features/deploy-service.mp4',
+                      url: '/images/homepage/features/policies-detail.png',
                     },
                   ]}
                 />
@@ -231,17 +234,28 @@ export function HomepageFeaturesSection() {
               heading="Simple K8s management for all levels"
               graphic={
                 <FeaturesImage
+                  shadow
                   direction={-1}
                   width={2724}
                   height={1404}
                   images={[
                     {
+                      right: 0,
                       top: 0,
-                      left: 0,
-                      width: '100%',
+                      width: '94%',
+                      aspectRatio: '2318 / 1640',
                       round: true,
                       attrs: {},
-                      url: '/images/homepage/features/pipelines.png',
+                      url: '/images/homepage/features/clusters.png',
+                    },
+                    {
+                      bottom: 0,
+                      left: 0,
+                      width: '70%',
+                      aspectRatio: '1052 / 364',
+                      round: true,
+                      attrs: {},
+                      url: '/images/homepage/features/clusters-detail.png',
                     },
                   ]}
                 />
@@ -280,7 +294,7 @@ export function HomepageFeaturesSection() {
                       width: '100%',
                       round: true,
                       attrs: {},
-                      url: '/images/homepage/features/cluster-services.png',
+                      url: '/images/homepage/features/schema.png',
                     },
                   ]}
                 />

@@ -95,7 +95,11 @@ export const MultiImageSC = styled.div<{ $aspectRatio: string }>(
 )
 
 export const MultiImageWrapSC = styled.div<
-  ImgPropsSC & { $round: boolean | number | undefined; $direction: 1 | -1 }
+  ImgPropsSC & {
+    $round: boolean | number | undefined
+    $direction: 1 | -1
+    $shadow?: boolean
+  }
 >(
   ({
     $width,
@@ -106,6 +110,7 @@ export const MultiImageWrapSC = styled.div<
     $height,
     $round,
     $aspectRatio,
+    $shadow,
   }) => ({
     top: $top,
     left: $left,
@@ -127,7 +132,7 @@ export const MultiImageWrapSC = styled.div<
         : typeof $round === 'number'
           ? $round
           : ROUND - 1,
-    boxShadow: mShadows.light.moderate,
+    boxShadow: $shadow ? mShadows.light.moderate : 'none',
   })
 )
 
@@ -176,6 +181,7 @@ function MultiImageImg({
   src,
   animOffset,
   direction,
+  shadow,
   round,
   ...attrs
 }: ImgProps & {
@@ -205,6 +211,7 @@ function MultiImageImg({
         $direction={direction}
         $round={round}
         $aspectRatio={aspectRatio}
+        $shadow={shadow}
         className="graphic"
         {...attrs}
       >
@@ -242,6 +249,7 @@ export const FeaturesImage = forwardRef(
       height,
       direction = 1,
       inView = true,
+      shadow = false,
       ...props
     }: {
       images: ImageProps[]
@@ -304,6 +312,7 @@ export const FeaturesImage = forwardRef(
             aspectRatio={img.aspectRatio}
             animOffset={i}
             direction={direction}
+            shadow={shadow}
             {...img.attrs}
           />
         )
