@@ -341,6 +341,38 @@ export default function Index({
               className="mx-auto mb-xxxxxxlarge w-fit"
             >
               Watch demo video
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 42 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="ml-small"
+              >
+                <rect
+                  x="0.726562"
+                  width="41.0404"
+                  height="41.0404"
+                  rx="20.5202"
+                  fill="#5D63F4"
+                />
+                <g clipPath="url(#clip0_490_2681)">
+                  <path
+                    d="M27.6062 21.297L16.7291 28.0793C16.2897 28.3531 15.793 27.9073 15.793 27.2387V13.8015C15.793 13.1328 16.2897 12.687 16.7291 12.9609L27.6062 19.6158C28.1348 19.9406 28.1348 20.9722 27.6062 21.297V21.297Z"
+                    fill="#DFE2E7"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_490_2681">
+                    <rect
+                      width="16.4162"
+                      height="16.4162"
+                      fill="white"
+                      transform="translate(13.0391 12.3125)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
             </Button>
             <CenteredSectionHead
               heading={
