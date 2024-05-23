@@ -14,8 +14,6 @@ import {
   usePrevious,
 } from '@pluralsh/design-system'
 
-import ReCAPTCHA from 'react-google-recaptcha'
-
 import { isValidEmail } from '@src/utils/text'
 
 import { FooterHeading, FooterNavLink } from './FooterNav'
@@ -183,15 +181,6 @@ export function NewsletterSignupForm() {
           {response.message}
         </ResponsiveText>
       )}
-      <div className="mt-small">
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}
-          onChange={(val) => {
-            setRecaptchaVal(val)
-          }}
-        />
-      </div>
     </form>
   )
 }

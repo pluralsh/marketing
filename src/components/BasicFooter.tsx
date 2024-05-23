@@ -1,44 +1,18 @@
-import { DiscordIcon } from '@pluralsh/design-system'
-
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
-import { DISCORD_LINK } from '@src/consts'
 
-import GithubStars from './GithubStars'
 import { FullPageWidth } from './layout/LayoutHelpers'
-import { SocialLink } from './PageHeaderButtons'
 
 export function BasicFooter({ className }: { className?: string }) {
   return (
     <BasicFooterWrap className={className}>
       <FullPageWidth>
-        <div className="socialIcons">
-          <SocialLink
-            className="discordIcon"
-            href={DISCORD_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={0}
-          >
-            <DiscordIcon size={16} />
-          </SocialLink>
-          <GithubStars />
-        </div>
         <div className="footerLinks">
           <FooterLink as="div">© Plural {new Date().getFullYear()}</FooterLink>
           <FooterLink href="/legal/privacy-policy">Privacy Policy</FooterLink>
           <FooterLink href="/legal/terms-and-conditions">
             Terms & Conditions
-          </FooterLink>
-          <FooterLink
-            href="#"
-            onClick={(e) => {
-              e.preventDefault()
-              window.Cookiebot?.show()
-            }}
-          >
-            Cookie Settings
           </FooterLink>
         </div>
       </FullPageWidth>
