@@ -16,7 +16,6 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { HomePageHero } from '@src/components/PageHeros'
-import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
@@ -300,9 +299,6 @@ function QuoteSection() {
 }
 
 export default function Index({
-  quotes,
-  // featuredQuote,
-  // buildStackTabs,
   articleCards,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -370,21 +366,12 @@ export default function Index({
       </HeaderPad>
       <QuoteSection />
       <HomepageFeaturesSection />
-      {/* <DevOpsEfficiencySection /> */}
-      {/* <FeaturedQuote quote={featuredQuote} /> */}
-      {/* {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />} */}
       <GradientBG
         size="cover"
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
       >
-        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-          <TestimonialsSection quotes={quotes || []} />
-        </StandardPageSection>
-      </GradientBG>
-
-      <ColorModeProvider mode="light">
-        <div className="bg-fill-zero">
+        <ColorModeProvider mode="light">
           <StandardPageSection>
             <StandardPageWidth className="relative z-[1]">
               <div className="grid grid-cols-1 items-stretch gap-xlarge columns:grid-cols-3">
@@ -420,8 +407,8 @@ export default function Index({
               </div>
             </StandardPageWidth>
           </StandardPageSection>
-        </div>
-      </ColorModeProvider>
+        </ColorModeProvider>
+      </GradientBG>
       <StandardPageSection className="relative flex flex-col items-center justify-center gap-x-xxxxxxlarge gap-y-xxlarge overflow-hidden bg-fill-zero px-large py-xxxxlarge lg:flex-row">
         <h3 className="z-10 w-full max-w-[400px] text-4xl font-bold text-marketing-white sm:text-3xl">
           Trusted, Enterprise-Level Security to Protect Your Data
