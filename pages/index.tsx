@@ -371,9 +371,30 @@ export default function Index({
         position="bottom middle"
         image="/images/gradients/gradient-bg-2.jpg"
       >
-        <ColorModeProvider mode="light">
-          <StandardPageSection>
-            <StandardPageWidth className="relative z-[1]">
+        <StandardPageSection>
+          <StandardPageWidth className="relative z-[1]">
+            <CenteredSectionHead
+              heading={<div>Accelerate your K8s operations</div>}
+              intro={
+                <>
+                  <p className="max-w-[565px]">
+                    Our lightweight, easy-to-install solution supports any K8s
+                    distribution. Schedule a 1:1 demo with our team.
+                  </p>
+                  <Button
+                    large
+                    primary
+                    as={Link}
+                    href="/contact-sales"
+                    className="mx-auto w-fit"
+                  >
+                    Book now
+                  </Button>
+                </>
+              }
+              className="mb-xxxxlarge text-center"
+            />
+            <ColorModeProvider mode="light">
               <div className="grid grid-cols-1 items-stretch gap-xlarge columns:grid-cols-3">
                 {articleCards?.map((c, i) => {
                   const size =
@@ -405,9 +426,9 @@ export default function Index({
                   )
                 })}
               </div>
-            </StandardPageWidth>
-          </StandardPageSection>
-        </ColorModeProvider>
+            </ColorModeProvider>
+          </StandardPageWidth>
+        </StandardPageSection>
       </GradientBG>
       <StandardPageSection className="relative flex flex-col items-center justify-center gap-x-xxxxxxlarge gap-y-xxlarge overflow-hidden bg-fill-zero px-large py-xxxxlarge lg:flex-row">
         <h3 className="z-10 w-full max-w-[400px] text-4xl font-bold text-marketing-white sm:text-3xl">
