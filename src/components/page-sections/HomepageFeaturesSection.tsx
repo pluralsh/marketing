@@ -111,7 +111,7 @@ function FeatureItem({
         </div>
       </ColorModeProvider>
       <div>
-        <h4 className="txt-body-2-bold text-text">{title}</h4>
+        <h3 className="txt-body-2-bold text-text">{title}</h3>
         <p className="txt-body-2 text-text-light">{description}</p>
       </div>
     </div>
