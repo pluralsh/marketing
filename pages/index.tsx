@@ -145,21 +145,30 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
         inView={inView}
         delay={0 * stagger}
       >
-        <img src="/images/homepage/hero-home.png" />
+        <img
+          src="/images/homepage/hero-home.png"
+          aria-hidden
+        />
       </HeroIn>
       <HeroIn
         className="heroImg2"
         inView={inView}
         delay={1 * stagger}
       >
-        <img src="/images/homepage/hero-popup.png" />
+        <img
+          src="/images/homepage/hero-popup.png"
+          aria-hidden
+        />
       </HeroIn>
       <HeroIn
         className="heroImg3"
         inView={inView}
         delay={1.75 * stagger}
       >
-        <img src="/images/homepage/hero-cpu.png" />
+        <img
+          src="/images/homepage/hero-cpu.png"
+          aria-hidden
+        />
       </HeroIn>
     </HeroImagesSC>
   )
@@ -355,6 +364,7 @@ export default function Index({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="ml-small"
+                aria-hidden
               >
                 <rect
                   x="0.726562"
@@ -502,21 +512,25 @@ export default function Index({
           <img
             width={130}
             src="/images/homepage/aicpa-soc.png"
+            aria-hidden
           />
           <img
             width={130}
             src="/images/homepage/gdpr.png"
+            aria-hidden
           />
         </div>
         <img
           width="31%"
           className="absolute left-0 top-[20%] hidden md:block"
           src="/images/homepage/left-arch.png"
+          aria-hidden
         />
         <img
           width="28%"
           className="absolute right-[2%] top-[67%] hidden md:block"
           src="/images/homepage/right-arch.png"
+          aria-hidden
         />
       </StandardPageSection>
     </>

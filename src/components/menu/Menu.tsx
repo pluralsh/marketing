@@ -73,7 +73,10 @@ function MainLinkTriggerUnstyled({
       {...buttonProps}
     >
       {children}
-      <div className="icon">
+      <div
+        className="icon"
+        aria-hidden
+      >
         <CaretDownIcon size={14} />
       </div>
     </MainLinkBase>

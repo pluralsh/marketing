@@ -234,6 +234,7 @@ function MultiImageImg({
           <MultiImageImgSC
             src={src}
             $round={round}
+            aria-hidden
             {...attrs}
           />
         )}

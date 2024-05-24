@@ -44,16 +44,19 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
           width="28%"
           className="max-w-[90px]"
           src="/images/homepage/aicpa-soc.png"
+          aria-hidden
         />
         <img
           width="28%"
           className="max-w-[90px]"
           src="/images/homepage/gdpr.png"
+          aria-hidden
         />
         <img
           width="28%"
           className="max-w-[90px]"
           src="/images/homepage/cloud-native.png"
+          aria-hidden
         />
       </EqualColumn>
     </Columns>

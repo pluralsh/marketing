@@ -74,6 +74,7 @@ export function PageHeader({
             href="/"
             className="logoLink flex flex-shrink-0"
             passHref
+            aria-label="Go to Plural homepage"
           >
             <PluralLogoFull
               color={
