@@ -2,10 +2,10 @@ import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
 import {
   AppsIcon,
+  ClipboardChecked,
   ClusterIcon,
   ColorModeProvider,
   DashboardIcon,
-  DocumentIcon,
   KeyIcon,
   KubernetesIcon,
   NetworkInIcon,
@@ -225,7 +225,7 @@ export function HomepageFeaturesSection() {
                 description="Utilizes OPA Gatekeeper to enforce security policies across your deployments"
               />
               <FeatureItem
-                icon={<DocumentIcon size={16} />}
+                icon={<ClipboardChecked size={16} />}
                 title="Compliance assurance"
                 description="Helps your organization meet critical compliance standards effortlessly"
               />
