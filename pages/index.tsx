@@ -1,6 +1,11 @@
-import { type ComponentProps, useRef } from 'react'
+import { type ComponentProps, useRef, useState } from 'react'
 
-import { Button, ColorModeProvider } from '@pluralsh/design-system'
+import {
+  Button,
+  CloseIcon,
+  ColorModeProvider,
+  IconFrame,
+} from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
@@ -12,6 +17,7 @@ import useMobileDetect from 'use-mobile-detect-hook'
 
 import { directusClient } from '@src/apollo-client'
 import { ArticleCardNoBorder } from '@src/components/ArticleCard'
+import { BareModal } from '@src/components/BareModal'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
@@ -301,6 +307,8 @@ function QuoteSection() {
 export default function Index({
   articleCards,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [showVideo, setShowVideo] = useState(false)
+
   return (
     <>
       <HeaderPad
@@ -336,9 +344,8 @@ export default function Index({
             <Button
               large
               floating
-              as={Link}
-              href="/contact-sales"
               className="mx-auto mb-xxxxxxlarge w-fit"
+              onClick={() => setShowVideo(true)}
             >
               Watch demo video
               <svg
@@ -374,6 +381,31 @@ export default function Index({
                 </defs>
               </svg>
             </Button>
+            <BareModal
+              open={showVideo}
+              onClose={() => setShowVideo(false)}
+              closeButton={false}
+              className="mx-auto flex w-[90%] items-center justify-center"
+            >
+              <div className="relative w-full self-center">
+                <IconFrame
+                  className="closeButton absolute right-small top-small z-10"
+                  type="floating"
+                  clickable
+                  icon={<CloseIcon />}
+                  onClick={() => setShowVideo(false)}
+                />
+                <iframe
+                  width="100%"
+                  height="500px"
+                  src="https://www.youtube.com/embed/njX2bu-_Vw4?si=otrTSVoeHIW0WO7W"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </BareModal>
             <CenteredSectionHead
               heading={
                 <div>
