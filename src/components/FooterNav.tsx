@@ -76,11 +76,11 @@ const navItems = [
         href: 'https://github.com/pluralsh/plural/releases',
         target: '_blank',
       },
-      {
-        children: 'Security & Trust Portal',
-        href: 'https://github.com/pluralsh/plural/releases',
-        target: '_blank',
-      },
+      //   {
+      //     children: 'Security & Trust Portal',
+      //     href: 'https://github.com/pluralsh/plural/releases',
+      //     target: '_blank',
+      //   },
     ] as const,
   },
   {
