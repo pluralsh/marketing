@@ -65,6 +65,16 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       left: `50%`,
       top: `0`,
       transform: 'translateX(-50%)',
+      '&::after': {
+        content: `''`,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        boxShadow: 'inset 0px -200px 600px rgba(0,0,0,0.3)',
+        pointerEvents: 'none',
+      },
     },
     '.heroImg2': {
       width: `30%`,
