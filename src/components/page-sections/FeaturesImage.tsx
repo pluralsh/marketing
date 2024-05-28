@@ -7,8 +7,6 @@ import styled from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
 
-import { mShadows } from '@src/styles/extraStyles'
-
 export type ImgProps = {
   top?: string
   left?: string
@@ -132,7 +130,7 @@ export const MultiImageWrapSC = styled.div<
         : typeof $round === 'number'
           ? $round
           : ROUND - 1,
-    boxShadow: $shadow ? mShadows.light.moderate : 'none',
+    boxShadow: $shadow ? '0px 20px 50px 0px #0E101599' : 'none',
   })
 )
 
