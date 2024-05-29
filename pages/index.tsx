@@ -418,7 +418,7 @@ export default function Index({
                 <iframe
                   width="100%"
                   height="500px"
-                  src="https://www.youtube.com/embed/njX2bu-_Vw4?si=otrTSVoeHIW0WO7W"
+                  src="https://www.youtube.com/embed/W8KCaiZRV3M?si=co3ld2bFbqH6RpZb"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
