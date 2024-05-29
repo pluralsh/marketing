@@ -83,7 +83,7 @@ export function FeatureItem({
   description,
 }: {
   icon: ReactNode
-  title: string
+  title?: string
   description: string
 }) {
   return (
@@ -97,7 +97,7 @@ export function FeatureItem({
         </div>
       </ColorModeProvider>
       <div>
-        <h3 className="txt-body-2-bold text-text">{title}</h3>
+        {title && <h3 className="txt-body-2-bold text-text">{title}</h3>}
         <p className="txt-body-2 text-text-light">{description}</p>
       </div>
     </div>
