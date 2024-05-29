@@ -10,6 +10,7 @@ import {
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
+import { ProductFeaturesSection } from '@src/components/page-sections/ProductFeatureSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ResponsiveText } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
@@ -69,21 +70,25 @@ export default function Legal(
                 />
               </div>
             </div>
-
-            <div>
-              <ArticleCard
-                preHeading="Whitepaper"
-                heading="Accelerate Kubernetes adoption with Plural Continuous Deployment"
-                ctas={[
-                  {
-                    label: 'Read the whitepaper',
-                    url: '/downloads/Whitepaper%20-%20Accelerate%20Kubernetes%20Adoption%20with%20Plural%20Continuous%20Deployment.pdf',
-                    // download: true,
-                  },
-                ]}
-                thumbnail="/images/cont-deploy/whitepaper.png"
-              />
-            </div>
+          </div>
+        </StandardPageWidth>
+      </StandardPageSection>
+      <ProductFeaturesSection />
+      <StandardPageSection>
+        <StandardPageWidth>
+          <div>
+            <ArticleCard
+              preHeading="Whitepaper"
+              heading="Accelerate Kubernetes adoption with Plural Continuous Deployment"
+              ctas={[
+                {
+                  label: 'Read the whitepaper',
+                  url: '/downloads/Whitepaper%20-%20Accelerate%20Kubernetes%20Adoption%20with%20Plural%20Continuous%20Deployment.pdf',
+                  // download: true,
+                },
+              ]}
+              thumbnail="/images/cont-deploy/whitepaper.png"
+            />
           </div>
         </StandardPageWidth>
       </StandardPageSection>

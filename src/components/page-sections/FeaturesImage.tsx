@@ -31,11 +31,12 @@ export type ImageProps = {
   round?: boolean | number
   aspectRatio?: string
   attrs: ComponentProps<typeof MultiImageSC>
+  overlay?: boolean
 }
 
 export const STAGGER = 0.25
 const PERSPECTIVE = 1400
-const ROUND = 6
+const ROUND = 9
 
 export const cardVariants = ({
   delay = 0,
@@ -120,6 +121,7 @@ export const MultiImageWrapSC = styled.div<
     transformStyle: 'preserve-3d',
     perspective: PERSPECTIVE,
     aspectRatio: $aspectRatio,
+    overflow: 'hidden',
     // Keep box shadow looking correct
     // when containing rounded images
     borderRadius:
@@ -181,10 +183,12 @@ function MultiImageImg({
   direction,
   shadow,
   round,
+  overlay,
   ...attrs
 }: ImgProps & {
   direction: -1 | 1
   inView: boolean
+  overlay?: boolean
 } & ComponentProps<typeof MultiImageWrapSC>) {
   const variants = useMemo(
     () => cardVariants({ delay: animOffset * STAGGER, direction }),
@@ -213,6 +217,14 @@ function MultiImageImg({
         className="graphic"
         {...attrs}
       >
+        {overlay && (
+          <div
+            className="imgShadow absolute h-full w-full"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.2) 1px -20px 20px 20px inset',
+            }}
+          />
+        )}
         {src.match(/\.mp4$/) ? (
           <MultiImageVideoSC
             autoPlay
@@ -312,6 +324,7 @@ export const FeaturesImage = forwardRef(
             animOffset={i}
             direction={direction}
             shadow={shadow}
+            overlay={img.overlay}
             {...img.attrs}
           />
         )
