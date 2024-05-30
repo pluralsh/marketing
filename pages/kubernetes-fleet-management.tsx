@@ -2,7 +2,7 @@ import { Button } from 'honorable'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
-import { ArticleCard } from '@src/components/ArticleCard'
+import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import {
@@ -10,10 +10,16 @@ import {
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
+import ArticleSection from '@src/components/page-sections/articleSection'
 import { ProductFeaturesSection } from '@src/components/page-sections/ProductFeatureSection'
 import { QuoteSection } from '@src/components/page-sections/QuoteSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ResponsiveText } from '@src/components/Typography'
+import {
+  PageHomepageDocument,
+  type PageHomepageQuery,
+  type PageHomepageQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { HeaderPad } from '../src/components/layout/HeaderPad'
@@ -83,32 +89,24 @@ export default function Legal(
         mid-level engineer`}
         attribution="Director DevOps, Leading Global Cybersecurity Provider"
       />
-      <StandardPageSection>
-        <StandardPageWidth>
-          <div>
-            <ArticleCard
-              preHeading="Whitepaper"
-              heading="Accelerate Kubernetes adoption with Plural Continuous Deployment"
-              ctas={[
-                {
-                  label: 'Read the whitepaper',
-                  url: '/downloads/Whitepaper%20-%20Accelerate%20Kubernetes%20Adoption%20with%20Plural%20Continuous%20Deployment.pdf',
-                  // download: true,
-                },
-              ]}
-              thumbnail="/images/cont-deploy/whitepaper.png"
-            />
-          </div>
-        </StandardPageWidth>
-      </StandardPageSection>
+      <ArticleSection articleCards={_props.articleCards} />
     </>
   )
 }
 
-export const getStaticProps = async () =>
-  propsWithGlobalSettings({
+export const getStaticProps = async () => {
+  const { data } = await directusClient.query<
+    PageHomepageQuery,
+    PageHomepageQueryVariables
+  >({
+    query: PageHomepageDocument,
+  })
+
+  return propsWithGlobalSettings({
     metaTitle: 'Kubernetes fleet management',
     metaDescription:
       'An end-to-end solution for managing Kubernetes clusters and application deployment.',
     footerVariant: FooterVariant.kitchenSink,
+    articleCards: data.page_homepage?.article_cards || null,
   })
+}
