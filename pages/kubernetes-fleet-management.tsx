@@ -11,6 +11,7 @@ import {
 } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { ProductFeaturesSection } from '@src/components/page-sections/ProductFeatureSection'
+import { QuoteSection } from '@src/components/page-sections/QuoteSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ResponsiveText } from '@src/components/Typography'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
@@ -74,6 +75,14 @@ export default function Legal(
         </StandardPageWidth>
       </StandardPageSection>
       <ProductFeaturesSection />
+      <QuoteSection
+        title="Delivering value to DevOps and platform engineering teams"
+        quote={`By adopting Plural for our Kubernetes fleet management solution, we
+        reduced our k8s upgrade cycle from 9 months to 1 day, enabling us to
+        delegate responsibilities more effectively from principal engineers to
+        mid-level engineer`}
+        attribution="Director DevOps, Leading Global Cybersecurity Provider"
+      />
       <StandardPageSection>
         <StandardPageWidth>
           <div>
