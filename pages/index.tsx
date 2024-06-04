@@ -260,8 +260,11 @@ export default function Index({
               onClose={() => setShowVideo(false)}
               closeButton={false}
               className="mx-auto flex w-[90%] items-center justify-center"
+              style={{ height: 'fit-content' }}
             >
-              <div className="relative w-full self-center">
+              <div
+                className="relative h-0 w-full self-center pb-[56.25%]" /* 16:9 aspect ratio */
+              >
                 <IconFrame
                   className="closeButton absolute right-small top-small z-10"
                   type="floating"
@@ -270,11 +273,10 @@ export default function Index({
                   onClick={() => setShowVideo(false)}
                 />
                 <iframe
-                  width="100%"
-                  height="500px"
+                  className="absolute left-0 top-0 h-full w-full"
                   src="https://www.youtube.com/embed/W8KCaiZRV3M?si=co3ld2bFbqH6RpZb"
                   title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="autoplay"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
