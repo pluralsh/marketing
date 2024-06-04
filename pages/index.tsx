@@ -273,7 +273,7 @@ export default function Index({
                   onClick={() => setShowVideo(false)}
                 />
                 <iframe
-                  className="absolute left-0 top-0 h-full w-full"
+                  className="absolute left-0 top-0 h-full w-full rounded-large border border-fill-three"
                   src="https://www.youtube.com/embed/W8KCaiZRV3M?si=co3ld2bFbqH6RpZb"
                   title="YouTube video player"
                   allow="autoplay"
