@@ -5,7 +5,7 @@ import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import { type Variants, motion, useInView } from 'framer-motion'
+import { type Variants, motion } from 'framer-motion'
 import styled from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
@@ -120,15 +120,16 @@ const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
   }
 }
 
-function HeroIn({ children, inView, className, delay }) {
+function HeroIn({ children, className, delay }) {
   const variants = heroVariants({ delay })
   const isMobile = useMobileDetect().isMobile()
 
   return (
     <motion.div
       className={classNames('heroImg', className)}
-      animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
+      animate={isMobile ? 'mobile' : 'onscreen'}
       variants={variants}
+      initial="offscreen"
     >
       {children}
     </motion.div>
@@ -138,7 +139,6 @@ function HeroIn({ children, inView, className, delay }) {
 function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   const ref = useRef<any>(null)
 
-  const inView = useInView(ref, { once: true, margin: '-80px 0px -40%' })
   const stagger = 0.25
 
   return (
@@ -148,7 +148,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
     >
       <HeroIn
         className="heroImg1"
-        inView={inView}
         delay={0 * stagger}
       >
         <img
@@ -158,7 +157,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       </HeroIn>
       <HeroIn
         className="heroImg2"
-        inView={inView}
         delay={1 * stagger}
       >
         <img
@@ -168,7 +166,6 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
       </HeroIn>
       <HeroIn
         className="heroImg3"
-        inView={inView}
         delay={1.75 * stagger}
       >
         <img
