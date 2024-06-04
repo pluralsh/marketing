@@ -10,7 +10,7 @@ import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { TextLimiter } from '@src/components/layout/TextLimiter'
 import { TeamSection } from '@src/components/page-sections/TeamSection'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { Cta } from '@src/components/Typography'
+import { ResponsiveText } from '@src/components/Typography'
 import { getTeamMembers } from '@src/data/getTeamMembers'
 import { type TeamMemberFragment } from '@src/generated/graphqlDirectus'
 import { cn as classNames } from '@src/utils/cn'
@@ -49,27 +49,11 @@ export default function About({
             </h1>
             <Columns className="gap-y-xxxxlarge columns:items-center">
               <EqualColumn>
-                <TextLimiter>
-                  <h2 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-hero-1">
-                    We are building a flexible, scalable solution to application
-                    delivery.
-                  </h2>
-                </TextLimiter>
-              </EqualColumn>
-              <EqualColumn>
-                <TextLimiter>
-                  <p className="txt-mktg-body-1 mb-xlarge text-text-light">
-                    At Plural, we believe that there is a better way to solve
-                    the third major constraint—distributed systems operational
-                    cost—that benefits OSS developers and DevOps teams alike.
-                  </p>
-                  <Cta
-                    target="_blank"
-                    href="https://www.plural.sh/blog/what-is-plural/"
-                  >
-                    Read more
-                  </Cta>
-                </TextLimiter>
+                <h2 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-hero-1">
+                  Our mission is to democratize elite DevOps capabilities by
+                  simplifing tooling complexities, fostering a ZeroOps world
+                  that accelerates software development.
+                </h2>
               </EqualColumn>
             </Columns>
           </StandardPageWidth>
@@ -108,29 +92,36 @@ export default function About({
             'bg-fill-zero',
             'flex flex-col',
             'gap-y-xxxxlarge py-xxxxlarge',
-            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
-            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge',
+            'md:gap-y-large md:py-xxxxxlarge',
+            'xxl:py-xxxxxxlarge',
             'text-text'
           )}
         >
           <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-            <CenteredSectionHead
-              preHeading="About us"
-              heading="Who we are"
-              intro={
-                <p>
-                  We are a dynamic and innovative company that specializes in
-                  creating meaningful connections and fostering collaboration.
-                  At Plural, we believe in the power of diversity and inclusion,
-                  recognizing that when different perspectives come together,
-                  incredible things happen.
-                </p>
-              }
-              className="mb-xxxxlarge text-center"
-            />
+            <ResponsiveText
+              as="h1"
+              textStyles={{ '': 'mLabel' }}
+              color="text-light"
+              className="mb-xlarge"
+            >
+              Who we are
+            </ResponsiveText>
+            <ResponsiveText
+              as="p"
+              textStyles={{ '': 'mHero2' }}
+              //   color="text-light"
+              className="mb-xxxxlarge"
+            >
+              We are a dynamic and innovative company that specializes in
+              creating meaningful connections and fostering collaboration. At
+              Plural, we believe in the power of diversity and inclusion,
+              recognizing that when different perspectives come together,
+              incredible things happen.
+            </ResponsiveText>
+
             <img
               alt="The Plural team standing together on a sidewalk in the French Quarter of New Orleans."
-              src="/images/about/team.jpg"
+              src="/images/about/team.png"
             />
           </StandardPageWidth>
           <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
@@ -138,7 +129,6 @@ export default function About({
               preHeading="Our company values"
               heading="As a driven and cohesive team, we share a common 
 mission to build something unique."
-              intro={<p> How we stay connected as a team</p>}
               className="mb-xxxxlarge text-center"
             />
             <Columns
