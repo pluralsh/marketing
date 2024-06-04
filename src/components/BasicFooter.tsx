@@ -14,6 +14,15 @@ export function BasicFooter({ className }: { className?: string }) {
           <FooterLink href="/legal/terms-and-conditions">
             Terms & Conditions
           </FooterLink>
+          <FooterLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              window.Cookiebot?.show()
+            }}
+          >
+            Cookie Settings
+          </FooterLink>
         </div>
       </FullPageWidth>
     </BasicFooterWrap>
