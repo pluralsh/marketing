@@ -9,8 +9,6 @@ const QuoteSectionSC = styled.div(({ theme: _theme }) => ({
   padding: `${_theme.spacing.xxxxxlarge}px ${_theme.spacing.large}px`,
   flexWrap: 'wrap',
   '.quoteContainer': {
-    maxWidth: '40%',
-    minWidth: '257px',
     color: 'white',
     position: 'relative',
     '.leftQuote': {
@@ -28,9 +26,6 @@ const QuoteSectionSC = styled.div(({ theme: _theme }) => ({
       width: '25px',
     },
   },
-  '.titleContainer': {
-    width: '300px',
-  },
 }))
 
 export function QuoteSection({
@@ -44,12 +39,12 @@ export function QuoteSection({
 }) {
   return (
     <QuoteSectionSC>
-      <div className="titleContainer">
+      <div className="w-[300px]">
         <h3 className="text-4xl font-bold text-marketing-white sm:text-3xl">
           {title}
         </h3>
       </div>
-      <div className="quoteContainer">
+      <div className="quoteContainer w-[300px]">
         <svg
           width="38"
           height="34"
