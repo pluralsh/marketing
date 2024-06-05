@@ -211,7 +211,7 @@ export default function Index({
             </div>
           }
         />
-        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pb-xxlarge lg:pt-0">
+        <div className="pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0 ">
           <StandardPageWidth>
             <HeroImages />
             <Button
@@ -299,7 +299,7 @@ export default function Index({
                   reducing upgrade times.
                 </p>
               }
-              className="mb-xxxxlarge text-center"
+              className="text-center"
             />
           </StandardPageWidth>
         </div>
