@@ -155,16 +155,6 @@ mission to build something unique."
                       do.
                     </p>
                   </Value>
-                  <Value label="Kindness and respect">
-                    <p className="m-0 p-0">
-                      At Plural, kindness and respect are fundamental to our
-                      culture. We foster a supportive and inclusive environment
-                      where everyone is treated with empathy, dignity, and
-                      respect. We believe in the power of positive interactions
-                      and aim to uplift and encourage one another, both within
-                      our team and the wider community.
-                    </p>
-                  </Value>
                   <Value label="Inclusivity">
                     <p className="m-0 p-0">
                       We are dedicated to building an inclusive platform that
@@ -177,6 +167,16 @@ mission to build something unique."
                       succeed.
                     </p>
                   </Value>
+                  <Value label="Open mindedness and exploration">
+                    <p className="m-0 p-0">
+                      We have a passion for excellence and continuously strive
+                      to deliver the highest quality in everything we do. We are
+                      committed to providing outstanding products, services, and
+                      experiences to our community. We encourage innovation,
+                      embrace challenges, and consistently seek ways to improve
+                      and exceed expectations.
+                    </p>
+                  </Value>
                 </TextLimiter>
               </EqualColumn>
               <EqualColumn className="gap-y-xxxxlarge">
@@ -187,6 +187,16 @@ mission to build something unique."
                     'columns:gap-y-xxlarge'
                   )}
                 >
+                  <Value label="Kindness and respect">
+                    <p className="m-0 p-0">
+                      At Plural, kindness and respect are fundamental to our
+                      culture. We foster a supportive and inclusive environment
+                      where everyone is treated with empathy, dignity, and
+                      respect. We believe in the power of positive interactions
+                      and aim to uplift and encourage one another, both within
+                      our team and the wider community.
+                    </p>
+                  </Value>
                   <Value label="Excellence">
                     <p className="m-0 p-0">
                       We have a passion for excellence and continuously strive
@@ -197,24 +207,15 @@ mission to build something unique."
                       and exceed expectations.
                     </p>
                   </Value>
-                  <Value label="Open mindedness and exploration">
-                    <p className="m-0 p-0">
-                      We believe in the power of open-mindedness and embracing
-                      new possibilities. We encourage curiosity, creativity, and
-                      a willingness to explore uncharted territories. We foster
-                      an environment that embraces diverse ideas, encourages
-                      constructive feedback, and values continuous learning. We
-                      are open to new perspectives and always ready to embark on
-                      exciting adventures.
-                    </p>
-                    <p className="m-0 p-0">
-                      By embracing these values, we aim to build a vibrant and
-                      thriving community where developers can collaborate,
-                      learn, and grow together. We are committed to making a
-                      positive impact and empowering individuals to achieve
-                      their goals.
-                    </p>
-                  </Value>
+                  <ResponsiveText
+                    as="p"
+                    textStyles={{ '': 'mTitle1' }}
+                  >
+                    By embracing these values, we aim to build a vibrant and
+                    thriving community where developers can collaborate, learn,
+                    and grow together. We are committed to making a positive
+                    impact and empowering individuals to achieve their goals.
+                  </ResponsiveText>
                 </TextLimiter>
               </EqualColumn>
             </Columns>
