@@ -165,8 +165,7 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
     <div>
       <StandardPageWidth className="mb-xxlarge md:mb-xxxxxlarge">
         <CenteredSectionHead
-          preHeading="The team"
-          heading="Our compact yet remarkable team"
+          heading="The team"
           intro={
             <p>
               We’re a vibrant and dynamic team of employees, fueled by a passion
