@@ -18,7 +18,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
       {...props}
       className={classNames(
         props.className,
-        'flex-col justify-between gap-y-xxxlarge md:flex-row'
+        'flex-col justify-between gap-y-xxxlarge lg:flex-row'
       )}
     >
       <EqualColumn>
@@ -39,7 +39,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
           Book now
         </Button>
       </EqualColumn>
-      <EqualColumn className="flex flex-row items-center justify-between gap-medium md:justify-end md:gap-xxlarge">
+      <EqualColumn className="flex flex-row items-center justify-between gap-medium lg:justify-end lg:gap-xxlarge">
         <img
           width="28%"
           className="max-w-[90px]"
