@@ -217,7 +217,7 @@ export default function Index({
             <Button
               large
               floating
-              className="mx-auto mb-xxxxxxlarge w-fit"
+              className="group mx-auto mb-xxxxxxlarge w-fit"
               onClick={() => setShowVideo(true)}
             >
               Watch demo video
@@ -227,7 +227,7 @@ export default function Index({
                 viewBox="0 0 42 42"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="ml-small"
+                className="ml-small text-fill-primary group-hover:text-fill-primary-hover"
                 aria-hidden
               >
                 <rect
@@ -235,7 +235,7 @@ export default function Index({
                   width="41.0404"
                   height="41.0404"
                   rx="20.5202"
-                  fill="#5D63F4"
+                  fill="currentColor"
                 />
                 <g clipPath="url(#clip0_490_2681)">
                   <path
@@ -266,7 +266,7 @@ export default function Index({
                 className="relative h-0 w-full self-center pb-[56.25%]" /* 16:9 aspect ratio */
               >
                 <IconFrame
-                  className="closeButton absolute right-small top-small z-10"
+                  className="absolute right-small top-small z-10"
                   type="floating"
                   clickable
                   icon={<CloseIcon />}
