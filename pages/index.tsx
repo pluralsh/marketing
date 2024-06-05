@@ -1,6 +1,6 @@
 import { type ComponentProps, useRef, useState } from 'react'
 
-import { Button, CloseIcon, IconFrame } from '@pluralsh/design-system'
+import { Button, CloseIcon } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
@@ -260,18 +260,21 @@ export default function Index({
               onClose={() => setShowVideo(false)}
               closeButton={false}
               className="mx-auto flex w-[90%] items-center justify-center"
-              style={{ height: 'fit-content' }}
+              style={{ height: 'fit-content', overflow: 'visible' }}
             >
               <div
                 className="relative h-0 w-full self-center pb-[56.25%]" /* 16:9 aspect ratio */
               >
-                <IconFrame
-                  className="absolute right-small top-small z-10"
-                  type="floating"
-                  clickable
-                  icon={<CloseIcon />}
+                <Button
+                  className="left-1/2 top-full z-10 mt-large -translate-x-1/2"
+                  large
+                  floating
+                  startIcon={<CloseIcon />}
                   onClick={() => setShowVideo(false)}
-                />
+                  style={{ position: 'absolute' }}
+                >
+                  Close
+                </Button>
                 <iframe
                   className="absolute left-0 top-0 h-full w-full rounded-large border border-fill-three"
                   src="https://www.youtube.com/embed/W8KCaiZRV3M?si=co3ld2bFbqH6RpZb"
