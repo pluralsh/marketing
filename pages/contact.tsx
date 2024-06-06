@@ -1,5 +1,6 @@
-import { ColorModeProvider } from '@pluralsh/design-system'
+import { Button } from '@pluralsh/design-system'
 import Head from 'next/head'
+import Link from 'next/link'
 import Script from 'next/script'
 
 import { clsx } from 'clsx'
@@ -45,19 +46,36 @@ export function ContactHeader({
               >
                 {title}
               </ResponsiveText>
-            </TextLimiter>
-          </EqualColumn>
-          <EqualColumn>
-            <TextLimiter>
               <ResponsiveText
                 as="p"
-                textStyles={{ '': 'mBody1' }}
+                textStyles={{ '': 'mTitle2' }}
                 color="text-light"
-                className="[text-wrap:balance] "
+                className="mt-xlarge [text-wrap:balance]"
               >
                 {subtitle}
               </ResponsiveText>
+              <ResponsiveText
+                as="p"
+                textStyles={{ '': 'mBody1Bold' }}
+                color="text-light"
+                className="mt-xlarge [text-wrap:balance]"
+              >
+                Want to learn more about pricing?
+              </ResponsiveText>
+              <Button
+                large
+                secondary
+                outline
+                as={Link}
+                href="/pricing"
+                className="mt-medium w-fit"
+              >
+                Go to pricing
+              </Button>
             </TextLimiter>
+          </EqualColumn>
+          <EqualColumn>
+            <HubspotForm formId="4381b90a-ac28-4e54-842e-0319c16cf882" />
           </EqualColumn>
         </Columns>
       </div>
@@ -78,21 +96,18 @@ export default function Index() {
         as={GradientBG}
         size="cover"
         position="top middle"
-        image="/images/gradients/gradient-bg-4.jpg"
+        image="/images/gradients/gradient-bg-12.png"
       >
         <ContactHeader
-          title="Drop us a note"
-          subtitle="We’re here to help with support available for teams of all
-                    sizes."
+          title="Contact sales"
+          subtitle="Reach out to our sales and support teams for demos, assistance with onboarding, or any inquiries about our products."
         />
       </HeaderPad>
-      <ColorModeProvider mode="light">
+      {/* <ColorModeProvider mode="light">
         <div className="bg-fill-zero py-xxxxlarge">
-          <StandardPageWidth>
-            <HubspotForm formId="4381b90a-ac28-4e54-842e-0319c16cf882" />
-          </StandardPageWidth>
+          <StandardPageWidth />
         </div>
-      </ColorModeProvider>
+      </ColorModeProvider> */}
     </>
   )
 }
