@@ -34,7 +34,7 @@ export function ContactHeader({
         )}
       >
         <Columns className="gap-y-medium columns:items-center">
-          <EqualColumn className="justify-start">
+          <EqualColumn className="mb-xxlarge justify-start lg:mb-0">
             <TextLimiter>
               <ResponsiveText
                 className="[text-wrap:balance]"
@@ -103,11 +103,6 @@ export default function Index() {
           subtitle="Reach out to our sales and support teams for demos, assistance with onboarding, or any inquiries about our products."
         />
       </HeaderPad>
-      {/* <ColorModeProvider mode="light">
-        <div className="bg-fill-zero py-xxxxlarge">
-          <StandardPageWidth />
-        </div>
-      </ColorModeProvider> */}
     </>
   )
 }

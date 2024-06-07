@@ -14,6 +14,13 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
       backgroundColor: `${_.colors['action-primary-hover']} !important`,
     },
   },
+  form: {
+    width: '100%',
+    fieldset: {
+      width: '100%',
+      maxWidth: '100% !important',
+    },
+  },
   'form:invalid input.primary': {
     backgroundColor: `${_.colors['action-primary-disabled']} !important`,
     color: _.colors['text-primary-disabled'],
