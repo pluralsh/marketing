@@ -28,6 +28,10 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
   '.hs-error-msgs': {
     paddingBottom: _.spacing.medium,
   },
+  '.hs-error-msg': {
+    marginTop: _.spacing.xsmall,
+    display: 'block',
+  },
   '.hs-fieldtype-text': {
     marginBottom: _.spacing.small,
   },
@@ -72,8 +76,6 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
       height: 48,
       width: '100% !important',
       backgroundColor: 'rgba(255, 255, 255, 0.05) !important',
-      //   WebkitBackgroundClip: 'text',
-      //   WebkitTextFillColor: '#ffffff',
     },
   'input:not([type="submit"]):-webkit-autofill': {
     WebkitBackgroundClip: 'text',
@@ -88,9 +90,6 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
   },
   'input, textarea': {
     marginTop: _.spacing.xsmall,
-    '&:invalid': {
-      marginBottom: _.spacing.small,
-    },
     paddingLeft: _.spacing.medium,
     paddingRight: _.spacing.medium,
     borderRadius: _.borderRadiuses.large,
