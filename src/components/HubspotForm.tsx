@@ -67,7 +67,7 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
       color: _.colors['text-error'],
     },
   },
-  'input[type="text"], input[type="email"], input[type="submit"], input:-webkit-autofill':
+  'input[type="text"], input[type="email"], input[type="tel"], input[type="submit"], input:-webkit-autofill':
     {
       height: 48,
       width: '100% !important',
