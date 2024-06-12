@@ -168,7 +168,7 @@ export const getSiteSettings = () => ({
             link: {
               id: '6-2',
               title: 'Blog',
-              url: '/blog',
+              url: 'https://www.plural.sh/blog/',
             },
           },
           {
