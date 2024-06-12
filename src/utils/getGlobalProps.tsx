@@ -23,7 +23,7 @@ async function getGlobalProps() {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
 
-  const siteSettings = await getSiteSettings()
+  const siteSettings = getSiteSettings()
 
   return {
     siteSettings,

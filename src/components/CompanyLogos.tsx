@@ -6,8 +6,7 @@ import styled, { useTheme } from 'styled-components'
 import { type Merge } from 'type-fest'
 
 import { TextLabel } from '@src/components/Typography'
-import { getImageUrl } from '@src/consts/routes'
-import { type LogoListFragment } from '@src/generated/graphqlDirectus'
+import { type PartnerLogos } from '@src/data/getSiteSettings'
 
 import { StandardPageWidth } from './layout/LayoutHelpers'
 
@@ -39,7 +38,7 @@ export function CompanyLogosSection({
 }: Merge<
   ComponentProps<typeof CompanyLogosSectionSC>,
   {
-    logos?: LogoListFragment['items']
+    logos?: PartnerLogos['items']
     heading?: ReactNode
   }
 >) {
@@ -67,9 +66,7 @@ export function CompanyLogosSection({
               url,
               width,
             } = logo.item
-            const imgUrl = getImageUrl(
-              theme.mode === 'light' ? logoLight : logoDark
-            )
+            const imgUrl = theme.mode === 'light' ? logoLight : logoDark
 
             return (
               imgUrl && (

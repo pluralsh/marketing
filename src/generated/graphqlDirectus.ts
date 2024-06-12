@@ -87,7 +87,6 @@ export type Query = {
   quotes: Array<Quotes>;
   quotes_aggregated: Array<Quotes_Aggregated>;
   quotes_by_id?: Maybe<Quotes>;
-  site_settings?: Maybe<Site_Settings>;
   solutions_pages: Array<Solutions_Pages>;
   solutions_pages_aggregated: Array<Solutions_Pages_Aggregated>;
   solutions_pages_by_id?: Maybe<Solutions_Pages>;
@@ -1190,20 +1189,8 @@ export type Collapsibles_Filter = {
 export type Company_Logo_Lists = {
   __typename?: 'company_logo_lists';
   id: Scalars['ID']['output'];
-  items?: Maybe<Array<Maybe<Company_Logo_Lists_Items>>>;
-  items_func?: Maybe<Count_Functions>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type Company_Logo_ListsItemsArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Company_Logo_Lists_Aggregated = {
@@ -1223,7 +1210,6 @@ export type Company_Logo_Lists_Aggregated = {
 export type Company_Logo_Lists_Aggregated_Count = {
   __typename?: 'company_logo_lists_aggregated_count';
   id?: Maybe<Scalars['Int']['output']>;
-  items?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
 };
@@ -1238,8 +1224,6 @@ export type Company_Logo_Lists_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
   id?: InputMaybe<Number_Filter_Operators>;
-  items?: InputMaybe<Company_Logo_Lists_Items_Filter>;
-  items_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
 };
@@ -1247,20 +1231,10 @@ export type Company_Logo_Lists_Filter = {
 export type Company_Logo_Lists_Items = {
   __typename?: 'company_logo_lists_items';
   collection?: Maybe<Scalars['String']['output']>;
-  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
+  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
   id: Scalars['ID']['output'];
   item?: Maybe<Company_Logo_Lists_Items_Item_Union>;
   sort?: Maybe<Scalars['Int']['output']>;
-};
-
-
-export type Company_Logo_Lists_ItemsCompany_Logo_Lists_IdArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type Company_Logo_Lists_Items_Aggregated = {
@@ -1297,7 +1271,7 @@ export type Company_Logo_Lists_Items_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_Filter>>>;
   collection?: InputMaybe<String_Filter_Operators>;
-  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
+  company_logo_lists_id?: InputMaybe<Number_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   item__company_logos?: InputMaybe<Company_Logos_Filter>;
   sort?: InputMaybe<Number_Filter_Operators>;
@@ -1808,11 +1782,12 @@ export type Nav_List = {
   flatten?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['ID']['output'];
   link?: Maybe<Nav_Link>;
+  main_nav?: Maybe<Array<Maybe<Nav_List>>>;
   mobile_only?: Maybe<Scalars['Boolean']['output']>;
   parent_nav_list_id?: Maybe<Nav_List>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
-  subnav?: Maybe<Array<Maybe<Nav_List>>>;
+  subnav?: Maybe<Scalars['String']['output']>;
   subnav_func?: Maybe<Count_Functions>;
 };
 
@@ -1827,7 +1802,7 @@ export type Nav_ListLinkArgs = {
 };
 
 
-export type Nav_ListParent_Nav_List_IdArgs = {
+export type Nav_ListMain_NavArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -1837,7 +1812,7 @@ export type Nav_ListParent_Nav_List_IdArgs = {
 };
 
 
-export type Nav_ListSubnavArgs = {
+export type Nav_ListParent_Nav_List_IdArgs = {
   filter?: InputMaybe<Nav_List_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -1883,11 +1858,12 @@ export type Nav_List_Filter = {
   flatten?: InputMaybe<Boolean_Filter_Operators>;
   id?: InputMaybe<String_Filter_Operators>;
   link?: InputMaybe<Nav_Link_Filter>;
+  main_nav?: InputMaybe<Nav_List_Filter>;
   mobile_only?: InputMaybe<Boolean_Filter_Operators>;
   parent_nav_list_id?: InputMaybe<Nav_List_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
-  subnav?: InputMaybe<Nav_List_Filter>;
+  subnav?: InputMaybe<String_Filter_Operators>;
   subnav_func?: InputMaybe<Count_Function_Filter_Operators>;
 };
 
@@ -2220,68 +2196,6 @@ export type Quotes_Filter = {
   title?: InputMaybe<String_Filter_Operators>;
 };
 
-export type Site_Settings = {
-  __typename?: 'site_settings';
-  main_nav?: Maybe<Nav_List>;
-  og_description?: Maybe<Scalars['String']['output']>;
-  og_image?: Maybe<Directus_Files>;
-  og_image_community?: Maybe<Directus_Files>;
-  og_image_marketplace?: Maybe<Directus_Files>;
-  partner_logos?: Maybe<Company_Logo_Lists>;
-  promo_banner_content?: Maybe<Scalars['String']['output']>;
-  promo_banner_url?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type Site_SettingsMain_NavArgs = {
-  filter?: InputMaybe<Nav_List_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_SettingsOg_ImageArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_SettingsOg_Image_CommunityArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_SettingsOg_Image_MarketplaceArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_SettingsPartner_LogosArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
 export type Solutions_Pages = {
   __typename?: 'solutions_pages';
   bullet_points?: Maybe<Scalars['JSON']['output']>;
@@ -2567,18 +2481,9 @@ export type LinkFragment = { __typename?: 'nav_link', id: string, title?: string
 
 export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type NavListDepth3Fragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
-
 export type CompanyLogoFragment = { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
-export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null };
-
-export type SiteSettingsFragment = { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_marketplace?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_community?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
-
-export type SiteSettingsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SiteSettingsQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, promo_banner_content?: string | null, promo_banner_url?: string | null, main_nav?: { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, subnav?: Array<{ __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null> | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null } | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_marketplace?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, og_image_community?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, partner_logos?: { __typename?: 'company_logo_lists', slug?: string | null, items?: Array<{ __typename?: 'company_logo_lists_items', item?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | null };
+export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: string | null };
 
 export type CaseStudyFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -2740,17 +2645,6 @@ export const NavListFragmentDoc = gql`
   }
 }
     ${LinkFragmentDoc}`;
-export const NavListDepth3FragmentDoc = gql`
-    fragment NavListDepth3 on nav_list {
-  ...NavList
-  subnav(sort: ["sort"]) {
-    ...NavList
-    subnav(sort: ["sort"]) {
-      ...NavList
-    }
-  }
-}
-    ${NavListFragmentDoc}`;
 export const ImageFileFragmentDoc = gql`
     fragment ImageFile on directus_files {
   id
@@ -2781,37 +2675,8 @@ export const CompanyLogoFragmentDoc = gql`
 export const LogoListFragmentDoc = gql`
     fragment LogoList on company_logo_lists {
   slug
-  items {
-    item {
-      ...CompanyLogo
-    }
-  }
 }
-    ${CompanyLogoFragmentDoc}`;
-export const SiteSettingsFragmentDoc = gql`
-    fragment SiteSettings on site_settings {
-  main_nav(sort: ["sort"]) {
-    ...NavListDepth3
-  }
-  og_description
-  og_image {
-    ...ImageFile
-  }
-  og_image_marketplace {
-    ...ImageFile
-  }
-  og_image_community {
-    ...ImageFile
-  }
-  partner_logos {
-    ...LogoList
-  }
-  promo_banner_content
-  promo_banner_url
-}
-    ${NavListDepth3FragmentDoc}
-${ImageFileFragmentDoc}
-${LogoListFragmentDoc}`;
+    `;
 export const CaseStudyFragmentDoc = gql`
     fragment CaseStudy on case_studies {
   id
@@ -3088,40 +2953,6 @@ export function useEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Eve
 export type EventsQueryHookResult = ReturnType<typeof useEventsQuery>;
 export type EventsLazyQueryHookResult = ReturnType<typeof useEventsLazyQuery>;
 export type EventsQueryResult = Apollo.QueryResult<EventsQuery, EventsQueryVariables>;
-export const SiteSettingsDocument = gql`
-    query SiteSettings {
-  site_settings {
-    ...SiteSettings
-  }
-}
-    ${SiteSettingsFragmentDoc}`;
-
-/**
- * __useSiteSettingsQuery__
- *
- * To run a query within a React component, call `useSiteSettingsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSiteSettingsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSiteSettingsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSiteSettingsQuery(baseOptions?: Apollo.QueryHookOptions<SiteSettingsQuery, SiteSettingsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SiteSettingsQuery, SiteSettingsQueryVariables>(SiteSettingsDocument, options);
-      }
-export function useSiteSettingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SiteSettingsQuery, SiteSettingsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SiteSettingsQuery, SiteSettingsQueryVariables>(SiteSettingsDocument, options);
-        }
-export type SiteSettingsQueryHookResult = ReturnType<typeof useSiteSettingsQuery>;
-export type SiteSettingsLazyQueryHookResult = ReturnType<typeof useSiteSettingsLazyQuery>;
-export type SiteSettingsQueryResult = Apollo.QueryResult<SiteSettingsQuery, SiteSettingsQueryVariables>;
 export const AppExtrasDocument = gql`
     query AppExtras($name: String) {
   apps(filter: {name: {_eq: $name}}) {
