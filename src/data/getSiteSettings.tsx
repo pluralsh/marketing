@@ -1,3 +1,5 @@
+import { productsConfigs } from './getProductConfigs'
+
 export const getSiteSettings = () => ({
   og_description:
     'Open-source application deployment, faster than ever without sacrificing compliance."',
@@ -80,6 +82,7 @@ export const getSiteSettings = () => ({
           title: 'Product',
           url: '/kubernetes-fleet-management',
         },
+        subnav: getProductSubnav(),
       },
       {
         id: '2',
@@ -215,4 +218,15 @@ export type PartnerLogos = {
       width: number
     }
   }[]
+}
+
+function getProductSubnav() {
+  return Object.keys(productsConfigs).map((productKey, i) => ({
+    id: `1-${i + 1}`,
+    link: {
+      id: `1-${i + 1}`,
+      title: productsConfigs[productKey].title,
+      url: `products/${productKey}`,
+    },
+  }))
 }
