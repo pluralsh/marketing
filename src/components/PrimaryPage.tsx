@@ -4,7 +4,6 @@ import { type NextRouter, useRouter } from 'next/router'
 
 import { type GlobalPageProps } from '@pages/_app'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
-import { getImageUrl } from '@src/consts/routes'
 import { NavDataProvider } from '@src/contexts/NavDataContext'
 
 import { type GlobalProps } from '../utils/getGlobalProps'
@@ -15,10 +14,7 @@ import HtmlHead from './HtmlHead'
 import { PageHeader } from './PageHeader'
 import { PagePropsContext } from './PagePropsContext'
 
-function selectOgImage(
-  router: NextRouter,
-  siteSettings: GlobalProps['siteSettings']
-) {
+function selectOgImage(router: NextRouter) {
   const path = router.asPath
 
   if (
@@ -26,13 +22,13 @@ function selectOgImage(
       path.startsWith(p)
     )
   ) {
-    return siteSettings?.og_image_marketplace
+    return 'og_image_marketplace.png'
   }
   if (['/community'].some((p) => path.startsWith(p))) {
-    return siteSettings?.og_image_community
+    return 'og_image_community.png'
   }
 
-  return siteSettings?.og_image
+  return 'og_image.png'
 }
 
 export default function PrimaryPage({
@@ -47,7 +43,7 @@ export default function PrimaryPage({
   const { metaTitle, metaTitleFull, metaDescription } = pageProps || {}
   const { siteSettings } = globalProps || {}
   const router = useRouter()
-  const ogImage = getImageUrl(selectOgImage(router, siteSettings))
+  const ogImage = selectOgImage(router)
   const headProps = {
     title:
       metaTitleFull ||

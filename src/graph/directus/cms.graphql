@@ -33,15 +33,15 @@ fragment NavList on nav_list {
   }
 }
 
-fragment NavListDepth3 on nav_list {
-  ...NavList
-  subnav(sort: ["sort"]) {
-    ...NavList
-    subnav(sort: ["sort"]) {
-      ...NavList
-    }
-  }
-}
+# fragment NavListDepth3 on nav_list {
+#   ...NavList
+#   subnav(sort: ["sort"]) {
+#     ...NavList
+#     subnav(sort: ["sort"]) {
+#       ...NavList
+#     }
+#   }
+# }
 
 fragment CompanyLogo on company_logos {
   slug
@@ -58,39 +58,39 @@ fragment CompanyLogo on company_logos {
 
 fragment LogoList on company_logo_lists {
   slug
-  items {
-    item {
-      ...CompanyLogo
-    }
-  }
+  #   items {
+  #     item {
+  #       ...CompanyLogo
+  #     }
+  #   }
 }
 
-fragment SiteSettings on site_settings {
-  main_nav(sort: ["sort"]) {
-    ...NavListDepth3
-  }
-  og_description
-  og_image {
-    ...ImageFile
-  }
-  og_image_marketplace {
-    ...ImageFile
-  }
-  og_image_community {
-    ...ImageFile
-  }
-  partner_logos {
-    ...LogoList
-  }
-  promo_banner_content
-  promo_banner_url
-}
+# fragment SiteSettings on site_settings {
+#       main_nav(sort: ["sort"]) {
+#     ...NavListDepth3
+#   }
+#   og_description
+#   og_image {
+#     ...ImageFile
+#   }
+#   og_image_marketplace {
+#     ...ImageFile
+#   }
+#   og_image_community {
+#     ...ImageFile
+#   }
+#   partner_logos {
+#     ...LogoList
+#   }
+#   promo_banner_content
+#   promo_banner_url
+# }
 
-query SiteSettings {
-  site_settings {
-    ...SiteSettings
-  }
-}
+# query SiteSettings {
+#   site_settings {
+#     ...SiteSettings
+#   }
+# }
 
 fragment CaseStudy on case_studies {
   id
