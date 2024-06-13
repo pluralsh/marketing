@@ -226,7 +226,7 @@ function getProductSubnav() {
     link: {
       id: `1-${i + 1}`,
       title: productsConfigs[productKey].title,
-      url: `products/${productKey}`,
+      url: `/products/${productKey}`,
     },
   }))
 }
