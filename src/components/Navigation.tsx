@@ -4,7 +4,11 @@ import { useNavigationContext } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 
+import { productsConfigs } from '@src/data/getProductConfigs'
+
 import { mqs } from '../breakpoints'
+
+import { ResponsiveText } from './Typography'
 
 export const MainLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
@@ -19,12 +23,46 @@ export const MainLink = forwardRef(
     )
   }
 )
+export const ProductLink = forwardRef(
+  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+    const { Link } = useNavigationContext()
+
+    const itemConfig = productsConfigs[props.id || '']
+
+    return (
+      <MainLinkBase
+        ref={ref}
+        as={Link}
+        {...props}
+      >
+        <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
+          {itemConfig?.navIcon}
+        </div>
+        <div>
+          <ResponsiveText
+            as="p"
+            textStyles={{ '': 'mBody2Bold' }}
+          >
+            {itemConfig?.title}
+          </ResponsiveText>
+          <ResponsiveText
+            as="p"
+            textStyles={{ '': 'mBody2' }}
+          >
+            {itemConfig?.navDescription}
+          </ResponsiveText>
+        </div>
+      </MainLinkBase>
+    )
+  }
+)
 
 export const MainLinkBase = styled.a.withConfig({
   shouldForwardProp: (prop) => !['isDisabled', 'isSelected'].includes(prop),
 })<{ isDisabled?: boolean; isSelected?: boolean }>(({ theme, isSelected }) => ({
   display: 'flex',
   alignItems: 'center',
+  gap: theme.spacing.xsmall,
   cursor: 'pointer',
   ...(isSelected
     ? {

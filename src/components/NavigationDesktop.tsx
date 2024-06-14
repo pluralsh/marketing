@@ -6,6 +6,7 @@ import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import { mqs } from '../breakpoints'
 
+import { ProductTopNavMenu } from './menu/ProductNav'
 import { TopNavMenu } from './menu/TopNavMenu'
 import { MainLink } from './Navigation'
 
@@ -36,11 +37,20 @@ export const NavigationDesktop = styled(
 
     return (
       <div {...props}>
-        {flatNav?.map((navItem) => {
+        {flatNav?.map((navItem, i) => {
           if (navItem?.mobile_only) {
             return null
           }
           if (navItem?.subnav) {
+            if (!i) {
+              return (
+                <ProductTopNavMenu
+                  key={navItem.id}
+                  navItem={navItem}
+                />
+              )
+            }
+
             return (
               <TopNavMenu
                 key={navItem.id}
