@@ -134,22 +134,49 @@ export const getSiteSettings = () => ({
           url: '/pricing',
         },
       },
-      //   {
-      //     id: '4',
-      //     link: {
-      //       id: '4',
-      //       title: 'Docs',
-      //       url: 'https://docs.plural.sh/',
-      //     },
-      //   },
-      //   {
-      //     id: '5',
-      //     link: {
-      //       id: '5',
-      //       title: 'Marketplace',
-      //       url: '/marketplace',
-      //     },
-      //   },
+      {
+        id: '4',
+        link: {
+          id: '4',
+          title: 'Resources',
+          url: '/resources',
+        },
+        subnav: [
+          {
+            id: '4-1',
+            link: {
+              id: '4-1',
+              title: 'Docs',
+              url: 'https://docs.plural.sh',
+            },
+          },
+          {
+            id: '4-2',
+            link: {
+              id: '4-2',
+              title: 'Blog',
+              url: 'https://www.plural.sh/blog',
+            },
+          },
+          {
+            id: '4-3',
+            link: {
+              id: '4-3',
+              title: 'Releases',
+              url: 'https://github.com/pluralsh/plural/releases',
+            },
+          },
+          {
+            id: '4-4',
+            link: {
+              id: '4-4',
+              title: 'Marketplace',
+              url: '/marketplace',
+            },
+          },
+        ],
+      },
+
       {
         id: '6',
         link: {
@@ -164,14 +191,6 @@ export const getSiteSettings = () => ({
               id: '6-1',
               title: 'About',
               url: '/about',
-            },
-          },
-          {
-            id: '6-2',
-            link: {
-              id: '6-2',
-              title: 'Blog',
-              url: 'https://www.plural.sh/blog/',
             },
           },
           {
