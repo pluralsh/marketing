@@ -134,22 +134,22 @@ export const getSiteSettings = () => ({
           url: '/pricing',
         },
       },
-      {
-        id: '4',
-        link: {
-          id: '4',
-          title: 'Docs',
-          url: 'https://docs.plural.sh/',
-        },
-      },
-      {
-        id: '5',
-        link: {
-          id: '5',
-          title: 'Marketplace',
-          url: '/marketplace',
-        },
-      },
+      //   {
+      //     id: '4',
+      //     link: {
+      //       id: '4',
+      //       title: 'Docs',
+      //       url: 'https://docs.plural.sh/',
+      //     },
+      //   },
+      //   {
+      //     id: '5',
+      //     link: {
+      //       id: '5',
+      //       title: 'Marketplace',
+      //       url: '/marketplace',
+      //     },
+      //   },
       {
         id: '6',
         link: {
