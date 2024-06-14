@@ -69,7 +69,6 @@ const CARD_LAYOUTS = [
 
 function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
   if (!articleCards || !articleCards.length) return null
-  console.log('articleCards', articleCards)
 
   return (
     <GradientBG
