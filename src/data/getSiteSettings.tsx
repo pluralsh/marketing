@@ -97,7 +97,7 @@ export const getSiteSettings = () => ({
             link: {
               id: '2-1',
               title: 'Build Securely by default',
-              url: 'solutions/secure-deployments',
+              url: '/solutions/secure-deployments',
             },
           },
           {
@@ -105,7 +105,7 @@ export const getSiteSettings = () => ({
             link: {
               id: '2-2',
               title: 'Accelerate Your Path to Compliance',
-              url: 'solutions/accelerate-path-to-compliance',
+              url: '/solutions/accelerate-path-to-compliance',
             },
           },
           {
@@ -113,7 +113,7 @@ export const getSiteSettings = () => ({
             link: {
               id: '2-3',
               title: 'Lower Cost & Complexity',
-              url: 'solutions/cost-and-operational-control',
+              url: '/solutions/cost-and-operational-control',
             },
           },
           {
@@ -121,7 +121,7 @@ export const getSiteSettings = () => ({
             link: {
               id: '2-4',
               title: 'Accelerate Kubernetes adoption',
-              url: 'solutions/accelerate-kubernetes-adoption',
+              url: '/solutions/accelerate-kubernetes-adoption',
             },
           },
         ],
