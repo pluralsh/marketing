@@ -22,6 +22,17 @@ import {
   WarningShieldIcon,
 } from '@pluralsh/design-system'
 
+import {
+  ClusterUpgradeNavIcon,
+  ContinuousDeploymentNavIcon,
+  GlobalServicesNavIcon,
+  KubernetesDashboardNavIcon,
+  NamespaceNavIcon,
+  PolicyEnforcementNavIcon,
+  PrAutomationNavIcon,
+  TerraformStacksNavIcon,
+} from '@src/components/menu/ProductNavIcons'
+
 export type FeatureConfig = {
   title: string
   description: string
@@ -32,12 +43,16 @@ export type FeatureConfig = {
 export type ProductConfig = {
   title: string
   description: string
+  navIcon: React.ReactElement
+  navDescription: string
   features: FeatureConfig[]
 }
 
 export const productsConfigs: Record<string, ProductConfig> = {
   'cluster-upgrade-assistant': {
     title: 'Cluster Upgrade Assistant',
+    navIcon: <ClusterUpgradeNavIcon />,
+    navDescription: 'A standardized workflow to upgrade clusters.',
     description:
       'Implement a standardized workflow to upgrade clusters safely and with confidence. Leverage our embedded expertise and aggregated open-source data to operationalize the upgrade process at any scale.',
     features: [
@@ -69,6 +84,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'continuous-deployment': {
     title: 'Continuous Deployment',
+    navIcon: <ContinuousDeploymentNavIcon />,
+    navDescription: '{...}',
     description:
       'Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. ',
     features: [
@@ -100,6 +117,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'kubernetes-dashboard': {
     title: 'Kubernetes Dashboard',
+    navIcon: <KubernetesDashboardNavIcon />,
+    navDescription: 'A unified interface for all your clusters.',
     description:
       'The K8s Dashboard offers a unified interface of your entire fleet clusters. From resource monitoring to log viewing, this feature-rich dashboard ensures efficient and effective Kubernetes operations.',
     features: [
@@ -123,6 +142,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'global-services': {
     title: 'Global services',
+    navIcon: <GlobalServicesNavIcon />,
+    navDescription: 'Streamline the setup process for new clusters.',
     description:
       'Streamline the setup process for new clusters, ensuring they all adhere to a consistent Software Bill of Materials (SBOM) across your entire Kubernetes environment with Global Services.',
     features: [
@@ -151,6 +172,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'pr-automation': {
     title: 'PR automation-driven pipelining',
+    navIcon: <PrAutomationNavIcon />,
+    navDescription: 'Automate code deployment for your clusters.',
     description:
       'Streamline and automate the process of integrating and deploying code changes across your Kubernetes fleet. By leveraging pull requests (PRs) as the trigger for automation pipelines, Plural’s PR automation allows you to automate your release process while maintaining full auditability within Git.',
     features: [
@@ -179,6 +202,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'policy-enforcement': {
     title: 'Policy enforcement with OPA GateKeeper',
+    navIcon: <PolicyEnforcementNavIcon />,
+    navDescription: 'Define, manage, and enforce policies.',
     description:
       'Plural provides a robust solution for defining, managing, and enforcing policies across the Kubernetes clusters in your fleet. Utilizing the Open Policy Agent (OPA) Gatekeeper, this feature ensures that your clusters adhere to organizational policies and compliance requirements through real-time policy enforcement.',
     features: [
@@ -200,6 +225,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'namespace-as-a-service': {
     title: 'Namespace-as-a-service',
+    navIcon: <NamespaceNavIcon />,
+    navDescription: 'Implement a multi-tenant cluster strategy.',
     description:
       'Implement a multi-tenant cluster strategy by providing hardened, pre-configured namespaces via our APIs.',
     features: [
@@ -221,6 +248,8 @@ export const productsConfigs: Record<string, ProductConfig> = {
   },
   'terraform-stacks': {
     title: 'Terraform stacks',
+    navIcon: <TerraformStacksNavIcon />,
+    navDescription: 'GitOps strategy around your terraform workflow.',
     description:
       'Implement a GitOps strategy around your Terraform workflow, as well.  Use our API’s to create a reusable Terraform, Pulumi or Ansible stack from any git repository in which the code might live, and we’ll handle the rest to ensure it’s deployed on any commit.',
     features: [
