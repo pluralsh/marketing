@@ -4276,9 +4276,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pluralsh/design-system@npm:3.38.0":
-  version: 3.38.0
-  resolution: "@pluralsh/design-system@npm:3.38.0"
+"@pluralsh/design-system@npm:3.47.0":
+  version: 3.47.0
+  resolution: "@pluralsh/design-system@npm:3.47.0"
   dependencies:
     "@floating-ui/react-dom-interactions": 0.13.3
     "@loomhq/loom-embed": 1.5.0
@@ -4322,11 +4322,11 @@ __metadata:
     "@emotion/styled": ">=11.11.0"
     honorable: ">=1.0.0-beta.17"
     honorable-theme-default: ">=1.0.0-beta.5"
-    react: ">=18.2.0"
-    react-dom: ">=18.2.0"
+    react: ">=18.3.1"
+    react-dom: ">=18.3.1"
     react-transition-group: ">=4.4.5"
     styled-components: ">=5.3.11"
-  checksum: eaaa60e942e8504de006cd07b5b8a98c700872a6e3e09d0924c7e9c90ad9c1de25ffdc4d56d9c3ab35be1281d40c53a98a3976687e5304cfe9e5f2fecd53141c
+  checksum: 6dea65711ebae2358cceb4c930e0df3fd73d4ca8bfd2d58ca2c46ddf78ba623355e3b43d35c017dae1b7c858922b500d878d7b97cbecfccb49efa402969a87d1
   languageName: node
   linkType: hard
 
@@ -13750,7 +13750,7 @@ __metadata:
     "@markdoc/next.js": 0.2.2
     "@next/bundle-analyzer": 13.4.12
     "@open-draft/until": 2.1.0
-    "@pluralsh/design-system": 3.38.0
+    "@pluralsh/design-system": 3.47.0
     "@pluralsh/eslint-config-typescript": 2.5.183
     "@pluralsh/stylelint-config": 2.0.10
     "@radix-ui/react-slot": 1.0.2
