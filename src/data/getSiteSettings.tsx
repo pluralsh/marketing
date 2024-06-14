@@ -222,9 +222,9 @@ export type PartnerLogos = {
 
 function getProductSubnav() {
   return Object.keys(productsConfigs).map((productKey, i) => ({
-    id: `1-${i + 1}`,
+    id: productKey,
     link: {
-      id: `1-${i + 1}`,
+      id: `${productKey}-${i}`,
       title: productsConfigs[productKey].title,
       url: `/products/${productKey}`,
     },
