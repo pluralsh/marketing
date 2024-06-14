@@ -4276,9 +4276,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pluralsh/design-system@npm:3.47.0":
-  version: 3.47.0
-  resolution: "@pluralsh/design-system@npm:3.47.0"
+"@pluralsh/design-system@npm:3.48.0":
+  version: 3.48.0
+  resolution: "@pluralsh/design-system@npm:3.48.0"
   dependencies:
     "@floating-ui/react-dom-interactions": 0.13.3
     "@loomhq/loom-embed": 1.5.0
@@ -4326,7 +4326,7 @@ __metadata:
     react-dom: ">=18.3.1"
     react-transition-group: ">=4.4.5"
     styled-components: ">=5.3.11"
-  checksum: 6dea65711ebae2358cceb4c930e0df3fd73d4ca8bfd2d58ca2c46ddf78ba623355e3b43d35c017dae1b7c858922b500d878d7b97cbecfccb49efa402969a87d1
+  checksum: 8ac5f2d4e53880b8ce3de75b36f09352596f3d2e8ed5679eb9a7985798a14d65f0b713bcc869be16378222d684ec9f9c62babbfe48009632b4faddf484c0080c
   languageName: node
   linkType: hard
 
@@ -13750,7 +13750,7 @@ __metadata:
     "@markdoc/next.js": 0.2.2
     "@next/bundle-analyzer": 13.4.12
     "@open-draft/until": 2.1.0
-    "@pluralsh/design-system": 3.47.0
+    "@pluralsh/design-system": 3.48.0
     "@pluralsh/eslint-config-typescript": 2.5.183
     "@pluralsh/stylelint-config": 2.0.10
     "@radix-ui/react-slot": 1.0.2

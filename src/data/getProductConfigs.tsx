@@ -4,21 +4,22 @@ import {
   CheckIcon,
   CliIcon,
   ClusterIcon,
-  CookieIcon,
+  CompatibilityIcon,
+  ComplianceIcon,
   DeploymentIcon,
   EyeIcon,
-  FileIcon,
   FiltersIcon,
   GitHubIcon,
   GitMergeIcon,
   GlobeIcon,
   KubernetesIcon,
   PeopleIcon,
-  PlanIcon,
   PrMergedIcon,
+  PrQueueIcon,
+  ProtectedClusterIcon,
   ShieldOutlineIcon,
-  SlackLogoIcon,
   TagIcon,
+  TerraformIcon,
   WarningShieldIcon,
 } from '@pluralsh/design-system'
 
@@ -68,7 +69,7 @@ export const productsConfigs: Record<string, ProductConfig> = {
         title: 'Check add-on compatibilities',
         description:
           'Our agent discovers and verifies that all known third-party add-ons are supported on the next Kubernetes version.  Extend our dataset with your own internal data using a few CRDs.',
-        icon: <CookieIcon />,
+        icon: <CompatibilityIcon />,
         image:
           '/images/products/cluster-upgrade-assistant/cluster-upgrade-02.png',
       },
@@ -134,7 +135,7 @@ export const productsConfigs: Record<string, ProductConfig> = {
         title: 'RBAC compliant',
         description:
           'Connects directly with your SSO and automatically integrates with Kubernetes RBAC to ensure full security without the need for complex cluster-specific configuration.',
-        icon: <DeploymentIcon />,
+        icon: <ProtectedClusterIcon />,
         image:
           '/images/products/kubernetes-dashboard/kubernetes-dashboard-02.png',
       },
@@ -181,7 +182,7 @@ export const productsConfigs: Record<string, ProductConfig> = {
         title: 'Automated GitOps',
         description:
           'Sequentially release changes across dev → staging → prod with PRs to update your GitOps resources at each stage, maintaining a full record in Git and automating away manual work.',
-        icon: <PlanIcon />,
+        icon: <PrQueueIcon />,
         image: '/images/products/pr-automation/pr-automation-01.png',
       },
       {
@@ -218,7 +219,7 @@ export const productsConfigs: Record<string, ProductConfig> = {
         title: 'Real-time compliance',
         description:
           'Monitor and audit cluster activities in real-time to ensure continuous compliance. Generate alerts and logs for any policy violations, providing visibility and control over your Kubernetes environment.',
-        icon: <FileIcon />,
+        icon: <ComplianceIcon />,
         image: '/images/products/policy-enforcement/policy-enforcement-02.png',
       },
     ],
@@ -264,7 +265,7 @@ export const productsConfigs: Record<string, ProductConfig> = {
         title: 'Harden your terraform posture',
         description:
           'Remove the need for engineers to apply changes locally with admin-equivalent permissions.',
-        icon: <SlackLogoIcon />,
+        icon: <TerraformIcon />,
         image: '/images/products/terraform-stacks/terraform-stacks-02.png',
       },
       {
