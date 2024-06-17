@@ -181,15 +181,6 @@ function MenuDropdown<T extends object>({
     >
       <DropdownCard>
         <div className={kind === 'product' ? 'p-xlarge' : ''}>
-          {kind === 'product' && (
-            <ResponsiveText
-              as="h3"
-              textStyles={{ '': 'mBody2' }}
-              className="mb-medium text-text-xlight"
-            >
-              FEATURES
-            </ResponsiveText>
-          )}
           <ul className={kind === 'product' ? 'grid grid-cols-2' : ''}>
             {[...state.collection].map((item) => (
               <ItemRenderer
