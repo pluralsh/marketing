@@ -90,7 +90,7 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
   return (
     <MemberSC {...props}>
       <div
-        className="bg"
+        className="bg relative"
         {...(member.portrait
           ? {
               style: {
@@ -99,6 +99,12 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
             }
           : {})}
       >
+        <div
+          className="absolute z-0 h-full w-full"
+          style={{
+            background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%)`,
+          }}
+        />
         <img
           src=""
           className="sr-only"
