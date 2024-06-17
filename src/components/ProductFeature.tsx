@@ -79,8 +79,7 @@ const ProductFeatureSC = styled.div<{ inverse: boolean }>(
     border: theme.borders.default,
     padding: `${0} ${theme.spacing.xxlarge}px`,
     borderRadius: theme.borderRadiuses.large,
-    marginBottom: theme.spacing.xxxlarge,
-    marginTop: theme.spacing.xxxlarge,
+    marginBottom: theme.spacing.xxxxxlarge,
     background: `linear-gradient(${inverse ? '90deg' : '270deg'}, #1B1F27 0%, #0E1015 100%)`,
   })
 )
