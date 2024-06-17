@@ -1,5 +1,7 @@
 import { type ComponentProps, useMemo } from 'react'
 
+import { ColorModeProvider } from '@pluralsh/design-system'
+
 import styled from 'styled-components'
 
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
@@ -36,15 +38,24 @@ export const NavigationDesktop = styled(
     const flatNav = useMemo(() => flattenNavData(navData), [navData])
 
     return (
-      <div {...props}>
-        {flatNav?.map((navItem, i) => {
-          if (navItem?.mobile_only) {
-            return null
-          }
-          if (navItem?.subnav) {
-            if (!i) {
+      <ColorModeProvider mode="dark">
+        <div {...props}>
+          {flatNav?.map((navItem, i) => {
+            if (navItem?.mobile_only) {
+              return null
+            }
+            if (navItem?.subnav) {
+              if (!i) {
+                return (
+                  <ProductTopNavMenu
+                    key={navItem.id}
+                    navItem={navItem}
+                  />
+                )
+              }
+
               return (
-                <ProductTopNavMenu
+                <TopNavMenu
                   key={navItem.id}
                   navItem={navItem}
                 />
@@ -52,21 +63,14 @@ export const NavigationDesktop = styled(
             }
 
             return (
-              <TopNavMenu
-                key={navItem.id}
+              <NavItemLink
+                key={navItem?.id}
                 navItem={navItem}
               />
             )
-          }
-
-          return (
-            <NavItemLink
-              key={navItem?.id}
-              navItem={navItem}
-            />
-          )
-        })}
-      </div>
+          })}
+        </div>
+      </ColorModeProvider>
     )
   }
 )(({ theme }) => ({
