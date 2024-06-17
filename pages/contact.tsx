@@ -34,7 +34,7 @@ export function ContactHeader({
         )}
       >
         <Columns className="gap-y-medium columns:items-center">
-          <EqualColumn className="mb-xxlarge justify-start lg:mb-0">
+          <EqualColumn className="mb-xxlarge justify-start self-start lg:mb-0">
             <TextLimiter>
               <ResponsiveText
                 className="[text-wrap:balance]"
