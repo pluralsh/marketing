@@ -85,48 +85,6 @@ export const getSiteSettings = () => ({
         subnav: getProductSubnav(),
       },
       {
-        id: '2',
-        link: {
-          id: '2',
-          title: 'Solutions',
-          url: '/solutions',
-        },
-        subnav: [
-          {
-            id: '2-1',
-            link: {
-              id: '2-1',
-              title: 'Build Securely by default',
-              url: '/solutions/secure-deployments',
-            },
-          },
-          {
-            id: '2-2',
-            link: {
-              id: '2-2',
-              title: 'Accelerate Your Path to Compliance',
-              url: '/solutions/accelerate-path-to-compliance',
-            },
-          },
-          {
-            id: '2-3',
-            link: {
-              id: '2-3',
-              title: 'Lower Cost & Complexity',
-              url: '/solutions/cost-and-operational-control',
-            },
-          },
-          {
-            id: '2-4',
-            link: {
-              id: '2-4',
-              title: 'Accelerate Kubernetes adoption',
-              url: '/solutions/accelerate-kubernetes-adoption',
-            },
-          },
-        ],
-      },
-      {
         id: '3',
         link: {
           id: '3',
@@ -166,14 +124,6 @@ export const getSiteSettings = () => ({
               url: 'https://github.com/pluralsh/plural/releases',
             },
           },
-          {
-            id: '4-4',
-            link: {
-              id: '4-4',
-              title: 'Marketplace',
-              url: '/marketplace',
-            },
-          },
         ],
       },
 
@@ -193,14 +143,14 @@ export const getSiteSettings = () => ({
               url: '/about',
             },
           },
-          {
-            id: '6-3',
-            link: {
-              id: '6-3',
-              title: 'Careers',
-              url: '/careers',
-            },
-          },
+          //   {
+          //     id: '6-3',
+          //     link: {
+          //       id: '6-3',
+          //       title: 'Careers',
+          //       url: '/careers',
+          //     },
+          //   },
           {
             id: '6-4',
             link: {
@@ -209,14 +159,14 @@ export const getSiteSettings = () => ({
               url: '/contact',
             },
           },
-          {
-            id: '6-5',
-            link: {
-              id: '6-5',
-              title: 'Community',
-              url: '/community',
-            },
-          },
+          //   {
+          //     id: '6-5',
+          //     link: {
+          //       id: '6-5',
+          //       title: 'Community',
+          //       url: '/community',
+          //     },
+          //   },
         ],
       },
     ],
