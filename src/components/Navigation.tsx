@@ -88,6 +88,9 @@ export const MainLinkBase = styled.a.withConfig({
   '&[href]:hover, &:hover': {
     textDecoration: 'underline',
     color: theme.colors.text,
+    backgroundColor: theme.colors['fill-one-hover'],
+    borderRadius: theme.borderRadiuses.medium,
+    boxShadow: `0px 0px 0px 1px ${theme.colors.grey[800]}`,
   },
   padding: `${theme.spacing.small}px var(--top-nav-link-h-pad)`,
 }))
