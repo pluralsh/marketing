@@ -28,7 +28,6 @@ import {
 import styled from 'styled-components'
 
 import { MainLinkBase } from '../Navigation'
-import { ResponsiveText } from '../Typography'
 
 import { PopoverMenu } from './PopoverMenu'
 
@@ -105,8 +104,9 @@ export function MenuButton<T extends object>({
   children,
   className,
   kind = 'default',
+  left,
   ...props
-}: MenuButtonProps<T> & { kind?: 'product' | 'default' }) {
+}: MenuButtonProps<T> & { kind?: 'product' | 'default'; left?: number }) {
   // Create state based on the incoming props
   const triggerState = useMenuTriggerState(props)
 
@@ -126,6 +126,10 @@ export function MenuButton<T extends object>({
     ...dropdownProps,
     triggerRef: buttonRef,
   })
+
+  if (left) {
+    floating.x = left
+  }
 
   return (
     <MenuButtonWrap className={className}>
