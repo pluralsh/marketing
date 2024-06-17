@@ -4,7 +4,7 @@ import { useNavigationContext } from '@pluralsh/design-system'
 
 import { useMenuItem } from 'react-aria'
 import { Item } from 'react-stately'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { type NavList } from '@src/contexts/NavDataContext'
 
@@ -45,7 +45,7 @@ const TopNavMenuItemWrapper = styled.li((_) => ({}))
 
 export function ProductTopNavMenu({ navItem }: { navItem: NavList }) {
   const navigate = useNavigationContext().useNavigate()
-
+  const theme = useTheme()
   const items = useMemo(
     () => navItem?.subnav?.filter((item): item is NavList => !!item),
     [navItem.subnav]
@@ -61,6 +61,7 @@ export function ProductTopNavMenu({ navItem }: { navItem: NavList }) {
       items={items}
       itemRenderer={ProductTopNavMenuItem}
       kind="product"
+      left={theme.spacing.large}
       onAction={(key) => {
         const item = navItem.subnav?.find((item) => item?.id === key)
         const url = item?.link?.url
