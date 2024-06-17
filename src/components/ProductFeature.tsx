@@ -46,6 +46,7 @@ function ProductFeature({
             as="p"
             textStyles={{ '': 'mBody1' }}
             className="mb-xlarge"
+            style={{ color: theme.colors['text-light'] }}
           >
             {feature.description}
           </ResponsiveText>
