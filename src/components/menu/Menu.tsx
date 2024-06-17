@@ -208,7 +208,7 @@ const DropdownCardSC = styled.div(({ theme }) => ({
   boxShadow: theme.boxShadows.moderate,
   border: theme.borders.selected,
   borderRadius: theme.borderRadiuses.large,
-  borderColor: theme.colors.grey[750],
+  borderColor: theme.colors['border-fill-two'],
   backgroundColor: theme.colors['fill-one'],
 }))
 
