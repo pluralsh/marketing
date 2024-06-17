@@ -55,6 +55,7 @@ function ProductFeature({
             as={Link}
             href="/contact-sales"
             endIcon={<ArrowRightIcon />}
+            padding="none"
             className="w-fit"
           >
             Book a demo
