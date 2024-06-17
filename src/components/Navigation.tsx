@@ -2,7 +2,7 @@ import { type ComponentProps, forwardRef } from 'react'
 
 import { useNavigationContext } from '@pluralsh/design-system'
 
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { productsConfigs } from '@src/data/getProductConfigs'
 
@@ -26,6 +26,7 @@ export const MainLink = forwardRef(
 export const ProductLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
     const { Link } = useNavigationContext()
+    const theme = useTheme()
 
     const itemConfig = productsConfigs[props.id || '']
 
@@ -48,6 +49,7 @@ export const ProductLink = forwardRef(
           <ResponsiveText
             as="p"
             textStyles={{ '': 'mBody2' }}
+            style={{ color: theme.colors['text-light'] }}
           >
             {itemConfig?.navDescription}
           </ResponsiveText>
