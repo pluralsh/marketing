@@ -29,7 +29,7 @@ function ProductFeature({
         <EqualColumn className="flex flex-col items-start justify-center">
           <ResponsiveText
             as="h2"
-            textStyles={{ '': 'mTitle1' }}
+            textStyles={{ '': 'mTitle2' }}
             className="mb-medium "
           >
             <IconFrame
