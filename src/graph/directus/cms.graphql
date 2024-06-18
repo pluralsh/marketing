@@ -179,7 +179,6 @@ fragment TeamMember on team_members {
   title
   categories
   pronouns
-  orderOfAppearance
   portrait {
     ...ImageFile
   }
