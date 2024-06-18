@@ -77,7 +77,7 @@ export function HomepageFeaturesSection() {
               />
               <FeatureItem
                 icon={<DashboardIcon size={16} />}
-                title="Compatibility matrices"
+                title="Version compatibility matrices"
                 description="Ensures version compatibility across all components"
               />
             </Feature>
@@ -170,7 +170,7 @@ export function HomepageFeaturesSection() {
               <FeatureItem
                 icon={<ClusterIcon size={16} />}
                 title="Automated cluster maintenance"
-                description="Streamlines updates and dependency management, reducing manual efforts"
+                description="Streamlines updates and dependency management, reducing manual effort"
               />
               <FeatureItem
                 icon={<AppsIcon size={16} />}
