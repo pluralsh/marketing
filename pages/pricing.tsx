@@ -209,7 +209,7 @@ export default function Pricing({
         <div>
           <StandardPageWidth className="pb-xxlarge md:pb-xxxlarge">
             <CenteredSectionHead
-              heading="Fair and transparent value-based pricing"
+              heading="Transparent value-based pricing"
               intro="Plural is priced by the number of services deployed and managed by Plural. 
               Reach out to our sales team for more information."
               introProps={{ className: 'md:px-xxxxlarge' }}
