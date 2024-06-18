@@ -1,4 +1,3 @@
-import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
@@ -6,9 +5,6 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-
-import { HubspotForm } from '../src/components/HubspotForm'
-import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
 
 import { ContactHeader } from './contact'
 
@@ -25,20 +21,13 @@ export default function Index() {
         as={GradientBG}
         size="cover"
         position="top middle"
-        image="/images/gradients/gradient-bg-4.jpg"
+        image="/images/gradients/gradient-bg-12.png"
       >
         <ContactHeader
-          title="Contact our sales team"
-          subtitle="Our pricing is designed to be flexible and transparent, catering to the needs of all customers."
+          title="Contact sales"
+          subtitle="Reach out to the team for demos, assistance with onboarding, or any inquiries about our products."
         />
       </HeaderPad>
-      <ColorModeProvider mode="light">
-        <div className="bg-fill-zero py-xxxxlarge">
-          <StandardPageWidth>
-            <HubspotForm formId="5c21c2a5-0e6b-462e-be7e-11bb53209dfc" />
-          </StandardPageWidth>
-        </div>
-      </ColorModeProvider>
     </>
   )
 }

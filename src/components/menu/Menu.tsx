@@ -73,7 +73,10 @@ function MainLinkTriggerUnstyled({
       {...buttonProps}
     >
       {children}
-      <div className="icon">
+      <div
+        className="icon"
+        aria-hidden
+      >
         <CaretDownIcon size={14} />
       </div>
     </MainLinkBase>
@@ -100,8 +103,10 @@ export function MenuButton<T extends object>({
   label,
   children,
   className,
+  kind = 'default',
+  left,
   ...props
-}: MenuButtonProps<T>) {
+}: MenuButtonProps<T> & { kind?: 'product' | 'default'; left?: number }) {
   // Create state based on the incoming props
   const triggerState = useMenuTriggerState(props)
 
@@ -116,11 +121,15 @@ export function MenuButton<T extends object>({
   const { floating, triggerRef } = useFloatingDropdown({
     placement,
     width: 'max-content',
-    maxHeight: 300,
+    maxHeight: 500,
     minWidth: 'reference',
     ...dropdownProps,
     triggerRef: buttonRef,
   })
+
+  if (left) {
+    floating.x = left
+  }
 
   return (
     <MenuButtonWrap className={className}>
@@ -137,6 +146,7 @@ export function MenuButton<T extends object>({
         floating={floating}
       >
         <MenuDropdown
+          kind={kind}
           {...props}
           {...menuProps}
         >
@@ -153,8 +163,12 @@ export const MenuButtonWrap = styled.div((_) => ({
 
 function MenuDropdown<T extends object>({
   itemRenderer = MenuItem,
+  kind,
   ...props
-}: AriaMenuProps<T> & { itemRenderer?: ItemRenderer<T> }) {
+}: AriaMenuProps<T> & {
+  itemRenderer?: ItemRenderer<T>
+  kind?: 'product' | 'default'
+}) {
   // Create menu state based on the incoming props
   const state = useTreeState(props)
 
@@ -170,15 +184,17 @@ function MenuDropdown<T extends object>({
       {...menuProps}
     >
       <DropdownCard>
-        <ul>
-          {[...state.collection].map((item) => (
-            <ItemRenderer
-              key={item.key}
-              item={item}
-              state={state}
-            />
-          ))}
-        </ul>
+        <div className={kind === 'product' ? 'p-xlarge' : ''}>
+          <ul className={kind === 'product' ? 'grid grid-cols-2' : ''}>
+            {[...state.collection].map((item) => (
+              <ItemRenderer
+                key={item.key}
+                item={item}
+                state={state}
+              />
+            ))}
+          </ul>
+        </div>
       </DropdownCard>
     </div>
   )
@@ -190,8 +206,9 @@ const DropdownCardSC = styled.div(({ theme }) => ({
   paddingTop: theme.spacing.xsmall,
   paddingBottom: theme.spacing.xsmall,
   boxShadow: theme.boxShadows.moderate,
-  border: theme.borders['fill-one'],
+  border: theme.borders.selected,
   borderRadius: theme.borderRadiuses.large,
+  borderColor: theme.colors['border-fill-two'],
   backgroundColor: theme.colors['fill-one'],
 }))
 

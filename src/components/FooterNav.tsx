@@ -38,10 +38,6 @@ const navItems = [
         children: 'Support',
         href: '/contact',
       },
-      {
-        children: 'Book a demo',
-        href: '/contact-sales',
-      },
     ],
   },
   {
@@ -59,10 +55,6 @@ const navItems = [
         children: 'In the news',
         href: 'https://www.plural.sh/blog',
         target: '_blank',
-      },
-      {
-        children: 'Support',
-        href: '/contact',
       },
     ],
   },
@@ -84,6 +76,11 @@ const navItems = [
         href: 'https://github.com/pluralsh/plural/releases',
         target: '_blank',
       },
+      //   {
+      //     children: 'Security & Trust Portal',
+      //     href: 'https://github.com/pluralsh/plural/releases',
+      //     target: '_blank',
+      //   },
     ] as const,
   },
   {
@@ -142,7 +139,7 @@ const NavSection = styled.li(({ theme }) => ({
 export const FooterHeading = styled.h6(({ theme }) => ({
   ...theme.partials.marketingText.body2,
   fontWeight: '500',
-  color: theme.colors.text,
+  color: theme.colors['marketing-white'],
   marginBottom: theme.spacing.medium,
 }))
 

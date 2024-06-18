@@ -29,6 +29,10 @@ export const BareModal = styled(
       <Modal
         ref={ref}
         portal
+        BackdropProps={{
+          backgroundColor: 'rgba(23, 26, 33, 0.6)',
+          blur: '8px',
+        }}
         {...props}
       >
         {closeButton && (

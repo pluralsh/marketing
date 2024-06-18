@@ -1,11 +1,14 @@
 import { type ComponentProps, useMemo } from 'react'
 
+import { ColorModeProvider } from '@pluralsh/design-system'
+
 import styled from 'styled-components'
 
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import { mqs } from '../breakpoints'
 
+import { ProductTopNavMenu } from './menu/ProductNav'
 import { TopNavMenu } from './menu/TopNavMenu'
 import { MainLink } from './Navigation'
 
@@ -35,28 +38,39 @@ export const NavigationDesktop = styled(
     const flatNav = useMemo(() => flattenNavData(navData), [navData])
 
     return (
-      <div {...props}>
-        {flatNav?.map((navItem) => {
-          if (navItem?.mobile_only) {
-            return null
-          }
-          if (navItem?.subnav) {
+      <ColorModeProvider mode="dark">
+        <div {...props}>
+          {flatNav?.map((navItem, i) => {
+            if (navItem?.mobile_only) {
+              return null
+            }
+            if (navItem?.subnav) {
+              if (!i) {
+                return (
+                  <ProductTopNavMenu
+                    key={navItem.id}
+                    navItem={navItem}
+                  />
+                )
+              }
+
+              return (
+                <TopNavMenu
+                  key={navItem.id}
+                  navItem={navItem}
+                />
+              )
+            }
+
             return (
-              <TopNavMenu
-                key={navItem.id}
+              <NavItemLink
+                key={navItem?.id}
                 navItem={navItem}
               />
             )
-          }
-
-          return (
-            <NavItemLink
-              key={navItem?.id}
-              navItem={navItem}
-            />
-          )
-        })}
-      </div>
+          })}
+        </div>
+      </ColorModeProvider>
     )
   }
 )(({ theme }) => ({

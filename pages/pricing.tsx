@@ -1,6 +1,11 @@
-import { type ComponentProps, useId } from 'react'
+import { type ComponentProps } from 'react'
 
-import { Button, Chip, ColorModeProvider } from '@pluralsh/design-system'
+import {
+  Button,
+  CheckRoundedIcon,
+  Chip,
+  InvoicesIcon,
+} from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
@@ -13,7 +18,6 @@ import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
-import { ScrollToLink } from '@src/components/ScrollToLink'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
 import { ResponsiveText } from '@src/components/Typography'
 import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
@@ -27,8 +31,6 @@ import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
-
-import { PlansFeaturesTable as PlanFeaturesTable } from '../src/components/page-sections/PlansFeaturesTables'
 
 const PlanCardSC = styled.div(({ theme }) => ({
   '&, .titleArea, .content, .featureList': {
@@ -136,20 +138,24 @@ export function PlanCardsSection({ plans }: { plans: Plan[] }) {
   )
 }
 
+const features = [
+  'Plural platform with enterprise security features',
+  'Standard 8am – 5pm and 24/7 enterprise support coverage available',
+  'Private Slack or Teams channel',
+  'Consultative support with fast initial response times',
+  'Rich onboarding and regular check-ins',
+]
+
 export default function Pricing({
-  plans,
-  plansFeatures,
   faqs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const compareId = useId()
-
   return (
     <>
       <HeaderPad
         as={GradientBG}
         size="cover"
         // position="top middle"
-        image="/images/gradients/gradient-bg-5.jpg"
+        image="/images/gradients/gradient-bg-13.png"
       >
         <div
           className={classNames(
@@ -167,7 +173,7 @@ export default function Pricing({
             )}
           >
             <ResponsiveText
-              className="max-w-[700px]"
+              className="max-w-[1100px]"
               as="h1"
               textStyles={{
                 '': 'mTitle2',
@@ -175,62 +181,115 @@ export default function Pricing({
                 xxl: 'mBigHeader',
               }}
             >
-              Clear and straightforward pricing
+              The Kubernetes lifecycle management platform built for DevOps
+              teams at scale.
             </ResponsiveText>
-            <ScrollToLink
-              className="mt-xxxlarge"
-              scrollToTarget={compareId}
+            <Button
+              large
+              primary
+              as={Link}
+              href="/contact-sales"
+              className="mt-xlarge w-fit"
             >
-              Compare plans
-            </ScrollToLink>
+              Book a demo today
+            </Button>
           </StandardPageWidth>
-          <PlanCardsSection plans={plans} />
         </div>
       </HeaderPad>
-      <ColorModeProvider mode="light">
-        <div
-          className={classNames(
-            'bg-fill-zero',
-            'flex flex-col',
-            'gap-y-xxxxlarge py-xxxxlarge',
-            'md:gap-y-xxxxxlarge md:py-xxxxxlarge',
-            'xxl:gap-y-xxxxxxlarge xxl:py-xxxxxxlarge'
-          )}
-        >
-          <div>
-            <StandardPageWidth className="pb-xxlarge md:pb-xxxlarge">
-              <CenteredSectionHead
-                preHeading="Compare plans"
-                heading="Find the plan that is right for your business"
-                intro="Flexible plans for every stage of your business."
-              />
-            </StandardPageWidth>
-            <div id={compareId}>
-              {/* Desktop Pricing table */}
-              <StandardPageWidth className="hidden md:block">
-                <PlanFeaturesTable
-                  items={plansFeatures}
-                  plans={plans}
-                />
-              </StandardPageWidth>
-              {/* Desktop Pricing tables */}
-              <div className="flex flex-col gap-y-xlarge md:hidden">
-                {plans.map((plan) => (
-                  <PlanFeaturesTable
-                    key={plan.key}
-                    plans={[plan]}
-                    items={plansFeatures}
-                  />
-                ))}
+      <div
+        className={classNames(
+          'bg-fill-zero',
+          'flex flex-col',
+          'gap-y-large py-xxxxlarge',
+          'md:gap-y-large md:py-xxxxxlarge',
+          'xxl:gap-y-xlarge xxl:py-xxxxxxlarge',
+          'm-auto max-w-[850px]'
+        )}
+      >
+        <div>
+          <StandardPageWidth className="pb-xxlarge md:pb-xxxlarge">
+            <CenteredSectionHead
+              heading="Transparent value-based pricing"
+              intro="Plural is priced by the number of services deployed and managed by Plural. 
+              Reach out to our sales team for more information."
+              introProps={{ className: 'md:px-xxxxlarge' }}
+            />
+            <ul className="my-xxlarge flex w-full flex-col gap-small">
+              {features.map((feature) => (
+                <li
+                  key={feature}
+                  className="flex items-center gap-medium rounded-large border border-border-fill-two bg-fill-one p-small"
+                >
+                  <CheckRoundedIcon color="icon-success" />
+                  <ResponsiveText
+                    as="span"
+                    textStyles={{
+                      '': 'mBody2Bold',
+                    }}
+                  >
+                    {feature}
+                  </ResponsiveText>
+                </li>
+              ))}
+            </ul>
+            {/* get quote */}
+            <div className="relative flex flex-col items-center overflow-hidden rounded-large border border-border-primary p-xlarge">
+              <GetQuoteSC />
+              <div className="z-10 flex max-w-[474px] flex-col items-center">
+                <ResponsiveText
+                  as="h3"
+                  textStyles={{
+                    '': 'mSubtitle1',
+                  }}
+                >
+                  Get a quote
+                </ResponsiveText>
+                <ResponsiveText
+                  as="p"
+                  textStyles={{
+                    '': 'mBody1',
+                  }}
+                  className="mt-small max-w-[474px] text-center"
+                >
+                  Connect with our sales team to discuss plans, pricing,
+                  enterprise agreements, or to schedule a demo.
+                </ResponsiveText>
+                <Button
+                  large
+                  primary
+                  as={Link}
+                  href="/contact-sales"
+                  className="mt-xlarge w-full"
+                  startIcon={<InvoicesIcon />}
+                >
+                  Contact sales
+                </Button>
               </div>
             </div>
-          </div>
-          <StandardFAQSection faqs={faqs} />
+          </StandardPageWidth>
         </div>
-      </ColorModeProvider>
+        <StandardFAQSection faqs={faqs} />
+      </div>
     </>
   )
 }
+
+const GetQuoteSC = styled.div(({ theme }) => ({
+  overflow: 'hidden',
+  content: '""',
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  right: '0',
+  bottom: '0',
+  width: '100%',
+  height: '100%',
+  backgroundImage: `url(/images/pricing/quote-bg.png)`,
+  backgroundPosition: 'center center',
+  backgroundSize: '100%',
+  backgroundRepeat: 'no-repeat',
+  backgroundColor: theme.colors['fill-two'],
+}))
 
 export type PricingPageProps = Pricing & { faqs: (FaqItemFragment | null)[] }
 

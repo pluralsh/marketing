@@ -1,47 +1,24 @@
-import {
-  type ComponentProps,
-  type ReactElement,
-  type ReactNode,
-  cloneElement,
-  useRef,
-} from 'react'
+import { type ComponentProps, useRef, useState } from 'react'
 
-import {
-  Button,
-  CloudIcon,
-  ClusterIcon,
-  ColorModeProvider,
-  GitMergeIcon,
-  LogsIcon,
-  PadlockLockedIcon,
-} from '@pluralsh/design-system'
+import { Button, CloseIcon } from '@pluralsh/design-system'
 import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
 import { until } from '@open-draft/until'
-import {
-  type Variants,
-  motion,
-  useInView,
-  useScroll,
-  useTransform,
-} from 'framer-motion'
-import styled, { useTheme } from 'styled-components'
+import { type Variants, motion } from 'framer-motion'
+import styled from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
 
 import { directusClient } from '@src/apollo-client'
-import { mqs } from '@src/breakpoints'
-import { ArticleCardNoBorder } from '@src/components/ArticleCard'
-import { CompanyLogosSection } from '@src/components/CompanyLogos'
+import { BareModal } from '@src/components/BareModal'
 import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { LearnAboutPluralSection } from '@src/components/LearnAboutPluralSection'
+import ArticleSection from '@src/components/page-sections/articleSection'
+import { QuoteSection } from '@src/components/page-sections/QuoteSection'
 import { HomePageHero } from '@src/components/PageHeros'
-import { TestimonialsSection } from '@src/components/QuoteCards'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { ShadowedCard } from '@src/components/ShadowedCard'
 import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
@@ -54,29 +31,18 @@ import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 
-import {
-  StandardPageSection,
-  StandardPageWidth,
-} from '../src/components/layout/LayoutHelpers'
+import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
 import { HomepageFeaturesSection } from '../src/components/page-sections/HomepageFeaturesSection'
 import { combineErrors } from '../src/utils/combineErrors'
 
 const HeroImagesSC = styled.div(({ theme: _theme }) => {
-  const baseWidth = 1432
-  const baseHeight = 683
+  const baseWidth = 1147
 
   return {
-    transformStyle: 'preserve-3d',
-    perspective: '1200px',
     transformOrigin: 'center',
-    transform: 'rotateY(-00deg) rotateX(0deg) rotateZ(0deg)',
-
     position: 'relative',
     width: '100%',
     aspectRatio: '2 / 1',
-    '& *': {
-      transformStyle: 'preserve-3d',
-    },
     '.heroImg': {
       position: 'absolute',
       pointerEvents: 'none',
@@ -87,74 +53,44 @@ const HeroImagesSC = styled.div(({ theme: _theme }) => {
       },
     },
     '.heroImg1': {
-      width: `${(512 * 100) / baseWidth}%`,
-      left: `${(960 * 100) / baseWidth}%`,
-      top: `${(160 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(-10deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(00px)',
-          'translateX(-2%)',
-          'translateY(-10px)',
-          'scale(1.07)',
-        ].join(' '),
+      width: `80%`,
+      maxWidth: baseWidth,
+      left: `50%`,
+      top: `0`,
+      transform: 'translateX(-50%)',
+      '&::after': {
+        content: `''`,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        boxShadow: 'inset 0px -200px 600px rgba(0,0,0,0.3)',
+        pointerEvents: 'none',
       },
     },
     '.heroImg2': {
-      width: `${(1200 * 100) / baseWidth}%`,
-      left: `${(-20 * 100) / baseWidth}%`,
-      top: `${(-10 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(10deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(-100px)',
-          'translateX(2%)',
-          'scale(0.98)',
-        ].join(' '),
-      },
+      width: `30%`,
+      left: `5%`,
+      top: `16%`,
+      maxWidth: 413,
     },
     '.heroImg3': {
-      width: `${(840 * 100) / baseWidth}%`,
-      left: `${(563 * 100) / baseWidth}%`,
-      top: `${(300 * 100) / baseHeight}%`,
-      '.endTransform': {
-        transform: [
-          'rotateY(-5deg)',
-          // 'rotateX(0deg)',
-          // 'rotateZ(0deg)',
-          'translateZ(100px)',
-          'translateX(-4%)',
-          'translateY(-2%)',
-          'scale(0.90)',
-        ].join(' '),
-      },
+      width: `32%`,
+      right: `8%`,
+      top: `-7%`,
+      maxWidth: 468,
+      overflow: 'hidden',
+      borderRadius: _theme.borderRadiuses.large,
     },
   }
 })
 
-const MotionDiv = styled(motion.div)(({ theme: _ }) => ({
-  // position: 'absolute',
-  // top: 0,
-  // right: 0,
-  // bottom: 0,
-  // left: 0,
-  // transformOrigin: '100% 50% -300px',
-  // // transformStyle: 'flat',
-  // perspective: PERSPECTIVE,
-  opacity: 0,
-}))
-
 const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
   const start = {
-    translateZ: 350,
     opacity: 0,
   }
   const end = {
-    translateZ: 0,
     opacity: 1,
   }
 
@@ -181,35 +117,18 @@ const heroVariants = ({ delay = 0 }: { delay: number }): Variants => {
   }
 }
 
-function HeroIn({
-  children,
-  inView,
-  className,
-  delay,
-  scrollYProgress,
-  parallax,
-}) {
+function HeroIn({ children, className, delay }) {
   const variants = heroVariants({ delay })
-  const translateY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [`${20 * parallax}%`, `${-20 * parallax}%`]
-  )
   const isMobile = useMobileDetect().isMobile()
 
   return (
     <motion.div
-      style={{ translateY }}
       className={classNames('heroImg', className)}
+      animate={isMobile ? 'mobile' : 'onscreen'}
+      variants={variants}
+      initial="offscreen"
     >
-      <div className="endTransform">
-        <MotionDiv
-          animate={isMobile ? 'mobile' : inView ? 'onscreen' : 'offscreen'}
-          variants={variants}
-        >
-          {children}
-        </MotionDiv>
-      </div>
+      {children}
     </motion.div>
   )
 }
@@ -217,13 +136,7 @@ function HeroIn({
 function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
   const ref = useRef<any>(null)
 
-  const inView = useInView(ref, { once: true, margin: '-80px 0px -40%' })
   const stagger = 0.25
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  })
 
   return (
     <HeroImagesSC
@@ -232,231 +145,54 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
     >
       <HeroIn
         className="heroImg1"
-        inView={inView}
-        delay={1 * stagger}
-        scrollYProgress={scrollYProgress}
-        parallax={-1.25}
+        delay={0 * stagger}
       >
-        <img src="/images/homepage/hero-configuration.png" />
+        <img
+          src="/images/homepage/hero-home.png"
+          aria-hidden
+        />
       </HeroIn>
       <HeroIn
         className="heroImg2"
-        inView={inView}
-        delay={0 * stagger}
-        parallax={0}
-        scrollYProgress={scrollYProgress}
+        delay={1 * stagger}
       >
-        <img src="/images/homepage/hero-services.png" />
+        <img
+          src="/images/homepage/hero-popup.png"
+          aria-hidden
+        />
       </HeroIn>
       <HeroIn
         className="heroImg3"
-        inView={inView}
         delay={1.75 * stagger}
-        parallax={0.75}
-        scrollYProgress={scrollYProgress}
       >
-        <img src="/images/homepage/hero-nodes.png" />
+        <img
+          src="/images/homepage/hero-cpu.png"
+          aria-hidden
+        />
       </HeroIn>
     </HeroImagesSC>
   )
 }
 
-const BuildSecurelyCardSC = styled(ShadowedCard)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '',
-  textAlign: 'center',
-  ...theme.partials.text.body2Bold,
-  color: theme.colors['text-light'],
-  '& > *': {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 120,
-    paddingLeft: theme.spacing.medium,
-    paddingRight: theme.spacing.medium,
-    maxWidth: 240,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    '&:first-child': {
-      paddingTop: theme.spacing.xlarge,
-    },
-    '&:last-child': {
-      paddingBottom: theme.spacing.xlarge,
-    },
-  },
-}))
-
-function BuildSecurelyCard({
-  icon,
-  heading,
-  ...props
-}: {
-  icon: ReactElement
-  heading: ReactNode
-} & ComponentProps<typeof BuildSecurelyCardSC>) {
-  const theme = useTheme()
-  const iconClone = cloneElement(icon, {
-    size: 48,
-    color: theme.colors['icon-primary'],
-  })
-
-  return (
-    <BuildSecurelyCardSC {...props}>
-      <div>{iconClone}</div>
-      <div className="text">{heading}</div>
-    </BuildSecurelyCardSC>
-  )
-}
-
-const BuildSecurelyGridSC = styled.div(({ theme }) => ({
-  display: 'grid',
-  gap: theme.spacing.medium,
-  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-  textWrap: 'balance',
-  [mqs.xs]: {
-    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    '& > *': {
-      '&:nth-child(n + 5)': {
-        gridColumn: 'span 2',
-      },
-    },
-  },
-  [mqs.md]: {
-    gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-    '& > *': {
-      '&, &:nth-child(n)': {
-        gridColumn: 'span 2',
-      },
-      '&:nth-child(n+4)': {
-        gridColumn: 'span 3',
-      },
-    },
-  },
-  [mqs.lg]: {
-    gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
-    '& > *': {
-      '&, &:nth-child(n)': {
-        gridColumn: 'span 1',
-      },
-    },
-  },
-}))
-
-function BuildSecurely() {
-  return (
-    <div className="flex flex-col gap-y-xxxxlarge">
-      <CenteredSectionHead
-        heading="Secure, flexible, and easy"
-        intro={
-          <div className="[text-wrap:balance]">
-            Secure and scalable pull-based architecture. A single pane of glass
-            to understand and maintain complex Kubernetes fleets.
-          </div>
-        }
-      />
-      <BuildSecurelyGridSC>
-        <BuildSecurelyCard
-          icon={<PadlockLockedIcon />}
-          heading="Self-hosted and secure in your cloud"
-        />
-        <BuildSecurelyCard
-          icon={<CloudIcon />}
-          heading="Multi-cloud and multi-cluster support"
-        />
-        <BuildSecurelyCard
-          icon={<GitMergeIcon />}
-          heading="Build release pipelines with no scripts"
-        />
-        <BuildSecurelyCard
-          icon={<LogsIcon />}
-          heading="Fully customizable with resources defined in Git"
-        />
-        <BuildSecurelyCard
-          icon={<ClusterIcon />}
-          heading="Full visibility into your service and cluster fleet"
-        />
-      </BuildSecurelyGridSC>
-    </div>
-  )
-}
-
-const CARD_LAYOUTS = [
-  [{ size: 'medium', reverse: false }],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: false },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: false },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'medium', reverse: true },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: true },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'medium', reverse: false },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: true },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'medium', reverse: false },
-    { size: 'medium', reverse: true },
-  ],
-  [
-    { size: 'medium', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'small', reverse: false },
-    { size: 'medium', reverse: true },
-  ],
-] as const
-
 export default function Index({
-  quotes,
-  // featuredQuote,
-  // buildStackTabs,
   articleCards,
-  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [showVideo, setShowVideo] = useState(false)
+
   return (
     <>
       <HeaderPad
         as={GradientBG}
         position="50% 50%"
         size="cover"
-        image="/images/gradients/gradient-bg-2.jpg"
+        image="/images/gradients/gradient-bg-10.png"
       >
         <HomePageHero
-          heading={<>Self-hosted Kubernetes fleet management</>}
+          heading={<>Managing Kubernetes can be a cluster—</>}
           description={
             <div className="[text-wrap:balance]">
-              Manage and orchestrate your Kubernetes clusters from a single,
-              intuitive interface. Accelerate your DevOps pipeline with
-              automated deployment workflows, and enforce compliance
-              requirements with cluster-wide, granular security policies.
+              Plural reduces cluster upgrade cycles from months to hours at
+              enterprise scale with streamlined dependency management.
             </div>
           }
           ctas={
@@ -472,82 +208,111 @@ export default function Index({
             </div>
           }
         />
-        <div className="pt-xxxlarge sm:pt-xxxxlarge md:pt-xxxxlarge lg:pb-xxlarge lg:pt-0">
+        <div className="pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0 ">
           <StandardPageWidth>
             <HeroImages />
-          </StandardPageWidth>
-        </div>
-        <StandardPageSection>
-          <StandardPageWidth>
-            <BuildSecurely />
-          </StandardPageWidth>
-          <CompanyLogosSection
-            className="pt-xxxxxlarge"
-            logos={globalProps.siteSettings?.partner_logos?.items}
-          />
-        </StandardPageSection>
-      </HeaderPad>
-      <HomepageFeaturesSection />
-      {/* <DevOpsEfficiencySection /> */}
-      {/* <FeaturedQuote quote={featuredQuote} /> */}
-      {/* {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />} */}
-      <GradientBG
-        size="cover"
-        position="bottom middle"
-        image="/images/gradients/gradient-bg-2.jpg"
-      >
-        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-          <TestimonialsSection quotes={quotes || []} />
-        </StandardPageSection>
-      </GradientBG>
-      <ColorModeProvider mode="light">
-        <div className="bg-fill-zero">
-          <StandardPageSection>
-            <StandardPageWidth className="relative z-[1]">
-              <div className="grid grid-cols-1 items-stretch gap-xlarge columns:grid-cols-3">
-                {articleCards?.map((c, i) => {
-                  const size =
-                    CARD_LAYOUTS[articleCards.length]?.[i]?.size || 'medium'
-                  const reverse =
-                    CARD_LAYOUTS[articleCards.length]?.[i]?.reverse || false
-
-                  return (
-                    c && (
-                      <ArticleCardNoBorder
-                        key={c.id}
-                        className={classNames({
-                          'columns:col-span-3': size === 'medium',
-                        })}
-                        size={size}
-                        reverse={reverse}
-                        {...{
-                          author: c.author,
-                          ctas: c.ctas,
-                          date: c.date,
-                          description: c.description,
-                          heading: c.heading,
-                          thumbnail: c.thumbnail,
-                          url: c.url,
-                          videoUrl: c.videoUrl,
-                        }}
-                      />
-                    )
-                  )
-                })}
+            <Button
+              large
+              floating
+              className="group mx-auto mb-xxxxxxlarge w-fit"
+              onClick={() => setShowVideo(true)}
+            >
+              Watch demo video
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 42 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="ml-small text-fill-primary group-hover:text-fill-primary-hover"
+                aria-hidden
+              >
+                <rect
+                  x="0.726562"
+                  width="41.0404"
+                  height="41.0404"
+                  rx="20.5202"
+                  fill="currentColor"
+                />
+                <g clipPath="url(#clip0_490_2681)">
+                  <path
+                    d="M27.6062 21.297L16.7291 28.0793C16.2897 28.3531 15.793 27.9073 15.793 27.2387V13.8015C15.793 13.1328 16.2897 12.687 16.7291 12.9609L27.6062 19.6158C28.1348 19.9406 28.1348 20.9722 27.6062 21.297V21.297Z"
+                    fill="#DFE2E7"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_490_2681">
+                    <rect
+                      width="16.4162"
+                      height="16.4162"
+                      fill="white"
+                      transform="translate(13.0391 12.3125)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </Button>
+            <BareModal
+              open={showVideo}
+              onClose={() => setShowVideo(false)}
+              closeButton={false}
+              className="mx-auto flex w-[90%] items-center justify-center"
+              style={{ height: 'fit-content', overflow: 'visible' }}
+            >
+              <div
+                className="relative h-0 w-full self-center pb-[56.25%]" /* 16:9 aspect ratio */
+              >
+                <Button
+                  className="left-1/2 top-full z-10 mt-large -translate-x-1/2"
+                  large
+                  floating
+                  startIcon={<CloseIcon />}
+                  onClick={() => setShowVideo(false)}
+                  style={{ position: 'absolute' }}
+                >
+                  Close
+                </Button>
+                <iframe
+                  className="absolute left-0 top-0 h-full w-full rounded-large border border-fill-three"
+                  src="https://www.youtube.com/embed/W8KCaiZRV3M?si=co3ld2bFbqH6RpZb"
+                  title="YouTube video player"
+                  allow="autoplay"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
               </div>
-            </StandardPageWidth>
-          </StandardPageSection>
+            </BareModal>
+            <CenteredSectionHead
+              heading={
+                <div>
+                  Enterprise Kubernetes <br /> management, accelerated.
+                </div>
+              }
+              intro={
+                <p>
+                  Plural is designed for DevOps and platform engineering teams
+                  to automate and streamline the lifecycle management of
+                  Kubernetes fleets. Plural provides a single pane of glass
+                  interface for managing multiple clusters, automating upgrades,
+                  and provides advanced monitoring and security features, making
+                  Kubernetes accessible to engineers of all skill levels and
+                  reducing upgrade times.
+                </p>
+              }
+              className="text-center"
+            />
+          </StandardPageWidth>
         </div>
-      </ColorModeProvider>
-      <GradientBG
-        size="cover"
-        position="bottom middle"
-        image="/images/gradients/gradient-bg-2.jpg"
-      >
-        <StandardPageSection className="flex flex-col gap-y-xxxxxlarge xxl:gap-y-xxxxxxlarge">
-          <LearnAboutPluralSection />
-        </StandardPageSection>
-      </GradientBG>
+      </HeaderPad>
+      <QuoteSection
+        title="Delivering value to DevOps and Platform Engineering teams"
+        quote={`By adopting Plural for our Kubernetes fleet management solution, we
+        reduced our k8s upgrade cycle from 9 months to 1 day, enabling us to
+        delegate responsibilities more effectively from principal engineers to a single mid-level engineer.`}
+        attribution="Director DevOps, Leading Global Cybersecurity Provider"
+      />
+      <HomepageFeaturesSection />
+      <ArticleSection articleCards={articleCards} />
     </>
   )
 }

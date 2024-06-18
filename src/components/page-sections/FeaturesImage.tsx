@@ -7,8 +7,6 @@ import styled from 'styled-components'
 // @ts-expect-error
 import useMobileDetect from 'use-mobile-detect-hook'
 
-import { mShadows } from '@src/styles/extraStyles'
-
 export type ImgProps = {
   top?: string
   left?: string
@@ -33,11 +31,12 @@ export type ImageProps = {
   round?: boolean | number
   aspectRatio?: string
   attrs: ComponentProps<typeof MultiImageSC>
+  overlay?: boolean
 }
 
 export const STAGGER = 0.25
 const PERSPECTIVE = 1400
-const ROUND = 6
+const ROUND = 9
 
 export const cardVariants = ({
   delay = 0,
@@ -95,7 +94,11 @@ export const MultiImageSC = styled.div<{ $aspectRatio: string }>(
 )
 
 export const MultiImageWrapSC = styled.div<
-  ImgPropsSC & { $round: boolean | number | undefined; $direction: 1 | -1 }
+  ImgPropsSC & {
+    $round: boolean | number | undefined
+    $direction: 1 | -1
+    $shadow?: boolean
+  }
 >(
   ({
     $width,
@@ -106,6 +109,7 @@ export const MultiImageWrapSC = styled.div<
     $height,
     $round,
     $aspectRatio,
+    $shadow,
   }) => ({
     top: $top,
     left: $left,
@@ -117,6 +121,7 @@ export const MultiImageWrapSC = styled.div<
     transformStyle: 'preserve-3d',
     perspective: PERSPECTIVE,
     aspectRatio: $aspectRatio,
+    overflow: 'hidden',
     // Keep box shadow looking correct
     // when containing rounded images
     borderRadius:
@@ -127,7 +132,7 @@ export const MultiImageWrapSC = styled.div<
         : typeof $round === 'number'
           ? $round
           : ROUND - 1,
-    boxShadow: mShadows.light.moderate,
+    boxShadow: $shadow ? '0px 20px 50px 0px #0E101599' : 'none',
   })
 )
 
@@ -176,11 +181,14 @@ function MultiImageImg({
   src,
   animOffset,
   direction,
+  shadow,
   round,
+  overlay,
   ...attrs
 }: ImgProps & {
   direction: -1 | 1
   inView: boolean
+  overlay?: boolean
 } & ComponentProps<typeof MultiImageWrapSC>) {
   const variants = useMemo(
     () => cardVariants({ delay: animOffset * STAGGER, direction }),
@@ -205,9 +213,18 @@ function MultiImageImg({
         $direction={direction}
         $round={round}
         $aspectRatio={aspectRatio}
+        $shadow={shadow}
         className="graphic"
         {...attrs}
       >
+        {overlay && (
+          <div
+            className="imgShadow absolute h-full w-full"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.2) 1px -20px 20px 20px inset',
+            }}
+          />
+        )}
         {src.match(/\.mp4$/) ? (
           <MultiImageVideoSC
             autoPlay
@@ -227,6 +244,7 @@ function MultiImageImg({
           <MultiImageImgSC
             src={src}
             $round={round}
+            aria-hidden
             {...attrs}
           />
         )}
@@ -242,6 +260,7 @@ export const FeaturesImage = forwardRef(
       height,
       direction = 1,
       inView = true,
+      shadow = false,
       ...props
     }: {
       images: ImageProps[]
@@ -304,6 +323,8 @@ export const FeaturesImage = forwardRef(
             aspectRatio={img.aspectRatio}
             animOffset={i}
             direction={direction}
+            shadow={shadow}
+            overlay={img.overlay}
             {...img.attrs}
           />
         )

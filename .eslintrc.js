@@ -10,10 +10,12 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   extends: ['@pluralsh/eslint-config-typescript', 'prettier'],
+  plugins: ['prettier'],
   globals: {
     JSX: true,
   },
   rules: {
+    'prettier/prettier': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': [
       'error',
