@@ -1,6 +1,6 @@
 import { type ComponentProps, forwardRef } from 'react'
 
-import { useNavigationContext } from '@pluralsh/design-system'
+import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
 import styled, { useTheme } from 'styled-components'
 
@@ -54,6 +54,11 @@ export const ProductLink = forwardRef(
             {itemConfig?.navDescription}
           </ResponsiveText>
         </div>
+        <ArrowRightIcon
+          className="hover-arrow"
+          size="16px"
+          style={{ marginLeft: 'auto' }}
+        />
       </MainLinkBase>
     )
   }
@@ -76,21 +81,22 @@ export const MainLinkBase = styled.a.withConfig({
     '*:focus-visible > &:any-link',
     '&:focus-visible',
     '&:any-link:focus-visible',
+    '&[href]:hover, &:hover',
   ].join(', ')]: {
-    textDecoration: 'underline',
-    textDecorationColor: theme.colors['border-outline-focused'],
-    boxShadow: 'none',
+    color: theme.colors.text,
+    backgroundColor: theme.colors['fill-one-hover'],
+    borderRadius: theme.borderRadiuses.medium,
+    boxShadow: `0px 0px 0px 1px ${theme.colors.grey[800]}`,
+    '.hover-arrow': {
+      opacity: '1',
+    },
   },
   '&, &:any-link': {
     color: theme.colors['text-light'],
     textDecoration: 'none',
   },
-  '&[href]:hover, &:hover': {
-    textDecoration: 'underline',
-    color: theme.colors.text,
-    backgroundColor: theme.colors['fill-one-hover'],
-    borderRadius: theme.borderRadiuses.medium,
-    boxShadow: `0px 0px 0px 1px ${theme.colors.grey[800]}`,
+  '.hover-arrow': {
+    opacity: '0',
   },
   padding: `${theme.spacing.small}px var(--top-nav-link-h-pad)`,
 }))
