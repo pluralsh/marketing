@@ -6,7 +6,7 @@ import styled, { useTheme } from 'styled-components'
 import { type FeatureConfig } from '@src/data/getProductConfigs'
 import { cn as classNames } from '@src/utils/cn'
 
-import { Columns, EqualColumn } from './layout/Columns'
+import { EqualColumn } from './layout/Columns'
 import { ResponsiveText } from './Typography'
 
 function ProductFeature({
@@ -23,9 +23,10 @@ function ProductFeature({
       inverse
       className="p-xlarge lg:p-xxlarge"
     >
-      <Columns
+      <div
         className={classNames([
           'gap-y-xxlarge',
+          'flex flex-col items-center justify-center',
           inverse ? 'md:flex-row-reverse' : 'md:flex-row',
         ])}
       >
@@ -74,7 +75,7 @@ function ProductFeature({
             className="self-center"
           />
         </EqualColumn>
-      </Columns>
+      </div>
     </ProductFeatureSC>
   )
 }
