@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react'
 
 import { ColorModeProvider, TabList, TabPanel } from '@pluralsh/design-system'
 
+import { sortBy } from 'lodash-es'
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
@@ -154,18 +155,21 @@ export function TeamSection({ members }: { members: TeamMemberFragment[] }) {
     onSelectionChange: useCallback((key) => setCategory(key as string), []),
   }
 
-  const filteredMembers = members.filter((member) => {
-    if (!category) {
-      return true
-    }
-    const categories = member.categories as unknown
+  const filteredMembers = sortBy(
+    members.filter((member) => {
+      if (!category) {
+        return true
+      }
+      const categories = member.categories as unknown
 
-    if (Array.isArray(categories)) {
-      return categories.includes(category)
-    }
+      if (Array.isArray(categories)) {
+        return categories.includes(category)
+      }
 
-    return false
-  })
+      return false
+    }),
+    'orderOfAppearance'
+  )
 
   return (
     <div>
