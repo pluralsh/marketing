@@ -31,10 +31,7 @@ import { cn as classNames } from '@src/utils/cn'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 import { normalizeQuotes } from '@src/utils/normalizeQuotes'
 
-import {
-  StandardPageSection,
-  StandardPageWidth,
-} from '../src/components/layout/LayoutHelpers'
+import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
 import { HomepageFeaturesSection } from '../src/components/page-sections/HomepageFeaturesSection'
 import { combineErrors } from '../src/utils/combineErrors'
 
@@ -316,35 +313,6 @@ export default function Index({
       />
       <HomepageFeaturesSection />
       <ArticleSection articleCards={articleCards} />
-      <StandardPageSection className="relative flex flex-col items-center justify-center gap-x-xxxxxxlarge gap-y-xxlarge overflow-hidden bg-fill-zero px-large py-xxxxlarge lg:flex-row">
-        <h3 className="z-10 w-full max-w-[400px] text-4xl font-bold text-marketing-white sm:text-3xl">
-          Trusted, Enterprise-Level Security to Protect Your Data
-        </h3>
-        <div className="flex flex-col items-center gap-xxlarge sm:flex-row">
-          <img
-            width={130}
-            src="/images/homepage/aicpa-soc.png"
-            aria-hidden
-          />
-          <img
-            width={130}
-            src="/images/homepage/gdpr.png"
-            aria-hidden
-          />
-        </div>
-        <img
-          width="31%"
-          className="absolute left-0 top-[20%] hidden md:block"
-          src="/images/homepage/left-arch.png"
-          aria-hidden
-        />
-        <img
-          width="28%"
-          className="absolute right-[2%] top-[67%] hidden md:block"
-          src="/images/homepage/right-arch.png"
-          aria-hidden
-        />
-      </StandardPageSection>
     </>
   )
 }
