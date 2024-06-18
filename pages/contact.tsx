@@ -100,7 +100,7 @@ export default function Index() {
       >
         <ContactHeader
           title="Contact sales"
-          subtitle="Reach out to our sales and support teams for demos, assistance with onboarding, or any inquiries about our products."
+          subtitle="Reach out to the team for demos, assistance with onboarding, or any inquiries about our products."
         />
       </HeaderPad>
     </>

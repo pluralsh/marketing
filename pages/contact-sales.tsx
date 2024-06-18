@@ -24,8 +24,8 @@ export default function Index() {
         image="/images/gradients/gradient-bg-12.png"
       >
         <ContactHeader
-          title="Contact our sales team"
-          subtitle="Our pricing is designed to be flexible and transparent, catering to the needs of all customers."
+          title="Contact sales"
+          subtitle="Reach out to the team for demos, assistance with onboarding, or any inquiries about our products."
         />
       </HeaderPad>
     </>

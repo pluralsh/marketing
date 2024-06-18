@@ -86,9 +86,9 @@ export const productsConfigs: Record<string, ProductConfig> = {
   'continuous-deployment': {
     title: 'Continuous Deployment',
     navIcon: <ContinuousDeploymentNavIcon />,
-    navDescription: '{...}',
+    navDescription: 'Streamline your deployments.',
     description:
-      'Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. Lorem ipsum dolor sit amet consectutor. ',
+      'Get code to cluster with ease. Leverage our continuous deployment functionality to streamline your deployments.',
     features: [
       {
         title: 'Customized Git deployments',
@@ -149,21 +149,21 @@ export const productsConfigs: Record<string, ProductConfig> = {
       'Streamline the setup process for new clusters, ensuring they all adhere to a consistent Software Bill of Materials (SBOM) across your entire Kubernetes environment with Global Services.',
     features: [
       {
-        title: 'Please grant me a title, sire',
+        title: 'Standardized cluster definition',
         description:
           'Ensure your entire fleet receives a standardized SBOM, add-ons like external-dns, cert manager, ingress controllers, Istio can be managed with a just a few lines of YAML',
         icon: <GlobeIcon />,
         image: '/images/products/global-services/global-services-01.png',
       },
       {
-        title: 'Please grant me a title, sire',
+        title: 'Target clusters with tags',
         description:
           'Target services to groups of clusters in the fleet via a robust tagging system or by Kubernetes Distribution',
         icon: <TagIcon />,
         image: '/images/products/global-services/global-services-02.png',
       },
       {
-        title: 'Please grant me a title, sire',
+        title: 'Reconfiguration with templating',
         description:
           'Leverage on-the-fly templating of services to reduce the need for constant reconfiguration per-cluster for things like IAM role annotations, hostnames, etc.',
         icon: <FiltersIcon />,
