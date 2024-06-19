@@ -49,7 +49,7 @@ export type ProductConfig = {
   features: FeatureConfig[]
 }
 
-export const productsConfigs: Record<string, ProductConfig> = {
+export const getProductsConfigs: () => Record<string, ProductConfig> = () => ({
   'cluster-upgrade-assistant': {
     title: 'Cluster Upgrade Assistant',
     navIcon: <ClusterUpgradeNavIcon />,
@@ -290,4 +290,4 @@ export const productsConfigs: Record<string, ProductConfig> = {
       },
     ],
   },
-}
+})

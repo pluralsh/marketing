@@ -4,7 +4,7 @@ import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
 import styled, { useTheme } from 'styled-components'
 
-import { productsConfigs } from '@src/data/getProductConfigs'
+import { getProductsConfigs } from '@src/data/getProductConfigs'
 
 import { mqs } from '../breakpoints'
 
@@ -28,7 +28,7 @@ export const ProductLink = forwardRef(
     const { Link } = useNavigationContext()
     const theme = useTheme()
 
-    const itemConfig = productsConfigs[props.id || '']
+    const itemConfig = getProductsConfigs()[props.id || '']
 
     return (
       <MainLinkBase

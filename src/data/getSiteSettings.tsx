@@ -1,4 +1,4 @@
-import { productsConfigs } from './getProductConfigs'
+import { getProductsConfigs } from './getProductConfigs'
 
 export const getSiteSettings = () => ({
   og_description:
@@ -190,11 +190,11 @@ export type PartnerLogos = {
 }
 
 function getProductSubnav() {
-  return Object.keys(productsConfigs).map((productKey, i) => ({
+  return Object.keys(getProductsConfigs()).map((productKey, i) => ({
     id: productKey,
     link: {
       id: `${productKey}-${i}`,
-      title: productsConfigs[productKey].title,
+      title: getProductsConfigs()[productKey].title,
       url: `/products/${productKey}`,
     },
   }))
