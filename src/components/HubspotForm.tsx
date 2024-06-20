@@ -32,7 +32,7 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
     marginTop: _.spacing.xsmall,
     display: 'block',
   },
-  '.hs-fieldtype-text': {
+  '.hs-fieldtype-text, .hs-fieldtype-select, .hs-fieldtype-phonenumber': {
     marginBottom: _.spacing.small,
   },
   '.hs-fieldtype-text:first-child': {
@@ -71,7 +71,7 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
       color: _.colors['text-error'],
     },
   },
-  'input[type="text"], input[type="email"], input[type="tel"], input[type="submit"], input:-webkit-autofill':
+  'input[type="text"], input[type="email"], input[type="tel"], input[type="submit"], input[type="number"], input:-webkit-autofill, select':
     {
       height: 48,
       width: '100% !important',
@@ -88,7 +88,7 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
     backgroundColor: 'rgba(255, 255, 255, 0.05) !important',
     padding: _.spacing.medium,
   },
-  'input, textarea': {
+  'input, textarea, select': {
     marginTop: _.spacing.xsmall,
     paddingLeft: _.spacing.medium,
     paddingRight: _.spacing.medium,
