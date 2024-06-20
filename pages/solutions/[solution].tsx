@@ -1,4 +1,9 @@
-import { Button, ColorModeProvider } from '@pluralsh/design-system'
+import {
+  ArrowRightIcon,
+  Button,
+  ColorModeProvider,
+  IconFrame,
+} from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -15,7 +20,7 @@ import { Checklist2, Checklist2Item } from '@src/components/Checklist'
 import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import { ColumnsMd, EqualColumn } from '@src/components/layout/Columns'
+import { Columns, ColumnsMd, EqualColumn } from '@src/components/layout/Columns'
 import {
   StandardPageSection,
   StandardPageWidth,
@@ -29,9 +34,10 @@ import {
   SubsectionHead,
 } from '@src/components/SectionHeads'
 import { ShadowedCard } from '@src/components/ShadowedCard'
-import { Body2, Cta } from '@src/components/Typography'
+import { Body2, Cta, ResponsiveText } from '@src/components/Typography'
 import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
+import { getSolutionConfigs } from '@src/data/getSolutionsConfigs'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
 import {
@@ -78,11 +84,16 @@ export default function Solution({
   //   const router = useRouter()
   const imageUrl = getImageUrl(solution?.hero_image)
 
+  const innerSolution = getSolutionConfigs()[solution.slug]
+
   return (
     <>
-      <HeaderPad as={GradientBG}>
+      <HeaderPad
+        as={GradientBG}
+        size="cover"
+        image="/images/solutions/solutions-background.png"
+      >
         <BasicPageHero
-          preHeading="Solution"
           heading={solution.title}
           description={solution.description}
           intro={
@@ -96,15 +107,80 @@ export default function Solution({
             <div className="flex">
               <Button
                 large
-                primary
                 as={Link}
-                href="https://app.plural.sh/signup"
+                href="/contact-sales"
               >
-                Sign up
+                Book a demo
               </Button>
             </div>
           }
         />
+        <StandardPageWidth
+          className={classNames(
+            'flex flex-col gap-xlarge [text-wrap:balance]',
+            'pb-xxxlarge pt-xxlarge',
+            'md:pb-xxxlarge md:pt-xxxxlarge',
+            'xxl:pb-xxxxlarge xxl:pt-xxxxlarge'
+          )}
+        >
+          <ResponsiveText
+            className="m-auto mb-xxxlarge text-center"
+            as="h2"
+            textStyles={{
+              '': 'mTitle2',
+              sm: 'mHero2',
+              xxl: 'mBigHeader',
+            }}
+          >
+            Strategic deployment in healthcare
+          </ResponsiveText>
+          <Columns>
+            {innerSolution?.features.map((item) => (
+              <EqualColumn
+                className="mb-xxxxlarge flex flex-col rounded-large border border-fill-two p-xlarge"
+                style={{
+                  background:
+                    'radial-gradient(50% 26.3% at 50% 100%, rgba(150, 154, 248, 0.09) 0%, rgba(150, 154, 248, 0.00) 100%), linear-gradient(74deg, #252932 19.58%, #171A21 248.88%)',
+                }}
+              >
+                <ResponsiveText
+                  className="flex items-center"
+                  as="h3"
+                  textStyles={{
+                    '': 'mSubtitle2',
+                  }}
+                >
+                  <IconFrame
+                    icon={item.icon}
+                    type="floating"
+                    size="large"
+                    className="mr-xsmall"
+                  />
+                  {item.title}
+                </ResponsiveText>
+                <ResponsiveText
+                  className="mb-xxlarge mt-large"
+                  textStyles={{
+                    '': 'mBody2',
+                  }}
+                >
+                  {item.description}
+                </ResponsiveText>
+                <Button
+                  clickable
+                  href={item.linkUrl}
+                  as={Link}
+                  className="mt-auto"
+                  tertiary
+                  padding="none"
+                  endIcon={<ArrowRightIcon />}
+                >
+                  {item.linkTitle}
+                </Button>
+              </EqualColumn>
+            ))}
+          </Columns>
+        </StandardPageWidth>
       </HeaderPad>
       <ColorModeProvider mode="light">
         <StandardPageSection className="bg-fill-zero">
