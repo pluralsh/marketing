@@ -1,4 +1,5 @@
 import { getProductsConfigs } from './getProductConfigs'
+import { getSolutionConfigs } from './getSolutionsConfigs'
 
 export const getSiteSettings = () => ({
   og_description:
@@ -83,6 +84,15 @@ export const getSiteSettings = () => ({
           url: '/kubernetes-fleet-management',
         },
         subnav: getProductSubnav(),
+      },
+      {
+        id: '2',
+        link: {
+          id: '2',
+          title: 'Solutions',
+          url: '/solution',
+        },
+        subnav: getSolutionSubnav(),
       },
       {
         id: '3',
@@ -196,6 +206,17 @@ function getProductSubnav() {
       id: `${productKey}-${i}`,
       title: getProductsConfigs()[productKey].title,
       url: `/products/${productKey}`,
+    },
+  }))
+}
+
+function getSolutionSubnav() {
+  return Object.keys(getSolutionConfigs()).map((solutionKey, i) => ({
+    id: solutionKey,
+    link: {
+      id: `${solutionKey}-${i}`,
+      title: getSolutionConfigs()[solutionKey].title,
+      url: `/solutions/${solutionKey}`,
     },
   }))
 }
