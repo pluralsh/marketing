@@ -110,9 +110,9 @@ export default function Solution({
         <StandardPageWidth
           className={classNames(
             'flex flex-col gap-xlarge [text-wrap:balance]',
-            'pb-xxxlarge pt-xxlarge',
-            'md:pb-xxxlarge md:pt-xxxxlarge',
-            'xxl:pb-xxxxlarge xxl:pt-xxxxlarge'
+            'pb-xxxlarge',
+            'md:pb-xxxlarge',
+            'xxl:pb-xxxxlarge'
           )}
         >
           <ResponsiveText
