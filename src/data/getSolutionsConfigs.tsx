@@ -4,7 +4,7 @@ import {
   WarningShieldIcon,
 } from '@pluralsh/design-system'
 
-export type FeatureConfig = {
+type FeatureConfig = {
   title: string
   description: string
   icon: React.ReactElement
@@ -12,10 +12,18 @@ export type FeatureConfig = {
   linkUrl: string
 }
 
+type ProblemConfig = {
+  title: string
+  subtitle: string
+  problem: string
+  solution: string
+}
+
 export type SolutionConfig = {
   title: string
   description: string
   features: FeatureConfig[]
+  problems: ProblemConfig[]
 }
 
 export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
@@ -63,6 +71,32 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
         ),
         linkTitle: 'Discover automatic upgrades',
         linkUrl: '',
+      },
+    ],
+    problems: [
+      {
+        title: 'Compliance and data sovereignty',
+        subtitle: 'Healthcare challenges',
+        problem:
+          'The healthcare industry demands adherence to strict regulations governing data privacy and residency.',
+        solution:
+          "Plural's K8s fleet managmeent offers granular control over data storage and access.",
+      },
+      {
+        title: 'Audit trails and governance',
+        subtitle: 'Healthcare challenges',
+        problem:
+          'Organizations need to maintain operational transparency and regulatory compliance as they grow.',
+        solution:
+          "Plural's fleet management solutions provide the comprehensive audit trails and other tooling to achieve this level of governance.",
+      },
+      {
+        title: 'Scalability and reliability',
+        subtitle: 'Healthcare challenges',
+        problem:
+          'As healthcare services expand and evolve, theyneed to ensure that their digital services remain reliable and accessible, even under increasing demand. ',
+        solution:
+          'Plural is designed to scale seamlessly, ensuring your digital services are always reliable and available, no matter the demand.',
       },
     ],
   },

@@ -15,12 +15,9 @@ import { until } from '@open-draft/until'
 
 import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
-import BasicMarkdown from '@src/components/BasicMarkdown'
-import { Checklist2, Checklist2Item } from '@src/components/Checklist'
-import { CompanyLogosSection } from '@src/components/CompanyLogos'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, ColumnsMd, EqualColumn } from '@src/components/layout/Columns'
+import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import {
   StandardPageSection,
   StandardPageWidth,
@@ -29,12 +26,8 @@ import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
-import {
-  CenteredSectionHead,
-  SubsectionHead,
-} from '@src/components/SectionHeads'
-import { ShadowedCard } from '@src/components/ShadowedCard'
-import { Body2, Cta, ResponsiveText } from '@src/components/Typography'
+import SolutionProblem from '@src/components/SolutionProblem'
+import { ResponsiveText } from '@src/components/Typography'
 import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
 import { getSolutionConfigs } from '@src/data/getSolutionsConfigs'
@@ -79,7 +72,6 @@ export default function Solution({
   faqs,
   featuredQuote,
   buildStackTabs,
-  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   //   const router = useRouter()
   const imageUrl = getImageUrl(solution?.hero_image)
@@ -182,54 +174,19 @@ export default function Solution({
           </Columns>
         </StandardPageWidth>
       </HeaderPad>
+      {/* solution problems */}
       <ColorModeProvider mode="light">
         <StandardPageSection className="bg-fill-zero">
-          <StandardPageWidth>
-            <div
-              className={classNames(
-                'flex flex-col',
-                'gap-y-xxxlarge md:gap-y-xxxxlarge xl:md:gap-y-xxxxxlarge'
-              )}
-            >
-              <CenteredSectionHead
-                heading={solution.heading_1}
-                intro={<BasicMarkdown text={solution.content_1} />}
+          <div className="flex flex-col gap-xxxxxlarge">
+            {innerSolution?.problems.map((problem) => (
+              <SolutionProblem
+                title={problem.title}
+                subtitle={problem.subtitle}
+                problem={problem.problem}
+                solution={problem.solution}
               />
-              <ColumnsMd
-                className={classNames('gap-y-large', 'md:items-center')}
-              >
-                <EqualColumn className="flex basis-1/2 flex-col gap-y-large">
-                  <SubsectionHead heading={solution.heading_2} />
-                  <Body2>
-                    <BasicMarkdown text={solution.content_2} />
-                  </Body2>
-                </EqualColumn>
-                <EqualColumn className="basis-1/2">
-                  <ShadowedCard
-                    className={classNames(
-                      'p-large',
-                      'flex flex-col gap-y-xlarge'
-                    )}
-                  >
-                    <Checklist2>
-                      {solution.bullet_points.map(
-                        (bullet, i) =>
-                          bullet?.content && (
-                            <Checklist2Item key={i}>
-                              {bullet.content}
-                            </Checklist2Item>
-                          )
-                      )}
-                    </Checklist2>
-                    <Cta href="/contact-sales">Book a demo today</Cta>
-                  </ShadowedCard>
-                </EqualColumn>
-              </ColumnsMd>
-              <CompanyLogosSection
-                logos={globalProps.siteSettings?.partner_logos?.items}
-              />
-            </div>
-          </StandardPageWidth>
+            ))}
+          </div>
         </StandardPageSection>
       </ColorModeProvider>
       <HPWMiniSectionSolutions />
