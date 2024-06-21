@@ -13,7 +13,6 @@ import Link from 'next/link'
 
 import { until } from '@open-draft/until'
 
-import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
@@ -22,9 +21,7 @@ import {
   StandardPageSection,
   StandardPageWidth,
 } from '@src/components/layout/LayoutHelpers'
-import BuildStackSection from '@src/components/page-sections/BuildStackSection'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
-import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import SolutionProblem from '@src/components/SolutionProblem'
 import { ResponsiveText } from '@src/components/Typography'
@@ -67,11 +64,7 @@ export type ProviderProps = {
 
 export default function Solution({
   solution,
-  caseStudy,
-  caseStudyApps,
-  faqs,
   featuredQuote,
-  buildStackTabs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   //   const router = useRouter()
   const imageUrl = getImageUrl(solution?.hero_image)
@@ -189,13 +182,8 @@ export default function Solution({
           </div>
         </StandardPageSection>
       </ColorModeProvider>
-      <HPWMiniSectionSolutions />
-      <CaseStudyFAQSection
-        caseStudyProps={{ featuredArticle: caseStudy, apps: caseStudyApps }}
-        faqProps={{ faqs }}
-      />
+
       <FeaturedQuote quote={featuredQuote} />
-      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
     </>
   )
 }
