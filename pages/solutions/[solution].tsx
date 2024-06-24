@@ -13,6 +13,7 @@ import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPageSection } from '@src/components/layout/LayoutHelpers'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
+import SolutionDownloadSection from '@src/components/page-sections/SolutionDownloadSection'
 import SolutionFeatureSection from '@src/components/page-sections/SolutionFeatureSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import SolutionProblem from '@src/components/SolutionProblem'
@@ -123,6 +124,7 @@ export default function Solution({
           />
         </StandardPageSection>
       </ColorModeProvider>
+      <SolutionDownloadSection slug={solution.slug} />
     </>
   )
 }

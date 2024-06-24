@@ -28,6 +28,8 @@ export type SolutionConfig = {
   upperFeatures: SolutionFeatureConfig[]
   lowerFeatures: SolutionFeatureConfig[]
   problems: ProblemConfig[]
+  bottomTitle: string
+  bottomDescription: string
 }
 
 export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
@@ -38,6 +40,9 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
     upperFeaturesTitle: 'Strategic deployment in healthcare',
     lowerFeaturesTitle:
       'Innovations in Kubernetes fleet management for healthcare',
+    bottomTitle: 'A path forward for healthcare digital infrastructure',
+    bottomDescription:
+      "The healthcare industry's adoption of Kubernetes fleet management solutions represents a forward-thinking approach to managing digital infrastructure. Learn more in the full e-book.",
     upperFeatures: [
       {
         title: 'Enhanced security and compliance',
