@@ -24,7 +24,7 @@ function SolutionFeature({
 
   return (
     <EqualColumn
-      className="mb-xxxxlarge flex flex-col rounded-large border p-xlarge"
+      className="flex flex-col rounded-large border p-xlarge "
       style={{
         background:
           theme.mode === 'dark'
@@ -99,12 +99,7 @@ function SolutionFeatureSection({
 
   return (
     <StandardPageWidth
-      className={classNames(
-        'flex flex-col gap-xlarge [text-wrap:balance]',
-        'pb-xxxlarge',
-        'md:pb-xxxlarge',
-        'xxl:pb-xxxxlarge'
-      )}
+      className={classNames('flex flex-col gap-xxxlarge [text-wrap:balance]')}
     >
       <ResponsiveText
         className="m-auto mb-xxxlarge text-center"
@@ -117,7 +112,7 @@ function SolutionFeatureSection({
       >
         {title}
       </ResponsiveText>
-      <Columns>
+      <Columns className={classNames(['gap-large lg:gap-xxxlarge'])}>
         {features.map((item, index) => (
           <SolutionFeature
             item={item}

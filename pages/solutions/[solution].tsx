@@ -67,6 +67,7 @@ export default function Solution({
         as={GradientBG}
         size="cover"
         image="/images/solutions/solutions-background.png"
+        className="pb-xxxxxlarge lg:pb-xxxxxxlarge"
       >
         <BasicPageHero
           heading={solution.title}
