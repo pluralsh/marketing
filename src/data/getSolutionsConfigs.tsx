@@ -1,10 +1,11 @@
 import {
+  EyeIcon,
   ProtectedClusterIcon,
   UpdatesIcon,
   WarningShieldIcon,
 } from '@pluralsh/design-system'
 
-type FeatureConfig = {
+export type SolutionFeatureConfig = {
   title: string
   description: string
   icon: React.ReactElement
@@ -21,8 +22,11 @@ type ProblemConfig = {
 
 export type SolutionConfig = {
   title: string
+  upperFeaturesTitle: string
+  lowerFeaturesTitle: string
   description: string
-  features: FeatureConfig[]
+  upperFeatures: SolutionFeatureConfig[]
+  lowerFeatures: SolutionFeatureConfig[]
   problems: ProblemConfig[]
 }
 
@@ -31,18 +35,15 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
     title: 'Plural for healthcare',
     description:
       'Automate and simplify Kubernetes lifecycle management for DevOps and platform engineering teams — even in strict operating environments.',
-    featureTitle: 'Strategic deployment in healthcare',
-    features: [
+    upperFeaturesTitle: 'Strategic deployment in healthcare',
+    lowerFeaturesTitle:
+      'Innovations in Kubernetes fleet management for healthcare',
+    upperFeatures: [
       {
         title: 'Enhanced security and compliance',
         description:
           'Kubernetes fleet management solutions facilitate robust security measures and compliance mechanisms, ensuring that clusters and services are protected according to the highest standards.  ',
-        icon: (
-          <WarningShieldIcon
-            size={30}
-            color="icon-primary"
-          />
-        ),
+        icon: <WarningShieldIcon color="icon-primary" />,
         linkTitle: 'Explore policy enforcement',
         linkUrl: '',
       },
@@ -50,12 +51,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
         title: 'Operational excellence with multiple clusters',
         description:
           'Managing a vast array of Kubernetes clusters is streamlined through advanced management tools, making it easier for healthcare organizations to access, debug, and assign permissions with operational consistency across their cluster estate.',
-        icon: (
-          <ProtectedClusterIcon
-            size={30}
-            color="icon-primary"
-          />
-        ),
+        icon: <ProtectedClusterIcon color="icon-primary" />,
         linkTitle: 'View the K8s dashboard',
         linkUrl: '',
       },
@@ -63,13 +59,34 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
         title: 'Efficiency in managing add-ons',
         description:
           'The complexity of upgrading clusters and their associated multiple add-ons is significantly reduced, ensuring that these enhancements do not compromise the availability or security of deployed services.',
-        icon: (
-          <UpdatesIcon
-            size={30}
-            color="icon-primary"
-          />
-        ),
+        icon: <UpdatesIcon color="icon-primary" />,
         linkTitle: 'Discover automatic upgrades',
+        linkUrl: '',
+      },
+    ],
+    lowerFeatures: [
+      {
+        title: 'Enterprise-grade deployment pipelines',
+        description:
+          'Incorporating stringent review and approval processes for changes to the Kubernetes environment, bolstering security and compliance and giving teams confidence in the changes needed in production.',
+        icon: <WarningShieldIcon color="icon-primary" />,
+        linkTitle: 'Explore policy enforcement',
+        linkUrl: '',
+      },
+      {
+        title: 'Visibility across the Kubernetes fleet',
+        description:
+          'Ensuring that all clusters are running the latest, most secure versions of software without disrupting healthcare operations.',
+        icon: <EyeIcon color="icon-primary" />,
+        linkTitle: 'Discover automatic upgrades',
+        linkUrl: '',
+      },
+      {
+        title: 'Hassle-free upgrades and add-ons',
+        description:
+          "Offering a bird's-eye view of the entire Kubernetes environment, including health metrics and service performance, to proactively manage and mitigate issues.",
+        icon: <UpdatesIcon color="icon-primary" />,
+        linkTitle: 'View the K8s dashboard',
         linkUrl: '',
       },
     ],

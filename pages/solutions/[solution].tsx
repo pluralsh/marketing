@@ -1,9 +1,4 @@
-import {
-  ArrowRightIcon,
-  Button,
-  ColorModeProvider,
-  IconFrame,
-} from '@pluralsh/design-system'
+import { Button, ColorModeProvider } from '@pluralsh/design-system'
 import {
   type GetStaticPaths,
   type GetStaticProps,
@@ -16,15 +11,11 @@ import { until } from '@open-draft/until'
 import { directusClient } from '@src/apollo-client'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
-import {
-  StandardPageSection,
-  StandardPageWidth,
-} from '@src/components/layout/LayoutHelpers'
+import { StandardPageSection } from '@src/components/layout/LayoutHelpers'
 import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
+import SolutionFeatureSection from '@src/components/page-sections/SolutionFeatureSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import SolutionProblem from '@src/components/SolutionProblem'
-import { ResponsiveText } from '@src/components/Typography'
 import { getImageUrl } from '@src/consts/routes'
 import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
 import { getSolutionConfigs } from '@src/data/getSolutionsConfigs'
@@ -45,7 +36,6 @@ import {
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
-import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
@@ -100,76 +90,15 @@ export default function Solution({
             </div>
           }
         />
-        <StandardPageWidth
-          className={classNames(
-            'flex flex-col gap-xlarge [text-wrap:balance]',
-            'pb-xxxlarge',
-            'md:pb-xxxlarge',
-            'xxl:pb-xxxxlarge'
-          )}
-        >
-          <ResponsiveText
-            className="m-auto mb-xxxlarge text-center"
-            as="h2"
-            textStyles={{
-              '': 'mTitle2',
-              sm: 'mHero2',
-              xxl: 'mBigHeader',
-            }}
-          >
-            Strategic deployment in healthcare
-          </ResponsiveText>
-          <Columns>
-            {innerSolution?.features.map((item) => (
-              <EqualColumn
-                className="mb-xxxxlarge flex flex-col rounded-large border border-fill-two p-xlarge"
-                style={{
-                  background:
-                    'radial-gradient(50% 26.3% at 50% 100%, rgba(150, 154, 248, 0.09) 0%, rgba(150, 154, 248, 0.00) 100%), linear-gradient(74deg, #252932 19.58%, #171A21 248.88%)',
-                }}
-              >
-                <ResponsiveText
-                  className="flex items-center"
-                  as="h3"
-                  textStyles={{
-                    '': 'mSubtitle2',
-                  }}
-                >
-                  <IconFrame
-                    icon={item.icon}
-                    type="floating"
-                    size="large"
-                    className="mr-xsmall"
-                  />
-                  {item.title}
-                </ResponsiveText>
-                <ResponsiveText
-                  className="mb-xxlarge mt-large"
-                  textStyles={{
-                    '': 'mBody2',
-                  }}
-                >
-                  {item.description}
-                </ResponsiveText>
-                <Button
-                  clickable
-                  href={item.linkUrl}
-                  as={Link}
-                  className="mt-auto"
-                  tertiary
-                  padding="none"
-                  endIcon={<ArrowRightIcon />}
-                >
-                  {item.linkTitle}
-                </Button>
-              </EqualColumn>
-            ))}
-          </Columns>
-        </StandardPageWidth>
+        {/* upper features */}
+        <SolutionFeatureSection
+          slug={solution.slug}
+          kind="upper"
+        />
       </HeaderPad>
       {/* solution problems */}
       <ColorModeProvider mode="light">
-        <StandardPageSection className="bg-fill-zero">
+        <StandardPageSection className="bg-marketing-black">
           <div className="flex flex-col gap-xxxxxlarge">
             {innerSolution?.problems.map((problem) => (
               <SolutionProblem
@@ -184,6 +113,15 @@ export default function Solution({
       </ColorModeProvider>
 
       <FeaturedQuote quote={featuredQuote} />
+
+      <ColorModeProvider mode="light">
+        <StandardPageSection className="bg-marketing-black">
+          <SolutionFeatureSection
+            slug={solution.slug}
+            kind="lower"
+          />
+        </StandardPageSection>
+      </ColorModeProvider>
     </>
   )
 }
