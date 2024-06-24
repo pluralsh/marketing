@@ -36,21 +36,25 @@ function SolutionFeature({
             : theme.colors.grey[200],
       }}
     >
-      <ResponsiveText
-        className="flex items-center"
-        as="h3"
-        textStyles={{
-          '': 'mSubtitle2',
-        }}
-      >
-        <IconFrame
-          icon={item.icon}
-          type="floating"
-          size="large"
-          className="mr-xsmall"
-        />
-        {item.title}
-      </ResponsiveText>
+      <div className="flex items-center">
+        <div style={{ minWidth: '50px' }}>
+          <IconFrame
+            icon={item.icon}
+            type="floating"
+            size="large"
+            className="mr-xsmall"
+          />
+        </div>
+        <ResponsiveText
+          className="flex items-center"
+          as="h3"
+          textStyles={{
+            '': 'mSubtitle2',
+          }}
+        >
+          {item.title}
+        </ResponsiveText>
+      </div>
       <ResponsiveText
         className="mb-xxlarge mt-large"
         textStyles={{
