@@ -113,7 +113,7 @@ function SolutionFeatureSection({
         {title}
       </ResponsiveText>
       <Columns className={classNames(['gap-large lg:gap-xxxlarge'])}>
-        {features.map((item, index) => (
+        {features?.map((item, index) => (
           <SolutionFeature
             item={item}
             key={item.title}

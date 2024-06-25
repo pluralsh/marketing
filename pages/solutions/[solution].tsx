@@ -62,6 +62,8 @@ export default function Solution({
 
   const innerSolution = getSolutionConfigs()[solution.slug]
 
+  if (!innerSolution) return null
+
   return (
     <>
       <HeaderPad
