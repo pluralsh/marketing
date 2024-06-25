@@ -81,13 +81,22 @@ export default function Solution({
             ) : undefined
           }
           ctas={
-            <div className="flex">
+            <div className="flex flex-col gap-medium md:flex-row md:gap-large">
               <Button
                 large
                 as={Link}
                 href="/contact-sales"
               >
                 Book a demo
+              </Button>
+              <Button
+                large
+                as={Link}
+                secondary
+                floating
+                href="/contact-sales"
+              >
+                Download full e-book
               </Button>
             </div>
           }
