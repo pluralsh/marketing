@@ -41,10 +41,11 @@ function SolutionDownloadSection({ slug }: { slug: string }) {
             <EqualColumn>
               <Button
                 large
-                as={Link}
+                as="a"
                 secondary
                 outline
-                href="/contact-sales"
+                href={`/pdfs/solutions/e-books/${slug}.pdf`}
+                download
                 startIcon={<DownloadIcon />}
               >
                 Download full e-book

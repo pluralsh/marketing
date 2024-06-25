@@ -93,10 +93,11 @@ export default function Solution({
               </Button>
               <Button
                 large
-                as={Link}
+                as="a"
                 secondary
                 floating
-                href="/contact-sales"
+                href={`/pdfs/solutions/e-books/${solution.slug}.pdf`}
+                download
               >
                 Download full e-book
               </Button>
