@@ -8,6 +8,8 @@ import Link from 'next/link'
 
 import styled from 'styled-components'
 
+import { cn as classNames } from '@src/utils/cn'
+
 import { EqualColumn } from './layout/Columns'
 import { StandardPageWidth } from './layout/LayoutHelpers'
 import { ResponsiveText } from './Typography'
@@ -49,7 +51,12 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
           >
             {subtitle}
           </ResponsiveText>
-          <ProblemContainerSC className="flex-col gap-medium rounded-large rounded-bl-none rounded-br-none border lg:flex-row lg:rounded-bl-large lg:rounded-tr-none">
+          <ProblemContainerSC
+            className={classNames([
+              sharedResponsiveStyles,
+              'rounded-bl-none rounded-br-none lg:rounded-bl-large lg:rounded-tr-none',
+            ])}
+          >
             <ErrorIcon
               color="icon-danger"
               size={32}
@@ -59,7 +66,7 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
               as="div"
               textStyles={{
                 lg: 'mSubtitle2',
-                '': 'mBody1',
+                '': 'mBody1Bold',
               }}
               className="text-center lg:text-left"
             >
@@ -73,7 +80,12 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
             width={109}
             height={30}
           />
-          <SolutionContainerSC className="flex-col gap-medium rounded-large rounded-tl-none rounded-tr-none border sm:border-t-0 lg:flex-row lg:rounded-bl-none lg:rounded-tr-large lg:border-l-0 lg:border-t">
+          <SolutionContainerSC
+            className={classNames([
+              sharedResponsiveStyles,
+              'rounded-tl-none rounded-tr-none border-t-0 lg:flex-row lg:rounded-bl-none lg:rounded-tr-large lg:border-l-0 lg:border-t',
+            ])}
+          >
             <SuccessIcon
               color="icon-success"
               size={32}
@@ -82,7 +94,7 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
               as="div"
               textStyles={{
                 lg: 'mSubtitle2',
-                '': 'mBody1',
+                '': 'mBody1Bold',
               }}
               className="text-center lg:text-left"
             >
@@ -95,22 +107,24 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
   )
 }
 
+const sharedResponsiveStyles =
+  'flex-col rounded-large border lg:flex-row py-xlarge px-medium lg:px-xxlarge lg:py-xxxlarge'
+
 export default SolutionProblem
 
 const SharedStyles = styled.div(({ theme }) => ({
-  padding: `${theme.spacing.xxxlarge}px ${theme.spacing.xxlarge}px`,
   width: '100%',
   flexGrow: 1,
-  //   boxShadow: `0px 0px 0px 1px ${theme.colors['border-disabled']}`,
+  gap: theme.spacing.medium,
   borderColor: theme.colors['border-disabled'],
   display: 'flex',
   alignItems: 'center',
 }))
 
 const ProblemContainerSC = styled(SharedStyles)(({ theme }) => ({
-  background: `linear-gradient(to right, rgba(232, 23, 72, 0.06), ${theme.colors['fill-zero']})`,
+  background: `linear-gradient(to right, rgba(232, 23, 72, 0.04), ${theme.colors['fill-zero']})`,
 }))
 
 const SolutionContainerSC = styled(SharedStyles)(({ theme }) => ({
-  background: `linear-gradient(to right, ${theme.colors['fill-zero']}, rgba(60, 236, 175, 0.06))`,
+  background: `linear-gradient(to right, ${theme.colors['fill-zero']}, rgba(60, 236, 175, 0.04))`,
 }))

@@ -24,7 +24,7 @@ function SolutionFeature({
 
   return (
     <EqualColumn
-      className="flex flex-col rounded-large border p-xlarge "
+      className="flex flex-col rounded-large border p-medium sm:p-xlarge"
       style={{
         background:
           theme.mode === 'dark'
@@ -36,17 +36,16 @@ function SolutionFeature({
             : theme.colors.grey[200],
       }}
     >
-      <div className="flex items-center">
+      <div className="flex flex-col items-center gap-small md:flex-row md:gap-medium">
         <div style={{ minWidth: '50px' }}>
           <IconFrame
             icon={item.icon}
             type="floating"
             size="large"
-            className="mr-xsmall"
           />
         </div>
         <ResponsiveText
-          className="flex items-center"
+          className="flex items-center text-center md:text-left"
           as="h3"
           textStyles={{
             '': 'mSubtitle2',
@@ -133,8 +132,8 @@ const backgrounds = {
     'radial-gradient(50% 26.3% at 50% 100%, rgba(150, 154, 248, 0.09) 0%, rgba(150, 154, 248, 0.00) 100%), linear-gradient(75deg, #252932 -155.76%, #171A21 79.38%)',
   ],
   light: [
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.10) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(74deg, #FFF 19.58%, #EBEFF0 248.88%)',
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.10) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(76deg, #FFF -66.4%, #EBEFF0 167.88%)',
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.10) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(75deg, #FFF -154.87%, #EBEFF0 79.45%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(74deg, #FFF 19.58%, #EBEFF0 248.88%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(76deg, #FFF -66.4%, #EBEFF0 167.88%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(75deg, #FFF -154.87%, #EBEFF0 79.45%)',
   ],
 }

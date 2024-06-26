@@ -13,8 +13,8 @@ function SolutionDownloadSection({ slug }: { slug: string }) {
   const innerSolution = getSolutionConfigs()[slug]
 
   return (
-    <StandardPageSection className="flex items-center justify-center bg-fill-zero px-large lg:px-xxxxlarge">
-      <div className="relative  flex w-full items-center justify-center rounded-large border border-purple-300 p-xxxlarge lg:px-xxxxxlarge">
+    <StandardPageSection className="flex items-center justify-center bg-fill-zero px-medium md:px-large lg:px-xxxxlarge">
+      <div className="relative  flex w-full items-center justify-center overflow-hidden rounded-large border border-purple-300 p-medium sm:p-xxlarge lg:px-xxxxxlarge">
         <Background />
         <div className="z-10 max-w-[760px]">
           <ResponsiveText
