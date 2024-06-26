@@ -50,7 +50,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           'Kubernetes fleet management solutions facilitate robust security measures and compliance mechanisms, ensuring that clusters and services are protected according to the highest standards.  ',
         icon: <WarningShieldIcon color="icon-primary" />,
         linkTitle: 'Explore policy enforcement',
-        linkUrl: '',
+        linkUrl: '/products/policy-enforcement',
       },
       {
         title: 'Operational excellence with multiple clusters',
@@ -58,7 +58,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           'Managing a vast array of Kubernetes clusters is streamlined through advanced management tools, making it easier for healthcare organizations to access, debug, and assign permissions with operational consistency across their cluster estate.',
         icon: <ProtectedClusterIcon color="icon-primary" />,
         linkTitle: 'View the K8s dashboard',
-        linkUrl: '',
+        linkUrl: '/products/kubernetes-dashboard',
       },
       {
         title: 'Efficiency in managing add-ons',
@@ -66,7 +66,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           'The complexity of upgrading clusters and their associated multiple add-ons is significantly reduced, ensuring that these enhancements do not compromise the availability or security of deployed services.',
         icon: <UpdatesIcon color="icon-primary" />,
         linkTitle: 'Discover automatic upgrades',
-        linkUrl: '',
+        linkUrl: '/products/cluster-upgrade-assistant',
       },
     ],
     lowerFeatures: [
@@ -76,7 +76,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           'Incorporating stringent review and approval processes for changes to the Kubernetes environment, bolstering security and compliance and giving teams confidence in the changes needed in production.',
         icon: <WarningShieldIcon color="icon-primary" />,
         linkTitle: 'Explore policy enforcement',
-        linkUrl: '',
+        linkUrl: 'products/policy-enforcement',
       },
       {
         title: 'Visibility across the Kubernetes fleet',
@@ -84,7 +84,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           'Ensuring that all clusters are running the latest, most secure versions of software without disrupting healthcare operations.',
         icon: <EyeIcon color="icon-primary" />,
         linkTitle: 'Discover automatic upgrades',
-        linkUrl: '',
+        linkUrl: '/products/cluster-upgrade-assistant',
       },
       {
         title: 'Hassle-free upgrades and add-ons',
@@ -92,7 +92,7 @@ export const getSolutionConfigs: () => Record<string, SolutionConfig> = () => ({
           "Offering a bird's-eye view of the entire Kubernetes environment, including health metrics and service performance, to proactively manage and mitigate issues.",
         icon: <UpdatesIcon color="icon-primary" />,
         linkTitle: 'View the K8s dashboard',
-        linkUrl: '',
+        linkUrl: '/products/kubernetes-dashboard',
       },
     ],
     problems: [
