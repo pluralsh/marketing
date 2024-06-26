@@ -132,8 +132,8 @@ const backgrounds = {
     'radial-gradient(50% 26.3% at 50% 100%, rgba(150, 154, 248, 0.09) 0%, rgba(150, 154, 248, 0.00) 100%), linear-gradient(75deg, #252932 -155.76%, #171A21 79.38%)',
   ],
   light: [
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(74deg, #FFF 19.58%, #EBEFF0 248.88%)',
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(76deg, #FFF -66.4%, #EBEFF0 167.88%)',
-    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(75deg, #FFF -154.87%, #EBEFF0 79.45%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(74deg, #FFF 19.58%, #EEF1F1 248.88%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(76deg, #FFF -66.4%, #EEF1F1 167.88%)',
+    'radial-gradient(50% 26.3% at 50% 100%, rgba(74, 81, 242, 0.07) 0%, rgba(74, 81, 242, 0.00) 100%), linear-gradient(75deg, #FFF -154.87%, #EEF1F1 79.45%)',
   ],
 }
