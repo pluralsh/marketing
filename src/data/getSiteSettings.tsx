@@ -5,7 +5,7 @@ type Solution = {
   title?: string | null
 }
 
-export const getSiteSettings = (solutions: Solution[]) => ({
+export const getSiteSettings = (solutions?: Solution[]) => ({
   og_description:
     'Open-source application deployment, faster than ever without sacrificing compliance."',
   partner_logos: {
@@ -214,9 +214,11 @@ function getProductSubnav() {
   }))
 }
 
-function getSolutionSubnav(solutions: Solution[]) {
+function getSolutionSubnav(solutions?: Solution[]) {
+  if (!solutions || !solutions.length) return undefined
+
   return solutions.map((solution, i) => ({
-    id: solution.slug,
+    id: solution.slug || '',
     link: {
       id: `${solution.slug}-${i}`,
       title: solution.title,
