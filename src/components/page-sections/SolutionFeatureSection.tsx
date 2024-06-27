@@ -3,10 +3,11 @@ import Link from 'next/link'
 
 import { useTheme } from 'styled-components'
 
+import { getFeatureIcon } from '@src/data/getSolutionsConfigs'
 import {
-  type SolutionFeatureConfig,
-  getSolutionConfigs,
-} from '@src/data/getSolutionsConfigs'
+  type SolutionFeatureFragment,
+  type SolutionFragment,
+} from '@src/generated/graphqlDirectus'
 import { cn as classNames } from '@src/utils/cn'
 
 import { Columns, EqualColumn } from '../layout/Columns'
@@ -14,13 +15,15 @@ import { StandardPageWidth } from '../layout/LayoutHelpers'
 import { ResponsiveText } from '../Typography'
 
 function SolutionFeature({
-  item,
+  feature,
   index,
 }: {
-  item: SolutionFeatureConfig
+  feature: SolutionFeatureFragment | null
   index: number
 }) {
   const theme = useTheme()
+
+  if (!feature) return null
 
   return (
     <EqualColumn
@@ -39,7 +42,7 @@ function SolutionFeature({
       <div className="flex flex-col items-center gap-small md:flex-row md:gap-medium">
         <div style={{ minWidth: '50px' }}>
           <IconFrame
-            icon={item.icon}
+            icon={getFeatureIcon(feature?.icon)}
             type="floating"
             size="large"
           />
@@ -51,7 +54,7 @@ function SolutionFeature({
             '': 'mSubtitle2',
           }}
         >
-          {item.title}
+          {feature.title}
         </ResponsiveText>
       </div>
       <ResponsiveText
@@ -60,11 +63,11 @@ function SolutionFeature({
           '': 'mBody2',
         }}
       >
-        {item.description}
+        {feature.description}
       </ResponsiveText>
       <Button
         clickable
-        href={item.linkUrl}
+        href={feature.link_url}
         as={Link}
         className="mt-auto"
         tertiary
@@ -72,29 +75,26 @@ function SolutionFeature({
         endIcon={<ArrowRightIcon />}
         style={{ color: theme.colors['text-light'] }}
       >
-        {item.linkTitle}
+        {feature.link_title}
       </Button>
     </EqualColumn>
   )
 }
 
 function SolutionFeatureSection({
-  slug,
+  solution,
   kind,
 }: {
-  slug: string
+  solution: SolutionFragment
   kind: 'upper' | 'lower'
 }) {
-  const innerSolution = getSolutionConfigs()[slug]
   const features =
-    kind === 'upper'
-      ? innerSolution?.upperFeatures
-      : innerSolution?.lowerFeatures
+    kind === 'upper' ? solution?.upper_features : solution?.lower_features
 
   const title =
     kind === 'upper'
-      ? innerSolution?.upperFeaturesTitle
-      : innerSolution?.lowerFeaturesTitle
+      ? solution?.upper_features_title
+      : solution?.lower_features_title
 
   return (
     <StandardPageWidth
@@ -112,10 +112,10 @@ function SolutionFeatureSection({
         {title}
       </ResponsiveText>
       <Columns className={classNames(['gap-large lg:gap-xxxlarge'])}>
-        {features?.map((item, index) => (
+        {features?.map((feature, index) => (
           <SolutionFeature
-            item={item}
-            key={item.title}
+            feature={feature}
+            key={feature?.title}
             index={index}
           />
         ))}

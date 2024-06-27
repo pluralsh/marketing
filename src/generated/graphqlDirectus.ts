@@ -84,8 +84,14 @@ export type Mutation = {
   create_site_settings_main_nav_items: Array<Site_Settings_Main_Nav>;
   create_site_settings_nav_list_item?: Maybe<Site_Settings_Nav_List>;
   create_site_settings_nav_list_items: Array<Site_Settings_Nav_List>;
+  create_solution_features_item?: Maybe<Solution_Features>;
+  create_solution_features_items: Array<Solution_Features>;
+  create_solution_problems_item?: Maybe<Solution_Problems>;
+  create_solution_problems_items: Array<Solution_Problems>;
   create_solutions_pages_item?: Maybe<Solutions_Pages>;
   create_solutions_pages_items: Array<Solutions_Pages>;
+  create_solutions_pages_solution_problems_item?: Maybe<Solutions_Pages_Solution_Problems>;
+  create_solutions_pages_solution_problems_items: Array<Solutions_Pages_Solution_Problems>;
   create_stacks_item?: Maybe<Stacks>;
   create_stacks_items: Array<Stacks>;
   create_team_members_item?: Maybe<Team_Members>;
@@ -148,8 +154,14 @@ export type Mutation = {
   delete_site_settings_main_nav_items?: Maybe<Delete_Many>;
   delete_site_settings_nav_list_item?: Maybe<Delete_One>;
   delete_site_settings_nav_list_items?: Maybe<Delete_Many>;
+  delete_solution_features_item?: Maybe<Delete_One>;
+  delete_solution_features_items?: Maybe<Delete_Many>;
+  delete_solution_problems_item?: Maybe<Delete_One>;
+  delete_solution_problems_items?: Maybe<Delete_Many>;
   delete_solutions_pages_item?: Maybe<Delete_One>;
   delete_solutions_pages_items?: Maybe<Delete_Many>;
+  delete_solutions_pages_solution_problems_item?: Maybe<Delete_One>;
+  delete_solutions_pages_solution_problems_items?: Maybe<Delete_Many>;
   delete_stacks_item?: Maybe<Delete_One>;
   delete_stacks_items?: Maybe<Delete_Many>;
   delete_team_members_item?: Maybe<Delete_One>;
@@ -247,9 +259,18 @@ export type Mutation = {
   update_site_settings_nav_list_batch: Array<Site_Settings_Nav_List>;
   update_site_settings_nav_list_item?: Maybe<Site_Settings_Nav_List>;
   update_site_settings_nav_list_items: Array<Site_Settings_Nav_List>;
+  update_solution_features_batch: Array<Solution_Features>;
+  update_solution_features_item?: Maybe<Solution_Features>;
+  update_solution_features_items: Array<Solution_Features>;
+  update_solution_problems_batch: Array<Solution_Problems>;
+  update_solution_problems_item?: Maybe<Solution_Problems>;
+  update_solution_problems_items: Array<Solution_Problems>;
   update_solutions_pages_batch: Array<Solutions_Pages>;
   update_solutions_pages_item?: Maybe<Solutions_Pages>;
   update_solutions_pages_items: Array<Solutions_Pages>;
+  update_solutions_pages_solution_problems_batch: Array<Solutions_Pages_Solution_Problems>;
+  update_solutions_pages_solution_problems_item?: Maybe<Solutions_Pages_Solution_Problems>;
+  update_solutions_pages_solution_problems_items: Array<Solutions_Pages_Solution_Problems>;
   update_stack_defaults?: Maybe<Stack_Defaults>;
   update_stacks_batch: Array<Stacks>;
   update_stacks_item?: Maybe<Stacks>;
@@ -724,6 +745,38 @@ export type MutationCreate_Site_Settings_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationCreate_Solution_Features_ItemArgs = {
+  data: Create_Solution_Features_Input;
+};
+
+
+export type MutationCreate_Solution_Features_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Solution_Features_Input>>;
+  filter?: InputMaybe<Solution_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Solution_Problems_ItemArgs = {
+  data: Create_Solution_Problems_Input;
+};
+
+
+export type MutationCreate_Solution_Problems_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Solution_Problems_Input>>;
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Solutions_Pages_ItemArgs = {
   data: Create_Solutions_Pages_Input;
 };
@@ -732,6 +785,22 @@ export type MutationCreate_Solutions_Pages_ItemArgs = {
 export type MutationCreate_Solutions_Pages_ItemsArgs = {
   data?: InputMaybe<Array<Create_Solutions_Pages_Input>>;
   filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Solutions_Pages_Solution_Problems_ItemArgs = {
+  data: Create_Solutions_Pages_Solution_Problems_Input;
+};
+
+
+export type MutationCreate_Solutions_Pages_Solution_Problems_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Solutions_Pages_Solution_Problems_Input>>;
+  filter?: InputMaybe<Solutions_Pages_Solution_Problems_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1062,12 +1131,42 @@ export type MutationDelete_Site_Settings_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationDelete_Solution_Features_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Solution_Features_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Solution_Problems_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Solution_Problems_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Solutions_Pages_ItemArgs = {
   id: Scalars['ID']['input'];
 };
 
 
 export type MutationDelete_Solutions_Pages_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Solutions_Pages_Solution_Problems_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Solutions_Pages_Solution_Problems_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -1963,6 +2062,64 @@ export type MutationUpdate_Site_Settings_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationUpdate_Solution_Features_BatchArgs = {
+  data?: InputMaybe<Array<Update_Solution_Features_Input>>;
+  filter?: InputMaybe<Solution_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solution_Features_ItemArgs = {
+  data: Update_Solution_Features_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Solution_Features_ItemsArgs = {
+  data: Update_Solution_Features_Input;
+  filter?: InputMaybe<Solution_Features_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solution_Problems_BatchArgs = {
+  data?: InputMaybe<Array<Update_Solution_Problems_Input>>;
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solution_Problems_ItemArgs = {
+  data: Update_Solution_Problems_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Solution_Problems_ItemsArgs = {
+  data: Update_Solution_Problems_Input;
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Solutions_Pages_BatchArgs = {
   data?: InputMaybe<Array<Update_Solutions_Pages_Input>>;
   filter?: InputMaybe<Solutions_Pages_Filter>;
@@ -1983,6 +2140,35 @@ export type MutationUpdate_Solutions_Pages_ItemArgs = {
 export type MutationUpdate_Solutions_Pages_ItemsArgs = {
   data: Update_Solutions_Pages_Input;
   filter?: InputMaybe<Solutions_Pages_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solutions_Pages_Solution_Problems_BatchArgs = {
+  data?: InputMaybe<Array<Update_Solutions_Pages_Solution_Problems_Input>>;
+  filter?: InputMaybe<Solutions_Pages_Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solutions_Pages_Solution_Problems_ItemArgs = {
+  data: Update_Solutions_Pages_Solution_Problems_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Solutions_Pages_Solution_Problems_ItemsArgs = {
+  data: Update_Solutions_Pages_Solution_Problems_Input;
+  filter?: InputMaybe<Solutions_Pages_Solution_Problems_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2149,9 +2335,18 @@ export type Query = {
   site_settings_nav_list: Array<Site_Settings_Nav_List>;
   site_settings_nav_list_aggregated: Array<Site_Settings_Nav_List_Aggregated>;
   site_settings_nav_list_by_id?: Maybe<Site_Settings_Nav_List>;
+  solution_features: Array<Solution_Features>;
+  solution_features_aggregated: Array<Solution_Features_Aggregated>;
+  solution_features_by_id?: Maybe<Solution_Features>;
+  solution_problems: Array<Solution_Problems>;
+  solution_problems_aggregated: Array<Solution_Problems_Aggregated>;
+  solution_problems_by_id?: Maybe<Solution_Problems>;
   solutions_pages: Array<Solutions_Pages>;
   solutions_pages_aggregated: Array<Solutions_Pages_Aggregated>;
   solutions_pages_by_id?: Maybe<Solutions_Pages>;
+  solutions_pages_solution_problems: Array<Solutions_Pages_Solution_Problems>;
+  solutions_pages_solution_problems_aggregated: Array<Solutions_Pages_Solution_Problems_Aggregated>;
+  solutions_pages_solution_problems_by_id?: Maybe<Solutions_Pages_Solution_Problems>;
   stack_defaults?: Maybe<Stack_Defaults>;
   stacks: Array<Stacks>;
   stacks_aggregated: Array<Stacks_Aggregated>;
@@ -2916,6 +3111,58 @@ export type QuerySite_Settings_Nav_List_By_IdArgs = {
 };
 
 
+export type QuerySolution_FeaturesArgs = {
+  filter?: InputMaybe<Solution_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolution_Features_AggregatedArgs = {
+  filter?: InputMaybe<Solution_Features_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolution_Features_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QuerySolution_ProblemsArgs = {
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolution_Problems_AggregatedArgs = {
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolution_Problems_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QuerySolutions_PagesArgs = {
   filter?: InputMaybe<Solutions_Pages_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2938,6 +3185,32 @@ export type QuerySolutions_Pages_AggregatedArgs = {
 
 
 export type QuerySolutions_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QuerySolutions_Pages_Solution_ProblemsArgs = {
+  filter?: InputMaybe<Solutions_Pages_Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_Solution_Problems_AggregatedArgs = {
+  filter?: InputMaybe<Solutions_Pages_Solution_Problems_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_Solution_Problems_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4567,25 +4840,65 @@ export type Create_Site_Settings_Nav_List_Input = {
   site_settings_id?: InputMaybe<Create_Site_Settings_Input>;
 };
 
-export type Create_Solutions_Pages_Input = {
-  bullet_points?: InputMaybe<Scalars['JSON']['input']>;
-  case_study?: InputMaybe<Create_Case_Studies_Input>;
-  content_1?: InputMaybe<Scalars['String']['input']>;
-  content_2?: InputMaybe<Scalars['String']['input']>;
+export type Create_Solution_Features_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  featured_quote?: InputMaybe<Create_Quotes_Input>;
-  heading_1?: InputMaybe<Scalars['String']['input']>;
-  heading_2?: InputMaybe<Scalars['String']['input']>;
-  hero_image?: InputMaybe<Create_Directus_Files_Input>;
+  icon?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  slug: Scalars['String']['input'];
+  link_title?: InputMaybe<Scalars['String']['input']>;
+  link_url?: InputMaybe<Scalars['String']['input']>;
+  order_of_appearance?: InputMaybe<Scalars['Int']['input']>;
+  solution_lower_id?: InputMaybe<Create_Solutions_Pages_Input>;
+  solution_upper_id?: InputMaybe<Create_Solutions_Pages_Input>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Solution_Problems_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  order_of_appearance?: InputMaybe<Scalars['Int']['input']>;
+  problem?: InputMaybe<Scalars['String']['input']>;
+  solution?: InputMaybe<Scalars['String']['input']>;
+  solution_id?: InputMaybe<Create_Solutions_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Solutions_Pages_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  download_section_description?: InputMaybe<Scalars['String']['input']>;
+  download_section_title?: InputMaybe<Scalars['String']['input']>;
+  featured_quote?: InputMaybe<Create_Quotes_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  lower_features?: InputMaybe<Array<InputMaybe<Create_Solution_Features_Input>>>;
+  lower_features_title?: InputMaybe<Scalars['String']['input']>;
+  problems?: InputMaybe<Array<InputMaybe<Create_Solution_Problems_Input>>>;
+  slug: Scalars['String']['input'];
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  upper_features?: InputMaybe<Array<InputMaybe<Create_Solution_Features_Input>>>;
+  upper_features_title?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Solutions_Pages_Solution_Problems_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  solution_problems_id?: InputMaybe<Create_Solution_Problems_Input>;
+  solutions_pages_id?: InputMaybe<Create_Solutions_Pages_Input>;
 };
 
 export type Create_Stacks_Input = {
@@ -6648,24 +6961,20 @@ export type Site_Settings_Nav_List_Filter = {
   site_settings_id?: InputMaybe<Site_Settings_Filter>;
 };
 
-export type Solutions_Pages = {
-  __typename?: 'solutions_pages';
-  bullet_points?: Maybe<Scalars['JSON']['output']>;
-  bullet_points_func?: Maybe<Count_Functions>;
-  case_study?: Maybe<Case_Studies>;
-  content_1?: Maybe<Scalars['String']['output']>;
-  content_2?: Maybe<Scalars['String']['output']>;
+export type Solution_Features = {
+  __typename?: 'solution_features';
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   description?: Maybe<Scalars['String']['output']>;
-  featured_quote?: Maybe<Quotes>;
-  heading_1?: Maybe<Scalars['String']['output']>;
-  heading_2?: Maybe<Scalars['String']['output']>;
-  hero_image?: Maybe<Directus_Files>;
+  icon?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  slug: Scalars['String']['output'];
+  link_title?: Maybe<Scalars['String']['output']>;
+  link_url?: Maybe<Scalars['String']['output']>;
+  order_of_appearance?: Maybe<Scalars['Int']['output']>;
+  solution_lower_id?: Maybe<Solutions_Pages>;
+  solution_upper_id?: Maybe<Solutions_Pages>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -6674,13 +6983,242 @@ export type Solutions_Pages = {
 };
 
 
-export type Solutions_PagesCase_StudyArgs = {
-  filter?: InputMaybe<Case_Studies_Filter>;
+export type Solution_FeaturesSolution_Lower_IdArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solution_FeaturesSolution_Upper_IdArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solution_FeaturesUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solution_FeaturesUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solution_Features_Aggregated = {
+  __typename?: 'solution_features_aggregated';
+  avg?: Maybe<Solution_Features_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solution_Features_Aggregated_Fields>;
+  count?: Maybe<Solution_Features_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solution_Features_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solution_Features_Aggregated_Fields>;
+  min?: Maybe<Solution_Features_Aggregated_Fields>;
+  sum?: Maybe<Solution_Features_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solution_Features_Aggregated_Fields>;
+};
+
+export type Solution_Features_Aggregated_Count = {
+  __typename?: 'solution_features_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['Int']['output']>;
+  icon?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  link_title?: Maybe<Scalars['Int']['output']>;
+  link_url?: Maybe<Scalars['Int']['output']>;
+  order_of_appearance?: Maybe<Scalars['Int']['output']>;
+  solution_lower_id?: Maybe<Scalars['Int']['output']>;
+  solution_upper_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solution_Features_Aggregated_Fields = {
+  __typename?: 'solution_features_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  order_of_appearance?: Maybe<Scalars['Float']['output']>;
+  solution_lower_id?: Maybe<Scalars['Float']['output']>;
+  solution_upper_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solution_Features_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solution_Features_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solution_Features_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  description?: InputMaybe<String_Filter_Operators>;
+  icon?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  link_title?: InputMaybe<String_Filter_Operators>;
+  link_url?: InputMaybe<String_Filter_Operators>;
+  order_of_appearance?: InputMaybe<Number_Filter_Operators>;
+  solution_lower_id?: InputMaybe<Solutions_Pages_Filter>;
+  solution_upper_id?: InputMaybe<Solutions_Pages_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Solution_Problems = {
+  __typename?: 'solution_problems';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  order_of_appearance?: Maybe<Scalars['Int']['output']>;
+  problem?: Maybe<Scalars['String']['output']>;
+  solution?: Maybe<Scalars['String']['output']>;
+  solution_id?: Maybe<Solutions_Pages>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Solution_ProblemsSolution_IdArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solution_ProblemsUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solution_ProblemsUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solution_Problems_Aggregated = {
+  __typename?: 'solution_problems_aggregated';
+  avg?: Maybe<Solution_Problems_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solution_Problems_Aggregated_Fields>;
+  count?: Maybe<Solution_Problems_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solution_Problems_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solution_Problems_Aggregated_Fields>;
+  min?: Maybe<Solution_Problems_Aggregated_Fields>;
+  sum?: Maybe<Solution_Problems_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solution_Problems_Aggregated_Fields>;
+};
+
+export type Solution_Problems_Aggregated_Count = {
+  __typename?: 'solution_problems_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  order_of_appearance?: Maybe<Scalars['Int']['output']>;
+  problem?: Maybe<Scalars['Int']['output']>;
+  solution?: Maybe<Scalars['Int']['output']>;
+  solution_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  subtitle?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solution_Problems_Aggregated_Fields = {
+  __typename?: 'solution_problems_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  order_of_appearance?: Maybe<Scalars['Float']['output']>;
+  solution_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solution_Problems_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solution_Problems_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solution_Problems_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  order_of_appearance?: InputMaybe<Number_Filter_Operators>;
+  problem?: InputMaybe<String_Filter_Operators>;
+  solution?: InputMaybe<String_Filter_Operators>;
+  solution_id?: InputMaybe<Solutions_Pages_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  subtitle?: InputMaybe<String_Filter_Operators>;
+  title?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Solutions_Pages = {
+  __typename?: 'solutions_pages';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  description?: Maybe<Scalars['String']['output']>;
+  download_section_description?: Maybe<Scalars['String']['output']>;
+  download_section_title?: Maybe<Scalars['String']['output']>;
+  featured_quote?: Maybe<Quotes>;
+  id: Scalars['ID']['output'];
+  lower_features?: Maybe<Array<Maybe<Solution_Features>>>;
+  lower_features_func?: Maybe<Count_Functions>;
+  lower_features_title?: Maybe<Scalars['String']['output']>;
+  problems?: Maybe<Array<Maybe<Solution_Problems>>>;
+  problems_func?: Maybe<Count_Functions>;
+  slug: Scalars['String']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  upper_features?: Maybe<Array<Maybe<Solution_Features>>>;
+  upper_features_func?: Maybe<Count_Functions>;
+  upper_features_title?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
 };
 
 
@@ -6694,8 +7232,28 @@ export type Solutions_PagesFeatured_QuoteArgs = {
 };
 
 
-export type Solutions_PagesHero_ImageArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
+export type Solutions_PagesLower_FeaturesArgs = {
+  filter?: InputMaybe<Solution_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_PagesProblemsArgs = {
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_PagesUpper_FeaturesArgs = {
+  filter?: InputMaybe<Solution_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6739,29 +7297,28 @@ export type Solutions_Pages_Aggregated = {
 
 export type Solutions_Pages_Aggregated_Count = {
   __typename?: 'solutions_pages_aggregated_count';
-  bullet_points?: Maybe<Scalars['Int']['output']>;
-  case_study?: Maybe<Scalars['Int']['output']>;
-  content_1?: Maybe<Scalars['Int']['output']>;
-  content_2?: Maybe<Scalars['Int']['output']>;
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
+  download_section_description?: Maybe<Scalars['Int']['output']>;
+  download_section_title?: Maybe<Scalars['Int']['output']>;
   featured_quote?: Maybe<Scalars['Int']['output']>;
-  heading_1?: Maybe<Scalars['Int']['output']>;
-  heading_2?: Maybe<Scalars['Int']['output']>;
-  hero_image?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  lower_features?: Maybe<Scalars['Int']['output']>;
+  lower_features_title?: Maybe<Scalars['Int']['output']>;
+  problems?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
+  upper_features?: Maybe<Scalars['Int']['output']>;
+  upper_features_title?: Maybe<Scalars['Int']['output']>;
   user_created?: Maybe<Scalars['Int']['output']>;
   user_updated?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Solutions_Pages_Aggregated_Fields = {
   __typename?: 'solutions_pages_aggregated_fields';
-  case_study?: Maybe<Scalars['Float']['output']>;
   featured_quote?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   sort?: Maybe<Scalars['Float']['output']>;
@@ -6770,27 +7327,92 @@ export type Solutions_Pages_Aggregated_Fields = {
 export type Solutions_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
-  bullet_points?: InputMaybe<String_Filter_Operators>;
-  bullet_points_func?: InputMaybe<Count_Function_Filter_Operators>;
-  case_study?: InputMaybe<Case_Studies_Filter>;
-  content_1?: InputMaybe<String_Filter_Operators>;
-  content_2?: InputMaybe<String_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   description?: InputMaybe<String_Filter_Operators>;
+  download_section_description?: InputMaybe<String_Filter_Operators>;
+  download_section_title?: InputMaybe<String_Filter_Operators>;
   featured_quote?: InputMaybe<Quotes_Filter>;
-  heading_1?: InputMaybe<String_Filter_Operators>;
-  heading_2?: InputMaybe<String_Filter_Operators>;
-  hero_image?: InputMaybe<Directus_Files_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
+  lower_features?: InputMaybe<Solution_Features_Filter>;
+  lower_features_func?: InputMaybe<Count_Function_Filter_Operators>;
+  lower_features_title?: InputMaybe<String_Filter_Operators>;
+  problems?: InputMaybe<Solution_Problems_Filter>;
+  problems_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
+  upper_features?: InputMaybe<Solution_Features_Filter>;
+  upper_features_func?: InputMaybe<Count_Function_Filter_Operators>;
+  upper_features_title?: InputMaybe<String_Filter_Operators>;
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Solutions_Pages_Solution_Problems = {
+  __typename?: 'solutions_pages_solution_problems';
+  id: Scalars['ID']['output'];
+  solution_problems_id?: Maybe<Solution_Problems>;
+  solutions_pages_id?: Maybe<Solutions_Pages>;
+};
+
+
+export type Solutions_Pages_Solution_ProblemsSolution_Problems_IdArgs = {
+  filter?: InputMaybe<Solution_Problems_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_Pages_Solution_ProblemsSolutions_Pages_IdArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages_Solution_Problems_Aggregated = {
+  __typename?: 'solutions_pages_solution_problems_aggregated';
+  avg?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+  count?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+  min?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+  sum?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solutions_Pages_Solution_Problems_Aggregated_Fields>;
+};
+
+export type Solutions_Pages_Solution_Problems_Aggregated_Count = {
+  __typename?: 'solutions_pages_solution_problems_aggregated_count';
+  id?: Maybe<Scalars['Int']['output']>;
+  solution_problems_id?: Maybe<Scalars['Int']['output']>;
+  solutions_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solutions_Pages_Solution_Problems_Aggregated_Fields = {
+  __typename?: 'solutions_pages_solution_problems_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  solution_problems_id?: Maybe<Scalars['Float']['output']>;
+  solutions_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solutions_Pages_Solution_Problems_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Solution_Problems_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Solution_Problems_Filter>>>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  solution_problems_id?: InputMaybe<Solution_Problems_Filter>;
+  solutions_pages_id?: InputMaybe<Solutions_Pages_Filter>;
 };
 
 export type Stack_Defaults = {
@@ -7474,25 +8096,65 @@ export type Update_Site_Settings_Nav_List_Input = {
   site_settings_id?: InputMaybe<Update_Site_Settings_Input>;
 };
 
-export type Update_Solutions_Pages_Input = {
-  bullet_points?: InputMaybe<Scalars['JSON']['input']>;
-  case_study?: InputMaybe<Update_Case_Studies_Input>;
-  content_1?: InputMaybe<Scalars['String']['input']>;
-  content_2?: InputMaybe<Scalars['String']['input']>;
+export type Update_Solution_Features_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  featured_quote?: InputMaybe<Update_Quotes_Input>;
-  heading_1?: InputMaybe<Scalars['String']['input']>;
-  heading_2?: InputMaybe<Scalars['String']['input']>;
-  hero_image?: InputMaybe<Update_Directus_Files_Input>;
+  icon?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
+  link_title?: InputMaybe<Scalars['String']['input']>;
+  link_url?: InputMaybe<Scalars['String']['input']>;
+  order_of_appearance?: InputMaybe<Scalars['Int']['input']>;
+  solution_lower_id?: InputMaybe<Update_Solutions_Pages_Input>;
+  solution_upper_id?: InputMaybe<Update_Solutions_Pages_Input>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Solution_Problems_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  order_of_appearance?: InputMaybe<Scalars['Int']['input']>;
+  problem?: InputMaybe<Scalars['String']['input']>;
+  solution?: InputMaybe<Scalars['String']['input']>;
+  solution_id?: InputMaybe<Update_Solutions_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Solutions_Pages_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  download_section_description?: InputMaybe<Scalars['String']['input']>;
+  download_section_title?: InputMaybe<Scalars['String']['input']>;
+  featured_quote?: InputMaybe<Update_Quotes_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  lower_features?: InputMaybe<Array<InputMaybe<Update_Solution_Features_Input>>>;
+  lower_features_title?: InputMaybe<Scalars['String']['input']>;
+  problems?: InputMaybe<Array<InputMaybe<Update_Solution_Problems_Input>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  upper_features?: InputMaybe<Array<InputMaybe<Update_Solution_Features_Input>>>;
+  upper_features_title?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Solutions_Pages_Solution_Problems_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  solution_problems_id?: InputMaybe<Update_Solution_Problems_Input>;
+  solutions_pages_id?: InputMaybe<Update_Solutions_Pages_Input>;
 };
 
 export type Update_Stack_Defaults_Input = {
@@ -7592,19 +8254,23 @@ export type FaqListQueryVariables = Exact<{
 
 export type FaqListQuery = { __typename?: 'Query', collapsible_lists: Array<{ __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsible_lists_items', item?: { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null } | null> | null }> };
 
-export type SolutionFragment = { __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, heading_1?: string | null, content_1?: string | null, heading_2?: string | null, content_2?: string | null, bullet_points?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+export type SolutionFeatureFragment = { __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null };
+
+export type SolutionProblemFragment = { __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null };
+
+export type SolutionFragment = { __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
 export type SolutionsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string }> };
+export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string, title?: string | null }> };
 
 export type SolutionsQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, heading_1?: string | null, content_1?: string | null, heading_2?: string | null, content_2?: string | null, bullet_points?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, case_study?: { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }> };
+export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }> };
 
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
 
@@ -7845,29 +8511,50 @@ export const FeaturedContributorFragmentDoc = gql`
   ctas
 }
     ${ImageFileFragmentDoc}`;
+export const SolutionFeatureFragmentDoc = gql`
+    fragment SolutionFeature on solution_features {
+  id
+  title
+  description
+  icon
+  link_title
+  link_url
+}
+    `;
+export const SolutionProblemFragmentDoc = gql`
+    fragment SolutionProblem on solution_problems {
+  id
+  title
+  subtitle
+  problem
+  solution
+}
+    `;
 export const SolutionFragmentDoc = gql`
     fragment Solution on solutions_pages {
   id
   slug
   title
   description
-  heading_1
-  content_1
-  heading_2
-  content_2
-  hero_image {
-    ...ImageFile
+  upper_features_title
+  lower_features_title
+  download_section_title
+  download_section_description
+  upper_features {
+    ...SolutionFeature
   }
-  case_study {
-    ...CaseStudy
+  lower_features {
+    ...SolutionFeature
   }
-  bullet_points
+  problems {
+    ...SolutionProblem
+  }
   featured_quote {
     ...Quote
   }
 }
-    ${ImageFileFragmentDoc}
-${CaseStudyFragmentDoc}
+    ${SolutionFeatureFragmentDoc}
+${SolutionProblemFragmentDoc}
 ${QuoteFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
@@ -8194,6 +8881,7 @@ export const SolutionsSlugsDocument = gql`
     query SolutionsSlugs {
   solutions_pages {
     slug
+    title
   }
 }
     `;

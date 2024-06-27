@@ -1,7 +1,11 @@
 import { getProductsConfigs } from './getProductConfigs'
-import { getSolutionConfigs } from './getSolutionsConfigs'
 
-export const getSiteSettings = () => ({
+type Solution = {
+  slug?: string | null
+  title?: string | null
+}
+
+export const getSiteSettings = (solutions: Solution[]) => ({
   og_description:
     'Open-source application deployment, faster than ever without sacrificing compliance."',
   partner_logos: {
@@ -92,7 +96,7 @@ export const getSiteSettings = () => ({
           title: 'Solutions',
           url: '/solution',
         },
-        subnav: getSolutionSubnav(),
+        subnav: getSolutionSubnav(solutions),
       },
       {
         id: '3',
@@ -210,13 +214,13 @@ function getProductSubnav() {
   }))
 }
 
-function getSolutionSubnav() {
-  return Object.keys(getSolutionConfigs()).map((solutionKey, i) => ({
-    id: solutionKey,
+function getSolutionSubnav(solutions: Solution[]) {
+  return solutions.map((solution, i) => ({
+    id: solution.slug,
     link: {
-      id: `${solutionKey}-${i}`,
-      title: getSolutionConfigs()[solutionKey].title,
-      url: `/solutions/${solutionKey}`,
+      id: `${solution.slug}-${i}`,
+      title: solution.title,
+      url: `/solutions/${solution.slug}`,
     },
   }))
 }

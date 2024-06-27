@@ -3,15 +3,13 @@ import Link from 'next/link'
 
 import styled from 'styled-components'
 
-import { getSolutionConfigs } from '@src/data/getSolutionsConfigs'
+import { type SolutionFragment } from '@src/generated/graphqlDirectus'
 
 import { EqualColumn } from '../layout/Columns'
 import { StandardPageSection } from '../layout/LayoutHelpers'
 import { ResponsiveText } from '../Typography'
 
-function SolutionDownloadSection({ slug }: { slug: string }) {
-  const innerSolution = getSolutionConfigs()[slug]
-
+function SolutionDownloadSection({ solution }: { solution: SolutionFragment }) {
   return (
     <StandardPageSection className="flex items-center justify-center bg-fill-zero px-medium md:px-large lg:px-xxxxlarge">
       <div className="relative  flex w-full items-center justify-center overflow-hidden rounded-large border border-purple-300 p-medium sm:p-xxlarge lg:px-xxxxxlarge">
@@ -21,10 +19,10 @@ function SolutionDownloadSection({ slug }: { slug: string }) {
             textStyles={{ '': 'mSubtitle1' }}
             className=" mb-medium"
           >
-            {innerSolution.bottomTitle}
+            {solution.download_section_title}
           </ResponsiveText>
           <ResponsiveText textStyles={{ '': 'mBody2' }}>
-            {innerSolution.bottomDescription}
+            {solution.download_section_description}
           </ResponsiveText>
 
           <div className=" mt-xxlarge flex flex-col items-stretch gap-medium lg:flex-row lg:items-center">
@@ -44,7 +42,7 @@ function SolutionDownloadSection({ slug }: { slug: string }) {
                 as="a"
                 secondary
                 outline
-                href={`/pdfs/solutions/e-books/${slug}.pdf`}
+                href={`/pdfs/solutions/e-books/${solution.slug}.pdf`}
                 download
                 startIcon={<DownloadIcon />}
               >

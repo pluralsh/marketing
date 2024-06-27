@@ -12,18 +12,14 @@ import { directusClient } from '@src/apollo-client'
 import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPageSection } from '@src/components/layout/LayoutHelpers'
-import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
 import SolutionDownloadSection from '@src/components/page-sections/SolutionDownloadSection'
 import SolutionFeatureSection from '@src/components/page-sections/SolutionFeatureSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import SolutionProblem from '@src/components/SolutionProblem'
-import { getImageUrl } from '@src/consts/routes'
-import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
-import { getSolutionConfigs } from '@src/data/getSolutionsConfigs'
+import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
 import {
-  type CaseStudyFragment,
   type FaqItemFragment,
   FaqListDocument,
   type FaqListQuery,
@@ -57,13 +53,6 @@ export default function Solution({
   solution,
   featuredQuote,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  //   const router = useRouter()
-  const imageUrl = getImageUrl(solution?.hero_image)
-
-  const innerSolution = getSolutionConfigs()[solution.slug]
-
-  if (!innerSolution) return null
-
   return (
     <>
       <HeaderPad
@@ -75,13 +64,6 @@ export default function Solution({
         <BasicPageHero
           heading={solution.title}
           description={solution.description}
-          intro={
-            imageUrl ? (
-              <div className="-my-xxlarge flex items-center">
-                <img src={imageUrl} />
-              </div>
-            ) : undefined
-          }
           ctas={
             <div className="flex flex-col gap-medium md:flex-row md:gap-large">
               <Button
@@ -106,7 +88,7 @@ export default function Solution({
         />
         {/* upper features */}
         <SolutionFeatureSection
-          slug={solution.slug}
+          solution={solution}
           kind="upper"
         />
       </HeaderPad>
@@ -114,12 +96,12 @@ export default function Solution({
       <ColorModeProvider mode="light">
         <StandardPageSection className="bg-marketing-black">
           <div className="flex flex-col gap-xxxxxlarge">
-            {innerSolution?.problems.map((problem) => (
+            {solution?.problems?.map((problem) => (
               <SolutionProblem
-                title={problem.title}
-                subtitle={problem.subtitle}
-                problem={problem.problem}
-                solution={problem.solution}
+                title={problem?.title}
+                subtitle={problem?.subtitle}
+                problem={problem?.problem}
+                solution={problem?.solution}
               />
             ))}
           </div>
@@ -131,12 +113,12 @@ export default function Solution({
       <ColorModeProvider mode="light">
         <StandardPageSection className="bg-marketing-black">
           <SolutionFeatureSection
-            slug={solution.slug}
+            solution={solution}
             kind="lower"
           />
         </StandardPageSection>
       </ColorModeProvider>
-      <SolutionDownloadSection slug={solution.slug} />
+      <SolutionDownloadSection solution={solution} />
     </>
   )
 }
@@ -169,9 +151,7 @@ export type AppPageProps = {
   solution: SolutionFragment
   faqs: (FaqItemFragment | null)[]
   globalProps: GlobalProps
-  caseStudy: CaseStudyFragment | null
   featuredQuote: QuoteFragment | null
-  caseStudyApps: TinyRepo[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
 }
 
@@ -213,11 +193,6 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     metaTitle: `Solution${solution.title ? ` – ${solution.title}` : ''}`,
     metaDescription: solution.description || null,
     faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
-    caseStudy: solution.case_study || null,
-    caseStudyApps: getCaseStudyApps(
-      repos,
-      (solution.case_study?.stack_apps as string[]) || []
-    ),
     featuredQuote: solution.featured_quote || null,
     buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
