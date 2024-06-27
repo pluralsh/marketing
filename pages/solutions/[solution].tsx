@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { until } from '@open-draft/until'
 
 import { directusClient } from '@src/apollo-client'
-import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPageSection } from '@src/components/layout/LayoutHelpers'
 import SolutionDownloadSection from '@src/components/page-sections/SolutionDownloadSection'
@@ -20,11 +19,6 @@ import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
 import {
-  type FaqItemFragment,
-  FaqListDocument,
-  type FaqListQuery,
-  type FaqListQueryVariables,
-  type QuoteFragment,
   type SolutionFragment,
   SolutionsDocument,
   type SolutionsQuery,
@@ -38,7 +32,6 @@ import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
@@ -51,7 +44,6 @@ export type ProviderProps = {
 
 export default function Solution({
   solution,
-  featuredQuote,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -108,8 +100,6 @@ export default function Solution({
         </StandardPageSection>
       </ColorModeProvider>
 
-      <FeaturedQuote quote={featuredQuote} />
-
       <ColorModeProvider mode="light">
         <StandardPageSection className="bg-marketing-black">
           <SolutionFeatureSection
@@ -149,9 +139,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export type AppPageProps = {
   solution: SolutionFragment
-  faqs: (FaqItemFragment | null)[]
   globalProps: GlobalProps
-  featuredQuote: QuoteFragment | null
   buildStackTabs?: ReturnType<typeof getStackTabData>
 }
 
@@ -179,23 +167,14 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const { data: repos, error: reposError } = await until(() => getTinyRepos())
   const { data: stacks, error: stacksError } = await until(() => getStacks())
 
-  const { data: faqData, error: faqError } = await directusClient.query<
-    FaqListQuery,
-    FaqListQueryVariables
-  >({
-    query: FaqListDocument,
-    variables: { slug: 'generic' },
-  })
   const buildStackTabs = getStackTabData({ repos, stacks })
 
   return propsWithGlobalSettings({
     solution,
     metaTitle: `Solution${solution.title ? ` – ${solution.title}` : ''}`,
     metaDescription: solution.description || null,
-    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
-    featuredQuote: solution.featured_quote || null,
     buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
-    errors: combineErrors([solutionError, faqError, reposError, stacksError]),
+    errors: combineErrors([solutionError, reposError, stacksError]),
   })
 }
