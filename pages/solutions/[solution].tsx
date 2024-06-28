@@ -45,6 +45,8 @@ export type ProviderProps = {
 export default function Solution({
   solution,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!solution) return null
+
   return (
     <>
       <HeaderPad
