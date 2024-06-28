@@ -1,4 +1,9 @@
-import { ArrowRightIcon, Button, Divider } from '@pluralsh/design-system'
+import {
+  Accordion,
+  ArrowRightIcon,
+  Button,
+  Divider,
+} from '@pluralsh/design-system'
 
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
@@ -12,12 +17,9 @@ import { MainLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
 
 const MobileMainLink = styled(MainLink)(({ theme }) => ({
-  paddingLeft: 0,
-  paddingRight: 0,
-  paddingTop: theme.spacing.xsmall,
-  paddingBottom: theme.spacing.xsmall,
-  marginBottom: theme.spacing.xsmall,
+  padding: theme.spacing.medium,
   width: '100%',
+  marginTop: 1,
 }))
 
 export const MenuHeading = styled.h6(({ theme }) => ({
@@ -39,40 +41,62 @@ type NavData = (
 )[]
 
 function NavList({ navData }: { navData?: NavData | null }) {
+  const theme = useTheme()
+
   if (!navData) {
     return null
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-medium">
       {navData.map((navItem) => {
         if (!navItem) {
           return null
         }
         if (isEmpty(navItem?.subnav)) {
           return (
-            <MobileMainLink
+            <Button
               key={navItem?.id}
               {...(navItem?.link?.url ? { href: navItem?.link.url } : {})}
+              as="a"
+              secondary
+              endIcon={<ArrowRightIcon />}
+              style={{
+                justifyContent: 'space-between',
+                padding: theme.spacing.medium,
+                borderColor: theme.colors.border,
+              }}
             >
               {navItem?.link?.title}
-            </MobileMainLink>
+            </Button>
           )
         }
 
         return (
-          <section
+          <Accordion
+            label={navItem?.link?.title}
             key={navItem.id}
-            className="mb-medium"
           >
-            {navItem?.link?.title ? (
-              <MenuHeading>{navItem?.link?.title}</MenuHeading>
-            ) : null}
-            <NavList navData={navItem?.subnav} />
-          </section>
+            {navItem.subnav?.map((subnavItem) => {
+              if (!subnavItem) {
+                return null
+              }
+
+              return (
+                <MobileMainLink
+                  key={subnavItem.id}
+                  {...(subnavItem?.link?.url
+                    ? { href: subnavItem?.link.url }
+                    : {})}
+                >
+                  {subnavItem?.link?.title}
+                </MobileMainLink>
+              )
+            })}
+          </Accordion>
         )
       })}
-    </>
+    </div>
   )
 }
 
@@ -95,7 +119,10 @@ function PluralMenuContent({
           primary
           fontFamily={theme.fontFamilies.sans}
           endIcon={<ArrowRightIcon />}
-          style={{ justifyContent: 'space-between' }}
+          style={{
+            justifyContent: 'space-between',
+            padding: theme.spacing.medium,
+          }}
         >
           Book a demo
         </Button>
@@ -105,7 +132,11 @@ function PluralMenuContent({
           secondary
           fontFamily={theme.fontFamilies.sans}
           endIcon={<ArrowRightIcon />}
-          style={{ justifyContent: 'space-between' }}
+          style={{
+            justifyContent: 'space-between',
+            padding: theme.spacing.medium,
+            borderColor: theme.colors.border,
+          }}
         >
           Log in
         </Button>
