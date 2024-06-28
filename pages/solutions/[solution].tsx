@@ -90,6 +90,7 @@ export default function Solution({
           <div className="flex flex-col gap-xxxxxlarge">
             {solution?.problems?.map((problem) => (
               <SolutionProblem
+                key={problem?.id}
                 title={problem?.title}
                 subtitle={problem?.subtitle}
                 problem={problem?.problem}
