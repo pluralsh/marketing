@@ -1,4 +1,4 @@
-import { ArrowRightIcon, Button } from '@pluralsh/design-system'
+import { ArrowRightIcon, Button, Divider } from '@pluralsh/design-system'
 
 import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
@@ -110,6 +110,10 @@ function PluralMenuContent({
           Log in
         </Button>
       </div>
+      <Divider
+        className="my-medium"
+        backgroundColor={theme.colors.border}
+      />
       <NavList navData={navData} />
     </div>
   )
