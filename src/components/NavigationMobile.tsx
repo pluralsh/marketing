@@ -13,11 +13,10 @@ import { useNavData } from '@src/contexts/NavDataContext'
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
 import useScrollLock from './hooks/useScrollLock'
-import { MainLink } from './Navigation'
+import { MainLink, ProductMobileLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
 
-const MobileMainLink = styled(MainLink)(({ theme }) => ({
-  padding: theme.spacing.medium,
+const MobileMainLink = styled(MainLink)(() => ({
   width: '100%',
   marginTop: 1,
 }))
@@ -49,7 +48,7 @@ function NavList({ navData }: { navData?: NavData | null }) {
 
   return (
     <div className="flex flex-col gap-medium">
-      {navData.map((navItem) => {
+      {navData.map((navItem, navIndex) => {
         if (!navItem) {
           return null
         }
@@ -82,12 +81,27 @@ function NavList({ navData }: { navData?: NavData | null }) {
                 return null
               }
 
+              if (!navIndex) {
+                return (
+                  <ProductMobileLink
+                    key={subnavItem.id}
+                    id={subnavItem.id}
+                    {...(subnavItem?.link?.url
+                      ? { href: subnavItem?.link.url }
+                      : {})}
+                  >
+                    {subnavItem?.link?.title}
+                  </ProductMobileLink>
+                )
+              }
+
               return (
                 <MobileMainLink
                   key={subnavItem.id}
                   {...(subnavItem?.link?.url
                     ? { href: subnavItem?.link.url }
                     : {})}
+                  style={{ padding: theme.spacing.medium }}
                 >
                   {subnavItem?.link?.title}
                 </MobileMainLink>
