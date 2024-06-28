@@ -19,7 +19,6 @@ export const getStackTabData = ({
         'growthbook',
         'clickhouse',
         'datahub',
-        'posthog',
         'jitsu',
         'lightdash',
       ].includes(repo.name)

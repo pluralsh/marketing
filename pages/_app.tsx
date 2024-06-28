@@ -22,7 +22,6 @@ import { BreakpointProvider } from '@src/components/contexts/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
 import { type FooterVariant } from '@src/components/FooterFull'
 import GlobalStyles from '@src/components/GlobalStyles'
-import { usePosthog } from '@src/components/hooks/usePosthog'
 import PrimaryPage from '@src/components/PrimaryPage'
 import { type GlobalProps } from '@src/utils/getGlobalProps'
 
@@ -72,7 +71,6 @@ const Link = forwardRef(
 )
 
 function App({ Component, pageProps }: MyAppProps) {
-  usePosthog()
   const { globalProps, ...pgProps } = pageProps
   const gProps = {
     // @ts-expect-error
