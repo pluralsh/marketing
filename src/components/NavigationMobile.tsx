@@ -1,5 +1,7 @@
+import { ArrowRightIcon, Button } from '@pluralsh/design-system'
+
 import { isEmpty } from 'lodash-es'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
 import { useNavData } from '@src/contexts/NavDataContext'
@@ -82,9 +84,32 @@ function PluralMenuContent({
   className?: string
 }) {
   const navData = useNavData()
+  const theme = useTheme()
 
   return (
     <div {...props}>
+      <div className="flex flex-col gap-small">
+        <Button
+          as="a"
+          href="/contact-sales"
+          primary
+          fontFamily={theme.fontFamilies.sans}
+          endIcon={<ArrowRightIcon />}
+          style={{ justifyContent: 'space-between' }}
+        >
+          Book a demo
+        </Button>
+        <Button
+          as="a"
+          href="https://app.plural.sh/login"
+          secondary
+          fontFamily={theme.fontFamilies.sans}
+          endIcon={<ArrowRightIcon />}
+          style={{ justifyContent: 'space-between' }}
+        >
+          Log in
+        </Button>
+      </div>
       <NavList navData={navData} />
     </div>
   )
