@@ -117,12 +117,17 @@ export default function Solution({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await directusClient.query<
+  const { data, error } = await directusClient.query<
     SolutionsSlugsQuery,
     SolutionsSlugsQueryVariables
   >({
     query: SolutionsSlugsDocument,
   })
+
+  if (error) {
+    console.error('GraphQL query error in static:', error)
+  }
+
   const solutions = data.solutions_pages
 
   if (process.env.NODE_ENV === 'development') {
@@ -161,6 +166,10 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       query: SolutionsDocument,
       variables: { slug },
     })
+
+  if (solutionError) {
+    console.error('GraphQL query error in static:', solutionError)
+  }
   const solution = solutionData?.solutions_pages?.[0] || null
 
   if (!solution) {
