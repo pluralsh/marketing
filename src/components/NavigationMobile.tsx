@@ -1,18 +1,13 @@
-import { DiscordIcon } from '@pluralsh/design-system'
-
 import { isEmpty } from 'lodash-es'
 import styled from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
-import { DISCORD_LINK } from '@src/consts'
 import { useNavData } from '@src/contexts/NavDataContext'
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
-import GithubStars from './GithubStars'
 import useScrollLock from './hooks/useScrollLock'
 import { MainLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
-import { SocialLink } from './PageHeaderButtons'
 
 const MobileMainLink = styled(MainLink)(({ theme }) => ({
   paddingLeft: 0,
@@ -33,12 +28,6 @@ export const MenuHeading = styled.h6(({ theme }) => ({
 type MobileMenuProps = NavContextValue & {
   className?: string
 }
-
-const SocialIcons = styled.div(({ theme }) => ({
-  display: 'flex',
-  marginTop: theme.spacing.xlarge,
-  gap: theme.spacing.medium,
-}))
 
 type NavData = (
   | (NavListFragment & {
@@ -97,17 +86,6 @@ function PluralMenuContent({
   return (
     <div {...props}>
       <NavList navData={navData} />
-      <SocialIcons>
-        <SocialLink
-          href={DISCORD_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={0}
-        >
-          <DiscordIcon size={16} />
-        </SocialLink>
-        <GithubStars />
-      </SocialIcons>
     </div>
   )
 }
