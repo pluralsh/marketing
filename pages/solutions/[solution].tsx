@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
     })
 
   if (solutionError) {
-    console.error('GraphQL query error in static:', solutionError)
+    console.error('GraphQL query error in static: ', solutionError)
   }
   const solution = solutionData?.solutions_pages?.[0] || null
 
