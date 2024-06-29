@@ -8,39 +8,17 @@ import Link from 'next/link'
 
 import { until } from '@open-draft/until'
 
-import { CaseStudyFAQSection } from '@pages/applications/[repo]'
 import { directusClient } from '@src/apollo-client'
-import BasicMarkdown from '@src/components/BasicMarkdown'
-import { Checklist2, Checklist2Item } from '@src/components/Checklist'
-import { CompanyLogosSection } from '@src/components/CompanyLogos'
-import { FeaturedQuote } from '@src/components/FeaturedQuote'
 import { FooterVariant } from '@src/components/FooterFull'
-import { ColumnsMd, EqualColumn } from '@src/components/layout/Columns'
-import {
-  StandardPageSection,
-  StandardPageWidth,
-} from '@src/components/layout/LayoutHelpers'
-import BuildStackSection from '@src/components/page-sections/BuildStackSection'
-import { getCaseStudyApps } from '@src/components/page-sections/CaseStudySection'
-import { HPWMiniSectionSolutions } from '@src/components/page-sections/HowPluralWorksMiniSection'
+import { StandardPageSection } from '@src/components/layout/LayoutHelpers'
+import SolutionDownloadSection from '@src/components/page-sections/SolutionDownloadSection'
+import SolutionFeatureSection from '@src/components/page-sections/SolutionFeatureSection'
 import { BasicPageHero } from '@src/components/PageHeros'
-import {
-  CenteredSectionHead,
-  SubsectionHead,
-} from '@src/components/SectionHeads'
-import { ShadowedCard } from '@src/components/ShadowedCard'
-import { Body2, Cta } from '@src/components/Typography'
-import { getImageUrl } from '@src/consts/routes'
-import { type TinyRepo, getTinyRepos } from '@src/data/getRepos'
+import SolutionProblem from '@src/components/SolutionProblem'
+import { getTinyRepos } from '@src/data/getRepos'
 import { getStacks } from '@src/data/getStacks'
 import { getStackTabData } from '@src/data/getStackTabData'
 import {
-  type CaseStudyFragment,
-  type FaqItemFragment,
-  FaqListDocument,
-  type FaqListQuery,
-  type FaqListQueryVariables,
-  type QuoteFragment,
   type SolutionFragment,
   SolutionsDocument,
   type SolutionsQuery,
@@ -49,13 +27,11 @@ import {
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
-import { cn as classNames } from '@src/utils/cn'
 import { combineErrors } from '@src/utils/combineErrors'
 import {
   type GlobalProps,
   propsWithGlobalSettings,
 } from '@src/utils/getGlobalProps'
-import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
 
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
@@ -68,112 +44,90 @@ export type ProviderProps = {
 
 export default function Solution({
   solution,
-  caseStudy,
-  caseStudyApps,
-  faqs,
-  featuredQuote,
-  buildStackTabs,
-  globalProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  //   const router = useRouter()
-  const imageUrl = getImageUrl(solution?.hero_image)
+  if (!solution) return null
 
   return (
     <>
-      <HeaderPad as={GradientBG}>
+      <HeaderPad
+        as={GradientBG}
+        size="cover"
+        image="/images/solutions/solutions-background.png"
+        className="pb-xxxxxlarge lg:pb-xxxxxxlarge"
+      >
         <BasicPageHero
-          preHeading="Solution"
           heading={solution.title}
           description={solution.description}
-          intro={
-            imageUrl ? (
-              <div className="-my-xxlarge flex items-center">
-                <img src={imageUrl} />
-              </div>
-            ) : undefined
-          }
           ctas={
-            <div className="flex">
+            <div className="flex flex-col gap-medium md:flex-row md:gap-large">
               <Button
                 large
-                primary
                 as={Link}
-                href="https://app.plural.sh/signup"
+                href="/contact-sales"
               >
-                Sign up
+                Book a demo
+              </Button>
+              <Button
+                large
+                as="a"
+                secondary
+                floating
+                href={`/pdfs/solutions/e-books/${solution.slug}.pdf`}
+                download
+              >
+                Download full e-book
               </Button>
             </div>
           }
         />
+        {/* upper features */}
+        <SolutionFeatureSection
+          solution={solution}
+          kind="upper"
+        />
       </HeaderPad>
+      {/* solution problems */}
       <ColorModeProvider mode="light">
-        <StandardPageSection className="bg-fill-zero">
-          <StandardPageWidth>
-            <div
-              className={classNames(
-                'flex flex-col',
-                'gap-y-xxxlarge md:gap-y-xxxxlarge xl:md:gap-y-xxxxxlarge'
-              )}
-            >
-              <CenteredSectionHead
-                heading={solution.heading_1}
-                intro={<BasicMarkdown text={solution.content_1} />}
+        <StandardPageSection className="bg-marketing-black">
+          <div className="flex flex-col gap-xxxxxlarge">
+            {solution?.problems?.map((problem) => (
+              <SolutionProblem
+                key={problem?.id}
+                title={problem?.title}
+                subtitle={problem?.subtitle}
+                problem={problem?.problem}
+                solution={problem?.solution}
               />
-              <ColumnsMd
-                className={classNames('gap-y-large', 'md:items-center')}
-              >
-                <EqualColumn className="flex basis-1/2 flex-col gap-y-large">
-                  <SubsectionHead heading={solution.heading_2} />
-                  <Body2>
-                    <BasicMarkdown text={solution.content_2} />
-                  </Body2>
-                </EqualColumn>
-                <EqualColumn className="basis-1/2">
-                  <ShadowedCard
-                    className={classNames(
-                      'p-large',
-                      'flex flex-col gap-y-xlarge'
-                    )}
-                  >
-                    <Checklist2>
-                      {solution.bullet_points.map(
-                        (bullet, i) =>
-                          bullet?.content && (
-                            <Checklist2Item key={i}>
-                              {bullet.content}
-                            </Checklist2Item>
-                          )
-                      )}
-                    </Checklist2>
-                    <Cta href="/contact-sales">Book a demo today</Cta>
-                  </ShadowedCard>
-                </EqualColumn>
-              </ColumnsMd>
-              <CompanyLogosSection
-                logos={globalProps.siteSettings?.partner_logos?.items}
-              />
-            </div>
-          </StandardPageWidth>
+            ))}
+          </div>
         </StandardPageSection>
       </ColorModeProvider>
-      <HPWMiniSectionSolutions />
-      <CaseStudyFAQSection
-        caseStudyProps={{ featuredArticle: caseStudy, apps: caseStudyApps }}
-        faqProps={{ faqs }}
-      />
-      <FeaturedQuote quote={featuredQuote} />
-      {buildStackTabs && <BuildStackSection tabs={buildStackTabs} />}
+
+      <ColorModeProvider mode="light">
+        <StandardPageSection className="bg-marketing-black">
+          <SolutionFeatureSection
+            solution={solution}
+            kind="lower"
+          />
+        </StandardPageSection>
+      </ColorModeProvider>
+      <SolutionDownloadSection solution={solution} />
     </>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await directusClient.query<
+  const { data, error } = await directusClient.query<
     SolutionsSlugsQuery,
     SolutionsSlugsQueryVariables
   >({
     query: SolutionsSlugsDocument,
   })
+
+  if (error) {
+    console.error('GraphQL query error in static:', error)
+  }
+
   const solutions = data.solutions_pages
 
   if (process.env.NODE_ENV === 'development') {
@@ -193,11 +147,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export type AppPageProps = {
   solution: SolutionFragment
-  faqs: (FaqItemFragment | null)[]
   globalProps: GlobalProps
-  caseStudy: CaseStudyFragment | null
-  featuredQuote: QuoteFragment | null
-  caseStudyApps: TinyRepo[]
   buildStackTabs?: ReturnType<typeof getStackTabData>
 }
 
@@ -216,6 +166,10 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
       query: SolutionsDocument,
       variables: { slug },
     })
+
+  if (solutionError) {
+    console.error('GraphQL query error in static: ', solutionError)
+  }
   const solution = solutionData?.solutions_pages?.[0] || null
 
   if (!solution) {
@@ -225,28 +179,14 @@ export const getStaticProps: GetStaticProps<AppPageProps> = async (context) => {
   const { data: repos, error: reposError } = await until(() => getTinyRepos())
   const { data: stacks, error: stacksError } = await until(() => getStacks())
 
-  const { data: faqData, error: faqError } = await directusClient.query<
-    FaqListQuery,
-    FaqListQueryVariables
-  >({
-    query: FaqListDocument,
-    variables: { slug: 'generic' },
-  })
   const buildStackTabs = getStackTabData({ repos, stacks })
 
   return propsWithGlobalSettings({
     solution,
     metaTitle: `Solution${solution.title ? ` – ${solution.title}` : ''}`,
     metaDescription: solution.description || null,
-    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
-    caseStudy: solution.case_study || null,
-    caseStudyApps: getCaseStudyApps(
-      repos,
-      (solution.case_study?.stack_apps as string[]) || []
-    ),
-    featuredQuote: solution.featured_quote || null,
     buildStackTabs,
     footerVariant: FooterVariant.kitchenSink,
-    errors: combineErrors([solutionError, faqError, reposError, stacksError]),
+    errors: combineErrors([solutionError, reposError, stacksError]),
   })
 }

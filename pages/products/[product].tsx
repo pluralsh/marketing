@@ -6,7 +6,7 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { BasicPageHero } from '@src/components/PageHeros'
 import ProductFeature from '@src/components/ProductFeature'
-import { productsConfigs } from '@src/data/getProductConfigs'
+import { getProductsConfigs } from '@src/data/getProductConfigs'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { GradientBG } from '../../src/components/layout/GradientBG'
@@ -15,7 +15,7 @@ import { HeaderPad } from '../../src/components/layout/HeaderPad'
 export default function Product({
   slug,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const productConfig = productsConfigs[slug]
+  const productConfig = getProductsConfigs()[slug]
 
   return (
     <HeaderPad
@@ -52,7 +52,7 @@ export default function Product({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = Object.keys(productsConfigs)
+  const products = Object.keys(getProductsConfigs())
 
   if (process.env.NODE_ENV === 'development') {
     return {
@@ -75,7 +75,7 @@ export const getStaticProps = async (context) => {
       ? context?.params?.product
       : null
 
-  if (!slug || !productsConfigs[slug]) {
+  if (!slug || !getProductsConfigs()[slug]) {
     return { notFound: true }
   }
 

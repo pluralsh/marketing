@@ -13,27 +13,14 @@ const FeaturedQuoteSC = styled.div(({ theme }) => ({
   // Used fill-two in Product page comp, but think that's a mistake
   // backgroundColor: theme.colors['fill-two'],
   backgroundColor: theme.colors['fill-zero'],
+  position: 'relative',
   '.contentArea': {
     display: 'flex',
     flexDirection: 'column',
     rowGap: theme.spacing.xlarge,
     textWrap: 'balance',
   },
-  '.stars': {
-    display: 'flex',
-    gap: theme.spacing.xsmall,
-    alignItems: 'center',
-  },
 }))
-
-const IconStarSC = styled.img((_) => ({
-  width: 20,
-  height: 20,
-}))
-
-function IconStar() {
-  return <IconStarSC src="/images/icons/star.svg" />
-}
 
 export function FeaturedQuote({
   quote,
@@ -45,22 +32,25 @@ export function FeaturedQuote({
 
   return (
     <FeaturedQuoteSC {...props}>
-      <StandardPageWidth>
+      <img
+        alt=""
+        aria-hidden
+        src="/images/solutions/quote-right-circle.png"
+        className="absolute bottom-0 right-0 z-10 w-1/2 max-w-[400px]"
+      />
+      <img
+        alt=""
+        aria-hidden
+        src="/images/solutions/quote-left-circle.png"
+        className="absolute left-0 top-0 z-10 w-1/3 max-w-[400px]"
+      />
+      <StandardPageWidth className="relative z-20">
         <div className="contentArea">
-          <div className="stars">
-            <IconStar />
-            <IconStar />
-            <IconStar />
-            <IconStar />
-            <IconStar />
-          </div>
-          <ResponsiveText
-            textStyles={{ '': 'mHero2', md: 'mHero1', xl: 'mBigHeader' }}
-          >
-            {quote.quote}
+          <ResponsiveText textStyles={{ '': 'mSubtitle2', md: 'mTitle1' }}>
+            "{quote.quote}"
           </ResponsiveText>
           <ResponsiveText
-            textStyles={{ '': 'mBody1Bold' }}
+            textStyles={{ '': 'mBody2', md: 'mBody1' }}
             color="text-xlight"
           >
             {[quote.name, quote.title].filter((q) => !!q).join(' | ')}

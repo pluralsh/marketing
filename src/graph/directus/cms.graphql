@@ -230,22 +230,41 @@ query FaqList($slug: String) {
   }
 }
 
+fragment SolutionFeature on solution_features {
+  id
+  title
+  description
+  icon
+  link_title
+  link_url
+}
+
+fragment SolutionProblem on solution_problems {
+  id
+  title
+  subtitle
+  problem
+  solution
+}
+
 fragment Solution on solutions_pages {
   id
   slug
   title
   description
-  heading_1
-  content_1
-  heading_2
-  content_2
-  hero_image {
-    ...ImageFile
+  upper_features_title
+  lower_features_title
+  download_section_title
+  download_section_description
+  upper_features {
+    ...SolutionFeature
   }
-  case_study {
-    ...CaseStudy
+  lower_features {
+    ...SolutionFeature
   }
-  bullet_points
+  problems {
+    ...SolutionProblem
+  }
   featured_quote {
     ...Quote
   }
@@ -254,6 +273,7 @@ fragment Solution on solutions_pages {
 query SolutionsSlugs {
   solutions_pages {
     slug
+    title
   }
 }
 
