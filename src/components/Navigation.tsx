@@ -67,7 +67,7 @@ export const ProductMobileLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
     const { Link } = useNavigationContext()
 
-    const itemConfig = productsConfigs[props.id || '']
+    const itemConfig = getProductsConfigs()[props.id || '']
 
     return (
       <MainLinkBase
