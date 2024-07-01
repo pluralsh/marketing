@@ -4721,6 +4721,7 @@ export type Create_Page_Community_Input = {
 
 export type Create_Page_Homepage_Input = {
   article_cards?: InputMaybe<Array<InputMaybe<Create_Article_Cards_Input>>>;
+  case_study?: InputMaybe<Array<InputMaybe<Create_Case_Studies_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   featured_quote?: InputMaybe<Create_Quotes_Input>;
@@ -5953,6 +5954,7 @@ export type Page_Homepage = {
   __typename?: 'page_homepage';
   article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
   article_cards_func?: Maybe<Count_Functions>;
+  case_study?: Maybe<Array<Maybe<Case_Studies>>>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -5967,6 +5969,16 @@ export type Page_Homepage = {
 
 export type Page_HomepageArticle_CardsArgs = {
   filter?: InputMaybe<Article_Cards_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Page_HomepageCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6019,6 +6031,7 @@ export type Page_Homepage_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
   article_cards?: InputMaybe<Article_Cards_Filter>;
   article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
@@ -7967,6 +7980,7 @@ export type Update_Page_Community_Input = {
 
 export type Update_Page_Homepage_Input = {
   article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
+  case_study?: InputMaybe<Array<InputMaybe<Update_Case_Studies_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   featured_quote?: InputMaybe<Update_Quotes_Input>;
