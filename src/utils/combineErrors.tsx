@@ -1,6 +1,12 @@
 import { isNonNullable } from '@src/utils/isNonNullable'
 
-import { type FullError } from '../../pages/community'
+type BaseError = {
+  name: string
+  message: string
+}
+export type FullError = BaseError & {
+  graphQLErrors?: readonly BaseError[] | undefined
+}
 
 export function combineErrors(
   errors: (FullError | undefined | null)[] | null | undefined

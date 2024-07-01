@@ -1,6 +1,11 @@
-import { productsConfigs } from './getProductConfigs'
+import { getProductsConfigs } from './getProductConfigs'
 
-export const getSiteSettings = () => ({
+type Solution = {
+  slug?: string | null
+  title?: string | null
+}
+
+export const getSiteSettings = (solutions?: Solution[]) => ({
   og_description:
     'Open-source application deployment, faster than ever without sacrificing compliance."',
   partner_logos: {
@@ -83,6 +88,15 @@ export const getSiteSettings = () => ({
           url: '/kubernetes-fleet-management',
         },
         subnav: getProductSubnav(),
+      },
+      {
+        id: '2',
+        link: {
+          id: '2',
+          title: 'Solutions',
+          url: '/solution',
+        },
+        subnav: getSolutionSubnav(solutions),
       },
       {
         id: '3',
@@ -190,12 +204,25 @@ export type PartnerLogos = {
 }
 
 function getProductSubnav() {
-  return Object.keys(productsConfigs).map((productKey, i) => ({
+  return Object.keys(getProductsConfigs()).map((productKey, i) => ({
     id: productKey,
     link: {
       id: `${productKey}-${i}`,
-      title: productsConfigs[productKey].title,
+      title: getProductsConfigs()[productKey].title,
       url: `/products/${productKey}`,
+    },
+  }))
+}
+
+function getSolutionSubnav(solutions?: Solution[]) {
+  if (!solutions || !solutions.length) return undefined
+
+  return solutions.map((solution, i) => ({
+    id: solution.slug || '',
+    link: {
+      id: `${solution.slug}-${i}`,
+      title: solution.title,
+      url: `/solutions/${solution.slug}`,
     },
   }))
 }

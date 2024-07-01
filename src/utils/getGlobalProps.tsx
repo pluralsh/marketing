@@ -2,6 +2,7 @@ import { type GetStaticPropsResult } from 'next'
 
 import { until } from '@open-draft/until'
 
+import { directusClient } from '@src/apollo-client'
 import {
   GITHUB_DATA_URL,
   getGithubDataServer,
@@ -9,6 +10,11 @@ import {
 } from '@src/components/GithubStars'
 import { REVALIDATE_TIME } from '@src/consts'
 import { getSiteSettings } from '@src/data/getSiteSettings'
+import {
+  SolutionsSlugsDocument,
+  type SolutionsSlugsQuery,
+  type SolutionsSlugsQueryVariables,
+} from '@src/generated/graphqlDirectus'
 
 import { combineErrors } from './combineErrors'
 
@@ -23,7 +29,15 @@ async function getGlobalProps() {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
 
-  const siteSettings = getSiteSettings()
+  const { data } = await directusClient.query<
+    SolutionsSlugsQuery,
+    SolutionsSlugsQueryVariables
+  >({
+    query: SolutionsSlugsDocument,
+  })
+  const solutions = data.solutions_pages
+
+  const siteSettings = getSiteSettings(solutions)
 
   return {
     siteSettings,
