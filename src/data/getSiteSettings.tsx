@@ -3,7 +3,7 @@ import { getProductsConfigs } from './getProductConfigs'
 type Solution = {
   slug?: string | null
   nav_title?: string | null
-  category
+  category?: string | null
 }
 
 export const getSiteSettings = (solutions?: Solution[]) => ({
