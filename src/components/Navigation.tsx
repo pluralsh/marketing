@@ -63,6 +63,32 @@ export const ProductLink = forwardRef(
     )
   }
 )
+
+export const SolutionLink = forwardRef(
+  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+    const { Link } = useNavigationContext()
+
+    return (
+      <MainLinkBase
+        ref={ref}
+        as={Link}
+        {...props}
+      >
+        <ResponsiveText
+          as="p"
+          textStyles={{ '': 'mBody2Bold' }}
+        >
+          {props.children}
+        </ResponsiveText>
+        <ArrowRightIcon
+          className="hover-arrow"
+          size="16px"
+          style={{ marginLeft: 'auto' }}
+        />
+      </MainLinkBase>
+    )
+  }
+)
 export const ProductMobileLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
     const { Link } = useNavigationContext()

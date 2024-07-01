@@ -2,7 +2,8 @@ import { getProductsConfigs } from './getProductConfigs'
 
 type Solution = {
   slug?: string | null
-  title?: string | null
+  nav_title?: string | null
+  category
 }
 
 export const getSiteSettings = (solutions?: Solution[]) => ({
@@ -221,8 +222,9 @@ function getSolutionSubnav(solutions?: Solution[]) {
     id: solution.slug || '',
     link: {
       id: `${solution.slug}-${i}`,
-      title: solution.title,
+      title: solution.nav_title,
       url: `/solutions/${solution.slug}`,
+      category: solution.category,
     },
   }))
 }

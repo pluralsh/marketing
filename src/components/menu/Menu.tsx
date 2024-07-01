@@ -28,6 +28,7 @@ import {
 import styled from 'styled-components'
 
 import { MainLinkBase } from '../Navigation'
+import { ResponsiveText } from '../Typography'
 
 import { PopoverMenu } from './PopoverMenu'
 
@@ -106,7 +107,10 @@ export function MenuButton<T extends object>({
   kind = 'default',
   left,
   ...props
-}: MenuButtonProps<T> & { kind?: 'product' | 'default'; left?: number }) {
+}: MenuButtonProps<T> & {
+  kind?: 'product' | 'default' | 'solution'
+  left?: number
+}) {
   // Create state based on the incoming props
   const triggerState = useMenuTriggerState(props)
 
@@ -145,13 +149,22 @@ export function MenuButton<T extends object>({
         onClose={triggerState.close}
         floating={floating}
       >
-        <MenuDropdown
-          kind={kind}
-          {...props}
-          {...menuProps}
-        >
-          {children}
-        </MenuDropdown>
+        {kind === 'solution' ? (
+          <SolutionNavDropdown
+            {...props}
+            {...menuProps}
+          >
+            {children}
+          </SolutionNavDropdown>
+        ) : (
+          <MenuDropdown
+            kind={kind}
+            {...props}
+            {...menuProps}
+          >
+            {children}
+          </MenuDropdown>
+        )}
       </PopoverMenu>
     </MenuButtonWrap>
   )
@@ -167,7 +180,7 @@ function MenuDropdown<T extends object>({
   ...props
 }: AriaMenuProps<T> & {
   itemRenderer?: ItemRenderer<T>
-  kind?: 'product' | 'default'
+  kind?: 'product' | 'default' | 'solution'
 }) {
   // Create menu state based on the incoming props
   const state = useTreeState(props)
@@ -194,6 +207,72 @@ function MenuDropdown<T extends object>({
               />
             ))}
           </ul>
+        </div>
+      </DropdownCard>
+    </div>
+  )
+}
+
+function SolutionNavDropdown<T extends object>({
+  itemRenderer = MenuItem,
+  ...props
+}: AriaMenuProps<T> & {
+  itemRenderer?: ItemRenderer<T>
+}) {
+  // Create menu state based on the incoming props
+  const state = useTreeState(props)
+
+  const collection = [...state.collection]
+
+  const itemByCategory = collection.reduce((acc, item) => {
+    // @ts-ignore
+    const category = item?.value?.link?.category
+
+    if (!category) return acc
+
+    if (!acc[category]) {
+      acc[category] = []
+    }
+
+    acc[category].push(item)
+
+    return acc
+  }, {})
+
+  // Get props for the menu element
+  const ref = React.useRef(null)
+  const { menuProps } = useMenu(props, state, ref)
+
+  const ItemRenderer = itemRenderer
+
+  return (
+    <div
+      ref={ref}
+      {...menuProps}
+    >
+      <DropdownCard style={{ minWidth: 360 }}>
+        <div className="p-xlarge">
+          {Object.keys(itemByCategory).map((category) => (
+            <div key={category}>
+              <ResponsiveText
+                as="h2"
+                textStyles={{ '': 'mLabel' }}
+                color="text-light"
+                className="mb-xsmall ml-xxsmall uppercase"
+              >
+                {category}
+              </ResponsiveText>
+              <ul>
+                {itemByCategory[category].map((item) => (
+                  <ItemRenderer
+                    key={item.key}
+                    item={item}
+                    state={state}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </DropdownCard>
     </div>
