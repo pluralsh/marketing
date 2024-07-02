@@ -75,6 +75,7 @@ function NavList({ navData }: { navData?: NavData | null }) {
           <Accordion
             label={navItem?.link?.title}
             key={navItem.id}
+            style={{ backgroundColor: theme.colors['fill-two'] }}
           >
             {navItem.subnav?.map((subnavItem) => {
               if (!subnavItem) {
