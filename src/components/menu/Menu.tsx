@@ -250,7 +250,7 @@ function SolutionNavDropdown<T extends object>({
       ref={ref}
       {...menuProps}
     >
-      <DropdownCard style={{ minWidth: 360 }}>
+      <DropdownCard style={{ minWidth: '30vw', maxWidth: '500px' }}>
         <div className="p-xlarge">
           {Object.keys(itemByCategory).map((category) => (
             <div key={category}>
