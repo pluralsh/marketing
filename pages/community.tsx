@@ -1,11 +1,15 @@
 import {
   ArrowRightIcon,
   Button,
+  Card,
+  Chip,
+  ColorModeProvider,
   DocumentIcon,
   GitHubLogoIcon,
   IconFrame,
 } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
+import { useRouter } from 'next/router'
 
 import { useTheme } from 'styled-components'
 
@@ -13,16 +17,17 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import { formatDateTime } from '@src/components/page-sections/EventsSection'
 import { BasicPageHero } from '@src/components/PageHeros'
 import { ResponsiveText } from '@src/components/Typography'
+import { type PluralEvent, getEvents } from '@src/data/getEvents'
 import { cn as classNames } from '@src/utils/cn'
+import { combineErrors } from '@src/utils/combineErrors'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-export default function Community(
-  props: InferGetStaticPropsType<typeof getStaticProps>
-) {
-  console.log('props:', props)
-
+export default function Community({
+  events,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <HeaderPad
@@ -45,7 +50,7 @@ export default function Community(
       >
         <ResponsiveText
           className="mb-xxlarge max-w-[1100px] text-center"
-          as="h1"
+          as="h2"
           textStyles={{
             '': 'mTitle2',
             sm: 'mHero2',
@@ -62,6 +67,47 @@ export default function Community(
           ))}
         </div>
       </StandardPageWidth>
+      {/* events */}
+      <ColorModeProvider mode="light">
+        <div
+          className={classNames(
+            'bg-fill-zero',
+            'p-large py-xxxlarge md:p-xxxxxlarge md:pt-xxxxxlarge'
+          )}
+        >
+          <StandardPageWidth>
+            <ResponsiveText
+              className="mb-xxlarge max-w-[1100px] text-center"
+              as="h2"
+              textStyles={{
+                '': 'mTitle2',
+                sm: 'mHero2',
+              }}
+            >
+              Plural Events
+            </ResponsiveText>
+            {events.length ? (
+              <EventsGrid events={events} />
+            ) : (
+              <Card
+                fillLevel={1}
+                className={classNames(
+                  'flex',
+                  'justify-center p-large md:p-xxxxlarge'
+                )}
+              >
+                <ResponsiveText
+                  as="span"
+                  textStyles={{ md: 'mSubtitle1', '': 'mBody2Bold' }}
+                  className="m-large md:m-xxxxlarge"
+                >
+                  No planned events at this time
+                </ResponsiveText>
+              </Card>
+            )}
+          </StandardPageWidth>
+        </div>
+      </ColorModeProvider>
     </>
   )
 }
@@ -92,6 +138,7 @@ function ResourceLink({ kind }: { kind: keyof typeof resources }) {
   return (
     <Button
       secondary
+      as="a"
       className="flex grow items-center justify-start gap-medium"
       href={resources[kind].url}
       target="_blank"
@@ -112,14 +159,83 @@ function ResourceLink({ kind }: { kind: keyof typeof resources }) {
   )
 }
 
-export type CommunityPageProps = any
+function EventsGrid({ events }: { events: PluralEvent[] }) {
+  const locale = useRouter().locale || 'en-us'
+
+  return (
+    <div
+      className="grid grid-cols-1 gap-xxlarge md:grid-cols-2 xl:grid-cols-3"
+      style={{ gridAutoRows: '1fr' }}
+    >
+      {events.map((event) => (
+        <a
+          key={event.id}
+          href="#"
+          className=""
+        >
+          <Card
+            fillLevel={1}
+            padding="xlarge"
+            className={classNames(
+              'flex h-full flex-col',
+              ' items-start justify-center p-large md:p-xxxxlarge'
+            )}
+          >
+            <Chip
+              padding="small"
+              severity="neutral"
+              className="mb-medium w-fit"
+            >
+              Event
+            </Chip>
+            <ResponsiveText
+              as="span"
+              textStyles={{ md: 'mSubtitle1', '': 'mBody2Bold' }}
+              className="mb-large overflow-hidden text-ellipsis"
+            >
+              {event.name}
+            </ResponsiveText>
+            <ResponsiveText
+              as="span"
+              textStyles={{ md: 'mBody2', '': 'mBody2' }}
+              className="mb-xxlarge"
+            >
+              {formatDateTime(new Date(event.start_date), {
+                timeZone: event.timezone,
+                locale,
+                timeZoneShort: event.timezone_short,
+                showTime: true,
+              })}
+            </ResponsiveText>
+            <IconFrame
+              type="floating"
+              icon={<ArrowRightIcon />}
+              size="large"
+              color="text"
+              className="mt-auto"
+              //   style={{ display: 'inline-flex' }}
+            />
+          </Card>
+        </a>
+      ))}
+    </div>
+  )
+}
+
+export type CommunityPageProps = {
+  events: PluralEvent[]
+}
 
 export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
   _context
-) =>
-  propsWithGlobalSettings({
+) => {
+  const { data: events, error: eventsError } = await getEvents()
+
+  return propsWithGlobalSettings({
     metaTitle: 'Community',
     metaDescription: 'Flexible plans for every stage of your business',
     footerVariant: FooterVariant.kitchenSink,
-    // errors: combineErrors([communityError, faqError]),
+    errors: combineErrors([eventsError]),
+    events,
   })
+}
