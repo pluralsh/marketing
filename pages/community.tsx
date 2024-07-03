@@ -49,7 +49,7 @@ export default function Community({
         )}
       >
         <ResponsiveText
-          className="mb-xxlarge max-w-[1100px] text-center"
+          className=" mb-xxlarge text-center"
           as="h2"
           textStyles={{
             '': 'mTitle2',
@@ -77,7 +77,7 @@ export default function Community({
         >
           <StandardPageWidth>
             <ResponsiveText
-              className="mb-xxlarge max-w-[1100px] text-center"
+              className=" mb-xxlarge text-center"
               as="h2"
               textStyles={{
                 '': 'mTitle2',
