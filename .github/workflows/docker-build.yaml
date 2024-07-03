@@ -50,18 +50,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  update-service:
-    needs: [docker-build]
-    runs-on: plrl-github-actions-runner
-    env:
-      PLURAL_CONSOLE_TOKEN: ${{ secrets.PLURAL_CONSOLE_TOKEN }}
-      PLURAL_CONSOLE_URL: ${{ secrets.PLURAL_CONSOLE_URL }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: installing plural
-      uses: pluralsh/setup-plural@v0.2.0
-    - name: Using short sha
-      run: echo ${GITHUB_SHA::7}
-    - name: Update service
-      run:  plural cd services update @mgmt/marketing --conf tag=sha-${GITHUB_SHA::7}
