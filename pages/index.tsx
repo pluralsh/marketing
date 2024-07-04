@@ -208,7 +208,7 @@ export default function Index({
             </div>
           }
         />
-        <div className="pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0 ">
+        <div className="-mt-xxxlarge pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0">
           <StandardPageWidth>
             <HeroImages />
             <Button
