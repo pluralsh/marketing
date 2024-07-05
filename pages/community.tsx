@@ -7,6 +7,7 @@ import {
   DocumentIcon,
   GitHubLogoIcon,
   IconFrame,
+  YouTubeIcon,
 } from '@pluralsh/design-system'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
@@ -121,7 +122,7 @@ const resources = {
   youtube: {
     url: 'https://www.youtube.com/channel/UCt8xwvJH4f4c6g8J1Y6ZmJQ',
     title: 'YouTube',
-    icon: <ArrowRightIcon />,
+    icon: <YouTubeIcon />,
   },
   docs: {
     url: 'https://docs.plural.sh',
