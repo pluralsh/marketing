@@ -76,7 +76,12 @@ function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
       position="bottom middle"
       image="/images/gradients/gradient-bg-2.jpg"
     >
-      <StandardPageSection>
+      <StandardPageSection
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(14, 16, 21, 0.00) 70%, rgba(14, 16, 21, 1) 100%)',
+        }}
+      >
         <StandardPageWidth className="relative z-[1]">
           <CenteredSectionHead
             heading={<div>Accelerate your K8s operations</div>}

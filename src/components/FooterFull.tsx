@@ -28,15 +28,22 @@ export function FullFooter({
 
   return (
     <StickyFooterSC className={className}>
+      <div
+        className="absolute z-0 h-full w-full"
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(14, 16, 21, 0.00) 0%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
       {showValueProp && (
-        <div className="pb-xlarge pt-xxxxxlarge md:pb-xxxxlarge md:pt-xxxxxxlarge">
+        <div className="relative z-20 pb-xlarge pt-xxxxxlarge md:pb-xxlarge md:pt-xxxxxxlarge">
           <FooterValueProp />
         </div>
       )}
       <div
         // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/contentinfo_role
         role="contentinfo"
-        className="flex flex-col gap-y-xxxlarge pt-xxxxlarge"
+        className="relative z-20 flex flex-col gap-y-xxxlarge pt-xxxxlarge"
       >
         {showNav && <FooterNav />}
         <BasicFooter />
