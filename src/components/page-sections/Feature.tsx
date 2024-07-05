@@ -62,7 +62,7 @@ export function Feature({
   }
 
   return (
-    <FeatureSC className="flex w-full items-center rounded-large border px-xxlarge py-xxlarge">
+    <FeatureSC className="flex w-full items-center gap-y-xxlarge rounded-large border px-xxlarge py-xxlarge">
       <EqualColumn className="flex flex-col gap-y-medium">
         <ResponsiveText
           ref={headingRef}
