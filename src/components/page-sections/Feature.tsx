@@ -1,6 +1,11 @@
 import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import {
+  ArrowRightIcon,
+  Button,
+  ColorModeProvider,
+} from '@pluralsh/design-system'
+import Link from 'next/link'
 
 import { useInView } from 'framer-motion'
 import styled from 'styled-components'
@@ -8,16 +13,14 @@ import styled from 'styled-components'
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { Body2, ResponsiveText } from '@src/components/Typography'
-import { cn as classNames } from '@src/utils/cn'
 
 import { useBreakpoint } from '../contexts/BreakpointProvider'
 
 import { FeaturesImage } from './FeaturesImage'
 
 const FeatureSC = styled(Columns)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  rowGap: theme.spacing.xxxlarge,
+  background: `linear-gradient(90deg, ${theme.colors.grey[25]} 0%, ${theme.colors.grey[75]} 100%)`,
+  border: `1px solid ${theme.colors.grey[125]}`,
   [mqs.columns]: {
     '&:nth-child(2n)': {
       flexDirection: 'row-reverse',
@@ -59,7 +62,7 @@ export function Feature({
   }
 
   return (
-    <FeatureSC>
+    <FeatureSC className="flex w-full items-center rounded-large border px-xxlarge py-xxlarge">
       <EqualColumn className="flex flex-col gap-y-medium">
         <ResponsiveText
           ref={headingRef}
@@ -68,10 +71,23 @@ export function Feature({
         >
           {heading}
         </ResponsiveText>
-        <Body2 as="div">{children}</Body2>
+        <Body2 as="div">
+          {children}
+          <Button
+            tertiary
+            padding="none"
+            large
+            className="mt-large w-fit"
+            as={Link}
+            href="/contact-sales"
+            endIcon={<ArrowRightIcon />}
+          >
+            Book a demo
+          </Button>
+        </Body2>
       </EqualColumn>
-      <EqualColumn className="w-full">
-        <div className={classNames('w-full')}>{image}</div>
+      <EqualColumn className="flex w-full items-center justify-center">
+        <div className="w-5/6">{image}</div>
       </EqualColumn>
     </FeatureSC>
   )

@@ -25,7 +25,7 @@ export function HomepageFeaturesSection() {
     <ColorModeProvider mode="light">
       <div
         className={classNames(
-          'bg-fill-zero',
+          'bg-marketing-black',
           'py-xxxxxlarge md:py-xxxxxxlarge xxl:py-xxxxxxlarge'
         )}
       >
@@ -42,19 +42,19 @@ export function HomepageFeaturesSection() {
                 <FeaturesImage
                   shadow
                   direction={-1}
-                  width={654}
-                  height={370}
+                  width={400}
+                  height={230}
                   images={[
                     {
-                      top: 0,
-                      right: 0,
-                      width: '90%',
+                      top: -10,
+                      left: 15,
+                      width: '100%',
                       round: true,
                       attrs: {},
                       url: '/images/homepage/features/console-home.png',
                     },
                     {
-                      left: '0%',
+                      left: -15,
                       bottom: '-10%',
                       width: '60%',
                       aspectRatio: '1818 / 1208',
@@ -90,17 +90,17 @@ export function HomepageFeaturesSection() {
                   height={394}
                   images={[
                     {
-                      left: 0,
-                      top: 0,
-                      width: '94%',
+                      left: -20,
+                      top: '-5%',
+                      width: '100%',
                       aspectRatio: '2794 / 1656',
                       round: true,
                       attrs: {},
                       url: '/images/homepage/features/policies.png',
                     },
                     {
-                      top: '10%',
-                      right: 0,
+                      top: '5%',
+                      right: -20,
                       round: true,
                       width: '70%',
                       aspectRatio: '1122 / 320',
@@ -138,21 +138,21 @@ export function HomepageFeaturesSection() {
                 <FeaturesImage
                   shadow
                   direction={-1}
-                  width={2724}
-                  height={1404}
+                  width={400}
+                  height={282}
                   images={[
                     {
-                      right: 0,
+                      left: 15,
                       top: 0,
-                      width: '94%',
+                      width: '100%',
                       aspectRatio: '2318 / 1640',
                       round: true,
                       attrs: {},
                       url: '/images/homepage/features/clusters.png',
                     },
                     {
-                      bottom: 0,
-                      left: 0,
+                      top: '35%',
+                      left: -15,
                       width: '70%',
                       aspectRatio: '1052 / 364',
                       round: true,
@@ -187,8 +187,8 @@ export function HomepageFeaturesSection() {
               heading="Self-hosted for maximum security"
               graphic={
                 <FeaturesImage
-                  width={2660}
-                  height={1414}
+                  width={400}
+                  height={320}
                   images={[
                     {
                       top: 0,
