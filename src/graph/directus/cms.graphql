@@ -273,7 +273,8 @@ fragment Solution on solutions_pages {
 query SolutionsSlugs {
   solutions_pages {
     slug
-    title
+    nav_title
+    category
   }
 }
 
