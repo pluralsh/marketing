@@ -179,7 +179,8 @@ function EventsGrid({ events }: { events: PluralEvent[] }) {
             padding="xlarge"
             className={classNames(
               'flex h-full flex-col',
-              ' items-start justify-center p-large md:p-xxxxlarge'
+              ' items-start justify-center p-large md:p-xxxxlarge',
+              'hover:bg-fill-one-hover'
             )}
           >
             <Chip
