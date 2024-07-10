@@ -120,7 +120,7 @@ const resources = {
     icon: <GitHubLogoIcon />,
   },
   youtube: {
-    url: 'https://www.youtube.com/channel/UCt8xwvJH4f4c6g8J1Y6ZmJQ',
+    url: 'https://www.youtube.com/channel/UCKpIHwAFwvXhM-RaR1h77Jw',
     title: 'YouTube',
     icon: <YouTubeIcon />,
   },
