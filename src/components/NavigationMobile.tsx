@@ -48,7 +48,7 @@ function NavList({ navData }: { navData?: NavData | null }) {
 
   return (
     <div className="flex flex-col gap-medium">
-      {navData.map((navItem, navIndex) => {
+      {navData.map((navItem) => {
         if (!navItem) {
           return null
         }
@@ -83,7 +83,7 @@ function NavList({ navData }: { navData?: NavData | null }) {
                 return null
               }
 
-              if (!navIndex) {
+              if (navItem.link?.title === 'Product') {
                 return (
                   <ProductMobileLink
                     key={subnavItem.id}
