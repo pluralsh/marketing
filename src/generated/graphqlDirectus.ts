@@ -4721,6 +4721,7 @@ export type Create_Page_Community_Input = {
 
 export type Create_Page_Homepage_Input = {
   article_cards?: InputMaybe<Array<InputMaybe<Create_Article_Cards_Input>>>;
+  case_study?: InputMaybe<Array<InputMaybe<Create_Case_Studies_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   featured_quote?: InputMaybe<Create_Quotes_Input>;
@@ -4875,6 +4876,7 @@ export type Create_Solution_Problems_Input = {
 };
 
 export type Create_Solutions_Pages_Input = {
+  category?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -4884,6 +4886,7 @@ export type Create_Solutions_Pages_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
   lower_features?: InputMaybe<Array<InputMaybe<Create_Solution_Features_Input>>>;
   lower_features_title?: InputMaybe<Scalars['String']['input']>;
+  nav_title?: InputMaybe<Scalars['String']['input']>;
   problems?: InputMaybe<Array<InputMaybe<Create_Solution_Problems_Input>>>;
   slug: Scalars['String']['input'];
   sort?: InputMaybe<Scalars['Int']['input']>;
@@ -5953,6 +5956,7 @@ export type Page_Homepage = {
   __typename?: 'page_homepage';
   article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
   article_cards_func?: Maybe<Count_Functions>;
+  case_study?: Maybe<Array<Maybe<Case_Studies>>>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -5967,6 +5971,16 @@ export type Page_Homepage = {
 
 export type Page_HomepageArticle_CardsArgs = {
   filter?: InputMaybe<Article_Cards_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Page_HomepageCase_StudyArgs = {
+  filter?: InputMaybe<Case_Studies_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6019,6 +6033,7 @@ export type Page_Homepage_Filter = {
   _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
   article_cards?: InputMaybe<Article_Cards_Filter>;
   article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
+  case_study?: InputMaybe<Case_Studies_Filter>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
@@ -7196,6 +7211,7 @@ export type Solution_Problems_Filter = {
 
 export type Solutions_Pages = {
   __typename?: 'solutions_pages';
+  category?: Maybe<Scalars['String']['output']>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -7208,6 +7224,7 @@ export type Solutions_Pages = {
   lower_features?: Maybe<Array<Maybe<Solution_Features>>>;
   lower_features_func?: Maybe<Count_Functions>;
   lower_features_title?: Maybe<Scalars['String']['output']>;
+  nav_title?: Maybe<Scalars['String']['output']>;
   problems?: Maybe<Array<Maybe<Solution_Problems>>>;
   problems_func?: Maybe<Count_Functions>;
   slug: Scalars['String']['output'];
@@ -7297,6 +7314,7 @@ export type Solutions_Pages_Aggregated = {
 
 export type Solutions_Pages_Aggregated_Count = {
   __typename?: 'solutions_pages_aggregated_count';
+  category?: Maybe<Scalars['Int']['output']>;
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
@@ -7306,6 +7324,7 @@ export type Solutions_Pages_Aggregated_Count = {
   id?: Maybe<Scalars['Int']['output']>;
   lower_features?: Maybe<Scalars['Int']['output']>;
   lower_features_title?: Maybe<Scalars['Int']['output']>;
+  nav_title?: Maybe<Scalars['Int']['output']>;
   problems?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
@@ -7327,6 +7346,7 @@ export type Solutions_Pages_Aggregated_Fields = {
 export type Solutions_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
+  category?: InputMaybe<String_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
@@ -7339,6 +7359,7 @@ export type Solutions_Pages_Filter = {
   lower_features?: InputMaybe<Solution_Features_Filter>;
   lower_features_func?: InputMaybe<Count_Function_Filter_Operators>;
   lower_features_title?: InputMaybe<String_Filter_Operators>;
+  nav_title?: InputMaybe<String_Filter_Operators>;
   problems?: InputMaybe<Solution_Problems_Filter>;
   problems_func?: InputMaybe<Count_Function_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
@@ -7967,6 +7988,7 @@ export type Update_Page_Community_Input = {
 
 export type Update_Page_Homepage_Input = {
   article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
+  case_study?: InputMaybe<Array<InputMaybe<Update_Case_Studies_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   featured_quote?: InputMaybe<Update_Quotes_Input>;
@@ -8131,6 +8153,7 @@ export type Update_Solution_Problems_Input = {
 };
 
 export type Update_Solutions_Pages_Input = {
+  category?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -8140,6 +8163,7 @@ export type Update_Solutions_Pages_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
   lower_features?: InputMaybe<Array<InputMaybe<Update_Solution_Features_Input>>>;
   lower_features_title?: InputMaybe<Scalars['String']['input']>;
+  nav_title?: InputMaybe<Scalars['String']['input']>;
   problems?: InputMaybe<Array<InputMaybe<Update_Solution_Problems_Input>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
@@ -8263,7 +8287,7 @@ export type SolutionFragment = { __typename?: 'solutions_pages', id: string, slu
 export type SolutionsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string, title?: string | null }> };
+export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string, nav_title?: string | null, category?: string | null }> };
 
 export type SolutionsQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -8881,7 +8905,8 @@ export const SolutionsSlugsDocument = gql`
     query SolutionsSlugs {
   solutions_pages {
     slug
-    title
+    nav_title
+    category
   }
 }
     `;

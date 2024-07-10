@@ -9,6 +9,7 @@ import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 import { mqs } from '../breakpoints'
 
 import { ProductTopNavMenu } from './menu/ProductNav'
+import { SolutionTopNavMenu } from './menu/SolutionNav'
 import { TopNavMenu } from './menu/TopNavMenu'
 import { MainLink } from './Navigation'
 
@@ -48,6 +49,14 @@ export const NavigationDesktop = styled(
               if (!i) {
                 return (
                   <ProductTopNavMenu
+                    key={navItem.id}
+                    navItem={navItem}
+                  />
+                )
+              }
+              if (i === 1) {
+                return (
+                  <SolutionTopNavMenu
                     key={navItem.id}
                     navItem={navItem}
                   />
