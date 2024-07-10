@@ -63,7 +63,7 @@ const StickyFooterSC = styled.footer(({ theme }) => ({
   [mqs.md]: {
     paddingBottom: theme.spacing.xlarge,
   },
-  backgroundImage: 'url(/images/gradients/gradient-bg-6.jpg)',
+  backgroundImage: 'url(/images/gradients/footer-background.png)',
   backgroundSize: 'cover',
   backgroundPosition: '0% 50%',
 }))

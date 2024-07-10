@@ -136,25 +136,6 @@ export const MultiImageWrapSC = styled.div<
   })
 )
 
-export const MultiImageVideoSC = styled.video<{
-  $round?: boolean | number | undefined
-}>(({ $round }) => ({
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  position: 'absolute',
-  borderRadius:
-    typeof $round === 'boolean'
-      ? $round
-        ? ROUND
-        : 0
-      : typeof $round === 'number'
-        ? $round
-        : ROUND,
-  overflow: 'hidden',
-}))
-
 export const MultiImageImgSC = styled.img<{ $round?: boolean }>(
   ({ $round = false }) => ({
     display: 'block',
@@ -225,29 +206,12 @@ function MultiImageImg({
             }}
           />
         )}
-        {src.match(/\.mp4$/) ? (
-          <MultiImageVideoSC
-            autoPlay
-            muted
-            loop
-            playsInline
-            $round={round}
-            poster={`${src.replace(/\.mp4$/, '')}_poster.png`}
-          >
-            <source
-              src={src}
-              type="video/mp4"
-              className="graphic"
-            />
-          </MultiImageVideoSC>
-        ) : (
-          <MultiImageImgSC
-            src={src}
-            $round={round}
-            aria-hidden
-            {...attrs}
-          />
-        )}
+        <MultiImageImgSC
+          src={src}
+          $round={round}
+          aria-hidden
+          {...attrs}
+        />
       </MultiImageWrapSC>
     </MotionDiv>
   )
