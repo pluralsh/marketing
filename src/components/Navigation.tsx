@@ -64,6 +64,63 @@ export const ProductLink = forwardRef(
   }
 )
 
+export const SolutionLink = forwardRef(
+  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+    const { Link } = useNavigationContext()
+
+    return (
+      <MainLinkBase
+        ref={ref}
+        as={Link}
+        {...props}
+      >
+        <ResponsiveText
+          as="p"
+          textStyles={{ '': 'mBody2Bold' }}
+        >
+          {props.children}
+        </ResponsiveText>
+        <ArrowRightIcon
+          className="hover-arrow"
+          size="16px"
+          style={{ marginLeft: 'auto' }}
+        />
+      </MainLinkBase>
+    )
+  }
+)
+export const ProductMobileLink = forwardRef(
+  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+    const { Link } = useNavigationContext()
+
+    const itemConfig = getProductsConfigs()[props.id || '']
+
+    return (
+      <MainLinkBase
+        ref={ref}
+        as={Link}
+        {...props}
+      >
+        <div className="h-[25px] w-[25px] min-w-[25px] rounded-medium border border-grey-750 bg-fill-two p-xxsmall">
+          {itemConfig?.navIcon}
+        </div>
+        <ResponsiveText
+          as="p"
+          textStyles={{ '': 'aBody2' }}
+        >
+          {itemConfig?.title}
+        </ResponsiveText>
+
+        <ArrowRightIcon
+          className="hover-arrow"
+          size="16px"
+          style={{ marginLeft: 'auto' }}
+        />
+      </MainLinkBase>
+    )
+  }
+)
+
 export const MainLinkBase = styled.a.withConfig({
   shouldForwardProp: (prop) => !['isDisabled', 'isSelected'].includes(prop),
 })<{ isDisabled?: boolean; isSelected?: boolean }>(({ theme, isSelected }) => ({

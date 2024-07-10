@@ -1,26 +1,24 @@
-import { DiscordIcon } from '@pluralsh/design-system'
+import {
+  Accordion,
+  ArrowRightIcon,
+  Button,
+  Divider,
+} from '@pluralsh/design-system'
 
 import { isEmpty } from 'lodash-es'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
-import { DISCORD_LINK } from '@src/consts'
 import { useNavData } from '@src/contexts/NavDataContext'
 import { type NavListFragment } from '@src/generated/graphqlDirectus'
 
-import GithubStars from './GithubStars'
 import useScrollLock from './hooks/useScrollLock'
-import { MainLink } from './Navigation'
+import { MainLink, ProductMobileLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
-import { SocialLink } from './PageHeaderButtons'
 
-const MobileMainLink = styled(MainLink)(({ theme }) => ({
-  paddingLeft: 0,
-  paddingRight: 0,
-  paddingTop: theme.spacing.xsmall,
-  paddingBottom: theme.spacing.xsmall,
-  marginBottom: theme.spacing.xsmall,
+const MobileMainLink = styled(MainLink)(() => ({
   width: '100%',
+  marginTop: 1,
 }))
 
 export const MenuHeading = styled.h6(({ theme }) => ({
@@ -34,12 +32,6 @@ type MobileMenuProps = NavContextValue & {
   className?: string
 }
 
-const SocialIcons = styled.div(({ theme }) => ({
-  display: 'flex',
-  marginTop: theme.spacing.xlarge,
-  gap: theme.spacing.medium,
-}))
-
 type NavData = (
   | (NavListFragment & {
       subnav?: NavData | null
@@ -48,40 +40,79 @@ type NavData = (
 )[]
 
 function NavList({ navData }: { navData?: NavData | null }) {
+  const theme = useTheme()
+
   if (!navData) {
     return null
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-medium">
       {navData.map((navItem) => {
         if (!navItem) {
           return null
         }
         if (isEmpty(navItem?.subnav)) {
           return (
-            <MobileMainLink
+            <Button
               key={navItem?.id}
               {...(navItem?.link?.url ? { href: navItem?.link.url } : {})}
+              as="a"
+              secondary
+              endIcon={<ArrowRightIcon />}
+              style={{
+                justifyContent: 'space-between',
+                padding: theme.spacing.medium,
+                borderColor: theme.colors.border,
+              }}
             >
               {navItem?.link?.title}
-            </MobileMainLink>
+            </Button>
           )
         }
 
         return (
-          <section
+          <Accordion
+            label={navItem?.link?.title}
             key={navItem.id}
-            className="mb-medium"
+            // @ts-ignore
+            style={{ backgroundColor: theme.colors['fill-two'] }}
           >
-            {navItem?.link?.title ? (
-              <MenuHeading>{navItem?.link?.title}</MenuHeading>
-            ) : null}
-            <NavList navData={navItem?.subnav} />
-          </section>
+            {navItem.subnav?.map((subnavItem) => {
+              if (!subnavItem) {
+                return null
+              }
+
+              if (navItem.link?.title === 'Product') {
+                return (
+                  <ProductMobileLink
+                    key={subnavItem.id}
+                    id={subnavItem.id}
+                    {...(subnavItem?.link?.url
+                      ? { href: subnavItem?.link.url }
+                      : {})}
+                  >
+                    {subnavItem?.link?.title}
+                  </ProductMobileLink>
+                )
+              }
+
+              return (
+                <MobileMainLink
+                  key={subnavItem.id}
+                  {...(subnavItem?.link?.url
+                    ? { href: subnavItem?.link.url }
+                    : {})}
+                  style={{ padding: theme.spacing.medium }}
+                >
+                  {subnavItem?.link?.title}
+                </MobileMainLink>
+              )
+            })}
+          </Accordion>
         )
       })}
-    </>
+    </div>
   )
 }
 
@@ -93,21 +124,44 @@ function PluralMenuContent({
   className?: string
 }) {
   const navData = useNavData()
+  const theme = useTheme()
 
   return (
     <div {...props}>
-      <NavList navData={navData} />
-      <SocialIcons>
-        <SocialLink
-          href={DISCORD_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={0}
+      <div className="flex flex-col gap-small">
+        <Button
+          as="a"
+          href="/contact-sales"
+          primary
+          fontFamily={theme.fontFamilies.sans}
+          endIcon={<ArrowRightIcon />}
+          style={{
+            justifyContent: 'space-between',
+            padding: theme.spacing.medium,
+          }}
         >
-          <DiscordIcon size={16} />
-        </SocialLink>
-        <GithubStars />
-      </SocialIcons>
+          Book a demo
+        </Button>
+        <Button
+          as="a"
+          href="https://app.plural.sh/login"
+          secondary
+          fontFamily={theme.fontFamilies.sans}
+          endIcon={<ArrowRightIcon />}
+          style={{
+            justifyContent: 'space-between',
+            padding: theme.spacing.medium,
+            borderColor: theme.colors.border,
+          }}
+        >
+          Log in
+        </Button>
+      </div>
+      <Divider
+        className="my-medium"
+        backgroundColor={theme.colors.border}
+      />
+      <NavList navData={navData} />
     </div>
   )
 }
