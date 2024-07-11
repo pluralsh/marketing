@@ -1,10 +1,6 @@
 import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
-import {
-  ArrowRightIcon,
-  Button,
-  ColorModeProvider,
-} from '@pluralsh/design-system'
+import { ArrowRightIcon, Button } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import { useInView } from 'framer-motion'
@@ -104,14 +100,12 @@ export function FeatureItem({
 }) {
   return (
     <div className="mt-large flex items-center gap-xsmall">
-      <ColorModeProvider mode="dark">
-        <div
-          className="rounded-full flex items-center justify-center rounded-medium bg-fill-one p-xsmall text-icon-light"
-          aria-hidden
-        >
-          {icon}
-        </div>
-      </ColorModeProvider>
+      <div
+        className="rounded-full flex items-center justify-center rounded-medium border border-border-input bg-fill-three p-xsmall text-icon-light"
+        aria-hidden
+      >
+        {icon}
+      </div>
       <div>
         {title && <h3 className="txt-body-2-bold text-text">{title}</h3>}
         <p className="txt-body-2 text-text-light">{description}</p>
