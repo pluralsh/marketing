@@ -79,7 +79,7 @@ function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
       <StandardPageSection
         style={{
           background:
-            'linear-gradient(180deg, rgba(14, 16, 21, 0.00) 70%, rgba(14, 16, 21, 1) 100%)',
+            'linear-gradient(180deg, rgba(14, 16, 21, 0.00) 70%, rgba(0,0,0,0.3) 100%)',
         }}
       >
         <StandardPageWidth className="relative z-[1]">
