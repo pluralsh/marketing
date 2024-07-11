@@ -12,10 +12,9 @@ import { TextLimiter } from '../layout/TextLimiter'
 import { ResponsiveText } from '../Typography'
 
 const DATE_FORMAT = {
-  month: 'short',
+  month: 'long',
   day: 'numeric',
   year: 'numeric',
-  weekday: 'short',
 } as const
 
 const TIME_FORMAT = {
@@ -32,8 +31,8 @@ function formatTime(
     showTimeZone = true,
   }: {
     locale: string
-    timeZone?: string
-    timeZoneShort?: string
+    timeZone?: string | null
+    timeZoneShort?: string | null
     showTimeZone?: boolean
   }
 ) {
@@ -45,14 +44,19 @@ function formatTime(
   }${showTimeZone && timeZoneShort ? ` ${timeZoneShort}` : ''}`
 }
 
-function formatDateTime(
+export function formatDateTime(
   date: Date | null | undefined,
   {
     locale,
     showTime,
     timeZone,
     timeZoneShort,
-  }: { locale: string; showTime; timeZone?: string; timeZoneShort?: string }
+  }: {
+    locale: string
+    showTime
+    timeZone?: string | null
+    timeZoneShort?: string | null
+  }
 ) {
   if (!date) {
     return ''

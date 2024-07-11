@@ -174,14 +174,14 @@ export const getSiteSettings = (solutions?: Solution[]) => ({
               url: '/contact',
             },
           },
-          //   {
-          //     id: '6-5',
-          //     link: {
-          //       id: '6-5',
-          //       title: 'Community',
-          //       url: '/community',
-          //     },
-          //   },
+          {
+            id: '6-5',
+            link: {
+              id: '6-5',
+              title: 'Community',
+              url: '/community',
+            },
+          },
         ],
       },
     ],
