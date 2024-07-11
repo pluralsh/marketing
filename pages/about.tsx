@@ -26,7 +26,6 @@ export default function About({
       <HeaderPad
         as={GradientBG}
         size="cover"
-        // position="top middle"
         image="/images/gradients/gradient-bg-1.jpg"
       >
         <div
@@ -51,7 +50,7 @@ export default function About({
               <EqualColumn>
                 <h2 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-hero-1">
                   Our mission is to democratize elite DevOps capabilities by
-                  simplifing tooling complexities, fostering a ZeroOps world
+                  simplifying tooling complexities, fostering a ZeroOps world
                   that accelerates software development.
                 </h2>
               </EqualColumn>

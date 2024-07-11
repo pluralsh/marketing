@@ -294,9 +294,10 @@ export default function Index({
                   to automate and streamline the lifecycle management of
                   Kubernetes fleets. Plural provides a single pane of glass
                   interface for managing multiple clusters, automating upgrades,
-                  and provides advanced monitoring and security features, making
-                  Kubernetes accessible to engineers of all skill levels and
-                  reducing upgrade times.
+                  and advanced monitoring/observability complete w/ enterprise
+                  grade security features. We’re making Kubernetes accessible to
+                  engineers of all skill levels by reducing painful day 2
+                  operational challenges.
                 </p>
               }
               className="text-center"
