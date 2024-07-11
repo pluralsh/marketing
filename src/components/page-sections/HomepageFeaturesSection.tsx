@@ -33,7 +33,7 @@ export function HomepageFeaturesSection() {
           <div
             className={classNames(
               'flex flex-col',
-              'gap-y-xxxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
+              'gap-y-xxxlarge lg:gap-y-xxxxxxlarge'
             )}
           >
             <Feature
