@@ -141,9 +141,9 @@ export const MainLinkBase = styled.a.withConfig({
     '&[href]:hover, &:hover',
   ].join(', ')]: {
     color: theme.colors.text,
-    backgroundColor: theme.colors['fill-one-hover'],
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
     borderRadius: theme.borderRadiuses.medium,
-    boxShadow: `0px 0px 0px 1px ${theme.colors.grey[800]}`,
+    boxShadow: `0px 0px 0px 1px ${theme.colors['border-input']}`,
     '.hover-arrow': {
       opacity: '1',
     },
@@ -155,7 +155,7 @@ export const MainLinkBase = styled.a.withConfig({
   '.hover-arrow': {
     opacity: '0',
   },
-  padding: `${theme.spacing.small}px var(--top-nav-link-h-pad)`,
+  padding: `${theme.spacing.xsmall}px ${theme.spacing.medium}px `,
 }))
 
 export const SecondaryLink = styled.a(({ theme }) => ({

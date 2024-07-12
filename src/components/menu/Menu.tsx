@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 
 import {
-  CaretDownIcon,
+  DropdownArrowIcon,
   FillLevelProvider,
   useFloatingDropdown,
 } from '@pluralsh/design-system'
@@ -78,7 +78,7 @@ function MainLinkTriggerUnstyled({
         className="icon"
         aria-hidden
       >
-        <CaretDownIcon size={14} />
+        <DropdownArrowIcon size={14} />
       </div>
     </MainLinkBase>
   )

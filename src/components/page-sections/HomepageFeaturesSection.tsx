@@ -25,7 +25,7 @@ export function HomepageFeaturesSection() {
     <ColorModeProvider mode="light">
       <div
         className={classNames(
-          'bg-fill-zero',
+          'bg-marketing-black',
           'py-xxxxxlarge md:py-xxxxxxlarge xxl:py-xxxxxxlarge'
         )}
       >
@@ -33,34 +33,23 @@ export function HomepageFeaturesSection() {
           <div
             className={classNames(
               'flex flex-col',
-              'gap-y-xxxxxxlarge md:gap-y-xxxxxxlarge xxl:gap-y-xxxxxxlarge'
+              'gap-y-xxxlarge lg:gap-y-xxxxxxlarge'
             )}
           >
             <Feature
               heading="K8s upgrade cycles from months to hours"
               graphic={
                 <FeaturesImage
-                  shadow
                   direction={-1}
-                  width={654}
-                  height={370}
+                  width={1440}
+                  height={1092}
                   images={[
                     {
-                      top: 0,
-                      right: 0,
-                      width: '90%',
-                      round: true,
+                      top: '-20%',
+                      left: '-20%',
+                      width: '140%',
                       attrs: {},
-                      url: '/images/homepage/features/console-home.png',
-                    },
-                    {
-                      left: '0%',
-                      bottom: '-10%',
-                      width: '60%',
-                      aspectRatio: '1818 / 1208',
-                      attrs: {},
-                      round: true,
-                      url: '/images/homepage/features/upgrade-plan.png',
+                      url: '/images/homepage/features/k8s-upgrade-cycle.png',
                     },
                   ]}
                 />
@@ -85,27 +74,15 @@ export function HomepageFeaturesSection() {
               heading="Level-up your security and compliance"
               graphic={
                 <FeaturesImage
-                  shadow
-                  width={721}
-                  height={394}
+                  width={1465}
+                  height={964}
                   images={[
                     {
-                      left: 0,
-                      top: 0,
-                      width: '94%',
-                      aspectRatio: '2794 / 1656',
-                      round: true,
+                      top: '-20%',
+                      left: '-20%',
+                      width: '140%',
                       attrs: {},
-                      url: '/images/homepage/features/policies.png',
-                    },
-                    {
-                      top: '10%',
-                      right: 0,
-                      round: true,
-                      width: '70%',
-                      aspectRatio: '1122 / 320',
-                      attrs: {},
-                      url: '/images/homepage/features/policies-detail.png',
+                      url: '/images/homepage/features/security-and-compliance.png',
                     },
                   ]}
                 />
@@ -136,28 +113,17 @@ export function HomepageFeaturesSection() {
               heading="Simple K8s management for all levels"
               graphic={
                 <FeaturesImage
-                  shadow
                   direction={-1}
-                  width={2724}
-                  height={1404}
+                  width={400}
+                  height={282}
                   images={[
                     {
-                      right: 0,
-                      top: 0,
-                      width: '94%',
-                      aspectRatio: '2318 / 1640',
+                      top: '-20%',
+                      left: '-20%',
+                      width: '140%',
                       round: true,
                       attrs: {},
-                      url: '/images/homepage/features/clusters.png',
-                    },
-                    {
-                      bottom: 0,
-                      left: 0,
-                      width: '70%',
-                      aspectRatio: '1052 / 364',
-                      round: true,
-                      attrs: {},
-                      url: '/images/homepage/features/clusters-detail.png',
+                      url: '/images/homepage/features/simple-k8s-management.png',
                     },
                   ]}
                 />
@@ -187,16 +153,15 @@ export function HomepageFeaturesSection() {
               heading="Self-hosted for maximum security"
               graphic={
                 <FeaturesImage
-                  width={2660}
-                  height={1414}
+                  width={400}
+                  height={320}
                   images={[
                     {
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      round: true,
+                      top: '-15%',
+                      left: '-40%',
+                      width: '180%',
                       attrs: {},
-                      url: '/images/homepage/features/schema.png',
+                      url: '/images/homepage/features/self-hosted-and-secure.png',
                     },
                   ]}
                 />

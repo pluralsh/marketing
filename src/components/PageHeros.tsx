@@ -33,7 +33,7 @@ export function HeroMainText({
       )}
       {...props}
     >
-      <div className="flex flex-col gap-y-xlarge">
+      <div className="flex flex-col gap-y-medium">
         <h1 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-big-header">
           {preHeading && (
             <>

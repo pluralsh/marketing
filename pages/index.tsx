@@ -185,7 +185,7 @@ export default function Index({
         as={GradientBG}
         position="50% 50%"
         size="cover"
-        image="/images/gradients/gradient-bg-10.png"
+        image="/images/gradients/hero-background.png"
       >
         <HomePageHero
           heading={<>Managing Kubernetes can be a cluster—</>}
@@ -208,7 +208,7 @@ export default function Index({
             </div>
           }
         />
-        <div className="pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0 ">
+        <div className="-mt-xxxlarge pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0">
           <StandardPageWidth>
             <HeroImages />
             <Button
@@ -294,9 +294,10 @@ export default function Index({
                   to automate and streamline the lifecycle management of
                   Kubernetes fleets. Plural provides a single pane of glass
                   interface for managing multiple clusters, automating upgrades,
-                  and provides advanced monitoring and security features, making
-                  Kubernetes accessible to engineers of all skill levels and
-                  reducing upgrade times.
+                  and advanced monitoring/observability complete w/ enterprise
+                  grade security features. We’re making Kubernetes accessible to
+                  engineers of all skill levels by reducing painful day 2
+                  operational challenges.
                 </p>
               }
               className="text-center"

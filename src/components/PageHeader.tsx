@@ -124,8 +124,8 @@ export function PageHeader({
 }
 
 const BackdropSC = styled.div(({ theme }) => {
-  const backdropFilter = `blur(7.5px) url(#${DARKEN_FILTER_ID})`
-  const basicBackdropFilter = `blur(7.5px)`
+  const backdropFilter = `blur(24px)`
+  const basicBackdropFilter = `blur(24px)`
 
   return {
     position: 'absolute',
@@ -138,7 +138,7 @@ const BackdropSC = styled.div(({ theme }) => {
     '&.show': {
       transform: 'translateY(var(--top-nav-banner-height))',
     },
-    backgroundColor: `${chroma(theme.colors['fill-zero']).alpha(0.83)}`,
+    backgroundColor: `rgba(14, 16, 21, 0.75)`,
     // Use basic filter on Safari (doesn't support svg filters)
     [`@supports (-webkit-backdrop-filter: ${basicBackdropFilter})`]: {
       '-webkitBackdropFilter': basicBackdropFilter,
@@ -147,7 +147,6 @@ const BackdropSC = styled.div(({ theme }) => {
     // Only tested on Chrome
     [`@supports (backdrop-filter: ${backdropFilter})`]: {
       backdropFilter,
-      backgroundColor: 'transparent',
     },
     // Downgrade Firefox to basic filter because its feColorMatrix rendering is ugly
     [`@-moz-document url-prefix()`]: {

@@ -1,6 +1,7 @@
 import { type ReactElement, type ReactNode, cloneElement, useRef } from 'react'
 
-import { ColorModeProvider } from '@pluralsh/design-system'
+import { ArrowRightIcon, Button } from '@pluralsh/design-system'
+import Link from 'next/link'
 
 import { useInView } from 'framer-motion'
 import styled from 'styled-components'
@@ -8,16 +9,14 @@ import styled from 'styled-components'
 import { breakpointIsGreaterOrEqual, mqs } from '@src/breakpoints'
 import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { Body2, ResponsiveText } from '@src/components/Typography'
-import { cn as classNames } from '@src/utils/cn'
 
 import { useBreakpoint } from '../contexts/BreakpointProvider'
 
 import { FeaturesImage } from './FeaturesImage'
 
 const FeatureSC = styled(Columns)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  rowGap: theme.spacing.xxxlarge,
+  background: `linear-gradient(90deg, ${theme.colors.grey[25]} 0%, ${theme.colors.grey[75]} 100%)`,
+  border: `1px solid ${theme.colors.grey[125]}`,
   [mqs.columns]: {
     '&:nth-child(2n)': {
       flexDirection: 'row-reverse',
@@ -59,7 +58,7 @@ export function Feature({
   }
 
   return (
-    <FeatureSC>
+    <FeatureSC className="flex w-full items-center gap-y-xxlarge rounded-large border px-xxlarge py-xxlarge">
       <EqualColumn className="flex flex-col gap-y-medium">
         <ResponsiveText
           ref={headingRef}
@@ -68,10 +67,23 @@ export function Feature({
         >
           {heading}
         </ResponsiveText>
-        <Body2 as="div">{children}</Body2>
+        <Body2 as="div">
+          {children}
+          <Button
+            tertiary
+            padding="none"
+            large
+            className="mt-large w-fit"
+            as={Link}
+            href="/contact-sales"
+            endIcon={<ArrowRightIcon />}
+          >
+            Book a demo
+          </Button>
+        </Body2>
       </EqualColumn>
-      <EqualColumn className="w-full">
-        <div className={classNames('w-full')}>{image}</div>
+      <EqualColumn className="flex w-full items-center justify-center">
+        <div className="w-5/6">{image}</div>
       </EqualColumn>
     </FeatureSC>
   )
@@ -88,14 +100,12 @@ export function FeatureItem({
 }) {
   return (
     <div className="mt-large flex items-center gap-xsmall">
-      <ColorModeProvider mode="dark">
-        <div
-          className="rounded-full flex items-center justify-center rounded-medium bg-fill-one p-xsmall text-icon-light"
-          aria-hidden
-        >
-          {icon}
-        </div>
-      </ColorModeProvider>
+      <div
+        className="rounded-full flex items-center justify-center rounded-medium border border-border-input bg-fill-three p-xsmall text-icon-light"
+        aria-hidden
+      >
+        {icon}
+      </div>
       <div>
         {title && <h3 className="txt-body-2-bold text-text">{title}</h3>}
         <p className="txt-body-2 text-text-light">{description}</p>
