@@ -158,14 +158,14 @@ export const getSiteSettings = (solutions?: Solution[]) => ({
               url: '/about',
             },
           },
-          //   {
-          //     id: '6-3',
-          //     link: {
-          //       id: '6-3',
-          //       title: 'Careers',
-          //       url: '/careers',
-          //     },
-          //   },
+          {
+            id: '6-3',
+            link: {
+              id: '6-3',
+              title: 'Careers',
+              url: '/careers',
+            },
+          },
           {
             id: '6-4',
             link: {
