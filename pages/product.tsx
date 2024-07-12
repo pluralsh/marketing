@@ -251,7 +251,7 @@ export const getStaticProps = async () => {
   return propsWithGlobalSettings({
     metaTitle: 'How Plural works',
     metaDescription:
-      'Plural is an open-source, unified, application deployment platform that stands up a Kubernetes cluster and selected applications in the cloud provider of your choice.',
+      'Plural is a self-hosted Kubernetes fleet management solution that allows you to manage and orchestrate Kubernetes clusters from a single, intuitive interface',
     featuredQuote: pageData?.featured_quote,
     faqs: normalizeM2mItems(pageData?.faq),
     footerVariant: FooterVariant.kitchenSink,
