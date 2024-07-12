@@ -263,9 +263,9 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               heading="Open positions"
               intro={
                 <p>
-                  We’re actively seeking passionate individuals to join our team
-                  and contribute to our mission. Explore our open positions and
-                  unlock exciting opportunities to make a meaningful impact.
+                  We are not actively hiring for new positions right now, but
+                  we’re always interested and receiving general applications to
+                  hiring@plural.sh
                 </p>
               }
               className={classNames(
