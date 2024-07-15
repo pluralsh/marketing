@@ -1,4 +1,10 @@
-import { type ComponentProps, type ReactNode, useEffect, useState } from 'react'
+import {
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { Button, PluralLogoFull, usePrevious } from '@pluralsh/design-system'
 import NextLink from 'next/link'
@@ -58,6 +64,7 @@ export function PageHeader({
   useKey(['Escape'], () => {
     setMenuIsOpen(false)
   })
+  const logoRef = useRef(null)
 
   return (
     <HeaderWrap
@@ -75,6 +82,7 @@ export function PageHeader({
             className="logoLink flex flex-shrink-0"
             passHref
             aria-label="Go to Plural homepage"
+            ref={logoRef}
           >
             <PluralLogoFull
               color={
@@ -84,7 +92,7 @@ export function PageHeader({
               }
             />
           </NextLink>
-          <NavigationDesktop />
+          <NavigationDesktop logoRef={logoRef} />
         </nav>
         <Filler />
         <section className="rightSection">

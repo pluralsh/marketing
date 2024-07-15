@@ -1,12 +1,8 @@
-import { type ComponentProps, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { ColorModeProvider } from '@pluralsh/design-system'
 
-import styled from 'styled-components'
-
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
-
-import { mqs } from '../breakpoints'
 
 import { ProductTopNavMenu } from './menu/ProductNav'
 import { SolutionTopNavMenu } from './menu/SolutionNav'
@@ -33,59 +29,54 @@ function flattenNavData(navData: NavData): NavData {
   return ret
 }
 
-export const NavigationDesktop = styled(
-  ({ ...props }: ComponentProps<'div'>) => {
-    const navData = useNavData()
-    const flatNav = useMemo(() => flattenNavData(navData), [navData])
+export function NavigationDesktop({ logoRef }) {
+  const navData = useNavData()
+  const flatNav = useMemo(() => flattenNavData(navData), [navData])
+  const logoLeft = logoRef?.current?.getBoundingClientRect()?.left
 
-    return (
-      <ColorModeProvider mode="dark">
-        <div {...props}>
-          {flatNav?.map((navItem, i) => {
-            if (navItem?.mobile_only) {
-              return null
-            }
-            if (navItem?.subnav) {
-              if (!i) {
-                return (
-                  <ProductTopNavMenu
-                    key={navItem.id}
-                    navItem={navItem}
-                  />
-                )
-              }
-              if (i === 1) {
-                return (
-                  <SolutionTopNavMenu
-                    key={navItem.id}
-                    navItem={navItem}
-                  />
-                )
-              }
-
+  return (
+    <ColorModeProvider mode="dark">
+      <div className="hidden gap-xsmall lg:flex">
+        {flatNav?.map((navItem, i) => {
+          if (navItem?.mobile_only) {
+            return null
+          }
+          if (navItem?.subnav) {
+            if (!i) {
               return (
-                <TopNavMenu
+                <ProductTopNavMenu
                   key={navItem.id}
                   navItem={navItem}
+                  left={logoLeft}
+                />
+              )
+            }
+            if (i === 1) {
+              return (
+                <SolutionTopNavMenu
+                  key={navItem.id}
+                  navItem={navItem}
+                  left={logoLeft}
                 />
               )
             }
 
             return (
-              <NavItemLink
-                key={navItem?.id}
+              <TopNavMenu
+                key={navItem.id}
                 navItem={navItem}
               />
             )
-          })}
-        </div>
-      </ColorModeProvider>
-    )
-  }
-)(({ theme }) => ({
-  display: 'none',
-  [mqs.fullHeader]: {
-    display: 'flex',
-    gap: theme.spacing.xsmall,
-  },
-}))
+          }
+
+          return (
+            <NavItemLink
+              key={navItem?.id}
+              navItem={navItem}
+            />
+          )
+        })}
+      </div>
+    </ColorModeProvider>
+  )
+}
