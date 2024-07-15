@@ -4,6 +4,8 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 import Head from 'next/head'
 import Script from 'next/script'
 
+import { useTheme } from 'styled-components'
+
 import { ResponsiveAspectRatioSC } from '@src/components/AspectRatio'
 import { BenefitCard } from '@src/components/BenefitCard'
 import { FooterVariant } from '@src/components/FooterFull'
@@ -83,6 +85,8 @@ function Photo({
 }
 
 export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
+  const theme = useTheme()
+
   return (
     <>
       <Head>
@@ -265,7 +269,13 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
                 <p>
                   We are not actively hiring for new positions right now, but
                   we’re always interested and receiving general applications to
-                  hiring@plural.sh
+                  &nbsp;
+                  <a
+                    style={{ ...theme.partials.marketingText.inlineLink }}
+                    href="mailto:hiring@plural.sh"
+                  >
+                    hiring@plural.sh
+                  </a>
                 </p>
               }
               className={classNames(
