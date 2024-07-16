@@ -48,7 +48,7 @@ const navItems = [
         href: '/about',
       },
       {
-        children: 'Join the team',
+        children: 'Careers',
         href: '/careers',
       },
       {

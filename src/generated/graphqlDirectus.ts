@@ -8296,21 +8296,21 @@ export type SolutionsQueryVariables = Exact<{
 
 export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, name?: string | null, title?: string | null, company?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null }> };
 
-export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
+export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
-export type FullJobListingFragment = { __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null };
+export type FullJobListingFragment = { __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
 export type JobListingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type JobListingsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null }> };
+export type JobListingsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null }> };
 
 export type JobListingQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type JobListingQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null }> };
+export type JobListingQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null }> };
 
 export type JobListingSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8588,6 +8588,7 @@ export const MinJobListingFragmentDoc = gql`
   department
   tags
   location
+  status
 }
     `;
 export const FullJobListingFragmentDoc = gql`
@@ -8974,7 +8975,7 @@ export type SolutionsLazyQueryHookResult = ReturnType<typeof useSolutionsLazyQue
 export type SolutionsQueryResult = Apollo.QueryResult<SolutionsQuery, SolutionsQueryVariables>;
 export const JobListingsDocument = gql`
     query JobListings {
-  job_listings {
+  job_listings(filter: {status: {_neq: "archived"}}) {
     ...MinJobListing
   }
 }
@@ -9008,7 +9009,7 @@ export type JobListingsLazyQueryHookResult = ReturnType<typeof useJobListingsLaz
 export type JobListingsQueryResult = Apollo.QueryResult<JobListingsQuery, JobListingsQueryVariables>;
 export const JobListingDocument = gql`
     query JobListing($slug: String) {
-  job_listings(filter: {slug: {_eq: $slug}}) {
+  job_listings(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
     ...FullJobListing
   }
 }

@@ -12,7 +12,7 @@ fragment Event on events {
 }
 
 query Events {
-  events {
+  events(filter: { status: { _neq: "archived" } }) {
     ...Event
   }
 }
@@ -128,7 +128,7 @@ fragment AppDefaults on app_defaults {
 }
 
 query AppExtras($name: String) {
-  apps(filter: { name: { _eq: $name } }) {
+  apps(filter: { name: { _eq: $name }, status: { _neq: "archived" } }) {
     ...AppExtras
   }
   app_defaults {
@@ -153,7 +153,7 @@ fragment StackDefaults on stack_defaults {
 }
 
 query StackExtras($name: String) {
-  stacks(filter: { name: { _eq: $name } }) {
+  stacks(filter: { name: { _eq: $name, status: { _neq: "archived" } } }) {
     ...StackExtras
   }
   stack_defaults {
@@ -185,7 +185,7 @@ fragment TeamMember on team_members {
 }
 
 query TeamMembers {
-  team_members {
+  team_members(filter: { status: { _neq: "archived" } }) {
     ...TeamMember
   }
 }
@@ -205,7 +205,7 @@ fragment FeaturedContributor on featured_contributors {
 }
 
 query FeaturedContributors {
-  featured_contributors {
+  featured_contributors(filter: { status: { _neq: "archived" } }) {
     ...FeaturedContributor
   }
 }
@@ -225,7 +225,9 @@ fragment FaqList on collapsible_lists {
 }
 
 query FaqList($slug: String) {
-  collapsible_lists(filter: { slug: { _eq: $slug } }) {
+  collapsible_lists(
+    filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }
+  ) {
     ...FaqList
   }
 }
@@ -271,7 +273,7 @@ fragment Solution on solutions_pages {
 }
 
 query SolutionsSlugs {
-  solutions_pages {
+  solutions_pages(filter: { status: { _neq: "archived" } }) {
     slug
     nav_title
     category
@@ -279,7 +281,9 @@ query SolutionsSlugs {
 }
 
 query Solutions($slug: String) {
-  solutions_pages(filter: { slug: { _eq: $slug } }) {
+  solutions_pages(
+    filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }
+  ) {
     ...Solution
   }
 }

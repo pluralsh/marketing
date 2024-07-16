@@ -5,6 +5,7 @@ fragment MinJobListing on job_listings {
   department
   tags
   location
+  status
 }
 
 fragment FullJobListing on job_listings {
@@ -13,13 +14,13 @@ fragment FullJobListing on job_listings {
 }
 
 query JobListings {
-  job_listings {
+  job_listings(filter: { status: { _neq: "archived" } }) {
     ...MinJobListing
   }
 }
 
 query JobListing($slug: String) {
-  job_listings(filter: { slug: { _eq: $slug } }) {
+  job_listings(filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }) {
     ...FullJobListing
   }
 }

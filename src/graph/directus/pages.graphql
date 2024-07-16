@@ -14,7 +14,7 @@ fragment PageCommunity on page_community {
 }
 
 query PageCommunity {
-  page_community {
+  page_community(filter: { status: { _neq: "archived" } }) {
     ...PageCommunity
   }
 }
@@ -29,7 +29,7 @@ fragment PageProduct on page_product {
 }
 
 query PageProduct {
-  page_product {
+  page_product(filter: { status: { _neq: "archived" } }) {
     ...PageProduct
   }
 }
@@ -49,7 +49,7 @@ fragment PageLegal on page_legal {
 }
 
 query PageLegal {
-  page_legal {
+  page_legal(filter: { status: { _neq: "archived" } }) {
     ...PageLegal
   }
 }
@@ -89,7 +89,7 @@ fragment PageHomepage on page_homepage {
 }
 
 query PageHomepage {
-  page_homepage {
+  page_homepage(filter: { status: { _neq: "archived" } }) {
     ...PageHomepage
   }
 }
