@@ -308,7 +308,7 @@ export default function Index({
       <QuoteSection
         title="Delivering value to DevOps and Platform Engineering teams"
         quote={`By adopting Plural for our Kubernetes fleet management solution, we
-        reduced our k8s upgrade cycle from 9 months to 1 day, enabling us to
+        reduced our k8s upgrade cycle from 3 months to 1 day, enabling us to
         delegate responsibilities more effectively from principal engineers to a single mid-level engineer.`}
         attribution="Director DevOps, Leading Global Cybersecurity Provider"
       />
