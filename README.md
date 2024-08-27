@@ -6,9 +6,15 @@ Built with [Next.js](https://nextjs.org/) and [Markdoc](https://markdoc.dev/).
 
 ## Contributing
 
+
 ### Running the site locally
 
-To run the site locally, you'll need to have yarn and node as prerequisites. Then run the following commands:
+To start, you'll need to receive an access token from Plural's Directus:
+1. Request access to Directus, then login at https://directus.plural.sh
+2. Generate an access token at the bottom of Profile > Administrator.
+3. Run `export DIRECTUS_ACCESS_TOKEN={your-access-token}`
+
+Then, to run the site locally, you'll need to have yarn and node as prerequisites. Then run the following commands:
 
 ```shell
 yarn # build the environment
