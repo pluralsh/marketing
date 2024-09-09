@@ -111,7 +111,7 @@ export function PageHeader({
               primary
               fontFamily={theme.fontFamilies.sans}
             >
-              Book a demo today
+              Book a demo
             </Button>
           </div>
           {/* <SearchButton /> */}

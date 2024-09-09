@@ -191,7 +191,7 @@ export default function Pricing({
               href="/contact-sales"
               className="mt-xlarge w-fit"
             >
-              Book a demo today
+              Book a demo
             </Button>
           </StandardPageWidth>
         </div>

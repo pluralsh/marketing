@@ -203,7 +203,7 @@ export default function Index({
                 as={Link}
                 href="/contact-sales"
               >
-                Book a demo today
+                Book a demo
               </Button>
             </div>
           }
