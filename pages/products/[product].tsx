@@ -34,7 +34,7 @@ export default function Product({
             href="/contact-sales"
             className=" w-fit"
           >
-            Book a demo today
+            Book a demo
           </Button>
         }
       />

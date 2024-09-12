@@ -4,8 +4,6 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
-import { ProductTopNavMenu } from './menu/ProductNav'
-import { SolutionTopNavMenu } from './menu/SolutionNav'
 import { TopNavMenu } from './menu/TopNavMenu'
 import { MainLink } from './Navigation'
 
@@ -37,34 +35,28 @@ export function NavigationDesktop({ logoRef }) {
   return (
     <ColorModeProvider mode="dark">
       <div className="hidden gap-xsmall lg:flex">
-        {flatNav?.map((navItem, i) => {
+        {flatNav?.map((navItem) => {
           if (navItem?.mobile_only) {
             return null
           }
           if (navItem?.subnav) {
-            if (!i) {
-              return (
-                <ProductTopNavMenu
-                  key={navItem.id}
-                  navItem={navItem}
-                  left={logoLeft}
-                />
-              )
-            }
-            if (i === 1) {
-              return (
-                <SolutionTopNavMenu
-                  key={navItem.id}
-                  navItem={navItem}
-                  left={logoLeft}
-                />
-              )
-            }
+            const kind =
+              navItem.link?.title === 'Product'
+                ? 'product'
+                : navItem.link?.title === 'Solutions'
+                  ? 'solution'
+                  : 'default'
 
             return (
               <TopNavMenu
                 key={navItem.id}
+                kind={kind}
                 navItem={navItem}
+                left={
+                  kind === 'product' || kind === 'solution'
+                    ? logoLeft
+                    : undefined
+                }
               />
             )
           }

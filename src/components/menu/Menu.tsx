@@ -28,7 +28,6 @@ import {
 import styled from 'styled-components'
 
 import { MainLinkBase } from '../Navigation'
-import { ResponsiveText } from '../Typography'
 
 import { PopoverMenu } from './PopoverMenu'
 
@@ -37,11 +36,12 @@ type Placement = 'left' | 'right'
 export type ItemRendererProps<T extends object> = {
   item: Node<T>
   state: TreeState<T>
+  kind?: MenuButtonProps<T>['kind']
 }
 
 type ItemRenderer<T extends object> = (p: ItemRendererProps<T>) => JSX.Element
 
-interface MenuButtonProps<T extends { render?: FunctionComponent }>
+export interface MenuButtonProps<T extends { render?: FunctionComponent }>
   extends AriaMenuProps<T>,
     MenuTriggerProps {
   itemRenderer?: ItemRenderer<T>
@@ -51,6 +51,8 @@ interface MenuButtonProps<T extends { render?: FunctionComponent }>
   maxHeight?: number | string
   className?: string
   dropdownProps?: Parameters<typeof useFloatingDropdown>[0]
+  kind?: 'product' | 'default' | 'solution'
+  left?: number
 }
 
 function MainLinkTriggerUnstyled({
@@ -107,10 +109,7 @@ export function MenuButton<T extends object>({
   kind = 'default',
   left,
   ...props
-}: MenuButtonProps<T> & {
-  kind?: 'product' | 'default' | 'solution'
-  left?: number
-}) {
+}: MenuButtonProps<T>) {
   // Create state based on the incoming props
   const triggerState = useMenuTriggerState(props)
 
@@ -198,10 +197,14 @@ function MenuDropdown<T extends object>({
     >
       <DropdownCard>
         <div className={kind === 'product' ? 'p-xlarge' : ''}>
+          {kind === 'product' && (
+            <MenuCategoryLabel>Platform features</MenuCategoryLabel>
+          )}
           <ul className={kind === 'product' ? 'grid grid-cols-2' : ''}>
             {[...state.collection].map((item) => (
               <ItemRenderer
                 key={item.key}
+                kind={kind}
                 item={item}
                 state={state}
               />
@@ -254,18 +257,12 @@ function SolutionNavDropdown<T extends object>({
         <div className="p-xlarge">
           {Object.keys(itemByCategory).map((category) => (
             <div key={category}>
-              <ResponsiveText
-                as="h2"
-                textStyles={{ '': 'mLabel' }}
-                color="text-light"
-                className="mb-xsmall ml-xxsmall uppercase"
-              >
-                {category}
-              </ResponsiveText>
+              <MenuCategoryLabel>{category}</MenuCategoryLabel>
               <ul>
                 {itemByCategory[category].map((item) => (
                   <ItemRenderer
                     key={item.key}
+                    kind="solution"
                     item={item}
                     state={state}
                   />
@@ -316,3 +313,10 @@ export function MenuItem<T extends object>({
     </li>
   )
 }
+
+const MenuCategoryLabel = styled.h2(({ theme }) => ({
+  ...theme.partials.marketingText.label,
+  color: theme.colors['text-light'],
+  marginBottom: theme.spacing.xsmall,
+  marginLeft: theme.spacing.xxsmall,
+}))
