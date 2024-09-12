@@ -128,7 +128,7 @@ fragment AppDefaults on app_defaults {
 }
 
 query AppExtras($name: String) {
-  apps(filter: { name: { _eq: $name }, status: { _neq: "archived" } }) {
+  apps(filter: { name: { _eq: $name } }) {
     ...AppExtras
   }
   app_defaults {
@@ -153,7 +153,7 @@ fragment StackDefaults on stack_defaults {
 }
 
 query StackExtras($name: String) {
-  stacks(filter: { name: { _eq: $name, status: { _neq: "archived" } } }) {
+  stacks(filter: { name: { _eq: $name } }) {
     ...StackExtras
   }
   stack_defaults {
