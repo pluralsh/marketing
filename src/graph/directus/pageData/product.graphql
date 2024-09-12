@@ -1,0 +1,37 @@
+fragment ProductPage on product_pages {
+  id
+  slug
+  type
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+  page_title
+  page_subtitle
+  features {
+    ...ProductFeature
+  }
+}
+
+fragment ProductFeature on product_features {
+  id
+  icon
+  title
+  description
+  image {
+    ...ImageFile
+  }
+}
+
+query ProductPageSlugs {
+  product_pages(filter: { status: { _neq: "archived" } }) {
+    slug
+  }
+}
+
+query ProductPage($slug: String) {
+  product_pages(
+    filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }
+  ) {
+    ...ProductPage
+  }
+}
