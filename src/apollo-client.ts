@@ -26,6 +26,11 @@ const directusLink = ApolloLink.from([directusRetryLink, directusHttpLink])
 export const directusClient = new ApolloClient({
   link: directusLink,
   cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'network-only',
+    },
+  },
 })
 
 export default client

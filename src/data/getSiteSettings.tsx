@@ -1,4 +1,5 @@
-import { getProductsConfigs } from './getProductConfigs'
+import { type NavList } from '@src/contexts/NavDataContext'
+import { type ProductPageTinyFragment } from '@src/generated/graphqlDirectus'
 
 type Solution = {
   slug?: string | null
@@ -6,7 +7,10 @@ type Solution = {
   category?: string | null
 }
 
-export const getSiteSettings = (solutions?: Solution[]) => ({
+export const getSiteSettings = (
+  solutions?: Solution[],
+  products?: ProductPageTinyFragment[]
+) => ({
   og_description:
     'Open-source application deployment, faster than ever without sacrificing compliance."',
   partner_logos: {
@@ -80,111 +84,96 @@ export const getSiteSettings = (solutions?: Solution[]) => ({
     ],
   },
   main_nav: {
-    subnav: [
-      {
-        id: '1',
-        link: {
-          id: '1',
-          title: 'Product',
-          url: '/kubernetes-fleet-management',
-        },
-        subnav: getProductSubnav(),
+    product: {
+      id: 'product',
+      link: {
+        title: 'Product',
+        url: '/kubernetes-fleet-management',
       },
-      {
-        id: '2',
-        link: {
-          id: '2',
-          title: 'Solutions',
-          url: '/solution',
-        },
-        subnav: getSolutionSubnav(solutions),
+      subnav: getProductSubnav(products),
+    },
+    solutions: {
+      id: 'solutions',
+      link: {
+        title: 'Solutions',
+        url: '/solution',
       },
-      {
-        id: '3',
-        link: {
-          id: '3',
-          title: 'Pricing',
-          url: '/pricing',
-        },
+      subnav: getSolutionSubnav(solutions),
+    },
+    pricing: {
+      id: 'pricing',
+      link: {
+        title: 'Pricing',
+        url: '/pricing',
       },
-      {
-        id: '4',
-        link: {
-          id: '4',
-          title: 'Resources',
-          url: '/resources',
-        },
-        subnav: [
-          {
-            id: '4-1',
-            link: {
-              id: '4-1',
-              title: 'Docs',
-              url: 'https://docs.plural.sh',
-            },
-          },
-          {
-            id: '4-2',
-            link: {
-              id: '4-2',
-              title: 'Blog',
-              url: 'https://www.plural.sh/blog',
-            },
-          },
-          {
-            id: '4-3',
-            link: {
-              id: '4-3',
-              title: 'Releases',
-              url: 'https://github.com/pluralsh/plural/releases',
-            },
-          },
-        ],
+    },
+    resources: {
+      id: 'resources',
+      link: {
+        title: 'Resources',
+        url: '/resources',
       },
-
-      {
-        id: '6',
-        link: {
-          id: '6',
-          title: 'Company',
-          url: '/company',
+      subnav: [
+        {
+          id: 'docs',
+          link: {
+            title: 'Docs',
+            url: 'https://docs.plural.sh',
+          },
         },
-        subnav: [
-          {
-            id: '6-1',
-            link: {
-              id: '6-1',
-              title: 'About',
-              url: '/about',
-            },
+        {
+          id: 'blog',
+          link: {
+            title: 'Blog',
+            url: 'https://www.plural.sh/blog',
           },
-          {
-            id: '6-3',
-            link: {
-              id: '6-3',
-              title: 'Careers',
-              url: '/careers',
-            },
+        },
+        {
+          id: 'releases',
+          link: {
+            title: 'Releases',
+            url: 'https://github.com/pluralsh/plural/releases',
           },
-          {
-            id: '6-4',
-            link: {
-              id: '6-4',
-              title: 'Contact',
-              url: '/contact',
-            },
-          },
-          {
-            id: '6-5',
-            link: {
-              id: '6-5',
-              title: 'Community',
-              url: '/community',
-            },
-          },
-        ],
+        },
+      ],
+    },
+    company: {
+      id: 'company',
+      link: {
+        title: 'Company',
+        url: '/company',
       },
-    ],
+      subnav: [
+        {
+          id: 'about',
+          link: {
+            title: 'About',
+            url: '/about',
+          },
+        },
+        {
+          id: 'careers',
+          link: {
+            title: 'Careers',
+            url: '/careers',
+          },
+        },
+        {
+          id: 'contact',
+          link: {
+            title: 'Contact',
+            url: '/contact',
+          },
+        },
+        {
+          id: 'community',
+          link: {
+            title: 'Community',
+            url: '/community',
+          },
+        },
+      ],
+    },
   },
   promo_banner_content: '',
   promo_banner_url: '',
@@ -204,13 +193,16 @@ export type PartnerLogos = {
   }[]
 }
 
-function getProductSubnav() {
-  return Object.keys(getProductsConfigs()).map((productKey, i) => ({
-    id: productKey,
+function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
+  if (!products || !products.length) return []
+
+  return products.map((product) => ({
+    id: product.slug,
     link: {
-      id: `${productKey}-${i}`,
-      title: getProductsConfigs()[productKey].title,
-      url: `/products/${productKey}`,
+      title: product.dropdown_title ?? '',
+      description: product.dropdown_description ?? '',
+      icon: product.dropdown_icon ?? '',
+      url: `/products/${product.slug}`,
     },
   }))
 }
@@ -219,7 +211,7 @@ function getSolutionSubnav(solutions?: Solution[]) {
   if (!solutions || !solutions.length) return undefined
 
   return solutions.map((solution, i) => ({
-    id: solution.slug || '',
+    id: solution.slug,
     link: {
       id: `${solution.slug}-${i}`,
       title: solution.nav_title,

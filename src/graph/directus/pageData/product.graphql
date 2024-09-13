@@ -12,6 +12,15 @@ fragment ProductPage on product_pages {
   }
 }
 
+fragment ProductPageTiny on product_pages {
+  id
+  slug
+  type
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+
 fragment ProductFeature on product_features {
   id
   icon
@@ -24,11 +33,11 @@ fragment ProductFeature on product_features {
 
 query ProductPageSlugs {
   product_pages(filter: { status: { _neq: "archived" } }) {
-    slug
+    ...ProductPageTiny
   }
 }
 
-query ProductPage($slug: String) {
+query ProductPage($slug: String!) {
   product_pages(
     filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }
   ) {

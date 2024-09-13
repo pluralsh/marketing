@@ -5235,7 +5235,7 @@ export type Create_Product_Pages_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
   page_subtitle?: InputMaybe<Scalars['String']['input']>;
   page_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
@@ -6802,7 +6802,7 @@ export type Product_Pages = {
   id: Scalars['ID']['output'];
   page_subtitle?: Maybe<Scalars['String']['output']>;
   page_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
   status?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
 };
@@ -9158,21 +9158,23 @@ export type JobListingSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type JobListingSlugsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', slug: string }> };
 
-export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug?: string | null, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
+export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
+
+export type ProductPageTinyFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null };
 
 export type ProductFeatureFragment = { __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type ProductPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductPageSlugsQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', slug?: string | null }> };
+export type ProductPageSlugsQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }> };
 
 export type ProductPageQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
 }>;
 
 
-export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug?: string | null, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null }> };
+export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null }> };
 
 export type CalloutFragment = { __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null };
 
@@ -9480,6 +9482,16 @@ export const ProductPageFragmentDoc = gql`
   }
 }
     ${ProductFeatureFragmentDoc}`;
+export const ProductPageTinyFragmentDoc = gql`
+    fragment ProductPageTiny on product_pages {
+  id
+  slug
+  type
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+    `;
 export const CalloutFragmentDoc = gql`
     fragment Callout on callouts {
   id
@@ -9962,10 +9974,10 @@ export type JobListingSlugsQueryResult = Apollo.QueryResult<JobListingSlugsQuery
 export const ProductPageSlugsDocument = gql`
     query ProductPageSlugs {
   product_pages(filter: {status: {_neq: "archived"}}) {
-    slug
+    ...ProductPageTiny
   }
 }
-    `;
+    ${ProductPageTinyFragmentDoc}`;
 
 /**
  * __useProductPageSlugsQuery__
@@ -9994,7 +10006,7 @@ export type ProductPageSlugsQueryHookResult = ReturnType<typeof useProductPageSl
 export type ProductPageSlugsLazyQueryHookResult = ReturnType<typeof useProductPageSlugsLazyQuery>;
 export type ProductPageSlugsQueryResult = Apollo.QueryResult<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>;
 export const ProductPageDocument = gql`
-    query ProductPage($slug: String) {
+    query ProductPage($slug: String!) {
   product_pages(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
     ...ProductPage
   }
@@ -10017,7 +10029,7 @@ export const ProductPageDocument = gql`
  *   },
  * });
  */
-export function useProductPageQuery(baseOptions?: Apollo.QueryHookOptions<ProductPageQuery, ProductPageQueryVariables>) {
+export function useProductPageQuery(baseOptions: Apollo.QueryHookOptions<ProductPageQuery, ProductPageQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<ProductPageQuery, ProductPageQueryVariables>(ProductPageDocument, options);
       }

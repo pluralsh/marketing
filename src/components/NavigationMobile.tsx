@@ -9,8 +9,7 @@ import { isEmpty } from 'lodash-es'
 import styled, { useTheme } from 'styled-components'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
-import { useNavData } from '@src/contexts/NavDataContext'
-import { type NavListFragment } from '@src/generated/graphqlDirectus'
+import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import useScrollLock from './hooks/useScrollLock'
 import { MainLink, ProductMobileLink } from './Navigation'
@@ -31,13 +30,6 @@ export const MenuHeading = styled.h6(({ theme }) => ({
 type MobileMenuProps = NavContextValue & {
   className?: string
 }
-
-type NavData = (
-  | (NavListFragment & {
-      subnav?: NavData | null
-    })
-  | null
-)[]
 
 function NavList({ navData }: { navData?: NavData | null }) {
   const theme = useTheme()
