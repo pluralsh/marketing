@@ -375,6 +375,10 @@ export type ClosureItem = {
   terraform?: Maybe<Terraform>;
 };
 
+export enum CloudProvider {
+  Aws = 'AWS'
+}
+
 export type CloudShell = {
   __typename?: 'CloudShell';
   aesKey: Scalars['String']['output'];
@@ -415,6 +419,8 @@ export type Cluster = {
   /** The ID of the cluster. */
   id: Scalars['ID']['output'];
   insertedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** whether this is a legacy OSS cluster */
+  legacy?: Maybe<Scalars['Boolean']['output']>;
   /** whether any installation in the cluster has been locked */
   locked?: Maybe<Scalars['Boolean']['output']>;
   /** The name of the cluster. */
@@ -454,6 +460,8 @@ export type ClusterAttributes = {
   domain?: InputMaybe<Scalars['String']['input']>;
   /** The git repository URL for the cluster. */
   gitUrl?: InputMaybe<Scalars['String']['input']>;
+  /** whether this is a legacy oss cluster */
+  legacy?: InputMaybe<Scalars['Boolean']['input']>;
   /** The name of the cluster. */
   name: Scalars['String']['input'];
   /** The cluster's cloud provider. */
@@ -545,6 +553,78 @@ export type ConsentRequest = {
   requestedScope?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   skip?: Maybe<Scalars['Boolean']['output']>;
 };
+
+export type ConsoleConfigurationUpdateAttributes = {
+  encryptionKey?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ConsoleInstance = {
+  __typename?: 'ConsoleInstance';
+  /** the cloud provider hosting this instance */
+  cloud: CloudProvider;
+  console?: Maybe<Cluster>;
+  /** the time this instance was deleted on */
+  deletedAt?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
+  insertedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** the name of this instance (globally unique) */
+  name: Scalars['String']['output'];
+  owner?: Maybe<User>;
+  /** the region this instance is hosted in */
+  region: Scalars['String']['output'];
+  /** the heuristic size of this instance */
+  size: ConsoleSize;
+  /** the provisioning status of this instance, liveness is fetched through the console field */
+  status: ConsoleInstanceStatus;
+  /** the subdomain this instance lives under */
+  subdomain: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** full console url of this instance */
+  url: Scalars['String']['output'];
+};
+
+export type ConsoleInstanceAttributes = {
+  /** the cloud provider to deploy to */
+  cloud: CloudProvider;
+  /** the name of this instance (globally unique) */
+  name: Scalars['String']['input'];
+  /** the region to deploy to (provider specific) */
+  region: Scalars['String']['input'];
+  /** a heuristic size of this instance */
+  size: ConsoleSize;
+};
+
+export type ConsoleInstanceConnection = {
+  __typename?: 'ConsoleInstanceConnection';
+  edges?: Maybe<Array<Maybe<ConsoleInstanceEdge>>>;
+  pageInfo: PageInfo;
+};
+
+export type ConsoleInstanceEdge = {
+  __typename?: 'ConsoleInstanceEdge';
+  cursor?: Maybe<Scalars['String']['output']>;
+  node?: Maybe<ConsoleInstance>;
+};
+
+export enum ConsoleInstanceStatus {
+  DatabaseCreated = 'DATABASE_CREATED',
+  DatabaseDeleted = 'DATABASE_DELETED',
+  DeploymentCreated = 'DEPLOYMENT_CREATED',
+  DeploymentDeleted = 'DEPLOYMENT_DELETED',
+  Pending = 'PENDING',
+  Provisioned = 'PROVISIONED'
+}
+
+export type ConsoleInstanceUpdateAttributes = {
+  configuration?: InputMaybe<ConsoleConfigurationUpdateAttributes>;
+  size?: InputMaybe<ConsoleSize>;
+};
+
+export enum ConsoleSize {
+  Large = 'LARGE',
+  Medium = 'MEDIUM',
+  Small = 'SMALL'
+}
 
 export type ContextAttributes = {
   buckets?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -2693,6 +2773,7 @@ export type RootMutationType = {
   createCluster?: Maybe<Cluster>;
   /** adds a dependency for this cluster to gate future upgrades */
   createClusterDependency?: Maybe<ClusterDependency>;
+  createConsoleInstance?: Maybe<ConsoleInstance>;
   createCrd?: Maybe<Crd>;
   createDemoProject?: Maybe<DemoProject>;
   createDnsRecord?: Maybe<DnsRecord>;
@@ -2737,6 +2818,7 @@ export type RootMutationType = {
   deleteCluster?: Maybe<Cluster>;
   /** deletes a dependency for this cluster and potentially disables promotions entirely */
   deleteClusterDependency?: Maybe<ClusterDependency>;
+  deleteConsoleInstance?: Maybe<ConsoleInstance>;
   deleteDemoProject?: Maybe<DemoProject>;
   deleteDnsRecord?: Maybe<DnsRecord>;
   deleteDomain?: Maybe<DnsDomain>;
@@ -2809,6 +2891,7 @@ export type RootMutationType = {
   updateAccount?: Maybe<Account>;
   updateChart?: Maybe<Chart>;
   updateChartInstallation?: Maybe<ChartInstallation>;
+  updateConsoleInstance?: Maybe<ConsoleInstance>;
   updateDockerRepository?: Maybe<DockerRepository>;
   updateDomain?: Maybe<DnsDomain>;
   updateGroup?: Maybe<Group>;
@@ -2880,6 +2963,11 @@ export type RootMutationTypeCreateClusterArgs = {
 export type RootMutationTypeCreateClusterDependencyArgs = {
   destId: Scalars['ID']['input'];
   sourceId: Scalars['ID']['input'];
+};
+
+
+export type RootMutationTypeCreateConsoleInstanceArgs = {
+  attributes: ConsoleInstanceAttributes;
 };
 
 
@@ -3107,6 +3195,11 @@ export type RootMutationTypeDeleteClusterArgs = {
 export type RootMutationTypeDeleteClusterDependencyArgs = {
   destId: Scalars['ID']['input'];
   sourceId: Scalars['ID']['input'];
+};
+
+
+export type RootMutationTypeDeleteConsoleInstanceArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -3449,6 +3542,12 @@ export type RootMutationTypeUpdateChartInstallationArgs = {
 };
 
 
+export type RootMutationTypeUpdateConsoleInstanceArgs = {
+  attributes: ConsoleInstanceUpdateAttributes;
+  id: Scalars['ID']['input'];
+};
+
+
 export type RootMutationTypeUpdateDockerRepositoryArgs = {
   attributes: DockerRepositoryAttributes;
   id: Scalars['ID']['input'];
@@ -3621,6 +3720,8 @@ export type RootQueryType = {
   /** Get a list of clusters owned by the current account. */
   clusters?: Maybe<ClusterConnection>;
   configuration?: Maybe<PluralConfiguration>;
+  consoleInstance?: Maybe<ConsoleInstance>;
+  consoleInstances?: Maybe<ConsoleInstanceConnection>;
   deferredUpdates?: Maybe<DeferredUpdateConnection>;
   demoProject?: Maybe<DemoProject>;
   dnsDomain?: Maybe<DnsDomain>;
@@ -3758,6 +3859,19 @@ export type RootQueryTypeClusterArgs = {
 
 
 export type RootQueryTypeClustersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type RootQueryTypeConsoleInstanceArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryTypeConsoleInstancesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -4810,6 +4924,7 @@ export type UpgradeQueueUpgradesArgs = {
 export type UpgradeQueueAttributes = {
   domain?: InputMaybe<Scalars['String']['input']>;
   git?: InputMaybe<Scalars['String']['input']>;
+  legacy?: InputMaybe<Scalars['Boolean']['input']>;
   name: Scalars['String']['input'];
   provider?: InputMaybe<Provider>;
 };

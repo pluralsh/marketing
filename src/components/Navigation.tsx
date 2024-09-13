@@ -1,14 +1,18 @@
-import { type ComponentProps, forwardRef } from 'react'
+import { type ComponentProps, forwardRef, useContext } from 'react'
 
 import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
+import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
 import styled, { useTheme } from 'styled-components'
 
-import { getProductsConfigs } from '@src/data/getProductConfigs'
+import * as productNavIcons from '@src/components/menu/ProductNavIcons'
 
 import { mqs } from '../breakpoints'
 
+import { GlobalPropsContext } from './PrimaryPage'
 import { ResponsiveText } from './Typography'
+
+const icons = { ...productNavIcons, ...designSystemIcons }
 
 export const MainLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
@@ -27,8 +31,13 @@ export const ProductLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
     const { Link } = useNavigationContext()
     const theme = useTheme()
+    const globalProps = useContext(GlobalPropsContext)
 
-    const itemConfig = getProductsConfigs()[props.id || '']
+    const itemConfig = globalProps?.siteSettings.main_nav.product.subnav.find(
+      (item) => item.id === props.id
+    )?.link
+
+    const IconComponent = itemConfig?.icon ? icons[itemConfig.icon] : null
 
     return (
       <MainLinkBase
@@ -37,7 +46,9 @@ export const ProductLink = forwardRef(
         {...props}
       >
         <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
-          {itemConfig?.navIcon}
+          {IconComponent && (
+            <IconComponent color={theme.colors['icon-primary']} />
+          )}
         </div>
         <div>
           <ResponsiveText
@@ -51,9 +62,49 @@ export const ProductLink = forwardRef(
             textStyles={{ '': 'mBody2' }}
             style={{ color: theme.colors['text-light'] }}
           >
-            {itemConfig?.navDescription}
+            {itemConfig?.description}
           </ResponsiveText>
         </div>
+        <ArrowRightIcon
+          className="hover-arrow"
+          size="16px"
+          style={{ marginLeft: 'auto' }}
+        />
+      </MainLinkBase>
+    )
+  }
+)
+
+export const ProductMobileLink = forwardRef(
+  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+    const theme = useTheme()
+    const { Link } = useNavigationContext()
+    const globalProps = useContext(GlobalPropsContext)
+
+    const itemConfig = globalProps?.siteSettings.main_nav.product.subnav.find(
+      (item) => item.id === props.id
+    )?.link
+
+    const IconComponent = itemConfig?.icon ? icons[itemConfig.icon] : null
+
+    return (
+      <MainLinkBase
+        ref={ref}
+        as={Link}
+        {...props}
+      >
+        <div className="h-[25px] w-[25px] min-w-[25px] rounded-medium border border-grey-750 bg-fill-two p-xxsmall">
+          {IconComponent && (
+            <IconComponent color={theme.colors['icon-primary']} />
+          )}
+        </div>
+        <ResponsiveText
+          as="p"
+          textStyles={{ '': 'aBody2' }}
+        >
+          {itemConfig?.title}
+        </ResponsiveText>
+
         <ArrowRightIcon
           className="hover-arrow"
           size="16px"
@@ -80,37 +131,6 @@ export const SolutionLink = forwardRef(
         >
           {props.children}
         </ResponsiveText>
-        <ArrowRightIcon
-          className="hover-arrow"
-          size="16px"
-          style={{ marginLeft: 'auto' }}
-        />
-      </MainLinkBase>
-    )
-  }
-)
-export const ProductMobileLink = forwardRef(
-  (props: ComponentProps<typeof MainLinkBase>, ref) => {
-    const { Link } = useNavigationContext()
-
-    const itemConfig = getProductsConfigs()[props.id || '']
-
-    return (
-      <MainLinkBase
-        ref={ref}
-        as={Link}
-        {...props}
-      >
-        <div className="h-[25px] w-[25px] min-w-[25px] rounded-medium border border-grey-750 bg-fill-two p-xxsmall">
-          {itemConfig?.navIcon}
-        </div>
-        <ResponsiveText
-          as="p"
-          textStyles={{ '': 'aBody2' }}
-        >
-          {itemConfig?.title}
-        </ResponsiveText>
-
         <ArrowRightIcon
           className="hover-arrow"
           size="16px"

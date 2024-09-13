@@ -1,8 +1,6 @@
-import { useMemo } from 'react'
-
 import { ColorModeProvider } from '@pluralsh/design-system'
 
-import { type NavData, useNavData } from '@src/contexts/NavDataContext'
+import { useNavData } from '@src/contexts/NavDataContext'
 
 import { TopNavMenu } from './menu/TopNavMenu'
 import { MainLink } from './Navigation'
@@ -15,30 +13,14 @@ export function NavItemLink({ navItem }: { navItem?: any }) {
   )
 }
 
-function flattenNavData(navData: NavData): NavData {
-  const ret = navData?.flatMap((navItem) => {
-    if (navItem?.flatten && navItem.subnav) {
-      return flattenNavData(navItem.subnav)
-    }
-
-    return navItem
-  })
-
-  return ret
-}
-
 export function NavigationDesktop({ logoRef }) {
   const navData = useNavData()
-  const flatNav = useMemo(() => flattenNavData(navData), [navData])
   const logoLeft = logoRef?.current?.getBoundingClientRect()?.left
 
   return (
     <ColorModeProvider mode="dark">
       <div className="hidden gap-xsmall lg:flex">
-        {flatNav?.map((navItem) => {
-          if (navItem?.mobile_only) {
-            return null
-          }
+        {navData?.map((navItem) => {
           if (navItem?.subnav) {
             const kind =
               navItem.link?.title === 'Product'

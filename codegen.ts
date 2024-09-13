@@ -37,7 +37,10 @@ const config: CodegenConfig = {
       schema: `https://directus.plural.sh/graphql${
         directusToken ? `?access_token=${directusToken}` : ''
       }`,
-      documents: './src/graph/directus/*.graphql',
+      documents: [
+        './src/graph/directus/**/*.graphql',
+        '!./src/graph/directus/system/**/*.graphql',
+      ],
       plugins: [
         'typescript',
         'typescript-operations',

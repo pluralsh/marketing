@@ -64,10 +64,20 @@ export type Mutation = {
   create_nav_link_items: Array<Nav_Link>;
   create_nav_list_item?: Maybe<Nav_List>;
   create_nav_list_items: Array<Nav_List>;
+  create_product_features_item?: Maybe<Product_Features>;
+  create_product_features_items: Array<Product_Features>;
   create_product_page_items_item?: Maybe<Product_Page_Items>;
   create_product_page_items_items: Array<Product_Page_Items>;
+  create_product_pages_features_1_item?: Maybe<Product_Pages_Features_1>;
+  create_product_pages_features_1_items: Array<Product_Pages_Features_1>;
+  create_product_pages_features_item?: Maybe<Product_Pages_Features>;
+  create_product_pages_features_items: Array<Product_Pages_Features>;
   create_product_pages_item?: Maybe<Product_Pages>;
   create_product_pages_items: Array<Product_Pages>;
+  create_product_pages_product_features_1_item?: Maybe<Product_Pages_Product_Features_1>;
+  create_product_pages_product_features_1_items: Array<Product_Pages_Product_Features_1>;
+  create_product_pages_product_features_item?: Maybe<Product_Pages_Product_Features>;
+  create_product_pages_product_features_items: Array<Product_Pages_Product_Features>;
   create_quote_lists_item?: Maybe<Quote_Lists>;
   create_quote_lists_items: Array<Quote_Lists>;
   create_quote_lists_items_item?: Maybe<Quote_Lists_Items>;
@@ -134,10 +144,20 @@ export type Mutation = {
   delete_nav_link_items?: Maybe<Delete_Many>;
   delete_nav_list_item?: Maybe<Delete_One>;
   delete_nav_list_items?: Maybe<Delete_Many>;
+  delete_product_features_item?: Maybe<Delete_One>;
+  delete_product_features_items?: Maybe<Delete_Many>;
   delete_product_page_items_item?: Maybe<Delete_One>;
   delete_product_page_items_items?: Maybe<Delete_Many>;
+  delete_product_pages_features_1_item?: Maybe<Delete_One>;
+  delete_product_pages_features_1_items?: Maybe<Delete_Many>;
+  delete_product_pages_features_item?: Maybe<Delete_One>;
+  delete_product_pages_features_items?: Maybe<Delete_Many>;
   delete_product_pages_item?: Maybe<Delete_One>;
   delete_product_pages_items?: Maybe<Delete_Many>;
+  delete_product_pages_product_features_1_item?: Maybe<Delete_One>;
+  delete_product_pages_product_features_1_items?: Maybe<Delete_Many>;
+  delete_product_pages_product_features_item?: Maybe<Delete_One>;
+  delete_product_pages_product_features_items?: Maybe<Delete_Many>;
   delete_quote_lists_item?: Maybe<Delete_One>;
   delete_quote_lists_items?: Maybe<Delete_Many>;
   delete_quote_lists_items_item?: Maybe<Delete_One>;
@@ -228,12 +248,27 @@ export type Mutation = {
   update_page_homepage?: Maybe<Page_Homepage>;
   update_page_legal?: Maybe<Page_Legal>;
   update_page_product?: Maybe<Page_Product>;
+  update_product_features_batch: Array<Product_Features>;
+  update_product_features_item?: Maybe<Product_Features>;
+  update_product_features_items: Array<Product_Features>;
   update_product_page_items_batch: Array<Product_Page_Items>;
   update_product_page_items_item?: Maybe<Product_Page_Items>;
   update_product_page_items_items: Array<Product_Page_Items>;
   update_product_pages_batch: Array<Product_Pages>;
+  update_product_pages_features_1_batch: Array<Product_Pages_Features_1>;
+  update_product_pages_features_1_item?: Maybe<Product_Pages_Features_1>;
+  update_product_pages_features_1_items: Array<Product_Pages_Features_1>;
+  update_product_pages_features_batch: Array<Product_Pages_Features>;
+  update_product_pages_features_item?: Maybe<Product_Pages_Features>;
+  update_product_pages_features_items: Array<Product_Pages_Features>;
   update_product_pages_item?: Maybe<Product_Pages>;
   update_product_pages_items: Array<Product_Pages>;
+  update_product_pages_product_features_1_batch: Array<Product_Pages_Product_Features_1>;
+  update_product_pages_product_features_1_item?: Maybe<Product_Pages_Product_Features_1>;
+  update_product_pages_product_features_1_items: Array<Product_Pages_Product_Features_1>;
+  update_product_pages_product_features_batch: Array<Product_Pages_Product_Features>;
+  update_product_pages_product_features_item?: Maybe<Product_Pages_Product_Features>;
+  update_product_pages_product_features_items: Array<Product_Pages_Product_Features>;
   update_quote_lists_batch: Array<Quote_Lists>;
   update_quote_lists_item?: Maybe<Quote_Lists>;
   update_quote_lists_items: Array<Quote_Lists>;
@@ -585,6 +620,22 @@ export type MutationCreate_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationCreate_Product_Features_ItemArgs = {
+  data: Create_Product_Features_Input;
+};
+
+
+export type MutationCreate_Product_Features_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Product_Features_Input>>;
+  filter?: InputMaybe<Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Product_Page_Items_ItemArgs = {
   data: Create_Product_Page_Items_Input;
 };
@@ -601,6 +652,38 @@ export type MutationCreate_Product_Page_Items_ItemsArgs = {
 };
 
 
+export type MutationCreate_Product_Pages_Features_1_ItemArgs = {
+  data: Create_Product_Pages_Features_1_Input;
+};
+
+
+export type MutationCreate_Product_Pages_Features_1_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Product_Pages_Features_1_Input>>;
+  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Product_Pages_Features_ItemArgs = {
+  data: Create_Product_Pages_Features_Input;
+};
+
+
+export type MutationCreate_Product_Pages_Features_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Product_Pages_Features_Input>>;
+  filter?: InputMaybe<Product_Pages_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Product_Pages_ItemArgs = {
   data: Create_Product_Pages_Input;
 };
@@ -609,6 +692,38 @@ export type MutationCreate_Product_Pages_ItemArgs = {
 export type MutationCreate_Product_Pages_ItemsArgs = {
   data?: InputMaybe<Array<Create_Product_Pages_Input>>;
   filter?: InputMaybe<Product_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Product_Pages_Product_Features_1_ItemArgs = {
+  data: Create_Product_Pages_Product_Features_1_Input;
+};
+
+
+export type MutationCreate_Product_Pages_Product_Features_1_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Product_Pages_Product_Features_1_Input>>;
+  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Product_Pages_Product_Features_ItemArgs = {
+  data: Create_Product_Pages_Product_Features_Input;
+};
+
+
+export type MutationCreate_Product_Pages_Product_Features_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Product_Pages_Product_Features_Input>>;
+  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1031,6 +1146,16 @@ export type MutationDelete_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationDelete_Product_Features_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Product_Features_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Product_Page_Items_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1041,12 +1166,52 @@ export type MutationDelete_Product_Page_Items_ItemsArgs = {
 };
 
 
+export type MutationDelete_Product_Pages_Features_1_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Product_Pages_Features_1_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Product_Pages_Features_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Product_Pages_Features_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Product_Pages_ItemArgs = {
   id: Scalars['ID']['input'];
 };
 
 
 export type MutationDelete_Product_Pages_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Product_Pages_Product_Features_1_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Product_Pages_Product_Features_1_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Product_Pages_Product_Features_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Product_Pages_Product_Features_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -1767,6 +1932,35 @@ export type MutationUpdate_Page_ProductArgs = {
 };
 
 
+export type MutationUpdate_Product_Features_BatchArgs = {
+  data?: InputMaybe<Array<Update_Product_Features_Input>>;
+  filter?: InputMaybe<Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Features_ItemArgs = {
+  data: Update_Product_Features_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Product_Features_ItemsArgs = {
+  data: Update_Product_Features_Input;
+  filter?: InputMaybe<Product_Features_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Product_Page_Items_BatchArgs = {
   data?: InputMaybe<Array<Update_Product_Page_Items_Input>>;
   filter?: InputMaybe<Product_Page_Items_Filter>;
@@ -1807,6 +2001,64 @@ export type MutationUpdate_Product_Pages_BatchArgs = {
 };
 
 
+export type MutationUpdate_Product_Pages_Features_1_BatchArgs = {
+  data?: InputMaybe<Array<Update_Product_Pages_Features_1_Input>>;
+  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Features_1_ItemArgs = {
+  data: Update_Product_Pages_Features_1_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Product_Pages_Features_1_ItemsArgs = {
+  data: Update_Product_Pages_Features_1_Input;
+  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Features_BatchArgs = {
+  data?: InputMaybe<Array<Update_Product_Pages_Features_Input>>;
+  filter?: InputMaybe<Product_Pages_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Features_ItemArgs = {
+  data: Update_Product_Pages_Features_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Product_Pages_Features_ItemsArgs = {
+  data: Update_Product_Pages_Features_Input;
+  filter?: InputMaybe<Product_Pages_Features_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Product_Pages_ItemArgs = {
   data: Update_Product_Pages_Input;
   id: Scalars['ID']['input'];
@@ -1816,6 +2068,64 @@ export type MutationUpdate_Product_Pages_ItemArgs = {
 export type MutationUpdate_Product_Pages_ItemsArgs = {
   data: Update_Product_Pages_Input;
   filter?: InputMaybe<Product_Pages_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_1_BatchArgs = {
+  data?: InputMaybe<Array<Update_Product_Pages_Product_Features_1_Input>>;
+  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_1_ItemArgs = {
+  data: Update_Product_Pages_Product_Features_1_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_1_ItemsArgs = {
+  data: Update_Product_Pages_Product_Features_1_Input;
+  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_BatchArgs = {
+  data?: InputMaybe<Array<Update_Product_Pages_Product_Features_Input>>;
+  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_ItemArgs = {
+  data: Update_Product_Pages_Product_Features_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Product_Pages_Product_Features_ItemsArgs = {
+  data: Update_Product_Pages_Product_Features_Input;
+  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2304,12 +2614,27 @@ export type Query = {
   page_homepage?: Maybe<Page_Homepage>;
   page_legal?: Maybe<Page_Legal>;
   page_product?: Maybe<Page_Product>;
+  product_features: Array<Product_Features>;
+  product_features_aggregated: Array<Product_Features_Aggregated>;
+  product_features_by_id?: Maybe<Product_Features>;
   product_page_items: Array<Product_Page_Items>;
   product_page_items_aggregated: Array<Product_Page_Items_Aggregated>;
   product_page_items_by_id?: Maybe<Product_Page_Items>;
   product_pages: Array<Product_Pages>;
   product_pages_aggregated: Array<Product_Pages_Aggregated>;
   product_pages_by_id?: Maybe<Product_Pages>;
+  product_pages_features: Array<Product_Pages_Features>;
+  product_pages_features_1: Array<Product_Pages_Features_1>;
+  product_pages_features_1_aggregated: Array<Product_Pages_Features_1_Aggregated>;
+  product_pages_features_1_by_id?: Maybe<Product_Pages_Features_1>;
+  product_pages_features_aggregated: Array<Product_Pages_Features_Aggregated>;
+  product_pages_features_by_id?: Maybe<Product_Pages_Features>;
+  product_pages_product_features: Array<Product_Pages_Product_Features>;
+  product_pages_product_features_1: Array<Product_Pages_Product_Features_1>;
+  product_pages_product_features_1_aggregated: Array<Product_Pages_Product_Features_1_Aggregated>;
+  product_pages_product_features_1_by_id?: Maybe<Product_Pages_Product_Features_1>;
+  product_pages_product_features_aggregated: Array<Product_Pages_Product_Features_Aggregated>;
+  product_pages_product_features_by_id?: Maybe<Product_Pages_Product_Features>;
   quote_lists: Array<Quote_Lists>;
   quote_lists_aggregated: Array<Quote_Lists_Aggregated>;
   quote_lists_by_id?: Maybe<Quote_Lists>;
@@ -2851,6 +3176,32 @@ export type QueryNav_List_By_IdArgs = {
 };
 
 
+export type QueryProduct_FeaturesArgs = {
+  filter?: InputMaybe<Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Features_AggregatedArgs = {
+  filter?: InputMaybe<Product_Features_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Features_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryProduct_Page_ItemsArgs = {
   filter?: InputMaybe<Product_Page_Items_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2899,6 +3250,110 @@ export type QueryProduct_Pages_AggregatedArgs = {
 
 
 export type QueryProduct_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryProduct_Pages_FeaturesArgs = {
+  filter?: InputMaybe<Product_Pages_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Features_1Args = {
+  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Features_1_AggregatedArgs = {
+  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Features_1_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryProduct_Pages_Features_AggregatedArgs = {
+  filter?: InputMaybe<Product_Pages_Features_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Features_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryProduct_Pages_Product_FeaturesArgs = {
+  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Product_Features_1Args = {
+  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Product_Features_1_AggregatedArgs = {
+  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Product_Features_1_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryProduct_Pages_Product_Features_AggregatedArgs = {
+  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryProduct_Pages_Product_Features_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4740,6 +5195,15 @@ export type Create_Page_Legal_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Product_Features_Input = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Create_Directus_Files_Input>;
+  product_id?: InputMaybe<Create_Product_Pages_Input>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Create_Product_Page_Items_Input = {
   description?: InputMaybe<Scalars['String']['input']>;
   icon_name?: InputMaybe<Scalars['String']['input']>;
@@ -4749,12 +5213,43 @@ export type Create_Product_Page_Items_Input = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Create_Product_Pages_Input = {
-  description?: InputMaybe<Scalars['String']['input']>;
+export type Create_Product_Pages_Features_1_Input = {
+  collection?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  product_items?: InputMaybe<Array<InputMaybe<Create_Product_Page_Items_Input>>>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  item?: InputMaybe<Scalars['String']['input']>;
+  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
+};
+
+export type Create_Product_Pages_Features_Input = {
+  collection?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  item?: InputMaybe<Scalars['String']['input']>;
+  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
+};
+
+export type Create_Product_Pages_Input = {
+  dropdown_description?: InputMaybe<Scalars['String']['input']>;
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Create_Product_Features_Input>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  page_subtitle?: InputMaybe<Scalars['String']['input']>;
+  page_title?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Create_Product_Pages_Product_Features_1_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  product_features_id?: InputMaybe<Scalars['Int']['input']>;
+  product_pages_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Product_Pages_Product_Features_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  product_features_id?: InputMaybe<Create_Product_Features_Input>;
+  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
 };
 
 export type Create_Quote_Lists_Input = {
@@ -6155,6 +6650,77 @@ export type Page_ProductUser_UpdatedArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type Product_Features = {
+  __typename?: 'product_features';
+  description?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Directus_Files>;
+  product_id?: Maybe<Product_Pages>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Product_FeaturesImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Product_FeaturesProduct_IdArgs = {
+  filter?: InputMaybe<Product_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Product_Features_Aggregated = {
+  __typename?: 'product_features_aggregated';
+  avg?: Maybe<Product_Features_Aggregated_Fields>;
+  avgDistinct?: Maybe<Product_Features_Aggregated_Fields>;
+  count?: Maybe<Product_Features_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Product_Features_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Product_Features_Aggregated_Fields>;
+  min?: Maybe<Product_Features_Aggregated_Fields>;
+  sum?: Maybe<Product_Features_Aggregated_Fields>;
+  sumDistinct?: Maybe<Product_Features_Aggregated_Fields>;
+};
+
+export type Product_Features_Aggregated_Count = {
+  __typename?: 'product_features_aggregated_count';
+  description?: Maybe<Scalars['Int']['output']>;
+  icon?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  image?: Maybe<Scalars['Int']['output']>;
+  product_id?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Features_Aggregated_Fields = {
+  __typename?: 'product_features_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  product_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Product_Features_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Product_Features_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Product_Features_Filter>>>;
+  description?: InputMaybe<String_Filter_Operators>;
+  icon?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  image?: InputMaybe<Directus_Files_Filter>;
+  product_id?: InputMaybe<Product_Pages_Filter>;
+  title?: InputMaybe<String_Filter_Operators>;
+};
+
 export type Product_Page_Items = {
   __typename?: 'product_page_items';
   description?: Maybe<Scalars['String']['output']>;
@@ -6228,17 +6794,22 @@ export type Product_Page_Items_Filter = {
 
 export type Product_Pages = {
   __typename?: 'product_pages';
-  description?: Maybe<Scalars['String']['output']>;
+  dropdown_description?: Maybe<Scalars['String']['output']>;
+  dropdown_icon?: Maybe<Scalars['String']['output']>;
+  dropdown_title?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Array<Maybe<Product_Features>>>;
+  features_func?: Maybe<Count_Functions>;
   id: Scalars['ID']['output'];
-  product_items?: Maybe<Array<Maybe<Product_Page_Items>>>;
-  product_items_func?: Maybe<Count_Functions>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  page_subtitle?: Maybe<Scalars['String']['output']>;
+  page_title?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  status?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
 };
 
 
-export type Product_PagesProduct_ItemsArgs = {
-  filter?: InputMaybe<Product_Page_Items_Filter>;
+export type Product_PagesFeaturesArgs = {
+  filter?: InputMaybe<Product_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6262,11 +6833,16 @@ export type Product_Pages_Aggregated = {
 
 export type Product_Pages_Aggregated_Count = {
   __typename?: 'product_pages_aggregated_count';
-  description?: Maybe<Scalars['Int']['output']>;
+  dropdown_description?: Maybe<Scalars['Int']['output']>;
+  dropdown_icon?: Maybe<Scalars['Int']['output']>;
+  dropdown_title?: Maybe<Scalars['Int']['output']>;
+  features?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
-  product_items?: Maybe<Scalars['Int']['output']>;
+  page_subtitle?: Maybe<Scalars['Int']['output']>;
+  page_title?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
-  title?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Product_Pages_Aggregated_Fields = {
@@ -6274,15 +6850,240 @@ export type Product_Pages_Aggregated_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+export type Product_Pages_Features = {
+  __typename?: 'product_pages_features';
+  collection?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  item?: Maybe<Product_Pages_Features_Item_Union>;
+  product_pages_id?: Maybe<Product_Pages>;
+};
+
+
+export type Product_Pages_FeaturesProduct_Pages_IdArgs = {
+  filter?: InputMaybe<Product_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Product_Pages_Features_1 = {
+  __typename?: 'product_pages_features_1';
+  collection?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  item?: Maybe<Product_Pages_Features_1_Item_Union>;
+  product_pages_id?: Maybe<Product_Pages>;
+};
+
+
+export type Product_Pages_Features_1Product_Pages_IdArgs = {
+  filter?: InputMaybe<Product_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Product_Pages_Features_1_Aggregated = {
+  __typename?: 'product_pages_features_1_aggregated';
+  avg?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+  avgDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+  count?: Maybe<Product_Pages_Features_1_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+  min?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+  sum?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+  sumDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
+};
+
+export type Product_Pages_Features_1_Aggregated_Count = {
+  __typename?: 'product_pages_features_1_aggregated_count';
+  collection?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  item?: Maybe<Scalars['Int']['output']>;
+  product_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Pages_Features_1_Aggregated_Fields = {
+  __typename?: 'product_pages_features_1_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  product_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Product_Pages_Features_1_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Features_1_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Features_1_Filter>>>;
+  collection?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  item__product_features?: InputMaybe<Product_Features_Filter>;
+  product_pages_id?: InputMaybe<Product_Pages_Filter>;
+};
+
+export type Product_Pages_Features_1_Item_Union = Product_Features;
+
+export type Product_Pages_Features_Aggregated = {
+  __typename?: 'product_pages_features_aggregated';
+  avg?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+  avgDistinct?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+  count?: Maybe<Product_Pages_Features_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Product_Pages_Features_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+  min?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+  sum?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+  sumDistinct?: Maybe<Product_Pages_Features_Aggregated_Fields>;
+};
+
+export type Product_Pages_Features_Aggregated_Count = {
+  __typename?: 'product_pages_features_aggregated_count';
+  collection?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  item?: Maybe<Scalars['Int']['output']>;
+  product_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Pages_Features_Aggregated_Fields = {
+  __typename?: 'product_pages_features_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  product_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Product_Pages_Features_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Features_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Features_Filter>>>;
+  collection?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  item__product_features?: InputMaybe<Product_Features_Filter>;
+  product_pages_id?: InputMaybe<Product_Pages_Filter>;
+};
+
+export type Product_Pages_Features_Item_Union = Product_Features;
+
 export type Product_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Product_Pages_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Product_Pages_Filter>>>;
-  description?: InputMaybe<String_Filter_Operators>;
+  dropdown_description?: InputMaybe<String_Filter_Operators>;
+  dropdown_icon?: InputMaybe<String_Filter_Operators>;
+  dropdown_title?: InputMaybe<String_Filter_Operators>;
+  features?: InputMaybe<Product_Features_Filter>;
+  features_func?: InputMaybe<Count_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  product_items?: InputMaybe<Product_Page_Items_Filter>;
-  product_items_func?: InputMaybe<Count_Function_Filter_Operators>;
+  page_subtitle?: InputMaybe<String_Filter_Operators>;
+  page_title?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
-  title?: InputMaybe<String_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  type?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Product_Pages_Product_Features = {
+  __typename?: 'product_pages_product_features';
+  id: Scalars['ID']['output'];
+  product_features_id?: Maybe<Product_Features>;
+  product_pages_id?: Maybe<Product_Pages>;
+};
+
+
+export type Product_Pages_Product_FeaturesProduct_Features_IdArgs = {
+  filter?: InputMaybe<Product_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Product_Pages_Product_FeaturesProduct_Pages_IdArgs = {
+  filter?: InputMaybe<Product_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Product_Pages_Product_Features_1 = {
+  __typename?: 'product_pages_product_features_1';
+  id: Scalars['ID']['output'];
+  product_features_id?: Maybe<Scalars['Int']['output']>;
+  product_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Pages_Product_Features_1_Aggregated = {
+  __typename?: 'product_pages_product_features_1_aggregated';
+  avg?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+  avgDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+  count?: Maybe<Product_Pages_Product_Features_1_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+  min?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+  sum?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+  sumDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
+};
+
+export type Product_Pages_Product_Features_1_Aggregated_Count = {
+  __typename?: 'product_pages_product_features_1_aggregated_count';
+  id?: Maybe<Scalars['Int']['output']>;
+  product_features_id?: Maybe<Scalars['Int']['output']>;
+  product_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Pages_Product_Features_1_Aggregated_Fields = {
+  __typename?: 'product_pages_product_features_1_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  product_features_id?: Maybe<Scalars['Float']['output']>;
+  product_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Product_Pages_Product_Features_1_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_1_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_1_Filter>>>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  product_features_id?: InputMaybe<Number_Filter_Operators>;
+  product_pages_id?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Product_Pages_Product_Features_Aggregated = {
+  __typename?: 'product_pages_product_features_aggregated';
+  avg?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+  avgDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+  count?: Maybe<Product_Pages_Product_Features_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+  min?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+  sum?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+  sumDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
+};
+
+export type Product_Pages_Product_Features_Aggregated_Count = {
+  __typename?: 'product_pages_product_features_aggregated_count';
+  id?: Maybe<Scalars['Int']['output']>;
+  product_features_id?: Maybe<Scalars['Int']['output']>;
+  product_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Product_Pages_Product_Features_Aggregated_Fields = {
+  __typename?: 'product_pages_product_features_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  product_features_id?: Maybe<Scalars['Float']['output']>;
+  product_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Product_Pages_Product_Features_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_Filter>>>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  product_features_id?: InputMaybe<Product_Features_Filter>;
+  product_pages_id?: InputMaybe<Product_Pages_Filter>;
 };
 
 export type Quote_Lists = {
@@ -8017,6 +8818,15 @@ export type Update_Page_Product_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Product_Features_Input = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Update_Directus_Files_Input>;
+  product_id?: InputMaybe<Update_Product_Pages_Input>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Update_Product_Page_Items_Input = {
   description?: InputMaybe<Scalars['String']['input']>;
   icon_name?: InputMaybe<Scalars['String']['input']>;
@@ -8026,12 +8836,43 @@ export type Update_Product_Page_Items_Input = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Update_Product_Pages_Input = {
-  description?: InputMaybe<Scalars['String']['input']>;
+export type Update_Product_Pages_Features_1_Input = {
+  collection?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  product_items?: InputMaybe<Array<InputMaybe<Update_Product_Page_Items_Input>>>;
+  item?: InputMaybe<Scalars['String']['input']>;
+  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
+};
+
+export type Update_Product_Pages_Features_Input = {
+  collection?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  item?: InputMaybe<Scalars['String']['input']>;
+  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
+};
+
+export type Update_Product_Pages_Input = {
+  dropdown_description?: InputMaybe<Scalars['String']['input']>;
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Update_Product_Features_Input>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  page_subtitle?: InputMaybe<Scalars['String']['input']>;
+  page_title?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Update_Product_Pages_Product_Features_1_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  product_features_id?: InputMaybe<Scalars['Int']['input']>;
+  product_pages_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Product_Pages_Product_Features_Input = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  product_features_id?: InputMaybe<Update_Product_Features_Input>;
+  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
 };
 
 export type Update_Quote_Lists_Input = {
@@ -8317,6 +9158,24 @@ export type JobListingSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type JobListingSlugsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', slug: string }> };
 
+export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
+
+export type ProductPageTinyFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null };
+
+export type ProductFeatureFragment = { __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type ProductPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductPageSlugsQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }> };
+
+export type ProductPageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null }> };
+
 export type CalloutFragment = { __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null };
 
 export type PageCommunityFragment = { __typename?: 'page_community', callouts?: Array<{ __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null } | null> | null };
@@ -8597,6 +9456,42 @@ export const FullJobListingFragmentDoc = gql`
   content
 }
     ${MinJobListingFragmentDoc}`;
+export const ProductFeatureFragmentDoc = gql`
+    fragment ProductFeature on product_features {
+  id
+  icon
+  title
+  description
+  image {
+    ...ImageFile
+  }
+}
+    ${ImageFileFragmentDoc}`;
+export const ProductPageFragmentDoc = gql`
+    fragment ProductPage on product_pages {
+  id
+  slug
+  type
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+  page_title
+  page_subtitle
+  features {
+    ...ProductFeature
+  }
+}
+    ${ProductFeatureFragmentDoc}`;
+export const ProductPageTinyFragmentDoc = gql`
+    fragment ProductPageTiny on product_pages {
+  id
+  slug
+  type
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+    `;
 export const CalloutFragmentDoc = gql`
     fragment Callout on callouts {
   id
@@ -8689,7 +9584,7 @@ ${ArticleCardFragmentDoc}
 ${QuoteFragmentDoc}`;
 export const EventsDocument = gql`
     query Events {
-  events {
+  events(filter: {status: {_neq: "archived"}}) {
     ...Event
   }
 }
@@ -8801,7 +9696,7 @@ export type StackExtrasLazyQueryHookResult = ReturnType<typeof useStackExtrasLaz
 export type StackExtrasQueryResult = Apollo.QueryResult<StackExtrasQuery, StackExtrasQueryVariables>;
 export const TeamMembersDocument = gql`
     query TeamMembers {
-  team_members {
+  team_members(filter: {status: {_neq: "archived"}}) {
     ...TeamMember
   }
 }
@@ -8835,7 +9730,7 @@ export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLaz
 export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;
 export const FeaturedContributorsDocument = gql`
     query FeaturedContributors {
-  featured_contributors {
+  featured_contributors(filter: {status: {_neq: "archived"}}) {
     ...FeaturedContributor
   }
 }
@@ -8869,7 +9764,7 @@ export type FeaturedContributorsLazyQueryHookResult = ReturnType<typeof useFeatu
 export type FeaturedContributorsQueryResult = Apollo.QueryResult<FeaturedContributorsQuery, FeaturedContributorsQueryVariables>;
 export const FaqListDocument = gql`
     query FaqList($slug: String) {
-  collapsible_lists(filter: {slug: {_eq: $slug}}) {
+  collapsible_lists(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
     ...FaqList
   }
 }
@@ -8904,7 +9799,7 @@ export type FaqListLazyQueryHookResult = ReturnType<typeof useFaqListLazyQuery>;
 export type FaqListQueryResult = Apollo.QueryResult<FaqListQuery, FaqListQueryVariables>;
 export const SolutionsSlugsDocument = gql`
     query SolutionsSlugs {
-  solutions_pages {
+  solutions_pages(filter: {status: {_neq: "archived"}}) {
     slug
     nav_title
     category
@@ -8940,7 +9835,7 @@ export type SolutionsSlugsLazyQueryHookResult = ReturnType<typeof useSolutionsSl
 export type SolutionsSlugsQueryResult = Apollo.QueryResult<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>;
 export const SolutionsDocument = gql`
     query Solutions($slug: String) {
-  solutions_pages(filter: {slug: {_eq: $slug}}) {
+  solutions_pages(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
     ...Solution
   }
 }
@@ -9076,6 +9971,75 @@ export function useJobListingSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type JobListingSlugsQueryHookResult = ReturnType<typeof useJobListingSlugsQuery>;
 export type JobListingSlugsLazyQueryHookResult = ReturnType<typeof useJobListingSlugsLazyQuery>;
 export type JobListingSlugsQueryResult = Apollo.QueryResult<JobListingSlugsQuery, JobListingSlugsQueryVariables>;
+export const ProductPageSlugsDocument = gql`
+    query ProductPageSlugs {
+  product_pages(filter: {status: {_neq: "archived"}}) {
+    ...ProductPageTiny
+  }
+}
+    ${ProductPageTinyFragmentDoc}`;
+
+/**
+ * __useProductPageSlugsQuery__
+ *
+ * To run a query within a React component, call `useProductPageSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductPageSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProductPageSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useProductPageSlugsQuery(baseOptions?: Apollo.QueryHookOptions<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>(ProductPageSlugsDocument, options);
+      }
+export function useProductPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>(ProductPageSlugsDocument, options);
+        }
+export type ProductPageSlugsQueryHookResult = ReturnType<typeof useProductPageSlugsQuery>;
+export type ProductPageSlugsLazyQueryHookResult = ReturnType<typeof useProductPageSlugsLazyQuery>;
+export type ProductPageSlugsQueryResult = Apollo.QueryResult<ProductPageSlugsQuery, ProductPageSlugsQueryVariables>;
+export const ProductPageDocument = gql`
+    query ProductPage($slug: String!) {
+  product_pages(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
+    ...ProductPage
+  }
+}
+    ${ProductPageFragmentDoc}`;
+
+/**
+ * __useProductPageQuery__
+ *
+ * To run a query within a React component, call `useProductPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProductPageQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useProductPageQuery(baseOptions: Apollo.QueryHookOptions<ProductPageQuery, ProductPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductPageQuery, ProductPageQueryVariables>(ProductPageDocument, options);
+      }
+export function useProductPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductPageQuery, ProductPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductPageQuery, ProductPageQueryVariables>(ProductPageDocument, options);
+        }
+export type ProductPageQueryHookResult = ReturnType<typeof useProductPageQuery>;
+export type ProductPageLazyQueryHookResult = ReturnType<typeof useProductPageLazyQuery>;
+export type ProductPageQueryResult = Apollo.QueryResult<ProductPageQuery, ProductPageQueryVariables>;
 export const PageCommunityDocument = gql`
     query PageCommunity {
   page_community {

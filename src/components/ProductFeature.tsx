@@ -1,33 +1,36 @@
 import { ArrowRightIcon, Button, IconFrame } from '@pluralsh/design-system'
 import Link from 'next/link'
 
+import * as icons from '@pluralsh/design-system/dist/icons'
 import styled, { useTheme } from 'styled-components'
 
-import { type FeatureConfig } from '@src/data/getProductConfigs'
+import { getImageUrl } from '@src/consts/routes'
+import { type ProductFeatureFragment } from '@src/generated/graphqlDirectus'
 import { cn as classNames } from '@src/utils/cn'
 
 import { EqualColumn } from './layout/Columns'
 import { ResponsiveText } from './Typography'
 
 function ProductFeature({
-  inverse,
+  invert,
   feature,
 }: {
-  inverse: boolean
-  feature: FeatureConfig
+  invert: boolean
+  feature: ProductFeatureFragment
 }) {
   const theme = useTheme()
+  const IconComponent = feature.icon ? icons[feature.icon] : null
 
   return (
     <ProductFeatureSC
-      inverse
+      invert
       className="p-xlarge lg:p-xxlarge"
     >
       <div
         className={classNames([
           'gap-y-xxlarge',
           'flex flex-col items-center justify-center',
-          inverse ? 'md:flex-row-reverse' : 'md:flex-row',
+          invert ? 'md:flex-row-reverse' : 'md:flex-row',
         ])}
       >
         {/* content */}
@@ -37,14 +40,16 @@ function ProductFeature({
             textStyles={{ sm: 'mSubtitle1', md: 'mTitle2', '': 'mSubtitle1' }}
             className="mb-medium "
           >
-            <IconFrame
-              type="floating"
-              icon={feature.icon}
-              style={{
-                display: 'inline-flex',
-                marginRight: theme.spacing.xsmall,
-              }}
-            />
+            {IconComponent && (
+              <IconFrame
+                type="floating"
+                icon={<IconComponent />}
+                style={{
+                  display: 'inline-flex',
+                  marginRight: theme.spacing.xsmall,
+                }}
+              />
+            )}
             {feature.title}
           </ResponsiveText>
           <ResponsiveText
@@ -69,11 +74,13 @@ function ProductFeature({
         </EqualColumn>
         {/* image */}
         <EqualColumn className="flex items-center">
-          <img
-            src={feature.image}
-            aria-hidden="true"
-            className="self-center"
-          />
+          {feature.image && (
+            <img
+              src={getImageUrl(feature.image) ?? ''}
+              aria-hidden="true"
+              className="self-center"
+            />
+          )}
         </EqualColumn>
       </div>
     </ProductFeatureSC>
@@ -82,12 +89,12 @@ function ProductFeature({
 
 export default ProductFeature
 
-const ProductFeatureSC = styled.div<{ inverse: boolean }>(
-  ({ theme, inverse }) => ({
+const ProductFeatureSC = styled.div<{ invert: boolean }>(
+  ({ theme, invert }) => ({
     border: theme.borders.default,
     // padding: `${0} ${theme.spacing.xxlarge}px`,
     borderRadius: theme.borderRadiuses.large,
     marginBottom: theme.spacing.xxxxxlarge,
-    background: `linear-gradient(${inverse ? '90deg' : '270deg'}, #1B1F27 0%, #0E1015 100%)`,
+    background: `linear-gradient(${invert ? '90deg' : '270deg'}, #1B1F27 0%, #0E1015 100%)`,
   })
 )

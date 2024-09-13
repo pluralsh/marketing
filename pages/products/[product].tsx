@@ -2,21 +2,28 @@ import { Button } from '@pluralsh/design-system'
 import { type GetStaticPaths, type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
+import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { BasicPageHero } from '@src/components/PageHeros'
 import ProductFeature from '@src/components/ProductFeature'
-import { getProductsConfigs } from '@src/data/getProductConfigs'
+import {
+  type ProductFeatureFragment,
+  ProductPageDocument,
+  type ProductPageQuery,
+  type ProductPageQueryVariables,
+  ProductPageSlugsDocument,
+  type ProductPageSlugsQuery,
+  type ProductPageSlugsQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 import { GradientBG } from '../../src/components/layout/GradientBG'
 import { HeaderPad } from '../../src/components/layout/HeaderPad'
 
 export default function Product({
-  slug,
+  productInfo,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const productConfig = getProductsConfigs()[slug]
-
   return (
     <HeaderPad
       as={GradientBG}
@@ -24,8 +31,8 @@ export default function Product({
       image="/images/products/product-background.png"
     >
       <BasicPageHero
-        heading={productConfig.title}
-        description={productConfig.description}
+        heading={productInfo.page_title}
+        description={productInfo.page_subtitle}
         ctas={
           <Button
             large
@@ -39,11 +46,11 @@ export default function Product({
         }
       />
       <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-        {productConfig.features.map((item, index) => (
+        {productInfo.features?.map((feature, i) => (
           <ProductFeature
-            key={index}
-            inverse={index % 2 !== 0}
-            feature={item}
+            key={i}
+            invert={i % 2 !== 0}
+            feature={feature as ProductFeatureFragment}
           />
         ))}
       </StandardPageWidth>
@@ -52,18 +59,20 @@ export default function Product({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = Object.keys(getProductsConfigs())
+  const { data, error } = await directusClient.query<
+    ProductPageSlugsQuery,
+    ProductPageSlugsQueryVariables
+  >({
+    query: ProductPageSlugsDocument,
+  })
 
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      paths: [],
-      fallback: 'blocking',
-    }
+  if (error) {
+    console.error('GraphQL query error in static:', error)
   }
 
   return {
-    paths: products.map((product) => ({
-      params: { product },
+    paths: data.product_pages.map((page) => ({
+      params: { product: page.slug },
     })),
     fallback: 'blocking',
   }
@@ -75,15 +84,31 @@ export const getStaticProps = async (context) => {
       ? context?.params?.product
       : null
 
-  if (!slug || !getProductsConfigs()[slug]) {
+  if (!slug) {
+    return { notFound: true }
+  }
+
+  const { data, error } = await directusClient.query<
+    ProductPageQuery,
+    ProductPageQueryVariables
+  >({
+    query: ProductPageDocument,
+    variables: { slug },
+  })
+
+  if (error) {
+    console.error('GraphQL query error in static: ', error)
+  }
+  const product = data.product_pages?.[0] || null
+
+  if (!product) {
     return { notFound: true }
   }
 
   return propsWithGlobalSettings({
-    metaTitle: 'How Plural works',
-    metaDescription:
-      'Plural is an open-source, unified, application deployment platform that stands up a Kubernetes cluster and selected applications in the cloud provider of your choice.',
+    metaTitle: product?.page_title ?? '',
+    metaDescription: product?.page_subtitle ?? '',
     footerVariant: FooterVariant.kitchenSink,
-    slug,
+    productInfo: product,
   })
 }

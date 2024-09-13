@@ -11,6 +11,9 @@ import {
 import { REVALIDATE_TIME } from '@src/consts'
 import { getSiteSettings } from '@src/data/getSiteSettings'
 import {
+  ProductPageSlugsDocument,
+  type ProductPageSlugsQuery,
+  type ProductPageSlugsQueryVariables,
   SolutionsSlugsDocument,
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
@@ -29,15 +32,23 @@ async function getGlobalProps() {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
 
-  const { data } = await directusClient.query<
+  const { data: solutionsData } = await directusClient.query<
     SolutionsSlugsQuery,
     SolutionsSlugsQueryVariables
   >({
     query: SolutionsSlugsDocument,
   })
-  const solutions = data.solutions_pages
+  const solutions = solutionsData.solutions_pages
 
-  const siteSettings = getSiteSettings(solutions)
+  const { data: productData } = await directusClient.query<
+    ProductPageSlugsQuery,
+    ProductPageSlugsQueryVariables
+  >({
+    query: ProductPageSlugsDocument,
+  })
+  const products = productData.product_pages
+
+  const siteSettings = getSiteSettings(solutions, products)
 
   return {
     siteSettings,

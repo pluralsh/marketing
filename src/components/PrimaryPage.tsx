@@ -1,10 +1,10 @@
-import { type ReactNode } from 'react'
+import { type ReactNode, createContext } from 'react'
 
 import { type NextRouter, useRouter } from 'next/router'
 
 import { type GlobalPageProps } from '@pages/_app'
 import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
-import { NavDataProvider } from '@src/contexts/NavDataContext'
+import { NavDataProvider, type NavList } from '@src/contexts/NavDataContext'
 
 import { type GlobalProps } from '../utils/getGlobalProps'
 
@@ -31,6 +31,10 @@ function selectOgImage(router: NextRouter) {
   return 'og_image.png'
 }
 
+export const GlobalPropsContext = createContext<GlobalProps | undefined>(
+  undefined
+)
+
 export default function PrimaryPage({
   pageProps,
   globalProps,
@@ -54,23 +58,25 @@ export default function PrimaryPage({
     ...(ogImage ? { ogImage } : {}),
   }
 
-  const navData = siteSettings?.main_nav?.subnav || []
+  const navData = Object.values(siteSettings?.main_nav ?? []) as NavList[]
 
   return (
     <NavDataProvider value={navData}>
-      <PagePropsContext.Provider value={pageProps}>
-        <HtmlHead {...headProps} />
-        <PageHeader
-          showHeaderBG={pageProps.showHeaderBG}
-          promoBanner={{
-            content: siteSettings?.promo_banner_content,
-            url: siteSettings?.promo_banner_url,
-          }}
-        />
-        {children}
-        <ExternalScripts />
-        <FullFooter variant={pageProps.footerVariant} />
-      </PagePropsContext.Provider>
+      <GlobalPropsContext.Provider value={globalProps}>
+        <PagePropsContext.Provider value={pageProps}>
+          <HtmlHead {...headProps} />
+          <PageHeader
+            showHeaderBG={pageProps.showHeaderBG}
+            promoBanner={{
+              content: siteSettings?.promo_banner_content,
+              url: siteSettings?.promo_banner_url,
+            }}
+          />
+          {children}
+          <ExternalScripts />
+          <FullFooter variant={pageProps.footerVariant} />
+        </PagePropsContext.Provider>
+      </GlobalPropsContext.Provider>
     </NavDataProvider>
   )
 }
