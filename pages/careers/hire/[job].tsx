@@ -21,24 +21,6 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
 const PAGE_PARAM_NAME = 'job' as const
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.NODE_ENV === 'development') {
-    return {
-      paths: [],
-      fallback: 'blocking' as const,
-    }
-  }
-
-  const { data: slugs } = await getJobListingSlugs()
-
-  return {
-    paths: (slugs || []).map((slug) => ({
-      params: { [PAGE_PARAM_NAME]: slug },
-    })),
-    fallback: false as const,
-  }
-}
-
 export default function Index({
   markdoc,
   job,
@@ -92,6 +74,17 @@ export default function Index({
 export type JobPageProps = {
   job: FullJobListingFragment
   markdoc: MarkdocPage
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data: slugs } = await getJobListingSlugs()
+
+  return {
+    paths: (slugs || []).map((slug) => ({
+      params: { [PAGE_PARAM_NAME]: slug },
+    })),
+    fallback: 'blocking',
+  }
 }
 
 export const getStaticProps: GetStaticProps<JobPageProps> = async (context) => {
