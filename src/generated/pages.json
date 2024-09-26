@@ -18,15 +18,9 @@
     "path": "/"
   },
   {
-    "path": "/kubernetes-fleet-management"
-  },
-  {
     "path": "/marketplace"
   },
   {
     "path": "/pricing"
-  },
-  {
-    "path": "/product"
   }
 ]

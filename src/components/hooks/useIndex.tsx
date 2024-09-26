@@ -23,13 +23,10 @@ export type IndexState = {
   goBack: (options?: { loop?: boolean; increment?: number }) => void
 }
 
-const getBoundedIndex = (index, length) => {
-  if (index > length - 1) {
-    return length - 1
-  }
-  if (index < 0) {
-    return 0
-  }
+const getBoundedIndex = (index: number | null, length: number) => {
+  if (index === null) return null
+  if (index > length - 1) return length - 1
+  if (index < 0) return 0
 
   return index
 }
@@ -77,15 +74,13 @@ const useIndex = (
     goForward: useCallback(
       ({ increment = 1, loop: loopThis = undefined } = {}) => {
         if (activeIndex !== null) {
+          const isLooping = loopThis !== undefined ? loopThis : loop
           let newIndex = activeIndex + increment
 
-          if (
-            (loopThis !== undefined ? loopThis : loop) &&
-            newIndex > length - 1
-          ) {
-            newIndex -= length
-          } else if (newIndex > length - increment) {
-            newIndex = length - increment
+          if (isLooping && length > 0) {
+            newIndex %= length
+          } else {
+            newIndex = length > 0 ? Math.min(newIndex, length - 1) : 0
           }
           setUnsafeActiveIndex(newIndex)
         }
@@ -95,13 +90,15 @@ const useIndex = (
     goBack: useCallback(
       ({ increment = 1, loop: loopThis = undefined } = {}) => {
         if (activeIndex !== null) {
+          const isLooping = loopThis !== undefined ? loopThis : loop
           let newIndex = activeIndex - increment
 
-          if (loopThis !== undefined ? loopThis : loop) {
-            newIndex = length + newIndex - 1
-          } else if (newIndex < 0) {
-            newIndex = 0
+          if (isLooping && length > 0) {
+            newIndex = (newIndex + length) % length
+          } else {
+            newIndex = Math.max(newIndex, 0)
           }
+
           setUnsafeActiveIndex(newIndex)
         }
       },
