@@ -4,7 +4,11 @@ import { Tooltip } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 
-import { type ProviderProps } from '../../pages/applications/[repo]'
+export type ProviderProps = {
+  label?: string | null | undefined
+  iconDark: string
+  iconLight: string
+}
 
 export const ProviderIcon = styled(
   ({

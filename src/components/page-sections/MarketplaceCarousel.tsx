@@ -11,7 +11,7 @@ import { type Swiper as SwiperT } from 'swiper/types'
 
 import { mqs } from '@src/breakpoints'
 
-import { CarouselDot, CarouselDots } from '../CarouselDots'
+import { CarouselDot, CarouselDotsWrapperSC } from '../CarouselDots'
 
 const switchPointMQ = mqs.sm
 
@@ -71,7 +71,7 @@ const Buttons = styled.div(({ theme }) => ({
   },
 }))
 
-const Dots = styled(CarouselDots)((_) => ({
+const Dots = styled(CarouselDotsWrapperSC)((_) => ({
   display: 'flex',
   width: '100%',
   height: '100%',

@@ -1,16 +1,17 @@
-import { useTheme } from 'styled-components'
+import styled, { useTheme } from 'styled-components'
+
+import { type QuoteFragment } from '@src/generated/graphqlDirectus'
 
 import { StandardPageWidth } from '../layout/LayoutHelpers'
+import { QuotesCarousel } from '../QuoteCards'
 import { ResponsiveText } from '../Typography'
 
 export function QuoteSection({
   title,
-  quote,
-  attribution,
+  quotes,
 }: {
   title: string
-  quote: string
-  attribution: string
+  quotes: Nullable<QuoteFragment>[]
 }) {
   const theme = useTheme()
 
@@ -21,7 +22,7 @@ export function QuoteSection({
           'linear-gradient(to bottom, #0E1015, rgba(14, 16, 21, 0)), linear-gradient(to bottom, #0A0F8F, #747AF6)',
       }}
     >
-      <div className="flex flex-col items-center justify-between gap-large py-xxxxxxlarge lg:flex-row">
+      <div className="flex flex-col items-start justify-between gap-large px-xxxlarge py-xxxxxxlarge lg:flex-row">
         <ResponsiveText
           as="h3"
           textStyles={{ lg: 'mHero1', '': 'mHero2' }}
@@ -32,21 +33,25 @@ export function QuoteSection({
         </ResponsiveText>
         <div className="relative w-full max-w-[500px] lg:w-1/2">
           <DoubleQuote style={{ top: -30, left: -50 }} />
-          <ResponsiveText
-            as="p"
-            textStyles={{ lg: 'mBody1', '': 'mBody2' }}
-            className="mb-xxlarge"
-            style={{ color: theme.colors.grey[25] }}
-          >
-            {quote}
-          </ResponsiveText>
-          <span className="text-text-light">{attribution}</span>
+          <QuotesCarousel
+            quotes={quotes}
+            quoteElement={<QuoteText />}
+          />
           <DoubleQuote
-            style={{ transform: 'rotate(180deg)', bottom: 10, right: 0 }}
+            style={{ transform: 'rotate(180deg)', bottom: 40, right: 0 }}
           />
         </div>
       </div>
     </StandardPageWidth>
+  )
+}
+
+function QuoteText({ quote }: { quote?: QuoteFragment }) {
+  return (
+    <>
+      <QuoteTextSC>{quote?.quote}</QuoteTextSC>
+      <p className="w-[80%] text-text-light">{quote?.author_text?.repeat(1)}</p>
+    </>
   )
 }
 
@@ -70,3 +75,13 @@ function DoubleQuote(props) {
     </svg>
   )
 }
+
+const QuoteTextSC = styled.p(({ theme }) => ({
+  fontFamily: 'Monument',
+  fontSize: '28px',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  letterSpacing: '1.058px',
+  color: theme.colors.text,
+  marginBottom: theme.spacing.xlarge,
+}))

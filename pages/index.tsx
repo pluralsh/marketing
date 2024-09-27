@@ -176,6 +176,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
 
 export default function Index({
   articleCards,
+  quotes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [showVideo, setShowVideo] = useState(false)
 
@@ -307,10 +308,7 @@ export default function Index({
       </HeaderPad>
       <QuoteSection
         title="Delivering value to DevOps and Platform Engineering teams"
-        quote={`By adopting Plural for our Kubernetes fleet management solution, we
-        reduced our k8s upgrade cycle from 3 months to 1 day, enabling us to
-        delegate responsibilities more effectively from principal engineers to a single mid-level engineer.`}
-        attribution="Director DevOps, Leading Global Cybersecurity Provider"
+        quotes={quotes ?? []}
       />
       <HomepageFeaturesSection />
       <ArticleSection articleCards={articleCards} />
