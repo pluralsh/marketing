@@ -16,6 +16,7 @@ import { FooterVariant } from '@src/components/FooterFull'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import ArticleSection from '@src/components/page-sections/articleSection'
+import { ImpactCardSection } from '@src/components/page-sections/ImpactCardSection'
 import { QuoteSection } from '@src/components/page-sections/QuoteSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -306,10 +307,20 @@ export default function Index({
           </StandardPageWidth>
         </div>
       </HeaderPad>
-      <QuoteSection
-        title="Delivering value to DevOps and Platform Engineering teams"
-        quotes={quotes ?? []}
-      />
+      <div
+        css={{
+          background:
+            'linear-gradient(to bottom, #0E1015, #747AF6 60%, #102356)',
+        }}
+      >
+        <StandardPageWidth className="pb-xxxxxlarge">
+          <QuoteSection
+            title="Delivering value to DevOps and Platform Engineering teams"
+            quotes={quotes ?? []}
+          />
+          <ImpactCardSection />
+        </StandardPageWidth>
+      </div>
       <HomepageFeaturesSection />
       <ArticleSection articleCards={articleCards} />
     </>

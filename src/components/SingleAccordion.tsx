@@ -142,6 +142,7 @@ function AccordionContentUnstyled({
   })
 
   return (
+    // @ts-ignore, see https://github.com/pmndrs/react-spring/issues/1515
     <animated.div
       style={{
         overflow: 'hidden',

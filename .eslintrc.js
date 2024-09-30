@@ -16,6 +16,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': [
       'error',
