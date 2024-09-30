@@ -2,7 +2,6 @@ import styled, { useTheme } from 'styled-components'
 
 import { type QuoteFragment } from '@src/generated/graphqlDirectus'
 
-import { StandardPageWidth } from '../layout/LayoutHelpers'
 import { QuotesCarousel } from '../QuoteCards'
 import { ResponsiveText } from '../Typography'
 
@@ -16,33 +15,26 @@ export function QuoteSection({
   const theme = useTheme()
 
   return (
-    <StandardPageWidth
-      style={{
-        background:
-          'linear-gradient(to bottom, #0E1015, rgba(14, 16, 21, 0)), linear-gradient(to bottom, #0A0F8F, #747AF6)',
-      }}
-    >
-      <div className="flex flex-col items-start justify-between gap-large px-xxxlarge py-xxxxxxlarge lg:flex-row">
-        <ResponsiveText
-          as="h3"
-          textStyles={{ lg: 'mHero1', '': 'mHero2' }}
-          className="w-full max-w-[500px] lg:w-1/2"
-          style={{ color: theme.colors.grey[25] }}
-        >
-          {title}
-        </ResponsiveText>
-        <div className="relative w-full max-w-[500px] lg:w-1/2">
-          <DoubleQuote style={{ top: -30, left: -50 }} />
-          <QuotesCarousel
-            quotes={quotes}
-            quoteElement={<QuoteText />}
-          />
-          <DoubleQuote
-            style={{ transform: 'rotate(180deg)', bottom: 40, right: 0 }}
-          />
-        </div>
+    <div className="flex flex-col items-center justify-between gap-large py-xxxxxxlarge lg:flex-row lg:items-start">
+      <ResponsiveText
+        as="h3"
+        textStyles={{ lg: 'mHero1', '': 'mHero2' }}
+        className="w-full max-w-[500px] lg:w-1/2"
+        style={{ color: theme.colors.grey[25] }}
+      >
+        {title}
+      </ResponsiveText>
+      <div className="relative w-full max-w-[500px] lg:w-1/2">
+        <DoubleQuote style={{ top: -30, left: -50 }} />
+        <QuotesCarousel
+          quotes={quotes}
+          quoteElement={<QuoteText />}
+        />
+        <DoubleQuote
+          style={{ transform: 'rotate(180deg)', bottom: 40, right: 0 }}
+        />
       </div>
-    </StandardPageWidth>
+    </div>
   )
 }
 
