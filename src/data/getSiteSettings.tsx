@@ -210,13 +210,15 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
 function getSolutionSubnav(solutions?: Solution[]) {
   if (!solutions || !solutions.length) return undefined
 
-  return solutions.map((solution, i) => ({
-    id: solution.slug,
-    link: {
-      id: `${solution.slug}-${i}`,
-      title: solution.nav_title,
-      url: `/solutions/${solution.slug}`,
-      category: solution.category,
-    },
-  }))
+  return solutions
+    .map((solution, i) => ({
+      id: solution.slug,
+      link: {
+        id: `${solution.slug}-${i}`,
+        title: solution.nav_title,
+        url: `/solutions/${solution.slug}`,
+        category: solution.category?.split('_').join(' '),
+      },
+    }))
+    .reverse()
 }

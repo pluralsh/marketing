@@ -8,6 +8,8 @@ import { useMousePosition } from '@src/hooks/useMousePosition'
 
 import { ResponsiveText } from '../Typography'
 
+const CARD_Z_INDEX = 1
+
 export function ImpactCardSection() {
   return (
     <div className="flex flex-col items-center gap-xxlarge">
@@ -90,7 +92,7 @@ function ImpactCard({
             color={theme.colors.grey[600]}
             maxWidth={500}
           >
-            <ImpactCardInfoIconSC size={32} />
+            <ImpactCardInfoIconSC size={30} />
           </Tooltip>
         )}
         <ImpactCardMetricSC>{metric}</ImpactCardMetricSC>
@@ -103,7 +105,8 @@ function ImpactCard({
 const ImpactCardsWrapperSC = styled.div(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-  gap: theme.spacing.xxlarge,
+  width: '100%',
+  gap: theme.spacing.xlarge,
   paddingBottom: theme.spacing.xxxxlarge,
   [`@media (min-width: ${theme.breakpoints.desktopSmall}px)`]: {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
@@ -118,13 +121,14 @@ const ImpactCardSC = styled.div<{
   overflow: 'hidden',
   transition: 'filter 0.3s ease',
   // first value is circular glow that follows cursor, second is actual background
-  background: `radial-gradient(400px circle at var(--x) var(--y),rgba(255, 255, 255, 0.06), transparent),
+  background: `radial-gradient(300px circle at var(--x) var(--y),rgba(255, 255, 255, 0.06), transparent),
     linear-gradient(96deg, rgba(42, 46, 55, 0.48) -95.57%, rgba(42, 46, 55, 0.16) 113.54%)`,
   // trick to make a border with a gradient effect
   '::before': {
-    transition: '--gradient-opacity 0.3s ease',
     content: '""',
     position: 'absolute',
+    zIndex: CARD_Z_INDEX,
+    transition: '--gradient-opacity 0.3s ease',
     inset: 0,
     borderRadius: theme.borderRadiuses.large,
     border: '1px solid transparent',
@@ -145,13 +149,14 @@ const ImpactCardContentSC = styled.div(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: theme.spacing.medium,
+  gap: theme.spacing.xsmall,
   borderRadius: theme.borderRadiuses.large,
   padding: theme.spacing.xxlarge,
 }))
 
 const ImpactCardInfoIconSC = styled(InfoOutlineIcon)(({ theme }) => ({
   position: 'absolute',
+  zIndex: CARD_Z_INDEX,
   cursor: 'pointer',
   top: theme.spacing.medium,
   right: theme.spacing.medium,
@@ -165,7 +170,7 @@ const ImpactCardMetricSC = styled.h3(({ theme }) => ({
 const ImpactCardSubtitleSC = styled.p(({ theme }) => ({
   color: theme.colors['text-light'],
   fontFamily: 'Inter',
-  fontSize: '28px',
+  fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: '150%',
@@ -179,10 +184,12 @@ const EmblishmentSC = styled.div<{ $position: 'top-left' | 'bottom-right' }>(
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${size} ${size}'>
         <defs>
           <linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='0%'>
-            <stop offset='0%' stop-color='#5C77FF00'/>
+            <stop offset='0%' stop-color='#5C77FF'/>
             <stop offset='30%' stop-color='#494FF299'/>
-            <stop offset='36%' stop-color='#8FD6FF5C'/>
-            <stop offset='50%' stop-color='#52F4D94D'/>
+            <stop offset='46%' stop-color='#8FD6FF5C'/>
+            <stop offset='60%' stop-color='#52F4D94D'/>
+            <stop offset='85%' stop-color='#8FD6FF5C'/>
+            <stop offset='98%' stop-color='#494FF299'/>
           </linearGradient>
         </defs>
         <circle
@@ -198,10 +205,11 @@ const EmblishmentSC = styled.div<{ $position: 'top-left' | 'bottom-right' }>(
 
     return {
       position: 'absolute',
+      zIndex: CARD_Z_INDEX - 1,
       top: $position === 'top-left' ? -size / 2 : 'auto',
       left: $position === 'top-left' ? -size / 2 : 'auto',
-      right: $position === 'bottom-right' ? -size / 2 : 'auto',
-      bottom: $position === 'bottom-right' ? -size / 2 : 'auto',
+      right: $position === 'bottom-right' ? -size / 2.25 : 'auto',
+      bottom: $position === 'bottom-right' ? -size / 1.6 : 'auto',
       width: `${size}px`,
       height: `${size}px`,
       backgroundImage: `url("data:image/svg+xml,${gradientBorderSVG}")`,
