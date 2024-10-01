@@ -198,7 +198,7 @@ function MenuDropdown<T extends object>({
       <DropdownCard>
         <div className={kind === 'product' ? 'p-xlarge' : ''}>
           {kind === 'product' && (
-            <MenuCategoryLabel>Platform features</MenuCategoryLabel>
+            <MenuCategoryLabel>Product features</MenuCategoryLabel>
           )}
           <ul className={kind === 'product' ? 'grid grid-cols-2' : ''}>
             {[...state.collection].map((item) => (
@@ -249,30 +249,31 @@ function SolutionNavDropdown<T extends object>({
   const ItemRenderer = itemRenderer
 
   return (
-    <div
-      ref={ref}
-      {...menuProps}
-    >
-      <DropdownCard style={{ minWidth: '30vw', maxWidth: '500px' }}>
-        <div className="p-xlarge">
-          {Object.keys(itemByCategory).map((category) => (
-            <div key={category}>
-              <MenuCategoryLabel>{category}</MenuCategoryLabel>
-              <ul>
-                {itemByCategory[category].map((item) => (
-                  <ItemRenderer
-                    key={item.key}
-                    kind="solution"
-                    item={item}
-                    state={state}
-                  />
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </DropdownCard>
-    </div>
+    <DropdownCard {...menuProps}>
+      <div
+        ref={ref}
+        className="flex min-w-[500px] gap-xlarge p-xlarge"
+      >
+        {Object.keys(itemByCategory).map((category) => (
+          <div
+            css={{ flex: 1 }}
+            key={category}
+          >
+            <MenuCategoryLabel>{category}</MenuCategoryLabel>
+            <ul>
+              {itemByCategory[category].map((item) => (
+                <ItemRenderer
+                  key={item.key}
+                  kind="solution"
+                  item={item}
+                  state={state}
+                />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </DropdownCard>
   )
 }
 

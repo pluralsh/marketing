@@ -128,6 +128,7 @@ export const SolutionLink = forwardRef(
         <ResponsiveText
           as="p"
           textStyles={{ '': 'mBody2Bold' }}
+          color="text-light"
         >
           {props.children}
         </ResponsiveText>
