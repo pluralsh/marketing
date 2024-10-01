@@ -108,7 +108,7 @@ const ImpactCardSC = styled.div<{
   overflow: 'hidden',
   transition: 'filter 0.3s ease',
   // first value is circular glow that follows cursor, second is actual background
-  background: `radial-gradient(300px circle at var(--x) var(--y),rgba(255, 255, 255, 0.06), transparent),
+  background: `radial-gradient(300px circle at var(--x) var(--y),rgba(255, 255, 255, 0.08), transparent),
     linear-gradient(96deg, rgba(42, 46, 55, 0.48) -95.57%, rgba(42, 46, 55, 0.16) 113.54%)`,
   // trick to make a border with a gradient effect
   '::before': {
@@ -205,7 +205,7 @@ const EmblishmentSC = styled.div<{ $position: 'top-left' | 'bottom-right' }>(
 
 const TooltipTextSC = styled.p(({ theme }) => ({
   ...theme.partials.marketingText.body1,
-  color: theme.colors.grey[600],
+  color: theme.colors.grey[750],
   // workaround for tooltip arrow color
   '& + div g': {
     fill: theme.colors['marketing-white'],
