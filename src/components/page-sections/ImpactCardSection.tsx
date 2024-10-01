@@ -1,6 +1,6 @@
 import { type CSSProperties, useRef } from 'react'
 
-import { InfoOutlineIcon, Tooltip } from '@pluralsh/design-system'
+import { InfoOutlineIcon, Tooltip, WrapWithIf } from '@pluralsh/design-system'
 
 import styled, { useTheme } from 'styled-components'
 
@@ -10,37 +10,26 @@ import { ResponsiveText } from '../Typography'
 
 const CARD_Z_INDEX = 1
 
+type ImpactCardProps = {
+  metric: string
+  subtitle: string
+  tooltipText?: string
+  embellishment?: 'top-left' | 'bottom-right'
+  borderGradientDir?: 'to right' | 'to left'
+  tooltipPlacement?: 'top' | 'bottom'
+}
+
 export function ImpactCardSection() {
   return (
     <div className="flex flex-col items-center gap-xxlarge">
       <ResponsiveText textStyles={{ '': 'mHero1' }}>Our impact</ResponsiveText>
       <ImpactCardsWrapperSC>
-        <ImpactCard
-          metric="88%"
-          subtitle="Reduction in Operational Costs"
-          embellishment="top-left"
-          // tooltipText="Tooltip"
-          borderGradientDir="to right"
-        />
-        <ImpactCard
-          metric="95%"
-          subtitle="Reduction in Day 2 Operation Time"
-          // tooltipText="Tooltip"
-          borderGradientDir="to left"
-        />
-        <ImpactCard
-          metric="50%"
-          subtitle="Allocation of Engineers to Strategic Projects"
-          // tooltipText="Tooltip"
-          borderGradientDir="to right"
-        />
-        <ImpactCard
-          metric="~30x"
-          subtitle="ROI Over 3 Years"
-          // tooltipText="Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. Lorem ipsum dolor sit amet consecutor. "
-          embellishment="bottom-right"
-          borderGradientDir="to left"
-        />
+        {impactCards.map((cardProps, index) => (
+          <ImpactCard
+            key={index}
+            {...cardProps}
+          />
+        ))}
       </ImpactCardsWrapperSC>
     </div>
   )
@@ -52,13 +41,8 @@ function ImpactCard({
   tooltipText,
   embellishment,
   borderGradientDir = 'to right',
-}: {
-  metric: string
-  subtitle: string
-  tooltipText?: string
-  embellishment?: 'top-left' | 'bottom-right'
-  borderGradientDir?: 'to right' | 'to left'
-}) {
+  tooltipPlacement = 'top',
+}: ImpactCardProps) {
   const theme = useTheme()
   const cardRef = useRef<HTMLDivElement>(null)
   const { relativePosition } = useMousePosition(cardRef)
@@ -69,36 +53,38 @@ function ImpactCard({
   } as CSSProperties
 
   return (
-    <ImpactCardSC
-      ref={cardRef}
-      style={backgroundStyle}
-      css={`
-        @property --gradient-opacity {
-          syntax: '<number>';
-          inherits: false;
-          initial-value: 0.3;
-        }
-      `}
-      $borderGradientDir={borderGradientDir}
+    <WrapWithIf
+      condition={!!tooltipText}
+      wrapper={
+        <Tooltip
+          placement={tooltipPlacement}
+          label={<TooltipTextSC>{tooltipText}</TooltipTextSC>}
+          backgroundColor={theme.colors['marketing-white']}
+          maxWidth={600}
+        />
+      }
     >
-      {embellishment && <EmblishmentSC $position={embellishment} />}
-      <ImpactCardContentSC>
-        {tooltipText && (
-          <Tooltip
-            placement="top"
-            label={tooltipText}
-            {...theme.partials.marketingText.body1}
-            backgroundColor={theme.colors['marketing-white']}
-            color={theme.colors.grey[600]}
-            maxWidth={500}
-          >
-            <ImpactCardInfoIconSC size={30} />
-          </Tooltip>
-        )}
-        <ImpactCardMetricSC>{metric}</ImpactCardMetricSC>
-        <ImpactCardSubtitleSC>{subtitle}</ImpactCardSubtitleSC>
-      </ImpactCardContentSC>
-    </ImpactCardSC>
+      <ImpactCardSC
+        ref={cardRef}
+        style={backgroundStyle}
+        css={`
+          @property --gradient-opacity {
+            syntax: '<number>';
+            inherits: false;
+            initial-value: 0.3;
+          }
+        `}
+        $borderGradientDir={borderGradientDir}
+      >
+        {embellishment && <EmblishmentSC $position={embellishment} />}
+        <ImpactCardContentSC>
+          <ImpactCardInfoIconSC size={30} />
+
+          <ImpactCardMetricSC>{metric}</ImpactCardMetricSC>
+          <ImpactCardSubtitleSC>{subtitle}</ImpactCardSubtitleSC>
+        </ImpactCardContentSC>
+      </ImpactCardSC>
+    </WrapWithIf>
   )
 }
 
@@ -117,6 +103,7 @@ const ImpactCardSC = styled.div<{
   $borderGradientDir?: 'to right' | 'to left'
 }>(({ theme, $borderGradientDir }) => ({
   position: 'relative',
+  cursor: 'pointer',
   borderRadius: theme.borderRadiuses.large,
   overflow: 'hidden',
   transition: 'filter 0.3s ease',
@@ -157,7 +144,6 @@ const ImpactCardContentSC = styled.div(({ theme }) => ({
 const ImpactCardInfoIconSC = styled(InfoOutlineIcon)(({ theme }) => ({
   position: 'absolute',
   zIndex: CARD_Z_INDEX,
-  cursor: 'pointer',
   top: theme.spacing.medium,
   right: theme.spacing.medium,
 }))
@@ -216,3 +202,47 @@ const EmblishmentSC = styled.div<{ $position: 'top-left' | 'bottom-right' }>(
     }
   }
 )
+
+const TooltipTextSC = styled.p(({ theme }) => ({
+  ...theme.partials.marketingText.body1,
+  color: theme.colors.grey[600],
+  // workaround for tooltip arrow color
+  '& + div g': {
+    fill: theme.colors['marketing-white'],
+  },
+}))
+
+const impactCards: ImpactCardProps[] = [
+  {
+    metric: '88%',
+    subtitle: 'Reduction in operational costs',
+    embellishment: 'top-left',
+    borderGradientDir: 'to right',
+    tooltipText:
+      'Plural eliminates redundant manual processes, optimizes resource allocation, and significantly reduces overhead with streamlined deployment pipelines and IaC (Infrastructure as Code) capabilities. This not only delivers unmatched cost savings but also frees up budget for innovation, turning operational challenges into financial victories and allowing your team to redirect savings toward scaling core systems.',
+  },
+  {
+    metric: '95%',
+    subtitle: 'Reduction in day 2 operation time',
+    tooltipText:
+      'By minimizing manual interventions and leveraging intelligent monitoring, Plural resolves issues faster, ensures infrastructure stability, and lets your team focus on strategic architectural improvements instead of routine maintenance tasks.',
+    borderGradientDir: 'to left',
+  },
+  {
+    metric: '50%',
+    subtitle: 'Increased bandwidth for your engineers',
+    borderGradientDir: 'to right',
+    tooltipText:
+      'Free up 50% more of your engineering capacity for high-impact, strategic projects. Plural’s automation offloads repetitive tasks like cluster provisioning, scaling, and patch management, allowing your engineers to concentrate on complex, value-driven initiatives that propel your company forward.',
+    tooltipPlacement: 'bottom',
+  },
+  {
+    metric: '~30x',
+    subtitle: 'ROI over 3 years',
+    embellishment: 'bottom-right',
+    borderGradientDir: 'to left',
+    tooltipText:
+      'Through efficient infrastructure management, reduced downtime, and optimized resource utilization, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
+    tooltipPlacement: 'bottom',
+  },
+]
