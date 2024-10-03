@@ -221,7 +221,7 @@ const impactCards: ImpactCardProps[] = [
     metric: '95%',
     subtitle: 'Reduction in day-2 operations',
     tooltipText:
-      'Plurals comprehensive feature set allows teams to take care of mundane maintenance tasks such as upgrades in a fraction of the time.',
+      "Plural's comprehensive feature set allows teams to take care of mundane maintenance tasks such as upgrades in a fraction of the time.",
     borderGradientDir: 'to left',
   },
   {
