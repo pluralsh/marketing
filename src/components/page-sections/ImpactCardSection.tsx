@@ -1,6 +1,6 @@
 import { type CSSProperties, useRef } from 'react'
 
-import { InfoOutlineIcon, Tooltip, WrapWithIf } from '@pluralsh/design-system'
+import { InfoOutlineIcon, Tooltip } from '@pluralsh/design-system'
 
 import styled, { useTheme } from 'styled-components'
 
@@ -22,7 +22,7 @@ type ImpactCardProps = {
 export function ImpactCardSection() {
   return (
     <div className="flex flex-col items-center gap-xxlarge">
-      <ResponsiveText textStyles={{ '': 'mHero1' }}>Our impact</ResponsiveText>
+      <ResponsiveText textStyles={{ '': 'mHero2' }}>Our impact</ResponsiveText>
       <ImpactCardsWrapperSC>
         {impactCards.map((cardProps, index) => (
           <ImpactCard
@@ -53,38 +53,34 @@ function ImpactCard({
   } as CSSProperties
 
   return (
-    <WrapWithIf
-      condition={!!tooltipText}
-      wrapper={
-        <Tooltip
-          placement={tooltipPlacement}
-          label={<TooltipTextSC>{tooltipText}</TooltipTextSC>}
-          backgroundColor={theme.colors['marketing-white']}
-          maxWidth={600}
-        />
-      }
+    <ImpactCardSC
+      ref={cardRef}
+      style={backgroundStyle}
+      css={`
+        @property --gradient-opacity {
+          syntax: '<number>';
+          inherits: false;
+          initial-value: 0.3;
+        }
+      `}
+      $borderGradientDir={borderGradientDir}
     >
-      <ImpactCardSC
-        ref={cardRef}
-        style={backgroundStyle}
-        css={`
-          @property --gradient-opacity {
-            syntax: '<number>';
-            inherits: false;
-            initial-value: 0.3;
-          }
-        `}
-        $borderGradientDir={borderGradientDir}
-      >
-        {embellishment && <EmblishmentSC $position={embellishment} />}
-        <ImpactCardContentSC>
-          <ImpactCardInfoIconSC size={30} />
-
-          <ImpactCardMetricSC>{metric}</ImpactCardMetricSC>
-          <ImpactCardSubtitleSC>{subtitle}</ImpactCardSubtitleSC>
-        </ImpactCardContentSC>
-      </ImpactCardSC>
-    </WrapWithIf>
+      {embellishment && <EmblishmentSC $position={embellishment} />}
+      <ImpactCardContentSC>
+        {tooltipText && (
+          <Tooltip
+            placement={tooltipPlacement}
+            label={<TooltipTextSC>{tooltipText}</TooltipTextSC>}
+            backgroundColor={theme.colors['marketing-white']}
+            maxWidth={600}
+          >
+            <ImpactCardInfoIconSC size={30} />
+          </Tooltip>
+        )}
+        <ImpactCardMetricSC>{metric}</ImpactCardMetricSC>
+        <ImpactCardSubtitleSC>{subtitle}</ImpactCardSubtitleSC>
+      </ImpactCardContentSC>
+    </ImpactCardSC>
   )
 }
 
@@ -103,7 +99,6 @@ const ImpactCardSC = styled.div<{
   $borderGradientDir?: 'to right' | 'to left'
 }>(({ theme, $borderGradientDir }) => ({
   position: 'relative',
-  cursor: 'pointer',
   borderRadius: theme.borderRadiuses.large,
   overflow: 'hidden',
   transition: 'filter 0.3s ease',
@@ -143,6 +138,7 @@ const ImpactCardContentSC = styled.div(({ theme }) => ({
 
 const ImpactCardInfoIconSC = styled(InfoOutlineIcon)(({ theme }) => ({
   position: 'absolute',
+  cursor: 'pointer',
   zIndex: CARD_Z_INDEX,
   top: theme.spacing.medium,
   right: theme.spacing.medium,
@@ -219,13 +215,13 @@ const impactCards: ImpactCardProps[] = [
     embellishment: 'top-left',
     borderGradientDir: 'to right',
     tooltipText:
-      'Plural eliminates redundant manual processes, optimizes resource allocation, and significantly reduces overhead with streamlined deployment pipelines and IaC (Infrastructure as Code) capabilities. This not only delivers unmatched cost savings but also frees up budget for innovation, turning operational challenges into financial victories and allowing your team to redirect savings toward scaling core systems.',
+      'Plural provides a single pane of glass and integrated suite of tools to manage the entire lifecycle of your Kubernetes fleet, giving engineers all the tools they need to do more with less. These cost savings free up budget for innovation, freeing operational challenges into financial victories and allowing your team to scale.',
   },
   {
     metric: '95%',
-    subtitle: 'Reduction in day 2 operation time',
+    subtitle: 'Reduction in day-2 operations',
     tooltipText:
-      'By minimizing manual interventions and leveraging intelligent monitoring, Plural resolves issues faster, ensures infrastructure stability, and lets your team focus on strategic architectural improvements instead of routine maintenance tasks.',
+      "Plural's comprehensive feature set allows teams to take care of mundane maintenance tasks such as upgrades in a fraction of the time.",
     borderGradientDir: 'to left',
   },
   {
@@ -233,8 +229,7 @@ const impactCards: ImpactCardProps[] = [
     subtitle: 'Increased bandwidth for your engineers',
     borderGradientDir: 'to right',
     tooltipText:
-      'Free up 50% more of your engineering capacity for high-impact, strategic projects. Plural’s automation offloads repetitive tasks like cluster provisioning, scaling, and patch management, allowing your engineers to concentrate on complex, value-driven initiatives that propel your company forward.',
-    tooltipPlacement: 'bottom',
+      'Free up 50% more of your engineering capacity for high-impact, strategic projects. Plural streamlines repetitive tasks like upgrade management, infrastructure provisioning and scaling, allowing your engineers to concentrate on value-driven initiatives that propel your company forward.',
   },
   {
     metric: '~30x',
@@ -242,7 +237,6 @@ const impactCards: ImpactCardProps[] = [
     embellishment: 'bottom-right',
     borderGradientDir: 'to left',
     tooltipText:
-      'Through efficient infrastructure management, reduced downtime, and optimized resource utilization, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
-    tooltipPlacement: 'bottom',
+      'Through optimized resource utilization, reduced downtime, and efficient infrastructure management, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
   },
 ]
