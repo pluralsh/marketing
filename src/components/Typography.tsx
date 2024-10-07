@@ -306,7 +306,7 @@ export const BasicUl = styled.ul(({ theme }) => {
     li: {
       position: 'relative',
       marginLeft: indent,
-      '::before': {
+      '&::before': {
         textAlign: 'center',
         width: indent,
         position: 'absolute',

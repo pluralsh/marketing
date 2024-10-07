@@ -104,7 +104,7 @@ export const SearchBarArea = styled.div(({ theme }) => {
     marginBottom: mB,
     zIndex: theme.zIndexes.base + 10,
     flexShrink: 0,
-    '::after': {
+    '&::after': {
       content: '""',
       position: 'absolute',
       top: '100%',
