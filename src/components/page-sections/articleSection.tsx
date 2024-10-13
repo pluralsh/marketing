@@ -74,7 +74,7 @@ function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
     <GradientBG
       size="cover"
       position="bottom middle"
-      image="/images/gradients/article-section-background.png"
+      image="/images/gradients/article-section-background.jpg"
     >
       <StandardPageSection
         style={{

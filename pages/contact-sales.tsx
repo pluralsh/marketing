@@ -21,7 +21,7 @@ export default function Index() {
         as={GradientBG}
         size="cover"
         position="top middle"
-        image="/images/gradients/gradient-bg-12.png"
+        image="/images/gradients/gradient-bg-12.jpg"
       >
         <ContactHeader
           title="Contact sales"
