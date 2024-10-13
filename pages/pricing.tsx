@@ -155,7 +155,7 @@ export default function Pricing({
         as={GradientBG}
         size="cover"
         // position="top middle"
-        image="/images/gradients/gradient-bg-13.png"
+        image="/images/gradients/gradient-bg-13.jpg"
       >
         <div
           className={classNames(

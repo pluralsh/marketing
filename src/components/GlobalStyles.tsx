@@ -36,7 +36,7 @@ const GlobalStyles = createGlobalStyle(({ theme }) => ({
   'h1, h2, h3, h4, h5, h6': {
     margin: 0,
   },
-  '::selection': {
+  '&::selection': {
     background: theme.colors['text-primary-accent'],
     color: theme.colors['fill-one'],
   },

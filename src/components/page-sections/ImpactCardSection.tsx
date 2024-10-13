@@ -106,7 +106,7 @@ const ImpactCardSC = styled.div<{
   background: `radial-gradient(300px circle at var(--x) var(--y),rgba(255, 255, 255, 0.08), transparent),
     linear-gradient(96deg, rgba(42, 46, 55, 0.48) -95.57%, rgba(42, 46, 55, 0.16) 113.54%)`,
   // trick to make a border with a gradient effect
-  '::before': {
+  '&::before': {
     content: '""',
     position: 'absolute',
     zIndex: CARD_Z_INDEX,
@@ -118,8 +118,8 @@ const ImpactCardSC = styled.div<{
     mask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
     maskComposite: 'exclude',
   },
-  ':hover': {
-    '::before': {
+  '&:hover': {
+    '&::before': {
       '--gradient-opacity': 1,
     },
     filter: 'brightness(1.1)',

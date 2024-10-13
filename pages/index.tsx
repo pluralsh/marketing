@@ -187,7 +187,7 @@ export default function Index({
         as={GradientBG}
         position="50% 50%"
         size="cover"
-        image="/images/gradients/hero-background.png"
+        image="/images/gradients/hero-background.jpg"
       >
         <HomePageHero
           heading={<>Managing Kubernetes can be a cluster—</>}

@@ -35,7 +35,7 @@ export default function Community({
         as={GradientBG}
         size="cover"
         // position="top middle"
-        image="/images/gradients/gradient-bg-13.png"
+        image="/images/gradients/gradient-bg-13.jpg"
       >
         <BasicPageHero
           heading="Plural community"

@@ -49,7 +49,7 @@ const HeadingSC = styled(Heading)(({ theme, level }) => {
   return {
     marginBottom: theme.spacing.xsmall,
     ...styles,
-    ':where(h1, h2, h3, h4, h5, h6) + &': {
+    '&:where(h1, h2, h3, h4, h5, h6) + &': {
       marginTop: theme.spacing.xsmall,
     },
     '&:first-child': {

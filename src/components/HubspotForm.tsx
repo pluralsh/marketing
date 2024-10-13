@@ -111,7 +111,7 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
       lineHeight: '24px',
       LetterSpacing: '0.5px',
     },
-    '::placeholder': {
+    '&::placeholder': {
       color: 'rgba(255, 255, 255, 0.60)',
     },
   },
