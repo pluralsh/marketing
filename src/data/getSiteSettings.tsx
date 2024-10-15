@@ -135,6 +135,13 @@ export const getSiteSettings = (
             url: 'https://github.com/pluralsh/plural/releases',
           },
         },
+        {
+          id: 'security and compliance',
+          link: {
+            title: 'Security & Compliance',
+            url: 'https://app.secureframe.com/ext/trust-center/plural/',
+          },
+        },
       ],
     },
     company: {
