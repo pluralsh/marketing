@@ -6,6 +6,7 @@ import styled, { useTheme } from 'styled-components'
 
 import { useMousePosition } from '@src/hooks/useMousePosition'
 
+import { CircleEmbellishment } from '../layout/CircleEmbellishment'
 import { ResponsiveText } from '../Typography'
 
 const CARD_Z_INDEX = 1
@@ -65,7 +66,12 @@ function ImpactCard({
       `}
       $borderGradientDir={borderGradientDir}
     >
-      {embellishment && <EmblishmentSC $position={embellishment} />}
+      {embellishment && (
+        <CircleEmbellishment
+          rotate={embellishment === 'bottom-right' ? 200 : 355}
+          position={getEmbelishmentPosition(embellishment)}
+        />
+      )}
       <ImpactCardContentSC>
         {tooltipText && (
           <Tooltip
@@ -158,47 +164,6 @@ const ImpactCardSubtitleSC = styled.p(({ theme }) => ({
   lineHeight: '150%',
 }))
 
-const EmblishmentSC = styled.div<{ $position: 'top-left' | 'bottom-right' }>(
-  ({ $position }) => {
-    const size = 300
-    const strokeWidth = 1
-    const gradientBorderSVG = encodeURIComponent(`
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${size} ${size}'>
-        <defs>
-          <linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='0%'>
-            <stop offset='0%' stop-color='#5C77FF'/>
-            <stop offset='30%' stop-color='#494FF299'/>
-            <stop offset='46%' stop-color='#8FD6FF5C'/>
-            <stop offset='60%' stop-color='#52F4D94D'/>
-            <stop offset='85%' stop-color='#8FD6FF5C'/>
-            <stop offset='98%' stop-color='#494FF299'/>
-          </linearGradient>
-        </defs>
-        <circle
-          cx='${size / 2}'
-          cy='${size / 2}'
-          r='${(size - strokeWidth) / 2}'
-          fill='none'
-          stroke='url(#grad1)'
-          stroke-width='${strokeWidth}'
-        />
-      </svg>
-    `)
-
-    return {
-      position: 'absolute',
-      zIndex: CARD_Z_INDEX - 1,
-      top: $position === 'top-left' ? -size / 2 : 'auto',
-      left: $position === 'top-left' ? -size / 2 : 'auto',
-      right: $position === 'bottom-right' ? -size / 2.25 : 'auto',
-      bottom: $position === 'bottom-right' ? -size / 1.6 : 'auto',
-      width: `${size}px`,
-      height: `${size}px`,
-      backgroundImage: `url("data:image/svg+xml,${gradientBorderSVG}")`,
-    }
-  }
-)
-
 const TooltipTextSC = styled.p(({ theme }) => ({
   ...theme.partials.marketingText.body1,
   color: theme.colors.grey[750],
@@ -240,3 +205,12 @@ const impactCards: ImpactCardProps[] = [
       'Through optimized resource utilization, reduced downtime, and efficient infrastructure management, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
   },
 ]
+
+const getEmbelishmentPosition = (
+  embellishment: ImpactCardProps['embellishment']
+) => {
+  if (embellishment === 'top-left') return { bottom: '17%', left: '-21%' }
+  if (embellishment === 'bottom-right') return { top: '38%', right: '-18%' }
+
+  return undefined
+}
