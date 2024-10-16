@@ -13,6 +13,7 @@ import useMobileDetect from 'use-mobile-detect-hook'
 import { directusClient } from '@src/apollo-client'
 import { BareModal } from '@src/components/BareModal'
 import { FooterVariant } from '@src/components/FooterFull'
+import { CircleEmbellishment } from '@src/components/layout/CircleEmbellishment'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import ArticleSection from '@src/components/page-sections/articleSection'
@@ -185,9 +186,23 @@ export default function Index({
     <>
       <HeaderPad
         as={GradientBG}
-        position="50% 50%"
-        size="cover"
-        image="/images/gradients/hero-background.jpg"
+        image={homepageGradient}
+        imageType="custom"
+        bgChildren={
+          <>
+            <CircleEmbellishment
+              width="100%"
+              height="40%"
+              position={{ bottom: '21%', left: '-45%' }}
+            />
+            <CircleEmbellishment
+              width="80%"
+              height="32%"
+              rotate={-125}
+              position={{ bottom: '-1%', right: '-42%' }}
+            />
+          </>
+        }
       >
         <HomePageHero
           heading={<>Managing Kubernetes can be a cluster—</>}
@@ -353,3 +368,10 @@ export const getStaticProps = async () => {
     errors: combineErrors([error, stacksError, reposError]),
   })
 }
+
+const homepageGradient = `
+  radial-gradient(ellipse 50% 100% at 100% 100px, rgba(16, 35, 86, 0.25) 1px, transparent 75% 25%),
+  radial-gradient(circle, #102356 0%, transparent 70%),
+  linear-gradient(180deg, rgba(16, 35, 86, 0.1) 0%, rgba(14, 16, 21, 1.00) 71.51%),
+  linear-gradient(180deg, #0B0C10 5.32%, #0B0C10 100%)
+`
