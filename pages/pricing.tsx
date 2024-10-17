@@ -1,320 +1,122 @@
-import { type ComponentProps } from 'react'
-
-import {
-  Button,
-  CheckRoundedIcon,
-  Chip,
-  InvoicesIcon,
-} from '@pluralsh/design-system'
-import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
+import { Button } from '@pluralsh/design-system'
+import { type InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 
-import styled from 'styled-components'
-
-import { directusClient } from '@src/apollo-client'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { StandardFAQSection } from '@src/components/page-sections/StandardFAQSection'
-import { CenteredSectionHead } from '@src/components/SectionHeads'
-import { ResponsiveText } from '@src/components/Typography'
-import getPricing, { type Plan, type Pricing } from '@src/data/getPricing'
+import { PricingPlanCard } from '@src/components/page-sections/PricingPlanCard'
 import {
-  type FaqItemFragment,
-  FaqListDocument,
-  type FaqListQuery,
-  type FaqListQueryVariables,
-} from '@src/generated/graphqlDirectus'
-import { cn as classNames } from '@src/utils/cn'
-import { combineErrors } from '@src/utils/combineErrors'
+  PlanComparisonTableDesktop,
+  PlanComparisonTablesMobile,
+} from '@src/components/page-sections/PricingTable'
+import { Body1 } from '@src/components/Typography'
+import getPricing from '@src/data/getPricing'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
-import { normalizeM2mItems } from '@src/utils/normalizeQuotes'
-
-const PlanCardSC = styled.div(({ theme }) => ({
-  '&, .titleArea, .content, .featureList': {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  gap: theme.spacing.xxlarge,
-  position: 'relative',
-  background: theme.colors['fill-zero'],
-  border: theme.borders.default,
-  padding: `${theme.spacing.xxlarge}px ${theme.spacing.xlarge}px`,
-  borderRadius: theme.borderRadiuses.large,
-  '.titleArea': {
-    gap: theme.spacing.xxsmall,
-  },
-  '.content': {
-    gap: theme.spacing.large,
-  },
-  '.featureList': {
-    gap: theme.spacing.xsmall,
-    li: {
-      ...theme.partials.marketingText.body2,
-      color: theme.colors.text,
-    },
-  },
-  '.violator': {
-    position: 'absolute',
-    top: 0,
-    transform: 'translateY(-50%)',
-  },
-}))
-
-export function PlanCard({
-  plan: { cta, violator, label, price, features, isFeatured },
-  ...props
-}: {
-  plan: Plan
-} & ComponentProps<typeof PlanCardSC>) {
-  return (
-    <PlanCardSC {...props}>
-      {violator?.label && (
-        <Chip
-          size="large"
-          fillLevel={2}
-          className="violator"
-          severity="success"
-        >
-          {violator.label}
-        </Chip>
-      )}
-      <div className="content">
-        <div className="titleArea">
-          <ResponsiveText
-            color="text"
-            textStyles={{ '': isFeatured ? 'mTitle1' : 'mSubtitle1' }}
-          >
-            {label}
-          </ResponsiveText>
-          <ResponsiveText
-            color="text-xlight"
-            textStyles={{ '': 'mLabel' }}
-          >
-            {price.split(', ').map((line, i, arr) => (
-              <>
-                {line}
-                {i !== arr.length - 1 && <br />}
-              </>
-            ))}
-          </ResponsiveText>
-        </div>
-        {features && (
-          <ul className="featureList">
-            {features?.map((feature) => (
-              <li key={feature.label}>{feature.label}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {cta && (
-        <Button
-          {...(isFeatured ? { primary: true } : { secondary: true })}
-          as={Link}
-          href={cta.url}
-          className="cta"
-        >
-          {cta.label}
-        </Button>
-      )}
-    </PlanCardSC>
-  )
-}
-
-export function PlanCardsSection({ plans }: { plans: Plan[] }) {
-  return (
-    <StandardPageWidth className="flex flex-col gap-xlarge pb-xxlarge [text-wrap:balance] md:pb-xxxlarge">
-      <Columns className="gap-y-xlarge">
-        {plans.map((plan) => (
-          <EqualColumn key={plan.key}>
-            <PlanCard plan={plan} />
-          </EqualColumn>
-        ))}
-      </Columns>
-    </StandardPageWidth>
-  )
-}
-
-const features = [
-  'Plural platform with enterprise security features',
-  'Standard 8am – 5pm and 24/7 enterprise support coverage available',
-  'Private Slack or Teams channel',
-  'Consultative support with fast initial response times',
-  'Rich onboarding and regular check-ins',
-]
 
 export default function Pricing({
-  faqs,
+  enterprisePlan,
+  proPlan,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <>
-      <HeaderPad
-        as={GradientBG}
-        size="cover"
-        // position="top middle"
-        image="/images/gradients/gradient-bg-13.jpg"
-      >
-        <div
-          className={classNames(
-            'pb-xlarge',
-            'md:pb-xxxxxlarge',
-            'xxl:pb-xxxxxxlarge'
-          )}
-        >
-          <StandardPageWidth
-            className={classNames(
-              'flex flex-col gap-xlarge [text-wrap:balance]',
-              'pb-xxxlarge pt-xxlarge',
-              'md:pb-xxxlarge md:pt-xxxxlarge',
-              'xxl:pb-xxxxlarge xxl:pt-xxxxlarge'
-            )}
-          >
-            <ResponsiveText
-              className="max-w-[1100px]"
-              as="h1"
-              textStyles={{
-                '': 'mTitle2',
-                sm: 'mHero2',
-                xxl: 'mBigHeader',
-              }}
-            >
-              The Kubernetes lifecycle management platform built for DevOps
-              teams at scale.
-            </ResponsiveText>
+    <HeaderPad
+      as={GradientBG}
+      image={bgGradient}
+      mobileImage={bgGradientMobile}
+      imageType="custom"
+      bgChildren={
+        <img
+          src="/images/pricing/pricing-circles.svg"
+          className="absolute left-1/2 top-[260px] min-w-[1700px] -translate-x-1/2"
+        />
+      }
+    >
+      <StandardPageWidth className="py-xxxxxlarge">
+        <div className="flex flex-col items-center gap-medium">
+          <div className="mb-xxxxxlarge flex max-w-2xl flex-col items-center gap-small">
+            <h1 className="txt-mktg-hero-1 text-3xl md:txt-mktg-hero-1">
+              Value-based pricing
+            </h1>
+            <Body1 className="text-center">
+              Pricing is based on the number of clusters deployed and managed by
+              Plural. Reach out to our sales team for more information.
+            </Body1>
             <Button
-              large
-              primary
               as={Link}
-              href="/contact-sales"
-              className="mt-xlarge w-fit"
+              href="#plan-comparison"
+              large
+              className="mt-medium w-fit"
             >
-              Book a demo
+              Compare plans
             </Button>
-          </StandardPageWidth>
-        </div>
-      </HeaderPad>
-      <div
-        className={classNames(
-          'bg-fill-zero',
-          'flex flex-col',
-          'gap-y-large py-xxxxlarge',
-          'md:gap-y-large md:py-xxxxxlarge',
-          'xxl:gap-y-xlarge xxl:py-xxxxxxlarge',
-          'm-auto max-w-[850px]'
-        )}
-      >
-        <div>
-          <StandardPageWidth className="pb-xxlarge md:pb-xxxlarge">
-            <CenteredSectionHead
-              heading="Transparent value-based pricing"
-              intro="Plural is priced by the number of services deployed and managed by Plural. 
-              Reach out to our sales team for more information."
-              introProps={{ className: 'md:px-xxxxlarge' }}
-            />
-            <ul className="my-xxlarge flex w-full flex-col gap-small">
-              {features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-center gap-medium rounded-large border border-border-fill-two bg-fill-one p-small"
-                >
-                  <CheckRoundedIcon color="icon-success" />
-                  <ResponsiveText
-                    as="span"
-                    textStyles={{
-                      '': 'mBody2Bold',
-                    }}
-                  >
-                    {feature}
-                  </ResponsiveText>
-                </li>
-              ))}
-            </ul>
-            {/* get quote */}
-            <div className="relative flex flex-col items-center overflow-hidden rounded-large border border-border-primary p-xlarge">
-              <GetQuoteSC />
-              <div className="z-10 flex max-w-[474px] flex-col items-center">
-                <ResponsiveText
-                  as="h3"
-                  textStyles={{
-                    '': 'mSubtitle1',
-                  }}
-                >
-                  Get a quote
-                </ResponsiveText>
-                <ResponsiveText
-                  as="p"
-                  textStyles={{
-                    '': 'mBody1',
-                  }}
-                  className="mt-small max-w-[474px] text-center"
-                >
-                  Connect with our sales team to discuss plans, pricing,
-                  enterprise agreements, or to schedule a demo.
-                </ResponsiveText>
+          </div>
+          <div className="mb-xxlarge flex w-full flex-col gap-medium lg:flex-row">
+            <PricingPlanCard
+              flex={1}
+              plan={proPlan}
+              cta={
                 <Button
-                  large
-                  primary
-                  as={Link}
-                  href="/contact-sales"
-                  className="mt-xlarge w-full"
-                  startIcon={<InvoicesIcon />}
+                  as="a"
+                  href="https://app.plural.sh/"
+                  target="_blank"
+                  rel="noopener noreferer"
+                  secondary
+                >
+                  Sign up
+                </Button>
+              }
+            />
+            <PricingPlanCard
+              flex={2}
+              plan={enterprisePlan}
+              cta={
+                <Button
+                  as="a"
+                  href="https://plural.sh/contact-sales"
+                  target="_blank"
+                  rel="noopener noreferer"
                 >
                   Contact sales
                 </Button>
-              </div>
-            </div>
-          </StandardPageWidth>
+              }
+            />
+          </div>
+          <div id="plan-comparison">
+            <PlanComparisonTableDesktop />
+            <PlanComparisonTablesMobile />
+          </div>
         </div>
-        <StandardFAQSection faqs={faqs} />
-      </div>
-    </>
+      </StandardPageWidth>
+    </HeaderPad>
   )
 }
 
-const GetQuoteSC = styled.div(({ theme }) => ({
-  overflow: 'hidden',
-  content: '""',
-  position: 'absolute',
-  top: '0',
-  left: '0',
-  right: '0',
-  bottom: '0',
-  width: '100%',
-  height: '100%',
-  backgroundImage: `url(/images/pricing/quote-bg.png)`,
-  backgroundPosition: 'center center',
-  backgroundSize: '100%',
-  backgroundRepeat: 'no-repeat',
-  backgroundColor: theme.colors['fill-two'],
-}))
+export const getStaticProps = async () => {
+  const { data, error } = await getPricing()
+  const proPlan = data?.pricing_page?.pro_plan
+  const enterprisePlan = data?.pricing_page?.enterprise_plan
 
-export type PricingPageProps = Pricing & { faqs: (FaqItemFragment | null)[] }
-
-export const getStaticProps: GetStaticProps<PricingPageProps> = async (
-  _context
-) => {
-  const { data: pricing, error: pricingError } = await getPricing()
-  const { data: faqData, error: faqError } = await directusClient.query<
-    FaqListQuery,
-    FaqListQueryVariables
-  >({
-    query: FaqListDocument,
-    variables: { slug: 'pricing' },
-  })
-
-  if (!pricing) {
+  if (!proPlan || !enterprisePlan || error) {
     return { notFound: true }
   }
 
   return propsWithGlobalSettings({
     metaTitle: 'Pricing',
     metaDescription: 'Flexible plans for every stage of your business',
-    ...pricing,
-    faqs: normalizeM2mItems(faqData.collapsible_lists?.[0]) || [],
+    enterprisePlan,
+    proPlan,
     footerVariant: FooterVariant.kitchenSink,
-    errors: combineErrors([pricingError, faqError]),
   })
 }
+
+const bgGradient = `
+    radial-gradient(circle 400px at 50% 10%, rgba(112, 117, 245, 0.06) 0%, transparent 75%),
+    radial-gradient(circle 600px at 12% 12%, rgba(23, 232, 160, 0.1) 0%, transparent 75%),
+    radial-gradient(circle 600px at 88% 12%, rgba(153, 218, 255, 0.1) 0%, transparent 75%),
+    linear-gradient(180deg, #0a0a0d 14.61%, #21242C 43.51%, #0a0a0d 72.4%)
+  `
+const bgGradientMobile = `
+    radial-gradient(circle 400px at 50% 10%, rgba(112, 117, 245, 0.08) 0%, transparent 75%),
+    linear-gradient(180deg, #0a0a0d 14.61%, #21242C 43.51%, #0a0a0d 72.4%)
+  `
