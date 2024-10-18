@@ -42,10 +42,6 @@ export type Mutation = {
   create_collapsibles_items: Array<Collapsibles>;
   create_company_logo_lists_item?: Maybe<Company_Logo_Lists>;
   create_company_logo_lists_items: Array<Company_Logo_Lists>;
-  create_company_logo_lists_items_1_item?: Maybe<Company_Logo_Lists_Items_1>;
-  create_company_logo_lists_items_1_items: Array<Company_Logo_Lists_Items_1>;
-  create_company_logo_lists_items_2_item?: Maybe<Company_Logo_Lists_Items_2>;
-  create_company_logo_lists_items_2_items: Array<Company_Logo_Lists_Items_2>;
   create_company_logo_lists_items_item?: Maybe<Company_Logo_Lists_Items>;
   create_company_logo_lists_items_items: Array<Company_Logo_Lists_Items>;
   create_company_logos_item?: Maybe<Company_Logos>;
@@ -64,34 +60,20 @@ export type Mutation = {
   create_nav_link_items: Array<Nav_Link>;
   create_nav_list_item?: Maybe<Nav_List>;
   create_nav_list_items: Array<Nav_List>;
+  create_pricing_plan_features_item?: Maybe<Pricing_Plan_Features>;
+  create_pricing_plan_features_items: Array<Pricing_Plan_Features>;
+  create_pricing_plans_item?: Maybe<Pricing_Plans>;
+  create_pricing_plans_items: Array<Pricing_Plans>;
   create_product_features_item?: Maybe<Product_Features>;
   create_product_features_items: Array<Product_Features>;
-  create_product_page_items_item?: Maybe<Product_Page_Items>;
-  create_product_page_items_items: Array<Product_Page_Items>;
-  create_product_pages_features_1_item?: Maybe<Product_Pages_Features_1>;
-  create_product_pages_features_1_items: Array<Product_Pages_Features_1>;
-  create_product_pages_features_item?: Maybe<Product_Pages_Features>;
-  create_product_pages_features_items: Array<Product_Pages_Features>;
   create_product_pages_item?: Maybe<Product_Pages>;
   create_product_pages_items: Array<Product_Pages>;
-  create_product_pages_product_features_1_item?: Maybe<Product_Pages_Product_Features_1>;
-  create_product_pages_product_features_1_items: Array<Product_Pages_Product_Features_1>;
-  create_product_pages_product_features_item?: Maybe<Product_Pages_Product_Features>;
-  create_product_pages_product_features_items: Array<Product_Pages_Product_Features>;
   create_quote_lists_item?: Maybe<Quote_Lists>;
   create_quote_lists_items: Array<Quote_Lists>;
   create_quote_lists_items_item?: Maybe<Quote_Lists_Items>;
   create_quote_lists_items_items: Array<Quote_Lists_Items>;
   create_quotes_item?: Maybe<Quotes>;
   create_quotes_items: Array<Quotes>;
-  create_site_settings_company_logo_lists_1_item?: Maybe<Site_Settings_Company_Logo_Lists_1>;
-  create_site_settings_company_logo_lists_1_items: Array<Site_Settings_Company_Logo_Lists_1>;
-  create_site_settings_company_logo_lists_item?: Maybe<Site_Settings_Company_Logo_Lists>;
-  create_site_settings_company_logo_lists_items: Array<Site_Settings_Company_Logo_Lists>;
-  create_site_settings_company_logos_item?: Maybe<Site_Settings_Company_Logos>;
-  create_site_settings_company_logos_items: Array<Site_Settings_Company_Logos>;
-  create_site_settings_main_nav_item?: Maybe<Site_Settings_Main_Nav>;
-  create_site_settings_main_nav_items: Array<Site_Settings_Main_Nav>;
   create_site_settings_nav_list_item?: Maybe<Site_Settings_Nav_List>;
   create_site_settings_nav_list_items: Array<Site_Settings_Nav_List>;
   create_solution_features_item?: Maybe<Solution_Features>;
@@ -122,10 +104,6 @@ export type Mutation = {
   delete_collapsibles_items?: Maybe<Delete_Many>;
   delete_company_logo_lists_item?: Maybe<Delete_One>;
   delete_company_logo_lists_items?: Maybe<Delete_Many>;
-  delete_company_logo_lists_items_1_item?: Maybe<Delete_One>;
-  delete_company_logo_lists_items_1_items?: Maybe<Delete_Many>;
-  delete_company_logo_lists_items_2_item?: Maybe<Delete_One>;
-  delete_company_logo_lists_items_2_items?: Maybe<Delete_Many>;
   delete_company_logo_lists_items_item?: Maybe<Delete_One>;
   delete_company_logo_lists_items_items?: Maybe<Delete_Many>;
   delete_company_logos_item?: Maybe<Delete_One>;
@@ -144,34 +122,20 @@ export type Mutation = {
   delete_nav_link_items?: Maybe<Delete_Many>;
   delete_nav_list_item?: Maybe<Delete_One>;
   delete_nav_list_items?: Maybe<Delete_Many>;
+  delete_pricing_plan_features_item?: Maybe<Delete_One>;
+  delete_pricing_plan_features_items?: Maybe<Delete_Many>;
+  delete_pricing_plans_item?: Maybe<Delete_One>;
+  delete_pricing_plans_items?: Maybe<Delete_Many>;
   delete_product_features_item?: Maybe<Delete_One>;
   delete_product_features_items?: Maybe<Delete_Many>;
-  delete_product_page_items_item?: Maybe<Delete_One>;
-  delete_product_page_items_items?: Maybe<Delete_Many>;
-  delete_product_pages_features_1_item?: Maybe<Delete_One>;
-  delete_product_pages_features_1_items?: Maybe<Delete_Many>;
-  delete_product_pages_features_item?: Maybe<Delete_One>;
-  delete_product_pages_features_items?: Maybe<Delete_Many>;
   delete_product_pages_item?: Maybe<Delete_One>;
   delete_product_pages_items?: Maybe<Delete_Many>;
-  delete_product_pages_product_features_1_item?: Maybe<Delete_One>;
-  delete_product_pages_product_features_1_items?: Maybe<Delete_Many>;
-  delete_product_pages_product_features_item?: Maybe<Delete_One>;
-  delete_product_pages_product_features_items?: Maybe<Delete_Many>;
   delete_quote_lists_item?: Maybe<Delete_One>;
   delete_quote_lists_items?: Maybe<Delete_Many>;
   delete_quote_lists_items_item?: Maybe<Delete_One>;
   delete_quote_lists_items_items?: Maybe<Delete_Many>;
   delete_quotes_item?: Maybe<Delete_One>;
   delete_quotes_items?: Maybe<Delete_Many>;
-  delete_site_settings_company_logo_lists_1_item?: Maybe<Delete_One>;
-  delete_site_settings_company_logo_lists_1_items?: Maybe<Delete_Many>;
-  delete_site_settings_company_logo_lists_item?: Maybe<Delete_One>;
-  delete_site_settings_company_logo_lists_items?: Maybe<Delete_Many>;
-  delete_site_settings_company_logos_item?: Maybe<Delete_One>;
-  delete_site_settings_company_logos_items?: Maybe<Delete_Many>;
-  delete_site_settings_main_nav_item?: Maybe<Delete_One>;
-  delete_site_settings_main_nav_items?: Maybe<Delete_Many>;
   delete_site_settings_nav_list_item?: Maybe<Delete_One>;
   delete_site_settings_nav_list_items?: Maybe<Delete_Many>;
   delete_solution_features_item?: Maybe<Delete_One>;
@@ -211,12 +175,6 @@ export type Mutation = {
   update_company_logo_lists_batch: Array<Company_Logo_Lists>;
   update_company_logo_lists_item?: Maybe<Company_Logo_Lists>;
   update_company_logo_lists_items: Array<Company_Logo_Lists>;
-  update_company_logo_lists_items_1_batch: Array<Company_Logo_Lists_Items_1>;
-  update_company_logo_lists_items_1_item?: Maybe<Company_Logo_Lists_Items_1>;
-  update_company_logo_lists_items_1_items: Array<Company_Logo_Lists_Items_1>;
-  update_company_logo_lists_items_2_batch: Array<Company_Logo_Lists_Items_2>;
-  update_company_logo_lists_items_2_item?: Maybe<Company_Logo_Lists_Items_2>;
-  update_company_logo_lists_items_2_items: Array<Company_Logo_Lists_Items_2>;
   update_company_logo_lists_items_batch: Array<Company_Logo_Lists_Items>;
   update_company_logo_lists_items_item?: Maybe<Company_Logo_Lists_Items>;
   update_company_logo_lists_items_items: Array<Company_Logo_Lists_Items>;
@@ -247,28 +205,19 @@ export type Mutation = {
   update_page_community?: Maybe<Page_Community>;
   update_page_homepage?: Maybe<Page_Homepage>;
   update_page_legal?: Maybe<Page_Legal>;
-  update_page_product?: Maybe<Page_Product>;
+  update_pricing_page?: Maybe<Pricing_Page>;
+  update_pricing_plan_features_batch: Array<Pricing_Plan_Features>;
+  update_pricing_plan_features_item?: Maybe<Pricing_Plan_Features>;
+  update_pricing_plan_features_items: Array<Pricing_Plan_Features>;
+  update_pricing_plans_batch: Array<Pricing_Plans>;
+  update_pricing_plans_item?: Maybe<Pricing_Plans>;
+  update_pricing_plans_items: Array<Pricing_Plans>;
   update_product_features_batch: Array<Product_Features>;
   update_product_features_item?: Maybe<Product_Features>;
   update_product_features_items: Array<Product_Features>;
-  update_product_page_items_batch: Array<Product_Page_Items>;
-  update_product_page_items_item?: Maybe<Product_Page_Items>;
-  update_product_page_items_items: Array<Product_Page_Items>;
   update_product_pages_batch: Array<Product_Pages>;
-  update_product_pages_features_1_batch: Array<Product_Pages_Features_1>;
-  update_product_pages_features_1_item?: Maybe<Product_Pages_Features_1>;
-  update_product_pages_features_1_items: Array<Product_Pages_Features_1>;
-  update_product_pages_features_batch: Array<Product_Pages_Features>;
-  update_product_pages_features_item?: Maybe<Product_Pages_Features>;
-  update_product_pages_features_items: Array<Product_Pages_Features>;
   update_product_pages_item?: Maybe<Product_Pages>;
   update_product_pages_items: Array<Product_Pages>;
-  update_product_pages_product_features_1_batch: Array<Product_Pages_Product_Features_1>;
-  update_product_pages_product_features_1_item?: Maybe<Product_Pages_Product_Features_1>;
-  update_product_pages_product_features_1_items: Array<Product_Pages_Product_Features_1>;
-  update_product_pages_product_features_batch: Array<Product_Pages_Product_Features>;
-  update_product_pages_product_features_item?: Maybe<Product_Pages_Product_Features>;
-  update_product_pages_product_features_items: Array<Product_Pages_Product_Features>;
   update_quote_lists_batch: Array<Quote_Lists>;
   update_quote_lists_item?: Maybe<Quote_Lists>;
   update_quote_lists_items: Array<Quote_Lists>;
@@ -279,18 +228,6 @@ export type Mutation = {
   update_quotes_item?: Maybe<Quotes>;
   update_quotes_items: Array<Quotes>;
   update_site_settings?: Maybe<Site_Settings>;
-  update_site_settings_company_logo_lists_1_batch: Array<Site_Settings_Company_Logo_Lists_1>;
-  update_site_settings_company_logo_lists_1_item?: Maybe<Site_Settings_Company_Logo_Lists_1>;
-  update_site_settings_company_logo_lists_1_items: Array<Site_Settings_Company_Logo_Lists_1>;
-  update_site_settings_company_logo_lists_batch: Array<Site_Settings_Company_Logo_Lists>;
-  update_site_settings_company_logo_lists_item?: Maybe<Site_Settings_Company_Logo_Lists>;
-  update_site_settings_company_logo_lists_items: Array<Site_Settings_Company_Logo_Lists>;
-  update_site_settings_company_logos_batch: Array<Site_Settings_Company_Logos>;
-  update_site_settings_company_logos_item?: Maybe<Site_Settings_Company_Logos>;
-  update_site_settings_company_logos_items: Array<Site_Settings_Company_Logos>;
-  update_site_settings_main_nav_batch: Array<Site_Settings_Main_Nav>;
-  update_site_settings_main_nav_item?: Maybe<Site_Settings_Main_Nav>;
-  update_site_settings_main_nav_items: Array<Site_Settings_Main_Nav>;
   update_site_settings_nav_list_batch: Array<Site_Settings_Nav_List>;
   update_site_settings_nav_list_item?: Maybe<Site_Settings_Nav_List>;
   update_site_settings_nav_list_items: Array<Site_Settings_Nav_List>;
@@ -444,38 +381,6 @@ export type MutationCreate_Company_Logo_Lists_ItemsArgs = {
 };
 
 
-export type MutationCreate_Company_Logo_Lists_Items_1_ItemArgs = {
-  data: Create_Company_Logo_Lists_Items_1_Input;
-};
-
-
-export type MutationCreate_Company_Logo_Lists_Items_1_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Company_Logo_Lists_Items_1_Input>>;
-  filter?: InputMaybe<Company_Logo_Lists_Items_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Company_Logo_Lists_Items_2_ItemArgs = {
-  data: Create_Company_Logo_Lists_Items_2_Input;
-};
-
-
-export type MutationCreate_Company_Logo_Lists_Items_2_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Company_Logo_Lists_Items_2_Input>>;
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationCreate_Company_Logo_Lists_Items_ItemArgs = {
   data: Create_Company_Logo_Lists_Items_Input;
 };
@@ -620,6 +525,38 @@ export type MutationCreate_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationCreate_Pricing_Plan_Features_ItemArgs = {
+  data: Create_Pricing_Plan_Features_Input;
+};
+
+
+export type MutationCreate_Pricing_Plan_Features_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Pricing_Plan_Features_Input>>;
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Pricing_Plans_ItemArgs = {
+  data: Create_Pricing_Plans_Input;
+};
+
+
+export type MutationCreate_Pricing_Plans_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Pricing_Plans_Input>>;
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Product_Features_ItemArgs = {
   data: Create_Product_Features_Input;
 };
@@ -636,54 +573,6 @@ export type MutationCreate_Product_Features_ItemsArgs = {
 };
 
 
-export type MutationCreate_Product_Page_Items_ItemArgs = {
-  data: Create_Product_Page_Items_Input;
-};
-
-
-export type MutationCreate_Product_Page_Items_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Product_Page_Items_Input>>;
-  filter?: InputMaybe<Product_Page_Items_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Product_Pages_Features_1_ItemArgs = {
-  data: Create_Product_Pages_Features_1_Input;
-};
-
-
-export type MutationCreate_Product_Pages_Features_1_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Product_Pages_Features_1_Input>>;
-  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Product_Pages_Features_ItemArgs = {
-  data: Create_Product_Pages_Features_Input;
-};
-
-
-export type MutationCreate_Product_Pages_Features_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Product_Pages_Features_Input>>;
-  filter?: InputMaybe<Product_Pages_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationCreate_Product_Pages_ItemArgs = {
   data: Create_Product_Pages_Input;
 };
@@ -692,38 +581,6 @@ export type MutationCreate_Product_Pages_ItemArgs = {
 export type MutationCreate_Product_Pages_ItemsArgs = {
   data?: InputMaybe<Array<Create_Product_Pages_Input>>;
   filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Product_Pages_Product_Features_1_ItemArgs = {
-  data: Create_Product_Pages_Product_Features_1_Input;
-};
-
-
-export type MutationCreate_Product_Pages_Product_Features_1_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Product_Pages_Product_Features_1_Input>>;
-  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Product_Pages_Product_Features_ItemArgs = {
-  data: Create_Product_Pages_Product_Features_Input;
-};
-
-
-export type MutationCreate_Product_Pages_Product_Features_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Product_Pages_Product_Features_Input>>;
-  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -772,70 +629,6 @@ export type MutationCreate_Quotes_ItemArgs = {
 export type MutationCreate_Quotes_ItemsArgs = {
   data?: InputMaybe<Array<Create_Quotes_Input>>;
   filter?: InputMaybe<Quotes_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logo_Lists_1_ItemArgs = {
-  data: Create_Site_Settings_Company_Logo_Lists_1_Input;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logo_Lists_1_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Site_Settings_Company_Logo_Lists_1_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logo_Lists_ItemArgs = {
-  data: Create_Site_Settings_Company_Logo_Lists_Input;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logo_Lists_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Site_Settings_Company_Logo_Lists_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logos_ItemArgs = {
-  data: Create_Site_Settings_Company_Logos_Input;
-};
-
-
-export type MutationCreate_Site_Settings_Company_Logos_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Site_Settings_Company_Logos_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logos_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Site_Settings_Main_Nav_ItemArgs = {
-  data: Create_Site_Settings_Main_Nav_Input;
-};
-
-
-export type MutationCreate_Site_Settings_Main_Nav_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Site_Settings_Main_Nav_Input>>;
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1036,26 +829,6 @@ export type MutationDelete_Company_Logo_Lists_ItemsArgs = {
 };
 
 
-export type MutationDelete_Company_Logo_Lists_Items_1_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Company_Logo_Lists_Items_1_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Company_Logo_Lists_Items_2_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Company_Logo_Lists_Items_2_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
 export type MutationDelete_Company_Logo_Lists_Items_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1146,6 +919,26 @@ export type MutationDelete_Nav_List_ItemsArgs = {
 };
 
 
+export type MutationDelete_Pricing_Plan_Features_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Pricing_Plan_Features_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Pricing_Plans_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Pricing_Plans_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Product_Features_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1156,62 +949,12 @@ export type MutationDelete_Product_Features_ItemsArgs = {
 };
 
 
-export type MutationDelete_Product_Page_Items_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Product_Page_Items_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Product_Pages_Features_1_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Product_Pages_Features_1_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Product_Pages_Features_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Product_Pages_Features_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
 export type MutationDelete_Product_Pages_ItemArgs = {
   id: Scalars['ID']['input'];
 };
 
 
 export type MutationDelete_Product_Pages_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Product_Pages_Product_Features_1_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Product_Pages_Product_Features_1_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Product_Pages_Product_Features_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Product_Pages_Product_Features_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -1242,46 +985,6 @@ export type MutationDelete_Quotes_ItemArgs = {
 
 
 export type MutationDelete_Quotes_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logo_Lists_1_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logo_Lists_1_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logo_Lists_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logo_Lists_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logos_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Site_Settings_Company_Logos_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Site_Settings_Main_Nav_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Site_Settings_Main_Nav_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -1593,64 +1296,6 @@ export type MutationUpdate_Company_Logo_Lists_ItemsArgs = {
 };
 
 
-export type MutationUpdate_Company_Logo_Lists_Items_1_BatchArgs = {
-  data?: InputMaybe<Array<Update_Company_Logo_Lists_Items_1_Input>>;
-  filter?: InputMaybe<Company_Logo_Lists_Items_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Company_Logo_Lists_Items_1_ItemArgs = {
-  data: Update_Company_Logo_Lists_Items_1_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Company_Logo_Lists_Items_1_ItemsArgs = {
-  data: Update_Company_Logo_Lists_Items_1_Input;
-  filter?: InputMaybe<Company_Logo_Lists_Items_1_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Company_Logo_Lists_Items_2_BatchArgs = {
-  data?: InputMaybe<Array<Update_Company_Logo_Lists_Items_2_Input>>;
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Company_Logo_Lists_Items_2_ItemArgs = {
-  data: Update_Company_Logo_Lists_Items_2_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Company_Logo_Lists_Items_2_ItemsArgs = {
-  data: Update_Company_Logo_Lists_Items_2_Input;
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationUpdate_Company_Logo_Lists_Items_BatchArgs = {
   data?: InputMaybe<Array<Update_Company_Logo_Lists_Items_Input>>;
   filter?: InputMaybe<Company_Logo_Lists_Items_Filter>;
@@ -1927,8 +1572,66 @@ export type MutationUpdate_Page_LegalArgs = {
 };
 
 
-export type MutationUpdate_Page_ProductArgs = {
-  data: Update_Page_Product_Input;
+export type MutationUpdate_Pricing_PageArgs = {
+  data: Update_Pricing_Page_Input;
+};
+
+
+export type MutationUpdate_Pricing_Plan_Features_BatchArgs = {
+  data?: InputMaybe<Array<Update_Pricing_Plan_Features_Input>>;
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Pricing_Plan_Features_ItemArgs = {
+  data: Update_Pricing_Plan_Features_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Pricing_Plan_Features_ItemsArgs = {
+  data: Update_Pricing_Plan_Features_Input;
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Pricing_Plans_BatchArgs = {
+  data?: InputMaybe<Array<Update_Pricing_Plans_Input>>;
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Pricing_Plans_ItemArgs = {
+  data: Update_Pricing_Plans_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Pricing_Plans_ItemsArgs = {
+  data: Update_Pricing_Plans_Input;
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -1961,96 +1664,9 @@ export type MutationUpdate_Product_Features_ItemsArgs = {
 };
 
 
-export type MutationUpdate_Product_Page_Items_BatchArgs = {
-  data?: InputMaybe<Array<Update_Product_Page_Items_Input>>;
-  filter?: InputMaybe<Product_Page_Items_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Page_Items_ItemArgs = {
-  data: Update_Product_Page_Items_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Product_Page_Items_ItemsArgs = {
-  data: Update_Product_Page_Items_Input;
-  filter?: InputMaybe<Product_Page_Items_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationUpdate_Product_Pages_BatchArgs = {
   data?: InputMaybe<Array<Update_Product_Pages_Input>>;
   filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Features_1_BatchArgs = {
-  data?: InputMaybe<Array<Update_Product_Pages_Features_1_Input>>;
-  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Features_1_ItemArgs = {
-  data: Update_Product_Pages_Features_1_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Product_Pages_Features_1_ItemsArgs = {
-  data: Update_Product_Pages_Features_1_Input;
-  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Features_BatchArgs = {
-  data?: InputMaybe<Array<Update_Product_Pages_Features_Input>>;
-  filter?: InputMaybe<Product_Pages_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Features_ItemArgs = {
-  data: Update_Product_Pages_Features_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Product_Pages_Features_ItemsArgs = {
-  data: Update_Product_Pages_Features_Input;
-  filter?: InputMaybe<Product_Pages_Features_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -2068,64 +1684,6 @@ export type MutationUpdate_Product_Pages_ItemArgs = {
 export type MutationUpdate_Product_Pages_ItemsArgs = {
   data: Update_Product_Pages_Input;
   filter?: InputMaybe<Product_Pages_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_1_BatchArgs = {
-  data?: InputMaybe<Array<Update_Product_Pages_Product_Features_1_Input>>;
-  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_1_ItemArgs = {
-  data: Update_Product_Pages_Product_Features_1_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_1_ItemsArgs = {
-  data: Update_Product_Pages_Product_Features_1_Input;
-  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_BatchArgs = {
-  data?: InputMaybe<Array<Update_Product_Pages_Product_Features_Input>>;
-  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_ItemArgs = {
-  data: Update_Product_Pages_Product_Features_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Product_Pages_Product_Features_ItemsArgs = {
-  data: Update_Product_Pages_Product_Features_Input;
-  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2224,122 +1782,6 @@ export type MutationUpdate_Quotes_ItemsArgs = {
 
 export type MutationUpdate_Site_SettingsArgs = {
   data: Update_Site_Settings_Input;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_1_BatchArgs = {
-  data?: InputMaybe<Array<Update_Site_Settings_Company_Logo_Lists_1_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_1_ItemArgs = {
-  data: Update_Site_Settings_Company_Logo_Lists_1_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_1_ItemsArgs = {
-  data: Update_Site_Settings_Company_Logo_Lists_1_Input;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_BatchArgs = {
-  data?: InputMaybe<Array<Update_Site_Settings_Company_Logo_Lists_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_ItemArgs = {
-  data: Update_Site_Settings_Company_Logo_Lists_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logo_Lists_ItemsArgs = {
-  data: Update_Site_Settings_Company_Logo_Lists_Input;
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logos_BatchArgs = {
-  data?: InputMaybe<Array<Update_Site_Settings_Company_Logos_Input>>;
-  filter?: InputMaybe<Site_Settings_Company_Logos_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logos_ItemArgs = {
-  data: Update_Site_Settings_Company_Logos_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Site_Settings_Company_Logos_ItemsArgs = {
-  data: Update_Site_Settings_Company_Logos_Input;
-  filter?: InputMaybe<Site_Settings_Company_Logos_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Main_Nav_BatchArgs = {
-  data?: InputMaybe<Array<Update_Site_Settings_Main_Nav_Input>>;
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Site_Settings_Main_Nav_ItemArgs = {
-  data: Update_Site_Settings_Main_Nav_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Site_Settings_Main_Nav_ItemsArgs = {
-  data: Update_Site_Settings_Main_Nav_Input;
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -2578,12 +2020,6 @@ export type Query = {
   company_logo_lists_aggregated: Array<Company_Logo_Lists_Aggregated>;
   company_logo_lists_by_id?: Maybe<Company_Logo_Lists>;
   company_logo_lists_items: Array<Company_Logo_Lists_Items>;
-  company_logo_lists_items_1: Array<Company_Logo_Lists_Items_1>;
-  company_logo_lists_items_1_aggregated: Array<Company_Logo_Lists_Items_1_Aggregated>;
-  company_logo_lists_items_1_by_id?: Maybe<Company_Logo_Lists_Items_1>;
-  company_logo_lists_items_2: Array<Company_Logo_Lists_Items_2>;
-  company_logo_lists_items_2_aggregated: Array<Company_Logo_Lists_Items_2_Aggregated>;
-  company_logo_lists_items_2_by_id?: Maybe<Company_Logo_Lists_Items_2>;
   company_logo_lists_items_aggregated: Array<Company_Logo_Lists_Items_Aggregated>;
   company_logo_lists_items_by_id?: Maybe<Company_Logo_Lists_Items>;
   company_logos: Array<Company_Logos>;
@@ -2613,28 +2049,19 @@ export type Query = {
   page_community?: Maybe<Page_Community>;
   page_homepage?: Maybe<Page_Homepage>;
   page_legal?: Maybe<Page_Legal>;
-  page_product?: Maybe<Page_Product>;
+  pricing_page?: Maybe<Pricing_Page>;
+  pricing_plan_features: Array<Pricing_Plan_Features>;
+  pricing_plan_features_aggregated: Array<Pricing_Plan_Features_Aggregated>;
+  pricing_plan_features_by_id?: Maybe<Pricing_Plan_Features>;
+  pricing_plans: Array<Pricing_Plans>;
+  pricing_plans_aggregated: Array<Pricing_Plans_Aggregated>;
+  pricing_plans_by_id?: Maybe<Pricing_Plans>;
   product_features: Array<Product_Features>;
   product_features_aggregated: Array<Product_Features_Aggregated>;
   product_features_by_id?: Maybe<Product_Features>;
-  product_page_items: Array<Product_Page_Items>;
-  product_page_items_aggregated: Array<Product_Page_Items_Aggregated>;
-  product_page_items_by_id?: Maybe<Product_Page_Items>;
   product_pages: Array<Product_Pages>;
   product_pages_aggregated: Array<Product_Pages_Aggregated>;
   product_pages_by_id?: Maybe<Product_Pages>;
-  product_pages_features: Array<Product_Pages_Features>;
-  product_pages_features_1: Array<Product_Pages_Features_1>;
-  product_pages_features_1_aggregated: Array<Product_Pages_Features_1_Aggregated>;
-  product_pages_features_1_by_id?: Maybe<Product_Pages_Features_1>;
-  product_pages_features_aggregated: Array<Product_Pages_Features_Aggregated>;
-  product_pages_features_by_id?: Maybe<Product_Pages_Features>;
-  product_pages_product_features: Array<Product_Pages_Product_Features>;
-  product_pages_product_features_1: Array<Product_Pages_Product_Features_1>;
-  product_pages_product_features_1_aggregated: Array<Product_Pages_Product_Features_1_Aggregated>;
-  product_pages_product_features_1_by_id?: Maybe<Product_Pages_Product_Features_1>;
-  product_pages_product_features_aggregated: Array<Product_Pages_Product_Features_Aggregated>;
-  product_pages_product_features_by_id?: Maybe<Product_Pages_Product_Features>;
   quote_lists: Array<Quote_Lists>;
   quote_lists_aggregated: Array<Quote_Lists_Aggregated>;
   quote_lists_by_id?: Maybe<Quote_Lists>;
@@ -2645,18 +2072,6 @@ export type Query = {
   quotes_aggregated: Array<Quotes_Aggregated>;
   quotes_by_id?: Maybe<Quotes>;
   site_settings?: Maybe<Site_Settings>;
-  site_settings_company_logo_lists: Array<Site_Settings_Company_Logo_Lists>;
-  site_settings_company_logo_lists_1: Array<Site_Settings_Company_Logo_Lists_1>;
-  site_settings_company_logo_lists_1_aggregated: Array<Site_Settings_Company_Logo_Lists_1_Aggregated>;
-  site_settings_company_logo_lists_1_by_id?: Maybe<Site_Settings_Company_Logo_Lists_1>;
-  site_settings_company_logo_lists_aggregated: Array<Site_Settings_Company_Logo_Lists_Aggregated>;
-  site_settings_company_logo_lists_by_id?: Maybe<Site_Settings_Company_Logo_Lists>;
-  site_settings_company_logos: Array<Site_Settings_Company_Logos>;
-  site_settings_company_logos_aggregated: Array<Site_Settings_Company_Logos_Aggregated>;
-  site_settings_company_logos_by_id?: Maybe<Site_Settings_Company_Logos>;
-  site_settings_main_nav: Array<Site_Settings_Main_Nav>;
-  site_settings_main_nav_aggregated: Array<Site_Settings_Main_Nav_Aggregated>;
-  site_settings_main_nav_by_id?: Maybe<Site_Settings_Main_Nav>;
   site_settings_nav_list: Array<Site_Settings_Nav_List>;
   site_settings_nav_list_aggregated: Array<Site_Settings_Nav_List_Aggregated>;
   site_settings_nav_list_by_id?: Maybe<Site_Settings_Nav_List>;
@@ -2900,58 +2315,6 @@ export type QueryCompany_Logo_Lists_ItemsArgs = {
 };
 
 
-export type QueryCompany_Logo_Lists_Items_1Args = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCompany_Logo_Lists_Items_1_AggregatedArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_1_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCompany_Logo_Lists_Items_1_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryCompany_Logo_Lists_Items_2Args = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCompany_Logo_Lists_Items_2_AggregatedArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCompany_Logo_Lists_Items_2_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
 export type QueryCompany_Logo_Lists_Items_AggregatedArgs = {
   filter?: InputMaybe<Company_Logo_Lists_Items_Filter>;
   groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -3176,6 +2539,58 @@ export type QueryNav_List_By_IdArgs = {
 };
 
 
+export type QueryPricing_Plan_FeaturesArgs = {
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPricing_Plan_Features_AggregatedArgs = {
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPricing_Plan_Features_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryPricing_PlansArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPricing_Plans_AggregatedArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPricing_Plans_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryProduct_FeaturesArgs = {
   filter?: InputMaybe<Product_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3202,32 +2617,6 @@ export type QueryProduct_Features_By_IdArgs = {
 };
 
 
-export type QueryProduct_Page_ItemsArgs = {
-  filter?: InputMaybe<Product_Page_Items_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Page_Items_AggregatedArgs = {
-  filter?: InputMaybe<Product_Page_Items_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Page_Items_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
 export type QueryProduct_PagesArgs = {
   filter?: InputMaybe<Product_Pages_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3250,110 +2639,6 @@ export type QueryProduct_Pages_AggregatedArgs = {
 
 
 export type QueryProduct_Pages_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryProduct_Pages_FeaturesArgs = {
-  filter?: InputMaybe<Product_Pages_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Features_1Args = {
-  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Features_1_AggregatedArgs = {
-  filter?: InputMaybe<Product_Pages_Features_1_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Features_1_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryProduct_Pages_Features_AggregatedArgs = {
-  filter?: InputMaybe<Product_Pages_Features_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Features_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryProduct_Pages_Product_FeaturesArgs = {
-  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Product_Features_1Args = {
-  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Product_Features_1_AggregatedArgs = {
-  filter?: InputMaybe<Product_Pages_Product_Features_1_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Product_Features_1_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryProduct_Pages_Product_Features_AggregatedArgs = {
-  filter?: InputMaybe<Product_Pages_Product_Features_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryProduct_Pages_Product_Features_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -3432,110 +2717,6 @@ export type QueryQuotes_AggregatedArgs = {
 
 
 export type QueryQuotes_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QuerySite_Settings_Company_Logo_ListsArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logo_Lists_1Args = {
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logo_Lists_1_AggregatedArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logo_Lists_1_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QuerySite_Settings_Company_Logo_Lists_AggregatedArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logo_Lists_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QuerySite_Settings_Company_LogosArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logos_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logos_AggregatedArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logos_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Company_Logos_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QuerySite_Settings_Main_NavArgs = {
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Main_Nav_AggregatedArgs = {
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QuerySite_Settings_Main_Nav_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4484,24 +3665,12 @@ export type Company_Logo_Lists = {
   date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
   ignore?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<Company_Logo_Lists_Items_2>>>;
-  items_func?: Maybe<Count_Functions>;
   partner_logos?: Maybe<Array<Maybe<Company_Logo_Lists_Items>>>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
-};
-
-
-export type Company_Logo_ListsItemsArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -4554,7 +3723,6 @@ export type Company_Logo_Lists_Aggregated_Count = {
   date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   ignore?: Maybe<Scalars['Int']['output']>;
-  items?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
@@ -4577,8 +3745,6 @@ export type Company_Logo_Lists_Filter = {
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   ignore?: InputMaybe<String_Filter_Operators>;
-  items?: InputMaybe<Company_Logo_Lists_Items_2_Filter>;
-  items_func?: InputMaybe<Count_Function_Filter_Operators>;
   partner_logos?: InputMaybe<Company_Logo_Lists_Items_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
@@ -4605,120 +3771,6 @@ export type Company_Logo_Lists_ItemsCompany_Logo_Lists_IdArgs = {
   search?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
-
-export type Company_Logo_Lists_Items_1 = {
-  __typename?: 'company_logo_lists_items_1';
-  collection?: Maybe<Scalars['String']['output']>;
-  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
-  id: Scalars['ID']['output'];
-  item?: Maybe<Company_Logo_Lists_Items_1_Item_Union>;
-};
-
-
-export type Company_Logo_Lists_Items_1Company_Logo_Lists_IdArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Company_Logo_Lists_Items_1_Aggregated = {
-  __typename?: 'company_logo_lists_items_1_aggregated';
-  avg?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-  avgDistinct?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-  count?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-  min?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-  sum?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-  sumDistinct?: Maybe<Company_Logo_Lists_Items_1_Aggregated_Fields>;
-};
-
-export type Company_Logo_Lists_Items_1_Aggregated_Count = {
-  __typename?: 'company_logo_lists_items_1_aggregated_count';
-  collection?: Maybe<Scalars['Int']['output']>;
-  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  item?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Company_Logo_Lists_Items_1_Aggregated_Fields = {
-  __typename?: 'company_logo_lists_items_1_aggregated_fields';
-  company_logo_lists_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Company_Logo_Lists_Items_1_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_1_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_1_Filter>>>;
-  collection?: InputMaybe<String_Filter_Operators>;
-  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  item__company_logo_lists_items?: InputMaybe<Company_Logo_Lists_Items_Filter>;
-};
-
-export type Company_Logo_Lists_Items_1_Item_Union = Company_Logo_Lists_Items;
-
-export type Company_Logo_Lists_Items_2 = {
-  __typename?: 'company_logo_lists_items_2';
-  collection?: Maybe<Scalars['String']['output']>;
-  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
-  id: Scalars['ID']['output'];
-  item?: Maybe<Company_Logo_Lists_Items_2_Item_Union>;
-};
-
-
-export type Company_Logo_Lists_Items_2Company_Logo_Lists_IdArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Company_Logo_Lists_Items_2_Aggregated = {
-  __typename?: 'company_logo_lists_items_2_aggregated';
-  avg?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-  avgDistinct?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-  count?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-  min?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-  sum?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-  sumDistinct?: Maybe<Company_Logo_Lists_Items_2_Aggregated_Fields>;
-};
-
-export type Company_Logo_Lists_Items_2_Aggregated_Count = {
-  __typename?: 'company_logo_lists_items_2_aggregated_count';
-  collection?: Maybe<Scalars['Int']['output']>;
-  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  item?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Company_Logo_Lists_Items_2_Aggregated_Fields = {
-  __typename?: 'company_logo_lists_items_2_aggregated_fields';
-  company_logo_lists_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Company_Logo_Lists_Items_2_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_2_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Items_2_Filter>>>;
-  collection?: InputMaybe<String_Filter_Operators>;
-  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  item__company_logos?: InputMaybe<Company_Logos_Filter>;
-};
-
-export type Company_Logo_Lists_Items_2_Item_Union = Company_Logos;
 
 export type Company_Logo_Lists_Items_Aggregated = {
   __typename?: 'company_logo_lists_items_aggregated';
@@ -4955,27 +4007,12 @@ export type Create_Company_Logo_Lists_Input = {
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   ignore?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Create_Company_Logo_Lists_Items_2_Input>>>;
   partner_logos?: InputMaybe<Array<InputMaybe<Create_Company_Logo_Lists_Items_Input>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
-};
-
-export type Create_Company_Logo_Lists_Items_1_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  company_logo_lists_id?: InputMaybe<Create_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Create_Company_Logo_Lists_Items_2_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  company_logo_lists_id?: InputMaybe<Create_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Create_Company_Logo_Lists_Items_Input = {
@@ -5195,6 +4232,23 @@ export type Create_Page_Legal_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Pricing_Plan_Features_Input = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  plan_id?: InputMaybe<Create_Pricing_Plans_Input>;
+};
+
+export type Create_Pricing_Plans_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Create_Pricing_Plan_Features_Input>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name: Scalars['String']['input'];
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
 export type Create_Product_Features_Input = {
   description?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -5202,29 +4256,6 @@ export type Create_Product_Features_Input = {
   image?: InputMaybe<Create_Directus_Files_Input>;
   product_id?: InputMaybe<Create_Product_Pages_Input>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Create_Product_Page_Items_Input = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  icon_name?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Create_Directus_Files_Input>;
-  product_id?: InputMaybe<Create_Product_Pages_Input>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Create_Product_Pages_Features_1_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
-};
-
-export type Create_Product_Pages_Features_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
 };
 
 export type Create_Product_Pages_Input = {
@@ -5238,18 +4269,6 @@ export type Create_Product_Pages_Input = {
   slug: Scalars['String']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Create_Product_Pages_Product_Features_1_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  product_features_id?: InputMaybe<Scalars['Int']['input']>;
-  product_pages_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Create_Product_Pages_Product_Features_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  product_features_id?: InputMaybe<Create_Product_Features_Input>;
-  product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
 };
 
 export type Create_Quote_Lists_Input = {
@@ -5288,47 +4307,20 @@ export type Create_Quotes_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
-export type Create_Site_Settings_Company_Logo_Lists_1_Input = {
-  company_logo_lists_id?: InputMaybe<Create_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Create_Site_Settings_Input>;
-};
-
-export type Create_Site_Settings_Company_Logo_Lists_Input = {
-  company_logo_lists_id?: InputMaybe<Create_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Create_Site_Settings_Input>;
-};
-
-export type Create_Site_Settings_Company_Logos_Input = {
-  company_logos_id?: InputMaybe<Create_Company_Logos_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Create_Site_Settings_Input>;
-};
-
 export type Create_Site_Settings_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  main_nav?: InputMaybe<Array<InputMaybe<Create_Site_Settings_Main_Nav_Input>>>;
   og_description?: InputMaybe<Scalars['String']['input']>;
   og_image?: InputMaybe<Create_Directus_Files_Input>;
   og_image_community?: InputMaybe<Create_Directus_Files_Input>;
   og_image_marketplace?: InputMaybe<Create_Directus_Files_Input>;
-  partner_logos?: InputMaybe<Array<InputMaybe<Create_Site_Settings_Company_Logo_Lists_1_Input>>>;
   promo_banner_content?: InputMaybe<Scalars['String']['input']>;
   promo_banner_url?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
-};
-
-export type Create_Site_Settings_Main_Nav_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  site_settings_id?: InputMaybe<Create_Site_Settings_Input>;
 };
 
 export type Create_Site_Settings_Nav_List_Input = {
@@ -6598,22 +5590,22 @@ export type Page_Legal_Filter = {
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
-export type Page_Product = {
-  __typename?: 'page_product';
+export type Pricing_Page = {
+  __typename?: 'pricing_page';
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  faq?: Maybe<Collapsible_Lists>;
-  featured_quote?: Maybe<Quotes>;
+  enterprise_plan?: Maybe<Pricing_Plans>;
   id: Scalars['ID']['output'];
+  pro_plan?: Maybe<Pricing_Plans>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
 };
 
 
-export type Page_ProductFaqArgs = {
-  filter?: InputMaybe<Collapsible_Lists_Filter>;
+export type Pricing_PageEnterprise_PlanArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6622,8 +5614,8 @@ export type Page_ProductFaqArgs = {
 };
 
 
-export type Page_ProductFeatured_QuoteArgs = {
-  filter?: InputMaybe<Quotes_Filter>;
+export type Pricing_PagePro_PlanArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -6632,7 +5624,7 @@ export type Page_ProductFeatured_QuoteArgs = {
 };
 
 
-export type Page_ProductUser_CreatedArgs = {
+export type Pricing_PageUser_CreatedArgs = {
   filter?: InputMaybe<Directus_Users_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -6642,13 +5634,157 @@ export type Page_ProductUser_CreatedArgs = {
 };
 
 
-export type Page_ProductUser_UpdatedArgs = {
+export type Pricing_PageUser_UpdatedArgs = {
   filter?: InputMaybe<Directus_Users_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Pricing_Plan_Features = {
+  __typename?: 'pricing_plan_features';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  plan_id?: Maybe<Pricing_Plans>;
+};
+
+
+export type Pricing_Plan_FeaturesPlan_IdArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Pricing_Plan_Features_Aggregated = {
+  __typename?: 'pricing_plan_features_aggregated';
+  avg?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+  avgDistinct?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+  count?: Maybe<Pricing_Plan_Features_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Pricing_Plan_Features_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+  min?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+  sum?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+  sumDistinct?: Maybe<Pricing_Plan_Features_Aggregated_Fields>;
+};
+
+export type Pricing_Plan_Features_Aggregated_Count = {
+  __typename?: 'pricing_plan_features_aggregated_count';
+  description?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  plan_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Pricing_Plan_Features_Aggregated_Fields = {
+  __typename?: 'pricing_plan_features_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  plan_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Pricing_Plan_Features_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Pricing_Plan_Features_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Pricing_Plan_Features_Filter>>>;
+  description?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  plan_id?: InputMaybe<Pricing_Plans_Filter>;
+};
+
+export type Pricing_Plans = {
+  __typename?: 'pricing_plans';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  features?: Maybe<Array<Maybe<Pricing_Plan_Features>>>;
+  features_func?: Maybe<Count_Functions>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Pricing_PlansFeaturesArgs = {
+  filter?: InputMaybe<Pricing_Plan_Features_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Pricing_PlansUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Pricing_PlansUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Pricing_Plans_Aggregated = {
+  __typename?: 'pricing_plans_aggregated';
+  avg?: Maybe<Pricing_Plans_Aggregated_Fields>;
+  avgDistinct?: Maybe<Pricing_Plans_Aggregated_Fields>;
+  count?: Maybe<Pricing_Plans_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Pricing_Plans_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Pricing_Plans_Aggregated_Fields>;
+  min?: Maybe<Pricing_Plans_Aggregated_Fields>;
+  sum?: Maybe<Pricing_Plans_Aggregated_Fields>;
+  sumDistinct?: Maybe<Pricing_Plans_Aggregated_Fields>;
+};
+
+export type Pricing_Plans_Aggregated_Count = {
+  __typename?: 'pricing_plans_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  features?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  subtitle?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Pricing_Plans_Aggregated_Fields = {
+  __typename?: 'pricing_plans_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Pricing_Plans_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Pricing_Plans_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Pricing_Plans_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  features?: InputMaybe<Pricing_Plan_Features_Filter>;
+  features_func?: InputMaybe<Count_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  subtitle?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
 export type Product_Features = {
@@ -6722,77 +5858,6 @@ export type Product_Features_Filter = {
   title?: InputMaybe<String_Filter_Operators>;
 };
 
-export type Product_Page_Items = {
-  __typename?: 'product_page_items';
-  description?: Maybe<Scalars['String']['output']>;
-  icon_name?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  image?: Maybe<Directus_Files>;
-  product_id?: Maybe<Product_Pages>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type Product_Page_ItemsImageArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Product_Page_ItemsProduct_IdArgs = {
-  filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Product_Page_Items_Aggregated = {
-  __typename?: 'product_page_items_aggregated';
-  avg?: Maybe<Product_Page_Items_Aggregated_Fields>;
-  avgDistinct?: Maybe<Product_Page_Items_Aggregated_Fields>;
-  count?: Maybe<Product_Page_Items_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Product_Page_Items_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Product_Page_Items_Aggregated_Fields>;
-  min?: Maybe<Product_Page_Items_Aggregated_Fields>;
-  sum?: Maybe<Product_Page_Items_Aggregated_Fields>;
-  sumDistinct?: Maybe<Product_Page_Items_Aggregated_Fields>;
-};
-
-export type Product_Page_Items_Aggregated_Count = {
-  __typename?: 'product_page_items_aggregated_count';
-  description?: Maybe<Scalars['Int']['output']>;
-  icon_name?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  image?: Maybe<Scalars['Int']['output']>;
-  product_id?: Maybe<Scalars['Int']['output']>;
-  title?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Page_Items_Aggregated_Fields = {
-  __typename?: 'product_page_items_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  product_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Product_Page_Items_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Product_Page_Items_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Product_Page_Items_Filter>>>;
-  description?: InputMaybe<String_Filter_Operators>;
-  icon_name?: InputMaybe<String_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  image?: InputMaybe<Directus_Files_Filter>;
-  product_id?: InputMaybe<Product_Pages_Filter>;
-  title?: InputMaybe<String_Filter_Operators>;
-};
-
 export type Product_Pages = {
   __typename?: 'product_pages';
   dropdown_description?: Maybe<Scalars['String']['output']>;
@@ -6851,120 +5916,6 @@ export type Product_Pages_Aggregated_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-export type Product_Pages_Features = {
-  __typename?: 'product_pages_features';
-  collection?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  item?: Maybe<Product_Pages_Features_Item_Union>;
-  product_pages_id?: Maybe<Product_Pages>;
-};
-
-
-export type Product_Pages_FeaturesProduct_Pages_IdArgs = {
-  filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Product_Pages_Features_1 = {
-  __typename?: 'product_pages_features_1';
-  collection?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  item?: Maybe<Product_Pages_Features_1_Item_Union>;
-  product_pages_id?: Maybe<Product_Pages>;
-};
-
-
-export type Product_Pages_Features_1Product_Pages_IdArgs = {
-  filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Product_Pages_Features_1_Aggregated = {
-  __typename?: 'product_pages_features_1_aggregated';
-  avg?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-  avgDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-  count?: Maybe<Product_Pages_Features_1_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-  min?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-  sum?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-  sumDistinct?: Maybe<Product_Pages_Features_1_Aggregated_Fields>;
-};
-
-export type Product_Pages_Features_1_Aggregated_Count = {
-  __typename?: 'product_pages_features_1_aggregated_count';
-  collection?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  item?: Maybe<Scalars['Int']['output']>;
-  product_pages_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Pages_Features_1_Aggregated_Fields = {
-  __typename?: 'product_pages_features_1_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  product_pages_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Product_Pages_Features_1_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Features_1_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Features_1_Filter>>>;
-  collection?: InputMaybe<String_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  item__product_features?: InputMaybe<Product_Features_Filter>;
-  product_pages_id?: InputMaybe<Product_Pages_Filter>;
-};
-
-export type Product_Pages_Features_1_Item_Union = Product_Features;
-
-export type Product_Pages_Features_Aggregated = {
-  __typename?: 'product_pages_features_aggregated';
-  avg?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-  avgDistinct?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-  count?: Maybe<Product_Pages_Features_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Product_Pages_Features_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-  min?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-  sum?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-  sumDistinct?: Maybe<Product_Pages_Features_Aggregated_Fields>;
-};
-
-export type Product_Pages_Features_Aggregated_Count = {
-  __typename?: 'product_pages_features_aggregated_count';
-  collection?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  item?: Maybe<Scalars['Int']['output']>;
-  product_pages_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Pages_Features_Aggregated_Fields = {
-  __typename?: 'product_pages_features_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  product_pages_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Product_Pages_Features_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Features_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Features_Filter>>>;
-  collection?: InputMaybe<String_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  item__product_features?: InputMaybe<Product_Features_Filter>;
-  product_pages_id?: InputMaybe<Product_Pages_Filter>;
-};
-
-export type Product_Pages_Features_Item_Union = Product_Features;
-
 export type Product_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Product_Pages_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Product_Pages_Filter>>>;
@@ -6979,112 +5930,6 @@ export type Product_Pages_Filter = {
   slug?: InputMaybe<String_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   type?: InputMaybe<String_Filter_Operators>;
-};
-
-export type Product_Pages_Product_Features = {
-  __typename?: 'product_pages_product_features';
-  id: Scalars['ID']['output'];
-  product_features_id?: Maybe<Product_Features>;
-  product_pages_id?: Maybe<Product_Pages>;
-};
-
-
-export type Product_Pages_Product_FeaturesProduct_Features_IdArgs = {
-  filter?: InputMaybe<Product_Features_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Product_Pages_Product_FeaturesProduct_Pages_IdArgs = {
-  filter?: InputMaybe<Product_Pages_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Product_Pages_Product_Features_1 = {
-  __typename?: 'product_pages_product_features_1';
-  id: Scalars['ID']['output'];
-  product_features_id?: Maybe<Scalars['Int']['output']>;
-  product_pages_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Pages_Product_Features_1_Aggregated = {
-  __typename?: 'product_pages_product_features_1_aggregated';
-  avg?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-  avgDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-  count?: Maybe<Product_Pages_Product_Features_1_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-  min?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-  sum?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-  sumDistinct?: Maybe<Product_Pages_Product_Features_1_Aggregated_Fields>;
-};
-
-export type Product_Pages_Product_Features_1_Aggregated_Count = {
-  __typename?: 'product_pages_product_features_1_aggregated_count';
-  id?: Maybe<Scalars['Int']['output']>;
-  product_features_id?: Maybe<Scalars['Int']['output']>;
-  product_pages_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Pages_Product_Features_1_Aggregated_Fields = {
-  __typename?: 'product_pages_product_features_1_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  product_features_id?: Maybe<Scalars['Float']['output']>;
-  product_pages_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Product_Pages_Product_Features_1_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_1_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_1_Filter>>>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  product_features_id?: InputMaybe<Number_Filter_Operators>;
-  product_pages_id?: InputMaybe<Number_Filter_Operators>;
-};
-
-export type Product_Pages_Product_Features_Aggregated = {
-  __typename?: 'product_pages_product_features_aggregated';
-  avg?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-  avgDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-  count?: Maybe<Product_Pages_Product_Features_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-  min?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-  sum?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-  sumDistinct?: Maybe<Product_Pages_Product_Features_Aggregated_Fields>;
-};
-
-export type Product_Pages_Product_Features_Aggregated_Count = {
-  __typename?: 'product_pages_product_features_aggregated_count';
-  id?: Maybe<Scalars['Int']['output']>;
-  product_features_id?: Maybe<Scalars['Int']['output']>;
-  product_pages_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Product_Pages_Product_Features_Aggregated_Fields = {
-  __typename?: 'product_pages_product_features_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  product_features_id?: Maybe<Scalars['Float']['output']>;
-  product_pages_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Product_Pages_Product_Features_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Product_Pages_Product_Features_Filter>>>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  product_features_id?: InputMaybe<Product_Features_Filter>;
-  product_pages_id?: InputMaybe<Product_Pages_Filter>;
 };
 
 export type Quote_Lists = {
@@ -7363,30 +6208,16 @@ export type Site_Settings = {
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
-  main_nav?: Maybe<Array<Maybe<Site_Settings_Main_Nav>>>;
-  main_nav_func?: Maybe<Count_Functions>;
   og_description?: Maybe<Scalars['String']['output']>;
   og_image?: Maybe<Directus_Files>;
   og_image_community?: Maybe<Directus_Files>;
   og_image_marketplace?: Maybe<Directus_Files>;
-  partner_logos?: Maybe<Array<Maybe<Site_Settings_Company_Logo_Lists_1>>>;
-  partner_logos_func?: Maybe<Count_Functions>;
   promo_banner_content?: Maybe<Scalars['String']['output']>;
   promo_banner_url?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
-};
-
-
-export type Site_SettingsMain_NavArgs = {
-  filter?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -7420,16 +6251,6 @@ export type Site_SettingsOg_Image_MarketplaceArgs = {
 };
 
 
-export type Site_SettingsPartner_LogosArgs = {
-  filter?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type Site_SettingsUser_CreatedArgs = {
   filter?: InputMaybe<Directus_Users_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7449,195 +6270,6 @@ export type Site_SettingsUser_UpdatedArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type Site_Settings_Company_Logo_Lists = {
-  __typename?: 'site_settings_company_logo_lists';
-  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
-  id: Scalars['ID']['output'];
-  site_settings_id?: Maybe<Site_Settings>;
-};
-
-
-export type Site_Settings_Company_Logo_ListsCompany_Logo_Lists_IdArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_Settings_Company_Logo_ListsSite_Settings_IdArgs = {
-  filter?: InputMaybe<Site_Settings_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Site_Settings_Company_Logo_Lists_1 = {
-  __typename?: 'site_settings_company_logo_lists_1';
-  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
-  id: Scalars['ID']['output'];
-  site_settings_id?: Maybe<Site_Settings>;
-};
-
-
-export type Site_Settings_Company_Logo_Lists_1Company_Logo_Lists_IdArgs = {
-  filter?: InputMaybe<Company_Logo_Lists_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_Settings_Company_Logo_Lists_1Site_Settings_IdArgs = {
-  filter?: InputMaybe<Site_Settings_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Site_Settings_Company_Logo_Lists_1_Aggregated = {
-  __typename?: 'site_settings_company_logo_lists_1_aggregated';
-  avg?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-  avgDistinct?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-  count?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-  min?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-  sum?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-  sumDistinct?: Maybe<Site_Settings_Company_Logo_Lists_1_Aggregated_Fields>;
-};
-
-export type Site_Settings_Company_Logo_Lists_1_Aggregated_Count = {
-  __typename?: 'site_settings_company_logo_lists_1_aggregated_count';
-  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  site_settings_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Site_Settings_Company_Logo_Lists_1_Aggregated_Fields = {
-  __typename?: 'site_settings_company_logo_lists_1_aggregated_fields';
-  company_logo_lists_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  site_settings_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Site_Settings_Company_Logo_Lists_1_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>>>;
-  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  site_settings_id?: InputMaybe<Site_Settings_Filter>;
-};
-
-export type Site_Settings_Company_Logo_Lists_Aggregated = {
-  __typename?: 'site_settings_company_logo_lists_aggregated';
-  avg?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-  avgDistinct?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-  count?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-  min?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-  sum?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-  sumDistinct?: Maybe<Site_Settings_Company_Logo_Lists_Aggregated_Fields>;
-};
-
-export type Site_Settings_Company_Logo_Lists_Aggregated_Count = {
-  __typename?: 'site_settings_company_logo_lists_aggregated_count';
-  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  site_settings_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Site_Settings_Company_Logo_Lists_Aggregated_Fields = {
-  __typename?: 'site_settings_company_logo_lists_aggregated_fields';
-  company_logo_lists_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  site_settings_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Site_Settings_Company_Logo_Lists_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logo_Lists_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logo_Lists_Filter>>>;
-  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  site_settings_id?: InputMaybe<Site_Settings_Filter>;
-};
-
-export type Site_Settings_Company_Logos = {
-  __typename?: 'site_settings_company_logos';
-  company_logos_id?: Maybe<Company_Logos>;
-  id: Scalars['ID']['output'];
-  site_settings_id?: Maybe<Site_Settings>;
-};
-
-
-export type Site_Settings_Company_LogosCompany_Logos_IdArgs = {
-  filter?: InputMaybe<Company_Logos_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Site_Settings_Company_LogosSite_Settings_IdArgs = {
-  filter?: InputMaybe<Site_Settings_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Site_Settings_Company_Logos_Aggregated = {
-  __typename?: 'site_settings_company_logos_aggregated';
-  avg?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-  avgDistinct?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-  count?: Maybe<Site_Settings_Company_Logos_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Site_Settings_Company_Logos_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-  min?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-  sum?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-  sumDistinct?: Maybe<Site_Settings_Company_Logos_Aggregated_Fields>;
-};
-
-export type Site_Settings_Company_Logos_Aggregated_Count = {
-  __typename?: 'site_settings_company_logos_aggregated_count';
-  company_logos_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  site_settings_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Site_Settings_Company_Logos_Aggregated_Fields = {
-  __typename?: 'site_settings_company_logos_aggregated_fields';
-  company_logos_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  site_settings_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Site_Settings_Company_Logos_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logos_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Site_Settings_Company_Logos_Filter>>>;
-  company_logos_id?: InputMaybe<Company_Logos_Filter>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  site_settings_id?: InputMaybe<Site_Settings_Filter>;
-};
-
 export type Site_Settings_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Site_Settings_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Site_Settings_Filter>>>;
@@ -7646,14 +6278,10 @@ export type Site_Settings_Filter = {
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  main_nav?: InputMaybe<Site_Settings_Main_Nav_Filter>;
-  main_nav_func?: InputMaybe<Count_Function_Filter_Operators>;
   og_description?: InputMaybe<String_Filter_Operators>;
   og_image?: InputMaybe<Directus_Files_Filter>;
   og_image_community?: InputMaybe<Directus_Files_Filter>;
   og_image_marketplace?: InputMaybe<Directus_Files_Filter>;
-  partner_logos?: InputMaybe<Site_Settings_Company_Logo_Lists_1_Filter>;
-  partner_logos_func?: InputMaybe<Count_Function_Filter_Operators>;
   promo_banner_content?: InputMaybe<String_Filter_Operators>;
   promo_banner_url?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
@@ -7661,63 +6289,6 @@ export type Site_Settings_Filter = {
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
-
-export type Site_Settings_Main_Nav = {
-  __typename?: 'site_settings_main_nav';
-  collection?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  item?: Maybe<Site_Settings_Main_Nav_Item_Union>;
-  site_settings_id?: Maybe<Site_Settings>;
-};
-
-
-export type Site_Settings_Main_NavSite_Settings_IdArgs = {
-  filter?: InputMaybe<Site_Settings_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Site_Settings_Main_Nav_Aggregated = {
-  __typename?: 'site_settings_main_nav_aggregated';
-  avg?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-  avgDistinct?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-  count?: Maybe<Site_Settings_Main_Nav_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Site_Settings_Main_Nav_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-  min?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-  sum?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-  sumDistinct?: Maybe<Site_Settings_Main_Nav_Aggregated_Fields>;
-};
-
-export type Site_Settings_Main_Nav_Aggregated_Count = {
-  __typename?: 'site_settings_main_nav_aggregated_count';
-  collection?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  item?: Maybe<Scalars['Int']['output']>;
-  site_settings_id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Site_Settings_Main_Nav_Aggregated_Fields = {
-  __typename?: 'site_settings_main_nav_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  site_settings_id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Site_Settings_Main_Nav_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Site_Settings_Main_Nav_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Site_Settings_Main_Nav_Filter>>>;
-  collection?: InputMaybe<String_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  item__nav_list?: InputMaybe<Nav_List_Filter>;
-  site_settings_id?: InputMaybe<Site_Settings_Filter>;
-};
-
-export type Site_Settings_Main_Nav_Item_Union = Nav_List;
 
 export type Site_Settings_Nav_List = {
   __typename?: 'site_settings_nav_list';
@@ -8572,27 +7143,12 @@ export type Update_Company_Logo_Lists_Input = {
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   ignore?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Update_Company_Logo_Lists_Items_2_Input>>>;
   partner_logos?: InputMaybe<Array<InputMaybe<Update_Company_Logo_Lists_Items_Input>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
-};
-
-export type Update_Company_Logo_Lists_Items_1_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  company_logo_lists_id?: InputMaybe<Update_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Update_Company_Logo_Lists_Items_2_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  company_logo_lists_id?: InputMaybe<Update_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Update_Company_Logo_Lists_Items_Input = {
@@ -8812,12 +7368,29 @@ export type Update_Page_Legal_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
-export type Update_Page_Product_Input = {
+export type Update_Pricing_Page_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
-  faq?: InputMaybe<Update_Collapsible_Lists_Input>;
-  featured_quote?: InputMaybe<Update_Quotes_Input>;
+  enterprise_plan?: InputMaybe<Update_Pricing_Plans_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  pro_plan?: InputMaybe<Update_Pricing_Plans_Input>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Pricing_Plan_Features_Input = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  plan_id?: InputMaybe<Update_Pricing_Plans_Input>;
+};
+
+export type Update_Pricing_Plans_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Update_Pricing_Plan_Features_Input>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
@@ -8831,29 +7404,6 @@ export type Update_Product_Features_Input = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Update_Product_Page_Items_Input = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  icon_name?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Update_Directus_Files_Input>;
-  product_id?: InputMaybe<Update_Product_Pages_Input>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Update_Product_Pages_Features_1_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
-};
-
-export type Update_Product_Pages_Features_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
-};
-
 export type Update_Product_Pages_Input = {
   dropdown_description?: InputMaybe<Scalars['String']['input']>;
   dropdown_icon?: InputMaybe<Scalars['String']['input']>;
@@ -8865,18 +7415,6 @@ export type Update_Product_Pages_Input = {
   slug?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Update_Product_Pages_Product_Features_1_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  product_features_id?: InputMaybe<Scalars['Int']['input']>;
-  product_pages_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Update_Product_Pages_Product_Features_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  product_features_id?: InputMaybe<Update_Product_Features_Input>;
-  product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
 };
 
 export type Update_Quote_Lists_Input = {
@@ -8915,47 +7453,20 @@ export type Update_Quotes_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
-export type Update_Site_Settings_Company_Logo_Lists_1_Input = {
-  company_logo_lists_id?: InputMaybe<Update_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Update_Site_Settings_Input>;
-};
-
-export type Update_Site_Settings_Company_Logo_Lists_Input = {
-  company_logo_lists_id?: InputMaybe<Update_Company_Logo_Lists_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Update_Site_Settings_Input>;
-};
-
-export type Update_Site_Settings_Company_Logos_Input = {
-  company_logos_id?: InputMaybe<Update_Company_Logos_Input>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_settings_id?: InputMaybe<Update_Site_Settings_Input>;
-};
-
 export type Update_Site_Settings_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  main_nav?: InputMaybe<Array<InputMaybe<Update_Site_Settings_Main_Nav_Input>>>;
   og_description?: InputMaybe<Scalars['String']['input']>;
   og_image?: InputMaybe<Update_Directus_Files_Input>;
   og_image_community?: InputMaybe<Update_Directus_Files_Input>;
   og_image_marketplace?: InputMaybe<Update_Directus_Files_Input>;
-  partner_logos?: InputMaybe<Array<InputMaybe<Update_Site_Settings_Company_Logo_Lists_1_Input>>>;
   promo_banner_content?: InputMaybe<Scalars['String']['input']>;
   promo_banner_url?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
-};
-
-export type Update_Site_Settings_Main_Nav_Input = {
-  collection?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  item?: InputMaybe<Scalars['String']['input']>;
-  site_settings_id?: InputMaybe<Update_Site_Settings_Input>;
 };
 
 export type Update_Site_Settings_Nav_List_Input = {
@@ -9163,6 +7674,17 @@ export type JobListingSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type JobListingSlugsQuery = { __typename?: 'Query', job_listings: Array<{ __typename?: 'job_listings', slug: string }> };
 
+export type PricingPageFragment = { __typename?: 'pricing_page', id: string, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null };
+
+export type PricingPlanFragment = { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null };
+
+export type PricingPlanFeatureFragment = { __typename?: 'pricing_plan_features', id: string, description?: string | null };
+
+export type PricingPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PricingPageQuery = { __typename?: 'Query', pricing_page?: { __typename?: 'pricing_page', id: string, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null } | null };
+
 export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, page_title?: string | null, page_subtitle?: string | null, features?: Array<{ __typename?: 'product_features', id: string, icon?: string | null, title?: string | null, description?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
 
 export type ProductPageTinyFragment = { __typename?: 'product_pages', id: string, slug: string, type?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null };
@@ -9189,13 +7711,6 @@ export type PageCommunityQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PageCommunityQuery = { __typename?: 'Query', page_community?: { __typename?: 'page_community', callouts?: Array<{ __typename?: 'callouts', id: string, sort?: number | null, category?: string | null, title?: string | null, content?: string | null, ctas?: any | null } | null> | null } | null };
-
-export type PageProductFragment = { __typename?: 'page_product', featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null, faq?: { __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsible_lists_items', item?: { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null } | null> | null } | null };
-
-export type PageProductQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PageProductQuery = { __typename?: 'Query', page_product?: { __typename?: 'page_product', featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null, faq?: { __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsible_lists_items', item?: { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null } | null> | null } | null } | null };
 
 export type MarkdownPageFragment = { __typename?: 'markdown_pages', id: string, slug?: string | null, title?: string | null, subtitle?: string | null, content?: string | null };
 
@@ -9391,6 +7906,22 @@ export const FeaturedContributorFragmentDoc = gql`
   ctas
 }
     ${ImageFileFragmentDoc}`;
+export const FaqItemFragmentDoc = gql`
+    fragment FaqItem on collapsibles {
+  id
+  label
+  content
+}
+    `;
+export const FaqListFragmentDoc = gql`
+    fragment FaqList on collapsible_lists {
+  items {
+    item {
+      ...FaqItem
+    }
+  }
+}
+    ${FaqItemFragmentDoc}`;
 export const SolutionFeatureFragmentDoc = gql`
     fragment SolutionFeature on solution_features {
   id
@@ -9453,6 +7984,33 @@ export const FullJobListingFragmentDoc = gql`
   content
 }
     ${MinJobListingFragmentDoc}`;
+export const PricingPlanFeatureFragmentDoc = gql`
+    fragment PricingPlanFeature on pricing_plan_features {
+  id
+  description
+}
+    `;
+export const PricingPlanFragmentDoc = gql`
+    fragment PricingPlan on pricing_plans {
+  id
+  name
+  subtitle
+  features {
+    ...PricingPlanFeature
+  }
+}
+    ${PricingPlanFeatureFragmentDoc}`;
+export const PricingPageFragmentDoc = gql`
+    fragment PricingPage on pricing_page {
+  id
+  pro_plan {
+    ...PricingPlan
+  }
+  enterprise_plan {
+    ...PricingPlan
+  }
+}
+    ${PricingPlanFragmentDoc}`;
 export const ProductFeatureFragmentDoc = gql`
     fragment ProductFeature on product_features {
   id
@@ -9506,33 +8064,6 @@ export const PageCommunityFragmentDoc = gql`
   }
 }
     ${CalloutFragmentDoc}`;
-export const FaqItemFragmentDoc = gql`
-    fragment FaqItem on collapsibles {
-  id
-  label
-  content
-}
-    `;
-export const FaqListFragmentDoc = gql`
-    fragment FaqList on collapsible_lists {
-  items {
-    item {
-      ...FaqItem
-    }
-  }
-}
-    ${FaqItemFragmentDoc}`;
-export const PageProductFragmentDoc = gql`
-    fragment PageProduct on page_product {
-  featured_quote {
-    ...Quote
-  }
-  faq {
-    ...FaqList
-  }
-}
-    ${QuoteFragmentDoc}
-${FaqListFragmentDoc}`;
 export const MarkdownPageFragmentDoc = gql`
     fragment MarkdownPage on markdown_pages {
   id
@@ -9968,6 +8499,40 @@ export function useJobListingSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type JobListingSlugsQueryHookResult = ReturnType<typeof useJobListingSlugsQuery>;
 export type JobListingSlugsLazyQueryHookResult = ReturnType<typeof useJobListingSlugsLazyQuery>;
 export type JobListingSlugsQueryResult = Apollo.QueryResult<JobListingSlugsQuery, JobListingSlugsQueryVariables>;
+export const PricingPageDocument = gql`
+    query PricingPage {
+  pricing_page {
+    ...PricingPage
+  }
+}
+    ${PricingPageFragmentDoc}`;
+
+/**
+ * __usePricingPageQuery__
+ *
+ * To run a query within a React component, call `usePricingPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePricingPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePricingPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePricingPageQuery(baseOptions?: Apollo.QueryHookOptions<PricingPageQuery, PricingPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PricingPageQuery, PricingPageQueryVariables>(PricingPageDocument, options);
+      }
+export function usePricingPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PricingPageQuery, PricingPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PricingPageQuery, PricingPageQueryVariables>(PricingPageDocument, options);
+        }
+export type PricingPageQueryHookResult = ReturnType<typeof usePricingPageQuery>;
+export type PricingPageLazyQueryHookResult = ReturnType<typeof usePricingPageLazyQuery>;
+export type PricingPageQueryResult = Apollo.QueryResult<PricingPageQuery, PricingPageQueryVariables>;
 export const ProductPageSlugsDocument = gql`
     query ProductPageSlugs {
   product_pages(filter: {status: {_neq: "archived"}}) {
@@ -10071,40 +8636,6 @@ export function usePageCommunityLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type PageCommunityQueryHookResult = ReturnType<typeof usePageCommunityQuery>;
 export type PageCommunityLazyQueryHookResult = ReturnType<typeof usePageCommunityLazyQuery>;
 export type PageCommunityQueryResult = Apollo.QueryResult<PageCommunityQuery, PageCommunityQueryVariables>;
-export const PageProductDocument = gql`
-    query PageProduct {
-  page_product {
-    ...PageProduct
-  }
-}
-    ${PageProductFragmentDoc}`;
-
-/**
- * __usePageProductQuery__
- *
- * To run a query within a React component, call `usePageProductQuery` and pass it any options that fit your needs.
- * When your component renders, `usePageProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePageProductQuery({
- *   variables: {
- *   },
- * });
- */
-export function usePageProductQuery(baseOptions?: Apollo.QueryHookOptions<PageProductQuery, PageProductQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PageProductQuery, PageProductQueryVariables>(PageProductDocument, options);
-      }
-export function usePageProductLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageProductQuery, PageProductQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PageProductQuery, PageProductQueryVariables>(PageProductDocument, options);
-        }
-export type PageProductQueryHookResult = ReturnType<typeof usePageProductQuery>;
-export type PageProductLazyQueryHookResult = ReturnType<typeof usePageProductLazyQuery>;
-export type PageProductQueryResult = Apollo.QueryResult<PageProductQuery, PageProductQueryVariables>;
 export const PageLegalDocument = gql`
     query PageLegal {
   page_legal {

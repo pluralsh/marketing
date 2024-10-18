@@ -19,21 +19,6 @@ query PageCommunity {
   }
 }
 
-fragment PageProduct on page_product {
-  featured_quote {
-    ...Quote
-  }
-  faq {
-    ...FaqList
-  }
-}
-
-query PageProduct {
-  page_product {
-    ...PageProduct
-  }
-}
-
 fragment MarkdownPage on markdown_pages {
   id
   slug

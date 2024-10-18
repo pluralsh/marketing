@@ -6,6 +6,7 @@ import { type Merge } from 'type-fest'
 const GradientBGSC = styled.div<{
   $position?: string
   $image?: string
+  $mobileImage?: string
   $size?: string
   $imageType?: 'image' | 'custom'
 }>(
@@ -14,6 +15,7 @@ const GradientBGSC = styled.div<{
     $position: position = 'top center',
     $size = '100%',
     $image: image = '/images/gradients/gradient-bg-1.jpg',
+    $mobileImage: mobileImage,
     $imageType: imageType = 'image',
   }) => ({
     position: 'relative',
@@ -32,11 +34,17 @@ const GradientBGSC = styled.div<{
       bottom: '0',
     },
     '.bg::before': {
-      backgroundImage: imageType === 'image' ? `url(${image})` : `${image}`,
+      backgroundImage: imageType === 'image' ? `url(${image})` : image,
       backgroundPosition: position,
       backgroundSize: $size,
       backgroundRepeat: 'no-repeat',
       backgroundColor: theme.colors['fill-zero'],
+      ...(mobileImage && {
+        '@media (max-width: 767px)': {
+          backgroundImage:
+            imageType === 'image' ? `url(${mobileImage})` : mobileImage,
+        },
+      }),
     },
     '.content': {
       position: 'relative',
@@ -49,6 +57,7 @@ export function GradientBG({
   bgChildren,
   position,
   image,
+  mobileImage,
   size,
   imageType,
   ...props
@@ -59,6 +68,7 @@ export function GradientBG({
     bgChildren?: ReactNode
     position?: string
     image?: string
+    mobileImage?: string
     size?: string
     imageType?: 'image' | 'custom'
   }
@@ -67,6 +77,7 @@ export function GradientBG({
     <GradientBGSC
       $position={position}
       $image={image}
+      $mobileImage={mobileImage}
       $size={size}
       $imageType={imageType}
       {...props}
