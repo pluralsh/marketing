@@ -1,8 +1,8 @@
 import { type CustomPageFragment } from '@src/generated/graphqlDirectus'
 
 import { BlogCards } from './BlogCards'
+import { CallToAction } from './CallToAction'
 import { Cards } from './Cards'
-import { CTA } from './CTA'
 import { CustomerQuote } from './CustomerQuote'
 import { Hero } from './Hero'
 import { LargeImage } from './LargeImage'
@@ -42,7 +42,7 @@ export function renderComponent(
     case 'customer_quote':
       return <CustomerQuote {...component} />
     case 'cta':
-      return <CTA {...component} />
+      return <CallToAction {...component} />
     default:
       return null
   }

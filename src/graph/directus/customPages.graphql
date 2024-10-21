@@ -95,4 +95,8 @@ fragment CustomerQuoteComponent on customer_quote {
 
 fragment CTAComponent on cta {
   spacing
+  heading
+  body_text
+  cta_text
+  cta_url
 }
