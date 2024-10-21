@@ -50,6 +50,9 @@ fragment HeroComponent on hero {
 
 fragment LogoStripComponent on logo_strip {
   spacing
+  logo_list {
+    ...LogoList
+  }
 }
 
 fragment SectionHeaderComponent on section_header {

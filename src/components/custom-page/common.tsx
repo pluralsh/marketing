@@ -10,11 +10,14 @@ import { LogoStrip } from './LogoStrip'
 import { RichTextColumns } from './RichTextColumns'
 import { SectionHeader } from './SectionHeader'
 
-export const spacingToClassName = {
+const spacingToClassName = {
   relaxed: 'my-[192px]',
   normal: 'my-[96px]',
   compact: 'my-[48px]',
 }
+
+export const getSpacingClassName = (spacing: Nullable<string>) =>
+  spacingToClassName[spacing ?? 'normal'] ?? ''
 
 export function renderComponent(
   component: NonNullable<

@@ -22,7 +22,14 @@ export default function CustomPage({
   return (
     // TODO: make theme adjustable
     <ThemeProvider theme={styledTheme}>
-      {components.map((component) => renderComponent(component?.item))}
+      {components.map((component, index) => (
+        <div
+          className="contents"
+          key={index}
+        >
+          {renderComponent(component?.item)}
+        </div>
+      ))}
     </ThemeProvider>
   )
 }

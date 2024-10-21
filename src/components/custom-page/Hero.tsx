@@ -9,7 +9,7 @@ import { ImageAspectRatio } from '../AspectRatio'
 import Embed from '../Embed'
 import { Body1, Hero1 } from '../Typography'
 
-import { spacingToClassName } from './common'
+import { getSpacingClassName } from './common'
 
 export function Hero({
   spacing,
@@ -22,11 +22,10 @@ export function Hero({
   video_url: videoUrl,
   form,
 }: HeroComponentFragment) {
-  const spacingClassName = spacingToClassName[spacing ?? 'normal'] ?? ''
   const imageUrl = getImageUrl(image)
 
   return (
-    <section className={cn(spacingClassName, 'mx-xxxxxxlarge')}>
+    <section className={cn(getSpacingClassName(spacing), 'mx-xxxxxxlarge')}>
       <Flex gap="xxxlarge">
         <Flex
           flex={1}

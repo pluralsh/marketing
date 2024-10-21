@@ -44,6 +44,8 @@ export type Mutation = {
   create_collapsible_lists_items_items: Array<Collapsible_Lists_Items>;
   create_collapsibles_item?: Maybe<Collapsibles>;
   create_collapsibles_items: Array<Collapsibles>;
+  create_company_logo_lists_company_logos_item?: Maybe<Company_Logo_Lists_Company_Logos>;
+  create_company_logo_lists_company_logos_items: Array<Company_Logo_Lists_Company_Logos>;
   create_company_logo_lists_item?: Maybe<Company_Logo_Lists>;
   create_company_logo_lists_items: Array<Company_Logo_Lists>;
   create_company_logo_lists_items_item?: Maybe<Company_Logo_Lists_Items>;
@@ -128,6 +130,8 @@ export type Mutation = {
   delete_collapsible_lists_items_items?: Maybe<Delete_Many>;
   delete_collapsibles_item?: Maybe<Delete_One>;
   delete_collapsibles_items?: Maybe<Delete_Many>;
+  delete_company_logo_lists_company_logos_item?: Maybe<Delete_One>;
+  delete_company_logo_lists_company_logos_items?: Maybe<Delete_Many>;
   delete_company_logo_lists_item?: Maybe<Delete_One>;
   delete_company_logo_lists_items?: Maybe<Delete_Many>;
   delete_company_logo_lists_items_item?: Maybe<Delete_One>;
@@ -223,6 +227,9 @@ export type Mutation = {
   update_collapsibles_item?: Maybe<Collapsibles>;
   update_collapsibles_items: Array<Collapsibles>;
   update_company_logo_lists_batch: Array<Company_Logo_Lists>;
+  update_company_logo_lists_company_logos_batch: Array<Company_Logo_Lists_Company_Logos>;
+  update_company_logo_lists_company_logos_item?: Maybe<Company_Logo_Lists_Company_Logos>;
+  update_company_logo_lists_company_logos_items: Array<Company_Logo_Lists_Company_Logos>;
   update_company_logo_lists_item?: Maybe<Company_Logo_Lists>;
   update_company_logo_lists_items: Array<Company_Logo_Lists>;
   update_company_logo_lists_items_batch: Array<Company_Logo_Lists_Items>;
@@ -466,6 +473,22 @@ export type MutationCreate_Collapsibles_ItemArgs = {
 export type MutationCreate_Collapsibles_ItemsArgs = {
   data?: InputMaybe<Array<Create_Collapsibles_Input>>;
   filter?: InputMaybe<Collapsibles_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Company_Logo_Lists_Company_Logos_ItemArgs = {
+  data: Create_Company_Logo_Lists_Company_Logos_Input;
+};
+
+
+export type MutationCreate_Company_Logo_Lists_Company_Logos_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Company_Logo_Lists_Company_Logos_Input>>;
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1092,6 +1115,16 @@ export type MutationDelete_Collapsibles_ItemsArgs = {
 };
 
 
+export type MutationDelete_Company_Logo_Lists_Company_Logos_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Company_Logo_Lists_Company_Logos_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Company_Logo_Lists_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1691,6 +1724,35 @@ export type MutationUpdate_Collapsibles_ItemsArgs = {
 export type MutationUpdate_Company_Logo_Lists_BatchArgs = {
   data?: InputMaybe<Array<Update_Company_Logo_Lists_Input>>;
   filter?: InputMaybe<Company_Logo_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Company_Logo_Lists_Company_Logos_BatchArgs = {
+  data?: InputMaybe<Array<Update_Company_Logo_Lists_Company_Logos_Input>>;
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Company_Logo_Lists_Company_Logos_ItemArgs = {
+  data: Update_Company_Logo_Lists_Company_Logos_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Company_Logo_Lists_Company_Logos_ItemsArgs = {
+  data: Update_Company_Logo_Lists_Company_Logos_Input;
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -2707,6 +2769,9 @@ export type Query = {
   company_logo_lists: Array<Company_Logo_Lists>;
   company_logo_lists_aggregated: Array<Company_Logo_Lists_Aggregated>;
   company_logo_lists_by_id?: Maybe<Company_Logo_Lists>;
+  company_logo_lists_company_logos: Array<Company_Logo_Lists_Company_Logos>;
+  company_logo_lists_company_logos_aggregated: Array<Company_Logo_Lists_Company_Logos_Aggregated>;
+  company_logo_lists_company_logos_by_id?: Maybe<Company_Logo_Lists_Company_Logos>;
   company_logo_lists_items: Array<Company_Logo_Lists_Items>;
   company_logo_lists_items_aggregated: Array<Company_Logo_Lists_Items_Aggregated>;
   company_logo_lists_items_by_id?: Maybe<Company_Logo_Lists_Items>;
@@ -3068,6 +3133,32 @@ export type QueryCompany_Logo_Lists_AggregatedArgs = {
 
 
 export type QueryCompany_Logo_Lists_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCompany_Logo_Lists_Company_LogosArgs = {
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCompany_Logo_Lists_Company_Logos_AggregatedArgs = {
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCompany_Logo_Lists_Company_Logos_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4813,13 +4904,24 @@ export type Company_Logo_Lists = {
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
-  ignore?: Maybe<Scalars['String']['output']>;
+  logos?: Maybe<Array<Maybe<Company_Logo_Lists_Company_Logos>>>;
+  logos_func?: Maybe<Count_Functions>;
   partner_logos?: Maybe<Array<Maybe<Company_Logo_Lists_Items>>>;
   slug?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Company_Logo_ListsLogosArgs = {
+  filter?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -4871,7 +4973,7 @@ export type Company_Logo_Lists_Aggregated_Count = {
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
-  ignore?: Maybe<Scalars['Int']['output']>;
+  logos?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
@@ -4885,6 +4987,69 @@ export type Company_Logo_Lists_Aggregated_Fields = {
   sort?: Maybe<Scalars['Float']['output']>;
 };
 
+export type Company_Logo_Lists_Company_Logos = {
+  __typename?: 'company_logo_lists_company_logos';
+  company_logo_lists_id?: Maybe<Company_Logo_Lists>;
+  company_logos_id?: Maybe<Company_Logos>;
+  id: Scalars['ID']['output'];
+};
+
+
+export type Company_Logo_Lists_Company_LogosCompany_Logo_Lists_IdArgs = {
+  filter?: InputMaybe<Company_Logo_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Company_Logo_Lists_Company_LogosCompany_Logos_IdArgs = {
+  filter?: InputMaybe<Company_Logos_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Company_Logo_Lists_Company_Logos_Aggregated = {
+  __typename?: 'company_logo_lists_company_logos_aggregated';
+  avg?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+  avgDistinct?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+  count?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+  min?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+  sum?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+  sumDistinct?: Maybe<Company_Logo_Lists_Company_Logos_Aggregated_Fields>;
+};
+
+export type Company_Logo_Lists_Company_Logos_Aggregated_Count = {
+  __typename?: 'company_logo_lists_company_logos_aggregated_count';
+  company_logo_lists_id?: Maybe<Scalars['Int']['output']>;
+  company_logos_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Company_Logo_Lists_Company_Logos_Aggregated_Fields = {
+  __typename?: 'company_logo_lists_company_logos_aggregated_fields';
+  company_logo_lists_id?: Maybe<Scalars['Float']['output']>;
+  company_logos_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Company_Logo_Lists_Company_Logos_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Company_Logos_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Company_Logos_Filter>>>;
+  company_logo_lists_id?: InputMaybe<Company_Logo_Lists_Filter>;
+  company_logos_id?: InputMaybe<Company_Logos_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+};
+
 export type Company_Logo_Lists_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Company_Logo_Lists_Filter>>>;
@@ -4893,7 +5058,8 @@ export type Company_Logo_Lists_Filter = {
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  ignore?: InputMaybe<String_Filter_Operators>;
+  logos?: InputMaybe<Company_Logo_Lists_Company_Logos_Filter>;
+  logos_func?: InputMaybe<Count_Function_Filter_Operators>;
   partner_logos?: InputMaybe<Company_Logo_Lists_Items_Filter>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
@@ -4973,7 +5139,6 @@ export type Company_Logos = {
   name: Scalars['String']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
-  width?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -5019,13 +5184,11 @@ export type Company_Logos_Aggregated_Count = {
   name?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   url?: Maybe<Scalars['Int']['output']>;
-  width?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Company_Logos_Aggregated_Fields = {
   __typename?: 'company_logos_aggregated_fields';
   id?: Maybe<Scalars['Float']['output']>;
-  width?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Company_Logos_Filter = {
@@ -5039,7 +5202,6 @@ export type Company_Logos_Filter = {
   name?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   url?: InputMaybe<String_Filter_Operators>;
-  width?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Count_Function_Filter_Operators = {
@@ -5169,11 +5331,17 @@ export type Create_Collapsibles_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Company_Logo_Lists_Company_Logos_Input = {
+  company_logo_lists_id?: InputMaybe<Create_Company_Logo_Lists_Input>;
+  company_logos_id?: InputMaybe<Create_Company_Logos_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type Create_Company_Logo_Lists_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  ignore?: InputMaybe<Scalars['String']['input']>;
+  logos?: InputMaybe<Array<InputMaybe<Create_Company_Logo_Lists_Company_Logos_Input>>>;
   partner_logos?: InputMaybe<Array<InputMaybe<Create_Company_Logo_Lists_Items_Input>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
@@ -5198,7 +5366,6 @@ export type Create_Company_Logos_Input = {
   name: Scalars['String']['input'];
   slug?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
-  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Cta_Input = {
@@ -5402,6 +5569,7 @@ export type Create_Logo_Strip_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  logo_list?: InputMaybe<Create_Company_Logo_Lists_Input>;
   spacing?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
 };
@@ -6893,8 +7061,19 @@ export type Logo_Strip = {
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   id: Scalars['ID']['output'];
+  logo_list?: Maybe<Company_Logo_Lists>;
   spacing?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
+};
+
+
+export type Logo_StripLogo_ListArgs = {
+  filter?: InputMaybe<Company_Logo_Lists_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -6926,6 +7105,7 @@ export type Logo_Strip_Aggregated_Count = {
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  logo_list?: Maybe<Scalars['Int']['output']>;
   spacing?: Maybe<Scalars['Int']['output']>;
   user_created?: Maybe<Scalars['Int']['output']>;
 };
@@ -6933,6 +7113,7 @@ export type Logo_Strip_Aggregated_Count = {
 export type Logo_Strip_Aggregated_Fields = {
   __typename?: 'logo_strip_aggregated_fields';
   id?: Maybe<Scalars['Float']['output']>;
+  logo_list?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Logo_Strip_Filter = {
@@ -6943,6 +7124,7 @@ export type Logo_Strip_Filter = {
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
+  logo_list?: InputMaybe<Company_Logo_Lists_Filter>;
   spacing?: InputMaybe<String_Filter_Operators>;
   user_created?: InputMaybe<Directus_Users_Filter>;
 };
@@ -9107,11 +9289,17 @@ export type Update_Collapsibles_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Company_Logo_Lists_Company_Logos_Input = {
+  company_logo_lists_id?: InputMaybe<Update_Company_Logo_Lists_Input>;
+  company_logos_id?: InputMaybe<Update_Company_Logos_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type Update_Company_Logo_Lists_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  ignore?: InputMaybe<Scalars['String']['input']>;
+  logos?: InputMaybe<Array<InputMaybe<Update_Company_Logo_Lists_Company_Logos_Input>>>;
   partner_logos?: InputMaybe<Array<InputMaybe<Update_Company_Logo_Lists_Items_Input>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
@@ -9136,7 +9324,6 @@ export type Update_Company_Logos_Input = {
   name?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
-  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Cta_Input = {
@@ -9340,6 +9527,7 @@ export type Update_Logo_Strip_Input = {
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  logo_list?: InputMaybe<Update_Company_Logo_Lists_Input>;
   spacing?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
 };
@@ -9637,9 +9825,9 @@ export type LinkFragment = { __typename?: 'nav_link', id: string, title?: string
 
 export type NavListFragment = { __typename?: 'nav_list', id: string, flatten?: boolean | null, mobile_only?: boolean | null, link?: { __typename?: 'nav_link', id: string, title?: string | null, url?: string | null } | null };
 
-export type CompanyLogoFragment = { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, width?: number | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type CompanyLogoFragment = { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
-export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: string | null };
+export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null };
 
 export type CaseStudyFragment = { __typename?: 'case_studies', id: string, slug?: string | null, label?: string | null, title?: string | null, content?: string | null, ctas?: any | null, stack_label?: string | null, stack_apps?: any | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -9710,7 +9898,7 @@ export type SolutionsQueryVariables = Exact<{
 
 export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null }> };
 
-export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null } | { __typename?: 'cta', spacing?: string | null } | { __typename?: 'customer_quote', spacing?: string | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null } | { __typename?: 'logo_strip', spacing?: string | null } | { __typename?: 'rich_text_columns', spacing?: string | null } | { __typename?: 'section_header', spacing?: string | null } | null } | null> | null };
+export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null } | { __typename?: 'cta', spacing?: string | null } | { __typename?: 'customer_quote', spacing?: string | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'rich_text_columns', spacing?: string | null } | { __typename?: 'section_header', spacing?: string | null } | null } | null> | null };
 
 export type CustomPageTinyFragment = { __typename?: 'custom_pages', id: string, slug: string };
 
@@ -9724,11 +9912,11 @@ export type CustomPageQueryVariables = Exact<{
 }>;
 
 
-export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null } | { __typename?: 'cta', spacing?: string | null } | { __typename?: 'customer_quote', spacing?: string | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null } | { __typename?: 'logo_strip', spacing?: string | null } | { __typename?: 'rich_text_columns', spacing?: string | null } | { __typename?: 'section_header', spacing?: string | null } | null } | null> | null }> };
+export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null } | { __typename?: 'cta', spacing?: string | null } | { __typename?: 'customer_quote', spacing?: string | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'rich_text_columns', spacing?: string | null } | { __typename?: 'section_header', spacing?: string | null } | null } | null> | null }> };
 
 export type HeroComponentFragment = { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
-export type LogoStripComponentFragment = { __typename?: 'logo_strip', spacing?: string | null };
+export type LogoStripComponentFragment = { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
 
 export type SectionHeaderComponentFragment = { __typename?: 'section_header', spacing?: string | null };
 
@@ -9872,25 +10060,6 @@ export const ImageFileFragmentDoc = gql`
   metadata
   type
   filesize
-}
-    `;
-export const CompanyLogoFragmentDoc = gql`
-    fragment CompanyLogo on company_logos {
-  slug
-  name
-  logo_light {
-    ...ImageFile
-  }
-  logo_dark {
-    ...ImageFile
-  }
-  url
-  width
-}
-    ${ImageFileFragmentDoc}`;
-export const LogoListFragmentDoc = gql`
-    fragment LogoList on company_logo_lists {
-  slug
 }
     `;
 export const CaseStudyFragmentDoc = gql`
@@ -10073,11 +10242,37 @@ export const HeroComponentFragmentDoc = gql`
   cta_url
 }
     ${ImageFileFragmentDoc}`;
+export const CompanyLogoFragmentDoc = gql`
+    fragment CompanyLogo on company_logos {
+  slug
+  name
+  logo_light {
+    ...ImageFile
+  }
+  logo_dark {
+    ...ImageFile
+  }
+  url
+}
+    ${ImageFileFragmentDoc}`;
+export const LogoListFragmentDoc = gql`
+    fragment LogoList on company_logo_lists {
+  slug
+  logos {
+    company_logos_id {
+      ...CompanyLogo
+    }
+  }
+}
+    ${CompanyLogoFragmentDoc}`;
 export const LogoStripComponentFragmentDoc = gql`
     fragment LogoStripComponent on logo_strip {
   spacing
+  logo_list {
+    ...LogoList
+  }
 }
-    `;
+    ${LogoListFragmentDoc}`;
 export const SectionHeaderComponentFragmentDoc = gql`
     fragment SectionHeaderComponent on section_header {
   spacing
