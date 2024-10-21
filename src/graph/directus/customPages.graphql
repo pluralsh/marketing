@@ -1,0 +1,81 @@
+fragment CustomPage on custom_pages {
+  id
+  slug
+  components {
+    collection
+    item {
+      ...HeroComponent
+      ...LogoStripComponent
+      ...SectionHeaderComponent
+      ...LargeImageComponent
+      ...CardsComponent
+      ...BlogCardsComponent
+      ...RichTextColumnsComponent
+      ...CustomerQuoteComponent
+      ...CTAComponent
+    }
+  }
+}
+
+fragment CustomPageTiny on custom_pages {
+  id
+  slug
+}
+
+query CustomPageSlugs {
+  custom_pages(filter: { status: { _eq: "published" } }) {
+    ...CustomPageTiny
+  }
+}
+
+query CustomPage($slug: String!) {
+  custom_pages(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
+    ...CustomPage
+  }
+}
+
+fragment HeroComponent on hero {
+  spacing
+  heading
+  body_text
+  media_type
+  image {
+    ...ImageFile
+  }
+  video_url
+  form
+  cta_text
+  cta_url
+}
+
+fragment LogoStripComponent on logo_strip {
+  spacing
+}
+
+fragment SectionHeaderComponent on section_header {
+  spacing
+}
+
+fragment LargeImageComponent on large_image {
+  spacing
+}
+
+fragment CardsComponent on cards {
+  spacing
+}
+
+fragment BlogCardsComponent on blog_cards {
+  spacing
+}
+
+fragment RichTextColumnsComponent on rich_text_columns {
+  spacing
+}
+
+fragment CustomerQuoteComponent on customer_quote {
+  spacing
+}
+
+fragment CTAComponent on cta {
+  spacing
+}

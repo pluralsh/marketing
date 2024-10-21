@@ -1,4 +1,5 @@
 import {
+  type CSSProperties,
   type ComponentProps,
   type HTMLAttributes,
   type ReactNode,
@@ -7,6 +8,7 @@ import {
 
 import {
   ArrowRightIcon,
+  Markdown,
   type styledTheme,
   useNavigationContext,
 } from '@pluralsh/design-system'
@@ -24,6 +26,8 @@ import { cn } from '@src/utils/cn'
 
 import { AttachLastWordToElt } from './AttachLastWordToElt'
 import { SingleAccordion } from './SingleAccordion'
+
+type ColorKey = keyof DefaultTheme['colors']
 
 export const Heading1 = forwardRef<
   HTMLHeadingElement,
@@ -99,43 +103,44 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
   }
 })
 
-export const Title2 = styled.h3(({ theme }) => ({
-  ...theme.partials.marketingText.title2,
+export const Hero1 = styled.h1<{ $color?: ColorKey }>(({ theme, $color }) => ({
+  ...theme.partials.marketingText.hero1,
+  color: $color && (theme.colors[$color] as string),
 }))
 
-export const Body1 = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
-    ...theme.partials.marketingText.body1,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors.text }
-      : { color: theme.colors.text }),
-  })
-)
+export const Hero2 = styled.h2<{ $color?: ColorKey }>(({ theme, $color }) => ({
+  ...theme.partials.marketingText.hero2,
+  color: $color && (theme.colors[$color] as string),
+}))
 
-export const Body2 = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
+export const Title2 = styled.h3<{ $color?: ColorKey }>(({ theme, $color }) => ({
+  ...theme.partials.marketingText.title2,
+  color: $color && (theme.colors[$color] as string),
+}))
+
+export const Body1 = styled.p<{ $color?: ColorKey }>(({ theme, $color }) => ({
+  ...theme.partials.marketingText.body1,
+  color: $color && (theme.colors[$color] as string),
+}))
+
+export const Body2 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text-light' }) => ({
     ...theme.partials.marketingText.body2,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors['text-light'] }
-      : { color: theme.colors['text-light'] }),
+    color: theme.colors[$color] as string,
   })
 )
 
-export const AppBody1 = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
+export const AppBody1 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text-light' }) => ({
     ...theme.partials.text.body1,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors['text-light'] }
-      : { color: theme.colors['text-light'] }),
+    color: theme.colors[$color] as string,
   })
 )
 
-export const AppBody2 = styled.p.withConfig(textPropFilter)(
-  ({ theme, color }) => ({
+export const AppBody2 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text-light' }) => ({
     ...theme.partials.text.body2,
-    ...(color
-      ? { color: theme.colors[color] || theme.colors['text-light'] }
-      : { color: theme.colors['text-light'] }),
+    color: theme.colors[$color] as string,
   })
 )
 
@@ -322,3 +327,14 @@ export const BasicP = styled.p(({ theme }) => ({
     marginTop: theme.spacing.medium,
   },
 }))
+
+export function NoMarginMarkdown({
+  extendedCss,
+  ...props
+}: ComponentProps<typeof Markdown> & { extendedCss?: CSSProperties }) {
+  return (
+    <div css={{ '& *': { margin: 0, ...extendedCss } }}>
+      <Markdown {...props} />
+    </div>
+  )
+}

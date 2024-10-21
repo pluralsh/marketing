@@ -65,13 +65,15 @@ export default function PrimaryPage({
       <GlobalPropsContext.Provider value={globalProps}>
         <PagePropsContext.Provider value={pageProps}>
           <HtmlHead {...headProps} />
-          <PageHeader
-            showHeaderBG={pageProps.showHeaderBG}
-            promoBanner={{
-              content: siteSettings?.promo_banner_content,
-              url: siteSettings?.promo_banner_url,
-            }}
-          />
+          {!pageProps.hideHeader && (
+            <PageHeader
+              showHeaderBG={pageProps.showHeaderBG}
+              promoBanner={{
+                content: siteSettings?.promo_banner_content,
+                url: siteSettings?.promo_banner_url,
+              }}
+            />
+          )}
           {children}
           <ExternalScripts />
           <FullFooter variant={pageProps.footerVariant} />

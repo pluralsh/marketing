@@ -397,7 +397,7 @@ export default function Marketplace({
           <TextLimiter>
             <Body1
               as="p"
-              color="text-xlight"
+              $color="text-xlight"
             >
               Discover over 90 incredible applications ready to deploy in your
               cloud in minutes using our guided deployment flow. With security,
