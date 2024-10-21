@@ -57,6 +57,9 @@ fragment LogoStripComponent on logo_strip {
 
 fragment SectionHeaderComponent on section_header {
   spacing
+  overline
+  title
+  description
 }
 
 fragment LargeImageComponent on large_image {
