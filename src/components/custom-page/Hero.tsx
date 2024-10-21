@@ -1,15 +1,13 @@
-import { Button, Code, Flex } from '@pluralsh/design-system'
+import { Button, Flex } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import { getImageUrl } from '@src/consts/routes'
 import { type HeroComponentFragment } from '@src/generated/graphqlDirectus'
 import { cn } from '@src/utils/cn'
 
-import { ImageAspectRatio } from '../AspectRatio'
-import Embed from '../Embed'
 import { Body1, Hero1 } from '../Typography'
 
 import { getSpacingClassName } from './common'
+import { Multimedia } from './Multimedia'
 
 export function Hero({
   spacing,
@@ -22,8 +20,6 @@ export function Hero({
   video_url: videoUrl,
   form,
 }: HeroComponentFragment) {
-  const imageUrl = getImageUrl(image)
-
   return (
     <section className={cn(getSpacingClassName(spacing), 'mx-xxxxxxlarge')}>
       <Flex gap="xxxlarge">
@@ -47,25 +43,12 @@ export function Hero({
             </Button>
           )}
         </Flex>
-        <div className="m-auto flex-1 ">
-          {mediaType === 'image' ? (
-            imageUrl && (
-              <ImageAspectRatio
-                $aspectRatio="16 / 10"
-                $url={imageUrl}
-              />
-            )
-          ) : mediaType === 'video' ? (
-            <Embed
-              aspectRatio="16/10"
-              url={videoUrl ?? ''}
-            />
-          ) : mediaType === 'form' ? (
-            <Code css={{ overflow: 'auto', maxHeight: '500px' }}>
-              {form ?? ''}
-            </Code>
-          ) : null}
-        </div>
+        <Multimedia
+          mediaType={mediaType}
+          image={image}
+          videoUrl={videoUrl}
+          form={form}
+        />
       </Flex>
     </section>
   )

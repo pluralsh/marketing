@@ -64,6 +64,17 @@ fragment SectionHeaderComponent on section_header {
 
 fragment LargeImageComponent on large_image {
   spacing
+  overline
+  heading
+  body_text
+  media_type
+  image {
+    ...ImageFile
+  }
+  video_url
+  form
+  cta_text
+  cta_url
 }
 
 fragment CardsComponent on cards {

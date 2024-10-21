@@ -113,7 +113,12 @@ export const Hero2 = styled.h2<{ $color?: ColorKey }>(({ theme, $color }) => ({
   color: $color && (theme.colors[$color] as string),
 }))
 
-export const Title2 = styled.h3<{ $color?: ColorKey }>(({ theme, $color }) => ({
+export const Title1 = styled.h3<{ $color?: ColorKey }>(({ theme, $color }) => ({
+  ...theme.partials.marketingText.title1,
+  color: $color && (theme.colors[$color] as string),
+}))
+
+export const Title2 = styled.h4<{ $color?: ColorKey }>(({ theme, $color }) => ({
   ...theme.partials.marketingText.title2,
   color: $color && (theme.colors[$color] as string),
 }))
