@@ -78,8 +78,22 @@ fragment LargeImageComponent on large_image {
   cta_url
 }
 
+fragment Card on card {
+  image {
+    ...ImageFile
+  }
+  heading
+  body_text
+  url
+}
+
 fragment CardsComponent on cards {
   spacing
+  cards {
+    card_id {
+      ...Card
+    }
+  }
 }
 
 fragment BlogCardsComponent on blog_cards {

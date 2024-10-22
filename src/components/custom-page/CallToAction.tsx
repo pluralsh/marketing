@@ -19,7 +19,7 @@ export function CallToAction({
     <section
       className={cn(
         getSpacingClassName(spacing),
-        'm-auto flex w-1/2 flex-col items-center gap-medium text-center'
+        'mx-auto flex w-1/2 flex-col items-center gap-medium text-center'
       )}
     >
       <Hero2>{heading}</Hero2>
