@@ -8,9 +8,9 @@ fragment CustomPage on custom_pages {
       ...LogoStripComponent
       ...SectionHeaderComponent
       ...LargeImageComponent
+      ...MultiColumnTextComponent
       ...CardsComponent
       ...BlogCardsComponent
-      ...RichTextColumnsComponent
       ...CustomerQuoteComponent
       ...CTAComponent
     }
@@ -85,12 +85,26 @@ fragment BlogCardsComponent on blog_cards {
   spacing
 }
 
-fragment RichTextColumnsComponent on rich_text_columns {
+fragment RichTextColumn on rich_text_columns {
+  icon
+  heading
+  body_text
+}
+
+fragment MultiColumnTextComponent on multi_column_text {
   spacing
+  columns {
+    rich_text_columns_id {
+      ...RichTextColumn
+    }
+  }
 }
 
 fragment CustomerQuoteComponent on customer_quote {
   spacing
+  quote {
+    ...Quote
+  }
 }
 
 fragment CTAComponent on cta {

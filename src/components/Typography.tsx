@@ -135,6 +135,20 @@ export const Body2 = styled.p<{ $color?: ColorKey }>(
   })
 )
 
+export const Subtitle1 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color }) => ({
+    ...theme.partials.marketingText.subtitle1,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
+
+export const Subtitle2 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color }) => ({
+    ...theme.partials.marketingText.subtitle2,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
+
 export const OverlineLabel = styled.span<{ $color?: ColorKey }>(
   ({ theme, $color = 'text-light' }) => ({
     ...theme.partials.marketingText.label,

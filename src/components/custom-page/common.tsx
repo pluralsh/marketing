@@ -7,7 +7,7 @@ import { CustomerQuote } from './CustomerQuote'
 import { Hero } from './Hero'
 import { LargeImage } from './LargeImage'
 import { LogoStrip } from './LogoStrip'
-import { RichTextColumns } from './RichTextColumns'
+import { MultiColumnText } from './MultiColumnText'
 import { SectionHeader } from './SectionHeader'
 
 const spacingToClassName = {
@@ -37,8 +37,8 @@ export function renderComponent(
       return <Cards {...component} />
     case 'blog_cards':
       return <BlogCards {...component} />
-    case 'rich_text_columns':
-      return <RichTextColumns {...component} />
+    case 'multi_column_text':
+      return <MultiColumnText {...component} />
     case 'customer_quote':
       return <CustomerQuote {...component} />
     case 'cta':
