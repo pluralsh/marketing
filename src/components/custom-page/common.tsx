@@ -9,6 +9,7 @@ import { LargeImage } from './LargeImage'
 import { LogoStrip } from './LogoStrip'
 import { MultiColumnText } from './MultiColumnText'
 import { SectionHeader } from './SectionHeader'
+import { TwoColumnText } from './TwoColumnText'
 
 const spacingToClassName = {
   relaxed: 'my-[192px]',
@@ -37,6 +38,8 @@ export function renderComponent(
       return <Cards {...component} />
     case 'blog_cards':
       return <BlogCards {...component} />
+    case 'two_column_text':
+      return <TwoColumnText {...component} />
     case 'multi_column_text':
       return <MultiColumnText {...component} />
     case 'customer_quote':

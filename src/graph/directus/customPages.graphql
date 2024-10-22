@@ -8,6 +8,7 @@ fragment CustomPage on custom_pages {
       ...LogoStripComponent
       ...SectionHeaderComponent
       ...LargeImageComponent
+      ...TwoColumnTextComponent
       ...MultiColumnTextComponent
       ...CardsComponent
       ...BlogCardsComponent
@@ -89,6 +90,12 @@ fragment RichTextColumn on rich_text_columns {
   icon
   heading
   body_text
+}
+
+fragment TwoColumnTextComponent on two_column_text {
+  spacing
+  main_content
+  side_content
 }
 
 fragment MultiColumnTextComponent on multi_column_text {
