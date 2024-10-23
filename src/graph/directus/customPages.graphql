@@ -1,0 +1,137 @@
+fragment CustomPage on custom_pages {
+  id
+  slug
+  components {
+    collection
+    item {
+      ...HeroComponent
+      ...LogoStripComponent
+      ...SectionHeaderComponent
+      ...LargeImageComponent
+      ...TwoColumnTextComponent
+      ...MultiColumnTextComponent
+      ...CardsComponent
+      ...BlogCardsComponent
+      ...CustomerQuoteComponent
+      ...CTAComponent
+    }
+  }
+}
+
+fragment CustomPageTiny on custom_pages {
+  id
+  slug
+}
+
+query CustomPageSlugs {
+  custom_pages(filter: { status: { _eq: "published" } }) {
+    ...CustomPageTiny
+  }
+}
+
+query CustomPage($slug: String!) {
+  custom_pages(filter: { slug: { _eq: $slug }, status: { _eq: "published" } }) {
+    ...CustomPage
+  }
+}
+
+fragment HeroComponent on hero {
+  spacing
+  heading
+  body_text
+  media_type
+  image {
+    ...ImageFile
+  }
+  video_url
+  form
+  cta_text
+  cta_url
+}
+
+fragment LogoStripComponent on logo_strip {
+  spacing
+  logo_list {
+    ...LogoList
+  }
+}
+
+fragment SectionHeaderComponent on section_header {
+  spacing
+  overline
+  title
+  description
+}
+
+fragment LargeImageComponent on large_image {
+  spacing
+  overline
+  heading
+  body_text
+  media_type
+  image {
+    ...ImageFile
+  }
+  video_url
+  form
+  cta_text
+  cta_url
+}
+
+fragment Card on card {
+  image {
+    ...ImageFile
+  }
+  heading
+  body_text
+  url
+}
+
+fragment CardsComponent on cards {
+  spacing
+  cards {
+    card_id {
+      ...Card
+    }
+  }
+}
+
+fragment BlogCardsComponent on blog_cards {
+  spacing
+}
+
+fragment RichTextColumn on rich_text_columns {
+  icon
+  heading
+  body_text
+}
+
+fragment TwoColumnTextComponent on two_column_text {
+  spacing
+  main_content
+  side_content
+}
+
+fragment MultiColumnTextComponent on multi_column_text {
+  spacing
+  columns {
+    rich_text_columns_id {
+      ...RichTextColumn
+    }
+  }
+}
+
+fragment CustomerQuoteComponent on customer_quote {
+  spacing
+  quote {
+    ...Quote
+  }
+}
+
+fragment CTAComponent on cta {
+  spacing
+  heading
+  body_text
+  cta_text
+  cta_url
+}

@@ -37,6 +37,16 @@ export const EmbedAspectRatio = styled.div<{ $aspectRatio: string }>(
   })
 )
 
+export const ImageAspectRatio = styled(EmbedAspectRatio)<{ $url: string }>(
+  ({ theme, $url }) => ({
+    borderRadius: theme.borderRadiuses.large,
+    border: theme.borders['fill-three'],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundImage: `url(${$url})`,
+  })
+)
+
 const ratioStyles = (ratio: string) => ({
   position: 'relative',
   '&::before': {

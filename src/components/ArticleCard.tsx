@@ -165,7 +165,7 @@ export function ArticleCard({
           heading={heading}
           headingProps={{ textStyles: { '': 'mTitle1' } }}
         />
-        {description && <Body1 color="text-light">{description}</Body1>}
+        {description && <Body1 $color="text-light">{description}</Body1>}
         {ctas?.map((cta, i) => (
           <Cta
             key={`${cta.label}-${cta.url}-${i}`}

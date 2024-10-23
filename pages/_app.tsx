@@ -36,6 +36,7 @@ export type GlobalPageProps = {
   metaDescription?: string
   footerVariant?: FooterVariant
   showHeaderBG?: boolean
+  hideHeader?: boolean
 }
 
 type MyAppProps = AppProps<GlobalPageProps & { globalProps: GlobalProps }>

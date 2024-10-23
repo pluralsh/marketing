@@ -53,16 +53,15 @@ fragment CompanyLogo on company_logos {
     ...ImageFile
   }
   url
-  width
 }
 
 fragment LogoList on company_logo_lists {
   slug
-  #   items {
-  #     item {
-  #       ...CompanyLogo
-  #     }
-  #   }
+  logos {
+    company_logos_id {
+      ...CompanyLogo
+    }
+  }
 }
 
 # fragment SiteSettings on site_settings {
