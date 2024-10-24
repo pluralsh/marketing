@@ -14,6 +14,7 @@ import { type AppProps } from 'next/app'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
+import { GoogleTagManager } from '@next/third-parties/google'
 import { MarkdocContextProvider } from '@pluralsh/design-system/dist/markdoc'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { SWRConfig } from 'swr'
@@ -82,6 +83,7 @@ function App({ Component, pageProps }: MyAppProps) {
   }
   const app = (
     <>
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
       <CssBaseline />
       <PluralGlobalStyle />
       <GlobalStyles />

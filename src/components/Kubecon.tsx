@@ -58,3 +58,53 @@ export function KubeconHeader() {
     </svg>
   )
 }
+
+export const handleDownloadICS = () => {
+  const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plural//EN
+BEGIN:VTIMEZONE
+TZID:America/Denver
+LAST-MODIFIED:20240422T053451Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/America/Denver
+X-LIC-LOCATION:America/Denver
+BEGIN:DAYLIGHT
+TZNAME:MDT
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0600
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:MST
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0700
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20241024T194031Z
+UID:1729798817923
+DTSTART;TZID=America/Denver:20241115T165500
+DTEND;TZID=America/Denver:20241115T173000
+SUMMARY:Navigating the Future: Exploring the Latest in Kubernetes Dashboard Development - Marcin Maciaszczyk & Sebastian Florek\\, Plural
+URL:https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/schedule/
+DESCRIPTION:Join us for an insightful presentation on the latest updates from the Kubernetes SIG-UI\\, focusing on the evolution of the Kubernetes Dashboard project. Dive into a comprehensive overview of key changes\\, enhancements\\, and advancements\\, including a detailed exploration of the project's new architecture. Gain valuable insights into how these developments shape the future of Kubernetes management and user experience. Whether you're a seasoned Kubernetes user or new to the ecosystem\\, this presentation promises to provide valuable perspectives on the cutting-edge developments in Kubernetes Dashboard.
+LOCATION:Salt Palace | Level 3| 355 B
+END:VEVENT
+END:VCALENDAR
+    `.trim()
+
+  const blob = new Blob([icsContent], { type: 'text/calendar' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+
+  a.href = url
+  a.download = 'kubecon-session.ics'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import { TextColumnWithIcon } from '@src/components/custom-page/MultiColumnText'
 import { FooterVariant } from '@src/components/FooterFull'
-import { KubeconHeader } from '@src/components/Kubecon'
+import { KubeconHeader, handleDownloadICS } from '@src/components/Kubecon'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { ImpactCardSection } from '@src/components/page-sections/ImpactCardSection'
 import {
@@ -23,7 +23,7 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 export default function KubeCon() {
   return (
     <div className="bg-[#0F1116]">
-      <div className="relative">
+      <div className="relative opacity-60 transition-opacity lg:opacity-100">
         <div
           css={`
             position: absolute;
@@ -34,6 +34,22 @@ export default function KubeCon() {
             filter: blur(178px);
             width: 200px;
             height: 200px;
+          `}
+        />
+        <div
+          css={`
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: #7075f5;
+            filter: blur(178px);
+            width: 150px;
+            height: 150px;
+            @media (max-width: 768px) {
+              display: none;
+            }
           `}
         />
         <div
@@ -53,72 +69,76 @@ export default function KubeCon() {
           className="absolute left-1/2 top-[400px] -translate-x-1/2"
         />
       </div>
-      <div className="flex flex-col items-center gap-xxlarge py-xxxxxxlarge">
-        <KubeconHeader />
-        <div className="flex max-w-3xl flex-col items-center gap-small text-center">
-          <Hero1>Meet us at KubeCon</Hero1>
-          <Body1 $color="text-light">
-            Join Plural at KubeCon North America 2024 in Salt Lake City, UT.
-            We're excited to showcase our latest solutions that empower
-            organizations to streamline their Kubernetes deployments and
-            operations.
-          </Body1>
-        </div>
-        <Button
-          large
-          primary
-          rel="noopener noreferrer"
-          target="_blank"
-          as={Link}
-          href="/contact-sales"
-          className="mt-medium w-fit"
-        >
-          Book a demo
-        </Button>
-      </div>
-      <WhereToFindUsSection>
-        <div className="flex flex-col items-center">
-          <div className="flex flex-col items-center py-xlarge text-center">
-            <OverlineLabel>Where to find us</OverlineLabel>
-            <Hero2>
-              Visit our booth —{' '}
-              <span className="text-text-primary-accent">R23</span>
-            </Hero2>
-            <Body1
-              $color="text-light"
-              className="mt-small"
-            >
-              Booth R23 is near the CNCF project pavilion, across from the game
-              zone.
+      <StandardPageWidth>
+        <div className="flex flex-col items-center gap-xxlarge py-xxxxxxlarge">
+          <KubeconHeader />
+          <div className="flex max-w-3xl flex-col items-center gap-small text-center">
+            <Hero1>Meet us at KubeCon</Hero1>
+            <Body1 $color="text-light">
+              Join Plural at KubeCon North America 2024 in Salt Lake City, UT.
+              We're excited to showcase our latest solutions that empower
+              organizations to streamline their Kubernetes deployments and
+              operations.
             </Body1>
           </div>
-          <Image
-            className="w-[500px] rounded-large border border-solid border-[#ffffff99]"
-            src="/images/kubecon/booths-map.jpg"
-            alt="Booth map"
-            width={2366}
-            height={1432}
-          />
-          <div className="flex flex-col gap-xlarge pb-large pt-xxlarge lg:flex-row">
-            <TextColumnWithIcon
-              heading="Experience live demos"
-              bodyText="See Plural in action and explore our platform's capabilities"
-              icon="StackRun"
+          <Button
+            large
+            primary
+            rel="noopener noreferrer"
+            target="_blank"
+            as={Link}
+            href="/contact-sales"
+            className="mt-medium w-fit"
+          >
+            Book a demo
+          </Button>
+        </div>
+      </StandardPageWidth>
+      <WhereToFindUsSection>
+        <StandardPageWidth>
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center py-xlarge text-center">
+              <OverlineLabel>Where to find us</OverlineLabel>
+              <Hero2>
+                Visit our booth —{' '}
+                <span className="text-text-primary-accent">R23</span>
+              </Hero2>
+              <Body1
+                $color="text-light"
+                className="mt-small"
+              >
+                Booth R23 is near the CNCF project pavilion, across from the
+                game zone.
+              </Body1>
+            </div>
+            <Image
+              className="w-[500px] rounded-large border border-solid border-[#ffffff99]"
+              src="/images/kubecon/booths-map.jpg"
+              alt="Booth map"
+              width={2366}
+              height={1432}
             />
-            <div className="pt-xxlarge">
+            <div className="flex flex-col gap-xlarge pb-large pt-xxlarge lg:flex-row">
               <TextColumnWithIcon
-                heading="Meet our experts"
-                bodyText="Chat with our team and Founders, about your Kubernetes management challenges — and how we can help!"
-                icon="People"
+                heading="Experience live demos"
+                bodyText="See Plural in action and explore our platform's capabilities"
+                icon="StackRun"
+              />
+              <div className="pt-xxlarge">
+                <TextColumnWithIcon
+                  heading="Meet our experts"
+                  bodyText="Chat with our team and Founders, about your Kubernetes management challenges — and how we can help!"
+                  icon="People"
+                />
+              </div>
+              <TextColumnWithIcon
+                heading="Exclusive swag"
+                bodyText="Swing by and pick up Plural swag we made exclusively for KubeCon 2024"
+                icon="MagicWand"
               />
             </div>
-            <TextColumnWithIcon
-              heading="Exclusive swag"
-              bodyText="Swing by and pick up Plural swag we made exclusively for KubeCon 2024"
-              icon="MagicWand"
-            />
           </div>
-        </div>
+        </StandardPageWidth>
       </WhereToFindUsSection>
       <StandardPageWidth>
         <div className="flex w-full flex-col items-center py-xxxxlarge">
@@ -168,10 +188,9 @@ export default function KubeCon() {
               <Button
                 large
                 primary
-                as={Link}
-                href="#"
                 className="w-fit"
                 startIcon={<CalendarIcon />}
+                onClick={handleDownloadICS}
               >
                 Add session to calendar
               </Button>
@@ -273,7 +292,7 @@ export const getStaticProps = async () => {
   })
 }
 
-const WhereToFindUsSection = styled(StandardPageWidth)(({ theme }) => {
+const WhereToFindUsSection = styled.div(({ theme }) => {
   const bgGradient = `linear-gradient(180deg, #0E1015 0%, rgba(14, 16, 21, 0.0) 50%, #0E1015 100%),
     radial-gradient(81.85% 81.85% at 50% 18.15%, #0E1015 0%, rgba(14, 16, 21, 0.55) 100%)`
 

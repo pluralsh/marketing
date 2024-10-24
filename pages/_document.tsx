@@ -49,23 +49,19 @@ class MyDocument extends Document {
             type="text/javascript"
             data-widget-position="bottom-right"
           />
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('consent', 'default', {ad_storage:'denied', analytics_storage:'denied'});
-gtag('set', 'ads_data_redaction', true);
-gtag('set', 'url_passthrough', true);
-gtag('js', new Date());
-gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`,
-            }}
-          />
         </Head>
         <body>
+          {/* <!-- Google Tag Manager (noscript) --> */}
+          <noscript>
+            <iframe
+              title="Google Tag Manager"
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+          {/* <!-- End Google Tag Manager (noscript) --> */}
           <Main />
           <NextScript />
         </body>
