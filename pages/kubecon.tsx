@@ -4,15 +4,17 @@ import Link from 'next/link'
 
 import styled from 'styled-components'
 
+import { TextColumnWithIcon } from '@src/components/custom-page/MultiColumnText'
 import { FooterVariant } from '@src/components/FooterFull'
 import { KubeconHeader } from '@src/components/Kubecon'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
 import { ImpactCardSection } from '@src/components/page-sections/ImpactCardSection'
 import {
   Body1,
+  Hero1,
   Hero2,
   OverlineLabel,
-  Subtitle1,
+  ResponsiveText,
   Title1,
 } from '@src/components/Typography'
 import getPricing from '@src/data/getPricing'
@@ -51,41 +53,75 @@ export default function KubeCon() {
           className="absolute left-1/2 top-[400px] -translate-x-1/2"
         />
       </div>
-      <StandardPageWidth className="py-xxxxlarge">
-        <div className="flex flex-col items-center gap-xxlarge">
-          <KubeconHeader />
-          <div className="flex max-w-3xl flex-col items-center gap-small">
-            <h1 className="txt-mktg-hero-1 text-3xl md:txt-mktg-hero-1">
-              Meet us at KubeCon
-            </h1>
-            <Body1 className="text-center">
-              Join Plural at KubeCon North America 2024 in Salt Lake City, UT.
-              We're excited to showcase our latest solutions that empower
-              organizations to streamline their Kubernetes deployments and
-              operations.
+      <div className="flex flex-col items-center gap-xxlarge py-xxxxxxlarge">
+        <KubeconHeader />
+        <div className="flex max-w-3xl flex-col items-center gap-small text-center">
+          <Hero1>Meet us at KubeCon</Hero1>
+          <Body1 $color="text-light">
+            Join Plural at KubeCon North America 2024 in Salt Lake City, UT.
+            We're excited to showcase our latest solutions that empower
+            organizations to streamline their Kubernetes deployments and
+            operations.
+          </Body1>
+        </div>
+        <Button
+          large
+          primary
+          rel="noopener noreferrer"
+          target="_blank"
+          as={Link}
+          href="/contact-sales"
+          className="mt-medium w-fit"
+        >
+          Book a demo
+        </Button>
+      </div>
+      <WhereToFindUsSection>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center py-xlarge text-center">
+            <OverlineLabel>Where to find us</OverlineLabel>
+            <Hero2>
+              Visit our booth —{' '}
+              <span className="text-text-primary-accent">R23</span>
+            </Hero2>
+            <Body1
+              $color="text-light"
+              className="mt-small"
+            >
+              Booth R23 is near the CNCF project pavilion, across from the game
+              zone.
             </Body1>
           </div>
-          <Button
-            large
-            primary
-            rel="noopener noreferrer"
-            target="_blank"
-            as={Link}
-            href="/contact-sales"
-            className="mt-medium w-fit"
-          >
-            Book a demo
-          </Button>
+          <Image
+            className="w-[500px] rounded-large border border-solid border-[#ffffff99]"
+            src="/images/kubecon/booths-map.jpg"
+            alt="Booth map"
+            width={2366}
+            height={1432}
+          />
+          <div className="flex flex-col gap-xlarge pb-large pt-xxlarge lg:flex-row">
+            <TextColumnWithIcon
+              heading="Experience live demos"
+              bodyText="See Plural in action and explore our platform's capabilities"
+              icon="StackRun"
+            />
+            <div className="pt-xxlarge">
+              <TextColumnWithIcon
+                heading="Meet our experts"
+                bodyText="Chat with our team and Founders, about your Kubernetes management challenges — and how we can help!"
+                icon="People"
+              />
+            </div>
+            <TextColumnWithIcon
+              heading="Exclusive swag"
+              bodyText="Swing by and pick up Plural swag we made exclusively for KubeCon 2024"
+              icon="MagicWand"
+            />
+          </div>
         </div>
-      </StandardPageWidth>
-      <Image
-        src="/images/kubecon/visit-us.jpg"
-        alt="Visit us at KubeCon, booth R23"
-        width={4032}
-        height={3024}
-      />
+      </WhereToFindUsSection>
       <StandardPageWidth>
-        <div className="flex flex-col items-center py-xxxxlarge">
+        <div className="flex w-full flex-col items-center py-xxxxlarge">
           <ImpactCardSection />
           <Button
             large
@@ -99,16 +135,17 @@ export default function KubeCon() {
           </Button>
         </div>
         <div className="flex flex-col gap-xxxlarge pb-xxxxxxlarge pt-xxxxlarge">
-          <div className="flex gap-xxxlarge">
+          <div className="flex flex-col gap-xxxlarge lg:flex-row">
             <Image
+              className="w-full"
               src="/images/kubecon/session-info.jpg"
               alt="Session info"
               width={1600}
               height={900}
             />
             <div className="flex flex-col gap-medium text-text-light">
-              <OverlineLabel $color="text">Get engaged</OverlineLabel>
-              <Title1>Attend our session</Title1>
+              <OverlineLabel>Get engaged</OverlineLabel>
+              <Title1 $color="text">Attend our session</Title1>
               <SessionInfoListSC>
                 Join us for an insightful session where we'll delve into:
                 <ul>
@@ -141,16 +178,22 @@ export default function KubeCon() {
             </div>
           </div>
           <div
-            className="border-gray-300 flex
-            items-center
-            justify-between overflow-x-auto rounded-large border 
-            border-solid border-border bg-fill-zero p-xlarge"
+            className="border-gray-300 flex flex-col items-center
+            justify-between gap-large overflow-auto rounded-large 
+            border border-border bg-fill-zero p-xlarge lg:flex-row"
           >
             <div className="flex flex-col">
-              <Subtitle1>Can't connect in person?</Subtitle1>
-              <Body1>
+              <ResponsiveText
+                textStyles={{ lg: 'mSubtitle1', '': 'mSubtitle2' }}
+              >
+                Can't connect in person?
+              </ResponsiveText>
+              <ResponsiveText
+                color="text-light"
+                textStyles={{ lg: 'mBody1', '': 'mBody2' }}
+              >
                 No worries! We have plenty of ways for you to explore Plural.
-              </Body1>
+              </ResponsiveText>
             </div>
             <div className="flex gap-medium">
               <Button
@@ -184,7 +227,7 @@ export default function KubeCon() {
           </div>
         </div>
       </StandardPageWidth>
-      <div className="relative w-full bg-[#171A21]">
+      <div className="relative w-full border-y border-fill-two bg-[#171A21]">
         <RepeatingLogoSC />
         <div className="mx-auto flex w-[75%] flex-col items-center justify-center gap-xsmall py-xxxxxlarge text-center">
           <OverlineLabel>Learn more</OverlineLabel>
@@ -230,13 +273,26 @@ export const getStaticProps = async () => {
   })
 }
 
+const WhereToFindUsSection = styled(StandardPageWidth)(({ theme }) => {
+  const bgGradient = `linear-gradient(180deg, #0E1015 0%, rgba(14, 16, 21, 0.0) 50%, #0E1015 100%),
+    radial-gradient(81.85% 81.85% at 50% 18.15%, #0E1015 0%, rgba(14, 16, 21, 0.55) 100%)`
+
+  return {
+    padding: `${theme.spacing.xxxxlarge}px 0`,
+    background: bgGradient,
+    [`@media (min-width: ${theme.breakpoints.desktopSmall}px)`]: {
+      background: `${bgGradient}, url(/images/kubecon/booth-bg.jpg) no-repeat center center / cover`,
+    },
+  }
+})
+
 const RepeatingLogoSC = styled.div`
   position: absolute;
   inset: 0;
   background: url('/favicon-128.png') repeat;
   background-size: 64px 64px;
   width: 100%;
-  opacity: 0.05;
+  opacity: 0.025;
 `
 
 const SessionInfoListSC = styled.div`
