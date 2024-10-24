@@ -328,7 +328,7 @@ export default function Index({
             'linear-gradient(to bottom, #0E1015, #747AF6 60%, #102356)',
         }}
       >
-        <StandardPageWidth className="pb-xxxxxlarge">
+        <StandardPageWidth className="pb-xxxxxxlarge">
           <QuoteSection
             title="Delivering value to DevOps and Platform Engineering teams"
             quotes={quotes ?? []}

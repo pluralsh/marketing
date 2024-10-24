@@ -22,7 +22,7 @@ type ImpactCardProps = {
 
 export function ImpactCardSection() {
   return (
-    <div className="flex flex-col items-center gap-xxlarge">
+    <div className="flex w-full flex-col items-center gap-xxlarge">
       <ResponsiveText textStyles={{ '': 'mHero2' }}>Our impact</ResponsiveText>
       <ImpactCardsWrapperSC>
         {impactCards.map((cardProps, index) => (
@@ -95,7 +95,7 @@ const ImpactCardsWrapperSC = styled.div(({ theme }) => ({
   gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
   width: '100%',
   gap: theme.spacing.xlarge,
-  paddingBottom: theme.spacing.xxxxlarge,
+  paddingBottom: theme.spacing.xxxlarge,
   [`@media (min-width: ${theme.breakpoints.desktopSmall}px)`]: {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
   },
