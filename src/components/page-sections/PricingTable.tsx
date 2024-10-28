@@ -2,9 +2,25 @@ import { Button, CheckIcon, CloseIcon } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
 
+import {
+  breakpointIsGreaterOrEqual,
+  breakpointIsLessThan,
+} from '@src/breakpoints'
+
+import { useBreakpoint } from '../contexts/BreakpointProvider'
+
 export function PlanComparisonTableDesktop() {
+  const breakpoint = useBreakpoint()
+
+  if (!breakpointIsGreaterOrEqual(breakpoint, 'md')) {
+    return null
+  }
+
   return (
-    <div className="hidden w-full md:block">
+    <div
+      className="w-full"
+      id="plan-comparison"
+    >
       <TableGrid $numPlans={plans.length}>
         <HeaderRow>
           <HeaderCell />
@@ -39,8 +55,17 @@ export function PlanComparisonTableDesktop() {
   )
 }
 export function PlanComparisonTablesMobile() {
+  const breakpoint = useBreakpoint()
+
+  if (!breakpointIsLessThan(breakpoint, 'md')) {
+    return null
+  }
+
   return (
-    <div className="flex flex-col gap-xxxlarge md:hidden">
+    <div
+      className="flex flex-col gap-xxxlarge"
+      id="plan-comparison"
+    >
       {plans.map((plan) => (
         <TableGrid
           $numPlans={1}

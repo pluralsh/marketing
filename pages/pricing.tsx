@@ -82,10 +82,7 @@ export default function Pricing({
               }
             />
           </div>
-          <div
-            className="contents"
-            id="plan-comparison"
-          >
+          <div className="contents">
             <PlanComparisonTableDesktop />
             <PlanComparisonTablesMobile />
           </div>

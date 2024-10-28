@@ -3,7 +3,7 @@ module.exports = {
   siteUrl: 'https://plural.sh',
   transform: async (_config, path) => ({
     loc: path,
-    changefreq: 'daily',
+    changefreq: 'weekly',
     priority: 0.5,
     lastmod: new Date().toISOString(),
   }),
