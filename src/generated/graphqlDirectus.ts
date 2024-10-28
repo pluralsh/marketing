@@ -32,6 +32,10 @@ export type Mutation = {
   create_blog_cards_items: Array<Blog_Cards>;
   create_card_item?: Maybe<Card>;
   create_card_items: Array<Card>;
+  create_card_with_image_item?: Maybe<Card_With_Image>;
+  create_card_with_image_items: Array<Card_With_Image>;
+  create_card_with_image_rich_text_columns_item?: Maybe<Card_With_Image_Rich_Text_Columns>;
+  create_card_with_image_rich_text_columns_items: Array<Card_With_Image_Rich_Text_Columns>;
   create_cards_card_item?: Maybe<Cards_Card>;
   create_cards_card_items: Array<Cards_Card>;
   create_cards_item?: Maybe<Cards>;
@@ -74,8 +78,6 @@ export type Mutation = {
   create_multi_column_text_items: Array<Multi_Column_Text>;
   create_multi_column_text_rich_text_columns_item?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
   create_multi_column_text_rich_text_columns_items: Array<Multi_Column_Text_Rich_Text_Columns>;
-  create_nav_link_item?: Maybe<Nav_Link>;
-  create_nav_link_items: Array<Nav_Link>;
   create_pricing_plan_features_item?: Maybe<Pricing_Plan_Features>;
   create_pricing_plan_features_items: Array<Pricing_Plan_Features>;
   create_pricing_plans_item?: Maybe<Pricing_Plans>;
@@ -114,6 +116,10 @@ export type Mutation = {
   delete_blog_cards_items?: Maybe<Delete_Many>;
   delete_card_item?: Maybe<Delete_One>;
   delete_card_items?: Maybe<Delete_Many>;
+  delete_card_with_image_item?: Maybe<Delete_One>;
+  delete_card_with_image_items?: Maybe<Delete_Many>;
+  delete_card_with_image_rich_text_columns_item?: Maybe<Delete_One>;
+  delete_card_with_image_rich_text_columns_items?: Maybe<Delete_Many>;
   delete_cards_card_item?: Maybe<Delete_One>;
   delete_cards_card_items?: Maybe<Delete_Many>;
   delete_cards_item?: Maybe<Delete_One>;
@@ -156,8 +162,6 @@ export type Mutation = {
   delete_multi_column_text_items?: Maybe<Delete_Many>;
   delete_multi_column_text_rich_text_columns_item?: Maybe<Delete_One>;
   delete_multi_column_text_rich_text_columns_items?: Maybe<Delete_Many>;
-  delete_nav_link_item?: Maybe<Delete_One>;
-  delete_nav_link_items?: Maybe<Delete_Many>;
   delete_pricing_plan_features_item?: Maybe<Delete_One>;
   delete_pricing_plan_features_items?: Maybe<Delete_Many>;
   delete_pricing_plans_item?: Maybe<Delete_One>;
@@ -199,6 +203,12 @@ export type Mutation = {
   update_card_batch: Array<Card>;
   update_card_item?: Maybe<Card>;
   update_card_items: Array<Card>;
+  update_card_with_image_batch: Array<Card_With_Image>;
+  update_card_with_image_item?: Maybe<Card_With_Image>;
+  update_card_with_image_items: Array<Card_With_Image>;
+  update_card_with_image_rich_text_columns_batch: Array<Card_With_Image_Rich_Text_Columns>;
+  update_card_with_image_rich_text_columns_item?: Maybe<Card_With_Image_Rich_Text_Columns>;
+  update_card_with_image_rich_text_columns_items: Array<Card_With_Image_Rich_Text_Columns>;
   update_cards_batch: Array<Cards>;
   update_cards_card_batch: Array<Cards_Card>;
   update_cards_card_item?: Maybe<Cards_Card>;
@@ -262,9 +272,6 @@ export type Mutation = {
   update_multi_column_text_rich_text_columns_batch: Array<Multi_Column_Text_Rich_Text_Columns>;
   update_multi_column_text_rich_text_columns_item?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
   update_multi_column_text_rich_text_columns_items: Array<Multi_Column_Text_Rich_Text_Columns>;
-  update_nav_link_batch: Array<Nav_Link>;
-  update_nav_link_item?: Maybe<Nav_Link>;
-  update_nav_link_items: Array<Nav_Link>;
   update_page_homepage?: Maybe<Page_Homepage>;
   update_page_legal?: Maybe<Page_Legal>;
   update_pricing_page?: Maybe<Pricing_Page>;
@@ -360,6 +367,38 @@ export type MutationCreate_Card_ItemArgs = {
 export type MutationCreate_Card_ItemsArgs = {
   data?: InputMaybe<Array<Create_Card_Input>>;
   filter?: InputMaybe<Card_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Card_With_Image_ItemArgs = {
+  data: Create_Card_With_Image_Input;
+};
+
+
+export type MutationCreate_Card_With_Image_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Card_With_Image_Input>>;
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Card_With_Image_Rich_Text_Columns_ItemArgs = {
+  data: Create_Card_With_Image_Rich_Text_Columns_Input;
+};
+
+
+export type MutationCreate_Card_With_Image_Rich_Text_Columns_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Card_With_Image_Rich_Text_Columns_Input>>;
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -704,22 +743,6 @@ export type MutationCreate_Multi_Column_Text_Rich_Text_Columns_ItemsArgs = {
 };
 
 
-export type MutationCreate_Nav_Link_ItemArgs = {
-  data: Create_Nav_Link_Input;
-};
-
-
-export type MutationCreate_Nav_Link_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Nav_Link_Input>>;
-  filter?: InputMaybe<Nav_Link_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationCreate_Pricing_Plan_Features_ItemArgs = {
   data: Create_Pricing_Plan_Features_Input;
 };
@@ -1006,6 +1029,26 @@ export type MutationDelete_Card_ItemsArgs = {
 };
 
 
+export type MutationDelete_Card_With_Image_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Card_With_Image_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Card_With_Image_Rich_Text_Columns_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Card_With_Image_Rich_Text_Columns_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Cards_Card_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1212,16 +1255,6 @@ export type MutationDelete_Multi_Column_Text_Rich_Text_Columns_ItemArgs = {
 
 
 export type MutationDelete_Multi_Column_Text_Rich_Text_Columns_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDelete_Nav_Link_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Nav_Link_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -1464,6 +1497,64 @@ export type MutationUpdate_Card_ItemArgs = {
 export type MutationUpdate_Card_ItemsArgs = {
   data: Update_Card_Input;
   filter?: InputMaybe<Card_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Card_With_Image_BatchArgs = {
+  data?: InputMaybe<Array<Update_Card_With_Image_Input>>;
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Card_With_Image_ItemArgs = {
+  data: Update_Card_With_Image_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Card_With_Image_ItemsArgs = {
+  data: Update_Card_With_Image_Input;
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Card_With_Image_Rich_Text_Columns_BatchArgs = {
+  data?: InputMaybe<Array<Update_Card_With_Image_Rich_Text_Columns_Input>>;
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Card_With_Image_Rich_Text_Columns_ItemArgs = {
+  data: Update_Card_With_Image_Rich_Text_Columns_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Card_With_Image_Rich_Text_Columns_ItemsArgs = {
+  data: Update_Card_With_Image_Rich_Text_Columns_Input;
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2082,35 +2173,6 @@ export type MutationUpdate_Multi_Column_Text_Rich_Text_Columns_ItemsArgs = {
 };
 
 
-export type MutationUpdate_Nav_Link_BatchArgs = {
-  data?: InputMaybe<Array<Update_Nav_Link_Input>>;
-  filter?: InputMaybe<Nav_Link_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Nav_Link_ItemArgs = {
-  data: Update_Nav_Link_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Nav_Link_ItemsArgs = {
-  data: Update_Nav_Link_Input;
-  filter?: InputMaybe<Nav_Link_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
 export type MutationUpdate_Page_HomepageArgs = {
   data: Update_Page_Homepage_Input;
 };
@@ -2605,6 +2667,12 @@ export type Query = {
   card: Array<Card>;
   card_aggregated: Array<Card_Aggregated>;
   card_by_id?: Maybe<Card>;
+  card_with_image: Array<Card_With_Image>;
+  card_with_image_aggregated: Array<Card_With_Image_Aggregated>;
+  card_with_image_by_id?: Maybe<Card_With_Image>;
+  card_with_image_rich_text_columns: Array<Card_With_Image_Rich_Text_Columns>;
+  card_with_image_rich_text_columns_aggregated: Array<Card_With_Image_Rich_Text_Columns_Aggregated>;
+  card_with_image_rich_text_columns_by_id?: Maybe<Card_With_Image_Rich_Text_Columns>;
   cards: Array<Cards>;
   cards_aggregated: Array<Cards_Aggregated>;
   cards_by_id?: Maybe<Cards>;
@@ -2668,9 +2736,6 @@ export type Query = {
   multi_column_text_rich_text_columns: Array<Multi_Column_Text_Rich_Text_Columns>;
   multi_column_text_rich_text_columns_aggregated: Array<Multi_Column_Text_Rich_Text_Columns_Aggregated>;
   multi_column_text_rich_text_columns_by_id?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
-  nav_link: Array<Nav_Link>;
-  nav_link_aggregated: Array<Nav_Link_Aggregated>;
-  nav_link_by_id?: Maybe<Nav_Link>;
   page_homepage?: Maybe<Page_Homepage>;
   page_legal?: Maybe<Page_Legal>;
   pricing_page?: Maybe<Pricing_Page>;
@@ -2800,6 +2865,58 @@ export type QueryCard_AggregatedArgs = {
 
 
 export type QueryCard_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCard_With_ImageArgs = {
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCard_With_Image_AggregatedArgs = {
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCard_With_Image_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCard_With_Image_Rich_Text_ColumnsArgs = {
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCard_With_Image_Rich_Text_Columns_AggregatedArgs = {
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryCard_With_Image_Rich_Text_Columns_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -3346,32 +3463,6 @@ export type QueryMulti_Column_Text_Rich_Text_Columns_AggregatedArgs = {
 
 
 export type QueryMulti_Column_Text_Rich_Text_Columns_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryNav_LinkArgs = {
-  filter?: InputMaybe<Nav_Link_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryNav_Link_AggregatedArgs = {
-  filter?: InputMaybe<Nav_Link_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryNav_Link_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -4093,6 +4184,186 @@ export type Card_Filter = {
   url?: InputMaybe<String_Filter_Operators>;
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Card_With_Image = {
+  __typename?: 'card_with_image';
+  body_text?: Maybe<Scalars['String']['output']>;
+  bullets?: Maybe<Array<Maybe<Card_With_Image_Rich_Text_Columns>>>;
+  bullets_func?: Maybe<Count_Functions>;
+  cta_text?: Maybe<Scalars['String']['output']>;
+  cta_url?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  heading?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Directus_Files>;
+  spacing?: Maybe<Scalars['String']['output']>;
+  theme: Scalars['String']['output'];
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Card_With_ImageBulletsArgs = {
+  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Card_With_ImageImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Card_With_ImageUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Card_With_ImageUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Card_With_Image_Aggregated = {
+  __typename?: 'card_with_image_aggregated';
+  avg?: Maybe<Card_With_Image_Aggregated_Fields>;
+  avgDistinct?: Maybe<Card_With_Image_Aggregated_Fields>;
+  count?: Maybe<Card_With_Image_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Card_With_Image_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Card_With_Image_Aggregated_Fields>;
+  min?: Maybe<Card_With_Image_Aggregated_Fields>;
+  sum?: Maybe<Card_With_Image_Aggregated_Fields>;
+  sumDistinct?: Maybe<Card_With_Image_Aggregated_Fields>;
+};
+
+export type Card_With_Image_Aggregated_Count = {
+  __typename?: 'card_with_image_aggregated_count';
+  body_text?: Maybe<Scalars['Int']['output']>;
+  bullets?: Maybe<Scalars['Int']['output']>;
+  cta_text?: Maybe<Scalars['Int']['output']>;
+  cta_url?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  heading?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  image?: Maybe<Scalars['Int']['output']>;
+  spacing?: Maybe<Scalars['Int']['output']>;
+  theme?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Card_With_Image_Aggregated_Fields = {
+  __typename?: 'card_with_image_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Card_With_Image_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Card_With_Image_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Card_With_Image_Filter>>>;
+  body_text?: InputMaybe<String_Filter_Operators>;
+  bullets?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
+  bullets_func?: InputMaybe<Count_Function_Filter_Operators>;
+  cta_text?: InputMaybe<String_Filter_Operators>;
+  cta_url?: InputMaybe<String_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  heading?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  image?: InputMaybe<Directus_Files_Filter>;
+  spacing?: InputMaybe<String_Filter_Operators>;
+  theme?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Card_With_Image_Rich_Text_Columns = {
+  __typename?: 'card_with_image_rich_text_columns';
+  card_with_image_id?: Maybe<Card_With_Image>;
+  id: Scalars['ID']['output'];
+  rich_text_columns_id?: Maybe<Rich_Text_Columns>;
+};
+
+
+export type Card_With_Image_Rich_Text_ColumnsCard_With_Image_IdArgs = {
+  filter?: InputMaybe<Card_With_Image_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Card_With_Image_Rich_Text_ColumnsRich_Text_Columns_IdArgs = {
+  filter?: InputMaybe<Rich_Text_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Card_With_Image_Rich_Text_Columns_Aggregated = {
+  __typename?: 'card_with_image_rich_text_columns_aggregated';
+  avg?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+  avgDistinct?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+  count?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+  min?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+  sum?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+  sumDistinct?: Maybe<Card_With_Image_Rich_Text_Columns_Aggregated_Fields>;
+};
+
+export type Card_With_Image_Rich_Text_Columns_Aggregated_Count = {
+  __typename?: 'card_with_image_rich_text_columns_aggregated_count';
+  card_with_image_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  rich_text_columns_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Card_With_Image_Rich_Text_Columns_Aggregated_Fields = {
+  __typename?: 'card_with_image_rich_text_columns_aggregated_fields';
+  card_with_image_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  rich_text_columns_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Card_With_Image_Rich_Text_Columns_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>>>;
+  card_with_image_id?: InputMaybe<Card_With_Image_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  rich_text_columns_id?: InputMaybe<Rich_Text_Columns_Filter>;
 };
 
 export type Cards = {
@@ -4857,6 +5128,28 @@ export type Create_Card_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Card_With_Image_Input = {
+  body_text?: InputMaybe<Scalars['String']['input']>;
+  bullets?: InputMaybe<Array<InputMaybe<Create_Card_With_Image_Rich_Text_Columns_Input>>>;
+  cta_text?: InputMaybe<Scalars['String']['input']>;
+  cta_url?: InputMaybe<Scalars['String']['input']>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Create_Directus_Files_Input>;
+  spacing?: InputMaybe<Scalars['String']['input']>;
+  theme: Scalars['String']['input'];
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Card_With_Image_Rich_Text_Columns_Input = {
+  card_with_image_id?: InputMaybe<Create_Card_With_Image_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  rich_text_columns_id?: InputMaybe<Create_Rich_Text_Columns_Input>;
+};
+
 export type Create_Cards_Card_Input = {
   card_id?: InputMaybe<Create_Card_Input>;
   cards_id?: InputMaybe<Create_Cards_Input>;
@@ -5160,12 +5453,6 @@ export type Create_Multi_Column_Text_Rich_Text_Columns_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
   multi_column_text_id?: InputMaybe<Create_Multi_Column_Text_Input>;
   rich_text_columns_id?: InputMaybe<Create_Rich_Text_Columns_Input>;
-};
-
-export type Create_Nav_Link_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Create_Page_Homepage_Input = {
@@ -5600,6 +5887,7 @@ export type Custom_Pages_Components_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   item__article_cards?: InputMaybe<Article_Cards_Filter>;
   item__blog_cards?: InputMaybe<Blog_Cards_Filter>;
+  item__card_with_image?: InputMaybe<Card_With_Image_Filter>;
   item__cards?: InputMaybe<Cards_Filter>;
   item__cta?: InputMaybe<Cta_Filter>;
   item__customer_quote?: InputMaybe<Customer_Quote_Filter>;
@@ -5611,7 +5899,7 @@ export type Custom_Pages_Components_Filter = {
   item__two_column_text?: InputMaybe<Two_Column_Text_Filter>;
 };
 
-export type Custom_Pages_Components_Item_Union = Article_Cards | Blog_Cards | Cards | Cta | Customer_Quote | Hero | Large_Image | Logo_Strip | Multi_Column_Text | Section_Header | Two_Column_Text;
+export type Custom_Pages_Components_Item_Union = Article_Cards | Blog_Cards | Card_With_Image | Cards | Cta | Customer_Quote | Hero | Large_Image | Logo_Strip | Multi_Column_Text | Section_Header | Two_Column_Text;
 
 export type Custom_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Custom_Pages_Filter>>>;
@@ -6778,36 +7066,6 @@ export type Multi_Column_Text_Rich_Text_Columns_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   multi_column_text_id?: InputMaybe<Multi_Column_Text_Filter>;
   rich_text_columns_id?: InputMaybe<Rich_Text_Columns_Filter>;
-};
-
-export type Nav_Link = {
-  __typename?: 'nav_link';
-  id: Scalars['ID']['output'];
-  title?: Maybe<Scalars['String']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-export type Nav_Link_Aggregated = {
-  __typename?: 'nav_link_aggregated';
-  count?: Maybe<Nav_Link_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Nav_Link_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type Nav_Link_Aggregated_Count = {
-  __typename?: 'nav_link_aggregated_count';
-  id?: Maybe<Scalars['Int']['output']>;
-  title?: Maybe<Scalars['Int']['output']>;
-  url?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Nav_Link_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Nav_Link_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Nav_Link_Filter>>>;
-  id?: InputMaybe<String_Filter_Operators>;
-  title?: InputMaybe<String_Filter_Operators>;
-  url?: InputMaybe<String_Filter_Operators>;
 };
 
 export type Number_Filter_Operators = {
@@ -8480,6 +8738,28 @@ export type Update_Card_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Card_With_Image_Input = {
+  body_text?: InputMaybe<Scalars['String']['input']>;
+  bullets?: InputMaybe<Array<InputMaybe<Update_Card_With_Image_Rich_Text_Columns_Input>>>;
+  cta_text?: InputMaybe<Scalars['String']['input']>;
+  cta_url?: InputMaybe<Scalars['String']['input']>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Update_Directus_Files_Input>;
+  spacing?: InputMaybe<Scalars['String']['input']>;
+  theme?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Card_With_Image_Rich_Text_Columns_Input = {
+  card_with_image_id?: InputMaybe<Update_Card_With_Image_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  rich_text_columns_id?: InputMaybe<Update_Rich_Text_Columns_Input>;
+};
+
 export type Update_Cards_Card_Input = {
   card_id?: InputMaybe<Update_Card_Input>;
   cards_id?: InputMaybe<Update_Cards_Input>;
@@ -8785,12 +9065,6 @@ export type Update_Multi_Column_Text_Rich_Text_Columns_Input = {
   rich_text_columns_id?: InputMaybe<Update_Rich_Text_Columns_Input>;
 };
 
-export type Update_Nav_Link_Input = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type Update_Page_Homepage_Input = {
   article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
@@ -9017,7 +9291,7 @@ export type Update_Two_Column_Text_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
-export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null, cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', spacing?: string | null, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', spacing?: string | null, quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null, overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', spacing?: string | null, columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', spacing?: string | null, overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', spacing?: string | null, main_content: string, side_content: string } | null } | null> | null };
+export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'card_with_image', spacing?: string | null, theme: string, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, bullets?: Array<{ __typename?: 'card_with_image_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'cards', spacing?: string | null, cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', spacing?: string | null, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', spacing?: string | null, quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null, overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', spacing?: string | null, columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', spacing?: string | null, overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', spacing?: string | null, main_content: string, side_content: string } | null } | null> | null };
 
 export type CustomPageTinyFragment = { __typename?: 'custom_pages', id: string, slug: string };
 
@@ -9031,7 +9305,7 @@ export type CustomPageQueryVariables = Exact<{
 }>;
 
 
-export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'cards', spacing?: string | null, cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', spacing?: string | null, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', spacing?: string | null, quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null, overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', spacing?: string | null, columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', spacing?: string | null, overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', spacing?: string | null, main_content: string, side_content: string } | null } | null> | null }> };
+export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_components', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', spacing?: string | null } | { __typename?: 'card_with_image', spacing?: string | null, theme: string, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, bullets?: Array<{ __typename?: 'card_with_image_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'cards', spacing?: string | null, cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', spacing?: string | null, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', spacing?: string | null, quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', spacing?: string | null, overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', spacing?: string | null, logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', spacing?: string | null, columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', spacing?: string | null, overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', spacing?: string | null, main_content: string, side_content: string } | null } | null> | null }> };
 
 export type HeroComponentFragment = { __typename?: 'hero', spacing?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -9058,6 +9332,8 @@ export type CustomerQuoteComponentFragment = { __typename?: 'customer_quote', sp
 export type CtaComponentFragment = { __typename?: 'cta', spacing?: string | null, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null };
 
 export type MediaCardComponentFragment = { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type CardWithImageComponentFragment = { __typename?: 'card_with_image', spacing?: string | null, theme: string, heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, bullets?: Array<{ __typename?: 'card_with_image_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null };
 
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
@@ -9361,6 +9637,25 @@ export const MediaCardComponentFragmentDoc = gql`
   url
 }
     ${ImageFileFragmentDoc}`;
+export const CardWithImageComponentFragmentDoc = gql`
+    fragment CardWithImageComponent on card_with_image {
+  spacing
+  theme
+  heading
+  body_text
+  image {
+    ...ImageFile
+  }
+  bullets {
+    rich_text_columns_id {
+      ...RichTextColumn
+    }
+  }
+  cta_text
+  cta_url
+}
+    ${ImageFileFragmentDoc}
+${RichTextColumnFragmentDoc}`;
 export const CustomPageFragmentDoc = gql`
     fragment CustomPage on custom_pages {
   id
@@ -9379,6 +9674,7 @@ export const CustomPageFragmentDoc = gql`
       ...CustomerQuoteComponent
       ...CTAComponent
       ...MediaCardComponent
+      ...CardWithImageComponent
     }
   }
 }
@@ -9392,7 +9688,8 @@ ${CardsComponentFragmentDoc}
 ${BlogCardsComponentFragmentDoc}
 ${CustomerQuoteComponentFragmentDoc}
 ${CtaComponentFragmentDoc}
-${MediaCardComponentFragmentDoc}`;
+${MediaCardComponentFragmentDoc}
+${CardWithImageComponentFragmentDoc}`;
 export const CustomPageTinyFragmentDoc = gql`
     fragment CustomPageTiny on custom_pages {
   id

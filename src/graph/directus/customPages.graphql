@@ -15,6 +15,7 @@ fragment CustomPage on custom_pages {
       ...CustomerQuoteComponent
       ...CTAComponent
       ...MediaCardComponent
+      ...CardWithImageComponent
     }
   }
 }
@@ -149,4 +150,21 @@ fragment MediaCardComponent on article_cards {
   author
   ctas
   url
+}
+
+fragment CardWithImageComponent on card_with_image {
+  spacing
+  theme
+  heading
+  body_text
+  image {
+    ...ImageFile
+  }
+  bullets {
+    rich_text_columns_id {
+      ...RichTextColumn
+    }
+  }
+  cta_text
+  cta_url
 }
