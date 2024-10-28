@@ -267,9 +267,8 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
               heading="Open positions"
               intro={
                 <p>
-                  We are not actively hiring for new positions right now, but
-                  we’re always interested and receiving general applications to
-                  &nbsp;
+                  If you don't see a relevant position for yourself, we’re
+                  always interested in receiving general applications to &nbsp;
                   <a
                     style={{ ...theme.partials.marketingText.inlineLink }}
                     href="mailto:hiring@plural.sh"
