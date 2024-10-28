@@ -24,7 +24,6 @@ import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
 import { HamburgerButton } from './PageHeaderButtons'
-import { PromoBanner, type PromoBannerProps } from './PromoBanner'
 
 const DARKEN_FILTER_ID = 'svg-darken-filter'
 
@@ -36,11 +35,10 @@ export const PAGE_HEADER_ID = 'plural-page-header'
 
 export function PageHeader({
   showHeaderBG,
-  promoBanner,
+
   ...props
 }: {
   showHeaderBG?: boolean
-  promoBanner?: PromoBannerProps
 }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -71,7 +69,6 @@ export function PageHeader({
       alwaysShowBG={showHeaderBG}
       id={PAGE_HEADER_ID}
     >
-      <PromoBanner {...promoBanner} />
       <PageHeaderInnerSC
         as="header"
         {...props}

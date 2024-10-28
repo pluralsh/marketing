@@ -9,15 +9,15 @@ import { type Merge } from 'type-fest'
 import { mqs } from '@src/breakpoints'
 import { QUICKSTART_VIDEO_URL } from '@src/consts'
 import { getImageUrl } from '@src/consts/routes'
-import { type ArticleCardFragment } from '@src/generated/graphqlDirectus'
+import { type MediaCardComponentFragment } from '@src/generated/graphqlDirectus'
 import { isExternalUrl } from '@src/utils/text'
 
-import Embed from './Embed'
-import { SubsectionHead } from './SectionHeads'
-import { ShadowedCard } from './ShadowedCard'
-import { Body1, Cta } from './Typography'
+import Embed from '../Embed'
+import { SubsectionHead } from '../SectionHeads'
+import { ShadowedCard } from '../ShadowedCard'
+import { Body1, Cta } from '../Typography'
 
-const ArticleCardSC = styled(ShadowedCard)<{
+const MediaCardSC = styled(ShadowedCard)<{
   $size: 'medium' | 'small'
   $reverse: boolean
 }>(({ $size, $reverse = false, theme }) => ({
@@ -57,7 +57,7 @@ const ArticleCardSC = styled(ShadowedCard)<{
 
 export function QuickstartDemoCard() {
   return (
-    <ArticleCard
+    <MediaCard
       heading="Plural Quickstart Demo"
       videoUrl={QUICKSTART_VIDEO_URL}
       description={
@@ -76,7 +76,7 @@ export function QuickstartDemoCard() {
   )
 }
 
-export function ArticleCard({
+export function MediaCard({
   reverse = false,
   size = 'medium',
   preHeading,
@@ -91,13 +91,13 @@ export function ArticleCard({
   date,
   ...props
 }: Merge<
-  ComponentProps<typeof ArticleCardSC>,
+  ComponentProps<typeof MediaCardSC>,
   Pick<
-    ArticleCardFragment,
+    MediaCardComponentFragment,
     'heading' | 'url' | 'ctas' | 'videoUrl' | 'author' | 'date'
   > & {
-    thumbnail?: ArticleCardFragment['thumbnail'] | string
-    description?: ArticleCardFragment['description'] | ReactNode
+    thumbnail?: MediaCardComponentFragment['thumbnail'] | string
+    description?: MediaCardComponentFragment['description'] | ReactNode
     size?: 'medium' | 'small'
     reverse?: boolean
     preHeading?: string
@@ -115,7 +115,7 @@ export function ArticleCard({
       })
 
   return (
-    <ArticleCardSC
+    <MediaCardSC
       $size={size}
       $reverse={reverse}
       {...(url && !videoUrl
@@ -180,10 +180,10 @@ export function ArticleCard({
           </Cta>
         ))}
       </div>
-    </ArticleCardSC>
+    </MediaCardSC>
   )
 }
 
-export const ArticleCardNoBorder = styled(ArticleCard)(() => ({
+export const MediaCardNoBorder = styled(MediaCard)(() => ({
   border: 'none',
 }))

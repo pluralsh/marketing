@@ -1,5 +1,9 @@
+import { getImageUrl } from '@src/consts/routes'
 import { type NavList } from '@src/contexts/NavDataContext'
-import { type ProductPageTinyFragment } from '@src/generated/graphqlDirectus'
+import {
+  type ProductPageTinyFragment,
+  type SiteSettingsFragment,
+} from '@src/generated/graphqlDirectus'
 
 type Solution = {
   slug?: string | null
@@ -8,81 +12,12 @@ type Solution = {
 }
 
 export const getSiteSettings = (
+  siteSettings: SiteSettingsFragment,
   solutions?: Solution[],
   products?: ProductPageTinyFragment[]
 ) => ({
-  og_description:
-    'Open-source application deployment, faster than ever without sacrificing compliance."',
-  partner_logos: {
-    items: [
-      {
-        item: {
-          id: '1',
-          logo_dark: '/images/partner-logos/logo-coachhub-dark.svg',
-          logo_light: '/images/partner-logos/logo-coachhub-light.svg',
-          name: 'CoachHub',
-          slug: 'coachhub',
-          url: 'https://www.coachhub.com/',
-          width: 96,
-        },
-      },
-      {
-        item: {
-          id: '2',
-          logo_dark: '/images/partner-logos/logo-digitas-dark.png',
-          logo_light: '/images/partner-logos/logo-digitas-light.png',
-          name: 'Digitas',
-          slug: 'digitas',
-          url: 'https://www.digitas.com/',
-          width: 60,
-        },
-      },
-      {
-        item: {
-          id: '3',
-          logo_dark: '/images/partner-logos/logo-fnatic-dark.svg',
-          logo_light: '/images/partner-logos/logo-fnatic-light.svg',
-          name: 'Fnatic',
-          slug: 'fnatic',
-          url: 'https://fnatic.com/',
-          width: 52,
-        },
-      },
-      {
-        item: {
-          id: '4',
-          logo_dark: '/images/partner-logos/logo-fsn-dark.png',
-          logo_light: '/images/partner-logos/logo-fsn-light.png',
-          name: 'Fsn',
-          slug: 'fsn',
-          url: 'https://www.fsncapital.com/',
-          width: 58,
-        },
-      },
-      {
-        item: {
-          id: '5',
-          logo_dark: '/images/partner-logos/logo-justos-dark.png',
-          logo_light: '/images/partner-logos/logo-justos-light.png',
-          name: 'Justos',
-          slug: 'justos',
-          url: 'https://www.justos.com.br/',
-          width: 92,
-        },
-      },
-      {
-        item: {
-          id: '6',
-          logo_dark: '/images/partner-logos/logo-mott-mac-dark.png',
-          logo_light: '/images/partner-logos/logo-mott-mac-light.png',
-          name: 'Mot Mac',
-          slug: 'mot-mac',
-          url: 'https://www.mottmac.com/',
-          width: 58,
-        },
-      },
-    ],
-  },
+  og_description: siteSettings.og_description ?? 'Plural',
+  og_image: getImageUrl(siteSettings.og_image),
   main_nav: {
     product: {
       id: 'product',
@@ -182,23 +117,7 @@ export const getSiteSettings = (
       ],
     },
   },
-  promo_banner_content: '',
-  promo_banner_url: '',
 })
-
-export type PartnerLogos = {
-  items: {
-    item: {
-      id: string
-      logo_dark: string
-      logo_light: string
-      name: string
-      slug: string
-      url: string
-      width: number
-    }
-  }[]
-}
 
 function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
   if (!products || !products.length) return []

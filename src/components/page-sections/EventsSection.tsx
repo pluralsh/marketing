@@ -144,17 +144,6 @@ function formatDates(
   return dateString
 }
 
-const FieldContent = styled.span(({ theme }) => ({
-  '&:any-link': {
-    ...theme.partials.text.inlineLink,
-    textDecoration: 'none',
-    // color: theme.colors['action-link-inline'],
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-}))
-
 const EventCardSC = styled.div(({ theme }) => ({
   background: theme.colors['fill-one'],
   border: theme.borders['fill-one'],
@@ -208,23 +197,7 @@ function EventCard({
     <EventCardSC {...props}>
       <TextLimiter>
         <div className="eventName">{event.name}</div>
-        <ul className="details">
-          {dateString && <li>{dateString}</li>}
-          {event?.fields?.map(
-            (field: { url?: string; label?: string; content?: string }) => (
-              <li>
-                {field.label && <>{field.label}: </>}
-                <FieldContent
-                  {...(field.url
-                    ? { as: 'a', target: '_blank', href: field.url }
-                    : {})}
-                >
-                  {field.content && field.content}
-                </FieldContent>
-              </li>
-            )
-          )}
-        </ul>
+        <ul className="details">{dateString && <li>{dateString}</li>}</ul>
         {event.description && (
           <div className="description">{event.description}</div>
         )}

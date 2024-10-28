@@ -1,0 +1,12 @@
+fragment SiteSettings on site_settings {
+  og_description
+  og_image {
+    ...ImageFile
+  }
+}
+
+query SiteSettings {
+  site_settings {
+    ...SiteSettings
+  }
+}

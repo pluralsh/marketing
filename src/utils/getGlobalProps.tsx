@@ -14,6 +14,9 @@ import {
   ProductPageSlugsDocument,
   type ProductPageSlugsQuery,
   type ProductPageSlugsQueryVariables,
+  SiteSettingsDocument,
+  type SiteSettingsQuery,
+  type SiteSettingsQueryVariables,
   SolutionsSlugsDocument,
   type SolutionsSlugsQuery,
   type SolutionsSlugsQueryVariables,
@@ -48,7 +51,15 @@ async function getGlobalProps() {
   })
   const products = productData.product_pages
 
-  const siteSettings = getSiteSettings(solutions, products)
+  const { data: siteSettingsData } = await directusClient.query<
+    SiteSettingsQuery,
+    SiteSettingsQueryVariables
+  >({
+    query: SiteSettingsDocument,
+  })
+  const siteSettingsQuery = siteSettingsData.site_settings ?? {}
+
+  const siteSettings = getSiteSettings(siteSettingsQuery, solutions, products)
 
   return {
     siteSettings,

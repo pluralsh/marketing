@@ -89,7 +89,7 @@ export const getStaticProps = async (context) => {
       components: page.components ?? [],
     },
     {
-      revalidate: 20,
+      revalidate: 60,
     }
   )
 }
