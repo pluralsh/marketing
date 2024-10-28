@@ -87,10 +87,10 @@ export default function KubeCon() {
             rel="noopener noreferrer"
             target="_blank"
             as={Link}
-            href="/contact-sales"
+            href="https://calendly.com/sam-plural/30min"
             className="mt-medium w-fit"
           >
-            Book a demo
+            Let's meet in person
           </Button>
         </div>
       </StandardPageWidth>
@@ -149,9 +149,9 @@ export default function KubeCon() {
             rel="noopener noreferrer"
             target="_blank"
             as={Link}
-            href="/contact-sales"
+            href="https://calendly.com/sam-plural/30min"
           >
-            Book a demo
+            Let's meet in person
           </Button>
         </div>
         <div className="flex flex-col gap-xxxlarge pb-xxxxxxlarge pt-xxxxlarge">
@@ -248,7 +248,7 @@ export default function KubeCon() {
       </StandardPageWidth>
       <div className="relative w-full border-y border-fill-two bg-[#171A21]">
         <RepeatingLogoSC />
-        <div className="mx-auto flex w-[75%] flex-col items-center justify-center gap-xsmall py-xxxxxlarge text-center">
+        <div className="mx-auto flex w-[75%] max-w-[720px] flex-col items-center justify-center gap-xsmall py-xxxxxlarge text-center">
           <OverlineLabel>Learn more</OverlineLabel>
           <Hero2>About Plural</Hero2>
           <Body1 className="mt-xsmall">
