@@ -85,8 +85,7 @@ export const getStaticProps = async (context) => {
     {
       metaTitle: 'Plural',
       metaDescription: page.slug,
-      footerVariant: FooterVariant.none,
-      hideHeader: true,
+      footerVariant: FooterVariant.kitchenSink,
       components: page.components ?? [],
     },
     {
