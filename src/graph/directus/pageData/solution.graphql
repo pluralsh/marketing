@@ -1,0 +1,56 @@
+fragment SolutionFeature on solution_features {
+  id
+  title
+  description
+  icon
+  link_title
+  link_url
+}
+
+fragment SolutionProblem on solution_problems {
+  id
+  title
+  subtitle
+  problem
+  solution
+}
+
+fragment Solution on solutions_pages {
+  id
+  slug
+  title
+  description
+  upper_features_title
+  lower_features_title
+  download_section_title
+  download_section_description
+  upper_features {
+    ...SolutionFeature
+  }
+  lower_features {
+    ...SolutionFeature
+  }
+  problems {
+    ...SolutionProblem
+  }
+  featured_quote {
+    ...Quote
+  }
+  ebook_url
+}
+
+query SolutionsSlugs {
+  solutions_pages(filter: { status: { _neq: "archived" } }) {
+    slug
+    nav_title
+    category
+  }
+}
+
+query Solutions($slug: String) {
+  solutions_pages(
+    filter: { slug: { _eq: $slug }, status: { _neq: "archived" } }
+  ) {
+    ...Solution
+  }
+}

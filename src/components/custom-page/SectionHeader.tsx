@@ -15,7 +15,7 @@ export function SectionHeader({
     <section
       className={cn(
         getSpacingClassName(spacing),
-        'mx-auto flex w-1/2 flex-col items-center gap-medium text-center'
+        'mx-auto flex w-1/2 flex-col items-center gap-medium py-xlarge text-center'
       )}
     >
       {overline && <OverlineLabel>{overline}</OverlineLabel>}

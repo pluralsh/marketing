@@ -82,6 +82,7 @@ module.exports = {
         'postcss.config.js',
         'codegen.ts',
         'index-pages.mjs',
+        'next-sitemap.config.js',
       ],
       parserOptions: {
         project: null,

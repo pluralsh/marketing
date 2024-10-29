@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { type PageHomepageQuery } from '@src/generated/graphqlDirectus'
 import { cn as classNames } from '@src/utils/cn'
 
-import { ArticleCardNoBorder } from '../ArticleCard'
+import { MediaCardNoBorder } from '../custom-page/MediaCard'
 import { GradientBG } from '../layout/GradientBG'
 import { StandardPageSection, StandardPageWidth } from '../layout/LayoutHelpers'
 import { CenteredSectionHead } from '../SectionHeads'
@@ -114,7 +114,7 @@ function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
 
                 return (
                   c && (
-                    <ArticleCardNoBorder
+                    <MediaCardNoBorder
                       key={c.id}
                       className={classNames({
                         'columns:col-span-3': size === 'medium',

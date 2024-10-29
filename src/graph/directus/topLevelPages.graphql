@@ -1,24 +1,3 @@
-fragment Callout on callouts {
-  id
-  sort
-  category
-  title
-  content
-  ctas
-}
-
-fragment PageCommunity on page_community {
-  callouts {
-    ...Callout
-  }
-}
-
-query PageCommunity {
-  page_community {
-    ...PageCommunity
-  }
-}
-
 fragment MarkdownPage on markdown_pages {
   id
   slug
@@ -47,29 +26,12 @@ query LegalPageSlugs {
   }
 }
 
-fragment ArticleCard on article_cards {
-  id
-  heading
-  description
-  thumbnail {
-    ...ImageFile
-  }
-  videoUrl
-  date
-  author
-  ctas
-  url
-}
-
 fragment PageHomepage on page_homepage {
   quotes {
     ...QuoteList
   }
   article_cards {
-    ...ArticleCard
-  }
-  featured_quote {
-    ...Quote
+    ...MediaCardComponent
   }
 }
 

@@ -51,7 +51,7 @@ export function MultiColumnText({
     <section
       className={cn(
         getSpacingClassName(spacing),
-        'mx-xxxlarge flex gap-xlarge'
+        'mx-xxxlarge flex gap-xlarge pt-medium'
       )}
     >
       {columns?.map((c, index) => {

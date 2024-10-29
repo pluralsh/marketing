@@ -22,7 +22,15 @@ export function Cards({ spacing, cards }: CardsComponentFragment) {
         'flex gap-xxlarge px-xxxlarge'
       )}
     >
-      {cards?.map((c) => c?.card_id && <CardComponent {...c?.card_id} />)}
+      {cards?.map(
+        (c, i) =>
+          c?.card_id && (
+            <CardComponent
+              key={i}
+              {...c?.card_id}
+            />
+          )
+      )}
     </section>
   )
 }
