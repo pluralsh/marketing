@@ -21,7 +21,7 @@ export function Hero({
   form,
 }: HeroComponentFragment) {
   return (
-    <section className={cn(getSpacingClassName(spacing), 'mx-xxxxxxlarge')}>
+    <section className={cn(getSpacingClassName(spacing), 'px-xxxxxxlarge')}>
       <Flex gap="xxxlarge">
         <Flex
           flex={1}

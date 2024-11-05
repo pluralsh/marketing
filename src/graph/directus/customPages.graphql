@@ -15,7 +15,6 @@ fragment CustomPage on custom_pages {
       ...CustomerQuoteComponent
       ...CTAComponent
       ...MediaCardComponent
-      ...CardWithImageComponent
     }
   }
 }
@@ -38,6 +37,7 @@ query CustomPage($slug: String!) {
 }
 
 fragment HeroComponent on hero {
+  theme
   spacing
   heading
   body_text
@@ -52,6 +52,7 @@ fragment HeroComponent on hero {
 }
 
 fragment LogoStripComponent on logo_strip {
+  theme
   spacing
   logo_list {
     ...LogoList
@@ -59,6 +60,7 @@ fragment LogoStripComponent on logo_strip {
 }
 
 fragment SectionHeaderComponent on section_header {
+  theme
   spacing
   overline
   title
@@ -66,6 +68,7 @@ fragment SectionHeaderComponent on section_header {
 }
 
 fragment LargeImageComponent on large_image {
+  theme
   spacing
   overline
   heading
@@ -90,6 +93,7 @@ fragment Card on card {
 }
 
 fragment CardsComponent on cards {
+  theme
   spacing
   cards {
     card_id {
@@ -99,6 +103,7 @@ fragment CardsComponent on cards {
 }
 
 fragment BlogCardsComponent on blog_cards {
+  theme
   spacing
 }
 
@@ -109,12 +114,14 @@ fragment RichTextColumn on rich_text_columns {
 }
 
 fragment TwoColumnTextComponent on two_column_text {
+  theme
   spacing
   main_content
   side_content
 }
 
 fragment MultiColumnTextComponent on multi_column_text {
+  theme
   spacing
   columns {
     rich_text_columns_id {
@@ -124,6 +131,7 @@ fragment MultiColumnTextComponent on multi_column_text {
 }
 
 fragment CustomerQuoteComponent on customer_quote {
+  theme
   spacing
   quote {
     ...Quote
@@ -131,6 +139,7 @@ fragment CustomerQuoteComponent on customer_quote {
 }
 
 fragment CTAComponent on cta {
+  theme
   spacing
   heading
   body_text
@@ -139,6 +148,7 @@ fragment CTAComponent on cta {
 }
 
 fragment MediaCardComponent on article_cards {
+  theme
   id
   heading
   description
