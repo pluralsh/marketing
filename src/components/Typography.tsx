@@ -103,30 +103,40 @@ export const ResponsiveText = styled.h2.withConfig(textPropFilter)<{
   }
 })
 
-export const Hero1 = styled.h1<{ $color?: ColorKey }>(({ theme, $color }) => ({
-  ...theme.partials.marketingText.hero1,
-  color: $color && (theme.colors[$color] as string),
-}))
+export const Hero1 = styled.h1<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text' }) => ({
+    ...theme.partials.marketingText.hero1,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
 
-export const Hero2 = styled.h2<{ $color?: ColorKey }>(({ theme, $color }) => ({
-  ...theme.partials.marketingText.hero2,
-  color: $color && (theme.colors[$color] as string),
-}))
+export const Hero2 = styled.h2<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text' }) => ({
+    ...theme.partials.marketingText.hero2,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
 
-export const Title1 = styled.h3<{ $color?: ColorKey }>(({ theme, $color }) => ({
-  ...theme.partials.marketingText.title1,
-  color: $color && (theme.colors[$color] as string),
-}))
+export const Title1 = styled.h3<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text' }) => ({
+    ...theme.partials.marketingText.title1,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
 
-export const Title2 = styled.h4<{ $color?: ColorKey }>(({ theme, $color }) => ({
-  ...theme.partials.marketingText.title2,
-  color: $color && (theme.colors[$color] as string),
-}))
+export const Title2 = styled.h4<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text' }) => ({
+    ...theme.partials.marketingText.title2,
+    color: $color && (theme.colors[$color] as string),
+  })
+)
 
-export const Body1 = styled.p<{ $color?: ColorKey }>(({ theme, $color }) => ({
-  ...theme.partials.marketingText.body1,
-  color: $color && (theme.colors[$color] as string),
-}))
+export const Body1 = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text-light' }) => ({
+    ...theme.partials.marketingText.body1,
+    color: theme.colors[$color] as string,
+  })
+)
 
 export const Body2 = styled.p<{ $color?: ColorKey }>(
   ({ theme, $color = 'text-light' }) => ({
@@ -136,16 +146,16 @@ export const Body2 = styled.p<{ $color?: ColorKey }>(
 )
 
 export const Subtitle1 = styled.p<{ $color?: ColorKey }>(
-  ({ theme, $color }) => ({
+  ({ theme, $color = 'text' }) => ({
     ...theme.partials.marketingText.subtitle1,
-    color: $color && (theme.colors[$color] as string),
+    color: theme.colors[$color] as string,
   })
 )
 
 export const Subtitle2 = styled.p<{ $color?: ColorKey }>(
-  ({ theme, $color }) => ({
+  ({ theme, $color = 'text' }) => ({
     ...theme.partials.marketingText.subtitle2,
-    color: $color && (theme.colors[$color] as string),
+    color: theme.colors[$color] as string,
   })
 )
 

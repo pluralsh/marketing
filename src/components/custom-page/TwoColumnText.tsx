@@ -18,10 +18,10 @@ export function TwoColumnText({
         'mx-xxxxxxlarge flex gap-xxlarge'
       )}
     >
-      <div className="w-2/3">
+      <div className="w-2/3 text-text-light">
         <Markdown text={mainContent} />
       </div>
-      <div className="w-1/3">
+      <div className="w-1/3 text-text-light">
         <Markdown text={sideContent} />
       </div>
     </section>

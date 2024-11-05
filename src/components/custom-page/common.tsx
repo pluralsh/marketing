@@ -1,3 +1,10 @@
+import { type ReactElement } from 'react'
+
+import { styledThemeDark, styledThemeLight } from '@pluralsh/design-system'
+
+import { colorsToCSSVars } from '@pluralsh/design-system/dist/GlobalStyle'
+import styled, { ThemeProvider } from 'styled-components'
+
 import { type CustomPageFragment } from '@src/generated/graphqlDirectus'
 
 import { BlogCards } from './BlogCards'
@@ -12,9 +19,9 @@ import { SectionHeader } from './SectionHeader'
 import { TwoColumnText } from './TwoColumnText'
 
 const spacingToClassName = {
-  relaxed: 'my-[192px]',
-  normal: 'my-[96px]',
-  compact: 'my-[48px]',
+  relaxed: 'py-[192px]',
+  normal: 'py-[96px]',
+  compact: 'py-[48px]',
 }
 
 export const getSpacingClassName = (spacing: Nullable<string>) =>
@@ -25,28 +32,53 @@ export function renderComponent(
     NonNullable<CustomPageFragment['components']>[number]
   >['item']
 ) {
+  let renderedComponent: ReactElement | null = null
+  const theme = component?.theme ?? 'dark'
+
   switch (component?.__typename) {
     case 'hero':
-      return <Hero {...component} />
+      renderedComponent = <Hero {...component} />
+      break
     case 'logo_strip':
-      return <LogoStrip {...component} />
+      renderedComponent = <LogoStrip {...component} />
+      break
     case 'section_header':
-      return <SectionHeader {...component} />
+      renderedComponent = <SectionHeader {...component} />
+      break
     case 'large_image':
-      return <LargeImage {...component} />
+      renderedComponent = <LargeImage {...component} />
+      break
     case 'cards':
-      return <Cards {...component} />
+      renderedComponent = <Cards {...component} />
+      break
     case 'blog_cards':
-      return <BlogCards {...component} />
+      renderedComponent = <BlogCards {...component} />
+      break
     case 'two_column_text':
-      return <TwoColumnText {...component} />
+      renderedComponent = <TwoColumnText {...component} />
+      break
     case 'multi_column_text':
-      return <MultiColumnText {...component} />
+      renderedComponent = <MultiColumnText {...component} />
+      break
     case 'customer_quote':
-      return <CustomerQuote {...component} />
+      renderedComponent = <CustomerQuote {...component} />
+      break
     case 'cta':
-      return <CallToAction {...component} />
+      renderedComponent = <CallToAction {...component} />
+      break
     default:
-      return null
+      break
   }
+  const styles = theme === 'light' ? styledThemeLight : styledThemeDark
+
+  return (
+    <ThemeProvider theme={styles}>
+      <ComponentWrapperSC>{renderedComponent}</ComponentWrapperSC>
+    </ThemeProvider>
+  )
 }
+
+const ComponentWrapperSC = styled.div(({ theme }) => ({
+  backgroundColor: theme.colors['fill-zero'],
+  ...colorsToCSSVars(theme.colors),
+}))
