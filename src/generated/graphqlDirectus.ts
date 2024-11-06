@@ -5474,6 +5474,9 @@ export type Create_Multi_Column_Text_Rich_Text_Columns_Input = {
 };
 
 export type Create_Page_Homepage_Input = {
+  announcement_text?: InputMaybe<Scalars['String']['input']>;
+  announcement_url?: InputMaybe<Scalars['String']['input']>;
+  announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
   article_cards?: InputMaybe<Array<InputMaybe<Create_Article_Cards_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
@@ -7122,6 +7125,9 @@ export type Number_Filter_Operators = {
 
 export type Page_Homepage = {
   __typename?: 'page_homepage';
+  announcement_text?: Maybe<Scalars['String']['output']>;
+  announcement_url?: Maybe<Scalars['String']['output']>;
+  announcement_visible?: Maybe<Scalars['Boolean']['output']>;
   article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
   article_cards_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
@@ -7177,6 +7183,9 @@ export type Page_HomepageUser_UpdatedArgs = {
 export type Page_Homepage_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
+  announcement_text?: InputMaybe<String_Filter_Operators>;
+  announcement_url?: InputMaybe<String_Filter_Operators>;
+  announcement_visible?: InputMaybe<Boolean_Filter_Operators>;
   article_cards?: InputMaybe<Article_Cards_Filter>;
   article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
@@ -9118,6 +9127,9 @@ export type Update_Multi_Column_Text_Rich_Text_Columns_Input = {
 };
 
 export type Update_Page_Homepage_Input = {
+  announcement_text?: InputMaybe<Scalars['String']['input']>;
+  announcement_url?: InputMaybe<Scalars['String']['input']>;
+  announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
   article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
@@ -9513,12 +9525,12 @@ export type LegalPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', slug?: string | null } | null> | null } | null };
 
-export type PageHomepageFragment = { __typename?: 'page_homepage', quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', theme?: string | null, id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
+export type PageHomepageFragment = { __typename?: 'page_homepage', announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', theme?: string | null, id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
 
 export type PageHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', theme?: string | null, id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null } | null };
+export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', theme?: string | null, id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null } | null };
 
 export const ImageFileFragmentDoc = gql`
     fragment ImageFile on directus_files {
@@ -9968,6 +9980,9 @@ export const PageHomepageFragmentDoc = gql`
   article_cards {
     ...MediaCardComponent
   }
+  announcement_text
+  announcement_url
+  announcement_visible
 }
     ${QuoteListFragmentDoc}
 ${MediaCardComponentFragmentDoc}`;

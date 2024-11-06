@@ -33,6 +33,9 @@ fragment PageHomepage on page_homepage {
   article_cards {
     ...MediaCardComponent
   }
+  announcement_text
+  announcement_url
+  announcement_visible
 }
 
 query PageHomepage {
