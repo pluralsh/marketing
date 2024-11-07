@@ -175,6 +175,7 @@ function HeroImages({ ...props }: ComponentProps<typeof HeroImagesSC>) {
 export default function Index({
   articleCards,
   quotes,
+  announcementChip,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [showVideo, setShowVideo] = useState(false)
 
@@ -208,6 +209,7 @@ export default function Index({
               enterprise scale with streamlined dependency management.
             </div>
           }
+          announcementChip={announcementChip}
           ctas={
             <div className="flex flex-wrap justify-center gap-large">
               <Button
@@ -353,6 +355,11 @@ export const getStaticProps = async () => {
       'Open-source application deployment, faster than ever without sacrificing compliance.',
     articleCards: data.page_homepage?.article_cards || null,
     quotes: normalizeQuotes(page?.quotes),
+    announcementChip: {
+      text: page?.announcement_text,
+      url: page?.announcement_url,
+      visible: page?.announcement_visible,
+    },
     footerVariant: FooterVariant.kitchenSink,
     errors: combineErrors([error]),
   })

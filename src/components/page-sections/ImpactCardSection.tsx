@@ -57,13 +57,6 @@ function ImpactCard({
     <ImpactCardSC
       ref={cardRef}
       style={backgroundStyle}
-      css={`
-        @property --gradient-opacity {
-          syntax: '<number>';
-          inherits: false;
-          initial-value: 0.3;
-        }
-      `}
       $borderGradientDir={borderGradientDir}
     >
       {embellishment && (
@@ -104,6 +97,11 @@ const ImpactCardsWrapperSC = styled.div(({ theme }) => ({
 const ImpactCardSC = styled.div<{
   $borderGradientDir?: 'to right' | 'to left'
 }>(({ theme, $borderGradientDir }) => ({
+  '@property --gradient-opacity': {
+    syntax: "'<number>'",
+    inherits: 'false',
+    initialValue: '0.3',
+  },
   position: 'relative',
   borderRadius: theme.borderRadiuses.large,
   overflow: 'hidden',
