@@ -141,7 +141,7 @@ export function HomePageHero({
     <StandardPageWidth {...props}>
       <div
         className={classNames(
-          'flex flex-col items-center gap-large',
+          'flex flex-col items-center gap-large text-center',
           {
             [classNames('pt-xxxxlarge', 'md:pt-xxxxlarge', 'lg:pt-xxxxxlarge')]:
               padTop,
