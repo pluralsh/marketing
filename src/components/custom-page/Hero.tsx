@@ -2,15 +2,12 @@ import { Button, Flex } from '@pluralsh/design-system'
 import Link from 'next/link'
 
 import { type HeroComponentFragment } from '@src/generated/graphqlDirectus'
-import { cn } from '@src/utils/cn'
 
 import { Body1, Hero1 } from '../Typography'
 
-import { getSpacingClassName } from './common'
 import { Multimedia } from './Multimedia'
 
 export function Hero({
-  spacing,
   heading,
   body_text: bodyText,
   cta_text: ctaText,
@@ -21,7 +18,7 @@ export function Hero({
   form,
 }: HeroComponentFragment) {
   return (
-    <section className={cn(getSpacingClassName(spacing), 'px-xxxxxxlarge')}>
+    <div className="px-xxxxxxlarge">
       <Flex gap="xxxlarge">
         <Flex
           flex={1}
@@ -50,6 +47,6 @@ export function Hero({
           form={form}
         />
       </Flex>
-    </section>
+    </div>
   )
 }

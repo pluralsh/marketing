@@ -7,21 +7,13 @@ import {
   type CardFragment,
   type CardsComponentFragment,
 } from '@src/generated/graphqlDirectus'
-import { cn } from '@src/utils/cn'
 
 import { ImageAspectRatio } from '../AspectRatio'
 import { Body2, OverlineLabel } from '../Typography'
 
-import { getSpacingClassName } from './common'
-
-export function Cards({ spacing, cards }: CardsComponentFragment) {
+export function Cards({ cards }: CardsComponentFragment) {
   return (
-    <section
-      className={cn(
-        getSpacingClassName(spacing),
-        'flex gap-xxlarge px-xxxlarge'
-      )}
-    >
+    <div className="flex gap-xxlarge px-xxxlarge">
       {cards?.map(
         (c, i) =>
           c?.card_id && (
@@ -31,7 +23,7 @@ export function Cards({ spacing, cards }: CardsComponentFragment) {
             />
           )
       )}
-    </section>
+    </div>
   )
 }
 

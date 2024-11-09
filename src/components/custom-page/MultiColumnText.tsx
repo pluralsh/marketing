@@ -5,11 +5,8 @@ import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
 
 import * as productNavIcons from '@src/components/menu/ProductNavIcons'
 import { type MultiColumnTextComponentFragment } from '@src/generated/graphqlDirectus'
-import { cn } from '@src/utils/cn'
 
 import { Body1, Subtitle1 } from '../Typography'
-
-import { getSpacingClassName } from './common'
 
 // TODO: StackRun icon very much temporary, need to update the DS in this repo soon
 const icons = {
@@ -43,17 +40,9 @@ const icons = {
   )),
 }
 
-export function MultiColumnText({
-  spacing,
-  columns,
-}: MultiColumnTextComponentFragment) {
+export function MultiColumnText({ columns }: MultiColumnTextComponentFragment) {
   return (
-    <section
-      className={cn(
-        getSpacingClassName(spacing),
-        'mx-xxxlarge flex gap-xlarge pt-medium'
-      )}
-    >
+    <div className="mx-xxxlarge flex gap-xlarge pt-medium">
       {columns?.map((c, index) => {
         const heading = c?.rich_text_columns_id?.heading
         const bodyText = c?.rich_text_columns_id?.body_text
@@ -67,7 +56,7 @@ export function MultiColumnText({
           />
         )
       })}
-    </section>
+    </div>
   )
 }
 

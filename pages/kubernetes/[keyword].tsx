@@ -20,14 +20,13 @@ export default function CustomPage({
   components,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    // TODO: make theme adjustable
     <ThemeProvider theme={styledTheme}>
       {components.map((component, index) => (
         <div
           className="contents"
           key={index}
         >
-          {renderComponent(component?.item)}
+          {renderComponent(component?.custom_component_id)}
         </div>
       ))}
     </ThemeProvider>

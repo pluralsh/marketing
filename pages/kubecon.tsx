@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import styled from 'styled-components'
 
+import { RepeatingLogoSC } from '@src/components/custom-page/common'
 import { TextColumnWithIcon } from '@src/components/custom-page/MultiColumnText'
 import { FooterVariant } from '@src/components/FooterFull'
 import { KubeconHeader, handleDownloadICS } from '@src/components/Kubecon'
@@ -304,15 +305,6 @@ const WhereToFindUsSection = styled.div(({ theme }) => {
     },
   }
 })
-
-const RepeatingLogoSC = styled.div`
-  position: absolute;
-  inset: 0;
-  background: url('/favicon-128.png') repeat;
-  background-size: 64px 64px;
-  width: 100%;
-  opacity: 0.025;
-`
 
 const SessionInfoListSC = styled.div`
   font-family: Inter;

@@ -3,14 +3,11 @@ import Link from 'next/link'
 
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
-import { cn } from '../cn'
 import { Body2, OverlineLabel, Title1 } from '../Typography'
 
-import { getSpacingClassName } from './common'
 import { Multimedia } from './Multimedia'
 
 export function LargeImage({
-  spacing,
   overline,
   heading,
   body_text: bodyText,
@@ -22,7 +19,7 @@ export function LargeImage({
   form,
 }: LargeImageComponentFragment) {
   return (
-    <section className={cn(getSpacingClassName(spacing), 'mx-xxxxxxlarge')}>
+    <div className="mx-xxxxxxlarge">
       <Flex gap="xxxlarge">
         <Multimedia
           mediaType={mediaType}
@@ -52,6 +49,6 @@ export function LargeImage({
           )}
         </Flex>
       </Flex>
-    </section>
+    </div>
   )
 }
