@@ -27,15 +27,31 @@ query LegalPageSlugs {
 }
 
 fragment PageHomepage on page_homepage {
+  hero_cta_text
+  hero_cta_url
+  hero_description
+  hero_image {
+    ...ImageFile
+  }
+  hero_title
+  hero_video_cta_text
+  hero_video_cta_url
+  announcement_text
+  announcement_url
+  announcement_visible
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+
+  ## DEPRECATED, remove when new homepage is live
   quotes {
     ...QuoteList
   }
   article_cards {
     ...MediaCardComponent
   }
-  announcement_text
-  announcement_url
-  announcement_visible
 }
 
 query PageHomepage {

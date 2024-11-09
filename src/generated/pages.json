@@ -22,5 +22,8 @@
   },
   {
     "path": "/pricing"
+  },
+  {
+    "path": "/staging/homepage"
   }
 ]

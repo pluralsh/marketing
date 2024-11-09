@@ -82,6 +82,8 @@ export type Mutation = {
   create_multi_column_text_items: Array<Multi_Column_Text>;
   create_multi_column_text_rich_text_columns_item?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
   create_multi_column_text_rich_text_columns_items: Array<Multi_Column_Text_Rich_Text_Columns>;
+  create_page_homepage_custom_component_item?: Maybe<Page_Homepage_Custom_Component>;
+  create_page_homepage_custom_component_items: Array<Page_Homepage_Custom_Component>;
   create_pricing_plan_features_item?: Maybe<Pricing_Plan_Features>;
   create_pricing_plan_features_items: Array<Pricing_Plan_Features>;
   create_pricing_plans_item?: Maybe<Pricing_Plans>;
@@ -170,6 +172,8 @@ export type Mutation = {
   delete_multi_column_text_items?: Maybe<Delete_Many>;
   delete_multi_column_text_rich_text_columns_item?: Maybe<Delete_One>;
   delete_multi_column_text_rich_text_columns_items?: Maybe<Delete_Many>;
+  delete_page_homepage_custom_component_item?: Maybe<Delete_One>;
+  delete_page_homepage_custom_component_items?: Maybe<Delete_Many>;
   delete_pricing_plan_features_item?: Maybe<Delete_One>;
   delete_pricing_plan_features_items?: Maybe<Delete_Many>;
   delete_pricing_plans_item?: Maybe<Delete_One>;
@@ -287,6 +291,9 @@ export type Mutation = {
   update_multi_column_text_rich_text_columns_item?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
   update_multi_column_text_rich_text_columns_items: Array<Multi_Column_Text_Rich_Text_Columns>;
   update_page_homepage?: Maybe<Page_Homepage>;
+  update_page_homepage_custom_component_batch: Array<Page_Homepage_Custom_Component>;
+  update_page_homepage_custom_component_item?: Maybe<Page_Homepage_Custom_Component>;
+  update_page_homepage_custom_component_items: Array<Page_Homepage_Custom_Component>;
   update_page_legal?: Maybe<Page_Legal>;
   update_pricing_page?: Maybe<Pricing_Page>;
   update_pricing_plan_features_batch: Array<Pricing_Plan_Features>;
@@ -781,6 +788,22 @@ export type MutationCreate_Multi_Column_Text_Rich_Text_Columns_ItemArgs = {
 export type MutationCreate_Multi_Column_Text_Rich_Text_Columns_ItemsArgs = {
   data?: InputMaybe<Array<Create_Multi_Column_Text_Rich_Text_Columns_Input>>;
   filter?: InputMaybe<Multi_Column_Text_Rich_Text_Columns_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Page_Homepage_Custom_Component_ItemArgs = {
+  data: Create_Page_Homepage_Custom_Component_Input;
+};
+
+
+export type MutationCreate_Page_Homepage_Custom_Component_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Page_Homepage_Custom_Component_Input>>;
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1321,6 +1344,16 @@ export type MutationDelete_Multi_Column_Text_Rich_Text_Columns_ItemArgs = {
 
 
 export type MutationDelete_Multi_Column_Text_Rich_Text_Columns_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Page_Homepage_Custom_Component_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Page_Homepage_Custom_Component_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -2302,6 +2335,35 @@ export type MutationUpdate_Page_HomepageArgs = {
 };
 
 
+export type MutationUpdate_Page_Homepage_Custom_Component_BatchArgs = {
+  data?: InputMaybe<Array<Update_Page_Homepage_Custom_Component_Input>>;
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Page_Homepage_Custom_Component_ItemArgs = {
+  data: Update_Page_Homepage_Custom_Component_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Page_Homepage_Custom_Component_ItemsArgs = {
+  data: Update_Page_Homepage_Custom_Component_Input;
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Page_LegalArgs = {
   data: Update_Page_Legal_Input;
 };
@@ -2867,6 +2929,9 @@ export type Query = {
   multi_column_text_rich_text_columns_aggregated: Array<Multi_Column_Text_Rich_Text_Columns_Aggregated>;
   multi_column_text_rich_text_columns_by_id?: Maybe<Multi_Column_Text_Rich_Text_Columns>;
   page_homepage?: Maybe<Page_Homepage>;
+  page_homepage_custom_component: Array<Page_Homepage_Custom_Component>;
+  page_homepage_custom_component_aggregated: Array<Page_Homepage_Custom_Component_Aggregated>;
+  page_homepage_custom_component_by_id?: Maybe<Page_Homepage_Custom_Component>;
   page_legal?: Maybe<Page_Legal>;
   pricing_page?: Maybe<Pricing_Page>;
   pricing_plan_features: Array<Pricing_Plan_Features>;
@@ -3645,6 +3710,32 @@ export type QueryMulti_Column_Text_Rich_Text_Columns_AggregatedArgs = {
 
 
 export type QueryMulti_Column_Text_Rich_Text_Columns_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryPage_Homepage_Custom_ComponentArgs = {
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPage_Homepage_Custom_Component_AggregatedArgs = {
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPage_Homepage_Custom_Component_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -5641,13 +5732,27 @@ export type Create_Multi_Column_Text_Rich_Text_Columns_Input = {
   rich_text_columns_id?: InputMaybe<Create_Rich_Text_Columns_Input>;
 };
 
+export type Create_Page_Homepage_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  page_homepage_id?: InputMaybe<Create_Page_Homepage_Input>;
+};
+
 export type Create_Page_Homepage_Input = {
   announcement_text?: InputMaybe<Scalars['String']['input']>;
   announcement_url?: InputMaybe<Scalars['String']['input']>;
   announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
   article_cards?: InputMaybe<Array<InputMaybe<Create_Article_Cards_Input>>>;
+  custom_components?: InputMaybe<Array<InputMaybe<Create_Page_Homepage_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
+  hero_cta_text?: InputMaybe<Scalars['String']['input']>;
+  hero_cta_url?: InputMaybe<Scalars['String']['input']>;
+  hero_description?: InputMaybe<Scalars['String']['input']>;
+  hero_image?: InputMaybe<Create_Directus_Files_Input>;
+  hero_title?: InputMaybe<Scalars['String']['input']>;
+  hero_video_cta_text?: InputMaybe<Scalars['String']['input']>;
+  hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   quotes?: InputMaybe<Create_Quote_Lists_Input>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
@@ -7416,10 +7521,19 @@ export type Page_Homepage = {
   announcement_visible?: Maybe<Scalars['Boolean']['output']>;
   article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
   article_cards_func?: Maybe<Count_Functions>;
+  custom_components?: Maybe<Array<Maybe<Page_Homepage_Custom_Component>>>;
+  custom_components_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
+  hero_cta_text?: Maybe<Scalars['String']['output']>;
+  hero_cta_url?: Maybe<Scalars['String']['output']>;
+  hero_description?: Maybe<Scalars['String']['output']>;
+  hero_image?: Maybe<Directus_Files>;
+  hero_title?: Maybe<Scalars['String']['output']>;
+  hero_video_cta_text?: Maybe<Scalars['String']['output']>;
+  hero_video_cta_url?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
   user_created?: Maybe<Directus_Users>;
@@ -7429,6 +7543,26 @@ export type Page_Homepage = {
 
 export type Page_HomepageArticle_CardsArgs = {
   filter?: InputMaybe<Article_Cards_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Page_HomepageCustom_ComponentsArgs = {
+  filter?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Page_HomepageHero_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -7466,6 +7600,69 @@ export type Page_HomepageUser_UpdatedArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type Page_Homepage_Custom_Component = {
+  __typename?: 'page_homepage_custom_component';
+  custom_component_id?: Maybe<Custom_Component>;
+  id: Scalars['ID']['output'];
+  page_homepage_id?: Maybe<Page_Homepage>;
+};
+
+
+export type Page_Homepage_Custom_ComponentCustom_Component_IdArgs = {
+  filter?: InputMaybe<Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Page_Homepage_Custom_ComponentPage_Homepage_IdArgs = {
+  filter?: InputMaybe<Page_Homepage_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Page_Homepage_Custom_Component_Aggregated = {
+  __typename?: 'page_homepage_custom_component_aggregated';
+  avg?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+  avgDistinct?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+  count?: Maybe<Page_Homepage_Custom_Component_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Page_Homepage_Custom_Component_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+  min?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+  sum?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+  sumDistinct?: Maybe<Page_Homepage_Custom_Component_Aggregated_Fields>;
+};
+
+export type Page_Homepage_Custom_Component_Aggregated_Count = {
+  __typename?: 'page_homepage_custom_component_aggregated_count';
+  custom_component_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  page_homepage_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Page_Homepage_Custom_Component_Aggregated_Fields = {
+  __typename?: 'page_homepage_custom_component_aggregated_fields';
+  custom_component_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  page_homepage_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Page_Homepage_Custom_Component_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Page_Homepage_Custom_Component_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Custom_Component_Filter>>>;
+  custom_component_id?: InputMaybe<Custom_Component_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  page_homepage_id?: InputMaybe<Page_Homepage_Filter>;
+};
+
 export type Page_Homepage_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Page_Homepage_Filter>>>;
@@ -7474,10 +7671,19 @@ export type Page_Homepage_Filter = {
   announcement_visible?: InputMaybe<Boolean_Filter_Operators>;
   article_cards?: InputMaybe<Article_Cards_Filter>;
   article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
+  custom_components?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
+  custom_components_func?: InputMaybe<Count_Function_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  hero_cta_text?: InputMaybe<String_Filter_Operators>;
+  hero_cta_url?: InputMaybe<String_Filter_Operators>;
+  hero_description?: InputMaybe<String_Filter_Operators>;
+  hero_image?: InputMaybe<Directus_Files_Filter>;
+  hero_title?: InputMaybe<String_Filter_Operators>;
+  hero_video_cta_text?: InputMaybe<String_Filter_Operators>;
+  hero_video_cta_url?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   quotes?: InputMaybe<Quote_Lists_Filter>;
   user_created?: InputMaybe<Directus_Users_Filter>;
@@ -9401,13 +9607,27 @@ export type Update_Multi_Column_Text_Rich_Text_Columns_Input = {
   rich_text_columns_id?: InputMaybe<Update_Rich_Text_Columns_Input>;
 };
 
+export type Update_Page_Homepage_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  page_homepage_id?: InputMaybe<Update_Page_Homepage_Input>;
+};
+
 export type Update_Page_Homepage_Input = {
   announcement_text?: InputMaybe<Scalars['String']['input']>;
   announcement_url?: InputMaybe<Scalars['String']['input']>;
   announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
   article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
+  custom_components?: InputMaybe<Array<InputMaybe<Update_Page_Homepage_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
+  hero_cta_text?: InputMaybe<Scalars['String']['input']>;
+  hero_cta_url?: InputMaybe<Scalars['String']['input']>;
+  hero_description?: InputMaybe<Scalars['String']['input']>;
+  hero_image?: InputMaybe<Update_Directus_Files_Input>;
+  hero_title?: InputMaybe<Scalars['String']['input']>;
+  hero_video_cta_text?: InputMaybe<Scalars['String']['input']>;
+  hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   quotes?: InputMaybe<Update_Quote_Lists_Input>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
@@ -9796,12 +10016,12 @@ export type LegalPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', slug?: string | null } | null> | null } | null };
 
-export type PageHomepageFragment = { __typename?: 'page_homepage', announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
+export type PageHomepageFragment = { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null };
 
 export type PageHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null } | null };
+export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null, article_cards?: Array<{ __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null> | null } | null };
 
 export const ImageFileFragmentDoc = gql`
     fragment ImageFile on directus_files {
@@ -10219,17 +10439,33 @@ export const QuoteListFragmentDoc = gql`
     ${QuoteFragmentDoc}`;
 export const PageHomepageFragmentDoc = gql`
     fragment PageHomepage on page_homepage {
+  hero_cta_text
+  hero_cta_url
+  hero_description
+  hero_image {
+    ...ImageFile
+  }
+  hero_title
+  hero_video_cta_text
+  hero_video_cta_url
+  announcement_text
+  announcement_url
+  announcement_visible
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
   quotes {
     ...QuoteList
   }
   article_cards {
     ...MediaCardComponent
   }
-  announcement_text
-  announcement_url
-  announcement_visible
 }
-    ${QuoteListFragmentDoc}
+    ${ImageFileFragmentDoc}
+${CustomComponentFragmentDoc}
+${QuoteListFragmentDoc}
 ${MediaCardComponentFragmentDoc}`;
 export const CustomPageSlugsDocument = gql`
     query CustomPageSlugs {

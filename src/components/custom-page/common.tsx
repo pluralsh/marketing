@@ -9,7 +9,7 @@ import {
 import { colorsToCSSVars } from '@pluralsh/design-system/dist/GlobalStyle'
 import styled, { ThemeProvider, useTheme } from 'styled-components'
 
-import { type CustomPageFragment } from '@src/generated/graphqlDirectus'
+import { type CustomComponentFragment } from '@src/generated/graphqlDirectus'
 
 import { BlogCards } from './BlogCards'
 import { CallToAction } from './CallToAction'
@@ -41,10 +41,8 @@ export const getSpacingClassName = (
 ) =>
   `${spacingTopClassName[spacingTop ?? 'none'] ?? ''} ${spacingBottomClassName[spacingBottom ?? 'none'] ?? ''}`
 
-export function renderComponent(
-  outerComponent: NonNullable<
-    NonNullable<CustomPageFragment['components']>[number]
-  >['custom_component_id']
+export function renderCustomComponent(
+  outerComponent: Nullable<CustomComponentFragment>
 ) {
   if (!outerComponent) return null
   let renderedComponent: ReactElement | null = null
@@ -149,11 +147,13 @@ function ComponentBackground({
 
 const ComponentBackgroundSC = styled.div<{ $background?: string }>(
   ({ theme, $background }) => ({
-    overflow: 'hidden',
-    content: '""',
-    position: 'absolute',
-    inset: 0,
-    background: $background ?? theme.colors['fill-zero'],
+    '&:before': {
+      overflow: 'hidden',
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      background: $background ?? theme.colors['fill-zero'],
+    },
   })
 )
 
