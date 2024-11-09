@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { directusClient } from '@src/apollo-client'
 import { renderComponent } from '@src/components/custom-page/common'
-import { FooterVariant } from '@src/components/FooterFull'
+import { FooterVariant, HeaderVariant } from '@src/components/FooterFull'
 import {
   CustomPageDocument,
   type CustomPageQuery,
@@ -84,7 +84,8 @@ export const getStaticProps = async (context) => {
     {
       metaTitle: 'Plural',
       metaDescription: page.slug,
-      footerVariant: FooterVariant.kitchenSink,
+      headerVariant: HeaderVariant.min,
+      footerVariant: FooterVariant.minAlt,
       components: page.components ?? [],
     },
     {

@@ -45,9 +45,10 @@ export default function PrimaryPage({
       <GlobalPropsContext.Provider value={globalProps}>
         <PagePropsContext.Provider value={pageProps}>
           <HtmlHead {...headProps} />
-          {!pageProps.hideHeader && (
-            <PageHeader showHeaderBG={pageProps.showHeaderBG} />
-          )}
+          <PageHeader
+            showHeaderBG={pageProps.showHeaderBG}
+            variant={pageProps.headerVariant}
+          />
           {children}
           <ExternalScripts />
           <FullFooter variant={pageProps.footerVariant} />

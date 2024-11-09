@@ -2,15 +2,22 @@ import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
 
-import { BasicFooter } from './BasicFooter'
+import { BasicFooter, MinAltFooter } from './BasicFooter'
 import { FooterNav } from './FooterNav'
 import { FooterValueProp } from './FooterValueProp'
 
 export enum FooterVariant {
   none = 'none',
   min = 'min',
+  minAlt = 'minAlt',
   withNav = 'withNav',
   kitchenSink = 'kitchenSink',
+}
+
+export enum HeaderVariant {
+  none = 'none',
+  min = 'min',
+  regular = 'regular',
 }
 
 export function FullFooter({
@@ -22,6 +29,9 @@ export function FullFooter({
 }) {
   if (variant === FooterVariant.none) {
     return null
+  }
+  if (variant === FooterVariant.minAlt) {
+    return <MinAltFooter />
   }
   const showNav = variant !== FooterVariant.min
   const showValueProp = variant === FooterVariant.kitchenSink

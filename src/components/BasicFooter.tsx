@@ -29,6 +29,23 @@ export function BasicFooter({ className }: { className?: string }) {
   )
 }
 
+export function MinAltFooter() {
+  return (
+    <div className="flex gap-medium px-xxxxxxlarge py-xxlarge">
+      <FooterLink
+        as="span"
+        className="flex-1"
+      >
+        © Plural {new Date().getFullYear()}
+      </FooterLink>
+      <FooterLink href="/legal/privacy-policy">Privacy Policy</FooterLink>
+      <FooterLink href="/legal/terms-and-conditions">
+        Terms & Conditions
+      </FooterLink>
+    </div>
+  )
+}
+
 export const FooterLink = styled.a(({ theme }) => ({
   '&, &:any-link': {
     ...theme.partials.text.body2,
