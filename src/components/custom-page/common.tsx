@@ -45,7 +45,28 @@ export const getSpacingClassName = (
 ) =>
   `${spacingTopClassName[spacingTop ?? 'none'] ?? ''} ${spacingBottomClassName[spacingBottom ?? 'none'] ?? ''}`
 
-export function renderCustomComponent(
+export function CustomComponents({
+  components,
+}: {
+  components: Nullable<{
+    custom_component_id?: Nullable<CustomComponentFragment>
+  }>[]
+}) {
+  return (
+    <div className="contents">
+      {components?.map((component, index) => (
+        <div
+          className="contents"
+          key={index}
+        >
+          {renderCustomComponent(component?.custom_component_id)}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function renderCustomComponent(
   outerComponent: Nullable<CustomComponentFragment>
 ) {
   if (!outerComponent) return null

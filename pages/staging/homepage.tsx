@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { directusClient } from '@src/apollo-client'
 import { BareModal } from '@src/components/BareModal'
-import { renderCustomComponent } from '@src/components/custom-page/common'
+import { CustomComponents } from '@src/components/custom-page/common'
 import { FooterVariant } from '@src/components/FooterFull'
 import { CircleEmbellishment } from '@src/components/layout/CircleEmbellishment'
 import { GradientBG } from '@src/components/layout/GradientBG'
@@ -100,14 +100,7 @@ export default function Homepage({
           </StandardPageWidth>
         </div>
       </HeaderPad>
-      {pageData.custom_components?.map((component, index) => (
-        <div
-          className="contents"
-          key={index}
-        >
-          {renderCustomComponent(component?.custom_component_id)}
-        </div>
-      ))}
+      <CustomComponents components={pageData.custom_components ?? []} />
       <BareModal
         open={showVideo}
         onClose={() => setShowVideo(false)}

@@ -1,14 +1,9 @@
-import { Button } from '@pluralsh/design-system'
 import { type GetStaticPaths, type InferGetStaticPropsType } from 'next'
-import Link from 'next/link'
 
 import { directusClient } from '@src/apollo-client'
+import { CustomComponents } from '@src/components/custom-page/common'
 import { FooterVariant } from '@src/components/FooterFull'
-import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { BasicPageHero } from '@src/components/PageHeros'
-import ProductFeature from '@src/components/ProductFeature'
 import {
-  type ProductFeatureFragment,
   ProductPageDocument,
   type ProductPageQuery,
   type ProductPageQueryVariables,
@@ -18,44 +13,10 @@ import {
 } from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-import { GradientBG } from '../../src/components/layout/GradientBG'
-import { HeaderPad } from '../../src/components/layout/HeaderPad'
-
 export default function Product({
   productInfo,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <HeaderPad
-      as={GradientBG}
-      position="top middle"
-      image="/images/products/product-background.png"
-    >
-      <BasicPageHero
-        heading={productInfo.page_title}
-        description={productInfo.page_subtitle}
-        ctas={
-          <Button
-            large
-            primary
-            as={Link}
-            href="/contact-sales"
-            className=" w-fit"
-          >
-            Book a demo
-          </Button>
-        }
-      />
-      <StandardPageWidth className="mb-xxxxxlarge max:mb-xxxxxxlarge">
-        {productInfo.features?.map((feature, i) => (
-          <ProductFeature
-            key={i}
-            invert={i % 2 !== 0}
-            feature={feature as ProductFeatureFragment}
-          />
-        ))}
-      </StandardPageWidth>
-    </HeaderPad>
-  )
+  return <CustomComponents components={productInfo.custom_components ?? []} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -106,8 +67,8 @@ export const getStaticProps = async (context) => {
   }
 
   return propsWithGlobalSettings({
-    metaTitle: product?.page_title ?? '',
-    metaDescription: product?.page_subtitle ?? '',
+    metaTitle: product?.dropdown_title ?? '',
+    metaDescription: product?.dropdown_description ?? '',
     footerVariant: FooterVariant.kitchenSink,
     productInfo: product,
   })

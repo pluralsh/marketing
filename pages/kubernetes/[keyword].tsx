@@ -1,7 +1,7 @@
 import { type GetStaticPaths, type InferGetStaticPropsType } from 'next'
 
 import { directusClient } from '@src/apollo-client'
-import { renderCustomComponent } from '@src/components/custom-page/common'
+import { CustomComponents } from '@src/components/custom-page/common'
 import { FooterVariant, HeaderVariant } from '@src/components/FooterFull'
 import {
   CustomPageDocument,
@@ -16,14 +16,7 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 export default function CustomPage({
   components,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return components.map((component, index) => (
-    <div
-      className="contents"
-      key={index}
-    >
-      {renderCustomComponent(component?.custom_component_id)}
-    </div>
-  ))
+  return <CustomComponents components={components} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
