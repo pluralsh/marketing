@@ -11,12 +11,12 @@ import useMobileDetect from 'use-mobile-detect-hook'
 
 import { directusClient } from '@src/apollo-client'
 import { BareModal } from '@src/components/BareModal'
+import { ImpactCardSection } from '@src/components/custom-page/ImpactCardSection'
 import { FooterVariant } from '@src/components/FooterFull'
 import { CircleEmbellishment } from '@src/components/layout/CircleEmbellishment'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
 import ArticleSection from '@src/components/page-sections/articleSection'
-import { ImpactCardSection } from '@src/components/page-sections/ImpactCardSection'
 import { QuoteSection } from '@src/components/page-sections/QuoteSection'
 import { HomePageHero } from '@src/components/PageHeros'
 import { CenteredSectionHead } from '@src/components/SectionHeads'
@@ -331,7 +331,7 @@ export default function Index({
             title="Delivering value to DevOps and Platform Engineering teams"
             quotes={quotes ?? []}
           />
-          <ImpactCardSection />
+          <ImpactCardSection impactComponent={null} />
         </StandardPageWidth>
       </div>
       <HomepageFeaturesSection />

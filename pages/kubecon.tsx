@@ -1,21 +1,22 @@
-import { Button, CalendarIcon } from '@pluralsh/design-system'
+import { Button, CalendarIcon, IconFrame } from '@pluralsh/design-system'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import styled from 'styled-components'
 
 import { RepeatingLogoSC } from '@src/components/custom-page/common'
-import { TextColumnWithIcon } from '@src/components/custom-page/MultiColumnText'
+import { ImpactCardSection } from '@src/components/custom-page/ImpactCardSection'
+import { icons } from '@src/components/custom-page/MultiColumnText'
 import { FooterVariant } from '@src/components/FooterFull'
 import { KubeconHeader, handleDownloadICS } from '@src/components/Kubecon'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
-import { ImpactCardSection } from '@src/components/page-sections/ImpactCardSection'
 import {
   Body1,
   Hero1,
   Hero2,
   OverlineLabel,
   ResponsiveText,
+  Subtitle1,
   Title1,
 } from '@src/components/Typography'
 import getPricing from '@src/data/getPricing'
@@ -120,19 +121,19 @@ export default function KubeCon() {
               height={1432}
             />
             <div className="flex flex-col gap-xlarge pb-large pt-xxlarge lg:flex-row">
-              <TextColumnWithIcon
+              <TextColumnWithIconAlt
                 heading="Experience live demos"
                 bodyText="See Plural in action and explore our platform's capabilities"
                 icon="StackRun"
               />
               <div className="pt-xxlarge">
-                <TextColumnWithIcon
+                <TextColumnWithIconAlt
                   heading="Meet our experts"
                   bodyText="Chat with our team and Founders, about your Kubernetes management challenges — and how we can help!"
                   icon="People"
                 />
               </div>
-              <TextColumnWithIcon
+              <TextColumnWithIconAlt
                 heading="Exclusive swag"
                 bodyText="Swing by and pick up Plural swag we made exclusively for KubeCon 2024"
                 icon="MagicWand"
@@ -143,7 +144,7 @@ export default function KubeCon() {
       </WhereToFindUsSection>
       <StandardPageWidth>
         <div className="flex w-full flex-col items-center py-xxxxlarge">
-          <ImpactCardSection />
+          <ImpactCardSection impactComponent={null} />
           <Button
             large
             primary
@@ -321,3 +322,27 @@ const SessionInfoListSC = styled.div`
     margin-bottom: 6px;
   }
 `
+
+function TextColumnWithIconAlt({
+  heading,
+  bodyText,
+  icon,
+}: {
+  heading: string
+  bodyText: string
+  icon: string
+}) {
+  const Icon = icons[`${icon}Icon`] ?? icons.KubernetesIcon
+
+  return (
+    <div className="flex flex-col items-center gap-medium text-center">
+      <IconFrame
+        size="xlarge"
+        type="floating"
+        icon={<Icon color="icon-light" />}
+      />
+      <Subtitle1>{heading}</Subtitle1>
+      <Body1 $color="text-light">{bodyText}</Body1>
+    </div>
+  )
+}

@@ -44,6 +44,8 @@ fragment CustomComponent on custom_component {
       ...CustomerQuoteComponent
       ...CTAComponent
       ...MediaCardComponent
+      ...OurImpactComponent
+      ...QuoteCarouselComponent
     }
   }
 }
@@ -78,6 +80,7 @@ fragment LargeImageComponent on large_image {
   heading
   body_text
   media_type
+  image_position
   image {
     ...ImageFile
   }
@@ -152,6 +155,28 @@ fragment MediaCardComponent on article_cards {
   author
   ctas
   url
+}
+
+fragment OurImpactComponent on our_impact {
+  top_left_metric
+  top_left_subtitle
+  top_left_tooltip
+  top_right_metric
+  top_right_subtitle
+  top_right_tooltip
+  bottom_left_metric
+  bottom_left_subtitle
+  bottom_left_tooltip
+  bottom_right_metric
+  bottom_right_subtitle
+  bottom_right_tooltip
+}
+
+fragment QuoteCarouselComponent on quote_carousel {
+  title
+  quotes {
+    ...QuoteList
+  }
 }
 
 # fragment CardWithImageComponent on card_with_image {

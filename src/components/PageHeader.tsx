@@ -142,7 +142,7 @@ function MinHeader() {
       >
         <PluralLogoFull height={32} />
       </a>
-      <div className="flex gap-medium">
+      {/* <div className="flex gap-medium">
         <Button
           floating
           as="a"
@@ -159,7 +159,7 @@ function MinHeader() {
         >
           Book a demo
         </Button>
-      </div>
+      </div> */}
     </MinHeaderSC>
   )
 }

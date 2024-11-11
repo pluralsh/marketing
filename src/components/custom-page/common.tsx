@@ -11,14 +11,18 @@ import styled, { ThemeProvider, useTheme } from 'styled-components'
 
 import { type CustomComponentFragment } from '@src/generated/graphqlDirectus'
 
+import { StandardPageWidth } from '../layout/LayoutHelpers'
+
 import { BlogCards } from './BlogCards'
 import { CallToAction } from './CallToAction'
 import { Cards } from './Cards'
 import { CustomerQuote } from './CustomerQuote'
 import { Hero } from './Hero'
+import { ImpactCardSection } from './ImpactCardSection'
 import { LargeImage } from './LargeImage'
 import { LogoStrip } from './LogoStrip'
 import { MultiColumnText } from './MultiColumnText'
+import { QuoteCarousel } from './QuoteCarousel'
 import { SectionHeader } from './SectionHeader'
 import { TwoColumnText } from './TwoColumnText'
 
@@ -84,6 +88,12 @@ export function renderCustomComponent(
     case 'cta':
       renderedComponent = <CallToAction {...innerComponent} />
       break
+    case 'our_impact':
+      renderedComponent = <ImpactCardSection impactComponent={innerComponent} />
+      break
+    case 'quote_carousel':
+      renderedComponent = <QuoteCarousel {...innerComponent} />
+      break
     default:
       renderedComponent = null
       break
@@ -96,7 +106,9 @@ export function renderCustomComponent(
         className={getSpacingClassName(spacingTop, spacingBottom)}
       >
         <ComponentBackground componentTheme={theme} />
-        <div className="relative">{renderedComponent}</div>
+        <StandardPageWidth className="relative">
+          {renderedComponent}
+        </StandardPageWidth>
       </ComponentWrapperSC>
     </ThemeProvider>
   )

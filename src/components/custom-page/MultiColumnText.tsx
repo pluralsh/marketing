@@ -1,5 +1,3 @@
-import { IconFrame } from '@pluralsh/design-system'
-
 import createIcon from '@pluralsh/design-system/dist/components/icons/createIcon'
 import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
 
@@ -9,7 +7,7 @@ import { type MultiColumnTextComponentFragment } from '@src/generated/graphqlDir
 import { Body1, Subtitle1 } from '../Typography'
 
 // TODO: StackRun icon very much temporary, need to update the DS in this repo soon
-const icons = {
+export const icons = {
   ...productNavIcons,
   ...designSystemIcons,
   StackRunIcon: createIcon(({ size, color }) => (
@@ -42,7 +40,7 @@ const icons = {
 
 export function MultiColumnText({ columns }: MultiColumnTextComponentFragment) {
   return (
-    <div className="mx-xxxlarge flex gap-xlarge pt-medium">
+    <div className="mx-xxxlarge flex gap-xlarge border-b border-border-input pb-xxlarge">
       {columns?.map((c, index) => {
         const heading = c?.rich_text_columns_id?.heading
         const bodyText = c?.rich_text_columns_id?.body_text
@@ -60,7 +58,7 @@ export function MultiColumnText({ columns }: MultiColumnTextComponentFragment) {
   )
 }
 
-export function TextColumnWithIcon({
+function TextColumnWithIcon({
   heading,
   bodyText,
   icon,
@@ -72,11 +70,11 @@ export function TextColumnWithIcon({
   const Icon = icons[`${icon}Icon`] ?? icons.KubernetesIcon
 
   return (
-    <div className="flex flex-col items-center gap-medium text-center">
-      <IconFrame
-        size="xlarge"
-        type="floating"
-        icon={<Icon color="icon-light" />}
+    <div className="flex flex-col items-start gap-medium pb-large pt-medium">
+      <Icon
+        color="icon-light"
+        style={{ padding: 8 }}
+        size={32}
       />
       <Subtitle1>{heading}</Subtitle1>
       <Body1 $color="text-light">{bodyText}</Body1>

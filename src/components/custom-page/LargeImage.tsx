@@ -1,6 +1,8 @@
 import { Button, Flex } from '@pluralsh/design-system'
 import Link from 'next/link'
 
+import styled from 'styled-components'
+
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
 import { Body2, OverlineLabel, Title1 } from '../Typography'
@@ -14,13 +16,17 @@ export function LargeImage({
   cta_text: ctaText,
   cta_url: ctaUrl,
   media_type: mediaType,
+  image_position: imagePosition,
   image,
   video_url: videoUrl,
   form,
 }: LargeImageComponentFragment) {
   return (
-    <div className="mx-xxxxxxlarge">
-      <Flex gap="xxxlarge">
+    <div className="mx-xxxxxxlarge flex flex-col gap-xxxxlarge">
+      <Flex
+        gap="xxxlarge"
+        flexDirection={imagePosition === 'left' ? 'row' : 'row-reverse'}
+      >
         <Multimedia
           mediaType={mediaType}
           image={image}
@@ -49,6 +55,24 @@ export function LargeImage({
           )}
         </Flex>
       </Flex>
+      <GradientDividerLine
+        $toDirection={imagePosition === 'left' ? 'right' : 'left'}
+      />
     </div>
   )
 }
+
+const GradientDividerLine = styled.div<{ $toDirection: 'left' | 'right' }>(
+  ({ $toDirection }) => ({
+    width: '100%',
+    height: '1px',
+    opacity: 0.5,
+    background: `linear-gradient(
+    to ${$toDirection},
+    #fff 13%,
+    #ccc 40.5%,
+    #999 63.5%,
+    transparent 93.5%
+  )`,
+  })
+)
