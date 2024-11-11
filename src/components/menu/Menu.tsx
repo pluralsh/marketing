@@ -227,6 +227,7 @@ function SolutionNavDropdown<T extends object>({
 
   const collection = [...state.collection]
 
+  console.log('collection', collection)
   const itemByCategory = collection.reduce((acc, item) => {
     // @ts-ignore
     const category = item?.value?.link?.category

@@ -114,6 +114,8 @@ export type Mutation = {
   create_solution_features_items: Array<Solution_Features>;
   create_solution_problems_item?: Maybe<Solution_Problems>;
   create_solution_problems_items: Array<Solution_Problems>;
+  create_solutions_pages_custom_component_item?: Maybe<Solutions_Pages_Custom_Component>;
+  create_solutions_pages_custom_component_items: Array<Solutions_Pages_Custom_Component>;
   create_solutions_pages_item?: Maybe<Solutions_Pages>;
   create_solutions_pages_items: Array<Solutions_Pages>;
   create_solutions_pages_solution_problems_item?: Maybe<Solutions_Pages_Solution_Problems>;
@@ -210,6 +212,8 @@ export type Mutation = {
   delete_solution_features_items?: Maybe<Delete_Many>;
   delete_solution_problems_item?: Maybe<Delete_One>;
   delete_solution_problems_items?: Maybe<Delete_Many>;
+  delete_solutions_pages_custom_component_item?: Maybe<Delete_One>;
+  delete_solutions_pages_custom_component_items?: Maybe<Delete_Many>;
   delete_solutions_pages_item?: Maybe<Delete_One>;
   delete_solutions_pages_items?: Maybe<Delete_Many>;
   delete_solutions_pages_solution_problems_item?: Maybe<Delete_One>;
@@ -355,6 +359,9 @@ export type Mutation = {
   update_solution_problems_item?: Maybe<Solution_Problems>;
   update_solution_problems_items: Array<Solution_Problems>;
   update_solutions_pages_batch: Array<Solutions_Pages>;
+  update_solutions_pages_custom_component_batch: Array<Solutions_Pages_Custom_Component>;
+  update_solutions_pages_custom_component_item?: Maybe<Solutions_Pages_Custom_Component>;
+  update_solutions_pages_custom_component_items: Array<Solutions_Pages_Custom_Component>;
   update_solutions_pages_item?: Maybe<Solutions_Pages>;
   update_solutions_pages_items: Array<Solutions_Pages>;
   update_solutions_pages_solution_problems_batch: Array<Solutions_Pages_Solution_Problems>;
@@ -1073,6 +1080,22 @@ export type MutationCreate_Solution_Problems_ItemsArgs = {
 };
 
 
+export type MutationCreate_Solutions_Pages_Custom_Component_ItemArgs = {
+  data: Create_Solutions_Pages_Custom_Component_Input;
+};
+
+
+export type MutationCreate_Solutions_Pages_Custom_Component_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Solutions_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Solutions_Pages_ItemArgs = {
   data: Create_Solutions_Pages_Input;
 };
@@ -1573,6 +1596,16 @@ export type MutationDelete_Solution_Problems_ItemArgs = {
 
 
 export type MutationDelete_Solution_Problems_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Solutions_Pages_Custom_Component_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Solutions_Pages_Custom_Component_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -2924,6 +2957,35 @@ export type MutationUpdate_Solutions_Pages_BatchArgs = {
 };
 
 
+export type MutationUpdate_Solutions_Pages_Custom_Component_BatchArgs = {
+  data?: InputMaybe<Array<Update_Solutions_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Solutions_Pages_Custom_Component_ItemArgs = {
+  data: Update_Solutions_Pages_Custom_Component_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Solutions_Pages_Custom_Component_ItemsArgs = {
+  data: Update_Solutions_Pages_Custom_Component_Input;
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Solutions_Pages_ItemArgs = {
   data: Update_Solutions_Pages_Input;
   id: Scalars['ID']['input'];
@@ -3169,6 +3231,9 @@ export type Query = {
   solutions_pages: Array<Solutions_Pages>;
   solutions_pages_aggregated: Array<Solutions_Pages_Aggregated>;
   solutions_pages_by_id?: Maybe<Solutions_Pages>;
+  solutions_pages_custom_component: Array<Solutions_Pages_Custom_Component>;
+  solutions_pages_custom_component_aggregated: Array<Solutions_Pages_Custom_Component_Aggregated>;
+  solutions_pages_custom_component_by_id?: Maybe<Solutions_Pages_Custom_Component>;
   solutions_pages_solution_problems: Array<Solutions_Pages_Solution_Problems>;
   solutions_pages_solution_problems_aggregated: Array<Solutions_Pages_Solution_Problems_Aggregated>;
   solutions_pages_solution_problems_by_id?: Maybe<Solutions_Pages_Solution_Problems>;
@@ -4347,6 +4412,32 @@ export type QuerySolutions_Pages_AggregatedArgs = {
 
 
 export type QuerySolutions_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QuerySolutions_Pages_Custom_ComponentArgs = {
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_Custom_Component_AggregatedArgs = {
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySolutions_Pages_Custom_Component_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -6219,13 +6310,22 @@ export type Create_Solution_Problems_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Solutions_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  solutions_pages_id?: InputMaybe<Create_Solutions_Pages_Input>;
+};
+
 export type Create_Solutions_Pages_Input = {
   category?: InputMaybe<Scalars['String']['input']>;
+  custom_components?: InputMaybe<Array<InputMaybe<Create_Solutions_Pages_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   download_section_description?: InputMaybe<Scalars['String']['input']>;
   download_section_title?: InputMaybe<Scalars['String']['input']>;
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
   ebook_url?: InputMaybe<Scalars['String']['input']>;
   featured_quote?: InputMaybe<Create_Quotes_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -9409,6 +9509,8 @@ export type Solution_Problems_Filter = {
 export type Solutions_Pages = {
   __typename?: 'solutions_pages';
   category?: Maybe<Scalars['String']['output']>;
+  custom_components?: Maybe<Array<Maybe<Solutions_Pages_Custom_Component>>>;
+  custom_components_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
@@ -9416,6 +9518,8 @@ export type Solutions_Pages = {
   description?: Maybe<Scalars['String']['output']>;
   download_section_description?: Maybe<Scalars['String']['output']>;
   download_section_title?: Maybe<Scalars['String']['output']>;
+  dropdown_icon?: Maybe<Scalars['String']['output']>;
+  dropdown_title?: Maybe<Scalars['String']['output']>;
   ebook_url?: Maybe<Scalars['String']['output']>;
   featured_quote?: Maybe<Quotes>;
   id: Scalars['ID']['output'];
@@ -9434,6 +9538,16 @@ export type Solutions_Pages = {
   upper_features_title?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Solutions_PagesCustom_ComponentsArgs = {
+  filter?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -9513,11 +9627,14 @@ export type Solutions_Pages_Aggregated = {
 export type Solutions_Pages_Aggregated_Count = {
   __typename?: 'solutions_pages_aggregated_count';
   category?: Maybe<Scalars['Int']['output']>;
+  custom_components?: Maybe<Scalars['Int']['output']>;
   date_created?: Maybe<Scalars['Int']['output']>;
   date_updated?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['Int']['output']>;
   download_section_description?: Maybe<Scalars['Int']['output']>;
   download_section_title?: Maybe<Scalars['Int']['output']>;
+  dropdown_icon?: Maybe<Scalars['Int']['output']>;
+  dropdown_title?: Maybe<Scalars['Int']['output']>;
   ebook_url?: Maybe<Scalars['Int']['output']>;
   featured_quote?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
@@ -9542,10 +9659,75 @@ export type Solutions_Pages_Aggregated_Fields = {
   sort?: Maybe<Scalars['Float']['output']>;
 };
 
+export type Solutions_Pages_Custom_Component = {
+  __typename?: 'solutions_pages_custom_component';
+  custom_component_id?: Maybe<Custom_Component>;
+  id: Scalars['ID']['output'];
+  solutions_pages_id?: Maybe<Solutions_Pages>;
+};
+
+
+export type Solutions_Pages_Custom_ComponentCustom_Component_IdArgs = {
+  filter?: InputMaybe<Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Solutions_Pages_Custom_ComponentSolutions_Pages_IdArgs = {
+  filter?: InputMaybe<Solutions_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Solutions_Pages_Custom_Component_Aggregated = {
+  __typename?: 'solutions_pages_custom_component_aggregated';
+  avg?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+  avgDistinct?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+  count?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+  min?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+  sum?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+  sumDistinct?: Maybe<Solutions_Pages_Custom_Component_Aggregated_Fields>;
+};
+
+export type Solutions_Pages_Custom_Component_Aggregated_Count = {
+  __typename?: 'solutions_pages_custom_component_aggregated_count';
+  custom_component_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  solutions_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Solutions_Pages_Custom_Component_Aggregated_Fields = {
+  __typename?: 'solutions_pages_custom_component_aggregated_fields';
+  custom_component_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  solutions_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Solutions_Pages_Custom_Component_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Custom_Component_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Custom_Component_Filter>>>;
+  custom_component_id?: InputMaybe<Custom_Component_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  solutions_pages_id?: InputMaybe<Solutions_Pages_Filter>;
+};
+
 export type Solutions_Pages_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Solutions_Pages_Filter>>>;
   category?: InputMaybe<String_Filter_Operators>;
+  custom_components?: InputMaybe<Solutions_Pages_Custom_Component_Filter>;
+  custom_components_func?: InputMaybe<Count_Function_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
@@ -9553,6 +9735,8 @@ export type Solutions_Pages_Filter = {
   description?: InputMaybe<String_Filter_Operators>;
   download_section_description?: InputMaybe<String_Filter_Operators>;
   download_section_title?: InputMaybe<String_Filter_Operators>;
+  dropdown_icon?: InputMaybe<String_Filter_Operators>;
+  dropdown_title?: InputMaybe<String_Filter_Operators>;
   ebook_url?: InputMaybe<String_Filter_Operators>;
   featured_quote?: InputMaybe<Quotes_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
@@ -10415,13 +10599,22 @@ export type Update_Solution_Problems_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Solutions_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  solutions_pages_id?: InputMaybe<Update_Solutions_Pages_Input>;
+};
+
 export type Update_Solutions_Pages_Input = {
   category?: InputMaybe<Scalars['String']['input']>;
+  custom_components?: InputMaybe<Array<InputMaybe<Update_Solutions_Pages_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   download_section_description?: InputMaybe<Scalars['String']['input']>;
   download_section_title?: InputMaybe<Scalars['String']['input']>;
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
   ebook_url?: InputMaybe<Scalars['String']['input']>;
   featured_quote?: InputMaybe<Update_Quotes_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -10596,23 +10789,21 @@ export type ProductPageQueryVariables = Exact<{
 
 export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
-export type SolutionFeatureFragment = { __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null };
+export type SolutionPageFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
-export type SolutionProblemFragment = { __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null };
+export type SolutionPageTinyFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null };
 
-export type SolutionFragment = { __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, ebook_url?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null };
-
-export type SolutionsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+export type SolutionPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SolutionsSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', slug: string, nav_title?: string | null, category?: string | null }> };
+export type SolutionPageSlugsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }> };
 
-export type SolutionsQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']['input']>;
+export type SolutionPageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
 }>;
 
 
-export type SolutionsQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, title?: string | null, description?: string | null, upper_features_title?: string | null, lower_features_title?: string | null, download_section_title?: string | null, download_section_description?: string | null, ebook_url?: string | null, upper_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, lower_features?: Array<{ __typename?: 'solution_features', id: string, title?: string | null, description?: string | null, icon?: string | null, link_title?: string | null, link_url?: string | null } | null> | null, problems?: Array<{ __typename?: 'solution_problems', id: string, title?: string | null, subtitle?: string | null, problem?: string | null, solution?: string | null } | null> | null, featured_quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null }> };
+export type SolutionPageQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
 export type QuoteFragment = { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null };
 
@@ -11006,52 +11197,29 @@ export const ProductPageTinyFragmentDoc = gql`
   dropdown_description
 }
     `;
-export const SolutionFeatureFragmentDoc = gql`
-    fragment SolutionFeature on solution_features {
-  id
-  title
-  description
-  icon
-  link_title
-  link_url
-}
-    `;
-export const SolutionProblemFragmentDoc = gql`
-    fragment SolutionProblem on solution_problems {
-  id
-  title
-  subtitle
-  problem
-  solution
-}
-    `;
-export const SolutionFragmentDoc = gql`
-    fragment Solution on solutions_pages {
+export const SolutionPageFragmentDoc = gql`
+    fragment SolutionPage on solutions_pages {
   id
   slug
-  title
-  description
-  upper_features_title
-  lower_features_title
-  download_section_title
-  download_section_description
-  upper_features {
-    ...SolutionFeature
+  category
+  dropdown_icon
+  dropdown_title
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
   }
-  lower_features {
-    ...SolutionFeature
-  }
-  problems {
-    ...SolutionProblem
-  }
-  featured_quote {
-    ...Quote
-  }
-  ebook_url
 }
-    ${SolutionFeatureFragmentDoc}
-${SolutionProblemFragmentDoc}
-${QuoteFragmentDoc}`;
+    ${CustomComponentFragmentDoc}`;
+export const SolutionPageTinyFragmentDoc = gql`
+    fragment SolutionPageTiny on solutions_pages {
+  id
+  slug
+  category
+  dropdown_icon
+  dropdown_title
+}
+    `;
 export const SiteSettingsFragmentDoc = gql`
     fragment SiteSettings on site_settings {
   og_description
@@ -11476,77 +11644,75 @@ export function useProductPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type ProductPageQueryHookResult = ReturnType<typeof useProductPageQuery>;
 export type ProductPageLazyQueryHookResult = ReturnType<typeof useProductPageLazyQuery>;
 export type ProductPageQueryResult = Apollo.QueryResult<ProductPageQuery, ProductPageQueryVariables>;
-export const SolutionsSlugsDocument = gql`
-    query SolutionsSlugs {
-  solutions_pages(filter: {status: {_neq: "archived"}}) {
-    slug
-    nav_title
-    category
+export const SolutionPageSlugsDocument = gql`
+    query SolutionPageSlugs {
+  solutions_pages(filter: {status: {_neq: "hidden"}}) {
+    ...SolutionPageTiny
   }
 }
-    `;
+    ${SolutionPageTinyFragmentDoc}`;
 
 /**
- * __useSolutionsSlugsQuery__
+ * __useSolutionPageSlugsQuery__
  *
- * To run a query within a React component, call `useSolutionsSlugsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSolutionsSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useSolutionPageSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSolutionPageSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useSolutionsSlugsQuery({
+ * const { data, loading, error } = useSolutionPageSlugsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useSolutionsSlugsQuery(baseOptions?: Apollo.QueryHookOptions<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>) {
+export function useSolutionPageSlugsQuery(baseOptions?: Apollo.QueryHookOptions<SolutionPageSlugsQuery, SolutionPageSlugsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
+        return Apollo.useQuery<SolutionPageSlugsQuery, SolutionPageSlugsQueryVariables>(SolutionPageSlugsDocument, options);
       }
-export function useSolutionsSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>) {
+export function useSolutionPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionPageSlugsQuery, SolutionPageSlugsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>(SolutionsSlugsDocument, options);
+          return Apollo.useLazyQuery<SolutionPageSlugsQuery, SolutionPageSlugsQueryVariables>(SolutionPageSlugsDocument, options);
         }
-export type SolutionsSlugsQueryHookResult = ReturnType<typeof useSolutionsSlugsQuery>;
-export type SolutionsSlugsLazyQueryHookResult = ReturnType<typeof useSolutionsSlugsLazyQuery>;
-export type SolutionsSlugsQueryResult = Apollo.QueryResult<SolutionsSlugsQuery, SolutionsSlugsQueryVariables>;
-export const SolutionsDocument = gql`
-    query Solutions($slug: String) {
-  solutions_pages(filter: {slug: {_eq: $slug}, status: {_neq: "archived"}}) {
-    ...Solution
+export type SolutionPageSlugsQueryHookResult = ReturnType<typeof useSolutionPageSlugsQuery>;
+export type SolutionPageSlugsLazyQueryHookResult = ReturnType<typeof useSolutionPageSlugsLazyQuery>;
+export type SolutionPageSlugsQueryResult = Apollo.QueryResult<SolutionPageSlugsQuery, SolutionPageSlugsQueryVariables>;
+export const SolutionPageDocument = gql`
+    query SolutionPage($slug: String!) {
+  solutions_pages(filter: {slug: {_eq: $slug}, status: {_neq: "hidden"}}) {
+    ...SolutionPage
   }
 }
-    ${SolutionFragmentDoc}`;
+    ${SolutionPageFragmentDoc}`;
 
 /**
- * __useSolutionsQuery__
+ * __useSolutionPageQuery__
  *
- * To run a query within a React component, call `useSolutionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSolutionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useSolutionPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSolutionPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useSolutionsQuery({
+ * const { data, loading, error } = useSolutionPageQuery({
  *   variables: {
  *      slug: // value for 'slug'
  *   },
  * });
  */
-export function useSolutionsQuery(baseOptions?: Apollo.QueryHookOptions<SolutionsQuery, SolutionsQueryVariables>) {
+export function useSolutionPageQuery(baseOptions: Apollo.QueryHookOptions<SolutionPageQuery, SolutionPageQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
+        return Apollo.useQuery<SolutionPageQuery, SolutionPageQueryVariables>(SolutionPageDocument, options);
       }
-export function useSolutionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionsQuery, SolutionsQueryVariables>) {
+export function useSolutionPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SolutionPageQuery, SolutionPageQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SolutionsQuery, SolutionsQueryVariables>(SolutionsDocument, options);
+          return Apollo.useLazyQuery<SolutionPageQuery, SolutionPageQueryVariables>(SolutionPageDocument, options);
         }
-export type SolutionsQueryHookResult = ReturnType<typeof useSolutionsQuery>;
-export type SolutionsLazyQueryHookResult = ReturnType<typeof useSolutionsLazyQuery>;
-export type SolutionsQueryResult = Apollo.QueryResult<SolutionsQuery, SolutionsQueryVariables>;
+export type SolutionPageQueryHookResult = ReturnType<typeof useSolutionPageQuery>;
+export type SolutionPageLazyQueryHookResult = ReturnType<typeof useSolutionPageLazyQuery>;
+export type SolutionPageQueryResult = Apollo.QueryResult<SolutionPageQuery, SolutionPageQueryVariables>;
 export const SiteSettingsDocument = gql`
     query SiteSettings {
   site_settings {

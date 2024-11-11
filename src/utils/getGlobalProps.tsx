@@ -17,9 +17,9 @@ import {
   SiteSettingsDocument,
   type SiteSettingsQuery,
   type SiteSettingsQueryVariables,
-  SolutionsSlugsDocument,
-  type SolutionsSlugsQuery,
-  type SolutionsSlugsQueryVariables,
+  SolutionPageSlugsDocument,
+  type SolutionPageSlugsQuery,
+  type SolutionPageSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
 
 import { combineErrors } from './combineErrors'
@@ -36,10 +36,10 @@ async function getGlobalProps() {
   }
 
   const { data: solutionsData } = await directusClient.query<
-    SolutionsSlugsQuery,
-    SolutionsSlugsQueryVariables
+    SolutionPageSlugsQuery,
+    SolutionPageSlugsQueryVariables
   >({
-    query: SolutionsSlugsDocument,
+    query: SolutionPageSlugsDocument,
   })
   const solutions = solutionsData.solutions_pages
 

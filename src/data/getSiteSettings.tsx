@@ -3,17 +3,12 @@ import { type NavList } from '@src/contexts/NavDataContext'
 import {
   type ProductPageTinyFragment,
   type SiteSettingsFragment,
+  type SolutionPageTinyFragment,
 } from '@src/generated/graphqlDirectus'
-
-type Solution = {
-  slug?: string | null
-  nav_title?: string | null
-  category?: string | null
-}
 
 export const getSiteSettings = (
   siteSettings: SiteSettingsFragment,
-  solutions?: Solution[],
+  solutions?: SolutionPageTinyFragment[],
   products?: ProductPageTinyFragment[]
 ) => ({
   og_description: siteSettings.og_description ?? 'Plural',
@@ -133,16 +128,15 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
   }))
 }
 
-function getSolutionSubnav(solutions?: Solution[]) {
-  if (!solutions || !solutions.length) return undefined
+function getSolutionSubnav(solutions?: SolutionPageTinyFragment[]) {
+  if (!solutions || !solutions.length) return []
 
   return solutions
-    .map((solution, i) => ({
+    .map((solution) => ({
       id: solution.slug,
       link: {
-        id: `${solution.slug}-${i}`,
-        title: solution.nav_title,
-        icon: 'KubernetesIcon',
+        title: solution.dropdown_title ?? '',
+        icon: solution.dropdown_icon ?? '',
         url: `/solutions/${solution.slug}`,
         category: solution.category?.split('_').join(' '),
       },
