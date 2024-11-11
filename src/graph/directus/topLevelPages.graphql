@@ -44,14 +44,6 @@ fragment PageHomepage on page_homepage {
       ...CustomComponent
     }
   }
-
-  ## DEPRECATED, remove when new homepage is live
-  quotes {
-    ...QuoteList
-  }
-  article_cards {
-    ...MediaCardComponent
-  }
 }
 
 query PageHomepage {

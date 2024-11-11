@@ -142,6 +142,7 @@ function getSolutionSubnav(solutions?: Solution[]) {
       link: {
         id: `${solution.slug}-${i}`,
         title: solution.nav_title,
+        icon: 'KubernetesIcon',
         url: `/solutions/${solution.slug}`,
         category: solution.category?.split('_').join(' '),
       },
