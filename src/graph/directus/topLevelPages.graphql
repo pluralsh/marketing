@@ -12,20 +12,6 @@ fragment PageLegal on page_legal {
   }
 }
 
-query PageLegal {
-  page_legal {
-    ...PageLegal
-  }
-}
-
-query LegalPageSlugs {
-  page_legal {
-    pages {
-      slug
-    }
-  }
-}
-
 fragment PageHomepage on page_homepage {
   hero_cta_text
   hero_cta_url
@@ -46,8 +32,47 @@ fragment PageHomepage on page_homepage {
   }
 }
 
+fragment PlatformOverviewPage on platform_overview_page {
+  overline
+  title
+  description
+  top_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+  bottom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+  image {
+    ...ImageFile
+  }
+}
+
+query PageLegal {
+  page_legal {
+    ...PageLegal
+  }
+}
+
+query LegalPageSlugs {
+  page_legal {
+    pages {
+      slug
+    }
+  }
+}
+
 query PageHomepage {
   page_homepage {
     ...PageHomepage
+  }
+}
+
+query PlatformOverviewPage {
+  platform_overview_page {
+    ...PlatformOverviewPage
   }
 }
