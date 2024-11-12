@@ -24,6 +24,11 @@ import {
 
 import { combineErrors } from './combineErrors'
 
+const CACHE_POLICY = {
+  fetchPolicy: 'cache-first',
+  nextFetchPolicy: 'cache-first',
+} as const
+
 async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
     getGithubDataServer()
@@ -40,6 +45,7 @@ async function getGlobalProps() {
     SolutionPageSlugsQueryVariables
   >({
     query: SolutionPageSlugsDocument,
+    ...CACHE_POLICY,
   })
   const solutions = solutionsData.solutions_pages
 
@@ -48,6 +54,7 @@ async function getGlobalProps() {
     ProductPageSlugsQueryVariables
   >({
     query: ProductPageSlugsDocument,
+    ...CACHE_POLICY,
   })
   const products = productData.product_pages
 
@@ -56,6 +63,7 @@ async function getGlobalProps() {
     SiteSettingsQueryVariables
   >({
     query: SiteSettingsDocument,
+    ...CACHE_POLICY,
   })
   const siteSettingsQuery = siteSettingsData.site_settings ?? {}
 
