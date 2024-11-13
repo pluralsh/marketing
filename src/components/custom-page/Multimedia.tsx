@@ -49,6 +49,7 @@ export function Multimedia({
 
 const MultimediaWrapperSC = styled.div(({ theme }) => ({
   margin: 'auto',
+  width: '100%',
   flex: 1,
   boxShadow: theme.boxShadows.modal,
 }))

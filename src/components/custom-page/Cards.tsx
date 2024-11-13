@@ -13,7 +13,7 @@ import { Body2, OverlineLabel } from '../Typography'
 
 export function Cards({ cards }: CardsComponentFragment) {
   return (
-    <div className="flex gap-xxlarge px-xxxlarge">
+    <div className="flex flex-col gap-xxlarge lg:flex-row">
       {cards?.map(
         (c, i) =>
           c?.card_id && (

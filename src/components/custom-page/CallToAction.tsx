@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { type CtaComponentFragment } from '@src/generated/graphqlDirectus'
 
-import { Body1, Hero2 } from '../Typography'
+import { Body1, ResponsiveText } from '../Typography'
 
 export function CallToAction({
   heading,
@@ -13,7 +13,9 @@ export function CallToAction({
 }: CtaComponentFragment) {
   return (
     <div className="mx-auto flex w-1/2 flex-col items-center gap-medium py-xlarge text-center">
-      <Hero2>{heading}</Hero2>
+      <ResponsiveText textStyles={{ lg: 'mHero2', '': 'mTitle1' }}>
+        {heading}
+      </ResponsiveText>
       <Body1 $color="text-light">{bodyText}</Body1>
       <Button
         className="mt-medium"

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
+import { cn } from '../cn'
 import { Body2, OverlineLabel, Title1 } from '../Typography'
 
 import { Multimedia } from './Multimedia'
@@ -22,10 +23,12 @@ export function LargeImage({
   form,
 }: LargeImageComponentFragment) {
   return (
-    <div className="mx-xxxxxxlarge flex flex-col gap-xxxxlarge">
-      <Flex
-        gap="xxxlarge"
-        flexDirection={imagePosition === 'left' ? 'row' : 'row-reverse'}
+    <div className="flex flex-col gap-xxxxlarge">
+      <div
+        className={cn(
+          'flex flex-col gap-xxxlarge',
+          imagePosition === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'
+        )}
       >
         <Multimedia
           mediaType={mediaType}
@@ -54,7 +57,7 @@ export function LargeImage({
             </Button>
           )}
         </Flex>
-      </Flex>
+      </div>
       <GradientDividerLine
         $toDirection={imagePosition === 'left' ? 'right' : 'left'}
       />

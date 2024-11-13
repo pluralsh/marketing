@@ -18,35 +18,33 @@ export function Hero({
   form,
 }: HeroComponentFragment) {
   return (
-    <div className="px-xxxxxxlarge">
-      <Flex gap="xxxlarge">
-        <Flex
-          flex={1}
-          flexDirection="column"
-          justifyContent="center"
-          gap="medium"
-        >
-          <Hero1>{heading}</Hero1>
-          <Body1 $color="text-light">{bodyText}</Body1>
-          {ctaText && (
-            <Button
-              className="mt-medium w-fit"
-              as={Link}
-              target="_blank"
-              rel="noopener noreferrer"
-              href={ctaUrl}
-            >
-              {ctaText}
-            </Button>
-          )}
-        </Flex>
-        <Multimedia
-          mediaType={mediaType}
-          image={image}
-          videoUrl={videoUrl}
-          form={form}
-        />
+    <div className="flex flex-col-reverse gap-xxxlarge lg:flex-row">
+      <Flex
+        flex={1}
+        flexDirection="column"
+        justifyContent="center"
+        gap="medium"
+      >
+        <Hero1>{heading}</Hero1>
+        <Body1 $color="text-light">{bodyText}</Body1>
+        {ctaText && (
+          <Button
+            className="mt-medium w-fit"
+            as={Link}
+            target="_blank"
+            rel="noopener noreferrer"
+            href={ctaUrl}
+          >
+            {ctaText}
+          </Button>
+        )}
       </Flex>
+      <Multimedia
+        mediaType={mediaType}
+        image={image}
+        videoUrl={videoUrl}
+        form={form}
+      />
     </div>
   )
 }
