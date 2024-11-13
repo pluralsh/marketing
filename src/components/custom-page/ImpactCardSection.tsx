@@ -94,8 +94,10 @@ const ImpactCardsWrapperSC = styled.div(({ theme }) => ({
   width: '100%',
   gap: theme.spacing.xlarge,
   paddingBottom: theme.spacing.xxxlarge,
+  textAlign: 'center',
   [`@media (min-width: ${theme.breakpoints.desktopSmall}px)`]: {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    textAlign: 'left',
   },
 }))
 

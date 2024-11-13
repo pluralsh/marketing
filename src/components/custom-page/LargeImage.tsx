@@ -35,6 +35,7 @@ export function LargeImage({
           image={image}
           videoUrl={videoUrl}
           form={form}
+          showBorder={false}
         />
         <Flex
           flex={1}

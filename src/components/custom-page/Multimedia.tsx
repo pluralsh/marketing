@@ -16,6 +16,7 @@ export function Multimedia({
   videoUrl,
   form,
   aspectRatio = '16 / 10',
+  showBorder = true,
   ...props
 }: {
   mediaType: Nullable<string>
@@ -23,6 +24,7 @@ export function Multimedia({
   videoUrl: Nullable<string>
   form: Nullable<string>
   aspectRatio?: string
+  showBorder?: boolean
 } & ComponentPropsWithRef<'div'>) {
   const imageUrl = getImageUrl(image)
 
@@ -31,6 +33,7 @@ export function Multimedia({
       {mediaType === 'image' ? (
         imageUrl && (
           <ImageAspectRatio
+            $showBorder={showBorder}
             $aspectRatio={aspectRatio}
             $url={imageUrl}
           />

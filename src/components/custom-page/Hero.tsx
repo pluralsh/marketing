@@ -44,6 +44,7 @@ export function Hero({
         image={image}
         videoUrl={videoUrl}
         form={form}
+        showBorder={false}
       />
     </div>
   )
