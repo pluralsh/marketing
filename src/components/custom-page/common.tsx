@@ -181,6 +181,7 @@ function ComponentBackground({
 const ComponentBackgroundSC = styled.div<{ $background?: string }>(
   ({ theme, $background }) => ({
     '&:before': {
+      zIndex: 0,
       overflow: 'hidden',
       content: '""',
       position: 'absolute',
@@ -207,7 +208,7 @@ export const RepeatingLogoSC = styled.div({
 const GlowEllipseSC = styled.div<{ $color: SemanticColorKey }>(
   ({ theme, $color }) => ({
     position: 'absolute',
-    zIndex: 0,
+    zIndex: 1,
     width: 730,
     height: 220,
     left: '50%',
