@@ -16,6 +16,7 @@ export function Multimedia({
   videoUrl,
   form,
   aspectRatio = '16 / 10',
+  backgroundColor = 'transparent',
   showBorder = true,
   ...props
 }: {
@@ -24,6 +25,7 @@ export function Multimedia({
   videoUrl: Nullable<string>
   form: Nullable<string>
   aspectRatio?: string
+  backgroundColor?: string
   showBorder?: boolean
 } & ComponentPropsWithRef<'div'>) {
   const imageUrl = getImageUrl(image)
@@ -33,6 +35,7 @@ export function Multimedia({
       {mediaType === 'image' ? (
         imageUrl && (
           <ImageAspectRatio
+            css={{ borderRadius: 12, backgroundColor }}
             $showBorder={showBorder}
             $aspectRatio={aspectRatio}
             $url={imageUrl}
@@ -50,9 +53,8 @@ export function Multimedia({
   )
 }
 
-const MultimediaWrapperSC = styled.div(({ theme }) => ({
+const MultimediaWrapperSC = styled.div((_) => ({
   margin: 'auto',
   width: '100%',
   flex: 1,
-  boxShadow: theme.boxShadows.modal,
 }))

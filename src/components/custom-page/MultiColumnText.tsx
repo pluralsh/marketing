@@ -40,7 +40,7 @@ export const icons = {
 
 export function MultiColumnText({ columns }: MultiColumnTextComponentFragment) {
   return (
-    <div className="flex flex-col gap-xlarge border-b border-border-input pb-xxlarge lg:flex-row">
+    <div className="flex flex-col gap-large border-b border-border-input pb-xxlarge lg:flex-row">
       {columns?.map((c, index) => {
         const heading = c?.rich_text_columns_id?.heading
         const bodyText = c?.rich_text_columns_id?.body_text
@@ -70,7 +70,7 @@ function TextColumnWithIcon({
   const Icon = icons[`${icon}Icon`] ?? icons.KubernetesIcon
 
   return (
-    <div className="flex flex-col items-center gap-medium pb-large pt-medium text-center lg:items-start lg:text-left">
+    <div className="flex flex-col items-center gap-medium rounded-[12px] bg-grey-950 p-large text-center lg:items-start lg:text-left">
       <Icon
         color="icon-light"
         style={{ padding: 8 }}

@@ -165,7 +165,7 @@ function ComponentBackground({
       )
     case 'plural-logo':
       return (
-        <div className="absolute inset-0 w-full border-y border-fill-two">
+        <div className="absolute inset-0 w-full border-y border-fill-two bg-fill-one">
           <RepeatingLogoSC />
         </div>
       )
@@ -181,7 +181,6 @@ function ComponentBackground({
 const ComponentBackgroundSC = styled.div<{ $background?: string }>(
   ({ theme, $background }) => ({
     '&:before': {
-      zIndex: 0,
       overflow: 'hidden',
       content: '""',
       position: 'absolute',
@@ -208,7 +207,7 @@ export const RepeatingLogoSC = styled.div({
 const GlowEllipseSC = styled.div<{ $color: SemanticColorKey }>(
   ({ theme, $color }) => ({
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 0,
     width: 730,
     height: 220,
     left: '50%',

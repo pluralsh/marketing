@@ -9,7 +9,7 @@ import {
 } from '@src/generated/graphqlDirectus'
 
 import { ImageAspectRatio } from '../AspectRatio'
-import { Body2, OverlineLabel } from '../Typography'
+import { Body2, Subtitle1 } from '../Typography'
 
 export function Cards({ cards }: CardsComponentFragment) {
   return (
@@ -49,8 +49,10 @@ export function CardComponent({
         $aspectRatio="16/10"
         $url={getImageUrl(image) ?? ''}
       />
-      <OverlineLabel>{heading}</OverlineLabel>
-      <Body2 $color="text">{bodyText}</Body2>
+      <div className="flex flex-col gap-xsmall">
+        <Subtitle1>{heading}</Subtitle1>
+        <Body2 $color="text-light">{bodyText}</Body2>
+      </div>
     </CardComponentWrapperSC>
   )
 }
@@ -59,14 +61,15 @@ const CardComponentWrapperSC = styled(Card)<{ $clickable: boolean }>(
   ({ theme, $clickable }) => ({
     display: 'flex',
     flexDirection: 'column',
+    textWrap: 'pretty',
     padding: theme.spacing.xlarge,
-    gap: theme.spacing.medium,
-    transition: 'border 0.16s ease-in-out',
+    gap: theme.spacing.xlarge,
+    transition: 'border 0.12s ease-in-out',
     ...($clickable
       ? {
           cursor: 'pointer',
           '&:hover': {
-            border: theme.borders.selected,
+            border: theme.borders.input,
           },
         }
       : {}),

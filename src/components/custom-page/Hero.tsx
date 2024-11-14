@@ -1,5 +1,7 @@
-import { Button, Flex } from '@pluralsh/design-system'
+import { Button } from '@pluralsh/design-system'
 import Link from 'next/link'
+
+import { useTheme } from 'styled-components'
 
 import { type HeroComponentFragment } from '@src/generated/graphqlDirectus'
 
@@ -17,14 +19,11 @@ export function Hero({
   video_url: videoUrl,
   form,
 }: HeroComponentFragment) {
+  const theme = useTheme()
+
   return (
     <div className="flex flex-col-reverse gap-xxxlarge lg:flex-row">
-      <Flex
-        flex={1}
-        flexDirection="column"
-        justifyContent="center"
-        gap="medium"
-      >
+      <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
         <Hero1>{heading}</Hero1>
         <Body1 $color="text-light">{bodyText}</Body1>
         {ctaText && (
@@ -38,12 +37,13 @@ export function Hero({
             {ctaText}
           </Button>
         )}
-      </Flex>
+      </div>
       <Multimedia
         mediaType={mediaType}
         image={image}
         videoUrl={videoUrl}
         form={form}
+        backgroundColor={theme.colors.grey[950]}
         showBorder={false}
       />
     </div>

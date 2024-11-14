@@ -1,7 +1,7 @@
-import { Button, Flex } from '@pluralsh/design-system'
+import { Button } from '@pluralsh/design-system'
 import Link from 'next/link'
 
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
@@ -22,6 +22,8 @@ export function LargeImage({
   video_url: videoUrl,
   form,
 }: LargeImageComponentFragment) {
+  const theme = useTheme()
+
   return (
     <div className="flex flex-col gap-xxxxlarge">
       <div
@@ -36,13 +38,9 @@ export function LargeImage({
           videoUrl={videoUrl}
           form={form}
           showBorder={false}
+          backgroundColor={theme.colors.grey[950]}
         />
-        <Flex
-          flex={1}
-          flexDirection="column"
-          justifyContent="center"
-          gap="medium"
-        >
+        <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
           {overline && <OverlineLabel>{overline}</OverlineLabel>}
           <Title1>{heading}</Title1>
           <Body2 $color="text-light">{bodyText}</Body2>
@@ -57,7 +55,7 @@ export function LargeImage({
               {ctaText}
             </Button>
           )}
-        </Flex>
+        </div>
       </div>
       <GradientDividerLine
         $toDirection={imagePosition === 'left' ? 'right' : 'left'}
