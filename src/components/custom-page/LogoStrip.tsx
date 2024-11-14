@@ -2,15 +2,10 @@ import { type LogoStripComponentFragment } from '@src/generated/graphqlDirectus'
 
 import { CompanyLogosSection } from '../CompanyLogos'
 
-import { getSpacingClassName } from './common'
-
-export function LogoStrip({
-  spacing,
-  logo_list: logoList,
-}: LogoStripComponentFragment) {
+export function LogoStrip({ logo_list: logoList }: LogoStripComponentFragment) {
   return (
-    <section className={getSpacingClassName(spacing)}>
+    <div>
       <CompanyLogosSection logos={logoList?.logos} />
-    </section>
+    </div>
   )
 }

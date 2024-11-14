@@ -3,17 +3,12 @@ import { type NavList } from '@src/contexts/NavDataContext'
 import {
   type ProductPageTinyFragment,
   type SiteSettingsFragment,
+  type SolutionPageTinyFragment,
 } from '@src/generated/graphqlDirectus'
-
-type Solution = {
-  slug?: string | null
-  nav_title?: string | null
-  category?: string | null
-}
 
 export const getSiteSettings = (
   siteSettings: SiteSettingsFragment,
-  solutions?: Solution[],
+  solutions?: SolutionPageTinyFragment[],
   products?: ProductPageTinyFragment[]
 ) => ({
   og_description: siteSettings.og_description ?? 'Plural',
@@ -27,14 +22,14 @@ export const getSiteSettings = (
       },
       subnav: getProductSubnav(products),
     },
-    solutions: {
-      id: 'solutions',
-      link: {
-        title: 'Solutions',
-        url: '/solution',
-      },
-      subnav: getSolutionSubnav(solutions),
-    },
+    // solutions: {
+    //   id: 'solutions',
+    //   link: {
+    //     title: 'Solutions',
+    //     url: '/solution',
+    //   },
+    //   subnav: getSolutionSubnav(solutions),
+    // },
     pricing: {
       id: 'pricing',
       link: {
@@ -133,18 +128,18 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
   }))
 }
 
-function getSolutionSubnav(solutions?: Solution[]) {
-  if (!solutions || !solutions.length) return undefined
+// function getSolutionSubnav(solutions?: SolutionPageTinyFragment[]) {
+//   if (!solutions || !solutions.length) return []
 
-  return solutions
-    .map((solution, i) => ({
-      id: solution.slug,
-      link: {
-        id: `${solution.slug}-${i}`,
-        title: solution.nav_title,
-        url: `/solutions/${solution.slug}`,
-        category: solution.category?.split('_').join(' '),
-      },
-    }))
-    .reverse()
-}
+//   return solutions
+//     .map((solution) => ({
+//       id: solution.slug,
+//       link: {
+//         title: solution.dropdown_title ?? '',
+//         icon: solution.dropdown_icon ?? '',
+//         url: `/solutions/${solution.slug}`,
+//         category: solution.category?.split('_').join(' '),
+//       },
+//     }))
+//     .reverse()
+// }

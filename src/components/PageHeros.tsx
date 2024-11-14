@@ -143,11 +143,10 @@ export function HomePageHero({
         className={classNames(
           'flex flex-col items-center gap-large text-center',
           {
-            [classNames('pt-xxxxlarge', 'md:pt-xxxxlarge', 'lg:pt-xxxxxlarge')]:
-              padTop,
+            [classNames('pt-xxxxlarge', 'md:pt-xxxxlarge')]: padTop,
           },
           {
-            [classNames('pb-xxxlarge', 'md:pb-xxxxlarge', 'lg:pb-xxxxxxlarge')]:
+            [classNames('pb-xxxlarge', 'md:pb-xxxxlarge', 'lg:pb-xxxxxlarge')]:
               padBottom,
           }
         )}

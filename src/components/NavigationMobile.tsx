@@ -1,6 +1,7 @@
 import {
   Accordion,
   ArrowRightIcon,
+  ArrowTopRightIcon,
   Button,
   Divider,
 } from '@pluralsh/design-system'
@@ -12,7 +13,8 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import useScrollLock from './hooks/useScrollLock'
-import { MainLink, ProductMobileLink } from './Navigation'
+import { PlatformOverviewLinkSC } from './menu/Menu'
+import { MainLink, MainLinkBase, ProductMobileLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
 
 const MobileMainLink = styled(MainLink)(() => ({
@@ -70,6 +72,17 @@ function NavList({ navData }: { navData?: NavData | null }) {
             // @ts-ignore
             style={{ backgroundColor: theme.colors['fill-two'] }}
           >
+            {navItem.link?.title === 'Product' && (
+              <div className="pl-small">
+                <PlatformOverviewLinkSC
+                  as={MainLinkBase}
+                  href="/product"
+                >
+                  <span>Plural Platform Overview</span>
+                  <ArrowTopRightIcon size={18} />
+                </PlatformOverviewLinkSC>
+              </div>
+            )}
             {navItem.subnav?.map((subnavItem) => {
               if (!subnavItem) {
                 return null

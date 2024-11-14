@@ -1,18 +1,12 @@
 import { Flex } from '@pluralsh/design-system'
 
 import { type CustomerQuoteComponentFragment } from '@src/generated/graphqlDirectus'
-import { cn } from '@src/utils/cn'
 
 import { Body1, Subtitle2 } from '../Typography'
 
-import { getSpacingClassName } from './common'
-
-export function CustomerQuote({
-  spacing,
-  quote,
-}: CustomerQuoteComponentFragment) {
+export function CustomerQuote({ quote }: CustomerQuoteComponentFragment) {
   return (
-    <section className={cn(getSpacingClassName(spacing), 'py-xlarge')}>
+    <div className="py-xlarge">
       <Flex
         width="50%"
         margin="auto"
@@ -23,6 +17,6 @@ export function CustomerQuote({
         <Subtitle2>"{quote?.quote}"</Subtitle2>
         <Body1 $color="text-light">- {quote?.author_text}</Body1>
       </Flex>
-    </section>
+    </div>
   )
 }

@@ -6,9 +6,11 @@ import React, {
 } from 'react'
 
 import {
+  ArrowTopRightIcon,
   DropdownArrowIcon,
   FillLevelProvider,
   useFloatingDropdown,
+  useNavigationContext,
 } from '@pluralsh/design-system'
 
 import { type Node } from '@react-types/shared'
@@ -181,6 +183,7 @@ function MenuDropdown<T extends object>({
   itemRenderer?: ItemRenderer<T>
   kind?: 'product' | 'default' | 'solution'
 }) {
+  const { Link } = useNavigationContext()
   // Create menu state based on the incoming props
   const state = useTreeState(props)
 
@@ -195,8 +198,26 @@ function MenuDropdown<T extends object>({
       ref={ref}
       {...menuProps}
     >
-      <DropdownCard>
-        <div className={kind === 'product' ? 'p-xlarge' : ''}>
+      <DropdownCard
+        $kind={kind}
+        className={
+          kind === 'product'
+            ? 'flex flex-col items-center gap-large lg:flex-row'
+            : ''
+        }
+      >
+        {kind === 'product' && (
+          <PlatformOverviewLinkSC
+            className="w-[356px]"
+            as={Link}
+            href="/product"
+            onClick={props.onClose}
+          >
+            <span>Plural Platform Overview</span>
+            <ArrowTopRightIcon size={18} />
+          </PlatformOverviewLinkSC>
+        )}
+        <div>
           {kind === 'product' && (
             <MenuCategoryLabel>Product features</MenuCategoryLabel>
           )}
@@ -277,11 +298,11 @@ function SolutionNavDropdown<T extends object>({
   )
 }
 
-const DropdownCardSC = styled.div(({ theme }) => ({
+const DropdownCardSC = styled.div<{ $kind: string }>(({ theme, $kind }) => ({
   overflowX: 'hidden',
   overflowY: 'auto',
-  paddingTop: theme.spacing.xsmall,
-  paddingBottom: theme.spacing.xsmall,
+  padding:
+    $kind === 'product' ? theme.spacing.xlarge : `${theme.spacing.xsmall}px 0`,
   boxShadow: theme.boxShadows.moderate,
   border: theme.borders.selected,
   borderRadius: theme.borderRadiuses.large,
@@ -320,4 +341,23 @@ const MenuCategoryLabel = styled.h2(({ theme }) => ({
   color: theme.colors['text-light'],
   marginBottom: theme.spacing.xsmall,
   marginLeft: theme.spacing.xxsmall,
+}))
+
+export const PlatformOverviewLinkSC = styled.div(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'space-between',
+  padding: theme.spacing.medium,
+  height: '240px',
+  maxWidth: '356px',
+  borderRadius: theme.borderRadiuses.large,
+  border: theme.borders.default,
+  backgroundImage: "url('/images/product/platform-overview-image.jpg')",
+  backgroundSize: 'cover',
+  fontFamily: 'Monument',
+  fontSize: '16px',
+  transition: 'box-shadow 0.16s ease-out',
+  '&:hover': {
+    boxShadow: theme.boxShadows.moderate,
+  },
 }))

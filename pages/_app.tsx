@@ -21,7 +21,10 @@ import { SWRConfig } from 'swr'
 
 import { BreakpointProvider } from '@src/components/contexts/BreakpointProvider'
 import DocSearchStyles from '@src/components/DocSearchStyles'
-import { type FooterVariant } from '@src/components/FooterFull'
+import {
+  type FooterVariant,
+  type HeaderVariant,
+} from '@src/components/FooterFull'
 import GlobalStyles from '@src/components/GlobalStyles'
 import PrimaryPage from '@src/components/PrimaryPage'
 import { type GlobalProps } from '@src/utils/getGlobalProps'
@@ -36,8 +39,8 @@ export type GlobalPageProps = {
   metaTitleFull?: string
   metaDescription?: string
   footerVariant?: FooterVariant
+  headerVariant?: HeaderVariant
   showHeaderBG?: boolean
-  hideHeader?: boolean
 }
 
 type MyAppProps = AppProps<GlobalPageProps & { globalProps: GlobalProps }>

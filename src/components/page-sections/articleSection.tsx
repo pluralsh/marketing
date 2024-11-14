@@ -2,7 +2,7 @@ import { ColorModeProvider } from '@pluralsh/design-system'
 import { Button } from 'honorable'
 import Link from 'next/link'
 
-import { type PageHomepageQuery } from '@src/generated/graphqlDirectus'
+import { type MediaCardComponentFragment } from '@src/generated/graphqlDirectus'
 import { cn as classNames } from '@src/utils/cn'
 
 import { MediaCardNoBorder } from '../custom-page/MediaCard'
@@ -10,9 +10,7 @@ import { GradientBG } from '../layout/GradientBG'
 import { StandardPageSection, StandardPageWidth } from '../layout/LayoutHelpers'
 import { CenteredSectionHead } from '../SectionHeads'
 
-type PageHomepageType = PageHomepageQuery['page_homepage']
-
-type ArticleCardsType = NonNullable<PageHomepageType>['article_cards']
+type ArticleCardsType = MediaCardComponentFragment[]
 
 const CARD_LAYOUTS = [
   [{ size: 'medium', reverse: false }],

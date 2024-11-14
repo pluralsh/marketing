@@ -1,6 +1,6 @@
 import { type BlogCardsComponentFragment } from '@src/generated/graphqlDirectus'
 
-export function BlogCards({ spacing: _spacing }: BlogCardsComponentFragment) {
+export function BlogCards({ id: _id }: BlogCardsComponentFragment) {
   // TODO
   return null
 }

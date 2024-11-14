@@ -17,12 +17,17 @@ import {
   SiteSettingsDocument,
   type SiteSettingsQuery,
   type SiteSettingsQueryVariables,
-  SolutionsSlugsDocument,
-  type SolutionsSlugsQuery,
-  type SolutionsSlugsQueryVariables,
+  SolutionPageSlugsDocument,
+  type SolutionPageSlugsQuery,
+  type SolutionPageSlugsQueryVariables,
 } from '@src/generated/graphqlDirectus'
 
 import { combineErrors } from './combineErrors'
+
+const CACHE_POLICY = {
+  fetchPolicy: 'cache-first',
+  nextFetchPolicy: 'cache-first',
+} as const
 
 async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
@@ -36,10 +41,11 @@ async function getGlobalProps() {
   }
 
   const { data: solutionsData } = await directusClient.query<
-    SolutionsSlugsQuery,
-    SolutionsSlugsQueryVariables
+    SolutionPageSlugsQuery,
+    SolutionPageSlugsQueryVariables
   >({
-    query: SolutionsSlugsDocument,
+    query: SolutionPageSlugsDocument,
+    ...CACHE_POLICY,
   })
   const solutions = solutionsData.solutions_pages
 
@@ -48,6 +54,7 @@ async function getGlobalProps() {
     ProductPageSlugsQueryVariables
   >({
     query: ProductPageSlugsDocument,
+    ...CACHE_POLICY,
   })
   const products = productData.product_pages
 
@@ -56,6 +63,7 @@ async function getGlobalProps() {
     SiteSettingsQueryVariables
   >({
     query: SiteSettingsDocument,
+    ...CACHE_POLICY,
   })
   const siteSettingsQuery = siteSettingsData.site_settings ?? {}
 

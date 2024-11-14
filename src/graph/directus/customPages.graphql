@@ -2,19 +2,8 @@ fragment CustomPage on custom_pages {
   id
   slug
   components {
-    collection
-    item {
-      ...HeroComponent
-      ...LogoStripComponent
-      ...SectionHeaderComponent
-      ...LargeImageComponent
-      ...TwoColumnTextComponent
-      ...MultiColumnTextComponent
-      ...CardsComponent
-      ...BlogCardsComponent
-      ...CustomerQuoteComponent
-      ...CTAComponent
-      ...MediaCardComponent
+    custom_component_id {
+      ...CustomComponent
     }
   }
 }
@@ -36,9 +25,32 @@ query CustomPage($slug: String!) {
   }
 }
 
-fragment HeroComponent on hero {
+fragment CustomComponent on custom_component {
+  id
   theme
-  spacing
+  spacing_top
+  spacing_bottom
+  item {
+    collection
+    item {
+      ...HeroComponent
+      ...LogoStripComponent
+      ...SectionHeaderComponent
+      ...LargeImageComponent
+      ...TwoColumnTextComponent
+      ...MultiColumnTextComponent
+      ...CardsComponent
+      ...BlogCardsComponent
+      ...CustomerQuoteComponent
+      ...CTAComponent
+      ...MediaCardComponent
+      ...OurImpactComponent
+      ...QuoteCarouselComponent
+    }
+  }
+}
+
+fragment HeroComponent on hero {
   heading
   body_text
   media_type
@@ -52,28 +64,23 @@ fragment HeroComponent on hero {
 }
 
 fragment LogoStripComponent on logo_strip {
-  theme
-  spacing
   logo_list {
     ...LogoList
   }
 }
 
 fragment SectionHeaderComponent on section_header {
-  theme
-  spacing
   overline
   title
   description
 }
 
 fragment LargeImageComponent on large_image {
-  theme
-  spacing
   overline
   heading
   body_text
   media_type
+  image_position
   image {
     ...ImageFile
   }
@@ -93,8 +100,6 @@ fragment Card on card {
 }
 
 fragment CardsComponent on cards {
-  theme
-  spacing
   cards {
     card_id {
       ...Card
@@ -103,8 +108,7 @@ fragment CardsComponent on cards {
 }
 
 fragment BlogCardsComponent on blog_cards {
-  theme
-  spacing
+  id
 }
 
 fragment RichTextColumn on rich_text_columns {
@@ -114,15 +118,11 @@ fragment RichTextColumn on rich_text_columns {
 }
 
 fragment TwoColumnTextComponent on two_column_text {
-  theme
-  spacing
   main_content
   side_content
 }
 
 fragment MultiColumnTextComponent on multi_column_text {
-  theme
-  spacing
   columns {
     rich_text_columns_id {
       ...RichTextColumn
@@ -131,16 +131,12 @@ fragment MultiColumnTextComponent on multi_column_text {
 }
 
 fragment CustomerQuoteComponent on customer_quote {
-  theme
-  spacing
   quote {
     ...Quote
   }
 }
 
 fragment CTAComponent on cta {
-  theme
-  spacing
   heading
   body_text
   cta_text
@@ -148,7 +144,6 @@ fragment CTAComponent on cta {
 }
 
 fragment MediaCardComponent on article_cards {
-  theme
   id
   heading
   description
@@ -162,19 +157,39 @@ fragment MediaCardComponent on article_cards {
   url
 }
 
-fragment CardWithImageComponent on card_with_image {
-  spacing
-  theme
-  heading
-  body_text
-  image {
-    ...ImageFile
-  }
-  bullets {
-    rich_text_columns_id {
-      ...RichTextColumn
-    }
-  }
-  cta_text
-  cta_url
+fragment OurImpactComponent on our_impact {
+  top_left_metric
+  top_left_subtitle
+  top_left_tooltip
+  top_right_metric
+  top_right_subtitle
+  top_right_tooltip
+  bottom_left_metric
+  bottom_left_subtitle
+  bottom_left_tooltip
+  bottom_right_metric
+  bottom_right_subtitle
+  bottom_right_tooltip
 }
+
+fragment QuoteCarouselComponent on quote_carousel {
+  title
+  quotes {
+    ...QuoteList
+  }
+}
+
+# fragment CardWithImageComponent on card_with_image {
+#   heading
+#   body_text
+#   image {
+#     ...ImageFile
+#   }
+#   bullets {
+#     rich_text_columns_id {
+#       ...RichTextColumn
+#     }
+#   }
+#   cta_text
+#   cta_url
+# }

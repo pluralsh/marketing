@@ -20,6 +20,7 @@ import { cn as classNames } from '@src/utils/cn'
 import { breakpointIsGreaterOrEqual, mqs } from '../breakpoints'
 
 import { useBreakpoint } from './contexts/BreakpointProvider'
+import { HeaderVariant } from './FooterFull'
 import { FullPageWidth } from './layout/LayoutHelpers'
 import { NavigationDesktop } from './NavigationDesktop'
 import { NavigationMobile } from './NavigationMobile'
@@ -35,10 +36,11 @@ export const PAGE_HEADER_ID = 'plural-page-header'
 
 export function PageHeader({
   showHeaderBG,
-
+  variant = HeaderVariant.regular,
   ...props
 }: {
   showHeaderBG?: boolean
+  variant?: HeaderVariant
 }) {
   const theme = useTheme()
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -63,6 +65,9 @@ export function PageHeader({
     setMenuIsOpen(false)
   })
   const logoRef = useRef(null)
+
+  if (variant === HeaderVariant.none) return null
+  if (variant === HeaderVariant.min) return <MinHeader />
 
   return (
     <HeaderWrap
@@ -127,6 +132,51 @@ export function PageHeader({
     </HeaderWrap>
   )
 }
+
+function MinHeader() {
+  return (
+    <MinHeaderSC>
+      <a
+        href="/"
+        aria-label="Go to Plural homepage"
+      >
+        <PluralLogoFull height={32} />
+      </a>
+      {/* <div className="flex gap-medium">
+        <Button
+          floating
+          as="a"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="/"
+        >
+          Learn more
+        </Button>
+        <Button
+          primary
+          as="a"
+          href="/contact-sales"
+        >
+          Book a demo
+        </Button>
+      </div> */}
+    </MinHeaderSC>
+  )
+}
+const MinHeaderSC = styled.div(({ theme }) => ({
+  position: 'fixed',
+  zIndex: 1000,
+  top: 0,
+  left: 0,
+  right: 0,
+  background: `rgba(33, 36, 44, 0.70)`,
+  backdropFilter: `blur(4px)`,
+  height: `var(--top-nav-main-height)`,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: `${theme.spacing.xlarge}px ${theme.spacing.xxxxlarge}px`,
+}))
 
 const BackdropSC = styled.div(({ theme }) => {
   const backdropFilter = `blur(24px)`

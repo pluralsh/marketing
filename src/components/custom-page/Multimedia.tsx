@@ -1,6 +1,8 @@
-import { type ComponentProps } from 'react'
+import { type ComponentPropsWithRef } from 'react'
 
 import { Code } from '@pluralsh/design-system'
+
+import styled from 'styled-components'
 
 import { getImageUrl } from '@src/consts/routes'
 import { type ImageFileFragment } from '@src/generated/graphqlDirectus'
@@ -14,6 +16,8 @@ export function Multimedia({
   videoUrl,
   form,
   aspectRatio = '16 / 10',
+  backgroundColor = 'transparent',
+  showBorder = true,
   ...props
 }: {
   mediaType: Nullable<string>
@@ -21,17 +25,18 @@ export function Multimedia({
   videoUrl: Nullable<string>
   form: Nullable<string>
   aspectRatio?: string
-} & ComponentProps<'div'>) {
+  backgroundColor?: string
+  showBorder?: boolean
+} & ComponentPropsWithRef<'div'>) {
   const imageUrl = getImageUrl(image)
 
   return (
-    <div
-      className="m-auto flex-1"
-      {...props}
-    >
+    <MultimediaWrapperSC {...props}>
       {mediaType === 'image' ? (
         imageUrl && (
           <ImageAspectRatio
+            css={{ borderRadius: 12, backgroundColor }}
+            $showBorder={showBorder}
             $aspectRatio={aspectRatio}
             $url={imageUrl}
           />
@@ -44,6 +49,12 @@ export function Multimedia({
       ) : mediaType === 'form' ? (
         <Code css={{ overflow: 'auto', maxHeight: '500px' }}>{form ?? ''}</Code>
       ) : null}
-    </div>
+    </MultimediaWrapperSC>
   )
 }
+
+const MultimediaWrapperSC = styled.div((_) => ({
+  margin: 'auto',
+  width: '100%',
+  flex: 1,
+}))

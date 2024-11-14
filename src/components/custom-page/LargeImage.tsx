@@ -1,41 +1,46 @@
-import { Button, Flex } from '@pluralsh/design-system'
+import { Button } from '@pluralsh/design-system'
 import Link from 'next/link'
+
+import styled, { useTheme } from 'styled-components'
 
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
 import { cn } from '../cn'
 import { Body2, OverlineLabel, Title1 } from '../Typography'
 
-import { getSpacingClassName } from './common'
 import { Multimedia } from './Multimedia'
 
 export function LargeImage({
-  spacing,
   overline,
   heading,
   body_text: bodyText,
   cta_text: ctaText,
   cta_url: ctaUrl,
   media_type: mediaType,
+  image_position: imagePosition,
   image,
   video_url: videoUrl,
   form,
 }: LargeImageComponentFragment) {
+  const theme = useTheme()
+
   return (
-    <section className={cn(getSpacingClassName(spacing), 'mx-xxxxxxlarge')}>
-      <Flex gap="xxxlarge">
+    <div className="flex flex-col gap-xxxxlarge">
+      <div
+        className={cn(
+          'flex flex-col gap-xxxlarge',
+          imagePosition === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'
+        )}
+      >
         <Multimedia
           mediaType={mediaType}
           image={image}
           videoUrl={videoUrl}
           form={form}
+          showBorder={false}
+          backgroundColor={theme.colors.grey[950]}
         />
-        <Flex
-          flex={1}
-          flexDirection="column"
-          justifyContent="center"
-          gap="medium"
-        >
+        <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
           {overline && <OverlineLabel>{overline}</OverlineLabel>}
           <Title1>{heading}</Title1>
           <Body2 $color="text-light">{bodyText}</Body2>
@@ -50,8 +55,26 @@ export function LargeImage({
               {ctaText}
             </Button>
           )}
-        </Flex>
-      </Flex>
-    </section>
+        </div>
+      </div>
+      <GradientDividerLine
+        $toDirection={imagePosition === 'left' ? 'right' : 'left'}
+      />
+    </div>
   )
 }
+
+const GradientDividerLine = styled.div<{ $toDirection: 'left' | 'right' }>(
+  ({ $toDirection }) => ({
+    width: '100%',
+    height: '1px',
+    opacity: 0.5,
+    background: `linear-gradient(
+    to ${$toDirection},
+    #fff 13%,
+    #ccc 40.5%,
+    #999 63.5%,
+    transparent 93.5%
+  )`,
+  })
+)

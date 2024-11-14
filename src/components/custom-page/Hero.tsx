@@ -1,16 +1,15 @@
-import { Button, Flex } from '@pluralsh/design-system'
+import { Button } from '@pluralsh/design-system'
 import Link from 'next/link'
 
+import { useTheme } from 'styled-components'
+
 import { type HeroComponentFragment } from '@src/generated/graphqlDirectus'
-import { cn } from '@src/utils/cn'
 
 import { Body1, Hero1 } from '../Typography'
 
-import { getSpacingClassName } from './common'
 import { Multimedia } from './Multimedia'
 
 export function Hero({
-  spacing,
   heading,
   body_text: bodyText,
   cta_text: ctaText,
@@ -20,36 +19,33 @@ export function Hero({
   video_url: videoUrl,
   form,
 }: HeroComponentFragment) {
+  const theme = useTheme()
+
   return (
-    <section className={cn(getSpacingClassName(spacing), 'px-xxxxxxlarge')}>
-      <Flex gap="xxxlarge">
-        <Flex
-          flex={1}
-          flexDirection="column"
-          justifyContent="center"
-          gap="medium"
-        >
-          <Hero1>{heading}</Hero1>
-          <Body1 $color="text-light">{bodyText}</Body1>
-          {ctaText && (
-            <Button
-              className="mt-medium w-fit"
-              as={Link}
-              target="_blank"
-              rel="noopener noreferrer"
-              href={ctaUrl}
-            >
-              {ctaText}
-            </Button>
-          )}
-        </Flex>
-        <Multimedia
-          mediaType={mediaType}
-          image={image}
-          videoUrl={videoUrl}
-          form={form}
-        />
-      </Flex>
-    </section>
+    <div className="flex flex-col-reverse gap-xxxlarge lg:flex-row">
+      <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
+        <Hero1>{heading}</Hero1>
+        <Body1 $color="text-light">{bodyText}</Body1>
+        {ctaText && (
+          <Button
+            className="mt-medium w-fit"
+            as={Link}
+            target="_blank"
+            rel="noopener noreferrer"
+            href={ctaUrl}
+          >
+            {ctaText}
+          </Button>
+        )}
+      </div>
+      <Multimedia
+        mediaType={mediaType}
+        image={image}
+        videoUrl={videoUrl}
+        form={form}
+        backgroundColor={theme.colors.grey[950]}
+        showBorder={false}
+      />
+    </div>
   )
 }

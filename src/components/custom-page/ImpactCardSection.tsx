@@ -4,6 +4,7 @@ import { InfoOutlineIcon, Tooltip } from '@pluralsh/design-system'
 
 import styled, { useTheme } from 'styled-components'
 
+import { type OurImpactComponentFragment } from '@src/generated/graphqlDirectus'
 import { useMousePosition } from '@src/hooks/useMousePosition'
 
 import { CircleEmbellishment } from '../layout/CircleEmbellishment'
@@ -20,12 +21,16 @@ type ImpactCardProps = {
   tooltipPlacement?: 'top' | 'bottom'
 }
 
-export function ImpactCardSection() {
+export function ImpactCardSection({
+  impactComponent,
+}: {
+  impactComponent: Nullable<OurImpactComponentFragment>
+}) {
   return (
     <div className="flex w-full flex-col items-center gap-xxlarge">
       <ResponsiveText textStyles={{ '': 'mHero2' }}>Our impact</ResponsiveText>
       <ImpactCardsWrapperSC>
-        {impactCards.map((cardProps, index) => (
+        {getImpactCards(impactComponent).map((cardProps, index) => (
           <ImpactCard
             key={index}
             {...cardProps}
@@ -89,8 +94,10 @@ const ImpactCardsWrapperSC = styled.div(({ theme }) => ({
   width: '100%',
   gap: theme.spacing.xlarge,
   paddingBottom: theme.spacing.xxxlarge,
+  textAlign: 'center',
   [`@media (min-width: ${theme.breakpoints.desktopSmall}px)`]: {
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    textAlign: 'left',
   },
 }))
 
@@ -171,38 +178,50 @@ const TooltipTextSC = styled.p(({ theme }) => ({
   },
 }))
 
-const impactCards: ImpactCardProps[] = [
-  {
-    metric: '88%',
-    subtitle: 'Reduction in operational costs',
-    embellishment: 'top-left',
-    borderGradientDir: 'to right',
-    tooltipText:
-      'Plural provides a single pane of glass and integrated suite of tools to manage the entire lifecycle of your Kubernetes fleet, giving engineers all the tools they need to do more with less. These cost savings free up budget for innovation, freeing operational challenges into financial victories and allowing your team to scale.',
-  },
-  {
-    metric: '95%',
-    subtitle: 'Reduction in day-2 operations',
-    tooltipText:
-      "Plural's comprehensive feature set allows teams to take care of mundane maintenance tasks such as upgrades in a fraction of the time.",
-    borderGradientDir: 'to left',
-  },
-  {
-    metric: '50%',
-    subtitle: 'Increased bandwidth for your engineers',
-    borderGradientDir: 'to right',
-    tooltipText:
-      'Free up 50% more of your engineering capacity for high-impact, strategic projects. Plural streamlines repetitive tasks like upgrade management, infrastructure provisioning and scaling, allowing your engineers to concentrate on value-driven initiatives that propel your company forward.',
-  },
-  {
-    metric: '~30x',
-    subtitle: 'ROI over 3 years',
-    embellishment: 'bottom-right',
-    borderGradientDir: 'to left',
-    tooltipText:
-      'Through optimized resource utilization, reduced downtime, and efficient infrastructure management, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
-  },
-]
+function getImpactCards(
+  impactComponent: Nullable<OurImpactComponentFragment>
+): ImpactCardProps[] {
+  return [
+    {
+      metric: impactComponent?.top_left_metric ?? '88%',
+      subtitle:
+        impactComponent?.top_left_subtitle ?? 'Reduction in operational costs',
+      embellishment: 'top-left',
+      borderGradientDir: 'to right',
+      tooltipText:
+        impactComponent?.top_left_tooltip ??
+        'Plural provides a single pane of glass and integrated suite of tools to manage the entire lifecycle of your Kubernetes fleet, giving engineers all the tools they need to do more with less. These cost savings free up budget for innovation, freeing operational challenges into financial victories and allowing your team to scale.',
+    },
+    {
+      metric: impactComponent?.top_right_metric ?? '95%',
+      subtitle:
+        impactComponent?.top_right_subtitle ?? 'Reduction in day-2 operations',
+      tooltipText:
+        impactComponent?.top_right_tooltip ??
+        "Plural's comprehensive feature set allows teams to take care of mundane maintenance tasks such as upgrades in a fraction of the time.",
+      borderGradientDir: 'to left',
+    },
+    {
+      metric: impactComponent?.bottom_left_metric ?? '50%',
+      subtitle:
+        impactComponent?.bottom_left_subtitle ??
+        'Increased bandwidth for your engineers',
+      borderGradientDir: 'to right',
+      tooltipText:
+        impactComponent?.bottom_left_tooltip ??
+        'Free up 50% more of your engineering capacity for high-impact, strategic projects. Plural streamlines repetitive tasks like upgrade management, infrastructure provisioning and scaling, allowing your engineers to concentrate on value-driven initiatives that propel your company forward.',
+    },
+    {
+      metric: impactComponent?.bottom_right_metric ?? '~30x',
+      subtitle: impactComponent?.bottom_right_subtitle ?? 'ROI over 3 years',
+      embellishment: 'bottom-right',
+      borderGradientDir: 'to left',
+      tooltipText:
+        impactComponent?.bottom_right_tooltip ??
+        'Through optimized resource utilization, reduced downtime, and efficient infrastructure management, Plural delivers a significant return on investment, enabling your platform team to build, innovate, and iterate faster without the typical operational bottlenecks.',
+    },
+  ]
+}
 
 const getEmbelishmentPosition = (
   embellishment: ImpactCardProps['embellishment']
