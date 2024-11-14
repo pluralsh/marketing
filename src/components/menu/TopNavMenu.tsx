@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 import { type NavList } from '@src/contexts/NavDataContext'
 
-import { MainLink, ProductLink, SolutionLink } from '../Navigation'
+import { MainLink, ProductLink } from '../Navigation'
 
 import { type ItemRendererProps, MenuButton } from './Menu'
 
@@ -28,9 +28,9 @@ function TopNavMenuItem<T extends NavList>({
   const Link =
     kind === 'product'
       ? ProductLink
-      : kind === 'solution'
-        ? SolutionLink
-        : MainLink
+      : // : kind === 'solution'
+        //   ? SolutionLink
+        MainLink
 
   return (
     <TopNavMenuItemWrapper

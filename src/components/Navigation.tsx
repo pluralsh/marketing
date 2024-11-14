@@ -115,46 +115,46 @@ export const ProductMobileLink = forwardRef(
   }
 )
 
-export const SolutionLink = forwardRef(
-  (props: ComponentProps<typeof MainLinkBase>, ref) => {
-    const theme = useTheme()
-    const { Link } = useNavigationContext()
-    const globalProps = useContext(GlobalPropsContext)
+// export const SolutionLink = forwardRef(
+//   (props: ComponentProps<typeof MainLinkBase>, ref) => {
+//     const theme = useTheme()
+//     const { Link } = useNavigationContext()
+//     const globalProps = useContext(GlobalPropsContext)
 
-    const itemConfig = globalProps?.siteSettings.main_nav.solutions.subnav.find(
-      (item) => item.id === props.id
-    )?.link
+//     const itemConfig = globalProps?.siteSettings.main_nav.solutions.subnav.find(
+//       (item) => item.id === props.id
+//     )?.link
 
-    const IconComponent = itemConfig?.icon ? icons[itemConfig.icon] : null
+//     const IconComponent = itemConfig?.icon ? icons[itemConfig.icon] : null
 
-    return (
-      <MainLinkBase
-        ref={ref}
-        as={Link}
-        {...props}
-      >
-        <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
-          {IconComponent && (
-            <IconComponent color={theme.colors['icon-primary']} />
-          )}
-        </div>
-        <div>
-          <ResponsiveText
-            as="p"
-            textStyles={{ '': 'mBody2Bold' }}
-          >
-            {itemConfig?.title}
-          </ResponsiveText>
-        </div>
-        <ArrowRightIcon
-          className="hover-arrow"
-          size="16px"
-          style={{ marginLeft: 'auto' }}
-        />
-      </MainLinkBase>
-    )
-  }
-)
+//     return (
+//       <MainLinkBase
+//         ref={ref}
+//         as={Link}
+//         {...props}
+//       >
+//         <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
+//           {IconComponent && (
+//             <IconComponent color={theme.colors['icon-primary']} />
+//           )}
+//         </div>
+//         <div>
+//           <ResponsiveText
+//             as="p"
+//             textStyles={{ '': 'mBody2Bold' }}
+//           >
+//             {itemConfig?.title}
+//           </ResponsiveText>
+//         </div>
+//         <ArrowRightIcon
+//           className="hover-arrow"
+//           size="16px"
+//           style={{ marginLeft: 'auto' }}
+//         />
+//       </MainLinkBase>
+//     )
+//   }
+// )
 
 export const MainLinkBase = styled.a.withConfig({
   shouldForwardProp: (prop) => !['isDisabled', 'isSelected'].includes(prop),

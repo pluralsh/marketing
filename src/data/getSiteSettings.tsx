@@ -22,14 +22,14 @@ export const getSiteSettings = (
       },
       subnav: getProductSubnav(products),
     },
-    solutions: {
-      id: 'solutions',
-      link: {
-        title: 'Solutions',
-        url: '/solution',
-      },
-      subnav: getSolutionSubnav(solutions),
-    },
+    // solutions: {
+    //   id: 'solutions',
+    //   link: {
+    //     title: 'Solutions',
+    //     url: '/solution',
+    //   },
+    //   subnav: getSolutionSubnav(solutions),
+    // },
     pricing: {
       id: 'pricing',
       link: {
@@ -128,18 +128,18 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
   }))
 }
 
-function getSolutionSubnav(solutions?: SolutionPageTinyFragment[]) {
-  if (!solutions || !solutions.length) return []
+// function getSolutionSubnav(solutions?: SolutionPageTinyFragment[]) {
+//   if (!solutions || !solutions.length) return []
 
-  return solutions
-    .map((solution) => ({
-      id: solution.slug,
-      link: {
-        title: solution.dropdown_title ?? '',
-        icon: solution.dropdown_icon ?? '',
-        url: `/solutions/${solution.slug}`,
-        category: solution.category?.split('_').join(' '),
-      },
-    }))
-    .reverse()
-}
+//   return solutions
+//     .map((solution) => ({
+//       id: solution.slug,
+//       link: {
+//         title: solution.dropdown_title ?? '',
+//         icon: solution.dropdown_icon ?? '',
+//         url: `/solutions/${solution.slug}`,
+//         category: solution.category?.split('_').join(' '),
+//       },
+//     }))
+//     .reverse()
+// }
