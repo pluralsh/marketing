@@ -4926,6 +4926,8 @@ export type Card = {
   heading: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image?: Maybe<Directus_Files>;
+  /** unique name to identify this card */
+  name?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
@@ -4983,6 +4985,8 @@ export type Card_Aggregated_Count = {
   heading?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   image?: Maybe<Scalars['Int']['output']>;
+  /** unique name to identify this card */
+  name?: Maybe<Scalars['Int']['output']>;
   url?: Maybe<Scalars['Int']['output']>;
   user_created?: Maybe<Scalars['Int']['output']>;
   user_updated?: Maybe<Scalars['Int']['output']>;
@@ -5004,6 +5008,7 @@ export type Card_Filter = {
   heading?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   image?: InputMaybe<Directus_Files_Filter>;
+  name?: InputMaybe<String_Filter_Operators>;
   url?: InputMaybe<String_Filter_Operators>;
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
@@ -5942,6 +5947,8 @@ export type Create_Card_Input = {
   heading: Scalars['String']['input'];
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Create_Directus_Files_Input>;
+  /** unique name to identify this card */
+  name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
@@ -6071,6 +6078,8 @@ export type Create_Custom_Component_Input = {
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   item?: InputMaybe<Array<InputMaybe<Create_Custom_Component_Item_Input>>>;
+  /** unique name to identify this component */
+  name?: InputMaybe<Scalars['String']['input']>;
   spacing_bottom?: InputMaybe<Scalars['String']['input']>;
   spacing_top?: InputMaybe<Scalars['String']['input']>;
   theme?: InputMaybe<Scalars['String']['input']>;
@@ -6405,10 +6414,7 @@ export type Create_Product_Pages_Input = {
   dropdown_description?: InputMaybe<Scalars['String']['input']>;
   dropdown_icon?: InputMaybe<Scalars['String']['input']>;
   dropdown_title?: InputMaybe<Scalars['String']['input']>;
-  features?: InputMaybe<Array<InputMaybe<Create_Product_Features_Input>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  page_subtitle?: InputMaybe<Scalars['String']['input']>;
-  page_title?: InputMaybe<Scalars['String']['input']>;
   slug: Scalars['String']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
 };
@@ -6680,6 +6686,8 @@ export type Custom_Component = {
   id: Scalars['ID']['output'];
   item?: Maybe<Array<Maybe<Custom_Component_Item>>>;
   item_func?: Maybe<Count_Functions>;
+  /** unique name to identify this component */
+  name?: Maybe<Scalars['String']['output']>;
   spacing_bottom?: Maybe<Scalars['String']['output']>;
   spacing_top?: Maybe<Scalars['String']['output']>;
   theme?: Maybe<Scalars['String']['output']>;
@@ -6737,6 +6745,8 @@ export type Custom_Component_Aggregated_Count = {
   date_updated?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   item?: Maybe<Scalars['Int']['output']>;
+  /** unique name to identify this component */
+  name?: Maybe<Scalars['Int']['output']>;
   spacing_bottom?: Maybe<Scalars['Int']['output']>;
   spacing_top?: Maybe<Scalars['Int']['output']>;
   theme?: Maybe<Scalars['Int']['output']>;
@@ -6759,6 +6769,7 @@ export type Custom_Component_Filter = {
   id?: InputMaybe<Number_Filter_Operators>;
   item?: InputMaybe<Custom_Component_Item_Filter>;
   item_func?: InputMaybe<Count_Function_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
   spacing_bottom?: InputMaybe<String_Filter_Operators>;
   spacing_top?: InputMaybe<String_Filter_Operators>;
   theme?: InputMaybe<String_Filter_Operators>;
@@ -8974,11 +8985,7 @@ export type Product_Pages = {
   dropdown_description?: Maybe<Scalars['String']['output']>;
   dropdown_icon?: Maybe<Scalars['String']['output']>;
   dropdown_title?: Maybe<Scalars['String']['output']>;
-  features?: Maybe<Array<Maybe<Product_Features>>>;
-  features_func?: Maybe<Count_Functions>;
   id: Scalars['ID']['output'];
-  page_subtitle?: Maybe<Scalars['String']['output']>;
-  page_title?: Maybe<Scalars['String']['output']>;
   slug: Scalars['String']['output'];
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -8986,16 +8993,6 @@ export type Product_Pages = {
 
 export type Product_PagesCustom_ComponentsArgs = {
   filter?: InputMaybe<Product_Pages_Custom_Component_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Product_PagesFeaturesArgs = {
-  filter?: InputMaybe<Product_Features_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -9023,10 +9020,7 @@ export type Product_Pages_Aggregated_Count = {
   dropdown_description?: Maybe<Scalars['Int']['output']>;
   dropdown_icon?: Maybe<Scalars['Int']['output']>;
   dropdown_title?: Maybe<Scalars['Int']['output']>;
-  features?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
-  page_subtitle?: Maybe<Scalars['Int']['output']>;
-  page_title?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
 };
@@ -9107,11 +9101,7 @@ export type Product_Pages_Filter = {
   dropdown_description?: InputMaybe<String_Filter_Operators>;
   dropdown_icon?: InputMaybe<String_Filter_Operators>;
   dropdown_title?: InputMaybe<String_Filter_Operators>;
-  features?: InputMaybe<Product_Features_Filter>;
-  features_func?: InputMaybe<Count_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  page_subtitle?: InputMaybe<String_Filter_Operators>;
-  page_title?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
 };
@@ -10462,6 +10452,8 @@ export type Update_Card_Input = {
   heading?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Update_Directus_Files_Input>;
+  /** unique name to identify this card */
+  name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
@@ -10591,6 +10583,8 @@ export type Update_Custom_Component_Input = {
   date_updated?: InputMaybe<Scalars['Date']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   item?: InputMaybe<Array<InputMaybe<Update_Custom_Component_Item_Input>>>;
+  /** unique name to identify this component */
+  name?: InputMaybe<Scalars['String']['input']>;
   spacing_bottom?: InputMaybe<Scalars['String']['input']>;
   spacing_top?: InputMaybe<Scalars['String']['input']>;
   theme?: InputMaybe<Scalars['String']['input']>;
@@ -10935,10 +10929,7 @@ export type Update_Product_Pages_Input = {
   dropdown_description?: InputMaybe<Scalars['String']['input']>;
   dropdown_icon?: InputMaybe<Scalars['String']['input']>;
   dropdown_title?: InputMaybe<Scalars['String']['input']>;
-  features?: InputMaybe<Array<InputMaybe<Update_Product_Features_Input>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  page_subtitle?: InputMaybe<Scalars['String']['input']>;
-  page_title?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
 };

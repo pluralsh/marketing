@@ -43,6 +43,7 @@ export const ProductLink = forwardRef(
       <MainLinkBase
         ref={ref}
         as={Link}
+        css={{ width: 440 }}
         {...props}
       >
         <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
@@ -53,13 +54,13 @@ export const ProductLink = forwardRef(
         <div>
           <ResponsiveText
             as="p"
-            textStyles={{ '': 'mBody2Bold' }}
+            textStyles={{ '': 'mComponentLink' }}
           >
             {itemConfig?.title}
           </ResponsiveText>
           <ResponsiveText
             as="p"
-            textStyles={{ '': 'mBody2' }}
+            textStyles={{ '': 'mComponentText' }}
             style={{ color: theme.colors['text-light'] }}
           >
             {itemConfig?.description}
@@ -163,6 +164,7 @@ export const MainLinkBase = styled.a.withConfig({
   alignItems: 'center',
   gap: theme.spacing.xsmall,
   cursor: 'pointer',
+  padding: `${theme.spacing.xsmall}px ${theme.spacing.small}px `,
   ...(isSelected
     ? {
         color: theme.colors.text,
@@ -190,7 +192,6 @@ export const MainLinkBase = styled.a.withConfig({
   '.hover-arrow': {
     opacity: '0',
   },
-  padding: `${theme.spacing.xsmall}px ${theme.spacing.medium}px `,
 }))
 
 export const SecondaryLink = styled.a(({ theme }) => ({
