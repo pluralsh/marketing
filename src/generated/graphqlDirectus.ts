@@ -32,8 +32,6 @@ export type Mutation = {
   create_blog_cards_items: Array<Blog_Cards>;
   create_card_item?: Maybe<Card>;
   create_card_items: Array<Card>;
-  create_card_with_image_item?: Maybe<Card_With_Image>;
-  create_card_with_image_items: Array<Card_With_Image>;
   create_card_with_image_rich_text_columns_item?: Maybe<Card_With_Image_Rich_Text_Columns>;
   create_card_with_image_rich_text_columns_items: Array<Card_With_Image_Rich_Text_Columns>;
   create_cards_card_item?: Maybe<Cards_Card>;
@@ -134,8 +132,6 @@ export type Mutation = {
   delete_blog_cards_items?: Maybe<Delete_Many>;
   delete_card_item?: Maybe<Delete_One>;
   delete_card_items?: Maybe<Delete_Many>;
-  delete_card_with_image_item?: Maybe<Delete_One>;
-  delete_card_with_image_items?: Maybe<Delete_Many>;
   delete_card_with_image_rich_text_columns_item?: Maybe<Delete_One>;
   delete_card_with_image_rich_text_columns_items?: Maybe<Delete_Many>;
   delete_cards_card_item?: Maybe<Delete_One>;
@@ -239,9 +235,6 @@ export type Mutation = {
   update_card_batch: Array<Card>;
   update_card_item?: Maybe<Card>;
   update_card_items: Array<Card>;
-  update_card_with_image_batch: Array<Card_With_Image>;
-  update_card_with_image_item?: Maybe<Card_With_Image>;
-  update_card_with_image_items: Array<Card_With_Image>;
   update_card_with_image_rich_text_columns_batch: Array<Card_With_Image_Rich_Text_Columns>;
   update_card_with_image_rich_text_columns_item?: Maybe<Card_With_Image_Rich_Text_Columns>;
   update_card_with_image_rich_text_columns_items: Array<Card_With_Image_Rich_Text_Columns>;
@@ -431,22 +424,6 @@ export type MutationCreate_Card_ItemArgs = {
 export type MutationCreate_Card_ItemsArgs = {
   data?: InputMaybe<Array<Create_Card_Input>>;
   filter?: InputMaybe<Card_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationCreate_Card_With_Image_ItemArgs = {
-  data: Create_Card_With_Image_Input;
-};
-
-
-export type MutationCreate_Card_With_Image_ItemsArgs = {
-  data?: InputMaybe<Array<Create_Card_With_Image_Input>>;
-  filter?: InputMaybe<Card_With_Image_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1237,16 +1214,6 @@ export type MutationDelete_Card_ItemsArgs = {
 };
 
 
-export type MutationDelete_Card_With_Image_ItemArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationDelete_Card_With_Image_ItemsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
 export type MutationDelete_Card_With_Image_Rich_Text_Columns_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1795,35 +1762,6 @@ export type MutationUpdate_Card_ItemArgs = {
 export type MutationUpdate_Card_ItemsArgs = {
   data: Update_Card_Input;
   filter?: InputMaybe<Card_Filter>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Card_With_Image_BatchArgs = {
-  data?: InputMaybe<Array<Update_Card_With_Image_Input>>;
-  filter?: InputMaybe<Card_With_Image_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdate_Card_With_Image_ItemArgs = {
-  data: Update_Card_With_Image_Input;
-  id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdate_Card_With_Image_ItemsArgs = {
-  data: Update_Card_With_Image_Input;
-  filter?: InputMaybe<Card_With_Image_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -3231,9 +3169,6 @@ export type Query = {
   card: Array<Card>;
   card_aggregated: Array<Card_Aggregated>;
   card_by_id?: Maybe<Card>;
-  card_with_image: Array<Card_With_Image>;
-  card_with_image_aggregated: Array<Card_With_Image_Aggregated>;
-  card_with_image_by_id?: Maybe<Card_With_Image>;
   card_with_image_rich_text_columns: Array<Card_With_Image_Rich_Text_Columns>;
   card_with_image_rich_text_columns_aggregated: Array<Card_With_Image_Rich_Text_Columns_Aggregated>;
   card_with_image_rich_text_columns_by_id?: Maybe<Card_With_Image_Rich_Text_Columns>;
@@ -3457,32 +3392,6 @@ export type QueryCard_AggregatedArgs = {
 
 
 export type QueryCard_By_IdArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryCard_With_ImageArgs = {
-  filter?: InputMaybe<Card_With_Image_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCard_With_Image_AggregatedArgs = {
-  filter?: InputMaybe<Card_With_Image_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryCard_With_Image_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -5014,138 +4923,10 @@ export type Card_Filter = {
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
-export type Card_With_Image = {
-  __typename?: 'card_with_image';
-  body_text?: Maybe<Scalars['String']['output']>;
-  bullets?: Maybe<Array<Maybe<Card_With_Image_Rich_Text_Columns>>>;
-  bullets_func?: Maybe<Count_Functions>;
-  cta_text?: Maybe<Scalars['String']['output']>;
-  cta_url?: Maybe<Scalars['String']['output']>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
-  heading?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  image?: Maybe<Directus_Files>;
-  spacing?: Maybe<Scalars['String']['output']>;
-  theme: Scalars['String']['output'];
-  user_created?: Maybe<Directus_Users>;
-  user_updated?: Maybe<Directus_Users>;
-};
-
-
-export type Card_With_ImageBulletsArgs = {
-  filter?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Card_With_ImageImageArgs = {
-  filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Card_With_ImageUser_CreatedArgs = {
-  filter?: InputMaybe<Directus_Users_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Card_With_ImageUser_UpdatedArgs = {
-  filter?: InputMaybe<Directus_Users_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Card_With_Image_Aggregated = {
-  __typename?: 'card_with_image_aggregated';
-  avg?: Maybe<Card_With_Image_Aggregated_Fields>;
-  avgDistinct?: Maybe<Card_With_Image_Aggregated_Fields>;
-  count?: Maybe<Card_With_Image_Aggregated_Count>;
-  countAll?: Maybe<Scalars['Int']['output']>;
-  countDistinct?: Maybe<Card_With_Image_Aggregated_Count>;
-  group?: Maybe<Scalars['JSON']['output']>;
-  max?: Maybe<Card_With_Image_Aggregated_Fields>;
-  min?: Maybe<Card_With_Image_Aggregated_Fields>;
-  sum?: Maybe<Card_With_Image_Aggregated_Fields>;
-  sumDistinct?: Maybe<Card_With_Image_Aggregated_Fields>;
-};
-
-export type Card_With_Image_Aggregated_Count = {
-  __typename?: 'card_with_image_aggregated_count';
-  body_text?: Maybe<Scalars['Int']['output']>;
-  bullets?: Maybe<Scalars['Int']['output']>;
-  cta_text?: Maybe<Scalars['Int']['output']>;
-  cta_url?: Maybe<Scalars['Int']['output']>;
-  date_created?: Maybe<Scalars['Int']['output']>;
-  date_updated?: Maybe<Scalars['Int']['output']>;
-  heading?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  image?: Maybe<Scalars['Int']['output']>;
-  spacing?: Maybe<Scalars['Int']['output']>;
-  theme?: Maybe<Scalars['Int']['output']>;
-  user_created?: Maybe<Scalars['Int']['output']>;
-  user_updated?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Card_With_Image_Aggregated_Fields = {
-  __typename?: 'card_with_image_aggregated_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type Card_With_Image_Filter = {
-  _and?: InputMaybe<Array<InputMaybe<Card_With_Image_Filter>>>;
-  _or?: InputMaybe<Array<InputMaybe<Card_With_Image_Filter>>>;
-  body_text?: InputMaybe<String_Filter_Operators>;
-  bullets?: InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>;
-  bullets_func?: InputMaybe<Count_Function_Filter_Operators>;
-  cta_text?: InputMaybe<String_Filter_Operators>;
-  cta_url?: InputMaybe<String_Filter_Operators>;
-  date_created?: InputMaybe<Date_Filter_Operators>;
-  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  date_updated?: InputMaybe<Date_Filter_Operators>;
-  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  heading?: InputMaybe<String_Filter_Operators>;
-  id?: InputMaybe<Number_Filter_Operators>;
-  image?: InputMaybe<Directus_Files_Filter>;
-  spacing?: InputMaybe<String_Filter_Operators>;
-  theme?: InputMaybe<String_Filter_Operators>;
-  user_created?: InputMaybe<Directus_Users_Filter>;
-  user_updated?: InputMaybe<Directus_Users_Filter>;
-};
-
 export type Card_With_Image_Rich_Text_Columns = {
   __typename?: 'card_with_image_rich_text_columns';
-  card_with_image_id?: Maybe<Card_With_Image>;
   id: Scalars['ID']['output'];
   rich_text_columns_id?: Maybe<Rich_Text_Columns>;
-};
-
-
-export type Card_With_Image_Rich_Text_ColumnsCard_With_Image_IdArgs = {
-  filter?: InputMaybe<Card_With_Image_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -5174,14 +4955,12 @@ export type Card_With_Image_Rich_Text_Columns_Aggregated = {
 
 export type Card_With_Image_Rich_Text_Columns_Aggregated_Count = {
   __typename?: 'card_with_image_rich_text_columns_aggregated_count';
-  card_with_image_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   rich_text_columns_id?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Card_With_Image_Rich_Text_Columns_Aggregated_Fields = {
   __typename?: 'card_with_image_rich_text_columns_aggregated_fields';
-  card_with_image_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   rich_text_columns_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -5189,7 +4968,6 @@ export type Card_With_Image_Rich_Text_Columns_Aggregated_Fields = {
 export type Card_With_Image_Rich_Text_Columns_Filter = {
   _and?: InputMaybe<Array<InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>>>;
   _or?: InputMaybe<Array<InputMaybe<Card_With_Image_Rich_Text_Columns_Filter>>>;
-  card_with_image_id?: InputMaybe<Card_With_Image_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   rich_text_columns_id?: InputMaybe<Rich_Text_Columns_Filter>;
 };
@@ -5954,24 +5732,7 @@ export type Create_Card_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
-export type Create_Card_With_Image_Input = {
-  body_text?: InputMaybe<Scalars['String']['input']>;
-  bullets?: InputMaybe<Array<InputMaybe<Create_Card_With_Image_Rich_Text_Columns_Input>>>;
-  cta_text?: InputMaybe<Scalars['String']['input']>;
-  cta_url?: InputMaybe<Scalars['String']['input']>;
-  date_created?: InputMaybe<Scalars['Date']['input']>;
-  date_updated?: InputMaybe<Scalars['Date']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Create_Directus_Files_Input>;
-  spacing?: InputMaybe<Scalars['String']['input']>;
-  theme: Scalars['String']['input'];
-  user_created?: InputMaybe<Create_Directus_Users_Input>;
-  user_updated?: InputMaybe<Create_Directus_Users_Input>;
-};
-
 export type Create_Card_With_Image_Rich_Text_Columns_Input = {
-  card_with_image_id?: InputMaybe<Create_Card_With_Image_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   rich_text_columns_id?: InputMaybe<Create_Rich_Text_Columns_Input>;
 };
@@ -6335,6 +6096,7 @@ export type Create_Page_Homepage_Input = {
   hero_image?: InputMaybe<Create_Directus_Files_Input>;
   hero_title?: InputMaybe<Scalars['String']['input']>;
   hero_video_cta_text?: InputMaybe<Scalars['String']['input']>;
+  /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   quotes?: InputMaybe<Create_Quote_Lists_Input>;
@@ -8281,6 +8043,7 @@ export type Page_Homepage = {
   hero_image?: Maybe<Directus_Files>;
   hero_title?: Maybe<Scalars['String']['output']>;
   hero_video_cta_text?: Maybe<Scalars['String']['output']>;
+  /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   quotes?: Maybe<Quote_Lists>;
@@ -10459,24 +10222,7 @@ export type Update_Card_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
-export type Update_Card_With_Image_Input = {
-  body_text?: InputMaybe<Scalars['String']['input']>;
-  bullets?: InputMaybe<Array<InputMaybe<Update_Card_With_Image_Rich_Text_Columns_Input>>>;
-  cta_text?: InputMaybe<Scalars['String']['input']>;
-  cta_url?: InputMaybe<Scalars['String']['input']>;
-  date_created?: InputMaybe<Scalars['Date']['input']>;
-  date_updated?: InputMaybe<Scalars['Date']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<Update_Directus_Files_Input>;
-  spacing?: InputMaybe<Scalars['String']['input']>;
-  theme?: InputMaybe<Scalars['String']['input']>;
-  user_created?: InputMaybe<Update_Directus_Users_Input>;
-  user_updated?: InputMaybe<Update_Directus_Users_Input>;
-};
-
 export type Update_Card_With_Image_Rich_Text_Columns_Input = {
-  card_with_image_id?: InputMaybe<Update_Card_With_Image_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   rich_text_columns_id?: InputMaybe<Update_Rich_Text_Columns_Input>;
 };
@@ -10840,6 +10586,7 @@ export type Update_Page_Homepage_Input = {
   hero_image?: InputMaybe<Update_Directus_Files_Input>;
   hero_title?: InputMaybe<Scalars['String']['input']>;
   hero_video_cta_text?: InputMaybe<Scalars['String']['input']>;
+  /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   quotes?: InputMaybe<Update_Quote_Lists_Input>;

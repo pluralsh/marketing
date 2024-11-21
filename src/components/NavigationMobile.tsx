@@ -1,5 +1,6 @@
 import {
   Accordion,
+  AccordionItem,
   ArrowRightIcon,
   ArrowTopRightIcon,
   Button,
@@ -17,7 +18,7 @@ import { PlatformOverviewLinkSC } from './menu/Menu'
 import { MainLink, MainLinkBase, ProductMobileLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
 
-const MobileMainLink = styled(MainLink)(() => ({
+const MobileMainLink = styled(MainLink as any)(() => ({
   width: '100%',
   marginTop: 1,
 }))
@@ -67,53 +68,57 @@ function NavList({ navData }: { navData?: NavData | null }) {
 
         return (
           <Accordion
-            label={navItem?.link?.title}
             key={navItem.id}
-            // @ts-ignore
-            style={{ backgroundColor: theme.colors['fill-two'] }}
+            type="single"
           >
-            {navItem.link?.title === 'Product' && (
-              <div className="pl-small">
-                <PlatformOverviewLinkSC
-                  as={MainLinkBase}
-                  href="/product"
-                >
-                  <span>Plural Platform Overview</span>
-                  <ArrowTopRightIcon size={18} />
-                </PlatformOverviewLinkSC>
-              </div>
-            )}
-            {navItem.subnav?.map((subnavItem) => {
-              if (!subnavItem) {
-                return null
-              }
+            <AccordionItem
+              trigger={navItem?.link?.title}
+              // @ts-ignore
+              style={{ backgroundColor: theme.colors['fill-two'] }}
+            >
+              {navItem.link?.title === 'Product' && (
+                <div className="pl-small">
+                  <PlatformOverviewLinkSC
+                    as={MainLinkBase}
+                    href="/product"
+                  >
+                    <span>Plural Platform Overview</span>
+                    <ArrowTopRightIcon size={18} />
+                  </PlatformOverviewLinkSC>
+                </div>
+              )}
+              {navItem.subnav?.map((subnavItem) => {
+                if (!subnavItem) {
+                  return null
+                }
 
-              if (navItem.link?.title === 'Product') {
+                if (navItem.link?.title === 'Product') {
+                  return (
+                    <ProductMobileLink
+                      key={subnavItem.id}
+                      id={subnavItem.id}
+                      {...(subnavItem?.link?.url
+                        ? { href: subnavItem?.link.url }
+                        : {})}
+                    >
+                      {subnavItem?.link?.title}
+                    </ProductMobileLink>
+                  )
+                }
+
                 return (
-                  <ProductMobileLink
+                  <MobileMainLink
                     key={subnavItem.id}
-                    id={subnavItem.id}
                     {...(subnavItem?.link?.url
                       ? { href: subnavItem?.link.url }
                       : {})}
+                    style={{ padding: theme.spacing.medium }}
                   >
                     {subnavItem?.link?.title}
-                  </ProductMobileLink>
+                  </MobileMainLink>
                 )
-              }
-
-              return (
-                <MobileMainLink
-                  key={subnavItem.id}
-                  {...(subnavItem?.link?.url
-                    ? { href: subnavItem?.link.url }
-                    : {})}
-                  style={{ padding: theme.spacing.medium }}
-                >
-                  {subnavItem?.link?.title}
-                </MobileMainLink>
-              )
-            })}
+              })}
+            </AccordionItem>
           </Accordion>
         )
       })}
