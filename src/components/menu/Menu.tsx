@@ -202,13 +202,13 @@ function MenuDropdown<T extends object>({
         $kind={kind}
         className={
           kind === 'product'
-            ? 'flex flex-col items-center gap-large lg:flex-row'
+            ? 'flex flex-col items-center gap-large min-[1352px]:flex-row'
             : ''
         }
       >
         {kind === 'product' && (
           <PlatformOverviewLinkSC
-            className="w-[356px]"
+            className="max-h-[120px] min-w-full min-[1352px]:max-h-none min-[1352px]:min-w-[320px]"
             as={Link}
             href="/product"
             onClick={props.onClose}
@@ -221,7 +221,11 @@ function MenuDropdown<T extends object>({
           {kind === 'product' && (
             <MenuCategoryLabel>Product features</MenuCategoryLabel>
           )}
-          <ul className={kind === 'product' ? 'grid grid-cols-2' : ''}>
+          <ul
+            className={
+              kind === 'product' ? 'grid grid-cols-2 gap-x-medium' : ''
+            }
+          >
             {[...state.collection].map((item) => (
               <ItemRenderer
                 key={item.key}
@@ -301,6 +305,7 @@ function SolutionNavDropdown<T extends object>({
 const DropdownCardSC = styled.div<{ $kind: string }>(({ theme, $kind }) => ({
   overflowX: 'hidden',
   overflowY: 'auto',
+  width: 'max-content',
   padding:
     $kind === 'product' ? theme.spacing.xlarge : `${theme.spacing.xsmall}px 0`,
   boxShadow: theme.boxShadows.moderate,
