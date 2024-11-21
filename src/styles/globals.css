@@ -21,6 +21,14 @@ body,
 #__next {
   min-height: 100vh;
 }
+
+/* Cookiebot overrides */
+@media (max-width: 1280px) {
+  body > #CybotCookiebotDialog {
+    transform: scale(0.8) translate(-60%, -45%) !important;
+  }
+}
+
 /* stylelint-enable */
 
 *,
