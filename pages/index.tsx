@@ -111,16 +111,6 @@ export default function Homepage({
         <div
           className="relative h-0 w-full self-center pb-[56.25%]" /* 16:9 aspect ratio */
         >
-          <Button
-            className="left-1/2 top-full z-10 mt-large -translate-x-1/2"
-            large
-            floating
-            startIcon={<CloseIcon />}
-            onClick={() => setShowVideo(false)}
-            style={{ position: 'absolute' }}
-          >
-            Close
-          </Button>
           {pageData.hero_video_cta_url && (
             <iframe
               className="absolute left-0 top-0 h-full w-full rounded-large border border-fill-three"
@@ -131,6 +121,16 @@ export default function Homepage({
               allowFullScreen
             />
           )}
+          <Button
+            className="left-1/2 top-full z-10 mt-large -translate-x-1/2"
+            large
+            floating
+            startIcon={<CloseIcon />}
+            onClick={() => setShowVideo(false)}
+            style={{ position: 'absolute' }}
+          >
+            Close
+          </Button>
         </div>
       </BareModal>
     </>
