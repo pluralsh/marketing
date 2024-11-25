@@ -47,8 +47,7 @@ async function setEmail(email) {
       }
 
       if (body?.category === 'CONFLICT') {
-        const contactId = body.message?.match(/Existing ID:\s*(?<id>\d+)/)
-          ?.groups?.id
+        const contactId = body.message?.match(/Existing ID:\s*(\d+)/)?.[1]
 
         if (!contactId) {
           return false
