@@ -39,7 +39,6 @@ export default function Homepage({
     <>
       <HeaderPad
         as={GradientBG}
-        className="flex flex-col items-center"
         image={homepageGradient}
         imageType="custom"
         bgChildren={
@@ -61,21 +60,32 @@ export default function Homepage({
         <HomePageHero
           heading={pageData.hero_title}
           description={
-            <div className="[text-wrap:balance]">
+            <div className="[text-wrap:pretty]">
               Plural reduces cluster upgrade cycles from months to hours at
               enterprise scale with streamlined dependency management.
             </div>
           }
           announcementChip={announcementChip}
           ctas={
-            <div className="flex flex-wrap justify-center gap-large">
+            <div className="mx-auto flex w-full max-w-[480px] justify-center gap-large">
               <Button
+                style={{ flex: 1 }}
                 large
-                primary
                 as={Link}
                 href={pageData.hero_cta_url}
               >
                 {pageData.hero_cta_text}
+              </Button>
+              <Button
+                style={{ flex: 1 }}
+                floating
+                large
+                onClick={() => setShowVideo(true)}
+              >
+                <div className="flex items-center gap-xsmall px-large text-text">
+                  {playButtonSVG}
+                  {pageData.hero_video_cta_text}
+                </div>
               </Button>
             </div>
           }
@@ -88,15 +98,6 @@ export default function Homepage({
                 width={1248}
               />
             )}
-            <Button
-              large
-              floating
-              className="group mx-auto mb-xxxxxxlarge w-fit"
-              onClick={() => setShowVideo(true)}
-            >
-              {pageData.hero_video_cta_text}
-              {playButtonSVG}
-            </Button>
           </StandardPageWidth>
         </div>
       </HeaderPad>
@@ -180,12 +181,12 @@ const homepageGradient = `
 
 const playButtonSVG = (
   <svg
-    width="42"
-    height="42"
+    height="24"
+    width="24"
     viewBox="0 0 42 42"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="ml-small text-fill-primary group-hover:text-fill-primary-hover"
+    className="text-fill-primary"
     aria-hidden
   >
     <rect

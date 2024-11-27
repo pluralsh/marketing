@@ -1,0 +1,18 @@
+fragment GlobalData on Query {
+  site_settings {
+    ...SiteSettings
+  }
+  solutions_pages(filter: { status: { _neq: "hidden" } }) {
+    ...SolutionPageTiny
+  }
+  product_pages {
+    ...ProductPageTiny
+  }
+  resource_pages(filter: { status: { _neq: "hidden" } }) {
+    ...ResourcePageTiny
+  }
+}
+
+query GetGlobalData {
+  ...GlobalData
+}

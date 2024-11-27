@@ -2,6 +2,7 @@ import { getImageUrl } from '@src/consts/routes'
 import { type NavList } from '@src/contexts/NavDataContext'
 import {
   type ProductPageTinyFragment,
+  type ResourcePageTinyFragment,
   type SiteSettingsFragment,
   type SolutionPageTinyFragment,
 } from '@src/generated/graphqlDirectus'
@@ -9,7 +10,8 @@ import {
 export const getSiteSettings = (
   siteSettings: SiteSettingsFragment,
   solutions?: SolutionPageTinyFragment[],
-  products?: ProductPageTinyFragment[]
+  products?: ProductPageTinyFragment[],
+  resources?: ResourcePageTinyFragment[]
 ) => ({
   og_description: siteSettings.og_description ?? 'Plural',
   og_image: getImageUrl(siteSettings.og_image),
@@ -43,36 +45,7 @@ export const getSiteSettings = (
         title: 'Resources',
         url: '/resources',
       },
-      subnav: [
-        {
-          id: 'docs',
-          link: {
-            title: 'Docs',
-            url: 'https://docs.plural.sh',
-          },
-        },
-        {
-          id: 'blog',
-          link: {
-            title: 'Blog',
-            url: 'https://www.plural.sh/blog',
-          },
-        },
-        {
-          id: 'releases',
-          link: {
-            title: 'Releases',
-            url: 'https://github.com/pluralsh/plural/releases',
-          },
-        },
-        {
-          id: 'security and compliance',
-          link: {
-            title: 'Security & Compliance',
-            url: 'https://app.secureframe.com/ext/trust-center/plural/',
-          },
-        },
-      ],
+      subnav: getResourcesSubnav(resources),
     },
     company: {
       id: 'company',
@@ -143,3 +116,17 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
 //     }))
 //     .reverse()
 // }
+
+function getResourcesSubnav(resources?: ResourcePageTinyFragment[]) {
+  if (!resources || !resources.length) return []
+
+  return resources.map((resource) => ({
+    id: resource.slug,
+    link: {
+      title: resource.dropdown_title ?? '',
+      url: resource.external
+        ? resource.url ?? '#'
+        : `/resources/${resource.slug}`,
+    },
+  }))
+}

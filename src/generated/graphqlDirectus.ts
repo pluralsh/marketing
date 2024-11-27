@@ -106,6 +106,10 @@ export type Mutation = {
   create_quote_lists_items_items: Array<Quote_Lists_Items>;
   create_quotes_item?: Maybe<Quotes>;
   create_quotes_items: Array<Quotes>;
+  create_resource_pages_custom_component_item?: Maybe<Resource_Pages_Custom_Component>;
+  create_resource_pages_custom_component_items: Array<Resource_Pages_Custom_Component>;
+  create_resource_pages_item?: Maybe<Resource_Pages>;
+  create_resource_pages_items: Array<Resource_Pages>;
   create_rich_text_columns_item?: Maybe<Rich_Text_Columns>;
   create_rich_text_columns_items: Array<Rich_Text_Columns>;
   create_section_header_item?: Maybe<Section_Header>;
@@ -206,6 +210,10 @@ export type Mutation = {
   delete_quote_lists_items_items?: Maybe<Delete_Many>;
   delete_quotes_item?: Maybe<Delete_One>;
   delete_quotes_items?: Maybe<Delete_Many>;
+  delete_resource_pages_custom_component_item?: Maybe<Delete_One>;
+  delete_resource_pages_custom_component_items?: Maybe<Delete_Many>;
+  delete_resource_pages_item?: Maybe<Delete_One>;
+  delete_resource_pages_items?: Maybe<Delete_Many>;
   delete_rich_text_columns_item?: Maybe<Delete_One>;
   delete_rich_text_columns_items?: Maybe<Delete_Many>;
   delete_section_header_item?: Maybe<Delete_One>;
@@ -350,6 +358,12 @@ export type Mutation = {
   update_quotes_batch: Array<Quotes>;
   update_quotes_item?: Maybe<Quotes>;
   update_quotes_items: Array<Quotes>;
+  update_resource_pages_batch: Array<Resource_Pages>;
+  update_resource_pages_custom_component_batch: Array<Resource_Pages_Custom_Component>;
+  update_resource_pages_custom_component_item?: Maybe<Resource_Pages_Custom_Component>;
+  update_resource_pages_custom_component_items: Array<Resource_Pages_Custom_Component>;
+  update_resource_pages_item?: Maybe<Resource_Pages>;
+  update_resource_pages_items: Array<Resource_Pages>;
   update_rich_text_columns_batch: Array<Rich_Text_Columns>;
   update_rich_text_columns_item?: Maybe<Rich_Text_Columns>;
   update_rich_text_columns_items: Array<Rich_Text_Columns>;
@@ -1024,6 +1038,38 @@ export type MutationCreate_Quotes_ItemsArgs = {
 };
 
 
+export type MutationCreate_Resource_Pages_Custom_Component_ItemArgs = {
+  data: Create_Resource_Pages_Custom_Component_Input;
+};
+
+
+export type MutationCreate_Resource_Pages_Custom_Component_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Resource_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Resource_Pages_ItemArgs = {
+  data: Create_Resource_Pages_Input;
+};
+
+
+export type MutationCreate_Resource_Pages_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Resource_Pages_Input>>;
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Rich_Text_Columns_ItemArgs = {
   data: Create_Rich_Text_Columns_Input;
 };
@@ -1580,6 +1626,26 @@ export type MutationDelete_Quotes_ItemArgs = {
 
 
 export type MutationDelete_Quotes_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Resource_Pages_Custom_Component_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Resource_Pages_Custom_Component_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Resource_Pages_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Resource_Pages_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -2864,6 +2930,64 @@ export type MutationUpdate_Quotes_ItemsArgs = {
 };
 
 
+export type MutationUpdate_Resource_Pages_BatchArgs = {
+  data?: InputMaybe<Array<Update_Resource_Pages_Input>>;
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Resource_Pages_Custom_Component_BatchArgs = {
+  data?: InputMaybe<Array<Update_Resource_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Resource_Pages_Custom_Component_ItemArgs = {
+  data: Update_Resource_Pages_Custom_Component_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Resource_Pages_Custom_Component_ItemsArgs = {
+  data: Update_Resource_Pages_Custom_Component_Input;
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Resource_Pages_ItemArgs = {
+  data: Update_Resource_Pages_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Resource_Pages_ItemsArgs = {
+  data: Update_Resource_Pages_Input;
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Rich_Text_Columns_BatchArgs = {
   data?: InputMaybe<Array<Update_Rich_Text_Columns_Input>>;
   filter?: InputMaybe<Rich_Text_Columns_Filter>;
@@ -3284,6 +3408,12 @@ export type Query = {
   quotes: Array<Quotes>;
   quotes_aggregated: Array<Quotes_Aggregated>;
   quotes_by_id?: Maybe<Quotes>;
+  resource_pages: Array<Resource_Pages>;
+  resource_pages_aggregated: Array<Resource_Pages_Aggregated>;
+  resource_pages_by_id?: Maybe<Resource_Pages>;
+  resource_pages_custom_component: Array<Resource_Pages_Custom_Component>;
+  resource_pages_custom_component_aggregated: Array<Resource_Pages_Custom_Component_Aggregated>;
+  resource_pages_custom_component_by_id?: Maybe<Resource_Pages_Custom_Component>;
   rich_text_columns: Array<Rich_Text_Columns>;
   rich_text_columns_aggregated: Array<Rich_Text_Columns_Aggregated>;
   rich_text_columns_by_id?: Maybe<Rich_Text_Columns>;
@@ -4354,6 +4484,58 @@ export type QueryQuotes_AggregatedArgs = {
 
 
 export type QueryQuotes_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryResource_PagesArgs = {
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryResource_Pages_AggregatedArgs = {
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryResource_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryResource_Pages_Custom_ComponentArgs = {
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryResource_Pages_Custom_Component_AggregatedArgs = {
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryResource_Pages_Custom_Component_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -6218,6 +6400,32 @@ export type Create_Quotes_Input = {
   quote?: InputMaybe<Scalars['String']['input']>;
   quote_id?: InputMaybe<Create_Quote_Lists_Input>;
   status?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Resource_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  resource_pages_id?: InputMaybe<Create_Resource_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Resource_Pages_Input = {
+  components?: InputMaybe<Array<InputMaybe<Create_Resource_Pages_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  /** actual text displayed in the dropdown */
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  /** if toggled, the link will point to *url*, otherwise it will point to /resources/{slug} where the component list will be shown */
+  external: Scalars['Boolean']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** url keyword if not an external link */
+  slug: Scalars['String']['input'];
+  /** order link should appear */
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
@@ -9190,6 +9398,187 @@ export type Quotes_Filter = {
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
+export type Resource_Pages = {
+  __typename?: 'resource_pages';
+  components?: Maybe<Array<Maybe<Resource_Pages_Custom_Component>>>;
+  components_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  /** actual text displayed in the dropdown */
+  dropdown_title?: Maybe<Scalars['String']['output']>;
+  /** if toggled, the link will point to *url*, otherwise it will point to /resources/{slug} where the component list will be shown */
+  external: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  /** url keyword if not an external link */
+  slug: Scalars['String']['output'];
+  /** order link should appear */
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Resource_PagesComponentsArgs = {
+  filter?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Resource_PagesUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Resource_PagesUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Resource_Pages_Aggregated = {
+  __typename?: 'resource_pages_aggregated';
+  avg?: Maybe<Resource_Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Resource_Pages_Aggregated_Fields>;
+  count?: Maybe<Resource_Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Resource_Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Resource_Pages_Aggregated_Fields>;
+  min?: Maybe<Resource_Pages_Aggregated_Fields>;
+  sum?: Maybe<Resource_Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Resource_Pages_Aggregated_Fields>;
+};
+
+export type Resource_Pages_Aggregated_Count = {
+  __typename?: 'resource_pages_aggregated_count';
+  components?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  /** actual text displayed in the dropdown */
+  dropdown_title?: Maybe<Scalars['Int']['output']>;
+  /** if toggled, the link will point to *url*, otherwise it will point to /resources/{slug} where the component list will be shown */
+  external?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  /** url keyword if not an external link */
+  slug?: Maybe<Scalars['Int']['output']>;
+  /** order link should appear */
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Resource_Pages_Aggregated_Fields = {
+  __typename?: 'resource_pages_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  /** order link should appear */
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Resource_Pages_Custom_Component = {
+  __typename?: 'resource_pages_custom_component';
+  custom_component_id?: Maybe<Custom_Component>;
+  id: Scalars['ID']['output'];
+  resource_pages_id?: Maybe<Resource_Pages>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type Resource_Pages_Custom_ComponentCustom_Component_IdArgs = {
+  filter?: InputMaybe<Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Resource_Pages_Custom_ComponentResource_Pages_IdArgs = {
+  filter?: InputMaybe<Resource_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Resource_Pages_Custom_Component_Aggregated = {
+  __typename?: 'resource_pages_custom_component_aggregated';
+  avg?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+  avgDistinct?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+  count?: Maybe<Resource_Pages_Custom_Component_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Resource_Pages_Custom_Component_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+  min?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+  sum?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+  sumDistinct?: Maybe<Resource_Pages_Custom_Component_Aggregated_Fields>;
+};
+
+export type Resource_Pages_Custom_Component_Aggregated_Count = {
+  __typename?: 'resource_pages_custom_component_aggregated_count';
+  custom_component_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  resource_pages_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Resource_Pages_Custom_Component_Aggregated_Fields = {
+  __typename?: 'resource_pages_custom_component_aggregated_fields';
+  custom_component_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  resource_pages_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Resource_Pages_Custom_Component_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Resource_Pages_Custom_Component_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Resource_Pages_Custom_Component_Filter>>>;
+  custom_component_id?: InputMaybe<Custom_Component_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  resource_pages_id?: InputMaybe<Resource_Pages_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Resource_Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Resource_Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Resource_Pages_Filter>>>;
+  components?: InputMaybe<Resource_Pages_Custom_Component_Filter>;
+  components_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  dropdown_title?: InputMaybe<String_Filter_Operators>;
+  external?: InputMaybe<Boolean_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  url?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
 export type Rich_Text_Columns = {
   __typename?: 'rich_text_columns';
   body_text: Scalars['String']['output'];
@@ -10722,6 +11111,32 @@ export type Update_Quotes_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Resource_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  resource_pages_id?: InputMaybe<Update_Resource_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Resource_Pages_Input = {
+  components?: InputMaybe<Array<InputMaybe<Update_Resource_Pages_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  /** actual text displayed in the dropdown */
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  /** if toggled, the link will point to *url*, otherwise it will point to /resources/{slug} where the component list will be shown */
+  external?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** url keyword if not an external link */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** order link should appear */
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
 export type Update_Rich_Text_Columns_Input = {
   body_text?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
@@ -10904,6 +11319,13 @@ export type OurImpactComponentFragment = { __typename?: 'our_impact', top_left_m
 
 export type QuoteCarouselComponentFragment = { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null };
 
+export type GlobalDataFragment = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }> };
+
+export type GetGlobalDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetGlobalDataQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }> };
+
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
 export type FullJobListingFragment = { __typename?: 'job_listings', content?: string | null, id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
@@ -10982,6 +11404,22 @@ export type ProductPageQueryVariables = Exact<{
 
 
 export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
+
+export type ResourcePageFragment = { __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+
+export type ResourcePageTinyFragment = { __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null };
+
+export type ResourcesPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ResourcesPageSlugsQuery = { __typename?: 'Query', resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }> };
+
+export type ResourcePageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ResourcePageQuery = { __typename?: 'Query', resource_pages: Array<{ __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
 export type SolutionPageFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
@@ -11290,6 +11728,60 @@ export const CustomPageTinyFragmentDoc = gql`
   slug
 }
     `;
+export const SiteSettingsFragmentDoc = gql`
+    fragment SiteSettings on site_settings {
+  og_description
+  og_image {
+    ...ImageFile
+  }
+}
+    ${ImageFileFragmentDoc}`;
+export const SolutionPageTinyFragmentDoc = gql`
+    fragment SolutionPageTiny on solutions_pages {
+  id
+  slug
+  category
+  dropdown_icon
+  dropdown_title
+}
+    `;
+export const ProductPageTinyFragmentDoc = gql`
+    fragment ProductPageTiny on product_pages {
+  id
+  slug
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+    `;
+export const ResourcePageTinyFragmentDoc = gql`
+    fragment ResourcePageTiny on resource_pages {
+  id
+  external
+  slug
+  url
+  dropdown_title
+}
+    `;
+export const GlobalDataFragmentDoc = gql`
+    fragment GlobalData on Query {
+  site_settings {
+    ...SiteSettings
+  }
+  solutions_pages(filter: {status: {_neq: "hidden"}}) {
+    ...SolutionPageTiny
+  }
+  product_pages {
+    ...ProductPageTiny
+  }
+  resource_pages(filter: {status: {_neq: "hidden"}}) {
+    ...ResourcePageTiny
+  }
+}
+    ${SiteSettingsFragmentDoc}
+${SolutionPageTinyFragmentDoc}
+${ProductPageTinyFragmentDoc}
+${ResourcePageTinyFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
   id
@@ -11389,15 +11881,19 @@ export const ProductPageFragmentDoc = gql`
   }
 }
     ${CustomComponentFragmentDoc}`;
-export const ProductPageTinyFragmentDoc = gql`
-    fragment ProductPageTiny on product_pages {
+export const ResourcePageFragmentDoc = gql`
+    fragment ResourcePage on resource_pages {
   id
   slug
-  dropdown_icon
+  url
   dropdown_title
-  dropdown_description
+  components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
 }
-    `;
+    ${CustomComponentFragmentDoc}`;
 export const SolutionPageFragmentDoc = gql`
     fragment SolutionPage on solutions_pages {
   id
@@ -11412,23 +11908,6 @@ export const SolutionPageFragmentDoc = gql`
   }
 }
     ${CustomComponentFragmentDoc}`;
-export const SolutionPageTinyFragmentDoc = gql`
-    fragment SolutionPageTiny on solutions_pages {
-  id
-  slug
-  category
-  dropdown_icon
-  dropdown_title
-}
-    `;
-export const SiteSettingsFragmentDoc = gql`
-    fragment SiteSettings on site_settings {
-  og_description
-  og_image {
-    ...ImageFile
-  }
-}
-    ${ImageFileFragmentDoc}`;
 export const MarkdownPageFragmentDoc = gql`
     fragment MarkdownPage on markdown_pages {
   id
@@ -11557,6 +12036,38 @@ export function useCustomPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type CustomPageQueryHookResult = ReturnType<typeof useCustomPageQuery>;
 export type CustomPageLazyQueryHookResult = ReturnType<typeof useCustomPageLazyQuery>;
 export type CustomPageQueryResult = Apollo.QueryResult<CustomPageQuery, CustomPageQueryVariables>;
+export const GetGlobalDataDocument = gql`
+    query GetGlobalData {
+  ...GlobalData
+}
+    ${GlobalDataFragmentDoc}`;
+
+/**
+ * __useGetGlobalDataQuery__
+ *
+ * To run a query within a React component, call `useGetGlobalDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetGlobalDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetGlobalDataQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetGlobalDataQuery(baseOptions?: Apollo.QueryHookOptions<GetGlobalDataQuery, GetGlobalDataQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetGlobalDataQuery, GetGlobalDataQueryVariables>(GetGlobalDataDocument, options);
+      }
+export function useGetGlobalDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetGlobalDataQuery, GetGlobalDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetGlobalDataQuery, GetGlobalDataQueryVariables>(GetGlobalDataDocument, options);
+        }
+export type GetGlobalDataQueryHookResult = ReturnType<typeof useGetGlobalDataQuery>;
+export type GetGlobalDataLazyQueryHookResult = ReturnType<typeof useGetGlobalDataLazyQuery>;
+export type GetGlobalDataQueryResult = Apollo.QueryResult<GetGlobalDataQuery, GetGlobalDataQueryVariables>;
 export const JobListingsDocument = gql`
     query JobListings {
   job_listings(filter: {status: {_neq: "archived"}}) {
@@ -11866,6 +12377,75 @@ export function useProductPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type ProductPageQueryHookResult = ReturnType<typeof useProductPageQuery>;
 export type ProductPageLazyQueryHookResult = ReturnType<typeof useProductPageLazyQuery>;
 export type ProductPageQueryResult = Apollo.QueryResult<ProductPageQuery, ProductPageQueryVariables>;
+export const ResourcesPageSlugsDocument = gql`
+    query ResourcesPageSlugs {
+  resource_pages(filter: {status: {_neq: "hidden"}}) {
+    ...ResourcePageTiny
+  }
+}
+    ${ResourcePageTinyFragmentDoc}`;
+
+/**
+ * __useResourcesPageSlugsQuery__
+ *
+ * To run a query within a React component, call `useResourcesPageSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useResourcesPageSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useResourcesPageSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useResourcesPageSlugsQuery(baseOptions?: Apollo.QueryHookOptions<ResourcesPageSlugsQuery, ResourcesPageSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ResourcesPageSlugsQuery, ResourcesPageSlugsQueryVariables>(ResourcesPageSlugsDocument, options);
+      }
+export function useResourcesPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ResourcesPageSlugsQuery, ResourcesPageSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ResourcesPageSlugsQuery, ResourcesPageSlugsQueryVariables>(ResourcesPageSlugsDocument, options);
+        }
+export type ResourcesPageSlugsQueryHookResult = ReturnType<typeof useResourcesPageSlugsQuery>;
+export type ResourcesPageSlugsLazyQueryHookResult = ReturnType<typeof useResourcesPageSlugsLazyQuery>;
+export type ResourcesPageSlugsQueryResult = Apollo.QueryResult<ResourcesPageSlugsQuery, ResourcesPageSlugsQueryVariables>;
+export const ResourcePageDocument = gql`
+    query ResourcePage($slug: String!) {
+  resource_pages(filter: {slug: {_eq: $slug}, status: {_neq: "hidden"}}) {
+    ...ResourcePage
+  }
+}
+    ${ResourcePageFragmentDoc}`;
+
+/**
+ * __useResourcePageQuery__
+ *
+ * To run a query within a React component, call `useResourcePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useResourcePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useResourcePageQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useResourcePageQuery(baseOptions: Apollo.QueryHookOptions<ResourcePageQuery, ResourcePageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ResourcePageQuery, ResourcePageQueryVariables>(ResourcePageDocument, options);
+      }
+export function useResourcePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ResourcePageQuery, ResourcePageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ResourcePageQuery, ResourcePageQueryVariables>(ResourcePageDocument, options);
+        }
+export type ResourcePageQueryHookResult = ReturnType<typeof useResourcePageQuery>;
+export type ResourcePageLazyQueryHookResult = ReturnType<typeof useResourcePageLazyQuery>;
+export type ResourcePageQueryResult = Apollo.QueryResult<ResourcePageQuery, ResourcePageQueryVariables>;
 export const SolutionPageSlugsDocument = gql`
     query SolutionPageSlugs {
   solutions_pages(filter: {status: {_neq: "hidden"}}) {

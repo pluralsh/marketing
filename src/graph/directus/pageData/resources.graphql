@@ -1,0 +1,31 @@
+fragment ResourcePage on resource_pages {
+  id
+  slug
+  url
+  dropdown_title
+  components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+}
+
+fragment ResourcePageTiny on resource_pages {
+  id
+  external
+  slug
+  url
+  dropdown_title
+}
+
+query ResourcesPageSlugs {
+  resource_pages(filter: { status: { _neq: "hidden" } }) {
+    ...ResourcePageTiny
+  }
+}
+
+query ResourcePage($slug: String!) {
+  resource_pages(filter: { slug: { _eq: $slug }, status: { _neq: "hidden" } }) {
+    ...ResourcePage
+  }
+}
