@@ -46,7 +46,8 @@ export function LargeImage({
           <Body2 $color="text-light">{bodyText}</Body2>
           {ctaText && (
             <Button
-              className="mt-medium w-fit"
+              large
+              className="mt-medium w-full lg:w-fit"
               as={Link}
               target="_blank"
               rel="noopener noreferrer"
