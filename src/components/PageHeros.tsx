@@ -35,15 +35,12 @@ export function HeroMainText({
       )}
       {...props}
     >
-      <div className="flex flex-col gap-y-medium">
+      <div className="flex flex-col items-center gap-y-medium">
         <h1 className="txt-mktg-hero-2 [text-wrap:balance] md:txt-mktg-big-header">
           {preHeading && (
-            <>
-              <strong className="txt-mktg-label mb-medium block [text-wrap:balance]">
-                {preHeading}
-              </strong>
-              <span className="sr-only"> – </span>
-            </>
+            <strong className="txt-mktg-label mb-medium block [text-wrap:balance]">
+              {preHeading}
+            </strong>
           )}
           {heading}
         </h1>
@@ -61,8 +58,8 @@ export function HeroMainText({
           )}
         </TextLimiter>
       </div>
-      {ctas && <div>{ctas}</div>}
-      {children && <div>{children}</div>}
+      {ctas}
+      {children}
     </div>
   )
 }
@@ -160,9 +157,9 @@ export function HomePageHero({
         <HeroMainText
           preHeading={preHeading}
           heading={heading}
-          description={<div className="text-center">{description}</div>}
+          description={description}
           ctas={ctas}
-          className="mx-auto"
+          className="max-w-[768px]"
         />
       </div>
     </StandardPageWidth>
