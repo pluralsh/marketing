@@ -11,23 +11,11 @@ import {
 import { REVALIDATE_TIME } from '@src/consts'
 import { getSiteSettings } from '@src/data/getSiteSettings'
 import {
-  ProductPageSlugsDocument,
-  type ProductPageSlugsQuery,
-  type ProductPageSlugsQueryVariables,
-  SiteSettingsDocument,
-  type SiteSettingsQuery,
-  type SiteSettingsQueryVariables,
-  SolutionPageSlugsDocument,
-  type SolutionPageSlugsQuery,
-  type SolutionPageSlugsQueryVariables,
+  GetGlobalDataDocument,
+  type GetGlobalDataQuery,
 } from '@src/generated/graphqlDirectus'
 
 import { combineErrors } from './combineErrors'
-
-const CACHE_POLICY = {
-  fetchPolicy: 'cache-first',
-  nextFetchPolicy: 'cache-first',
-} as const
 
 async function getGlobalProps() {
   const { data: githubData, error: githubError } = await until(() =>
@@ -40,41 +28,23 @@ async function getGlobalProps() {
     swrFallback[GITHUB_DATA_URL] = githubData
   }
 
-  const { data: solutionsData } = await directusClient.query<
-    SolutionPageSlugsQuery,
-    SolutionPageSlugsQueryVariables
-  >({
-    query: SolutionPageSlugsDocument,
-    ...CACHE_POLICY,
+  const { data, error } = await directusClient.query<GetGlobalDataQuery>({
+    query: GetGlobalDataDocument,
   })
-  const solutions = solutionsData.solutions_pages
 
-  const { data: productData } = await directusClient.query<
-    ProductPageSlugsQuery,
-    ProductPageSlugsQueryVariables
-  >({
-    query: ProductPageSlugsDocument,
-    ...CACHE_POLICY,
-  })
-  const products = productData.product_pages
-
-  const { data: siteSettingsData } = await directusClient.query<
-    SiteSettingsQuery,
-    SiteSettingsQueryVariables
-  >({
-    query: SiteSettingsDocument,
-    ...CACHE_POLICY,
-  })
-  const siteSettingsQuery = siteSettingsData.site_settings ?? {}
-
-  const siteSettings = getSiteSettings(siteSettingsQuery, solutions, products)
+  const siteSettings = getSiteSettings(
+    data.site_settings ?? {},
+    data.solutions_pages,
+    data.product_pages,
+    data.resource_pages
+  )
 
   return {
     siteSettings,
     swrConfig: {
       fallback: swrFallback,
     },
-    errors: combineErrors([githubError]),
+    errors: combineErrors([githubError, error]),
   }
 }
 type AsyncReturnType<T extends (...args: any) => Promise<any>> = T extends (
