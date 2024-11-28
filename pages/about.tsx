@@ -112,10 +112,7 @@ export default function About({
               className="mb-xxxxlarge"
             >
               We are a dynamic and innovative company that specializes in
-              creating meaningful connections and fostering collaboration. At
-              Plural, we believe in the power of diversity and inclusion,
-              recognizing that when different perspectives come together,
-              incredible things happen.
+              creating meaningful connections and fostering collaboration.
             </ResponsiveText>
 
             <img
@@ -156,14 +153,10 @@ mission to build something unique."
                   </Value>
                   <Value label="Inclusivity">
                     <p className="m-0 p-0">
-                      We are dedicated to building an inclusive platform that
-                      welcomes individuals from diverse backgrounds,
-                      perspectives, and experiences. We value the contributions
-                      of all community members and actively work towards
-                      creating an environment that is accessible, equitable, and
-                      supportive. We are committed to removing barriers and
-                      ensuring that everyone has an equal opportunity to
-                      succeed.
+                      We value the contributions of all community members and actively 
+                      work towards creating an environment that is accessible and supportive. 
+                      We are committed to removing barriers and ensuring that everyone has 
+                      an equal opportunity to succeed.
                     </p>
                   </Value>
                   <Value label="Open mindedness and exploration">
