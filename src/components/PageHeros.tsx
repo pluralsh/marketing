@@ -143,8 +143,7 @@ export function HomePageHero({
             [classNames('pt-xxxxlarge', 'md:pt-xxxxlarge')]: padTop,
           },
           {
-            [classNames('pb-xxxlarge', 'md:pb-xxxxlarge', 'lg:pb-xxxxxlarge')]:
-              padBottom,
+            [classNames('pb-xxxlarge', 'md:pb-xxxxlarge')]: padBottom,
           }
         )}
       >

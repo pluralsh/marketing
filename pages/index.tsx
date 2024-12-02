@@ -41,6 +41,7 @@ export default function Homepage({
         as={GradientBG}
         image={homepageGradient}
         imageType="custom"
+        className="pb-xxlarge"
         bgChildren={
           <>
             <CircleEmbellishment
@@ -61,8 +62,7 @@ export default function Homepage({
           heading={pageData.hero_title}
           description={
             <div className="[text-wrap:pretty]">
-              Plural reduces cluster upgrade cycles from months to hours at
-              enterprise scale with streamlined dependency management.
+              {pageData.hero_description}
             </div>
           }
           announcementChip={announcementChip}
@@ -90,16 +90,15 @@ export default function Homepage({
             </div>
           }
         />
-        <div className="-mt-xxxlarge pb-xxxxlarge pt-xxxlarge sm:pt-xxxxlarge md:pb-xxxxxxlarge md:pt-xxxxlarge lg:pt-0">
-          <StandardPageWidth>
-            {heroImageUrl && (
-              <img
-                src={heroImageUrl}
-                width={1248}
-              />
-            )}
-          </StandardPageWidth>
-        </div>
+        <StandardPageWidth>
+          {heroImageUrl && (
+            <img
+              className="mx-auto"
+              src={heroImageUrl}
+              width={1248}
+            />
+          )}
+        </StandardPageWidth>
       </HeaderPad>
       <CustomComponents components={pageData.custom_components ?? []} />
       <BareModal

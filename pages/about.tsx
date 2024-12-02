@@ -153,10 +153,11 @@ mission to build something unique."
                   </Value>
                   <Value label="Inclusivity">
                     <p className="m-0 p-0">
-                      We value the contributions of all community members and actively 
-                      work towards creating an environment that is accessible and supportive. 
-                      We are committed to removing barriers and ensuring that everyone has 
-                      an equal opportunity to succeed.
+                      We value the contributions of all community members and
+                      actively work towards creating an environment that is
+                      accessible and supportive. We are committed to removing
+                      barriers and ensuring that everyone has an equal
+                      opportunity to succeed.
                     </p>
                   </Value>
                   <Value label="Open mindedness and exploration">
