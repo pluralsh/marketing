@@ -51,6 +51,16 @@ fragment PlatformOverviewPage on platform_overview_page {
   }
 }
 
+fragment ContactPage on contact_sales {
+  heading
+  body_text
+  cta_text
+  cta_url
+  form {
+    ...Form
+  }
+}
+
 query PageLegal {
   page_legal {
     ...PageLegal
@@ -74,5 +84,11 @@ query PageHomepage {
 query PlatformOverviewPage {
   platform_overview_page {
     ...PlatformOverviewPage
+  }
+}
+
+query ContactPage {
+  contact_sales {
+    ...ContactPage
   }
 }

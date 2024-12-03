@@ -66,8 +66,20 @@ export type Mutation = {
   create_customer_quote_items: Array<Customer_Quote>;
   create_events_item?: Maybe<Events>;
   create_events_items: Array<Events>;
+  create_footer_footer_links_1_item?: Maybe<Footer_Footer_Links_1>;
+  create_footer_footer_links_1_items: Array<Footer_Footer_Links_1>;
+  create_footer_footer_links_2_item?: Maybe<Footer_Footer_Links_2>;
+  create_footer_footer_links_2_items: Array<Footer_Footer_Links_2>;
+  create_footer_footer_links_3_item?: Maybe<Footer_Footer_Links_3>;
+  create_footer_footer_links_3_items: Array<Footer_Footer_Links_3>;
+  create_footer_footer_links_item?: Maybe<Footer_Footer_Links>;
+  create_footer_footer_links_items: Array<Footer_Footer_Links>;
+  create_footer_links_item?: Maybe<Footer_Links>;
+  create_footer_links_items: Array<Footer_Links>;
   create_hero_item?: Maybe<Hero>;
   create_hero_items: Array<Hero>;
+  create_hubspot_forms_item?: Maybe<Hubspot_Forms>;
+  create_hubspot_forms_items: Array<Hubspot_Forms>;
   create_job_listings_item?: Maybe<Job_Listings>;
   create_job_listings_items: Array<Job_Listings>;
   create_large_image_item?: Maybe<Large_Image>;
@@ -170,8 +182,20 @@ export type Mutation = {
   delete_customer_quote_items?: Maybe<Delete_Many>;
   delete_events_item?: Maybe<Delete_One>;
   delete_events_items?: Maybe<Delete_Many>;
+  delete_footer_footer_links_1_item?: Maybe<Delete_One>;
+  delete_footer_footer_links_1_items?: Maybe<Delete_Many>;
+  delete_footer_footer_links_2_item?: Maybe<Delete_One>;
+  delete_footer_footer_links_2_items?: Maybe<Delete_Many>;
+  delete_footer_footer_links_3_item?: Maybe<Delete_One>;
+  delete_footer_footer_links_3_items?: Maybe<Delete_Many>;
+  delete_footer_footer_links_item?: Maybe<Delete_One>;
+  delete_footer_footer_links_items?: Maybe<Delete_Many>;
+  delete_footer_links_item?: Maybe<Delete_One>;
+  delete_footer_links_items?: Maybe<Delete_Many>;
   delete_hero_item?: Maybe<Delete_One>;
   delete_hero_items?: Maybe<Delete_Many>;
+  delete_hubspot_forms_item?: Maybe<Delete_One>;
+  delete_hubspot_forms_items?: Maybe<Delete_Many>;
   delete_job_listings_item?: Maybe<Delete_One>;
   delete_job_listings_items?: Maybe<Delete_Many>;
   delete_large_image_item?: Maybe<Delete_One>;
@@ -273,6 +297,7 @@ export type Mutation = {
   update_company_logos_batch: Array<Company_Logos>;
   update_company_logos_item?: Maybe<Company_Logos>;
   update_company_logos_items: Array<Company_Logos>;
+  update_contact_sales?: Maybe<Contact_Sales>;
   update_cta_batch: Array<Cta>;
   update_cta_item?: Maybe<Cta>;
   update_cta_items: Array<Cta>;
@@ -294,9 +319,28 @@ export type Mutation = {
   update_events_batch: Array<Events>;
   update_events_item?: Maybe<Events>;
   update_events_items: Array<Events>;
+  update_footer?: Maybe<Footer>;
+  update_footer_footer_links_1_batch: Array<Footer_Footer_Links_1>;
+  update_footer_footer_links_1_item?: Maybe<Footer_Footer_Links_1>;
+  update_footer_footer_links_1_items: Array<Footer_Footer_Links_1>;
+  update_footer_footer_links_2_batch: Array<Footer_Footer_Links_2>;
+  update_footer_footer_links_2_item?: Maybe<Footer_Footer_Links_2>;
+  update_footer_footer_links_2_items: Array<Footer_Footer_Links_2>;
+  update_footer_footer_links_3_batch: Array<Footer_Footer_Links_3>;
+  update_footer_footer_links_3_item?: Maybe<Footer_Footer_Links_3>;
+  update_footer_footer_links_3_items: Array<Footer_Footer_Links_3>;
+  update_footer_footer_links_batch: Array<Footer_Footer_Links>;
+  update_footer_footer_links_item?: Maybe<Footer_Footer_Links>;
+  update_footer_footer_links_items: Array<Footer_Footer_Links>;
+  update_footer_links_batch: Array<Footer_Links>;
+  update_footer_links_item?: Maybe<Footer_Links>;
+  update_footer_links_items: Array<Footer_Links>;
   update_hero_batch: Array<Hero>;
   update_hero_item?: Maybe<Hero>;
   update_hero_items: Array<Hero>;
+  update_hubspot_forms_batch: Array<Hubspot_Forms>;
+  update_hubspot_forms_item?: Maybe<Hubspot_Forms>;
+  update_hubspot_forms_items: Array<Hubspot_Forms>;
   update_job_listings_batch: Array<Job_Listings>;
   update_job_listings_item?: Maybe<Job_Listings>;
   update_job_listings_items: Array<Job_Listings>;
@@ -718,6 +762,86 @@ export type MutationCreate_Events_ItemsArgs = {
 };
 
 
+export type MutationCreate_Footer_Footer_Links_1_ItemArgs = {
+  data: Create_Footer_Footer_Links_1_Input;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_1_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Footer_Footer_Links_1_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_2_ItemArgs = {
+  data: Create_Footer_Footer_Links_2_Input;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_2_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Footer_Footer_Links_2_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_3_ItemArgs = {
+  data: Create_Footer_Footer_Links_3_Input;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_3_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Footer_Footer_Links_3_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_ItemArgs = {
+  data: Create_Footer_Footer_Links_Input;
+};
+
+
+export type MutationCreate_Footer_Footer_Links_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Footer_Footer_Links_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Footer_Links_ItemArgs = {
+  data: Create_Footer_Links_Input;
+};
+
+
+export type MutationCreate_Footer_Links_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Footer_Links_Input>>;
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationCreate_Hero_ItemArgs = {
   data: Create_Hero_Input;
 };
@@ -726,6 +850,22 @@ export type MutationCreate_Hero_ItemArgs = {
 export type MutationCreate_Hero_ItemsArgs = {
   data?: InputMaybe<Array<Create_Hero_Input>>;
   filter?: InputMaybe<Hero_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Hubspot_Forms_ItemArgs = {
+  data: Create_Hubspot_Forms_Input;
+};
+
+
+export type MutationCreate_Hubspot_Forms_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Hubspot_Forms_Input>>;
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -1430,12 +1570,72 @@ export type MutationDelete_Events_ItemsArgs = {
 };
 
 
+export type MutationDelete_Footer_Footer_Links_1_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Footer_Footer_Links_1_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Footer_Footer_Links_2_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Footer_Footer_Links_2_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Footer_Footer_Links_3_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Footer_Footer_Links_3_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Footer_Footer_Links_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Footer_Footer_Links_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Footer_Links_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Footer_Links_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
 export type MutationDelete_Hero_ItemArgs = {
   id: Scalars['ID']['input'];
 };
 
 
 export type MutationDelete_Hero_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Hubspot_Forms_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Hubspot_Forms_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -2127,6 +2327,11 @@ export type MutationUpdate_Company_Logos_ItemsArgs = {
 };
 
 
+export type MutationUpdate_Contact_SalesArgs = {
+  data: Update_Contact_Sales_Input;
+};
+
+
 export type MutationUpdate_Cta_BatchArgs = {
   data?: InputMaybe<Array<Update_Cta_Input>>;
   filter?: InputMaybe<Cta_Filter>;
@@ -2330,6 +2535,156 @@ export type MutationUpdate_Events_ItemsArgs = {
 };
 
 
+export type MutationUpdate_FooterArgs = {
+  data: Update_Footer_Input;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_1_BatchArgs = {
+  data?: InputMaybe<Array<Update_Footer_Footer_Links_1_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_1_ItemArgs = {
+  data: Update_Footer_Footer_Links_1_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_1_ItemsArgs = {
+  data: Update_Footer_Footer_Links_1_Input;
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_2_BatchArgs = {
+  data?: InputMaybe<Array<Update_Footer_Footer_Links_2_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_2_ItemArgs = {
+  data: Update_Footer_Footer_Links_2_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_2_ItemsArgs = {
+  data: Update_Footer_Footer_Links_2_Input;
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_3_BatchArgs = {
+  data?: InputMaybe<Array<Update_Footer_Footer_Links_3_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_3_ItemArgs = {
+  data: Update_Footer_Footer_Links_3_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_3_ItemsArgs = {
+  data: Update_Footer_Footer_Links_3_Input;
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_BatchArgs = {
+  data?: InputMaybe<Array<Update_Footer_Footer_Links_Input>>;
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_ItemArgs = {
+  data: Update_Footer_Footer_Links_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Footer_Footer_Links_ItemsArgs = {
+  data: Update_Footer_Footer_Links_Input;
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Links_BatchArgs = {
+  data?: InputMaybe<Array<Update_Footer_Links_Input>>;
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Footer_Links_ItemArgs = {
+  data: Update_Footer_Links_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Footer_Links_ItemsArgs = {
+  data: Update_Footer_Links_Input;
+  filter?: InputMaybe<Footer_Links_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationUpdate_Hero_BatchArgs = {
   data?: InputMaybe<Array<Update_Hero_Input>>;
   filter?: InputMaybe<Hero_Filter>;
@@ -2350,6 +2705,35 @@ export type MutationUpdate_Hero_ItemArgs = {
 export type MutationUpdate_Hero_ItemsArgs = {
   data: Update_Hero_Input;
   filter?: InputMaybe<Hero_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Hubspot_Forms_BatchArgs = {
+  data?: InputMaybe<Array<Update_Hubspot_Forms_Input>>;
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Hubspot_Forms_ItemArgs = {
+  data: Update_Hubspot_Forms_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Hubspot_Forms_ItemsArgs = {
+  data: Update_Hubspot_Forms_Input;
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -3323,6 +3707,7 @@ export type Query = {
   company_logos: Array<Company_Logos>;
   company_logos_aggregated: Array<Company_Logos_Aggregated>;
   company_logos_by_id?: Maybe<Company_Logos>;
+  contact_sales?: Maybe<Contact_Sales>;
   cta: Array<Cta>;
   cta_aggregated: Array<Cta_Aggregated>;
   cta_by_id?: Maybe<Cta>;
@@ -3344,9 +3729,28 @@ export type Query = {
   events: Array<Events>;
   events_aggregated: Array<Events_Aggregated>;
   events_by_id?: Maybe<Events>;
+  footer?: Maybe<Footer>;
+  footer_footer_links: Array<Footer_Footer_Links>;
+  footer_footer_links_1: Array<Footer_Footer_Links_1>;
+  footer_footer_links_1_aggregated: Array<Footer_Footer_Links_1_Aggregated>;
+  footer_footer_links_1_by_id?: Maybe<Footer_Footer_Links_1>;
+  footer_footer_links_2: Array<Footer_Footer_Links_2>;
+  footer_footer_links_2_aggregated: Array<Footer_Footer_Links_2_Aggregated>;
+  footer_footer_links_2_by_id?: Maybe<Footer_Footer_Links_2>;
+  footer_footer_links_3: Array<Footer_Footer_Links_3>;
+  footer_footer_links_3_aggregated: Array<Footer_Footer_Links_3_Aggregated>;
+  footer_footer_links_3_by_id?: Maybe<Footer_Footer_Links_3>;
+  footer_footer_links_aggregated: Array<Footer_Footer_Links_Aggregated>;
+  footer_footer_links_by_id?: Maybe<Footer_Footer_Links>;
+  footer_links: Array<Footer_Links>;
+  footer_links_aggregated: Array<Footer_Links_Aggregated>;
+  footer_links_by_id?: Maybe<Footer_Links>;
   hero: Array<Hero>;
   hero_aggregated: Array<Hero_Aggregated>;
   hero_by_id?: Maybe<Hero>;
+  hubspot_forms: Array<Hubspot_Forms>;
+  hubspot_forms_aggregated: Array<Hubspot_Forms_Aggregated>;
+  hubspot_forms_by_id?: Maybe<Hubspot_Forms>;
   job_listings: Array<Job_Listings>;
   job_listings_aggregated: Array<Job_Listings_Aggregated>;
   job_listings_by_id?: Maybe<Job_Listings>;
@@ -3968,6 +4372,136 @@ export type QueryEvents_By_IdArgs = {
 };
 
 
+export type QueryFooter_Footer_LinksArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_1Args = {
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_1_AggregatedArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_1_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFooter_Footer_Links_2Args = {
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_2_AggregatedArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_2_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFooter_Footer_Links_3Args = {
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_3_AggregatedArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_3_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFooter_Footer_Links_AggregatedArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Footer_Links_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryFooter_LinksArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Links_AggregatedArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryFooter_Links_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryHeroArgs = {
   filter?: InputMaybe<Hero_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3990,6 +4524,32 @@ export type QueryHero_AggregatedArgs = {
 
 
 export type QueryHero_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryHubspot_FormsArgs = {
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryHubspot_Forms_AggregatedArgs = {
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryHubspot_Forms_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -5864,6 +6424,52 @@ export type Company_Logos_Filter = {
   url?: InputMaybe<String_Filter_Operators>;
 };
 
+export type Contact_Sales = {
+  __typename?: 'contact_sales';
+  body_text?: Maybe<Scalars['String']['output']>;
+  cta_text?: Maybe<Scalars['String']['output']>;
+  cta_url?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  form?: Maybe<Hubspot_Forms>;
+  heading?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Contact_SalesFormArgs = {
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Contact_SalesUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Contact_SalesUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Count_Function_Filter_Operators = {
   count?: InputMaybe<Number_Filter_Operators>;
 };
@@ -6041,6 +6647,7 @@ export type Create_Custom_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   custom_pages_id?: InputMaybe<Create_Custom_Pages_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Custom_Pages_Input = {
@@ -6151,13 +6758,67 @@ export type Create_Events_Input = {
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
+export type Create_Footer_Footer_Links_1_Input = {
+  footer_id?: InputMaybe<Create_Footer_Input>;
+  footer_links_id?: InputMaybe<Create_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Footer_Footer_Links_2_Input = {
+  footer_id?: InputMaybe<Create_Footer_Input>;
+  footer_links_id?: InputMaybe<Create_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Footer_Footer_Links_3_Input = {
+  footer_id?: InputMaybe<Create_Footer_Input>;
+  footer_links_id?: InputMaybe<Create_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Footer_Footer_Links_Input = {
+  footer_id?: InputMaybe<Create_Footer_Input>;
+  footer_links_id?: InputMaybe<Create_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Create_Footer_Input = {
+  column_1_links?: InputMaybe<Array<InputMaybe<Create_Footer_Footer_Links_Input>>>;
+  column_1_title?: InputMaybe<Scalars['String']['input']>;
+  column_2_links?: InputMaybe<Array<InputMaybe<Create_Footer_Footer_Links_1_Input>>>;
+  column_2_title?: InputMaybe<Scalars['String']['input']>;
+  column_3_links?: InputMaybe<Array<InputMaybe<Create_Footer_Footer_Links_2_Input>>>;
+  column_3_title?: InputMaybe<Scalars['String']['input']>;
+  column_4_links?: InputMaybe<Array<InputMaybe<Create_Footer_Footer_Links_3_Input>>>;
+  column_4_title?: InputMaybe<Scalars['String']['input']>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Footer_Links_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name: Scalars['String']['input'];
+  url: Scalars['String']['input'];
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
 export type Create_Hero_Input = {
   body_text?: InputMaybe<Scalars['String']['input']>;
   cta_text?: InputMaybe<Scalars['String']['input']>;
   cta_url?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
-  form?: InputMaybe<Scalars['String']['input']>;
+  form?: InputMaybe<Create_Hubspot_Forms_Input>;
   heading?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Create_Directus_Files_Input>;
@@ -6165,6 +6826,19 @@ export type Create_Hero_Input = {
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
   video_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Create_Hubspot_Forms_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  form_id: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** just for referencing internally */
+  name?: InputMaybe<Scalars['String']['input']>;
+  portal_id?: InputMaybe<Scalars['String']['input']>;
+  region?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
 
 export type Create_Job_Listings_Input = {
@@ -6188,7 +6862,7 @@ export type Create_Large_Image_Input = {
   cta_url?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
-  form?: InputMaybe<Scalars['String']['input']>;
+  form?: InputMaybe<Create_Hubspot_Forms_Input>;
   heading?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Create_Directus_Files_Input>;
@@ -6262,13 +6936,13 @@ export type Create_Page_Homepage_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   page_homepage_id?: InputMaybe<Create_Page_Homepage_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Page_Homepage_Input = {
   announcement_text?: InputMaybe<Scalars['String']['input']>;
   announcement_url?: InputMaybe<Scalars['String']['input']>;
   announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
-  article_cards?: InputMaybe<Array<InputMaybe<Create_Article_Cards_Input>>>;
   custom_components?: InputMaybe<Array<InputMaybe<Create_Page_Homepage_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
@@ -6281,7 +6955,6 @@ export type Create_Page_Homepage_Input = {
   /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  quotes?: InputMaybe<Create_Quote_Lists_Input>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
@@ -6299,12 +6972,14 @@ export type Create_Platform_Overview_Page_Custom_Component_1_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   platform_overview_page_id?: InputMaybe<Create_Platform_Overview_Page_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Platform_Overview_Page_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   platform_overview_page_id?: InputMaybe<Create_Platform_Overview_Page_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Platform_Overview_Page_Input = {
@@ -6351,6 +7026,7 @@ export type Create_Product_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   product_pages_id?: InputMaybe<Create_Product_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Product_Pages_Input = {
@@ -6505,6 +7181,7 @@ export type Create_Solutions_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   solutions_pages_id?: InputMaybe<Create_Solutions_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Create_Solutions_Pages_Input = {
@@ -6897,6 +7574,7 @@ export type Custom_Pages_Custom_Component = {
   custom_component_id?: Maybe<Custom_Component>;
   custom_pages_id?: Maybe<Custom_Pages>;
   id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -6938,6 +7616,7 @@ export type Custom_Pages_Custom_Component_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   custom_pages_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Custom_Pages_Custom_Component_Aggregated_Fields = {
@@ -6945,6 +7624,7 @@ export type Custom_Pages_Custom_Component_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   custom_pages_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Custom_Pages_Custom_Component_Filter = {
@@ -6953,6 +7633,7 @@ export type Custom_Pages_Custom_Component_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   custom_pages_id?: InputMaybe<Custom_Pages_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Custom_Pages_Filter = {
@@ -7468,6 +8149,458 @@ export type Events_Filter = {
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
+export type Footer = {
+  __typename?: 'footer';
+  column_1_links?: Maybe<Array<Maybe<Footer_Footer_Links>>>;
+  column_1_links_func?: Maybe<Count_Functions>;
+  column_1_title?: Maybe<Scalars['String']['output']>;
+  column_2_links?: Maybe<Array<Maybe<Footer_Footer_Links_1>>>;
+  column_2_links_func?: Maybe<Count_Functions>;
+  column_2_title?: Maybe<Scalars['String']['output']>;
+  column_3_links?: Maybe<Array<Maybe<Footer_Footer_Links_2>>>;
+  column_3_links_func?: Maybe<Count_Functions>;
+  column_3_title?: Maybe<Scalars['String']['output']>;
+  column_4_links?: Maybe<Array<Maybe<Footer_Footer_Links_3>>>;
+  column_4_links_func?: Maybe<Count_Functions>;
+  column_4_title?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type FooterColumn_1_LinksArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type FooterColumn_2_LinksArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type FooterColumn_3_LinksArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type FooterColumn_4_LinksArgs = {
+  filter?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type FooterUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type FooterUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Filter>>>;
+  column_1_links?: InputMaybe<Footer_Footer_Links_Filter>;
+  column_1_links_func?: InputMaybe<Count_Function_Filter_Operators>;
+  column_1_title?: InputMaybe<String_Filter_Operators>;
+  column_2_links?: InputMaybe<Footer_Footer_Links_1_Filter>;
+  column_2_links_func?: InputMaybe<Count_Function_Filter_Operators>;
+  column_2_title?: InputMaybe<String_Filter_Operators>;
+  column_3_links?: InputMaybe<Footer_Footer_Links_2_Filter>;
+  column_3_links_func?: InputMaybe<Count_Function_Filter_Operators>;
+  column_3_title?: InputMaybe<String_Filter_Operators>;
+  column_4_links?: InputMaybe<Footer_Footer_Links_3_Filter>;
+  column_4_links_func?: InputMaybe<Count_Function_Filter_Operators>;
+  column_4_title?: InputMaybe<String_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Footer_Footer_Links = {
+  __typename?: 'footer_footer_links';
+  footer_id?: Maybe<Footer>;
+  footer_links_id?: Maybe<Footer_Links>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type Footer_Footer_LinksFooter_IdArgs = {
+  filter?: InputMaybe<Footer_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Footer_Footer_LinksFooter_Links_IdArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Footer_Links_1 = {
+  __typename?: 'footer_footer_links_1';
+  footer_id?: Maybe<Footer>;
+  footer_links_id?: Maybe<Footer_Links>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type Footer_Footer_Links_1Footer_IdArgs = {
+  filter?: InputMaybe<Footer_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Footer_Footer_Links_1Footer_Links_IdArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Footer_Links_1_Aggregated = {
+  __typename?: 'footer_footer_links_1_aggregated';
+  avg?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+  avgDistinct?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+  count?: Maybe<Footer_Footer_Links_1_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Footer_Footer_Links_1_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+  min?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+  sum?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+  sumDistinct?: Maybe<Footer_Footer_Links_1_Aggregated_Fields>;
+};
+
+export type Footer_Footer_Links_1_Aggregated_Count = {
+  __typename?: 'footer_footer_links_1_aggregated_count';
+  footer_id?: Maybe<Scalars['Int']['output']>;
+  footer_links_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Footer_Footer_Links_1_Aggregated_Fields = {
+  __typename?: 'footer_footer_links_1_aggregated_fields';
+  footer_id?: Maybe<Scalars['Float']['output']>;
+  footer_links_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Footer_Footer_Links_1_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_1_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_1_Filter>>>;
+  footer_id?: InputMaybe<Footer_Filter>;
+  footer_links_id?: InputMaybe<Footer_Links_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Footer_Footer_Links_2 = {
+  __typename?: 'footer_footer_links_2';
+  footer_id?: Maybe<Footer>;
+  footer_links_id?: Maybe<Footer_Links>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type Footer_Footer_Links_2Footer_IdArgs = {
+  filter?: InputMaybe<Footer_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Footer_Footer_Links_2Footer_Links_IdArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Footer_Links_2_Aggregated = {
+  __typename?: 'footer_footer_links_2_aggregated';
+  avg?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+  avgDistinct?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+  count?: Maybe<Footer_Footer_Links_2_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Footer_Footer_Links_2_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+  min?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+  sum?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+  sumDistinct?: Maybe<Footer_Footer_Links_2_Aggregated_Fields>;
+};
+
+export type Footer_Footer_Links_2_Aggregated_Count = {
+  __typename?: 'footer_footer_links_2_aggregated_count';
+  footer_id?: Maybe<Scalars['Int']['output']>;
+  footer_links_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Footer_Footer_Links_2_Aggregated_Fields = {
+  __typename?: 'footer_footer_links_2_aggregated_fields';
+  footer_id?: Maybe<Scalars['Float']['output']>;
+  footer_links_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Footer_Footer_Links_2_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_2_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_2_Filter>>>;
+  footer_id?: InputMaybe<Footer_Filter>;
+  footer_links_id?: InputMaybe<Footer_Links_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Footer_Footer_Links_3 = {
+  __typename?: 'footer_footer_links_3';
+  footer_id?: Maybe<Footer>;
+  footer_links_id?: Maybe<Footer_Links>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type Footer_Footer_Links_3Footer_IdArgs = {
+  filter?: InputMaybe<Footer_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Footer_Footer_Links_3Footer_Links_IdArgs = {
+  filter?: InputMaybe<Footer_Links_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Footer_Links_3_Aggregated = {
+  __typename?: 'footer_footer_links_3_aggregated';
+  avg?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+  avgDistinct?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+  count?: Maybe<Footer_Footer_Links_3_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Footer_Footer_Links_3_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+  min?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+  sum?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+  sumDistinct?: Maybe<Footer_Footer_Links_3_Aggregated_Fields>;
+};
+
+export type Footer_Footer_Links_3_Aggregated_Count = {
+  __typename?: 'footer_footer_links_3_aggregated_count';
+  footer_id?: Maybe<Scalars['Int']['output']>;
+  footer_links_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Footer_Footer_Links_3_Aggregated_Fields = {
+  __typename?: 'footer_footer_links_3_aggregated_fields';
+  footer_id?: Maybe<Scalars['Float']['output']>;
+  footer_links_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Footer_Footer_Links_3_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_3_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_3_Filter>>>;
+  footer_id?: InputMaybe<Footer_Filter>;
+  footer_links_id?: InputMaybe<Footer_Links_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Footer_Footer_Links_Aggregated = {
+  __typename?: 'footer_footer_links_aggregated';
+  avg?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+  avgDistinct?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+  count?: Maybe<Footer_Footer_Links_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Footer_Footer_Links_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+  min?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+  sum?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+  sumDistinct?: Maybe<Footer_Footer_Links_Aggregated_Fields>;
+};
+
+export type Footer_Footer_Links_Aggregated_Count = {
+  __typename?: 'footer_footer_links_aggregated_count';
+  footer_id?: Maybe<Scalars['Int']['output']>;
+  footer_links_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Footer_Footer_Links_Aggregated_Fields = {
+  __typename?: 'footer_footer_links_aggregated_fields';
+  footer_id?: Maybe<Scalars['Float']['output']>;
+  footer_links_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Footer_Footer_Links_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Footer_Links_Filter>>>;
+  footer_id?: InputMaybe<Footer_Filter>;
+  footer_links_id?: InputMaybe<Footer_Links_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+};
+
+export type Footer_Links = {
+  __typename?: 'footer_links';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Footer_LinksUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Footer_LinksUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Footer_Links_Aggregated = {
+  __typename?: 'footer_links_aggregated';
+  avg?: Maybe<Footer_Links_Aggregated_Fields>;
+  avgDistinct?: Maybe<Footer_Links_Aggregated_Fields>;
+  count?: Maybe<Footer_Links_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Footer_Links_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Footer_Links_Aggregated_Fields>;
+  min?: Maybe<Footer_Links_Aggregated_Fields>;
+  sum?: Maybe<Footer_Links_Aggregated_Fields>;
+  sumDistinct?: Maybe<Footer_Links_Aggregated_Fields>;
+};
+
+export type Footer_Links_Aggregated_Count = {
+  __typename?: 'footer_links_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Footer_Links_Aggregated_Fields = {
+  __typename?: 'footer_links_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Footer_Links_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Footer_Links_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Footer_Links_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  url?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
 export type Hash_Filter_Operators = {
   _empty?: InputMaybe<Scalars['Boolean']['input']>;
   _nempty?: InputMaybe<Scalars['Boolean']['input']>;
@@ -7484,7 +8617,7 @@ export type Hero = {
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  form?: Maybe<Scalars['String']['output']>;
+  form?: Maybe<Hubspot_Forms>;
   heading?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   image?: Maybe<Directus_Files>;
@@ -7492,6 +8625,16 @@ export type Hero = {
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
   video_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type HeroFormArgs = {
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -7557,6 +8700,7 @@ export type Hero_Aggregated_Count = {
 
 export type Hero_Aggregated_Fields = {
   __typename?: 'hero_aggregated_fields';
+  form?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -7570,7 +8714,7 @@ export type Hero_Filter = {
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  form?: InputMaybe<String_Filter_Operators>;
+  form?: InputMaybe<Hubspot_Forms_Filter>;
   heading?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   image?: InputMaybe<Directus_Files_Filter>;
@@ -7578,6 +8722,91 @@ export type Hero_Filter = {
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
   video_url?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Hubspot_Forms = {
+  __typename?: 'hubspot_forms';
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  form_id: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  /** just for referencing internally */
+  name?: Maybe<Scalars['String']['output']>;
+  portal_id?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Hubspot_FormsUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Hubspot_FormsUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Hubspot_Forms_Aggregated = {
+  __typename?: 'hubspot_forms_aggregated';
+  avg?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+  avgDistinct?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+  count?: Maybe<Hubspot_Forms_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Hubspot_Forms_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+  min?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+  sum?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+  sumDistinct?: Maybe<Hubspot_Forms_Aggregated_Fields>;
+};
+
+export type Hubspot_Forms_Aggregated_Count = {
+  __typename?: 'hubspot_forms_aggregated_count';
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  form_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  /** just for referencing internally */
+  name?: Maybe<Scalars['Int']['output']>;
+  portal_id?: Maybe<Scalars['Int']['output']>;
+  region?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Hubspot_Forms_Aggregated_Fields = {
+  __typename?: 'hubspot_forms_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Hubspot_Forms_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Hubspot_Forms_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Hubspot_Forms_Filter>>>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  form_id?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  name?: InputMaybe<String_Filter_Operators>;
+  portal_id?: InputMaybe<String_Filter_Operators>;
+  region?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
 };
 
 export type Job_Listings = {
@@ -7683,7 +8912,7 @@ export type Large_Image = {
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']['output']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  form?: Maybe<Scalars['String']['output']>;
+  form?: Maybe<Hubspot_Forms>;
   heading?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   image?: Maybe<Directus_Files>;
@@ -7693,6 +8922,16 @@ export type Large_Image = {
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
   video_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Large_ImageFormArgs = {
+  filter?: InputMaybe<Hubspot_Forms_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -7760,6 +8999,7 @@ export type Large_Image_Aggregated_Count = {
 
 export type Large_Image_Aggregated_Fields = {
   __typename?: 'large_image_aggregated_fields';
+  form?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -7773,7 +9013,7 @@ export type Large_Image_Filter = {
   date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
-  form?: InputMaybe<String_Filter_Operators>;
+  form?: InputMaybe<Hubspot_Forms_Filter>;
   heading?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
   image?: InputMaybe<Directus_Files_Filter>;
@@ -8237,8 +9477,6 @@ export type Page_Homepage = {
   announcement_text?: Maybe<Scalars['String']['output']>;
   announcement_url?: Maybe<Scalars['String']['output']>;
   announcement_visible?: Maybe<Scalars['Boolean']['output']>;
-  article_cards?: Maybe<Array<Maybe<Article_Cards>>>;
-  article_cards_func?: Maybe<Count_Functions>;
   custom_components?: Maybe<Array<Maybe<Page_Homepage_Custom_Component>>>;
   custom_components_func?: Maybe<Count_Functions>;
   date_created?: Maybe<Scalars['Date']['output']>;
@@ -8254,19 +9492,8 @@ export type Page_Homepage = {
   /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  quotes?: Maybe<Quote_Lists>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
-};
-
-
-export type Page_HomepageArticle_CardsArgs = {
-  filter?: InputMaybe<Article_Cards_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -8282,16 +9509,6 @@ export type Page_HomepageCustom_ComponentsArgs = {
 
 export type Page_HomepageHero_ImageArgs = {
   filter?: InputMaybe<Directus_Files_Filter>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  search?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type Page_HomepageQuotesArgs = {
-  filter?: InputMaybe<Quote_Lists_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -8324,6 +9541,7 @@ export type Page_Homepage_Custom_Component = {
   custom_component_id?: Maybe<Custom_Component>;
   id: Scalars['ID']['output'];
   page_homepage_id?: Maybe<Page_Homepage>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -8365,6 +9583,7 @@ export type Page_Homepage_Custom_Component_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   page_homepage_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Page_Homepage_Custom_Component_Aggregated_Fields = {
@@ -8372,6 +9591,7 @@ export type Page_Homepage_Custom_Component_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   page_homepage_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Page_Homepage_Custom_Component_Filter = {
@@ -8380,6 +9600,7 @@ export type Page_Homepage_Custom_Component_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   page_homepage_id?: InputMaybe<Page_Homepage_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Page_Homepage_Filter = {
@@ -8388,8 +9609,6 @@ export type Page_Homepage_Filter = {
   announcement_text?: InputMaybe<String_Filter_Operators>;
   announcement_url?: InputMaybe<String_Filter_Operators>;
   announcement_visible?: InputMaybe<Boolean_Filter_Operators>;
-  article_cards?: InputMaybe<Article_Cards_Filter>;
-  article_cards_func?: InputMaybe<Count_Function_Filter_Operators>;
   custom_components?: InputMaybe<Page_Homepage_Custom_Component_Filter>;
   custom_components_func?: InputMaybe<Count_Function_Filter_Operators>;
   date_created?: InputMaybe<Date_Filter_Operators>;
@@ -8404,7 +9623,6 @@ export type Page_Homepage_Filter = {
   hero_video_cta_text?: InputMaybe<String_Filter_Operators>;
   hero_video_cta_url?: InputMaybe<String_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
-  quotes?: InputMaybe<Quote_Lists_Filter>;
   user_created?: InputMaybe<Directus_Users_Filter>;
   user_updated?: InputMaybe<Directus_Users_Filter>;
 };
@@ -8540,6 +9758,7 @@ export type Platform_Overview_Page_Custom_Component = {
   custom_component_id?: Maybe<Custom_Component>;
   id: Scalars['ID']['output'];
   platform_overview_page_id?: Maybe<Platform_Overview_Page>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -8567,6 +9786,7 @@ export type Platform_Overview_Page_Custom_Component_1 = {
   custom_component_id?: Maybe<Custom_Component>;
   id: Scalars['ID']['output'];
   platform_overview_page_id?: Maybe<Platform_Overview_Page>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -8608,6 +9828,7 @@ export type Platform_Overview_Page_Custom_Component_1_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   platform_overview_page_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Platform_Overview_Page_Custom_Component_1_Aggregated_Fields = {
@@ -8615,6 +9836,7 @@ export type Platform_Overview_Page_Custom_Component_1_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   platform_overview_page_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Platform_Overview_Page_Custom_Component_1_Filter = {
@@ -8623,6 +9845,7 @@ export type Platform_Overview_Page_Custom_Component_1_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   platform_overview_page_id?: InputMaybe<Platform_Overview_Page_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Platform_Overview_Page_Custom_Component_Aggregated = {
@@ -8644,6 +9867,7 @@ export type Platform_Overview_Page_Custom_Component_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   platform_overview_page_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Platform_Overview_Page_Custom_Component_Aggregated_Fields = {
@@ -8651,6 +9875,7 @@ export type Platform_Overview_Page_Custom_Component_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   platform_overview_page_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Platform_Overview_Page_Custom_Component_Filter = {
@@ -8659,6 +9884,7 @@ export type Platform_Overview_Page_Custom_Component_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   platform_overview_page_id?: InputMaybe<Platform_Overview_Page_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Platform_Overview_Page_Filter = {
@@ -9006,6 +10232,7 @@ export type Product_Pages_Custom_Component = {
   custom_component_id?: Maybe<Custom_Component>;
   id: Scalars['ID']['output'];
   product_pages_id?: Maybe<Product_Pages>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -9047,6 +10274,7 @@ export type Product_Pages_Custom_Component_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   product_pages_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Product_Pages_Custom_Component_Aggregated_Fields = {
@@ -9054,6 +10282,7 @@ export type Product_Pages_Custom_Component_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   product_pages_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Product_Pages_Custom_Component_Filter = {
@@ -9062,6 +10291,7 @@ export type Product_Pages_Custom_Component_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   product_pages_id?: InputMaybe<Product_Pages_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Product_Pages_Filter = {
@@ -10236,6 +11466,7 @@ export type Solutions_Pages_Custom_Component = {
   custom_component_id?: Maybe<Custom_Component>;
   id: Scalars['ID']['output'];
   solutions_pages_id?: Maybe<Solutions_Pages>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -10277,6 +11508,7 @@ export type Solutions_Pages_Custom_Component_Aggregated_Count = {
   custom_component_id?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   solutions_pages_id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Solutions_Pages_Custom_Component_Aggregated_Fields = {
@@ -10284,6 +11516,7 @@ export type Solutions_Pages_Custom_Component_Aggregated_Fields = {
   custom_component_id?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   solutions_pages_id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Solutions_Pages_Custom_Component_Filter = {
@@ -10292,6 +11525,7 @@ export type Solutions_Pages_Custom_Component_Filter = {
   custom_component_id?: InputMaybe<Custom_Component_Filter>;
   id?: InputMaybe<Number_Filter_Operators>;
   solutions_pages_id?: InputMaybe<Solutions_Pages_Filter>;
+  sort?: InputMaybe<Number_Filter_Operators>;
 };
 
 export type Solutions_Pages_Filter = {
@@ -10701,6 +11935,19 @@ export type Update_Company_Logos_Input = {
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Update_Contact_Sales_Input = {
+  body_text?: InputMaybe<Scalars['String']['input']>;
+  cta_text?: InputMaybe<Scalars['String']['input']>;
+  cta_url?: InputMaybe<Scalars['String']['input']>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  form?: InputMaybe<Update_Hubspot_Forms_Input>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
 export type Update_Cta_Input = {
   body_text?: InputMaybe<Scalars['String']['input']>;
   cta_text?: InputMaybe<Scalars['String']['input']>;
@@ -10738,6 +11985,7 @@ export type Update_Custom_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   custom_pages_id?: InputMaybe<Update_Custom_Pages_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Custom_Pages_Input = {
@@ -10848,13 +12096,67 @@ export type Update_Events_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Footer_Footer_Links_1_Input = {
+  footer_id?: InputMaybe<Update_Footer_Input>;
+  footer_links_id?: InputMaybe<Update_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Footer_Footer_Links_2_Input = {
+  footer_id?: InputMaybe<Update_Footer_Input>;
+  footer_links_id?: InputMaybe<Update_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Footer_Footer_Links_3_Input = {
+  footer_id?: InputMaybe<Update_Footer_Input>;
+  footer_links_id?: InputMaybe<Update_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Footer_Footer_Links_Input = {
+  footer_id?: InputMaybe<Update_Footer_Input>;
+  footer_links_id?: InputMaybe<Update_Footer_Links_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Update_Footer_Input = {
+  column_1_links?: InputMaybe<Array<InputMaybe<Update_Footer_Footer_Links_Input>>>;
+  column_1_title?: InputMaybe<Scalars['String']['input']>;
+  column_2_links?: InputMaybe<Array<InputMaybe<Update_Footer_Footer_Links_1_Input>>>;
+  column_2_title?: InputMaybe<Scalars['String']['input']>;
+  column_3_links?: InputMaybe<Array<InputMaybe<Update_Footer_Footer_Links_2_Input>>>;
+  column_3_title?: InputMaybe<Scalars['String']['input']>;
+  column_4_links?: InputMaybe<Array<InputMaybe<Update_Footer_Footer_Links_3_Input>>>;
+  column_4_title?: InputMaybe<Scalars['String']['input']>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Footer_Links_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
 export type Update_Hero_Input = {
   body_text?: InputMaybe<Scalars['String']['input']>;
   cta_text?: InputMaybe<Scalars['String']['input']>;
   cta_url?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
-  form?: InputMaybe<Scalars['String']['input']>;
+  form?: InputMaybe<Update_Hubspot_Forms_Input>;
   heading?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Update_Directus_Files_Input>;
@@ -10862,6 +12164,19 @@ export type Update_Hero_Input = {
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
   video_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Update_Hubspot_Forms_Input = {
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  form_id?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** just for referencing internally */
+  name?: InputMaybe<Scalars['String']['input']>;
+  portal_id?: InputMaybe<Scalars['String']['input']>;
+  region?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
 export type Update_Job_Listings_Input = {
@@ -10885,7 +12200,7 @@ export type Update_Large_Image_Input = {
   cta_url?: InputMaybe<Scalars['String']['input']>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
-  form?: InputMaybe<Scalars['String']['input']>;
+  form?: InputMaybe<Update_Hubspot_Forms_Input>;
   heading?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Update_Directus_Files_Input>;
@@ -10959,13 +12274,13 @@ export type Update_Page_Homepage_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   page_homepage_id?: InputMaybe<Update_Page_Homepage_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Page_Homepage_Input = {
   announcement_text?: InputMaybe<Scalars['String']['input']>;
   announcement_url?: InputMaybe<Scalars['String']['input']>;
   announcement_visible?: InputMaybe<Scalars['Boolean']['input']>;
-  article_cards?: InputMaybe<Array<InputMaybe<Update_Article_Cards_Input>>>;
   custom_components?: InputMaybe<Array<InputMaybe<Update_Page_Homepage_Custom_Component_Input>>>;
   date_created?: InputMaybe<Scalars['Date']['input']>;
   date_updated?: InputMaybe<Scalars['Date']['input']>;
@@ -10978,7 +12293,6 @@ export type Update_Page_Homepage_Input = {
   /** be sure to use the embedded url (not the regular one) */
   hero_video_cta_url?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
-  quotes?: InputMaybe<Update_Quote_Lists_Input>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
@@ -10996,12 +12310,14 @@ export type Update_Platform_Overview_Page_Custom_Component_1_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   platform_overview_page_id?: InputMaybe<Update_Platform_Overview_Page_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Platform_Overview_Page_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   platform_overview_page_id?: InputMaybe<Update_Platform_Overview_Page_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Platform_Overview_Page_Input = {
@@ -11058,6 +12374,7 @@ export type Update_Product_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   product_pages_id?: InputMaybe<Update_Product_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Product_Pages_Input = {
@@ -11212,6 +12529,7 @@ export type Update_Solutions_Pages_Custom_Component_Input = {
   custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
   id?: InputMaybe<Scalars['ID']['input']>;
   solutions_pages_id?: InputMaybe<Update_Solutions_Pages_Input>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Update_Solutions_Pages_Input = {
@@ -11271,7 +12589,7 @@ export type Update_Two_Column_Text_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
-export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
 export type CustomPageTinyFragment = { __typename?: 'custom_pages', id: string, slug: string };
 
@@ -11285,17 +12603,19 @@ export type CustomPageQueryVariables = Exact<{
 }>;
 
 
-export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
+export type CustomPageQuery = { __typename?: 'Query', custom_pages: Array<{ __typename?: 'custom_pages', id: string, slug: string, components?: Array<{ __typename?: 'custom_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
-export type CustomComponentFragment = { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null };
+export type CustomComponentFragment = { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null };
 
-export type HeroComponentFragment = { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type HeroComponentFragment = { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null };
+
+export type FormFragment = { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null };
 
 export type LogoStripComponentFragment = { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null };
 
 export type SectionHeaderComponentFragment = { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null };
 
-export type LargeImageComponentFragment = { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type LargeImageComponentFragment = { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null };
 
 export type CardFragment = { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -11389,7 +12709,7 @@ export type PricingPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type PricingPageQuery = { __typename?: 'Query', pricing_page?: { __typename?: 'pricing_page', id: string, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null } | null };
 
-export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
 export type ProductPageTinyFragment = { __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null };
 
@@ -11403,9 +12723,9 @@ export type ProductPageQueryVariables = Exact<{
 }>;
 
 
-export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
+export type ProductPageQuery = { __typename?: 'Query', product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
-export type ResourcePageFragment = { __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+export type ResourcePageFragment = { __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
 export type ResourcePageTinyFragment = { __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null };
 
@@ -11419,9 +12739,9 @@ export type ResourcePageQueryVariables = Exact<{
 }>;
 
 
-export type ResourcePageQuery = { __typename?: 'Query', resource_pages: Array<{ __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
+export type ResourcePageQuery = { __typename?: 'Query', resource_pages: Array<{ __typename?: 'resource_pages', id: string, slug: string, url?: string | null, dropdown_title?: string | null, components?: Array<{ __typename?: 'resource_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
-export type SolutionPageFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+export type SolutionPageFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
 export type SolutionPageTinyFragment = { __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null };
 
@@ -11435,7 +12755,7 @@ export type SolutionPageQueryVariables = Exact<{
 }>;
 
 
-export type SolutionPageQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
+export type SolutionPageQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null }> };
 
 export type QuoteFragment = { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null };
 
@@ -11452,9 +12772,11 @@ export type MarkdownPageFragment = { __typename?: 'markdown_pages', id: string, 
 
 export type PageLegalFragment = { __typename?: 'page_legal', pages?: Array<{ __typename?: 'markdown_pages', id: string, slug?: string | null, title?: string | null, subtitle?: string | null, content?: string | null } | null> | null };
 
-export type PageHomepageFragment = { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
+export type PageHomepageFragment = { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null };
 
-export type PlatformOverviewPageFragment = { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type PlatformOverviewPageFragment = { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type ContactPageFragment = { __typename?: 'contact_sales', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null };
 
 export type PageLegalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -11469,12 +12791,17 @@ export type LegalPageSlugsQuery = { __typename?: 'Query', page_legal?: { __typen
 export type PageHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null } | null };
+export type PageHomepageQuery = { __typename?: 'Query', page_homepage?: { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null } | null };
 
 export type PlatformOverviewPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PlatformOverviewPageQuery = { __typename?: 'Query', platform_overview_page?: { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, form?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+export type PlatformOverviewPageQuery = { __typename?: 'Query', platform_overview_page?: { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'article_cards', id: string, heading?: string | null, description?: string | null, videoUrl?: string | null, date?: any | null, author?: string | null, ctas?: any | null, url?: string | null, thumbnail?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | { __typename?: 'blog_cards', id: string } | { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+
+export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactPageQuery = { __typename?: 'Query', contact_sales?: { __typename?: 'contact_sales', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | null };
 
 export const ImageFileFragmentDoc = gql`
     fragment ImageFile on directus_files {
@@ -11489,6 +12816,14 @@ export const ImageFileFragmentDoc = gql`
   filesize
 }
     `;
+export const FormFragmentDoc = gql`
+    fragment Form on hubspot_forms {
+  name
+  form_id
+  portal_id
+  region
+}
+    `;
 export const HeroComponentFragmentDoc = gql`
     fragment HeroComponent on hero {
   heading
@@ -11498,11 +12833,14 @@ export const HeroComponentFragmentDoc = gql`
     ...ImageFile
   }
   video_url
-  form
+  form {
+    ...Form
+  }
   cta_text
   cta_url
 }
-    ${ImageFileFragmentDoc}`;
+    ${ImageFileFragmentDoc}
+${FormFragmentDoc}`;
 export const CompanyLogoFragmentDoc = gql`
     fragment CompanyLogo on company_logos {
   slug
@@ -11551,11 +12889,14 @@ export const LargeImageComponentFragmentDoc = gql`
     ...ImageFile
   }
   video_url
-  form
+  form {
+    ...Form
+  }
   cta_text
   cta_url
 }
-    ${ImageFileFragmentDoc}`;
+    ${ImageFileFragmentDoc}
+${FormFragmentDoc}`;
 export const TwoColumnTextComponentFragmentDoc = gql`
     fragment TwoColumnTextComponent on two_column_text {
   main_content
@@ -11967,6 +13308,17 @@ export const PlatformOverviewPageFragmentDoc = gql`
 }
     ${CustomComponentFragmentDoc}
 ${ImageFileFragmentDoc}`;
+export const ContactPageFragmentDoc = gql`
+    fragment ContactPage on contact_sales {
+  heading
+  body_text
+  cta_text
+  cta_url
+  form {
+    ...Form
+  }
+}
+    ${FormFragmentDoc}`;
 export const CustomPageSlugsDocument = gql`
     query CustomPageSlugs {
   custom_pages(filter: {status: {_eq: "published"}}) {
@@ -12687,3 +14039,37 @@ export function usePlatformOverviewPageLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type PlatformOverviewPageQueryHookResult = ReturnType<typeof usePlatformOverviewPageQuery>;
 export type PlatformOverviewPageLazyQueryHookResult = ReturnType<typeof usePlatformOverviewPageLazyQuery>;
 export type PlatformOverviewPageQueryResult = Apollo.QueryResult<PlatformOverviewPageQuery, PlatformOverviewPageQueryVariables>;
+export const ContactPageDocument = gql`
+    query ContactPage {
+  contact_sales {
+    ...ContactPage
+  }
+}
+    ${ContactPageFragmentDoc}`;
+
+/**
+ * __useContactPageQuery__
+ *
+ * To run a query within a React component, call `useContactPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, options);
+      }
+export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, options);
+        }
+export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
+export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
+export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;

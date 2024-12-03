@@ -118,8 +118,8 @@ const HubspotFormSC = styled.div(({ theme: _ }) => ({
 }))
 
 export function HubspotForm({
-  region = 'na1',
-  portalId = '22363579',
+  region: rawRegion,
+  portalId: rawPortalId,
   formId,
   uniqueKey,
 }: {
@@ -128,6 +128,8 @@ export function HubspotForm({
   formId: string
   uniqueKey?: string
 }) {
+  const region = rawRegion ?? 'na1'
+  const portalId = rawPortalId ?? '22363579'
   const id = `hbspt-f_${portalId}_${formId}_${uniqueKey}`
 
   useEffect(() => {

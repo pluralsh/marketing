@@ -3,10 +3,14 @@ import { type ComponentPropsWithRef } from 'react'
 import styled from 'styled-components'
 
 import { getImageUrl } from '@src/consts/routes'
-import { type ImageFileFragment } from '@src/generated/graphqlDirectus'
+import {
+  type FormFragment,
+  type ImageFileFragment,
+} from '@src/generated/graphqlDirectus'
 
 import { ImageAspectRatio } from '../AspectRatio'
 import Embed from '../Embed'
+import { HubspotForm } from '../HubspotForm'
 
 export function Multimedia({
   mediaType,
@@ -21,7 +25,7 @@ export function Multimedia({
   mediaType: Nullable<string>
   image: Nullable<ImageFileFragment>
   videoUrl: Nullable<string>
-  form: Nullable<string>
+  form: Nullable<FormFragment>
   aspectRatio?: string
   backgroundColor?: string
   showBorder?: boolean
@@ -45,26 +49,10 @@ export function Multimedia({
           url={videoUrl ?? ''}
         />
       ) : mediaType === 'form' ? (
-        <iframe
-          title="Embedded form content"
-          css={{
-            width: '100%',
-            height: '100%',
-            minHeight: 550,
-          }}
-          sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-          srcDoc={`
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <!-- HubSpot's required script -->
-              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-            </head>
-            <body>
-            ${form}
-            </body>
-            </html>
-          `}
+        <HubspotForm
+          formId={form?.form_id ?? ''}
+          portalId={form?.portal_id ?? '22363579'}
+          region={form?.region ?? 'na1'}
         />
       ) : null}
     </MultimediaWrapperSC>

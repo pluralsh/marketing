@@ -1,116 +1,65 @@
-import { Button } from '@pluralsh/design-system'
-import Head from 'next/head'
-import Link from 'next/link'
-import Script from 'next/script'
+import { type InferGetStaticPropsType } from 'next'
 
-import { clsx } from 'clsx'
-
+import { directusClient } from '@src/apollo-client'
+import { Hero } from '@src/components/custom-page/Hero'
 import { FooterVariant } from '@src/components/FooterFull'
-import { Columns, EqualColumn } from '@src/components/layout/Columns'
 import { GradientBG } from '@src/components/layout/GradientBG'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
-import { TextLimiter } from '@src/components/layout/TextLimiter'
-import { ResponsiveText } from '@src/components/Typography'
+import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import {
+  ContactPageDocument,
+  type ContactPageQuery,
+  type ContactPageQueryVariables,
+} from '@src/generated/graphqlDirectus'
 import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 
-import { HubspotForm } from '../src/components/HubspotForm'
-import { StandardPageWidth } from '../src/components/layout/LayoutHelpers'
-
-export function ContactHeader({
-  title,
-  subtitle,
-}: {
-  title: string
-  subtitle: string
-}) {
+export default function Index({
+  heading,
+  bodyText,
+  ctaText,
+  ctaUrl,
+  form,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <StandardPageWidth>
-      <div
-        className={clsx(
-          'pt-xxxxlarge',
-          'pb-xxxxxlarge',
-          'lg:pt-xxxxxlarge',
-          'lg:pb-xxxxxxlarge'
-        )}
-      >
-        <Columns className="gap-y-medium columns:items-center">
-          <EqualColumn className="mb-xxlarge justify-start self-start lg:mb-0">
-            <TextLimiter>
-              <ResponsiveText
-                className="[text-wrap:balance]"
-                as="h2"
-                textStyles={{
-                  '': 'mHero1',
-                  md: 'mBigHeader',
-                }}
-              >
-                {title}
-              </ResponsiveText>
-              <ResponsiveText
-                as="p"
-                textStyles={{ '': 'mTitle2' }}
-                color="text-light"
-                className="mt-xlarge [text-wrap:balance]"
-              >
-                {subtitle}
-              </ResponsiveText>
-              <ResponsiveText
-                as="p"
-                textStyles={{ '': 'mBody1Bold' }}
-                color="text-light"
-                className="mt-xlarge [text-wrap:balance]"
-              >
-                Want to learn more about pricing?
-              </ResponsiveText>
-              <Button
-                large
-                secondary
-                outline
-                as={Link}
-                href="/pricing"
-                className="mt-medium w-fit"
-              >
-                Go to pricing
-              </Button>
-            </TextLimiter>
-          </EqualColumn>
-          <EqualColumn>
-            <HubspotForm formId="234b5476-6ee0-4a32-a677-aa1f0d318e9c" />
-          </EqualColumn>
-        </Columns>
-      </div>
-    </StandardPageWidth>
+    <HeaderPad
+      as={GradientBG}
+      size="cover"
+      position="top middle"
+      image="/images/gradients/gradient-bg-12.jpg"
+    >
+      <StandardPageWidth className="py-xxxxlarge  lg:py-xxxxxlarge">
+        <Hero
+          media_type="form"
+          heading={heading}
+          body_text={bodyText}
+          cta_text={ctaText}
+          cta_url={ctaUrl}
+          form={form}
+        />
+      </StandardPageWidth>
+    </HeaderPad>
   )
 }
 
-export default function Index() {
-  return (
-    <>
-      <Head>
-        <Script
-          type="text/javascript"
-          src="//js.hsforms.net/forms/embed/v2.js"
-        />
-      </Head>
-      <HeaderPad
-        as={GradientBG}
-        size="cover"
-        position="top middle"
-        image="/images/gradients/gradient-bg-12.jpg"
-      >
-        <ContactHeader
-          title="Contact sales"
-          subtitle="Reach out to the team for demos, assistance with onboarding, or any inquiries about our products."
-        />
-      </HeaderPad>
-    </>
-  )
-}
+export const getStaticProps = async () => {
+  const { data } = await directusClient.query<
+    ContactPageQuery,
+    ContactPageQueryVariables
+  >({
+    query: ContactPageDocument,
+  })
 
-export const getStaticProps = async () =>
-  propsWithGlobalSettings({
+  const page = data.contact_sales
+
+  return propsWithGlobalSettings({
+    heading: page?.heading,
+    bodyText: page?.body_text,
+    ctaText: page?.cta_text,
+    ctaUrl: page?.cta_url,
+    form: page?.form,
     metaTitle: 'Contact us',
     metaDescription:
       'Plural offers support to teams of all sizes. We’re here to support our developers through our docs, Discord channel, or Twitter.',
     footerVariant: FooterVariant.kitchenSink,
   })
+}
