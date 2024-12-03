@@ -12639,12 +12639,16 @@ export type OurImpactComponentFragment = { __typename?: 'our_impact', top_left_m
 
 export type QuoteCarouselComponentFragment = { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null };
 
-export type GlobalDataFragment = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }> };
+export type GlobalDataFragment = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }>, footer?: { __typename?: 'footer', column_1_title?: string | null, column_2_title?: string | null, column_3_title?: string | null, column_4_title?: string | null, column_1_links?: Array<{ __typename?: 'footer_footer_links', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_2_links?: Array<{ __typename?: 'footer_footer_links_1', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_3_links?: Array<{ __typename?: 'footer_footer_links_2', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_4_links?: Array<{ __typename?: 'footer_footer_links_3', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null } | null };
+
+export type FooterFragment = { __typename?: 'footer', column_1_title?: string | null, column_2_title?: string | null, column_3_title?: string | null, column_4_title?: string | null, column_1_links?: Array<{ __typename?: 'footer_footer_links', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_2_links?: Array<{ __typename?: 'footer_footer_links_1', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_3_links?: Array<{ __typename?: 'footer_footer_links_2', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_4_links?: Array<{ __typename?: 'footer_footer_links_3', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null };
+
+export type FooterLinkFragment = { __typename?: 'footer_links', name: string, url: string };
 
 export type GetGlobalDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalDataQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }> };
+export type GetGlobalDataQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_description?: string | null, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external: boolean, slug: string, url?: string | null, dropdown_title?: string | null }>, footer?: { __typename?: 'footer', column_1_title?: string | null, column_2_title?: string | null, column_3_title?: string | null, column_4_title?: string | null, column_1_links?: Array<{ __typename?: 'footer_footer_links', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_2_links?: Array<{ __typename?: 'footer_footer_links_1', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_3_links?: Array<{ __typename?: 'footer_footer_links_2', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null, column_4_links?: Array<{ __typename?: 'footer_footer_links_3', footer_links_id?: { __typename?: 'footer_links', name: string, url: string } | null } | null> | null } | null };
 
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
@@ -13104,6 +13108,40 @@ export const ResourcePageTinyFragmentDoc = gql`
   dropdown_title
 }
     `;
+export const FooterLinkFragmentDoc = gql`
+    fragment FooterLink on footer_links {
+  name
+  url
+}
+    `;
+export const FooterFragmentDoc = gql`
+    fragment Footer on footer {
+  column_1_title
+  column_1_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_2_title
+  column_2_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_3_title
+  column_3_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_4_title
+  column_4_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+}
+    ${FooterLinkFragmentDoc}`;
 export const GlobalDataFragmentDoc = gql`
     fragment GlobalData on Query {
   site_settings {
@@ -13118,11 +13156,15 @@ export const GlobalDataFragmentDoc = gql`
   resource_pages(filter: {status: {_neq: "hidden"}}) {
     ...ResourcePageTiny
   }
+  footer {
+    ...Footer
+  }
 }
     ${SiteSettingsFragmentDoc}
 ${SolutionPageTinyFragmentDoc}
 ${ProductPageTinyFragmentDoc}
-${ResourcePageTinyFragmentDoc}`;
+${ResourcePageTinyFragmentDoc}
+${FooterFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
   id

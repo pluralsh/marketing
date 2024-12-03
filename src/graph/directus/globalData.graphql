@@ -11,6 +11,41 @@ fragment GlobalData on Query {
   resource_pages(filter: { status: { _neq: "hidden" } }) {
     ...ResourcePageTiny
   }
+  footer {
+    ...Footer
+  }
+}
+
+fragment Footer on footer {
+  column_1_title
+  column_1_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_2_title
+  column_2_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_3_title
+  column_3_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+  column_4_title
+  column_4_links {
+    footer_links_id {
+      ...FooterLink
+    }
+  }
+}
+
+fragment FooterLink on footer_links {
+  name
+  url
 }
 
 query GetGlobalData {

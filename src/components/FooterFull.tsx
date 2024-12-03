@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { mqs } from '@src/breakpoints'
+import { type FooterFragment } from '@src/generated/graphqlDirectus'
 
 import { BasicFooter, MinAltFooter } from './BasicFooter'
 import { FooterNav } from './FooterNav'
@@ -21,11 +22,13 @@ export enum HeaderVariant {
 }
 
 export function FullFooter({
+  footerData,
   className,
   variant = FooterVariant.withNav,
 }: {
   className?: string
   variant?: FooterVariant
+  footerData: Nullable<FooterFragment>
 }) {
   if (variant === FooterVariant.none) {
     return null
@@ -55,7 +58,7 @@ export function FullFooter({
         role="contentinfo"
         className="relative z-20 flex flex-col gap-y-xxxlarge pt-xxxxlarge"
       >
-        {showNav && <FooterNav />}
+        {showNav && <FooterNav footerData={footerData} />}
         <BasicFooter />
       </div>
     </StickyFooterSC>
