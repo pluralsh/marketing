@@ -58,9 +58,18 @@ fragment HeroComponent on hero {
     ...ImageFile
   }
   video_url
-  form
+  form {
+    ...Form
+  }
   cta_text
   cta_url
+}
+
+fragment Form on hubspot_forms {
+  name
+  form_id
+  portal_id
+  region
 }
 
 fragment LogoStripComponent on logo_strip {
@@ -85,7 +94,9 @@ fragment LargeImageComponent on large_image {
     ...ImageFile
   }
   video_url
-  form
+  form {
+    ...Form
+  }
   cta_text
   cta_url
 }

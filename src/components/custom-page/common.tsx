@@ -153,7 +153,7 @@ function ComponentBackground({
     case 'purple-gradient-tb':
       return (
         <ComponentBackgroundSC
-          $background={`linear-gradient(180deg, rgba(23, 26, 33, 0.00) 0%, rgba(1, 4, 75, 0.25) 22.39%, rgba(78, 86, 249, 0.60) 89.57%), ${theme.colors['fill-zero']}`}
+          $background={`linear-gradient(180deg, rgba(23, 26, 33, 0.00) 0%, rgba(78, 86, 249, 0.60) 89.57%), ${theme.colors['fill-zero']};`}
         />
       )
     case 'teal-glow':

@@ -1,8 +1,6 @@
 import { type ComponentProps } from 'react'
 
 import { ColorModeProvider } from '@pluralsh/design-system'
-import Head from 'next/head'
-import Script from 'next/script'
 
 import { useTheme } from 'styled-components'
 
@@ -89,12 +87,6 @@ export default function Index({ jobs }: { jobs: MinJobListingFragment[] }) {
 
   return (
     <>
-      <Head>
-        <Script
-          type="text/javascript"
-          src="//js.hsforms.net/forms/embed/v2.js"
-        />
-      </Head>
       <HeaderPad
         as={GradientBG}
         size="cover"

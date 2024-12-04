@@ -41,11 +41,16 @@ const deptToDisplayName: Record<Department, string> = {
 }
 
 const deptToDescription: Record<Department, ReactNode> = {
-  business_dev: 'Short description about the Biz Dev department',
-  engineering: 'Short description about the Engineering department',
-  product: 'Short description about the Product department',
-  design: 'Short description about the Design department',
-  marketing: 'Short description about the Marketing department',
+  business_dev:
+    'Drive growth through strategic partnerships and showcase how Plural transforms infrastructure management in the cloud-native ecosystem.',
+  engineering:
+    'Build innovative solutions that help teams seamlessly deploy and scale their Kubernetes infrastructure with Plural.',
+  product:
+    'Shape the future of cloud infrastructure by making complex technologies accessible and delightful to use.',
+  design:
+    'Create intuitive experiences and interfaces that simplify complex infrastructure management processes.',
+  marketing:
+    'Share our vision of revolutionizing cloud infrastructure while building connections with developers and technical leaders.',
 }
 
 const JobCardSC = styled(ShadowedCard)(({ theme }) => ({

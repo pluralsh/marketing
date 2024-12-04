@@ -1,7 +1,5 @@
 import { ColorModeProvider } from '@pluralsh/design-system'
 import { type GetStaticPaths, type GetStaticProps } from 'next'
-import Head from 'next/head'
-import Script from 'next/script'
 
 import { FooterVariant } from '@src/components/FooterFull'
 import { HeaderPad } from '@src/components/layout/HeaderPad'
@@ -29,45 +27,37 @@ export default function Index({
   job: FullJobListingFragment
 }) {
   return (
-    <>
-      <Head>
-        <Script
-          type="text/javascript"
-          src="//js.hsforms.net/forms/embed/v2.js"
-        />
-      </Head>
-      <ColorModeProvider mode="light">
-        <HeaderPad className="bg-fill-zero">
-          <FullPageWidth className="pt-[40px]">
-            <BackButton href="/careers#open-positions" />
-          </FullPageWidth>
-          <StandardPageWidth className="py-xxxxlarge">
-            <MarkdocMarketingPage
-              preContent={
-                <div className="pb-xxxlarge">
-                  <ResponsiveText
-                    as="h1"
-                    textStyles={{ '': 'mHero1', md: 'mBigHeader' }}
-                    color="text"
-                    className="mt-medium "
-                  >
-                    {job.job_title}
-                  </ResponsiveText>
-                  <ResponsiveText
-                    as="h3"
-                    textStyles={{ '': 'mSubtitle2' }}
-                    color="text-light"
-                  >
-                    Location: {job.location}
-                  </ResponsiveText>
-                </div>
-              }
-              markdoc={markdoc}
-            />
-          </StandardPageWidth>
-        </HeaderPad>
-      </ColorModeProvider>
-    </>
+    <ColorModeProvider mode="light">
+      <HeaderPad className="bg-fill-zero">
+        <FullPageWidth className="pt-[40px]">
+          <BackButton href="/careers#open-positions" />
+        </FullPageWidth>
+        <StandardPageWidth className="py-xxxxlarge">
+          <MarkdocMarketingPage
+            preContent={
+              <div className="pb-xxxlarge">
+                <ResponsiveText
+                  as="h1"
+                  textStyles={{ '': 'mHero1', md: 'mBigHeader' }}
+                  color="text"
+                  className="mt-medium "
+                >
+                  {job.job_title}
+                </ResponsiveText>
+                <ResponsiveText
+                  as="h3"
+                  textStyles={{ '': 'mSubtitle2' }}
+                  color="text-light"
+                >
+                  Location: {job.location}
+                </ResponsiveText>
+              </div>
+            }
+            markdoc={markdoc}
+          />
+        </StandardPageWidth>
+      </HeaderPad>
+    </ColorModeProvider>
   )
 }
 

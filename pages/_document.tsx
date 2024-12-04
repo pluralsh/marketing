@@ -1,5 +1,6 @@
 // pages/_document.js
 import Document, { Head, Html, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 import { ServerStyleSheet } from 'styled-components'
 
@@ -34,6 +35,15 @@ class MyDocument extends Document {
       <Html data-theme="dark">
         <Head>
           <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+          />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
             rel="stylesheet"
           />
@@ -41,13 +51,17 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
           />
-          <script
+          <Script
             id="Cookiebot"
             src="https://consent.cookiebot.com/uc.js"
             data-cbid="c6718f17-016b-4d02-9bc2-9f1467f610fb"
             data-blockingmode="manual"
-            type="text/javascript"
+            strategy="beforeInteractive"
             data-widget-position="bottom-right"
+          />
+          <Script
+            type="text/javascript"
+            src="//js.hsforms.net/forms/embed/v2.js"
           />
         </Head>
         <body>

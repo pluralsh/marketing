@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useTheme } from 'styled-components'
 
 import { type HeroComponentFragment } from '@src/generated/graphqlDirectus'
+import { cn } from '@src/utils/cn'
 
 import { Body1, Hero1 } from '../Typography'
 
@@ -22,10 +23,20 @@ export function Hero({
   const theme = useTheme()
 
   return (
-    <div className="flex flex-col-reverse gap-xxxlarge lg:flex-row">
+    <div
+      className={cn(
+        'flex  gap-xxxlarge lg:flex-row',
+        mediaType === 'form' ? 'flex-col lg:items-start' : 'flex-col-reverse'
+      )}
+    >
       <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
         <Hero1>{heading}</Hero1>
-        <Body1 $color="text-light">{bodyText}</Body1>
+        <Body1
+          css={{ whiteSpace: 'pre-wrap' }}
+          $color="text-light"
+        >
+          {bodyText}
+        </Body1>
         {ctaText && (
           <Button
             className="mt-medium w-fit"
