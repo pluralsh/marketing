@@ -51,7 +51,10 @@ export default function PrimaryPage({
           />
           {children}
           <ExternalScripts />
-          <FullFooter variant={pageProps.footerVariant} />
+          <FullFooter
+            variant={pageProps.footerVariant}
+            footerData={globalProps.footerData}
+          />
         </PagePropsContext.Provider>
       </GlobalPropsContext.Provider>
     </NavDataProvider>

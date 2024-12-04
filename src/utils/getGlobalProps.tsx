@@ -41,6 +41,7 @@ async function getGlobalProps() {
 
   return {
     siteSettings,
+    footerData: data.footer,
     swrConfig: {
       fallback: swrFallback,
     },

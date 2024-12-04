@@ -1,114 +1,15 @@
-import { type ComponentProps, type ReactNode } from 'react'
-
 import Link from 'next/link'
 
 import styled from 'styled-components'
-import { type ReadonlyDeep } from 'type-fest'
 
 import { mqs } from '@src/breakpoints'
-import { DISCORD_LINK } from '@src/consts'
+import {
+  type FooterFragment,
+  type FooterLinkFragment,
+} from '@src/generated/graphqlDirectus'
 
 import { FullPageWidth } from './layout/LayoutHelpers'
 import { NewsletterSignupForm } from './NewsletterSignupForm'
-
-type NavItemT = {
-  heading: ReactNode
-  links: ComponentProps<typeof Link>[]
-}
-
-const navItems = [
-  {
-    heading: 'Product',
-    links: [
-      {
-        children: 'Login',
-        href: 'https://app.plural.sh/login',
-        target: '_blank',
-      },
-      {
-        children: 'GitHub',
-        href: 'https://github.com/pluralsh/plural',
-        target: '_blank',
-      },
-      {
-        children: 'Pricing',
-        href: '/pricing',
-      },
-      {
-        children: 'Support',
-        href: '/contact',
-      },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      {
-        children: 'About',
-        href: '/about',
-      },
-      {
-        children: 'Careers',
-        href: '/careers',
-      },
-      {
-        children: 'In the news',
-        href: 'https://www.plural.sh/blog',
-        target: '_blank',
-      },
-    ],
-  },
-  {
-    heading: 'Resources',
-    links: [
-      {
-        children: 'Docs',
-        href: 'https://docs.plural.sh',
-        target: '_blank',
-      },
-      {
-        children: 'Blog',
-        href: 'https://www.plural.sh/blog',
-        target: '_blank',
-      },
-      {
-        children: 'Releases',
-        href: 'https://github.com/pluralsh/plural/releases',
-        target: '_blank',
-      },
-      //   {
-      //     children: 'Security & Trust Portal',
-      //     href: 'https://github.com/pluralsh/plural/releases',
-      //     target: '_blank',
-      //   },
-    ] as const,
-  },
-  {
-    heading: 'Contact',
-    links: [
-      {
-        children: 'Discord',
-        href: DISCORD_LINK,
-        target: '_blank',
-      },
-      {
-        children: 'Twitter',
-        href: 'https://www.twitter.com/plural_sh',
-        target: '_blank',
-      },
-      {
-        children: 'LinkedIn',
-        href: 'https://www.linkedin.com/company/pluralsh',
-        target: '_blank',
-      },
-      {
-        children: 'Email',
-        href: '/contact',
-        target: '_blank',
-      },
-    ],
-  },
-] as const satisfies ReadonlyDeep<NavItemT[]>
 
 const NavSections = styled.ul(({ theme }) => ({
   ...theme.partials.reset.list,
@@ -149,6 +50,7 @@ const NavItems = styled.ul(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing.xsmall,
 }))
+
 const NavItem = styled.li(({ theme }) => ({
   ...theme.partials.reset.li,
   margin: 0,
@@ -166,29 +68,83 @@ export const FooterNavLink = styled(Link)(({ theme }) => ({
   },
 }))
 
-export const FooterNav = styled(({ ...props }: ComponentProps<'div'>) => (
-  <div {...props}>
-    <FullPageWidth>
-      <NavSections>
-        {navItems.map((navItem) => (
-          <NavSection key={navItem.heading}>
-            <FooterHeading>{navItem.heading}</FooterHeading>
-            <NavItems>
-              {navItem.links.map((link) => (
-                <NavItem key={`${link.children}${link.href}`}>
-                  <FooterNavLink {...link} />
-                </NavItem>
-              ))}
-            </NavItems>
+export function FooterNav({
+  footerData,
+}: {
+  footerData: Nullable<FooterFragment>
+}) {
+  if (!footerData) return null
+
+  return (
+    <FooterNavWrapSC>
+      <FullPageWidth>
+        <NavSections>
+          <FooterColumn
+            title={footerData.column_1_title}
+            links={sanitizeFooterLinks(footerData.column_1_links)}
+          />
+          <FooterColumn
+            title={footerData.column_2_title}
+            links={sanitizeFooterLinks(footerData.column_2_links)}
+          />
+          <FooterColumn
+            title={footerData.column_3_title}
+            links={sanitizeFooterLinks(footerData.column_3_links)}
+          />
+          <FooterColumn
+            title={footerData.column_4_title}
+            links={sanitizeFooterLinks(footerData.column_4_links)}
+          />
+          <NavSection className="newsletter">
+            <NewsletterSignupForm />
           </NavSection>
+        </NavSections>
+      </FullPageWidth>
+    </FooterNavWrapSC>
+  )
+}
+
+const sanitizeFooterLinks = (
+  links: Nullable<
+    Nullable<{ footer_links_id?: Nullable<FooterLinkFragment> }>[]
+  >
+) =>
+  links
+    ?.filter((link): link is { footer_links_id: FooterLinkFragment } => !!link)
+    .map((link) => ({
+      name: link.footer_links_id?.name ?? '',
+      url: link.footer_links_id?.url ?? '',
+    })) ?? []
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: Nullable<string>
+  links: { name: string; url: string }[]
+}) {
+  if (!title) return null
+
+  return (
+    <NavSection>
+      <FooterHeading>{title}</FooterHeading>
+      <NavItems>
+        {links?.map((link) => (
+          <NavItem key={link?.url}>
+            <FooterNavLink
+              href={link?.url || ''}
+              target={link?.url.charAt(0) === '/' ? '_self' : '_blank'}
+            >
+              {link?.name}
+            </FooterNavLink>
+          </NavItem>
         ))}
-        <NavSection className="newsletter">
-          <NewsletterSignupForm />
-        </NavSection>
-      </NavSections>
-    </FullPageWidth>
-  </div>
-))(({ theme }) => {
+      </NavItems>
+    </NavSection>
+  )
+}
+
+const FooterNavWrapSC = styled.div(({ theme }) => {
   const outlineOffset = -4
 
   return {
