@@ -121,7 +121,7 @@ function getResourcesSubnav(resources?: ResourcePageTinyFragment[]) {
   if (!resources || !resources.length) return []
 
   return resources.map((resource) => ({
-    id: resource.slug,
+    id: resource.slug ?? resource.id,
     link: {
       title: resource.dropdown_title ?? '',
       url: resource.external
