@@ -32,9 +32,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: data.resource_pages.map((page) => ({
-      params: { resource: page.slug },
-    })),
+    paths: data.resource_pages
+      .filter((page) => page?.slug !== null && typeof page.slug === 'string')
+      .map((page) => ({
+        params: { resource: page.slug as string },
+      })),
     fallback: 'blocking',
   }
 }
