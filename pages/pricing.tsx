@@ -58,12 +58,12 @@ export default function Pricing({
               cta={
                 <Button
                   as="a"
-                  href="https://app.plural.sh/"
+                  href="https://plural.sh/contact-sales"
                   target="_blank"
                   rel="noopener noreferer"
                   secondary
                 >
-                  Sign up
+                  Book a demo
                 </Button>
               }
             />
