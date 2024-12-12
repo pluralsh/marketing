@@ -1,35 +1,6 @@
-import { type GlobalPageProps } from '@pages/_app'
-
-import { type BasicRepo } from './data/getRepos'
-import { type MinStack } from './data/getStacks'
-
-export const ROOT_TITLE =
-  'Plural | Open-source application deployment, faster than ever without sacrificing compliance.'
 export const PAGE_TITLE_PREFIX = 'Plural | '
-export const PAGE_TITLE_SUFFIX = ''
+
 export const DISCORD_LINK = 'https://discord.com/invite/bEBAMXV64s'
-
-export const getAppMeta = (repo: BasicRepo): GlobalPageProps => {
-  const displayName = repo.displayName || repo.name
-
-  if (!displayName) return {}
-
-  return {
-    metaTitleFull: `Deploying ${displayName} on Plural`,
-    metaDescription: `Use Plural to securely deploy and manage ${displayName} on Kubernetes, in your cloud.`,
-  }
-}
-
-export const getStackMeta = (stack: MinStack): GlobalPageProps => {
-  const displayName = stack.displayName || stack.name
-
-  if (!displayName) return {}
-
-  return {
-    metaTitleFull: `Deploying the ${displayName} stack on Plural`,
-    metaDescription: `Use Plural to securely deploy and manage the ${displayName} stack on Kubernetes, in your cloud.`,
-  }
-}
 
 export const REVALIDATE_TIME = 600 // in seconds
 

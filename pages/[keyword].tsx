@@ -68,8 +68,8 @@ export const getStaticProps = async (context) => {
 
   return propsWithGlobalSettings(
     {
-      metaTitle: 'Plural',
-      metaDescription: page.slug,
+      metaTitle: page.meta_title,
+      metaDescription: page.meta_description,
       headerVariant: HeaderVariant.min,
       footerVariant: FooterVariant.minAlt,
       components: page.components ?? [],

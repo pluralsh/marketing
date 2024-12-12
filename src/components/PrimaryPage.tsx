@@ -1,7 +1,7 @@
 import { type ReactNode, createContext } from 'react'
 
 import { type GlobalPageProps } from '@pages/_app'
-import { PAGE_TITLE_PREFIX, PAGE_TITLE_SUFFIX, ROOT_TITLE } from '@src/consts'
+import { PAGE_TITLE_PREFIX } from '@src/consts'
 import { NavDataProvider, type NavList } from '@src/contexts/NavDataContext'
 
 import { type GlobalProps } from '../utils/getGlobalProps'
@@ -25,15 +25,11 @@ export default function PrimaryPage({
   pageProps: GlobalPageProps
   globalProps: GlobalProps
 }) {
-  const { metaTitle, metaTitleFull, metaDescription } = pageProps || {}
+  const { metaTitle, metaDescription } = pageProps || {}
   const { siteSettings } = globalProps || {}
 
   const headProps = {
-    title:
-      metaTitleFull ||
-      (metaTitle
-        ? `${PAGE_TITLE_PREFIX}${metaTitle}${PAGE_TITLE_SUFFIX}`
-        : ROOT_TITLE),
+    title: `${PAGE_TITLE_PREFIX}${metaTitle || siteSettings?.og_title || 'Kubernetes management'}`,
     description: metaDescription || siteSettings?.og_description || '',
     ogImage: siteSettings.og_image,
   }

@@ -36,7 +36,6 @@ import 'swiper/css/autoplay'
 
 export type GlobalPageProps = {
   metaTitle?: string
-  metaTitleFull?: string
   metaDescription?: string
   footerVariant?: FooterVariant
   headerVariant?: HeaderVariant
