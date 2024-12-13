@@ -148,9 +148,6 @@ export const getStaticProps = async () => {
 
   return propsWithGlobalSettings(
     {
-      metaTitle: 'Secure, self-hosted applications in your cloud',
-      metaDescription:
-        'Open-source application deployment, faster than ever without sacrificing compliance.',
       pageQueryData: page,
       footerVariant: FooterVariant.kitchenSink,
       errors: combineErrors([error]),

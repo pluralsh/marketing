@@ -13,7 +13,8 @@ export const getSiteSettings = (
   products?: ProductPageTinyFragment[],
   resources?: ResourcePageTinyFragment[]
 ) => ({
-  og_description: siteSettings.og_description ?? 'Plural',
+  og_title: siteSettings.og_title,
+  og_description: siteSettings.og_description,
   og_image: getImageUrl(siteSettings.og_image),
   main_nav: {
     product: {

@@ -1,4 +1,5 @@
 fragment SiteSettings on site_settings {
+  og_title
   og_description
   og_image {
     ...ImageFile
