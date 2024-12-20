@@ -6,6 +6,8 @@ fragment PricingPage on pricing_page {
   enterprise_plan {
     ...PricingPlan
   }
+  meta_title
+  meta_description
 }
 
 fragment PricingPlan on pricing_plans {

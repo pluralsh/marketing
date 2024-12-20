@@ -129,7 +129,8 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
 
   return propsWithGlobalSettings({
     footerVariant: FooterVariant.kitchenSink,
-    metaTitle: page.title,
+    metaTitle: page.meta_title,
+    metaDescription: page.meta_description,
     title: page.title,
     subtitle: page.subtitle,
     markdoc,

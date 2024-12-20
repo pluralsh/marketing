@@ -9,6 +9,8 @@ fragment ProductPage on product_pages {
       ...CustomComponent
     }
   }
+  meta_title
+  meta_description
 }
 
 fragment ProductPageTiny on product_pages {

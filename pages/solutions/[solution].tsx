@@ -80,8 +80,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
   return propsWithGlobalSettings({
     solution,
-    metaTitle: 'Plural Solution',
-    metaDescription: solution.dropdown_title || null,
+    metaTitle: solution.meta_title,
+    metaDescription: solution.meta_description,
     footerVariant: FooterVariant.kitchenSink,
     errors: combineErrors([solutionError]),
   })

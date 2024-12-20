@@ -57,9 +57,8 @@ export const getStaticProps = async () => {
     ctaText: page?.cta_text,
     ctaUrl: page?.cta_url,
     form: page?.form,
-    metaTitle: 'Contact us',
-    metaDescription:
-      'Plural offers support to teams of all sizes. We’re here to support our developers through our docs, Discord channel, or Twitter.',
+    metaTitle: page?.meta_title,
+    metaDescription: page?.meta_description,
     footerVariant: FooterVariant.kitchenSink,
   })
 }

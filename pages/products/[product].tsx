@@ -67,8 +67,8 @@ export const getStaticProps = async (context) => {
   }
 
   return propsWithGlobalSettings({
-    metaTitle: product?.dropdown_title ?? '',
-    metaDescription: product?.dropdown_description ?? '',
+    metaTitle: product?.meta_title,
+    metaDescription: product?.meta_description,
     footerVariant: FooterVariant.kitchenSink,
     productInfo: product,
   })
