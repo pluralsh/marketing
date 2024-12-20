@@ -69,8 +69,8 @@ export const getStaticProps = async (context) => {
   }
 
   return propsWithGlobalSettings({
-    metaTitle: resourceInfo?.dropdown_title ?? '',
-    metaDescription: '',
+    metaTitle: resourceInfo.meta_title,
+    metaDescription: resourceInfo.meta_description,
     footerVariant: FooterVariant.kitchenSink,
     resourceInfo,
   })

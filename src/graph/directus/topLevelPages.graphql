@@ -4,6 +4,8 @@ fragment MarkdownPage on markdown_pages {
   title
   subtitle
   content
+  meta_title
+  meta_description
 }
 
 fragment PageLegal on page_legal {
@@ -30,6 +32,8 @@ fragment PageHomepage on page_homepage {
       ...CustomComponent
     }
   }
+  meta_title
+  meta_description
 }
 
 fragment PlatformOverviewPage on platform_overview_page {
@@ -49,6 +53,8 @@ fragment PlatformOverviewPage on platform_overview_page {
   image {
     ...ImageFile
   }
+  meta_title
+  meta_description
 }
 
 fragment ContactPage on contact_sales {
@@ -59,6 +65,8 @@ fragment ContactPage on contact_sales {
   form {
     ...Form
   }
+  meta_title
+  meta_description
 }
 
 query PageLegal {

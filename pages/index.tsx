@@ -148,6 +148,8 @@ export const getStaticProps = async () => {
 
   return propsWithGlobalSettings(
     {
+      metaTitle: page?.meta_title,
+      metaDescription: page?.meta_description,
       pageQueryData: page,
       footerVariant: FooterVariant.kitchenSink,
       errors: combineErrors([error]),

@@ -9,6 +9,8 @@ fragment SolutionPage on solutions_pages {
       ...CustomComponent
     }
   }
+  meta_title
+  meta_description
 }
 
 fragment SolutionPageTiny on solutions_pages {

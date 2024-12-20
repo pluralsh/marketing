@@ -8,6 +8,8 @@ fragment ResourcePage on resource_pages {
       ...CustomComponent
     }
   }
+  meta_title
+  meta_description
 }
 
 fragment ResourcePageTiny on resource_pages {

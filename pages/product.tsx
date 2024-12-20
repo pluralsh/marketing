@@ -84,9 +84,8 @@ export const getStaticProps = async () => {
 
   return propsWithGlobalSettings(
     {
-      metaTitle: 'Our platform',
-      metaDescription:
-        'A single platform to manage your entire Kubernetes fleet',
+      metaTitle: page?.meta_title,
+      metaDescription: page?.meta_description,
       pageQueryData: page,
       footerVariant: FooterVariant.kitchenSink,
       errors: combineErrors([error]),
