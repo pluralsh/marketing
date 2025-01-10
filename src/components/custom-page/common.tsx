@@ -13,7 +13,6 @@ import { type CustomComponentFragment } from '@src/generated/graphqlDirectus'
 
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
-import { BlogCards } from './BlogCards'
 import { CallToAction } from './CallToAction'
 import { Cards } from './Cards'
 import { CustomerQuote } from './CustomerQuote'
@@ -94,9 +93,9 @@ function renderCustomComponent(
     case 'cards':
       renderedComponent = <Cards {...innerComponent} />
       break
-    case 'blog_cards':
-      renderedComponent = <BlogCards {...innerComponent} />
-      break
+    // case 'blog_cards':
+    //   renderedComponent = <BlogCards {...innerComponent} />
+    //   break
     case 'two_column_text':
       renderedComponent = <TwoColumnText {...innerComponent} />
       break

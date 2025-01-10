@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import { Card } from '@pluralsh/design-system'
 
 import styled from 'styled-components'
@@ -12,9 +14,23 @@ import { ImageAspectRatio } from '../AspectRatio'
 import { Body2, Subtitle1 } from '../Typography'
 
 export function Cards({ cards }: CardsComponentFragment) {
+  const [randomCards, setRandomCards] = useState<
+    CardsComponentFragment['cards']
+  >([])
+
+  useEffect(() => {
+    // does a simple shuffle alg and takes first 3 items
+    // needs to be in an effect so it only runs on the client side (would cause hydration error otherwise)
+    const shuffled = [...(cards ?? [])]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+
+    setRandomCards(shuffled)
+  }, [cards])
+
   return (
     <div className="flex flex-col gap-xxlarge lg:flex-row">
-      {cards?.map(
+      {randomCards?.map(
         (c, i) =>
           c?.card_id && (
             <CardComponent
@@ -60,6 +76,7 @@ export function CardComponent({
 const CardComponentWrapperSC = styled(Card)<{ $clickable: boolean }>(
   ({ theme, $clickable }) => ({
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     textWrap: 'pretty',
     padding: theme.spacing.xlarge,

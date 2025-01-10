@@ -42,10 +42,10 @@ fragment CustomComponent on custom_component {
       ...TwoColumnTextComponent
       ...MultiColumnTextComponent
       ...CardsComponent
-      ...BlogCardsComponent
+      # ...BlogCardsComponent
       ...CustomerQuoteComponent
       ...CTAComponent
-      ...MediaCardComponent
+      # ...MediaCardComponent
       ...OurImpactComponent
       ...QuoteCarouselComponent
     }

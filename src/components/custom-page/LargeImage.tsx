@@ -5,6 +5,7 @@ import styled, { useTheme } from 'styled-components'
 
 import { type LargeImageComponentFragment } from '@src/generated/graphqlDirectus'
 
+import BasicMarkdown from '../BasicMarkdown'
 import { cn } from '../cn'
 import { Body2, OverlineLabel, Title1 } from '../Typography'
 
@@ -43,7 +44,12 @@ export function LargeImage({
         <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
           {overline && <OverlineLabel>{overline}</OverlineLabel>}
           <Title1>{heading}</Title1>
-          <Body2 $color="text-light">{bodyText}</Body2>
+          <Body2
+            as="div"
+            $color="text-light"
+          >
+            <BasicMarkdown text={bodyText ?? ''} />
+          </Body2>
           {ctaText && (
             <Button
               large
