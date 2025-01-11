@@ -31,7 +31,7 @@ export default function PrimaryPage({
   const headProps = {
     title: `${PAGE_TITLE_PREFIX}${metaTitle || siteSettings?.og_title || 'Kubernetes management'}`,
     description: metaDescription || siteSettings?.og_description || '',
-    ogImage: siteSettings.og_image,
+    ogImage: siteSettings?.og_image,
   }
 
   const navData = Object.values(siteSettings?.main_nav ?? []) as NavList[]

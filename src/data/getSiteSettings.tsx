@@ -15,7 +15,7 @@ export const getSiteSettings = (
 ) => ({
   og_title: siteSettings.og_title,
   og_description: siteSettings.og_description,
-  og_image: getImageUrl(siteSettings.og_image),
+  og_image: getImageUrl(siteSettings.og_image) ?? '',
   main_nav: {
     product: {
       id: 'product',
