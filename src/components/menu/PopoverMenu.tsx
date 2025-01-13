@@ -105,6 +105,7 @@ export function PopoverMenu({
         }}
       >
         <Animated
+          // @ts-ignore, see https://github.com/pmndrs/react-spring/issues/1515
           style={{
             ...styles,
             // Need to set translateY() here since flip() middleware might
