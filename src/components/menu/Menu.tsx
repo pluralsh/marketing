@@ -126,7 +126,7 @@ export function MenuButton<T extends object>({
   const { floating, triggerRef } = useFloatingDropdown({
     placement,
     width: 'max-content',
-    maxHeight: 500,
+    maxHeight: 600,
     minWidth: 'reference',
     ...dropdownProps,
     triggerRef: buttonRef,
