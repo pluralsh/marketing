@@ -33,19 +33,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.custom_pages.map((page) => ({
-      params: { keyword: page.slug },
+      params: { landingPage: page.slug.split('/').filter(Boolean) },
     })),
     fallback: 'blocking',
   }
 }
 
-export const getStaticProps = async (context) => {
-  const slug =
-    typeof context?.params?.keyword === 'string'
-      ? context?.params?.keyword
-      : null
+export const getStaticProps = async ({
+  params: { landingPage },
+}: {
+  params: { landingPage: Nullable<string[]> }
+}) => {
+  const rawSlug = landingPage?.join('/') ?? ''
 
-  if (!slug) {
+  if (!landingPage) {
     return { notFound: true }
   }
 
@@ -54,7 +55,7 @@ export const getStaticProps = async (context) => {
     CustomPageQueryVariables
   >({
     query: CustomPageDocument,
-    variables: { slug },
+    variables: { slug: rawSlug },
   })
 
   if (error) {
@@ -70,8 +71,12 @@ export const getStaticProps = async (context) => {
     {
       metaTitle: page.meta_title,
       metaDescription: page.meta_description,
-      headerVariant: HeaderVariant.min,
-      footerVariant: FooterVariant.minAlt,
+      headerVariant: page.show_header
+        ? HeaderVariant.regular
+        : HeaderVariant.min,
+      footerVariant: page.show_footer
+        ? FooterVariant.kitchenSink
+        : FooterVariant.minAlt,
       components: page.components ?? [],
     },
     {
