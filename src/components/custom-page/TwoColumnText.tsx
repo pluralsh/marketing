@@ -1,18 +1,24 @@
-import { Markdown } from '@pluralsh/design-system'
-
 import { type TwoColumnTextComponentFragment } from '@src/generated/graphqlDirectus'
+
+import BasicMarkdown from '../BasicMarkdown'
 
 export function TwoColumnText({
   main_content: mainContent,
   side_content: sideContent,
 }: TwoColumnTextComponentFragment) {
   return (
-    <div className="flex flex-col items-center gap-xxlarge lg:flex-row">
-      <div className="w-full text-text-light lg:w-2/3">
-        <Markdown text={mainContent} />
+    <div className="mx-auto flex max-w-7xl flex-col gap-xxxlarge lg:flex-row">
+      <div
+        className="w-full text-text-light lg:flex-[2]"
+        css={{ '& p, & ul, & ol': { fontSize: '16px', lineHeight: '24px' } }}
+      >
+        <BasicMarkdown text={mainContent} />
       </div>
-      <div className="w-full text-text-light lg:w-1/3">
-        <Markdown text={sideContent} />
+      <div
+        className="w-full text-text-light lg:flex-[1]"
+        css={{ '& p, & ul, & ol': { fontSize: '14px', lineHeight: '18px' } }}
+      >
+        <BasicMarkdown text={sideContent} />
       </div>
     </div>
   )
