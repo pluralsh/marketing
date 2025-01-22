@@ -3,6 +3,8 @@ fragment CustomPage on custom_pages {
   meta_title
   meta_description
   slug
+  show_header
+  show_footer
   components {
     custom_component_id {
       ...CustomComponent

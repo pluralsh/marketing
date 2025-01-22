@@ -9,7 +9,7 @@ import {
 import {
   ArrowRightIcon,
   Markdown,
-  type styledTheme,
+  styledTheme,
   useNavigationContext,
 } from '@pluralsh/design-system'
 import Link from 'next/link'
@@ -358,11 +358,35 @@ export const BasicUl = styled.ul(({ theme }) => {
   }
 })
 
-export const BasicP = styled.p(({ theme }) => ({
-  '*:is(p, ul, ol) + &': {
-    marginTop: theme.spacing.medium,
-  },
+export const BasicP = styled.p((_) => ({
+  ...marginStyle,
 }))
+
+export const BasicH1 = styled.h1(({ theme }) => ({
+  ...theme.partials.marketingText.title1,
+  ...marginStyle,
+}))
+
+export const BasicH2 = styled.h2(({ theme }) => ({
+  ...theme.partials.marketingText.title2,
+  ...marginStyle,
+}))
+
+export const BasicH3 = styled.h3(({ theme }) => ({
+  ...marginStyle,
+  ...theme.partials.marketingText.subtitle1,
+}))
+
+export const BasicH4 = styled.h4(({ theme }) => ({
+  ...marginStyle,
+  ...theme.partials.marketingText.subtitle2,
+}))
+
+const marginStyle = {
+  '*:is(p, ul, ol, h1, h2, h3, h4) + &': {
+    marginTop: styledTheme.spacing.medium,
+  },
+}
 
 export function NoMarginMarkdown({
   extendedCss,
