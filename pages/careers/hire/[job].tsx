@@ -95,9 +95,9 @@ export const getStaticProps: GetStaticProps<JobPageProps> = async (context) => {
   }
 
   return propsWithGlobalSettings({
-    metaTitle: `Careers – ${job?.job_title}`,
+    metaTitle: `Careers - ${job?.job_title}`,
     metaDescription:
-      'We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We’re always interested in hiring new talent!',
+      "We are a growing team working on interesting problems in the cloud with Kubernetes, Elixir, Go, and React. We're always interested in hiring new talent!",
     showHeaderBG: true,
     footerVariant: FooterVariant.kitchenSink,
     job,

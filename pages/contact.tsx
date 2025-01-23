@@ -59,6 +59,7 @@ export const getStaticProps = async () => {
     form: page?.form,
     metaTitle: page?.meta_title,
     metaDescription: page?.meta_description,
+    metaImage: page?.meta_image,
     footerVariant: FooterVariant.kitchenSink,
   })
 }

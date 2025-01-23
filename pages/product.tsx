@@ -86,6 +86,7 @@ export const getStaticProps = async () => {
     {
       metaTitle: page?.meta_title,
       metaDescription: page?.meta_description,
+      metaImage: page?.meta_image,
       pageQueryData: page,
       footerVariant: FooterVariant.kitchenSink,
       errors: combineErrors([error]),

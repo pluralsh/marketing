@@ -1,7 +1,5 @@
 fragment CustomPage on custom_pages {
   id
-  meta_title
-  meta_description
   slug
   show_header
   show_footer
@@ -9,6 +7,11 @@ fragment CustomPage on custom_pages {
     custom_component_id {
       ...CustomComponent
     }
+  }
+  meta_title
+  meta_description
+  meta_image {
+    ...ImageFile
   }
 }
 
