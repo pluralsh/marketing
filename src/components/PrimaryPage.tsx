@@ -2,6 +2,7 @@ import { type ReactNode, createContext } from 'react'
 
 import { type GlobalPageProps } from '@pages/_app'
 import { PAGE_TITLE_PREFIX } from '@src/consts'
+import { getImageUrl } from '@src/consts/routes'
 import { NavDataProvider, type NavList } from '@src/contexts/NavDataContext'
 
 import { type GlobalProps } from '../utils/getGlobalProps'
@@ -25,13 +26,13 @@ export default function PrimaryPage({
   pageProps: GlobalPageProps
   globalProps: GlobalProps
 }) {
-  const { metaTitle, metaDescription } = pageProps || {}
+  const { metaTitle, metaDescription, metaImage } = pageProps || {}
   const { siteSettings } = globalProps || {}
 
   const headProps = {
     title: `${PAGE_TITLE_PREFIX}${metaTitle || siteSettings?.og_title || 'Kubernetes management'}`,
     description: metaDescription || siteSettings?.og_description || '',
-    ogImage: siteSettings?.og_image,
+    ogImage: getImageUrl(metaImage) || siteSettings?.og_image,
   }
 
   const navData = Object.values(siteSettings?.main_nav ?? []) as NavList[]

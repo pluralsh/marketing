@@ -27,6 +27,7 @@ import {
 } from '@src/components/FooterFull'
 import GlobalStyles from '@src/components/GlobalStyles'
 import PrimaryPage from '@src/components/PrimaryPage'
+import { type ImageFileFragment } from '@src/generated/graphqlDirectus'
 import { type GlobalProps } from '@src/utils/getGlobalProps'
 
 // Styles
@@ -37,6 +38,7 @@ import 'swiper/css/autoplay'
 export type GlobalPageProps = {
   metaTitle?: string
   metaDescription?: string
+  metaImage?: ImageFileFragment
   footerVariant?: FooterVariant
   headerVariant?: HeaderVariant
   showHeaderBG?: boolean

@@ -69,6 +69,7 @@ export const getStaticProps = async (context) => {
   return propsWithGlobalSettings({
     metaTitle: product?.meta_title,
     metaDescription: product?.meta_description,
+    metaImage: product?.meta_image,
     footerVariant: FooterVariant.kitchenSink,
     productInfo: product,
   })

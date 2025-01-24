@@ -82,6 +82,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     solution,
     metaTitle: solution.meta_title,
     metaDescription: solution.meta_description,
+    metaImage: solution.meta_image,
     footerVariant: FooterVariant.kitchenSink,
     errors: combineErrors([solutionError]),
   })

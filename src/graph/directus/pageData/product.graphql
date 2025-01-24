@@ -11,6 +11,9 @@ fragment ProductPage on product_pages {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment ProductPageTiny on product_pages {

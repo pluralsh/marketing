@@ -11,6 +11,9 @@ fragment SolutionPage on solutions_pages {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment SolutionPageTiny on solutions_pages {

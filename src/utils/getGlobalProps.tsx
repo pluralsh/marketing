@@ -33,7 +33,10 @@ async function getGlobalProps() {
   })
 
   const siteSettings = getSiteSettings(
-    data.site_settings ?? {},
+    data.site_settings ?? {
+      og_title: 'Plural',
+      og_description: '',
+    },
     data.solutions_pages,
     data.product_pages,
     data.resource_pages

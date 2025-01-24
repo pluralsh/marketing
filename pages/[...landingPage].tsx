@@ -71,6 +71,7 @@ export const getStaticProps = async ({
     {
       metaTitle: page.meta_title,
       metaDescription: page.meta_description,
+      metaImage: page.meta_image,
       headerVariant: page.show_header
         ? HeaderVariant.regular
         : HeaderVariant.min,

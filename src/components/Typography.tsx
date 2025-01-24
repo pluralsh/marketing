@@ -159,6 +159,13 @@ export const Subtitle2 = styled.p<{ $color?: ColorKey }>(
   })
 )
 
+export const Caption = styled.p<{ $color?: ColorKey }>(
+  ({ theme, $color = 'text-xlight' }) => ({
+    ...theme.partials.marketingText.componentLink,
+    color: theme.colors[$color] as string,
+  })
+)
+
 export const OverlineLabel = styled.span<{ $color?: ColorKey }>(
   ({ theme, $color = 'text-light' }) => ({
     ...theme.partials.marketingText.label,

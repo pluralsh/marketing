@@ -10,6 +10,9 @@ fragment ResourcePage on resource_pages {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment ResourcePageTiny on resource_pages {

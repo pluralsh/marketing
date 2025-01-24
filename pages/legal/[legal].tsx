@@ -131,6 +131,7 @@ export const getStaticProps: GetStaticProps<CommunityPageProps> = async (
     footerVariant: FooterVariant.kitchenSink,
     metaTitle: page.meta_title,
     metaDescription: page.meta_description,
+    metaImage: page.meta_image,
     title: page.title,
     subtitle: page.subtitle,
     markdoc,

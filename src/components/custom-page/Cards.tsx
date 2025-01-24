@@ -11,7 +11,7 @@ import {
 } from '@src/generated/graphqlDirectus'
 
 import { ImageAspectRatio } from '../AspectRatio'
-import { Body2, Subtitle1 } from '../Typography'
+import { Caption, Subtitle1 } from '../Typography'
 
 export function Cards({ cards }: CardsComponentFragment) {
   const [randomCards, setRandomCards] = useState<
@@ -67,7 +67,7 @@ export function CardComponent({
       />
       <div className="flex flex-col gap-xsmall">
         <Subtitle1>{heading}</Subtitle1>
-        <Body2 $color="text-light">{bodyText}</Body2>
+        <Caption css={{ fontWeight: 500 }}>{bodyText}</Caption>
       </div>
     </CardComponentWrapperSC>
   )

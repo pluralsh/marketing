@@ -8,6 +8,9 @@ fragment PricingPage on pricing_page {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment PricingPlan on pricing_plans {

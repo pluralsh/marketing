@@ -6,6 +6,9 @@ fragment MarkdownPage on markdown_pages {
   content
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment PageLegal on page_legal {
@@ -34,6 +37,9 @@ fragment PageHomepage on page_homepage {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment PlatformOverviewPage on platform_overview_page {
@@ -55,6 +61,9 @@ fragment PlatformOverviewPage on platform_overview_page {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 fragment ContactPage on contact_sales {
@@ -67,6 +76,9 @@ fragment ContactPage on contact_sales {
   }
   meta_title
   meta_description
+  meta_image {
+    ...ImageFile
+  }
 }
 
 query PageLegal {

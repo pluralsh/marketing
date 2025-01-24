@@ -25,11 +25,17 @@ export function Hero({
   return (
     <div
       className={cn(
-        'flex  gap-xxxlarge lg:flex-row',
-        mediaType === 'form' ? 'flex-col lg:items-start' : 'flex-col-reverse'
+        'flex gap-xxxlarge lg:flex-row',
+        mediaType === 'form' ? 'flex-col lg:items-start' : 'flex-col-reverse',
+        mediaType === 'none' ? 'align-center justify-center text-center' : ''
       )}
     >
-      <div className="flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]">
+      <div
+        className={cn(
+          'flex flex-col justify-center gap-medium lg:min-w-[400px] lg:max-w-[560px]',
+          mediaType === 'none' ? 'items-center' : ''
+        )}
+      >
         <Hero1>{heading}</Hero1>
         <Body1
           css={{ whiteSpace: 'pre-wrap' }}
@@ -49,14 +55,16 @@ export function Hero({
           </Button>
         )}
       </div>
-      <Multimedia
-        mediaType={mediaType}
-        image={image}
-        videoUrl={videoUrl}
-        form={form}
-        backgroundColor={theme.colors.grey[950]}
-        showBorder={false}
-      />
+      {mediaType !== 'none' && (
+        <Multimedia
+          mediaType={mediaType}
+          image={image}
+          videoUrl={videoUrl}
+          form={form}
+          backgroundColor={theme.colors.grey[950]}
+          showBorder={false}
+        />
+      )}
     </div>
   )
 }

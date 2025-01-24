@@ -104,6 +104,7 @@ export const getStaticProps = async () => {
   return propsWithGlobalSettings({
     metaTitle: data.pricing_page?.meta_title,
     metaDescription: data.pricing_page?.meta_description,
+    metaImage: data.pricing_page?.meta_image,
     enterprisePlan,
     proPlan,
     footerVariant: FooterVariant.kitchenSink,
