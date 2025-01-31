@@ -121,12 +121,6 @@ function Member({ member, ...props }: { member: TeamMemberFragment }) {
           </ResponsiveText>
           <ResponsiveText
             as="p"
-            textStyles={{ '': 'aOverline' }}
-          >
-            {member.pronouns}
-          </ResponsiveText>
-          <ResponsiveText
-            as="p"
             textStyles={{ '': 'mLabel' }}
           >
             {member.title}

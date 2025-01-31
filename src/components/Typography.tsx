@@ -348,9 +348,7 @@ export const BasicUl = styled.ul(({ theme }) => {
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing.xsmall,
-    '*:is(p, ul, ol) + &': {
-      marginTop: theme.spacing.medium,
-    },
+    ...marginStyle,
     li: {
       position: 'relative',
       marginLeft: indent,
