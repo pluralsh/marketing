@@ -7268,7 +7268,6 @@ export type Create_Team_Members_Input = {
   name?: InputMaybe<Scalars['String']['input']>;
   orderOfAppearance?: InputMaybe<Scalars['Int']['input']>;
   portrait?: InputMaybe<Create_Directus_Files_Input>;
-  pronouns?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -11855,7 +11854,6 @@ export type Team_Members = {
   name?: Maybe<Scalars['String']['output']>;
   orderOfAppearance?: Maybe<Scalars['Int']['output']>;
   portrait?: Maybe<Directus_Files>;
-  pronouns?: Maybe<Scalars['String']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -11894,7 +11892,6 @@ export type Team_Members_Aggregated_Count = {
   name?: Maybe<Scalars['Int']['output']>;
   orderOfAppearance?: Maybe<Scalars['Int']['output']>;
   portrait?: Maybe<Scalars['Int']['output']>;
-  pronouns?: Maybe<Scalars['Int']['output']>;
   sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['Int']['output']>;
@@ -11920,7 +11917,6 @@ export type Team_Members_Filter = {
   name?: InputMaybe<String_Filter_Operators>;
   orderOfAppearance?: InputMaybe<Number_Filter_Operators>;
   portrait?: InputMaybe<Directus_Files_Filter>;
-  pronouns?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
   title?: InputMaybe<String_Filter_Operators>;
@@ -12808,7 +12804,6 @@ export type Update_Team_Members_Input = {
   name?: InputMaybe<Scalars['String']['input']>;
   orderOfAppearance?: InputMaybe<Scalars['Int']['input']>;
   portrait?: InputMaybe<Update_Directus_Files_Input>;
-  pronouns?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -12915,12 +12910,12 @@ export type LogoListFragment = { __typename?: 'company_logo_lists', slug?: strin
 
 export type ImageFileFragment = { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null };
 
-export type TeamMemberFragment = { __typename?: 'team_members', id: string, name?: string | null, title?: string | null, categories?: any | null, pronouns?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type TeamMemberFragment = { __typename?: 'team_members', id: string, name?: string | null, title?: string | null, categories?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type TeamMembersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeamMembersQuery = { __typename?: 'Query', team_members: Array<{ __typename?: 'team_members', id: string, name?: string | null, title?: string | null, categories?: any | null, pronouns?: string | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
+export type TeamMembersQuery = { __typename?: 'Query', team_members: Array<{ __typename?: 'team_members', id: string, name?: string | null, title?: string | null, categories?: any | null, portrait?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
 
 export type FaqItemFragment = { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null };
 
@@ -13399,7 +13394,6 @@ export const TeamMemberFragmentDoc = gql`
   name
   title
   categories
-  pronouns
   portrait {
     ...ImageFile
   }

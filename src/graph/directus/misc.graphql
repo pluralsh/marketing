@@ -54,7 +54,6 @@ fragment TeamMember on team_members {
   name
   title
   categories
-  pronouns
   portrait {
     ...ImageFile
   }
