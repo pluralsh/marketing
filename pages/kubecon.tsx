@@ -231,7 +231,7 @@ export default function KubeCon() {
                 rel="noopener noreferrer"
                 target="_blank"
                 as={Link}
-                href="https://plural.sh/"
+                href="https://www.plural.sh/"
               >
                 Learn more
               </Button>
@@ -240,7 +240,7 @@ export default function KubeCon() {
                 rel="noopener noreferrer"
                 target="_blank"
                 as={Link}
-                href="https://plural.sh/contact-sales"
+                href="https://www.plural.sh/contact"
               >
                 Book a demo
               </Button>
@@ -267,7 +267,7 @@ export default function KubeCon() {
             as={Link}
             rel="noopener noreferrer"
             target="_blank"
-            href="https://plural.sh/"
+            href="https://www.plural.sh/"
           >
             Learn more about Plural
           </Button>

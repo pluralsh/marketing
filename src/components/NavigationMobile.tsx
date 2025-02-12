@@ -141,7 +141,7 @@ function PluralMenuContent({
       <div className="flex flex-col gap-small">
         <Button
           as="a"
-          href="/contact-sales"
+          href="/contact"
           primary
           fontFamily={theme.fontFamilies.sans}
           endIcon={<ArrowRightIcon />}

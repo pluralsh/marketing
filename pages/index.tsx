@@ -164,7 +164,7 @@ const pageDataDefaults: PageHomepageFragment = {
   hero_description:
     'Plural reduces cluster upgrade cycles from months to hours at enterprise scale with streamlined dependency management.',
   hero_cta_text: 'Book a demo',
-  hero_cta_url: '/contact-sales',
+  hero_cta_url: '/contact',
   hero_image: null,
   hero_video_cta_text: 'Watch demo video',
   hero_video_cta_url:

@@ -49,7 +49,7 @@ module.exports = () => {
         },
         {
           source: '/demo-login',
-          destination: '/contact-sales',
+          destination: '/contact',
           permanent: true,
         },
       ]

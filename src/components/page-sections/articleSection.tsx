@@ -93,7 +93,7 @@ function ArticleSection({ articleCards }: { articleCards?: ArticleCardsType }) {
                   large
                   primary
                   as={Link}
-                  href="/contact-sales"
+                  href="/contact"
                   className="mx-auto w-fit"
                 >
                   Book now

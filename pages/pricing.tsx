@@ -58,7 +58,7 @@ export default function Pricing({
               cta={
                 <Button
                   as="a"
-                  href="https://plural.sh/contact-sales"
+                  href="https://www.plural.sh/contact"
                   target="_blank"
                   rel="noopener noreferer"
                   secondary
@@ -73,7 +73,7 @@ export default function Pricing({
               cta={
                 <Button
                   as="a"
-                  href="https://plural.sh/contact-sales"
+                  href="https://www.plural.sh/contact"
                   target="_blank"
                   rel="noopener noreferer"
                 >
