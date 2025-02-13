@@ -33,7 +33,7 @@ export const FooterValueProp = styled(({ ...props }: ComponentProps<'div'>) => (
         <Button
           large
           as={Link}
-          href="/contact-sales"
+          href="/contact"
           className="mt-large w-full sm:w-fit"
         >
           Book now

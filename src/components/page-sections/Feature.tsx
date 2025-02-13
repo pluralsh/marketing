@@ -75,7 +75,7 @@ export function Feature({
             large
             className="mt-large w-fit"
             as={Link}
-            href="/contact-sales"
+            href="/contact"
             endIcon={<ArrowRightIcon />}
           >
             Book a demo

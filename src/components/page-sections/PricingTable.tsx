@@ -258,7 +258,7 @@ const plans = [
       action: (
         <Button
           as="a"
-          href="https://plural.sh/contact-sales"
+          href="https://www.plural.sh/contact"
           target="_blank"
           rel="noopener noreferer"
           width="100%"
