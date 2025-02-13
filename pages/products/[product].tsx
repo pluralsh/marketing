@@ -38,7 +38,7 @@ export default function Product({
             large
             primary
             as={Link}
-            href="/contact-sales"
+            href="/contact"
             className=" w-fit"
           >
             Book a demo

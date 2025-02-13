@@ -54,7 +54,7 @@ export default function Solution({
               <Button
                 large
                 as={Link}
-                href="/contact-sales"
+                href="/contact"
               >
                 Book a demo
               </Button>

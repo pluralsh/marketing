@@ -238,7 +238,7 @@ export default function KubeCon() {
                 rel="noopener noreferrer"
                 target="_blank"
                 as={Link}
-                href="https://plural.sh/contact-sales"
+                href="https://plural.sh/contact"
               >
                 Book a demo
               </Button>

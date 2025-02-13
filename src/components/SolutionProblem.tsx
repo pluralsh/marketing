@@ -34,7 +34,7 @@ function SolutionProblem({ title, subtitle, problem, solution }) {
           secondary
           outline
           as={Link}
-          href="/contact-sales"
+          href="/contact"
         >
           Book a demo
         </Button>

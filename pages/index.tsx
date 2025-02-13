@@ -216,7 +216,7 @@ export default function Index({
                 large
                 primary
                 as={Link}
-                href="/contact-sales"
+                href="/contact"
               >
                 Book a demo
               </Button>

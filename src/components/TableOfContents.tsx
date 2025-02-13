@@ -129,7 +129,7 @@ function TableOfContentsBase({
 
   const { hash } =
     (typeof window !== 'undefined' && window?.location) ||
-    new URL(`http://plural.sh${router.asPath}`)
+    new URL(`https://plural.sh${router.asPath}`)
   const previousHash = usePrevious(hash)
 
   const ignoreNextScrollEvent = useRef(!!hash)

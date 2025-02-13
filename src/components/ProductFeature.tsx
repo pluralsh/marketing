@@ -64,7 +64,7 @@ function ProductFeature({
             large
             tertiary
             as={Link}
-            href="/contact-sales"
+            href="/contact"
             endIcon={<ArrowRightIcon />}
             padding="none"
             className="w-fit"

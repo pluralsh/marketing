@@ -104,7 +104,7 @@ export function PageHeader({
             </Button>
             <Button
               as="a"
-              href="/contact-sales"
+              href="/contact"
               primary
               fontFamily={theme.fontFamilies.sans}
             >

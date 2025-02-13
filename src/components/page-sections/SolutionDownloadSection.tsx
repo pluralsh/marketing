@@ -30,7 +30,7 @@ function SolutionDownloadSection({ solution }: { solution: SolutionFragment }) {
               <Button
                 large
                 as={Link}
-                href="/contact-sales"
+                href="/contact"
                 startIcon={<ConsoleIcon />}
               >
                 Book a demo
