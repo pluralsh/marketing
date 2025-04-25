@@ -18,6 +18,7 @@ fragment ProductPage on product_pages {
 
 fragment ProductPageTiny on product_pages {
   id
+  status
   slug
   dropdown_icon
   dropdown_title

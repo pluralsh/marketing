@@ -1,7 +1,6 @@
 import { type GetStaticPropsResult } from 'next'
 
 import { until } from '@open-draft/until'
-
 import { directusClient } from '@src/apollo-client'
 import {
   GITHUB_DATA_URL,
@@ -37,8 +36,8 @@ async function getGlobalProps() {
       og_title: 'Plural',
       og_description: '',
     },
-    data.solutions_pages,
-    data.product_pages,
+    data.solutions_pages.filter((page) => page.status === 'active'),
+    data.product_pages.filter((page) => page.status === 'active'),
     data.resource_pages
   )
 

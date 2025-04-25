@@ -18,6 +18,7 @@ fragment SolutionPage on solutions_pages {
 
 fragment SolutionPageTiny on solutions_pages {
   id
+  status
   slug
   category
   dropdown_icon
