@@ -1,6 +1,7 @@
 import { type GetStaticPropsResult } from 'next'
 
 import { until } from '@open-draft/until'
+
 import { directusClient } from '@src/apollo-client'
 import {
   GITHUB_DATA_URL,
