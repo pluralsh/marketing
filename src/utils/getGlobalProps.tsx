@@ -37,8 +37,8 @@ async function getGlobalProps() {
       og_title: 'Plural',
       og_description: '',
     },
-    data.solutions_pages,
-    data.product_pages,
+    data.solutions_pages.filter((page) => page.status === 'active'),
+    data.product_pages.filter((page) => page.status === 'active'),
     data.resource_pages
   )
 

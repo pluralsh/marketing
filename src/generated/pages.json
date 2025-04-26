@@ -21,6 +21,9 @@
     "path": "/kubecon"
   },
   {
+    "path": "/kubernetes-fleet-management"
+  },
+  {
     "path": "/pricing"
   },
   {
