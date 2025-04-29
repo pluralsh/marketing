@@ -1,5 +1,6 @@
 import { type SectionHeaderComponentFragment } from '@src/generated/graphqlDirectus'
 
+import BasicMarkdown from '../BasicMarkdown'
 import { Body1, OverlineLabel, ResponsiveText } from '../Typography'
 
 export function SectionHeader({
@@ -16,7 +17,12 @@ export function SectionHeader({
             {title}
           </ResponsiveText>
         )}
-        <Body1 $color="text-light">{description}</Body1>
+        <Body1
+          as="div"
+          $color="text-light"
+        >
+          <BasicMarkdown text={description} />
+        </Body1>
       </div>
     </div>
   )
