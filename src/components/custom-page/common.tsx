@@ -191,6 +191,7 @@ const ComponentBackgroundSC = styled.div<{ $background?: string }>(
 
 const ComponentWrapperSC = styled.section(({ theme }) => ({
   position: 'relative',
+  textWrap: 'pretty',
   ...colorsToCSSVars(theme.colors),
 }))
 
