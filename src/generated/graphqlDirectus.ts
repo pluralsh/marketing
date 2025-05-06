@@ -7067,6 +7067,7 @@ export type Create_Product_Pages_Input = {
   meta_image?: InputMaybe<Create_Directus_Files_Input>;
   meta_title?: InputMaybe<Scalars['String']['input']>;
   slug: Scalars['String']['input'];
+  sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -10318,6 +10319,7 @@ export type Product_Pages = {
   meta_image?: Maybe<Directus_Files>;
   meta_title?: Maybe<Scalars['String']['output']>;
   slug: Scalars['String']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
 
@@ -10367,12 +10369,14 @@ export type Product_Pages_Aggregated_Count = {
   meta_image?: Maybe<Scalars['Int']['output']>;
   meta_title?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Product_Pages_Aggregated_Fields = {
   __typename?: 'product_pages_aggregated_fields';
   id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Product_Pages_Custom_Component = {
@@ -10455,6 +10459,7 @@ export type Product_Pages_Filter = {
   meta_image?: InputMaybe<Directus_Files_Filter>;
   meta_title?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
 };
 
@@ -12606,6 +12611,7 @@ export type Update_Product_Pages_Input = {
   meta_image?: InputMaybe<Update_Directus_Files_Input>;
   meta_title?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
 };
 
