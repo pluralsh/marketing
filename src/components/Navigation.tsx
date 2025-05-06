@@ -37,7 +37,9 @@ export const ProductLink = forwardRef(
       (item) => item.id === props.id
     )?.link
 
-    const IconComponent = itemConfig?.icon ? icons[itemConfig.icon] : null
+    const IconComponent = itemConfig?.icon
+      ? icons[sanitizeIconName(itemConfig.icon)]
+      : null
 
     return (
       <MainLinkBase
@@ -210,3 +212,7 @@ export const SecondaryLink = styled.a(({ theme }) => ({
     padding: `${theme.spacing.small}px ${theme.spacing.medium}px`,
   },
 }))
+
+// removes invisible characters, appends Icon to the string if it's not already there
+export const sanitizeIconName = (str: string) =>
+  `${str.replace(/[\u00AD\u200B-\u200D\uFEFF]/g, '').replace(/Icon$/, '')}Icon`
