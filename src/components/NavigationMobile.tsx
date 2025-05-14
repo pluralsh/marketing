@@ -14,7 +14,7 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 import { type NavData, useNavData } from '@src/contexts/NavDataContext'
 
 import useScrollLock from './hooks/useScrollLock'
-import { PlatformOverviewLinkSC } from './menu/Menu'
+import { MenuImageLinkSC } from './menu/Menu'
 import { MainLink, MainLinkBase, ProductMobileLink } from './Navigation'
 import { type NavContextValue, NavigationFull } from './NavigationFull'
 
@@ -78,13 +78,14 @@ function NavList({ navData }: { navData?: NavData | null }) {
             >
               {navItem.link?.title === 'Product' && (
                 <div className="pl-small">
-                  <PlatformOverviewLinkSC
+                  <MenuImageLinkSC
                     as={MainLinkBase}
                     href="/product"
+                    $imageUrl="/images/product/platform-overview-image.jpg"
                   >
                     <span>Plural Platform Overview</span>
                     <ArrowTopRightIcon size={18} />
-                  </PlatformOverviewLinkSC>
+                  </MenuImageLinkSC>
                 </div>
               )}
               {navItem.subnav?.map((subnavItem) => {

@@ -142,6 +142,12 @@ export type Mutation = {
   create_team_members_items: Array<Team_Members>;
   create_two_column_text_item?: Maybe<Two_Column_Text>;
   create_two_column_text_items: Array<Two_Column_Text>;
+  create_why_plural_pages_custom_component_item?: Maybe<Why_Plural_Pages_Custom_Component>;
+  create_why_plural_pages_custom_component_items: Array<Why_Plural_Pages_Custom_Component>;
+  create_why_plural_pages_item?: Maybe<Why_Plural_Pages>;
+  create_why_plural_pages_items: Array<Why_Plural_Pages>;
+  create_why_plural_parent_page_custom_component_item?: Maybe<Why_Plural_Parent_Page_Custom_Component>;
+  create_why_plural_parent_page_custom_component_items: Array<Why_Plural_Parent_Page_Custom_Component>;
   delete_article_cards_item?: Maybe<Delete_One>;
   delete_article_cards_items?: Maybe<Delete_Many>;
   delete_blog_cards_item?: Maybe<Delete_One>;
@@ -258,6 +264,12 @@ export type Mutation = {
   delete_team_members_items?: Maybe<Delete_Many>;
   delete_two_column_text_item?: Maybe<Delete_One>;
   delete_two_column_text_items?: Maybe<Delete_Many>;
+  delete_why_plural_pages_custom_component_item?: Maybe<Delete_One>;
+  delete_why_plural_pages_custom_component_items?: Maybe<Delete_Many>;
+  delete_why_plural_pages_item?: Maybe<Delete_One>;
+  delete_why_plural_pages_items?: Maybe<Delete_Many>;
+  delete_why_plural_parent_page_custom_component_item?: Maybe<Delete_One>;
+  delete_why_plural_parent_page_custom_component_items?: Maybe<Delete_Many>;
   update_article_cards_batch: Array<Article_Cards>;
   update_article_cards_item?: Maybe<Article_Cards>;
   update_article_cards_items: Array<Article_Cards>;
@@ -439,6 +451,16 @@ export type Mutation = {
   update_two_column_text_batch: Array<Two_Column_Text>;
   update_two_column_text_item?: Maybe<Two_Column_Text>;
   update_two_column_text_items: Array<Two_Column_Text>;
+  update_why_plural_pages_batch: Array<Why_Plural_Pages>;
+  update_why_plural_pages_custom_component_batch: Array<Why_Plural_Pages_Custom_Component>;
+  update_why_plural_pages_custom_component_item?: Maybe<Why_Plural_Pages_Custom_Component>;
+  update_why_plural_pages_custom_component_items: Array<Why_Plural_Pages_Custom_Component>;
+  update_why_plural_pages_item?: Maybe<Why_Plural_Pages>;
+  update_why_plural_pages_items: Array<Why_Plural_Pages>;
+  update_why_plural_parent_page?: Maybe<Why_Plural_Parent_Page>;
+  update_why_plural_parent_page_custom_component_batch: Array<Why_Plural_Parent_Page_Custom_Component>;
+  update_why_plural_parent_page_custom_component_item?: Maybe<Why_Plural_Parent_Page_Custom_Component>;
+  update_why_plural_parent_page_custom_component_items: Array<Why_Plural_Parent_Page_Custom_Component>;
 };
 
 
@@ -1370,6 +1392,54 @@ export type MutationCreate_Two_Column_Text_ItemsArgs = {
 };
 
 
+export type MutationCreate_Why_Plural_Pages_Custom_Component_ItemArgs = {
+  data: Create_Why_Plural_Pages_Custom_Component_Input;
+};
+
+
+export type MutationCreate_Why_Plural_Pages_Custom_Component_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Why_Plural_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Why_Plural_Pages_ItemArgs = {
+  data: Create_Why_Plural_Pages_Input;
+};
+
+
+export type MutationCreate_Why_Plural_Pages_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Why_Plural_Pages_Input>>;
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationCreate_Why_Plural_Parent_Page_Custom_Component_ItemArgs = {
+  data: Create_Why_Plural_Parent_Page_Custom_Component_Input;
+};
+
+
+export type MutationCreate_Why_Plural_Parent_Page_Custom_Component_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Why_Plural_Parent_Page_Custom_Component_Input>>;
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type MutationDelete_Article_Cards_ItemArgs = {
   id: Scalars['ID']['input'];
 };
@@ -1946,6 +2016,36 @@ export type MutationDelete_Two_Column_Text_ItemArgs = {
 
 
 export type MutationDelete_Two_Column_Text_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Why_Plural_Pages_Custom_Component_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Why_Plural_Pages_Custom_Component_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Why_Plural_Pages_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Why_Plural_Pages_ItemsArgs = {
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+};
+
+
+export type MutationDelete_Why_Plural_Parent_Page_Custom_Component_ItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Why_Plural_Parent_Page_Custom_Component_ItemsArgs = {
   ids: Array<InputMaybe<Scalars['ID']['input']>>;
 };
 
@@ -3666,6 +3766,98 @@ export type MutationUpdate_Two_Column_Text_ItemsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+
+export type MutationUpdate_Why_Plural_Pages_BatchArgs = {
+  data?: InputMaybe<Array<Update_Why_Plural_Pages_Input>>;
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Why_Plural_Pages_Custom_Component_BatchArgs = {
+  data?: InputMaybe<Array<Update_Why_Plural_Pages_Custom_Component_Input>>;
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Why_Plural_Pages_Custom_Component_ItemArgs = {
+  data: Update_Why_Plural_Pages_Custom_Component_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Why_Plural_Pages_Custom_Component_ItemsArgs = {
+  data: Update_Why_Plural_Pages_Custom_Component_Input;
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Why_Plural_Pages_ItemArgs = {
+  data: Update_Why_Plural_Pages_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Why_Plural_Pages_ItemsArgs = {
+  data: Update_Why_Plural_Pages_Input;
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Why_Plural_Parent_PageArgs = {
+  data: Update_Why_Plural_Parent_Page_Input;
+};
+
+
+export type MutationUpdate_Why_Plural_Parent_Page_Custom_Component_BatchArgs = {
+  data?: InputMaybe<Array<Update_Why_Plural_Parent_Page_Custom_Component_Input>>;
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type MutationUpdate_Why_Plural_Parent_Page_Custom_Component_ItemArgs = {
+  data: Update_Why_Plural_Parent_Page_Custom_Component_Input;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Why_Plural_Parent_Page_Custom_Component_ItemsArgs = {
+  data: Update_Why_Plural_Parent_Page_Custom_Component_Input;
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type Query = {
   __typename?: 'Query';
   article_cards: Array<Article_Cards>;
@@ -3849,6 +4041,16 @@ export type Query = {
   two_column_text: Array<Two_Column_Text>;
   two_column_text_aggregated: Array<Two_Column_Text_Aggregated>;
   two_column_text_by_id?: Maybe<Two_Column_Text>;
+  why_plural_pages: Array<Why_Plural_Pages>;
+  why_plural_pages_aggregated: Array<Why_Plural_Pages_Aggregated>;
+  why_plural_pages_by_id?: Maybe<Why_Plural_Pages>;
+  why_plural_pages_custom_component: Array<Why_Plural_Pages_Custom_Component>;
+  why_plural_pages_custom_component_aggregated: Array<Why_Plural_Pages_Custom_Component_Aggregated>;
+  why_plural_pages_custom_component_by_id?: Maybe<Why_Plural_Pages_Custom_Component>;
+  why_plural_parent_page?: Maybe<Why_Plural_Parent_Page>;
+  why_plural_parent_page_custom_component: Array<Why_Plural_Parent_Page_Custom_Component>;
+  why_plural_parent_page_custom_component_aggregated: Array<Why_Plural_Parent_Page_Custom_Component_Aggregated>;
+  why_plural_parent_page_custom_component_by_id?: Maybe<Why_Plural_Parent_Page_Custom_Component>;
 };
 
 
@@ -5356,6 +5558,84 @@ export type QueryTwo_Column_Text_AggregatedArgs = {
 
 
 export type QueryTwo_Column_Text_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryWhy_Plural_PagesArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Pages_AggregatedArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Pages_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryWhy_Plural_Pages_Custom_ComponentArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Pages_Custom_Component_AggregatedArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Pages_Custom_Component_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryWhy_Plural_Parent_Page_Custom_ComponentArgs = {
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Parent_Page_Custom_Component_AggregatedArgs = {
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryWhy_Plural_Parent_Page_Custom_Component_By_IdArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -7281,6 +7561,51 @@ export type Create_Two_Column_Text_Input = {
   id?: InputMaybe<Scalars['ID']['input']>;
   main_content: Scalars['String']['input'];
   side_content: Scalars['String']['input'];
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Why_Plural_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  why_plural_pages_id?: InputMaybe<Create_Why_Plural_Pages_Input>;
+};
+
+export type Create_Why_Plural_Pages_Input = {
+  custom_components?: InputMaybe<Array<InputMaybe<Create_Why_Plural_Pages_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  dropdown_description?: InputMaybe<Scalars['String']['input']>;
+  /** copy and paste the name directly from here: https://pluralsh-design.web.app/?path=/story/icons--default  */
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  meta_description?: InputMaybe<Scalars['String']['input']>;
+  meta_image?: InputMaybe<Create_Directus_Files_Input>;
+  meta_title?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Create_Directus_Users_Input>;
+  user_updated?: InputMaybe<Create_Directus_Users_Input>;
+};
+
+export type Create_Why_Plural_Parent_Page_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Create_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  why_plural_parent_page_id?: InputMaybe<Create_Why_Plural_Parent_Page_Input>;
+};
+
+export type Create_Why_Plural_Parent_Page_Input = {
+  custom_components?: InputMaybe<Array<InputMaybe<Create_Why_Plural_Parent_Page_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  meta_description?: InputMaybe<Scalars['String']['input']>;
+  meta_image?: InputMaybe<Create_Directus_Files_Input>;
+  meta_title?: InputMaybe<Scalars['String']['input']>;
   user_created?: InputMaybe<Create_Directus_Users_Input>;
   user_updated?: InputMaybe<Create_Directus_Users_Input>;
 };
@@ -12829,6 +13154,384 @@ export type Update_Two_Column_Text_Input = {
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
 
+export type Update_Why_Plural_Pages_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  why_plural_pages_id?: InputMaybe<Update_Why_Plural_Pages_Input>;
+};
+
+export type Update_Why_Plural_Pages_Input = {
+  custom_components?: InputMaybe<Array<InputMaybe<Update_Why_Plural_Pages_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  dropdown_description?: InputMaybe<Scalars['String']['input']>;
+  /** copy and paste the name directly from here: https://pluralsh-design.web.app/?path=/story/icons--default  */
+  dropdown_icon?: InputMaybe<Scalars['String']['input']>;
+  dropdown_title?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  meta_description?: InputMaybe<Scalars['String']['input']>;
+  meta_image?: InputMaybe<Update_Directus_Files_Input>;
+  meta_title?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Update_Why_Plural_Parent_Page_Custom_Component_Input = {
+  custom_component_id?: InputMaybe<Update_Custom_Component_Input>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  sort?: InputMaybe<Scalars['Int']['input']>;
+  why_plural_parent_page_id?: InputMaybe<Update_Why_Plural_Parent_Page_Input>;
+};
+
+export type Update_Why_Plural_Parent_Page_Input = {
+  custom_components?: InputMaybe<Array<InputMaybe<Update_Why_Plural_Parent_Page_Custom_Component_Input>>>;
+  date_created?: InputMaybe<Scalars['Date']['input']>;
+  date_updated?: InputMaybe<Scalars['Date']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  meta_description?: InputMaybe<Scalars['String']['input']>;
+  meta_image?: InputMaybe<Update_Directus_Files_Input>;
+  meta_title?: InputMaybe<Scalars['String']['input']>;
+  user_created?: InputMaybe<Update_Directus_Users_Input>;
+  user_updated?: InputMaybe<Update_Directus_Users_Input>;
+};
+
+export type Why_Plural_Pages = {
+  __typename?: 'why_plural_pages';
+  custom_components?: Maybe<Array<Maybe<Why_Plural_Pages_Custom_Component>>>;
+  custom_components_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  dropdown_description?: Maybe<Scalars['String']['output']>;
+  /** copy and paste the name directly from here: https://pluralsh-design.web.app/?path=/story/icons--default  */
+  dropdown_icon?: Maybe<Scalars['String']['output']>;
+  dropdown_title?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  meta_description?: Maybe<Scalars['String']['output']>;
+  meta_image?: Maybe<Directus_Files>;
+  meta_title?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Why_Plural_PagesCustom_ComponentsArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_PagesMeta_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_PagesUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_PagesUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Why_Plural_Pages_Aggregated = {
+  __typename?: 'why_plural_pages_aggregated';
+  avg?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+  avgDistinct?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+  count?: Maybe<Why_Plural_Pages_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Why_Plural_Pages_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+  min?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+  sum?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+  sumDistinct?: Maybe<Why_Plural_Pages_Aggregated_Fields>;
+};
+
+export type Why_Plural_Pages_Aggregated_Count = {
+  __typename?: 'why_plural_pages_aggregated_count';
+  custom_components?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  dropdown_description?: Maybe<Scalars['Int']['output']>;
+  /** copy and paste the name directly from here: https://pluralsh-design.web.app/?path=/story/icons--default  */
+  dropdown_icon?: Maybe<Scalars['Int']['output']>;
+  dropdown_title?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  meta_description?: Maybe<Scalars['Int']['output']>;
+  meta_image?: Maybe<Scalars['Int']['output']>;
+  meta_title?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Why_Plural_Pages_Aggregated_Fields = {
+  __typename?: 'why_plural_pages_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Why_Plural_Pages_Custom_Component = {
+  __typename?: 'why_plural_pages_custom_component';
+  custom_component_id?: Maybe<Custom_Component>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  why_plural_pages_id?: Maybe<Why_Plural_Pages>;
+};
+
+
+export type Why_Plural_Pages_Custom_ComponentCustom_Component_IdArgs = {
+  filter?: InputMaybe<Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_Pages_Custom_ComponentWhy_Plural_Pages_IdArgs = {
+  filter?: InputMaybe<Why_Plural_Pages_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Why_Plural_Pages_Custom_Component_Aggregated = {
+  __typename?: 'why_plural_pages_custom_component_aggregated';
+  avg?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+  avgDistinct?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+  count?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+  min?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+  sum?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+  sumDistinct?: Maybe<Why_Plural_Pages_Custom_Component_Aggregated_Fields>;
+};
+
+export type Why_Plural_Pages_Custom_Component_Aggregated_Count = {
+  __typename?: 'why_plural_pages_custom_component_aggregated_count';
+  custom_component_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  why_plural_pages_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Why_Plural_Pages_Custom_Component_Aggregated_Fields = {
+  __typename?: 'why_plural_pages_custom_component_aggregated_fields';
+  custom_component_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+  why_plural_pages_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Why_Plural_Pages_Custom_Component_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Why_Plural_Pages_Custom_Component_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Why_Plural_Pages_Custom_Component_Filter>>>;
+  custom_component_id?: InputMaybe<Custom_Component_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  why_plural_pages_id?: InputMaybe<Why_Plural_Pages_Filter>;
+};
+
+export type Why_Plural_Pages_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Why_Plural_Pages_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Why_Plural_Pages_Filter>>>;
+  custom_components?: InputMaybe<Why_Plural_Pages_Custom_Component_Filter>;
+  custom_components_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  dropdown_description?: InputMaybe<String_Filter_Operators>;
+  dropdown_icon?: InputMaybe<String_Filter_Operators>;
+  dropdown_title?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  meta_description?: InputMaybe<String_Filter_Operators>;
+  meta_image?: InputMaybe<Directus_Files_Filter>;
+  meta_title?: InputMaybe<String_Filter_Operators>;
+  slug?: InputMaybe<String_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
+export type Why_Plural_Parent_Page = {
+  __typename?: 'why_plural_parent_page';
+  custom_components?: Maybe<Array<Maybe<Why_Plural_Parent_Page_Custom_Component>>>;
+  custom_components_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  meta_description?: Maybe<Scalars['String']['output']>;
+  meta_image?: Maybe<Directus_Files>;
+  meta_title?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Directus_Users>;
+  user_updated?: Maybe<Directus_Users>;
+};
+
+
+export type Why_Plural_Parent_PageCustom_ComponentsArgs = {
+  filter?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_Parent_PageMeta_ImageArgs = {
+  filter?: InputMaybe<Directus_Files_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_Parent_PageUser_CreatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_Parent_PageUser_UpdatedArgs = {
+  filter?: InputMaybe<Directus_Users_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Why_Plural_Parent_Page_Custom_Component = {
+  __typename?: 'why_plural_parent_page_custom_component';
+  custom_component_id?: Maybe<Custom_Component>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  why_plural_parent_page_id?: Maybe<Why_Plural_Parent_Page>;
+};
+
+
+export type Why_Plural_Parent_Page_Custom_ComponentCustom_Component_IdArgs = {
+  filter?: InputMaybe<Custom_Component_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Why_Plural_Parent_Page_Custom_ComponentWhy_Plural_Parent_Page_IdArgs = {
+  filter?: InputMaybe<Why_Plural_Parent_Page_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Why_Plural_Parent_Page_Custom_Component_Aggregated = {
+  __typename?: 'why_plural_parent_page_custom_component_aggregated';
+  avg?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+  avgDistinct?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+  count?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+  min?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+  sum?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+  sumDistinct?: Maybe<Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields>;
+};
+
+export type Why_Plural_Parent_Page_Custom_Component_Aggregated_Count = {
+  __typename?: 'why_plural_parent_page_custom_component_aggregated_count';
+  custom_component_id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  why_plural_parent_page_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Why_Plural_Parent_Page_Custom_Component_Aggregated_Fields = {
+  __typename?: 'why_plural_parent_page_custom_component_aggregated_fields';
+  custom_component_id?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+  why_plural_parent_page_id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Why_Plural_Parent_Page_Custom_Component_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>>>;
+  custom_component_id?: InputMaybe<Custom_Component_Filter>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  why_plural_parent_page_id?: InputMaybe<Why_Plural_Parent_Page_Filter>;
+};
+
+export type Why_Plural_Parent_Page_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Why_Plural_Parent_Page_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Why_Plural_Parent_Page_Filter>>>;
+  custom_components?: InputMaybe<Why_Plural_Parent_Page_Custom_Component_Filter>;
+  custom_components_func?: InputMaybe<Count_Function_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  meta_description?: InputMaybe<String_Filter_Operators>;
+  meta_image?: InputMaybe<Directus_Files_Filter>;
+  meta_title?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<Directus_Users_Filter>;
+  user_updated?: InputMaybe<Directus_Users_Filter>;
+};
+
 export type CustomPageFragment = { __typename?: 'custom_pages', id: string, slug: string, show_header?: boolean | null, show_footer?: boolean | null, meta_title?: string | null, meta_description?: string | null, components?: Array<{ __typename?: 'custom_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type CustomPageTinyFragment = { __typename?: 'custom_pages', id: string, slug: string };
@@ -12879,12 +13582,12 @@ export type OurImpactComponentFragment = { __typename?: 'our_impact', top_left_m
 
 export type QuoteCarouselComponentFragment = { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null };
 
-export type GlobalDataFragment = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_title?: string | null, og_description: string, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, status?: string | null, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external?: boolean | null, slug?: string | null, url?: string | null, dropdown_title?: string | null }> };
+export type GlobalDataFragment = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_title?: string | null, og_description: string, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, status?: string | null, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, why_plural_pages: Array<{ __typename?: 'why_plural_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external?: boolean | null, slug?: string | null, url?: string | null, dropdown_title?: string | null }> };
 
 export type GetGlobalDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalDataQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_title?: string | null, og_description: string, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, status?: string | null, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external?: boolean | null, slug?: string | null, url?: string | null, dropdown_title?: string | null }> };
+export type GetGlobalDataQuery = { __typename?: 'Query', site_settings?: { __typename?: 'site_settings', og_title?: string | null, og_description: string, og_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null, solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, status?: string | null, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null }>, product_pages: Array<{ __typename?: 'product_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, why_plural_pages: Array<{ __typename?: 'why_plural_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }>, resource_pages: Array<{ __typename?: 'resource_pages', id: string, external?: boolean | null, slug?: string | null, url?: string | null, dropdown_title?: string | null }> };
 
 export type MinJobListingFragment = { __typename?: 'job_listings', id: string, slug: string, job_title?: string | null, department?: string | null, tags?: any | null, location?: string | null, status?: string | null };
 
@@ -12997,6 +13700,22 @@ export type SolutionPageQueryVariables = Exact<{
 
 export type SolutionPageQuery = { __typename?: 'Query', solutions_pages: Array<{ __typename?: 'solutions_pages', id: string, slug: string, category?: string | null, dropdown_icon?: string | null, dropdown_title?: string | null, meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'solutions_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
 
+export type WhyPluralPageFragment = { __typename?: 'why_plural_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'why_plural_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type WhyPluralPageTinyFragment = { __typename?: 'why_plural_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null };
+
+export type WhyPluralPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type WhyPluralPageSlugsQuery = { __typename?: 'Query', why_plural_pages: Array<{ __typename?: 'why_plural_pages', id: string, status?: string | null, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null }> };
+
+export type WhyPluralPageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type WhyPluralPageQuery = { __typename?: 'Query', why_plural_pages: Array<{ __typename?: 'why_plural_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'why_plural_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null }> };
+
 export type QuoteFragment = { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null };
 
 export type QuoteListFragment = { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null };
@@ -13015,6 +13734,8 @@ export type PageLegalFragment = { __typename?: 'page_legal', pages?: Array<{ __t
 export type PageHomepageFragment = { __typename?: 'page_homepage', hero_cta_text?: string | null, hero_cta_url?: string | null, hero_description?: string | null, hero_title?: string | null, hero_video_cta_text?: string | null, hero_video_cta_url?: string | null, announcement_text?: string | null, announcement_url?: string | null, announcement_visible?: boolean | null, meta_title?: string | null, meta_description?: string | null, hero_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, custom_components?: Array<{ __typename?: 'page_homepage_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type PlatformOverviewPageFragment = { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, meta_title?: string | null, meta_description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+
+export type WhyPluralParentPageFragment = { __typename?: 'why_plural_parent_page', meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'why_plural_parent_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type ContactPageFragment = { __typename?: 'contact_sales', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null, meta_title?: string | null, meta_description?: string | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -13037,6 +13758,11 @@ export type PlatformOverviewPageQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type PlatformOverviewPageQuery = { __typename?: 'Query', platform_overview_page?: { __typename?: 'platform_overview_page', overline?: string | null, title?: string | null, description?: string | null, meta_title?: string | null, meta_description?: string | null, top_components?: Array<{ __typename?: 'platform_overview_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, bottom_components?: Array<{ __typename?: 'platform_overview_page_custom_component_1', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+
+export type WhyPluralParentPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type WhyPluralParentPageQuery = { __typename?: 'Query', why_plural_parent_page?: { __typename?: 'why_plural_parent_page', meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'why_plural_parent_page_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
 export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -13342,6 +14068,16 @@ export const ProductPageTinyFragmentDoc = gql`
   dropdown_description
 }
     `;
+export const WhyPluralPageTinyFragmentDoc = gql`
+    fragment WhyPluralPageTiny on why_plural_pages {
+  id
+  status
+  slug
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+    `;
 export const ResourcePageTinyFragmentDoc = gql`
     fragment ResourcePageTiny on resource_pages {
   id
@@ -13359,8 +14095,11 @@ export const GlobalDataFragmentDoc = gql`
   solutions_pages(filter: {status: {_neq: "hidden"}}) {
     ...SolutionPageTiny
   }
-  product_pages {
+  product_pages(filter: {status: {_neq: "hidden"}}) {
     ...ProductPageTiny
+  }
+  why_plural_pages(filter: {status: {_neq: "hidden"}}) {
+    ...WhyPluralPageTiny
   }
   resource_pages(filter: {status: {_neq: "hidden"}}) {
     ...ResourcePageTiny
@@ -13369,6 +14108,7 @@ export const GlobalDataFragmentDoc = gql`
     ${SiteSettingsFragmentDoc}
 ${SolutionPageTinyFragmentDoc}
 ${ProductPageTinyFragmentDoc}
+${WhyPluralPageTinyFragmentDoc}
 ${ResourcePageTinyFragmentDoc}`;
 export const MinJobListingFragmentDoc = gql`
     fragment MinJobListing on job_listings {
@@ -13519,6 +14259,26 @@ export const SolutionPageFragmentDoc = gql`
 }
     ${CustomComponentFragmentDoc}
 ${ImageFileFragmentDoc}`;
+export const WhyPluralPageFragmentDoc = gql`
+    fragment WhyPluralPage on why_plural_pages {
+  id
+  slug
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+  meta_title
+  meta_description
+  meta_image {
+    ...ImageFile
+  }
+}
+    ${CustomComponentFragmentDoc}
+${ImageFileFragmentDoc}`;
 export const MarkdownPageFragmentDoc = gql`
     fragment MarkdownPage on markdown_pages {
   id
@@ -13584,6 +14344,21 @@ export const PlatformOverviewPageFragmentDoc = gql`
   }
   image {
     ...ImageFile
+  }
+  meta_title
+  meta_description
+  meta_image {
+    ...ImageFile
+  }
+}
+    ${CustomComponentFragmentDoc}
+${ImageFileFragmentDoc}`;
+export const WhyPluralParentPageFragmentDoc = gql`
+    fragment WhyPluralParentPage on why_plural_parent_page {
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
   }
   meta_title
   meta_description
@@ -14158,6 +14933,75 @@ export function useSolutionPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type SolutionPageQueryHookResult = ReturnType<typeof useSolutionPageQuery>;
 export type SolutionPageLazyQueryHookResult = ReturnType<typeof useSolutionPageLazyQuery>;
 export type SolutionPageQueryResult = Apollo.QueryResult<SolutionPageQuery, SolutionPageQueryVariables>;
+export const WhyPluralPageSlugsDocument = gql`
+    query WhyPluralPageSlugs {
+  why_plural_pages(filter: {status: {_neq: "hidden"}}) {
+    ...WhyPluralPageTiny
+  }
+}
+    ${WhyPluralPageTinyFragmentDoc}`;
+
+/**
+ * __useWhyPluralPageSlugsQuery__
+ *
+ * To run a query within a React component, call `useWhyPluralPageSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWhyPluralPageSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWhyPluralPageSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useWhyPluralPageSlugsQuery(baseOptions?: Apollo.QueryHookOptions<WhyPluralPageSlugsQuery, WhyPluralPageSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WhyPluralPageSlugsQuery, WhyPluralPageSlugsQueryVariables>(WhyPluralPageSlugsDocument, options);
+      }
+export function useWhyPluralPageSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WhyPluralPageSlugsQuery, WhyPluralPageSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WhyPluralPageSlugsQuery, WhyPluralPageSlugsQueryVariables>(WhyPluralPageSlugsDocument, options);
+        }
+export type WhyPluralPageSlugsQueryHookResult = ReturnType<typeof useWhyPluralPageSlugsQuery>;
+export type WhyPluralPageSlugsLazyQueryHookResult = ReturnType<typeof useWhyPluralPageSlugsLazyQuery>;
+export type WhyPluralPageSlugsQueryResult = Apollo.QueryResult<WhyPluralPageSlugsQuery, WhyPluralPageSlugsQueryVariables>;
+export const WhyPluralPageDocument = gql`
+    query WhyPluralPage($slug: String!) {
+  why_plural_pages(filter: {slug: {_eq: $slug}, status: {_neq: "hidden"}}) {
+    ...WhyPluralPage
+  }
+}
+    ${WhyPluralPageFragmentDoc}`;
+
+/**
+ * __useWhyPluralPageQuery__
+ *
+ * To run a query within a React component, call `useWhyPluralPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWhyPluralPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWhyPluralPageQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useWhyPluralPageQuery(baseOptions: Apollo.QueryHookOptions<WhyPluralPageQuery, WhyPluralPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WhyPluralPageQuery, WhyPluralPageQueryVariables>(WhyPluralPageDocument, options);
+      }
+export function useWhyPluralPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WhyPluralPageQuery, WhyPluralPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WhyPluralPageQuery, WhyPluralPageQueryVariables>(WhyPluralPageDocument, options);
+        }
+export type WhyPluralPageQueryHookResult = ReturnType<typeof useWhyPluralPageQuery>;
+export type WhyPluralPageLazyQueryHookResult = ReturnType<typeof useWhyPluralPageLazyQuery>;
+export type WhyPluralPageQueryResult = Apollo.QueryResult<WhyPluralPageQuery, WhyPluralPageQueryVariables>;
 export const SiteSettingsDocument = gql`
     query SiteSettings {
   site_settings {
@@ -14330,6 +15174,40 @@ export function usePlatformOverviewPageLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type PlatformOverviewPageQueryHookResult = ReturnType<typeof usePlatformOverviewPageQuery>;
 export type PlatformOverviewPageLazyQueryHookResult = ReturnType<typeof usePlatformOverviewPageLazyQuery>;
 export type PlatformOverviewPageQueryResult = Apollo.QueryResult<PlatformOverviewPageQuery, PlatformOverviewPageQueryVariables>;
+export const WhyPluralParentPageDocument = gql`
+    query WhyPluralParentPage {
+  why_plural_parent_page {
+    ...WhyPluralParentPage
+  }
+}
+    ${WhyPluralParentPageFragmentDoc}`;
+
+/**
+ * __useWhyPluralParentPageQuery__
+ *
+ * To run a query within a React component, call `useWhyPluralParentPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWhyPluralParentPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWhyPluralParentPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useWhyPluralParentPageQuery(baseOptions?: Apollo.QueryHookOptions<WhyPluralParentPageQuery, WhyPluralParentPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WhyPluralParentPageQuery, WhyPluralParentPageQueryVariables>(WhyPluralParentPageDocument, options);
+      }
+export function useWhyPluralParentPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WhyPluralParentPageQuery, WhyPluralParentPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WhyPluralParentPageQuery, WhyPluralParentPageQueryVariables>(WhyPluralParentPageDocument, options);
+        }
+export type WhyPluralParentPageQueryHookResult = ReturnType<typeof useWhyPluralParentPageQuery>;
+export type WhyPluralParentPageLazyQueryHookResult = ReturnType<typeof useWhyPluralParentPageLazyQuery>;
+export type WhyPluralParentPageQueryResult = Apollo.QueryResult<WhyPluralParentPageQuery, WhyPluralParentPageQueryVariables>;
 export const ContactPageDocument = gql`
     query ContactPage {
   contact_sales {

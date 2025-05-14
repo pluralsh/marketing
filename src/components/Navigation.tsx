@@ -9,6 +9,7 @@ import * as productNavIcons from '@src/components/menu/ProductNavIcons'
 
 import { mqs } from '../breakpoints'
 
+import { type MenuButtonKind } from './menu/Menu'
 import { GlobalPropsContext } from './PrimaryPage'
 import { ResponsiveText } from './Typography'
 
@@ -27,15 +28,18 @@ export const MainLink = forwardRef(
     )
   }
 )
-export const ProductLink = forwardRef(
-  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+export const MainLinkWithIcon = forwardRef(
+  (
+    props: ComponentProps<typeof MainLinkBase> & { kind: MenuButtonKind },
+    ref
+  ) => {
     const { Link } = useNavigationContext()
     const theme = useTheme()
-    const globalProps = useContext(GlobalPropsContext)
+    const nav = useContext(GlobalPropsContext)?.siteSettings.main_nav
 
-    const itemConfig = globalProps?.siteSettings.main_nav.product.subnav.find(
-      (item) => item.id === props.id
-    )?.link
+    const itemConfig = (
+      props.kind === 'whyPlural' ? nav?.whyPlurals : nav?.product
+    )?.subnav.find((item) => item.id === props.id)?.link
 
     const IconComponent = itemConfig?.icon
       ? icons[sanitizeIconName(itemConfig.icon)]

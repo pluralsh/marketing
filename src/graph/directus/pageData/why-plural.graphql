@@ -1,0 +1,40 @@
+fragment WhyPluralPage on why_plural_pages {
+  id
+  slug
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+  meta_title
+  meta_description
+  meta_image {
+    ...ImageFile
+  }
+}
+
+fragment WhyPluralPageTiny on why_plural_pages {
+  id
+  status
+  slug
+  dropdown_icon
+  dropdown_title
+  dropdown_description
+}
+
+query WhyPluralPageSlugs {
+  why_plural_pages(filter: { status: { _neq: "hidden" } }) {
+    ...WhyPluralPageTiny
+  }
+}
+
+query WhyPluralPage($slug: String!) {
+  why_plural_pages(
+    filter: { slug: { _eq: $slug }, status: { _neq: "hidden" } }
+  ) {
+    ...WhyPluralPage
+  }
+}

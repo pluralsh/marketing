@@ -5,8 +5,11 @@ fragment GlobalData on Query {
   solutions_pages(filter: { status: { _neq: "hidden" } }) {
     ...SolutionPageTiny
   }
-  product_pages {
+  product_pages(filter: { status: { _neq: "hidden" } }) {
     ...ProductPageTiny
+  }
+  why_plural_pages(filter: { status: { _neq: "hidden" } }) {
+    ...WhyPluralPageTiny
   }
   resource_pages(filter: { status: { _neq: "hidden" } }) {
     ...ResourcePageTiny
