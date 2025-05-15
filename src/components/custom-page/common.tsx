@@ -23,6 +23,7 @@ import { LogoStrip } from './LogoStrip'
 import { MultiColumnText } from './MultiColumnText'
 import { QuoteCarousel } from './QuoteCarousel'
 import { SectionHeader } from './SectionHeader'
+import { TableCustomComponent } from './TableCustomComponent'
 import { TwoColumnText } from './TwoColumnText'
 
 const spacingTopClassName = {
@@ -113,6 +114,9 @@ function renderCustomComponent(
       break
     case 'quote_carousel':
       renderedComponent = <QuoteCarousel {...innerComponent} />
+      break
+    case 'table':
+      renderedComponent = <TableCustomComponent {...innerComponent} />
       break
     default:
       renderedComponent = null
