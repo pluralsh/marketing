@@ -19,7 +19,7 @@ export function QuoteSection({
       <ResponsiveText
         as="h3"
         textStyles={{ lg: 'mHero1', '': 'mHero2' }}
-        className="w-full max-w-[500px] pb-xxxxlarge lg:w-1/2"
+        className="w-full max-w-[500px] pb-large lg:w-1/2"
         style={{ color: theme.colors.grey[25] }}
       >
         {title}

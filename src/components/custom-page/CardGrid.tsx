@@ -1,18 +1,22 @@
 import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
-
 import * as productNavIcons from '@src/components/menu/ProductNavIcons'
 import { type MultiColumnTextComponentFragment } from '@src/generated/graphqlDirectus'
-
-import { Body1, Subtitle1 } from '../Typography'
+import { cn } from '@src/utils/cn'
+import { Body1, Body2 } from '../Typography'
 
 export const icons = {
   ...productNavIcons,
   ...designSystemIcons,
 }
 
-export function MultiColumnText({ columns }: MultiColumnTextComponentFragment) {
+export function CardGrid({ columns }: MultiColumnTextComponentFragment) {
   return (
-    <div className="flex flex-col gap-large border-b border-border-input pb-xxlarge lg:flex-row">
+    <div
+      className={cn(
+        'grid grid-cols-1 gap-large border-b border-border-input pb-xxlarge sm:grid-cols-2',
+        columns?.length === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'
+      )}
+    >
       {columns?.map((c, index) => {
         const heading = c?.rich_text_columns_id?.heading
         const bodyText = c?.rich_text_columns_id?.body_text
@@ -42,14 +46,20 @@ function TextColumnWithIcon({
   const Icon = icons[`${icon}Icon`] ?? icons.KubernetesIcon
 
   return (
-    <div className="flex flex-col items-center gap-medium rounded-[12px] bg-grey-950 p-large text-center lg:items-start lg:text-left">
+    <div className="flex min-w-[272px] flex-col items-center gap-medium rounded-[12px] bg-grey-950 p-large text-center lg:items-start lg:text-left">
       <Icon
         color="icon-light"
+        fullColor
         style={{ padding: 8 }}
         size={32}
       />
-      <Subtitle1>{heading}</Subtitle1>
-      <Body1 $color="text-light">{bodyText}</Body1>
+      <Body1
+        $color="text"
+        css={{ fontWeight: 700 }}
+      >
+        {heading}
+      </Body1>
+      <Body2 $color="text-light">{bodyText}</Body2>
     </div>
   )
 }

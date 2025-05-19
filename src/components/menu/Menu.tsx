@@ -175,6 +175,7 @@ export function MenuButton<T extends object>({
 
 export const MenuButtonWrap = styled.div((_) => ({
   position: 'relative',
+  textWrap: 'nowrap',
 }))
 
 function MenuDropdown<T extends object>({
