@@ -5,12 +5,14 @@ import {
   type ResourcePageTinyFragment,
   type SiteSettingsFragment,
   type SolutionPageTinyFragment,
+  type WhyPluralPageTinyFragment,
 } from '@src/generated/graphqlDirectus'
 
 export const getSiteSettings = (
   siteSettings: SiteSettingsFragment,
   solutions?: SolutionPageTinyFragment[],
   products?: ProductPageTinyFragment[],
+  whyPlurals?: WhyPluralPageTinyFragment[],
   resources?: ResourcePageTinyFragment[]
 ) => ({
   og_title: siteSettings.og_title,
@@ -24,6 +26,14 @@ export const getSiteSettings = (
         url: '/kubernetes-fleet-management',
       },
       subnav: getProductSubnav(products),
+    },
+    whyPlurals: {
+      id: 'whyPlurals',
+      link: {
+        title: 'Why Plural',
+        url: '/why-plural',
+      },
+      subnav: getWhyPluralSubnav(whyPlurals),
     },
     solutions: {
       id: 'solutions',
@@ -98,6 +108,20 @@ function getProductSubnav(products?: ProductPageTinyFragment[]): NavList[] {
       description: product.dropdown_description ?? '',
       icon: product.dropdown_icon ?? '',
       url: `/products/${product.slug}`,
+    },
+  }))
+}
+
+function getWhyPluralSubnav(whyPlurals?: WhyPluralPageTinyFragment[]) {
+  if (!whyPlurals || !whyPlurals.length) return []
+
+  return whyPlurals.map((whyPlural) => ({
+    id: whyPlural.slug,
+    link: {
+      title: whyPlural.dropdown_title ?? '',
+      description: whyPlural.dropdown_description ?? '',
+      icon: whyPlural.dropdown_icon ?? '',
+      url: `/why-plural/${whyPlural.slug}`,
     },
   }))
 }

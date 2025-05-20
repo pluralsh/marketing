@@ -15,11 +15,11 @@ export function QuoteSection({
   const theme = useTheme()
 
   return (
-    <div className="flex flex-col items-center justify-between gap-large py-xxxxxxlarge lg:flex-row lg:items-start">
+    <div className="flex flex-col items-center justify-between gap-large py-xxxxxxlarge lg:flex-row">
       <ResponsiveText
         as="h3"
         textStyles={{ lg: 'mHero1', '': 'mHero2' }}
-        className="w-full max-w-[500px] lg:w-1/2"
+        className="w-full max-w-[500px] pb-large lg:w-1/2"
         style={{ color: theme.colors.grey[25] }}
       >
         {title}

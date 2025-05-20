@@ -25,9 +25,11 @@ export function NavigationDesktop({ logoRef }) {
             const kind =
               navItem.link?.title === 'Product'
                 ? 'product'
-                : navItem.link?.title === 'Solutions'
-                  ? 'solution'
-                  : 'default'
+                : navItem.link?.title === 'Why Plural'
+                  ? 'whyPlural'
+                  : navItem.link?.title === 'Solutions'
+                    ? 'solution'
+                    : 'default'
 
             return (
               <TopNavMenu
@@ -35,7 +37,9 @@ export function NavigationDesktop({ logoRef }) {
                 kind={kind}
                 navItem={navItem}
                 left={
-                  kind === 'product' || kind === 'solution'
+                  kind === 'product' ||
+                  kind === 'solution' ||
+                  kind === 'whyPlural'
                     ? logoLeft
                     : undefined
                 }

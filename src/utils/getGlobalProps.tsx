@@ -39,6 +39,7 @@ async function getGlobalProps() {
     },
     data.solutions_pages.filter((page) => page.status === 'active'),
     data.product_pages.filter((page) => page.status === 'active'),
+    data.why_plural_pages.filter((page) => page.status === 'active'),
     data.resource_pages
   )
 

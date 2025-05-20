@@ -66,6 +66,19 @@ fragment PlatformOverviewPage on platform_overview_page {
   }
 }
 
+fragment WhyPluralParentPage on why_plural_parent_page {
+  custom_components {
+    custom_component_id {
+      ...CustomComponent
+    }
+  }
+  meta_title
+  meta_description
+  meta_image {
+    ...ImageFile
+  }
+}
+
 fragment ContactPage on contact_sales {
   heading
   body_text
@@ -104,6 +117,12 @@ query PageHomepage {
 query PlatformOverviewPage {
   platform_overview_page {
     ...PlatformOverviewPage
+  }
+}
+
+query WhyPluralParentPage {
+  why_plural_parent_page {
+    ...WhyPluralParentPage
   }
 }
 
