@@ -50,10 +50,11 @@ export function TableMarkdown({
 }
 
 const TableWrapperSC = styled.div<{ $columnCount?: Nullable<number> }>(
-  ({ $columnCount }) => ({
+  ({ $columnCount, theme }) => ({
     maxWidth: '100%',
     overflowX: 'auto',
     opacity: !$columnCount ? 0 : 1,
+    color: theme.colors.text,
   })
 )
 
@@ -101,6 +102,7 @@ const TdSC = styled.td<{ $scrollable?: boolean }>(({ theme, $scrollable }) => ({
   width: $scrollable ? '1%' : 'auto', // when set to 1%, the remaining width is distributed equally to all columns
   backgroundColor: theme.colors['fill-zero-selected'],
   padding: `${theme.spacing.xsmall}px ${theme.spacing.small}px`,
+  color: theme.colors['text-light'],
   height: theme.spacing.xxxlarge,
   border: theme.borders['fill-two'],
   borderBottom: theme.borders.default,
