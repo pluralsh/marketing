@@ -49,12 +49,13 @@ function TextColumnWithIcon({
   return (
     <div className="flex min-w-[272px] flex-col items-center gap-small rounded-[12px] bg-grey-950 p-large text-center lg:items-start lg:text-left">
       {Icon && (
-        <Icon
-          color="icon-light"
-          fullColor
-          style={{ padding: 8 }}
-          size={32}
-        />
+        <div className="p-xsmall">
+          <Icon
+            color="icon-light"
+            fullColor
+            size={32}
+          />
+        </div>
       )}
       <Body1
         $color="text"
