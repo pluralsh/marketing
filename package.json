@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "run-s generate:pageindex dev:watch",
-    "dev:watch": "concurrently \"next dev -p 3001\" \"yarn graphql:codegen:watch\"",
+    "dev:watch": "concurrently \"next dev -p 3002\" \"yarn graphql:codegen:watch\"",
     "build": "run-s generate:pageindex build:next postbuild",
     "build:next": "next build",
     "postbuild": "next-sitemap",
