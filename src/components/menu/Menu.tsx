@@ -221,7 +221,9 @@ function MenuDropdown<T extends object>({
                 : '/images/why-plural/why-plural-dropdown-image.webp'
             }
           >
-            <span>Plural Platform Overview</span>
+            <span>
+              {kind === 'product' ? 'Plural Platform Overview' : 'Why Plural?'}
+            </span>
             <ArrowTopRightIcon size={18} />
           </MenuImageLinkSC>
         )}

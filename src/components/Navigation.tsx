@@ -42,7 +42,7 @@ export const MainLinkWithIcon = forwardRef(
     )?.subnav.find((item) => item.id === props.id)?.link
 
     const IconComponent = itemConfig?.icon
-      ? icons[sanitizeIconName(itemConfig.icon)]
+      ? icons[sanitizeIconName(itemConfig.icon)] ?? icons.KubernetesIcon
       : null
 
     return (
