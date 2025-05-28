@@ -53,9 +53,7 @@ export const MainLinkWithIcon = forwardRef(
         {...props}
       >
         <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
-          {IconComponent && (
-            <IconComponent color={theme.colors['icon-primary']} />
-          )}
+          {IconComponent && <IconComponent color="icon-primary" />}
         </div>
         <div>
           <ResponsiveText
