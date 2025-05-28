@@ -1,14 +1,8 @@
-import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
-import * as productNavIcons from '@src/components/menu/ProductNavIcons'
+import * as icons from '@src/components/menu/ProductNavIcons'
 import { type MultiColumnTextComponentFragment } from '@src/generated/graphqlDirectus'
 import { cn } from '@src/utils/cn'
 import { sanitizeIconName } from '../Navigation'
 import { Body1, Body2 } from '../Typography'
-
-export const icons = {
-  ...productNavIcons,
-  ...designSystemIcons,
-}
 
 export function CardGrid({ columns }: MultiColumnTextComponentFragment) {
   return (

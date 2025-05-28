@@ -2,18 +2,15 @@ import { type ComponentProps, forwardRef, useContext } from 'react'
 
 import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
-import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
 import styled, { useTheme } from 'styled-components'
 
-import * as productNavIcons from '@src/components/menu/ProductNavIcons'
+import * as icons from '@src/components/menu/ProductNavIcons'
 
 import { mqs } from '../breakpoints'
 
 import { type MenuButtonKind } from './menu/Menu'
 import { GlobalPropsContext } from './PrimaryPage'
 import { ResponsiveText } from './Typography'
-
-const icons = { ...productNavIcons, ...designSystemIcons }
 
 export const MainLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {

@@ -369,149 +369,242 @@ export function TerraformStacksNavIcon({
   )
 }
 
-// POLYFILL ICONS
-// for icons which are in newer versions of DS that we can't upgrade this repo to
-// just putting copies here
-export function AiSparkleFilledIcon({
-  color = 'icon-primary',
-  size = '100%',
-}: IconProps) {
-  const { colors } = useTheme()
-
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M5.542 9.60267L5 11.5L4.458 9.60267C4.31792 9.11257 4.05527 8.66625 3.69484 8.30583C3.33441 7.9454 2.88809 7.68275 2.398 7.54267L0.5 7L2.39733 6.458C2.88743 6.31792 3.33375 6.05527 3.69417 5.69484C4.0546 5.33441 4.31725 4.88809 4.45733 4.398L5 2.5L5.542 4.39733C5.68209 4.88743 5.94473 5.33375 6.30516 5.69417C6.66559 6.0546 7.11191 6.31725 7.602 6.45733L9.5 7L7.60267 7.542C7.11257 7.68209 6.66625 7.94473 6.30583 8.30516C5.9454 8.66559 5.68275 9.11191 5.54267 9.602L5.542 9.60267ZM11.1727 4.81L11 5.5L10.8273 4.81C10.7285 4.41439 10.524 4.05308 10.2357 3.76469C9.94746 3.47629 9.58623 3.27166 9.19067 3.17267L8.5 3L9.19067 2.82733C9.58623 2.72834 9.94746 2.52371 10.2357 2.23531C10.524 1.94692 10.7285 1.58561 10.8273 1.19L11 0.5L11.1727 1.19C11.2716 1.58569 11.4761 1.94706 11.7645 2.23546C12.0529 2.52386 12.4143 2.72844 12.81 2.82733L13.5 3L12.81 3.17267C12.4143 3.27156 12.0529 3.47614 11.7645 3.76454C11.4761 4.05294 11.2716 4.41431 11.1727 4.81ZM10.2627 12.7113L10 13.5L9.73733 12.7113C9.66369 12.4904 9.53963 12.2897 9.37497 12.125C9.21031 11.9604 9.00958 11.8363 8.78867 11.7627L8 11.5L8.78867 11.2373C9.00958 11.1637 9.21031 11.0396 9.37497 10.875C9.53963 10.7103 9.66369 10.5096 9.73733 10.2887L10 9.5L10.2627 10.2887C10.3363 10.5096 10.4604 10.7103 10.625 10.875C10.7897 11.0396 10.9904 11.1637 11.2113 11.2373L12 11.5L11.2113 11.7627C10.9904 11.8363 10.7897 11.9604 10.625 12.125C10.4604 12.2897 10.3363 12.4904 10.2627 12.7113Z"
-        fill={colors[color]}
-        stroke={colors[color]}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-export function AiSparkleOutlineIcon({
-  size = '100%',
-  color = 'icon-primary',
-}: IconProps) {
-  const { colors } = useTheme()
-
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M5.542 9.60267L5 11.5L4.458 9.60267C4.31792 9.11257 4.05527 8.66625 3.69484 8.30583C3.33441 7.9454 2.88809 7.68275 2.398 7.54267L0.5 7L2.39733 6.458C2.88743 6.31792 3.33375 6.05527 3.69417 5.69484C4.0546 5.33441 4.31725 4.88809 4.45733 4.398L5 2.5L5.542 4.39733C5.68208 4.88743 5.94473 5.33375 6.30516 5.69417C6.66559 6.0546 7.11191 6.31725 7.602 6.45733L9.5 7L7.60267 7.542C7.11257 7.68208 6.66625 7.94473 6.30583 8.30516C5.9454 8.66559 5.68208 9.11257 5.542 9.60267ZM11.1727 4.81L11 5.5L10.8273 4.81C10.7285 4.41439 10.524 4.05308 10.2357 3.76469C9.94746 3.47629 9.58623 3.27166 9.19067 3.17267L8.5 3L9.19067 2.82733C9.58623 2.72834 9.94746 2.52371 10.2357 2.23531C10.524 1.94692 10.7285 1.58561 10.8273 1.19L11 0.5L11.1727 1.19C11.2716 1.58569 11.4761 1.94706 11.7645 2.23546C12.0529 2.52386 12.4143 2.72844 12.81 2.82733L13.5 3L12.81 3.17267C12.4143 3.27156 12.0529 3.47614 11.7645 3.76454C11.4761 4.05294 11.2716 4.41431 11.1727 4.81ZM10.2627 12.7113L10 13.5L9.73733 12.7113C9.66369 12.4904 9.53963 12.2897 9.37497 12.125C9.21031 11.9604 9.00958 11.8363 8.78867 11.7627L8 11.5L8.78867 11.2373C9.00958 11.1637 9.21031 11.0396 9.37497 10.875C9.53963 10.7103 9.66369 10.5096 9.73733 10.2887L10 9.5L10.2627 10.2887C10.3363 10.5096 10.4604 10.7103 10.625 10.875C10.7897 11.0396 10.9904 11.1637 11.2113 11.2373L12 11.5L11.2113 11.7627C10.9904 11.8363 10.7897 11.9604 10.625 12.125C10.4604 12.2897 10.3363 12.4904 10.2627 12.7113Z"
-        stroke={colors[color]}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-export function DeltaUpIcon({
-  size = '100%',
-  color = 'icon-primary',
-}: IconProps) {
-  const { colors } = useTheme()
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12.26 5.07125C12.3253 4.83145 12.4831 4.62736 12.6987 4.50384C12.9143 4.38031 13.1702 4.34746 13.41 4.4125L17.305 5.47375C17.5437 5.53878 17.747 5.69548 17.8706 5.90971C17.9942 6.12394 18.0282 6.37835 17.965 6.6175L16.9363 10.5188C16.8678 10.7533 16.7105 10.9519 16.4978 11.0721C16.2851 11.1924 16.0338 11.2248 15.7975 11.1626C15.5613 11.1003 15.3586 10.9483 15.2328 10.7388C15.1069 10.5294 15.0678 10.2791 15.1238 10.0413L15.545 8.44C13.9166 9.5583 12.4052 10.8381 11.0338 12.26C10.9474 12.3496 10.844 12.4212 10.7296 12.4704C10.6152 12.5196 10.4922 12.5456 10.3677 12.5467C10.2432 12.5479 10.1197 12.5243 10.0044 12.4772C9.88912 12.4301 9.78438 12.3605 9.6963 12.2725L7.50005 10.075L2.85005 14.725C2.76352 14.8145 2.66004 14.8859 2.54564 14.935C2.43124 14.984 2.30821 15.0098 2.18373 15.0109C2.05925 15.0119 1.93581 14.9881 1.82062 14.9409C1.70542 14.8937 1.60078 14.8241 1.5128 14.736C1.42482 14.6479 1.35526 14.5432 1.30817 14.428C1.26109 14.3127 1.23742 14.1893 1.23856 14.0648C1.2397 13.9403 1.26562 13.8173 1.31481 13.703C1.364 13.5886 1.43547 13.4852 1.52505 13.3988L6.83755 8.08625C7.01333 7.91069 7.25161 7.81208 7.50005 7.81208C7.74849 7.81208 7.98677 7.91069 8.16255 8.08625L10.3575 10.28C11.7087 8.96262 13.1764 7.77025 14.7425 6.7175L12.9175 6.22C12.678 6.15451 12.4742 5.99662 12.3509 5.78101C12.2276 5.5654 12.195 5.31094 12.26 5.07125Z"
-        fill={colors[color]}
-      />
-    </svg>
-  )
-}
-
-export function BrainIcon({
-  size = '100%',
-  color = 'icon-primary',
-}: IconProps) {
-  const { colors } = useTheme()
-
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0 8.42964C0.00892822 9.34529 0.502968 10.1875 1.29758 10.6409C1.05652 10.9772 0.925583 11.3789 0.922586 11.7936C0.942427 12.9523 1.89675 13.8759 3.05644 13.859C3.10306 13.859 3.1477 13.8521 3.19334 13.8501V13.8491C3.40464 15.102 4.49686 16.0137 5.76672 15.9998C6.67442 16.0028 7.51863 15.5366 7.99979 14.7677C8.48091 15.5365 9.32515 16.0028 10.2329 15.9998C11.5027 16.0137 12.5949 15.102 12.8073 13.8491C12.8529 13.8521 12.8975 13.858 12.9442 13.858V13.859C14.1028 13.8759 15.0572 12.9523 15.078 11.7936C15.074 11.379 14.9431 10.9762 14.702 10.6399C15.4897 10.1994 15.9837 9.37404 15.9996 8.47128C16.0145 7.56853 15.5502 6.7263 14.7774 6.25807C14.8002 6.22037 14.828 6.18665 14.8478 6.14796H14.8488C15.0413 5.76504 15.0691 5.31962 14.9252 4.91485C14.7774 4.49623 14.4639 4.15594 14.0592 3.97441C14.0364 3.96449 14.0125 3.96152 13.9897 3.95259C14.0016 3.85438 14.0086 3.75518 14.0096 3.65695C13.9798 2.12128 12.713 0.900216 11.1784 0.92485C11.0564 0.92485 10.9344 0.932786 10.8143 0.947667C10.5624 0.433804 10.0683 0.0816116 9.4999 0.0121789C8.93146 -0.056271 8.36701 0.166938 7.99996 0.606395C7.63291 0.166917 7.06843 -0.0562888 6.50002 0.0121789C5.93158 0.0816218 5.43755 0.433804 5.18557 0.947667C5.06553 0.932786 4.94352 0.92485 4.82149 0.92485C3.28681 0.90005 2.02107 2.12123 1.99111 3.65695C1.99111 3.75517 1.99805 3.85437 2.01095 3.95259C1.98813 3.96152 1.96333 3.96449 1.9415 3.97441H1.94051C1.53575 4.15695 1.22229 4.49623 1.07446 4.91584C0.930611 5.31959 0.95839 5.76504 1.15084 6.14895C1.17068 6.18764 1.19846 6.22137 1.22128 6.25906H1.22227C0.466331 6.72234 0.00495222 7.54375 0 8.42964ZM8.38069 1.62325C8.40946 1.14014 8.81023 0.76217 9.29436 0.76217C9.77947 0.76217 10.1793 1.14014 10.208 1.62325C10.208 1.85241 10.1128 2.07065 9.94615 2.22739C9.79536 2.37322 9.7904 2.61428 9.93623 2.76607C10.0811 2.91785 10.3231 2.92281 10.4749 2.77698C10.7695 2.49425 10.9451 2.10835 10.963 1.70062C11.0334 1.69368 11.1039 1.68773 11.1783 1.68773L11.1773 1.68673C12.2923 1.66193 13.2179 2.54187 13.2476 3.65691C13.2476 3.71147 13.2417 3.76603 13.2367 3.82059H13.2357C12.955 3.83746 12.6822 3.92277 12.4431 4.07058C12.3548 4.12217 12.2903 4.20748 12.2665 4.30669C12.2417 4.40589 12.2576 4.51105 12.3111 4.59834C12.3647 4.68564 12.451 4.74714 12.5512 4.76996C12.6504 4.79277 12.7556 4.77492 12.8409 4.71936C13.1137 4.5527 13.451 4.53286 13.7407 4.66679C13.9579 4.764 14.1266 4.94457 14.2069 5.16876C14.2813 5.37808 14.2664 5.60923 14.1662 5.80862C14.0531 6.02984 13.8518 6.19451 13.6117 6.26199C13.4292 6.31456 13.3131 6.49313 13.3399 6.6816C13.3667 6.87009 13.5284 7.00898 13.7178 7.00898C13.7536 7.00898 13.7893 7.00402 13.824 6.9941C13.9629 6.95145 14.0948 6.89093 14.2178 6.81455C14.8359 7.11711 15.2307 7.74208 15.2376 8.42958C15.2099 9.46823 14.3478 10.2886 13.3081 10.2648C13.0978 10.2648 12.9272 10.4355 12.9272 10.6458C12.9272 10.8561 13.0978 11.0267 13.3081 11.0267C13.5303 11.0238 13.7516 10.995 13.9668 10.9384C14.1871 11.1686 14.3121 11.4741 14.316 11.7936C14.2952 12.5316 13.6821 13.114 12.9441 13.0971C12.8141 13.0971 12.6852 13.0802 12.5612 13.0445C12.2378 12.9582 11.957 12.7568 11.7725 12.4771C11.7179 12.3898 11.6316 12.3273 11.5314 12.3055C11.4302 12.2826 11.3261 12.3015 11.2398 12.358C11.1535 12.4146 11.0939 12.5029 11.0741 12.6031C11.0543 12.7042 11.0761 12.8084 11.1346 12.8937C11.3608 13.237 11.6842 13.5078 12.0631 13.6695C11.9173 14.6079 11.085 15.2845 10.1366 15.2349C9.18725 15.1863 8.42933 14.4264 8.38171 13.478L8.38072 13.4721L8.38069 1.62325ZM1.78178 6.81546C1.9048 6.89185 2.03773 6.95137 2.17662 6.99403C2.378 7.05256 2.5893 6.9355 2.64784 6.73413C2.70637 6.53175 2.5903 6.32045 2.38794 6.26191C2.14787 6.19446 1.94747 6.03077 1.83339 5.80854C1.73319 5.61014 1.71832 5.378 1.79272 5.16869C1.87307 4.94449 2.04172 4.76393 2.25896 4.66671C2.54863 4.53279 2.88594 4.55263 3.15775 4.71929C3.33731 4.8294 3.57242 4.77385 3.68253 4.59429C3.79265 4.41573 3.73611 4.18062 3.55754 4.0705C3.31747 3.92269 3.04467 3.83638 2.76391 3.81952C2.75895 3.76495 2.753 3.71039 2.753 3.65583V3.65682C2.78177 2.54179 3.70733 1.66085 4.82237 1.68665C4.89578 1.68665 4.96721 1.6926 5.03764 1.69955H5.03665C5.05451 2.10827 5.2301 2.49416 5.52573 2.7769C5.67751 2.92273 5.91858 2.91777 6.0644 2.76598C6.20924 2.6142 6.20527 2.37313 6.05349 2.22731C5.88683 2.07057 5.7916 1.85231 5.79059 1.62316C5.81936 1.13906 6.22014 0.762086 6.70525 0.762086C7.18935 0.762086 7.59015 1.13906 7.61892 1.62316V13.4719L7.61793 13.4779C7.57031 14.4273 6.8124 15.1862 5.86302 15.2358C4.91463 15.2854 4.08133 14.6078 3.9365 13.6684C4.31546 13.5067 4.63885 13.2368 4.86604 12.8936C4.98112 12.717 4.93152 12.4809 4.75494 12.3658C4.57836 12.2507 4.34225 12.3003 4.22718 12.4769C3.96428 12.8648 3.52483 13.0969 3.05658 13.0969C2.3175 13.1138 1.70444 12.5315 1.68461 11.7924C1.68759 11.474 1.81258 11.1684 2.03281 10.9383C2.24809 10.9948 2.46932 11.0236 2.69154 11.0266C2.90185 11.0266 3.07248 10.8559 3.07248 10.6456C3.07248 10.4353 2.90185 10.2647 2.69154 10.2647C1.65289 10.2885 0.789806 9.46809 0.762023 8.42942C0.768967 7.74195 1.16375 7.11704 1.78178 6.81546Z"
-        fill={colors[color]}
-      />
-      <path
-        d="M5.89369 10.1889C5.85762 9.98794 5.92031 9.78183 6.062 9.63501C6.18909 9.50448 6.18566 9.29495 6.05427 9.16872C5.92288 9.04249 5.71421 9.04592 5.58798 9.17731C5.39563 9.37911 5.27454 9.63845 5.24106 9.91496C4.72927 9.83939 4.21833 10.0566 3.91692 10.4766C3.81473 10.626 3.85165 10.8287 3.99936 10.9325C4.14706 11.0365 4.35058 11.003 4.45619 10.8561C4.62536 10.6268 4.91217 10.5152 5.19213 10.5719C5.37847 10.6062 5.54336 10.7153 5.64896 10.8733C5.74342 11.0141 5.77691 11.1876 5.74085 11.3542C5.72281 11.4392 5.73913 11.5285 5.78636 11.6023C5.83445 11.6753 5.90916 11.7269 5.99417 11.7449C6.01736 11.75 6.04054 11.7526 6.06373 11.7526C6.21916 11.7526 6.35312 11.6436 6.38574 11.4916C6.45873 11.1524 6.39175 10.7986 6.1994 10.5101C6.1161 10.3864 6.01219 10.2782 5.89369 10.1889Z"
-        fill={colors[color]}
-      />
-      <path
-        d="M5.89369 6.02847C5.85762 6.22941 5.92031 6.43551 6.062 6.58234C6.18909 6.71286 6.18566 6.9224 6.05427 7.04863C5.92288 7.17486 5.71421 7.17142 5.58798 7.04004C5.39563 6.83824 5.27454 6.57889 5.24106 6.30239C4.72927 6.37796 4.21833 6.1607 3.91692 5.74078C3.81473 5.59136 3.85165 5.3887 3.99936 5.2848C4.14706 5.1809 4.35058 5.21439 4.45619 5.36123C4.62536 5.59052 4.91217 5.70215 5.19213 5.64547C5.37847 5.61112 5.54336 5.50207 5.64896 5.34406C5.74342 5.20323 5.77691 5.02976 5.74085 4.86318C5.72281 4.77816 5.73913 4.68885 5.78636 4.615C5.83445 4.54201 5.90916 4.49049 5.99417 4.47246C6.01736 4.4673 6.04054 4.46473 6.06373 4.46473C6.21916 4.46473 6.35312 4.57378 6.38574 4.72578C6.45873 5.06498 6.39175 5.41876 6.1994 5.70729C6.1161 5.83095 6.01219 5.93917 5.89369 6.02847Z"
-        fill={colors[color]}
-      />
-      <path
-        d="M10.129 10.1889C10.1651 9.98794 10.1024 9.78183 9.96071 9.63501C9.83362 9.50448 9.83705 9.29495 9.96843 9.16872C10.0998 9.04249 10.3085 9.04592 10.4347 9.17731C10.6271 9.37911 10.7482 9.63845 10.7816 9.91496C11.2934 9.83939 11.8044 10.0566 12.1058 10.4766C12.208 10.626 12.1711 10.8287 12.0233 10.9325C11.8756 11.0365 11.6721 11.003 11.5665 10.8561C11.3973 10.6268 11.1105 10.5152 10.8306 10.5719C10.6442 10.6062 10.4793 10.7153 10.3737 10.8733C10.2793 11.0141 10.2458 11.1876 10.2819 11.3542C10.2999 11.4392 10.2836 11.5285 10.2363 11.6023C10.1883 11.6753 10.1135 11.7269 10.0285 11.7449C10.0053 11.75 9.98216 11.7526 9.95898 11.7526C9.80355 11.7526 9.66959 11.6436 9.63697 11.4916C9.56397 11.1524 9.63095 10.7986 9.82331 10.5101C9.90661 10.3864 10.0105 10.2782 10.129 10.1889Z"
-        fill={colors[color]}
-      />
-      <path
-        d="M9.93541 6.02847C9.97148 6.22941 9.90879 6.43551 9.7671 6.58234C9.64001 6.71286 9.64345 6.9224 9.77483 7.04863C9.90622 7.17486 10.1149 7.17142 10.2411 7.04004C10.4335 6.83824 10.5546 6.57889 10.588 6.30239C11.0998 6.37796 11.6108 6.1607 11.9122 5.74078C12.0144 5.59136 11.9774 5.3887 11.8297 5.2848C11.682 5.1809 11.4785 5.21439 11.3729 5.36123C11.2037 5.59052 10.9169 5.70215 10.637 5.64547C10.4506 5.61112 10.2857 5.50207 10.1801 5.34406C10.0857 5.20323 10.0522 5.02976 10.0883 4.86318C10.1063 4.77816 10.09 4.68885 10.0427 4.615C9.99465 4.54201 9.91995 4.49049 9.83493 4.47246C9.81175 4.4673 9.78856 4.46473 9.76537 4.46473C9.60995 4.46473 9.47599 4.57378 9.44336 4.72578C9.37037 5.06498 9.43735 5.41876 9.62971 5.70729C9.713 5.83095 9.81691 5.93917 9.93541 6.02847Z"
-        fill={colors[color]}
-      />
-    </svg>
-  )
-}
-
-export function FlowIcon({ size = '100%', color = 'icon-primary' }: IconProps) {
-  const { colors } = useTheme()
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-    >
-      <path
-        d="M2 10.0695C2 10.0695 4.13186 6 9.13186 6C15.6832 6 16.4877 11.7106 23.0725 11.7106C29.0725 11.7106 30 8.06947 30 8.06947"
-        stroke={colors[color]}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2 18.0695C2 18.0695 4.13186 14 9.13186 14C15.6832 14 16.4877 19.7107 23.0725 19.7107C29.0725 19.7107 30 16.0695 30 16.0695"
-        stroke={colors[color]}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2 26.0695C2 26.0695 4.13186 22 9.13186 22C15.6832 22 16.4877 27.7107 23.0725 27.7107C29.0725 27.7107 30 24.0695 30 24.0695"
-        stroke={colors[color]}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
+// copied directly from DS since we can't upgrade it to the latest version any more
+export { default as AiSparkleFilledIcon } from '../icons/AiSparkleFilledIcon'
+export { default as AiSparkleOutlineIcon } from '../icons/AiSparkleOutlineIcon'
+export { default as AmazonLogoIcon } from '../icons/AmazonLogoIcon'
+export { default as AnsibleIcon } from '../icons/AnsibleIcon'
+export { default as ApiIcon } from '../icons/ApiIcon'
+export { default as AppleLogoIcon } from '../icons/AppleLogoIcon'
+export { default as AppsIcon } from '../icons/AppsIcon'
+export { default as ArchitectureIcon } from '../icons/ArchitectureIcon'
+export { default as ArrowLeftIcon } from '../icons/ArrowLeftIcon'
+export { default as ArrowRightIcon } from '../icons/ArrowRightIcon'
+export { default as ArrowRightLeftIcon } from '../icons/ArrowRightLeftIcon'
+export { default as ArrowTopRightIcon } from '../icons/ArrowTopRightIcon'
+export { default as AwsLogoIcon } from '../icons/AwsLogoIcon'
+export { default as AzureLogoIcon } from '../icons/AzureLogoIcon'
+export { default as BellIcon } from '../icons/BellIcon'
+export { default as BitBucketIcon } from '../icons/BitBucketIcon'
+export { default as BlockedIcon } from '../icons/BlockedIcon'
+export { default as BookIcon } from '../icons/BookIcon'
+export { default as BotIcon } from '../icons/BotIcon'
+export { default as BrainIcon } from '../icons/BrainIcon'
+export { default as BriefcaseIcon } from '../icons/BriefcaseIcon'
+export { default as BrowseAppsIcon } from '../icons/BrowseAppsIcon'
+export { default as BrowserIcon } from '../icons/BrowserIcon'
+export { default as BugIcon } from '../icons/BugIcon'
+export { default as BuildIcon } from '../icons/BuildIcon'
+export { default as BundleIcon } from '../icons/BundleIcon'
+export { default as CalendarIcon } from '../icons/CalendarIcon'
+export { default as CameraIcon } from '../icons/CameraIcon'
+export { default as CaretDownIcon } from '../icons/CaretDownIcon'
+export { default as CaretLeftIcon } from '../icons/CaretLeftIcon'
+export { default as CaretRightIcon } from '../icons/CaretRightIcon'
+export { default as CaretUpIcon } from '../icons/CaretUpIcon'
+export { default as CatalogIcon } from '../icons/CatalogIcon'
+export { default as CertificateIcon } from '../icons/CertificateIcon'
+export { default as ChartIcon } from '../icons/ChartIcon'
+export { default as ChatFilledIcon } from '../icons/ChatFilledIcon'
+export { default as ChatOutlineIcon } from '../icons/ChatOutlineIcon'
+export { default as CheckedShieldIcon } from '../icons/CheckedShieldIcon'
+export { default as CheckIcon } from '../icons/CheckIcon'
+export { default as ChecklistIcon } from '../icons/ChecklistIcon'
+export { default as CheckOutlineIcon } from '../icons/CheckOutlineIcon'
+export { default as CheckRoundedIcon } from '../icons/CheckRoundedIcon'
+export { default as ChronjobIcon } from '../icons/ChronjobIcon'
+export { default as CliIcon } from '../icons/CliIcon'
+export { default as ClipboardChecked } from '../icons/ClipboardChecked'
+export { default as CloseIcon } from '../icons/CloseIcon'
+export { default as CloseRoundedIcon } from '../icons/CloseRoundedIcon'
+export { default as CloudIcon } from '../icons/CloudIcon'
+export { default as ClusterIcon } from '../icons/ClusterIcon'
+export { default as CollapseIcon } from '../icons/CollapseIcon'
+export { default as CollapseListIcon } from '../icons/CollapseListIcon'
+export { default as CommandIcon } from '../icons/CommandIcon'
+export { default as CompassIcon } from '../icons/CompassIcon'
+export { default as CompatibilityIcon } from '../icons/CompatibilityIcon'
+export { default as ComplianceIcon } from '../icons/ComplianceIcon'
+export { default as ComponentsIcon } from '../icons/ComponentsIcon'
+export { default as ComputerNodeIcon } from '../icons/ComputerNodeIcon'
+export { default as ConfettiIcon } from '../icons/ConfettiIcon'
+export { default as ConsoleIcon } from '../icons/ConsoleIcon'
+export { default as CookieIcon } from '../icons/CookieIcon'
+export { default as CopyIcon } from '../icons/CopyIcon'
+export { default as CostManagementIcon } from '../icons/CostManagementIcon'
+export { default as CpuIcon } from '../icons/CpuIcon'
+export { default as CraneIcon } from '../icons/CraneIcon'
+export { default as CreditCardIcon } from '../icons/CreditCardIcon'
+export { default as DashboardIcon } from '../icons/DashboardIcon'
+export { default as DatabaseIcon } from '../icons/DatabaseIcon'
+export { default as DatadogLogoIcon } from '../icons/DatadogLogoIcon'
+export { default as DeltaDownIcon } from '../icons/DeltaDownIcon'
+export { default as DeltaUpIcon } from '../icons/DeltaUpIcon'
+export { default as DeploymentIcon } from '../icons/DeploymentIcon'
+export { default as DiffColumnIcon } from '../icons/DiffColumnIcon'
+export { default as DiffUnifiedIcon } from '../icons/DiffUnifiedIcon'
+export { default as DiscordIcon } from '../icons/DiscordIcon'
+export { default as DockerTagIcon } from '../icons/DockerTagIcon'
+export { default as DocumentIcon } from '../icons/DocumentIcon'
+export { default as DomainsIcon } from '../icons/DomainsIcon'
+export { default as DownloadIcon } from '../icons/DownloadIcon'
+export { default as DropdownArrowIcon } from '../icons/DropdownArrowIcon'
+export { default as DryRunIcon } from '../icons/DryRunIcon'
+export { default as EdgeComputeIcon } from '../icons/EdgeComputeIcon'
+export { default as EditIcon } from '../icons/EditIcon'
+export { default as EKSIcon } from '../icons/EKSIcon'
+export { default as EmojiHoverIcon } from '../icons/EmojiHoverIcon'
+export { default as EmojiIcon } from '../icons/EmojiIcon'
+export { default as ErrorIcon } from '../icons/ErrorIcon'
+export { default as ExpandIcon } from '../icons/ExpandIcon'
+export { default as ExpandListIcon } from '../icons/ExpandListIcon'
+export { default as EyeClosedIcon } from '../icons/EyeClosedIcon'
+export { default as EyeIcon } from '../icons/EyeIcon'
+export { default as FastForwardIcon } from '../icons/FastForwardIcon'
+export { default as FileDiffIcon } from '../icons/FileDiffIcon'
+export { default as FileIcon } from '../icons/FileIcon'
+export { default as FiltersIcon } from '../icons/FiltersIcon'
+export { default as FingerPrintIcon } from '../icons/FingerPrintIcon'
+export { default as FlowIcon } from '../icons/FlowIcon'
+export { default as FluxIcon } from '../icons/FluxIcon'
+export { default as FolderIcon } from '../icons/FolderIcon'
+export { default as GearTrainIcon } from '../icons/GearTrainIcon'
+export { default as GitCommitIcon } from '../icons/GitCommitIcon'
+export { default as GitForkIcon } from '../icons/GitForkIcon'
+export { default as GitHubIcon } from '../icons/GitHubIcon'
+export { default as GitHubLogoIcon } from '../icons/GitHubLogoIcon'
+export { default as GitLabLogoIcon } from '../icons/GitLabLogoIcon'
+export { default as GitMergeIcon } from '../icons/GitMergeIcon'
+export { default as GitPullIcon } from '../icons/GitPullIcon'
+export { default as GKEIcon } from '../icons/GKEIcon'
+export { default as GlobeIcon } from '../icons/GlobeIcon'
+export { default as GoogleCloudLogoIcon } from '../icons/GoogleCloudLogoIcon'
+export { default as GoogleLogoIcon } from '../icons/GoogleLogoIcon'
+export { default as GrafanaLogoIcon } from '../icons/GrafanaLogoIcon'
+export { default as GraphIcon } from '../icons/GraphIcon'
+export { default as HamburgerMenuCollapsedIcon } from '../icons/HamburgerMenuCollapsedIcon'
+export { default as HamburgerMenuCollapseIcon } from '../icons/HamburgerMenuCollapseIcon'
+export { default as HamburgerMenuIcon } from '../icons/HamburgerMenuIcon'
+export { default as HeartIcon } from '../icons/HeartIcon'
+export { default as HelpIcon } from '../icons/HelpIcon'
+export { default as HistoryIcon } from '../icons/HistoryIcon'
+export { default as HomeIcon } from '../icons/HomeIcon'
+export { default as IdIcon } from '../icons/IdIcon'
+export { default as InfoIcon } from '../icons/InfoIcon'
+export { default as InfoOutlineIcon } from '../icons/InfoOutlineIcon'
+export { default as InstalledIcon } from '../icons/InstalledIcon'
+export { default as InstallIcon } from '../icons/InstallIcon'
+export { default as InvoicesIcon } from '../icons/InvoicesIcon'
+export { default as KeyIcon } from '../icons/KeyIcon'
+export { default as KeyPairIcon } from '../icons/KeyPairIcon'
+export { default as KubernetesIcon } from '../icons/Kubernetes'
+export { default as KubernetesAltIcon } from '../icons/KubernetesAltIcon'
+export { default as LifePreserverIcon } from '../icons/LifePreserverIcon'
+export { default as LightningIcon } from '../icons/LightningIcon'
+export { default as LinkoutIcon } from '../icons/LinkoutIcon'
+export { default as LinksIcon } from '../icons/LinksIcon'
+export { default as ListIcon } from '../icons/ListIcon'
+export { default as LogoutIcon } from '../icons/LogoutIcon'
+export { default as LogsIcon } from '../icons/LogsIcon'
+export { default as MagicWandIcon } from '../icons/MagicWandIcon'
+export { default as MagnifyingGlassIcon } from '../icons/MagnifyingGlassIcon'
+export { default as MailIcon } from '../icons/MailIcon'
+export { default as ManagementClusterIcon } from '../icons/ManagementClusterIcon'
+export { default as MarketIcon } from '../icons/MarketIcon'
+export { default as MarketPlusIcon } from '../icons/MarketPlusIcon'
+export { default as MegaphoneIcon } from '../icons/MegaphoneIcon'
+export { default as MessagesIcon } from '../icons/MessagesIcon'
+export { default as MinusIcon } from '../icons/MinusIcon'
+export { default as MoreIcon } from '../icons/MoreIcon'
+export { default as MsTeamsLogoIcon } from '../icons/MsTeamsLogoIcon'
+export { default as NamespaceIcon } from '../icons/NamespaceIcon'
+export { default as NetworkInIcon } from '../icons/NetworkInIcon'
+export { default as NetworkInterfaceIcon } from '../icons/NetworkInterfaceIcon'
+export { default as NewMailIcon } from '../icons/NewMailIcon'
+export { default as NewrelicLogoIcon } from '../icons/NewrelicLogoIcon'
+export { default as OAuthIcon } from '../icons/OAuthIcon'
+export { default as OwnerIcon } from '../icons/OwnerIcon'
+export { default as PackageIcon } from '../icons/PackageIcon'
+export { default as PadlockIcon } from '../icons/PadlockIcon'
+export { default as PadlockLockedIcon } from '../icons/PadlockLockedIcon'
+export { default as PaperclipIcon } from '../icons/PaperclipIcon'
+export { default as PauseIcon } from '../icons/PauseIcon'
+export { default as PencilIcon } from '../icons/PencilIcon'
+export { default as PeopleIcon } from '../icons/PeopleIcon'
+export { default as PeoplePlusIcon } from '../icons/PeoplePlusIcon'
+export { default as PersonIcon } from '../icons/PersonIcon'
+export { default as PersonPlusIcon } from '../icons/PersonPlusIcon'
+export { default as PipelineIcon } from '../icons/PipelineIcon'
+export { default as PlanIcon } from '../icons/PlanIcon'
+export { default as PlayIcon } from '../icons/PlayIcon'
+export { default as PlusIcon } from '../icons/PlusIcon'
+export { default as PodContainerIcon } from '../icons/PodContainerIcon'
+export { default as PrClosedIcon } from '../icons/PrClosedIcon'
+export { default as PrMergedIcon } from '../icons/PrMergedIcon'
+export { default as ProjectIcon } from '../icons/ProjectIcon'
+export { default as PrOpenIcon } from '../icons/PrOpenIcon'
+export { default as ProtectedClusterIcon } from '../icons/ProtectedClusterIcon'
+export { default as ProtectedManagementClusterIcon } from '../icons/ProtectedManagementClusterIcon'
+export { default as PrQueueIcon } from '../icons/PrQueueIcon'
+export { default as PushPinFilledIcon } from '../icons/PushPinFilledIcon'
+export { default as PushPinOutlineIcon } from '../icons/PushPinOutlineIcon'
+export { default as RamIcon } from '../icons/RamIcon'
+export { default as ReloadIcon } from '../icons/ReloadIcon'
+export { default as RestoreIcon } from '../icons/RestoreIcon'
+export { default as ReturnIcon } from '../icons/ReturnIcon'
+export { default as RobotIcon } from '../icons/RobotIcon'
+export { default as RocketIcon } from '../icons/RocketIcon'
+export { default as RunBookIcon } from '../icons/RunBookIcon'
+export { default as ScrollIcon } from '../icons/ScrollIcon'
+export { default as ScrollPlusIcon } from '../icons/ScrollPlusIcon'
+export { default as SearchDocsIcon } from '../icons/SearchDocsIcon'
+export { default as SearchIcon } from '../icons/SearchIcon'
+export { default as SendMessageIcon } from '../icons/SendMessageIcon'
+export { default as ServersIcon } from '../icons/ServersIcon'
+export { default as ShieldLockIcon } from '../icons/ShieldLockIcon'
+export { default as ShieldOutlineIcon } from '../icons/ShieldOutlineIcon'
+export { default as ShipIcon } from '../icons/ShipIcon'
+export { default as ShrinkIcon } from '../icons/ShrinkIcon'
+export { default as SirenIcon } from '../icons/SirenIcon'
+export { default as SlackLogoIcon } from '../icons/SlackLogoIcon'
+export { default as SortAscIcon } from '../icons/SortAscIcon'
+export { default as SortDescIcon } from '../icons/SortDescIcon'
+export { default as SourcererHatIcon } from '../icons/SourcererHatIcon'
+export { default as SourcererIcon } from '../icons/SourcererIcon'
+export { default as SprayIcon } from '../icons/SprayIcon'
+export { default as StackIcon } from '../icons/StackIcon'
+export { default as StackRunCanceledIcon } from '../icons/StackRunCanceledIcon'
+export { default as StackRunIcon } from '../icons/StackRunIcon'
+export { default as StackRunPausedIcon } from '../icons/StackRunPausedIcon'
+export { default as StackRunPendingIcon } from '../icons/StackRunPendingIcon'
+export { default as StarIcon } from '../icons/StarIcon'
+export { default as StatusIpIcon } from '../icons/StatusIpIcon'
+export { default as StatusOkIcon } from '../icons/StatusOkIcon'
+export { default as StopIcon } from '../icons/StopIcon'
+export { default as SuccessIcon } from '../icons/SuccessIcon'
+export { default as SuitcaseIcon } from '../icons/SuitcaseIcon'
+export { default as TableIcon } from '../icons/TableIcon'
+export { default as TagIcon } from '../icons/TagIcon'
+export { default as TerminalIcon } from '../icons/TerminalIcon'
+export { default as TerraformLogoIcon } from '../icons/TerraformLogoIcon'
+export { default as TestTubeIcon } from '../icons/TestTubeIcon'
+export { default as ThumbsUpFilledIcon } from '../icons/ThumbsUpFilledIcon'
+export { default as ThumbsUpIcon } from '../icons/ThumbsUpIcon'
+export { default as ToolIcon } from '../icons/ToolIcon'
+export { default as ToolsIcon } from '../icons/ToolsIcon'
+export { default as TrashCanIcon } from '../icons/TrashCanIcon'
+export { default as TwitterIcon } from '../icons/TwitterIcon'
+export { default as UbuntuLogoIcon } from '../icons/UbuntuLogoIcon'
+export { default as UpdatesIcon } from '../icons/UpdatesIcon'
+export { default as VerifiedIcon } from '../icons/VerifiedIcon'
+export { default as VideoIcon } from '../icons/VideoIcon'
+export { default as VirtualClusterIcon } from '../icons/VirtualCluster'
+export { default as VolumesIcon } from '../icons/VolumesIcon'
+export { default as WarningIcon } from '../icons/WarningIcon'
+export { default as WarningOutlineIcon } from '../icons/WarningOutlineIcon'
+export { default as WarningShieldIcon } from '../icons/WarningShieldIcon'
+export { default as WavingHandIcon } from '../icons/WavingHandIcon'
+export { default as WebhooksIcon } from '../icons/WebhooksIcon'
+export { default as WindowsLogoIcon } from '../icons/WindowsLogoIcon'
+export { default as WorkspaceIcon } from '../icons/WorkspaceIcon'
+export { default as YouTubeIcon } from '../icons/YouTubeIcon'
