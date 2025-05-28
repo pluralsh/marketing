@@ -2,17 +2,15 @@ import { type ComponentProps, forwardRef, useContext } from 'react'
 
 import { ArrowRightIcon, useNavigationContext } from '@pluralsh/design-system'
 
-import * as designSystemIcons from '@pluralsh/design-system/dist/icons'
 import styled, { useTheme } from 'styled-components'
 
-import * as productNavIcons from '@src/components/menu/ProductNavIcons'
+import * as icons from '@src/components/menu/ProductNavIcons'
 
 import { mqs } from '../breakpoints'
 
+import { type MenuButtonKind } from './menu/Menu'
 import { GlobalPropsContext } from './PrimaryPage'
 import { ResponsiveText } from './Typography'
-
-const icons = { ...productNavIcons, ...designSystemIcons }
 
 export const MainLink = forwardRef(
   (props: ComponentProps<typeof MainLinkBase>, ref) => {
@@ -27,18 +25,21 @@ export const MainLink = forwardRef(
     )
   }
 )
-export const ProductLink = forwardRef(
-  (props: ComponentProps<typeof MainLinkBase>, ref) => {
+export const MainLinkWithIcon = forwardRef(
+  (
+    props: ComponentProps<typeof MainLinkBase> & { kind: MenuButtonKind },
+    ref
+  ) => {
     const { Link } = useNavigationContext()
     const theme = useTheme()
-    const globalProps = useContext(GlobalPropsContext)
+    const nav = useContext(GlobalPropsContext)?.siteSettings.main_nav
 
-    const itemConfig = globalProps?.siteSettings.main_nav.product.subnav.find(
-      (item) => item.id === props.id
-    )?.link
+    const itemConfig = (
+      props.kind === 'whyPlural' ? nav?.whyPlurals : nav?.product
+    )?.subnav.find((item) => item.id === props.id)?.link
 
     const IconComponent = itemConfig?.icon
-      ? icons[sanitizeIconName(itemConfig.icon)]
+      ? icons[sanitizeIconName(itemConfig.icon)] ?? icons.KubernetesIcon
       : null
 
     return (
@@ -49,9 +50,7 @@ export const ProductLink = forwardRef(
         {...props}
       >
         <div className="h-[40px] w-[40px] rounded-medium border border-grey-750 bg-fill-two p-[10px]">
-          {IconComponent && (
-            <IconComponent color={theme.colors['icon-primary']} />
-          )}
+          {IconComponent && <IconComponent color="icon-primary" />}
         </div>
         <div>
           <ResponsiveText

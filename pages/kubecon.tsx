@@ -6,10 +6,10 @@ import styled from 'styled-components'
 
 import { RepeatingLogoSC } from '@src/components/custom-page/common'
 import { ImpactCardSection } from '@src/components/custom-page/ImpactCardSection'
-import { icons } from '@src/components/custom-page/MultiColumnText'
 import { FooterVariant } from '@src/components/FooterFull'
 import { KubeconHeader, handleDownloadICS } from '@src/components/Kubecon'
 import { StandardPageWidth } from '@src/components/layout/LayoutHelpers'
+import * as icons from '@src/components/menu/ProductNavIcons'
 import {
   Body1,
   Hero1,

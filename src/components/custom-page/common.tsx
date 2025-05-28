@@ -14,15 +14,16 @@ import { type CustomComponentFragment } from '@src/generated/graphqlDirectus'
 import { StandardPageWidth } from '../layout/LayoutHelpers'
 
 import { CallToAction } from './CallToAction'
+import { CardGrid } from './CardGrid'
 import { Cards } from './Cards'
 import { CustomerQuote } from './CustomerQuote'
 import { Hero } from './Hero'
 import { ImpactCardSection } from './ImpactCardSection'
 import { LargeImage } from './LargeImage'
 import { LogoStrip } from './LogoStrip'
-import { MultiColumnText } from './MultiColumnText'
 import { QuoteCarousel } from './QuoteCarousel'
 import { SectionHeader } from './SectionHeader'
+import { TableCustomComponent } from './TableCustomComponent'
 import { TwoColumnText } from './TwoColumnText'
 
 const spacingTopClassName = {
@@ -90,7 +91,7 @@ function renderCustomComponent(
     case 'large_image':
       renderedComponent = <LargeImage {...innerComponent} />
       break
-    case 'cards':
+    case 'cards': // renamed in directus to "Card Links"
       renderedComponent = <Cards {...innerComponent} />
       break
     // case 'blog_cards':
@@ -99,8 +100,8 @@ function renderCustomComponent(
     case 'two_column_text':
       renderedComponent = <TwoColumnText {...innerComponent} />
       break
-    case 'multi_column_text':
-      renderedComponent = <MultiColumnText {...innerComponent} />
+    case 'multi_column_text': // renamed in directus to "Card Grid"
+      renderedComponent = <CardGrid {...innerComponent} />
       break
     case 'customer_quote':
       renderedComponent = <CustomerQuote {...innerComponent} />
@@ -113,6 +114,9 @@ function renderCustomComponent(
       break
     case 'quote_carousel':
       renderedComponent = <QuoteCarousel {...innerComponent} />
+      break
+    case 'table':
+      renderedComponent = <TableCustomComponent {...innerComponent} />
       break
     default:
       renderedComponent = null

@@ -43,6 +43,8 @@ export type ItemRendererProps<T extends object> = {
 
 type ItemRenderer<T extends object> = (p: ItemRendererProps<T>) => JSX.Element
 
+export type MenuButtonKind = 'product' | 'default' | 'solution' | 'whyPlural'
+
 export interface MenuButtonProps<T extends { render?: FunctionComponent }>
   extends AriaMenuProps<T>,
     MenuTriggerProps {
@@ -53,7 +55,7 @@ export interface MenuButtonProps<T extends { render?: FunctionComponent }>
   maxHeight?: number | string
   className?: string
   dropdownProps?: Parameters<typeof useFloatingDropdown>[0]
-  kind?: 'product' | 'default' | 'solution'
+  kind?: MenuButtonKind
   left?: number
 }
 
@@ -173,6 +175,7 @@ export function MenuButton<T extends object>({
 
 export const MenuButtonWrap = styled.div((_) => ({
   position: 'relative',
+  textWrap: 'nowrap',
 }))
 
 function MenuDropdown<T extends object>({
@@ -181,7 +184,7 @@ function MenuDropdown<T extends object>({
   ...props
 }: AriaMenuProps<T> & {
   itemRenderer?: ItemRenderer<T>
-  kind?: 'product' | 'default' | 'solution'
+  kind?: 'product' | 'default' | 'solution' | 'whyPlural'
 }) {
   const { Link } = useNavigationContext()
   // Create menu state based on the incoming props
@@ -201,21 +204,28 @@ function MenuDropdown<T extends object>({
       <DropdownCard
         $kind={kind}
         className={
-          kind === 'product'
-            ? 'flex flex-col items-center gap-large min-[1352px]:flex-row'
+          kind === 'product' || kind === 'whyPlural'
+            ? 'flex flex-col  gap-large min-[1352px]:flex-row'
             : ''
         }
       >
-        {kind === 'product' && (
-          <PlatformOverviewLinkSC
+        {(kind === 'product' || kind === 'whyPlural') && (
+          <MenuImageLinkSC
             className="max-h-[120px] min-w-full min-[1352px]:max-h-none min-[1352px]:min-w-[320px]"
             as={Link}
-            href="/product"
+            href={kind === 'product' ? '/product' : '/why-plural'}
             onClick={props.onClose}
+            $imageUrl={
+              kind === 'product'
+                ? '/images/product/platform-overview-image.jpg'
+                : '/images/why-plural/why-plural-dropdown-image.webp'
+            }
           >
-            <span>Plural Platform Overview</span>
+            <span>
+              {kind === 'product' ? 'Plural Platform Overview' : 'Why Plural?'}
+            </span>
             <ArrowTopRightIcon size={18} />
-          </PlatformOverviewLinkSC>
+          </MenuImageLinkSC>
         )}
         <div>
           {kind === 'product' && (
@@ -223,7 +233,9 @@ function MenuDropdown<T extends object>({
           )}
           <ul
             className={
-              kind === 'product' ? 'grid grid-cols-2 gap-x-medium' : ''
+              kind === 'product' || kind === 'whyPlural'
+                ? 'grid grid-cols-2 gap-x-medium'
+                : ''
             }
           >
             {[...state.collection].map((item) => (
@@ -302,18 +314,22 @@ function SolutionNavDropdown<T extends object>({
   )
 }
 
-const DropdownCardSC = styled.div<{ $kind: string }>(({ theme, $kind }) => ({
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  width: 'max-content',
-  padding:
-    $kind === 'product' ? theme.spacing.xlarge : `${theme.spacing.xsmall}px 0`,
-  boxShadow: theme.boxShadows.moderate,
-  border: theme.borders.selected,
-  borderRadius: theme.borderRadiuses.large,
-  borderColor: theme.colors['border-fill-two'],
-  backgroundColor: theme.colors['fill-one'],
-}))
+const DropdownCardSC = styled.div<{ $kind: MenuButtonKind }>(
+  ({ theme, $kind }) => ({
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    width: 'max-content',
+    padding:
+      $kind === 'product' || $kind === 'whyPlural'
+        ? theme.spacing.xlarge
+        : `${theme.spacing.xsmall}px 0`,
+    boxShadow: theme.boxShadows.moderate,
+    border: theme.borders.selected,
+    borderRadius: theme.borderRadiuses.large,
+    borderColor: theme.colors['border-fill-two'],
+    backgroundColor: theme.colors['fill-one'],
+  })
+)
 
 function DropdownCard(props: ComponentProps<typeof DropdownCardSC>) {
   return (
@@ -348,21 +364,24 @@ const MenuCategoryLabel = styled.h2(({ theme }) => ({
   marginLeft: theme.spacing.xxsmall,
 }))
 
-export const PlatformOverviewLinkSC = styled.div(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'flex-end',
-  justifyContent: 'space-between',
-  padding: theme.spacing.medium,
-  height: '240px',
-  maxWidth: '356px',
-  borderRadius: theme.borderRadiuses.large,
-  border: theme.borders.default,
-  backgroundImage: "url('/images/product/platform-overview-image.jpg')",
-  backgroundSize: 'cover',
-  fontFamily: 'Monument',
-  fontSize: '16px',
-  transition: 'box-shadow 0.16s ease-out',
-  '&:hover': {
-    boxShadow: theme.boxShadows.moderate,
-  },
-}))
+export const MenuImageLinkSC = styled.div<{ $imageUrl: string }>(
+  ({ theme, $imageUrl }) => ({
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    padding: theme.spacing.medium,
+    height: '240px',
+    maxWidth: '356px',
+    borderRadius: theme.borderRadiuses.large,
+    border: theme.borders.default,
+    backgroundImage: `url(${$imageUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    fontFamily: 'Monument',
+    fontSize: '16px',
+    transition: 'box-shadow 0.16s ease-out',
+    '&:hover': {
+      boxShadow: theme.boxShadows.moderate,
+    },
+  })
+)

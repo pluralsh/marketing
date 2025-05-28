@@ -53,6 +53,7 @@ fragment CustomComponent on custom_component {
       # ...MediaCardComponent
       ...OurImpactComponent
       ...QuoteCarouselComponent
+      ...TableCustomComponent
     }
   }
 }
@@ -195,6 +196,15 @@ fragment QuoteCarouselComponent on quote_carousel {
   quotes {
     ...QuoteList
   }
+}
+
+fragment TableCustomComponent on table {
+  overline
+  heading
+  description
+  width
+  scrollable
+  markdown
 }
 
 # fragment CardWithImageComponent on card_with_image {
