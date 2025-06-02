@@ -2,7 +2,7 @@
   "name": "plural-marketing-site",
   "private": true,
   "engines": {
-    "node": "18.18.2"
+    "node": "18.20.4"
   },
   "scripts": {
     "dev": "run-s generate:pageindex dev:watch",
