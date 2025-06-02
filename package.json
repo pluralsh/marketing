@@ -94,7 +94,7 @@
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
     "@next/bundle-analyzer": "13.4.12",
-    "@pluralsh/eslint-config-typescript": "2.5.183",
+    "@pluralsh/eslint-config-typescript": "2.5.191",
     "@pluralsh/stylelint-config": "2.0.10",
     "@radix-ui/react-slot": "1.0.2",
     "@types/node": "20.4.2",
