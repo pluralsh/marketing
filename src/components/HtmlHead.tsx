@@ -59,7 +59,7 @@ function OpenGraph({
       )}
       <meta
         property="og:url"
-        content={`${process.env.NEXT_PUBLIC_ROOT_URL}${router.pathname}`}
+        content={`${process.env.NEXT_PUBLIC_ROOT_URL}${router.asPath}`}
       />
     </Head>
   )
