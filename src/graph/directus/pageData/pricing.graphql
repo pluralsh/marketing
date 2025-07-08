@@ -1,5 +1,8 @@
 fragment PricingPage on pricing_page {
   id
+  sandbox_plan {
+    ...PricingPlan
+  }
   pro_plan {
     ...PricingPlan
   }

@@ -54,6 +54,7 @@ export function PlanComparisonTableDesktop() {
     </div>
   )
 }
+
 export function PlanComparisonTablesMobile() {
   const breakpoint = useBreakpoint()
 
@@ -107,7 +108,7 @@ export const CheckIconSC = styled(CheckIcon).attrs(() => ({
 const TableGrid = styled.div<{ $numPlans: number }>(({ $numPlans }) => ({
   display: 'grid',
   gridTemplateColumns:
-    $numPlans === 1 ? '1fr 1.05fr' : `auto repeat(${$numPlans - 1}, 1fr) 2fr`,
+    $numPlans === 1 ? '1fr 1.05fr' : `auto repeat(${$numPlans}, 1fr)`,
   width: '100%',
 }))
 
@@ -188,7 +189,6 @@ const ContentCell = styled(Cell)(({ theme }) => ({
 const rows = [
   'Clusters',
   'Hosting',
-  'SLA',
   'SLA Response',
   'Communication',
   'Success Team',
@@ -210,7 +210,6 @@ const plans = [
     values: {
       Clusters: 'Up to 10',
       Hosting: 'Plural shared infrastructure',
-      SLA: '99.9% uptime',
       'SLA Response': '1 business day response',
       Communication: 'Email support',
       'Success Team': <CloseIcon />,
@@ -232,7 +231,7 @@ const plans = [
           secondary
           width="100%"
         >
-          Sign up
+          Get Started
         </Button>
       ),
     },
@@ -242,7 +241,6 @@ const plans = [
     values: {
       Clusters: 'Unlimited',
       Hosting: 'Shared, dedicated, or on-prem infrastructure',
-      SLA: '99.9% uptime',
       'SLA Response': '1 hour guaranteed response',
       Communication: 'Dedicated Slack or Teams\nOn-demand Calls',
       'Success Team': <CheckIconSC />,

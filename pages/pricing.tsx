@@ -18,6 +18,7 @@ import { propsWithGlobalSettings } from '@src/utils/getGlobalProps'
 export default function Pricing({
   enterprisePlan,
   proPlan,
+  sandboxPlan,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <HeaderPad
@@ -54,21 +55,34 @@ export default function Pricing({
           <div className="mb-xxlarge flex w-full flex-col gap-medium lg:flex-row">
             <PricingPlanCard
               flex={1}
-              plan={proPlan}
+              plan={sandboxPlan}
               cta={
                 <Button
                   as="a"
-                  href="https://www.plural.sh/contact"
-                  target="_blank"
-                  rel="noopener noreferer"
+                  href="https://www.plural.sh/contact/"
                   secondary
                 >
-                  Book a demo
+                  Get started for free
                 </Button>
               }
             />
             <PricingPlanCard
-              flex={2}
+              flex={1}
+              plan={proPlan}
+              cta={
+                <Button
+                  as="a"
+                  href="https://app.plural.sh/"
+                  target="_blank"
+                  rel="noopener noreferer"
+                  secondary
+                >
+                  Get started
+                </Button>
+              }
+            />
+            <PricingPlanCard
+              flex={1}
               plan={enterprisePlan}
               cta={
                 <Button
@@ -94,10 +108,11 @@ export default function Pricing({
 
 export const getStaticProps = async () => {
   const { data, error } = await getPricing()
+  const sandboxPlan = data?.pricing_page?.sandbox_plan
   const proPlan = data?.pricing_page?.pro_plan
   const enterprisePlan = data?.pricing_page?.enterprise_plan
 
-  if (!proPlan || !enterprisePlan || error) {
+  if (!sandboxPlan || !proPlan || !enterprisePlan || error) {
     return { notFound: true }
   }
 
@@ -107,6 +122,7 @@ export const getStaticProps = async () => {
     metaImage: data.pricing_page?.meta_image,
     enterprisePlan,
     proPlan,
+    sandboxPlan,
     footerVariant: FooterVariant.kitchenSink,
   })
 }
