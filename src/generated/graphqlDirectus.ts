@@ -10470,6 +10470,7 @@ export type Pricing_Page = {
   meta_image?: Maybe<Directus_Files>;
   meta_title?: Maybe<Scalars['String']['output']>;
   pro_plan?: Maybe<Pricing_Plans>;
+  sandbox_plan?: Maybe<Pricing_Plans>;
   user_created?: Maybe<Directus_Users>;
   user_updated?: Maybe<Directus_Users>;
 };
@@ -10496,6 +10497,16 @@ export type Pricing_PageMeta_ImageArgs = {
 
 
 export type Pricing_PagePro_PlanArgs = {
+  filter?: InputMaybe<Pricing_Plans_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type Pricing_PageSandbox_PlanArgs = {
   filter?: InputMaybe<Pricing_Plans_Filter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -13089,6 +13100,7 @@ export type Update_Pricing_Page_Input = {
   meta_image?: InputMaybe<Update_Directus_Files_Input>;
   meta_title?: InputMaybe<Scalars['String']['input']>;
   pro_plan?: InputMaybe<Update_Pricing_Plans_Input>;
+  sandbox_plan?: InputMaybe<Update_Pricing_Plans_Input>;
   user_created?: InputMaybe<Update_Directus_Users_Input>;
   user_updated?: InputMaybe<Update_Directus_Users_Input>;
 };
@@ -13860,7 +13872,7 @@ export type FaqListQueryVariables = Exact<{
 
 export type FaqListQuery = { __typename?: 'Query', collapsible_lists: Array<{ __typename?: 'collapsible_lists', items?: Array<{ __typename?: 'collapsible_lists_items', item?: { __typename?: 'collapsibles', id: string, label?: string | null, content?: string | null } | null } | null> | null }> };
 
-export type PricingPageFragment = { __typename?: 'pricing_page', id: string, meta_title?: string | null, meta_description?: string | null, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
+export type PricingPageFragment = { __typename?: 'pricing_page', id: string, meta_title?: string | null, meta_description?: string | null, sandbox_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
 export type PricingPlanFragment = { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null };
 
@@ -13869,7 +13881,7 @@ export type PricingPlanFeatureFragment = { __typename?: 'pricing_plan_features',
 export type PricingPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PricingPageQuery = { __typename?: 'Query', pricing_page?: { __typename?: 'pricing_page', id: string, meta_title?: string | null, meta_description?: string | null, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
+export type PricingPageQuery = { __typename?: 'Query', pricing_page?: { __typename?: 'pricing_page', id: string, meta_title?: string | null, meta_description?: string | null, sandbox_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, pro_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, enterprise_plan?: { __typename?: 'pricing_plans', id: string, name: string, subtitle?: string | null, features?: Array<{ __typename?: 'pricing_plan_features', id: string, description?: string | null } | null> | null } | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null };
 
 export type ProductPageFragment = { __typename?: 'product_pages', id: string, slug: string, dropdown_icon?: string | null, dropdown_title?: string | null, dropdown_description?: string | null, meta_title?: string | null, meta_description?: string | null, custom_components?: Array<{ __typename?: 'product_pages_custom_component', custom_component_id?: { __typename?: 'custom_component', id: string, theme?: string | null, spacing_top?: string | null, spacing_bottom?: string | null, item?: Array<{ __typename?: 'custom_component_item', collection?: string | null, item?: { __typename?: 'cards', cards?: Array<{ __typename?: 'cards_card', card_id?: { __typename?: 'card', heading: string, body_text: string, url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | { __typename?: 'cta', heading?: string | null, body_text?: string | null, cta_text?: string | null, cta_url?: string | null } | { __typename?: 'customer_quote', quote?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | { __typename?: 'hero', heading?: string | null, body_text?: string | null, media_type?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'large_image', overline?: string | null, heading?: string | null, body_text?: string | null, media_type?: string | null, image_position?: string | null, video_url?: string | null, cta_text?: string | null, cta_url?: string | null, image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, form?: { __typename?: 'hubspot_forms', name?: string | null, form_id: string, portal_id?: string | null, region?: string | null } | null } | { __typename?: 'logo_strip', logo_list?: { __typename?: 'company_logo_lists', slug?: string | null, logos?: Array<{ __typename?: 'company_logo_lists_company_logos', company_logos_id?: { __typename?: 'company_logos', slug?: string | null, name: string, url?: string | null, logo_light?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null, logo_dark?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null } | null } | null> | null } | null } | { __typename?: 'multi_column_text', columns?: Array<{ __typename?: 'multi_column_text_rich_text_columns', rich_text_columns_id?: { __typename?: 'rich_text_columns', icon?: string | null, heading?: string | null, body_text: string } | null } | null> | null } | { __typename?: 'our_impact', top_left_metric?: string | null, top_left_subtitle?: string | null, top_left_tooltip?: string | null, top_right_metric?: string | null, top_right_subtitle?: string | null, top_right_tooltip?: string | null, bottom_left_metric?: string | null, bottom_left_subtitle?: string | null, bottom_left_tooltip?: string | null, bottom_right_metric?: string | null, bottom_right_subtitle?: string | null, bottom_right_tooltip?: string | null } | { __typename?: 'quote_carousel', title?: string | null, quotes?: { __typename?: 'quote_lists', slug: string, items?: Array<{ __typename?: 'quote_lists_items', item?: { __typename?: 'quotes', id: string, quote?: string | null, author_text?: string | null } | null } | null> | null } | null } | { __typename?: 'section_header', overline?: string | null, title?: string | null, description?: string | null } | { __typename?: 'table', overline?: string | null, heading?: string | null, description?: string | null, width?: string | null, scrollable?: boolean | null, markdown?: string | null } | { __typename?: 'two_column_text', main_content: string, side_content: string } | null } | null> | null } | null } | null> | null, meta_image?: { __typename?: 'directus_files', id: string, title?: string | null, description?: string | null, tags?: any | null, filename_disk?: string | null, filename_download: string, metadata?: any | null, type?: string | null, filesize?: any | null } | null };
 
@@ -14417,6 +14429,9 @@ export const PricingPlanFragmentDoc = gql`
 export const PricingPageFragmentDoc = gql`
     fragment PricingPage on pricing_page {
   id
+  sandbox_plan {
+    ...PricingPlan
+  }
   pro_plan {
     ...PricingPlan
   }

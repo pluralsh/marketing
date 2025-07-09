@@ -16,6 +16,7 @@ export function PricingPlanCard({
 }: { plan: PricingPlanFragment; cta: ReactNode } & CardProps) {
   const isEnterprise = plan.name === 'enterprise'
   const planDisplayName = {
+    sandbox: 'Plural Sandbox',
     enterprise: 'Enterprise',
     pro: 'Pro Plan',
   }[plan.name]
