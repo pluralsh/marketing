@@ -20,8 +20,6 @@ export function CallToAction({
       <Button
         className="mt-medium"
         as={Link}
-        target="_blank"
-        rel="noopener noreferrer"
         href={ctaUrl}
       >
         {ctaText}
