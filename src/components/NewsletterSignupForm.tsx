@@ -186,7 +186,7 @@ export function NewsletterSignupForm() {
       <div className="mt-small">
         <ReCAPTCHA
           ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY ?? 'none'}
+          sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY || 'none'}
           onChange={(val) => {
             setRecaptchaVal(val)
           }}
