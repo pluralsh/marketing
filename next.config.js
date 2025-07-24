@@ -48,6 +48,11 @@ module.exports = () => {
           destination: '/contact',
           permanent: true,
         },
+        {
+          source: '/docs',
+          destination: 'https://docs.plural.sh/',
+          permanent: true,
+        },
       ]
     },
   })
