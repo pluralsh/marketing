@@ -1,0 +1,94 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading1",
+            "content": {
+              "text": "Contact sales",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Reach out to the team for demos, assistance with onboarding, or any inquiries about our products.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Want to learn more about pricing?",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "key": "6932bac5-779d-40c4-a973-aeed34b7901b",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://plural.sh/pricing",
+          "text": "Go to Pricing",
+          "variant": "Primary"
+        }
+      },
+      "hubspot_form_id": {
+        "__TYPE__": "FieldContent",
+        "value": "mental",
+        "type": "Text"
+      },
+      "hubspot_form": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "form_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "234b5476-6ee0-4a32-a677-aa1f0d318e9c"
+                }
+              ],
+              [
+                "portal_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "22363579"
+                }
+              ],
+              [
+                "region",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "na1"
+                }
+              ]
+            ],
+            "key": "60edf0b4-56d1-4bf8-ace7-11997e3c0554"
+          }
+        ],
+        "key": "0be848d3-3345-420e-bfe1-bdee8d208973"
+      }
+    },
+    "items": []
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "id": "testimonials",
+  "type": "SharedSlice",
+  "name": "Testimonials",
+  "description": "Testimonials",
+  "variations": [
+    {
+      "id": "animationSlider",
+      "name": "Animation Slider",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "testimonials": {
+          "type": "Link",
+          "config": {
+            "label": "Testimonials",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "testimonials",
+                "fields": [
+                  {
+                    "id": "testimonials",
+                    "fields": [
+                      "testimonial",
+                      "position",
+                      "location",
+                      "person_icon",
+                      "company_icon"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

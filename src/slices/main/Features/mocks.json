@@ -1,0 +1,1830 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Your Challenge"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "The shift to Kubernetes creates\na new set of challenges for your organization",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Upgrades are fragile, risky, and slow. Platform teams are flooded with support requests. Devs are stuck waiting for YAML reviews or platform approval. Observability is disconnected from action. Terraform pipelines fail with no context. Policy enforcement is scattered across scripts and spreadsheets. You're experiencing a whole host of new challenges:",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "features": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+                    "width": 3500,
+                    "height": 2338
+                  },
+                  "url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?rect=2%2C0%2C3495%2C2338&w=299&h=200",
+                  "width": 299,
+                  "height": 200,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 2,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "should",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Management complexity",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Cluster sprawl leads to inefficiency, configuration inconsistencies, and operational overhead.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1655082291675-b919ca1c3419?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNXx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85&rect=0,0,6303,4202&w=300&h=200",
+                  "alt": "a tree with fruit growing on it",
+                  "origin": {
+                    "id": "jb-qL7RXkas",
+                    "url": "https://images.unsplash.com/photo-1655082291675-b919ca1c3419?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNXx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 6303,
+                    "height": 4202
+                  },
+                  "width": 300,
+                  "height": 200,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Deployment risks",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Deploying updates across multiple clusters introduces significant risk of downtime and service disruption.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1572260720874-330ba18659b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNHx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85&rect=0,2,4896,2751&w=356&h=200",
+                  "alt": "green fruit",
+                  "origin": {
+                    "id": "TKAyGaMKf1w",
+                    "url": "https://images.unsplash.com/photo-1572260720874-330ba18659b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNHx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 4896,
+                    "height": 2754
+                  },
+                  "width": 356,
+                  "height": 200,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 2
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Troubleshooting difficulty",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Diagnosing issues across heterogeneous clusters makes it difficult to pinpoint and resolve problems efficiently.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1740783525811-4d430caed80f?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85&rect=0,2,4080,3068&w=266&h=200",
+                  "alt": "Freshly sliced blood oranges in a bowl.",
+                  "origin": {
+                    "id": "e7wP4oxY0TU",
+                    "url": "https://images.unsplash.com/photo-1740783525811-4d430caed80f?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxNjA3NjA5fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 4080,
+                    "height": 3072
+                  },
+                  "width": 266,
+                  "height": 200,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 2
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Security gaps",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Enforcing uniform policies across clusters is complex, leading to potential vulnerabilities and compliance gaps. Here's some text, so that not every card has three lines of text on desktop. This one will have more!",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "imageRight",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Our Solutions"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Plural help teams run \nmulti-cluster, complex K8s environments at scale",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Combining an intuitive, single pane of glass interface with advanced AI troubleshooting capabilities that leverage a unique vantage point into your Kubernetes environment, Plural helps you save time, focus on innovation, and reduce risk across your organization.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "features": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055",
+                    "width": 3277,
+                    "height": 4092
+                  },
+                  "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055?rect=0%2C787%2C3277%2C2517&w=690&h=530",
+                  "width": 690,
+                  "height": 530,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 787
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "chosen",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Intelligent, Multi-Cloud Fleet-Wide Visibility",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Stay on top of your environment's clusters, workloads, and resources in one place.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Gain real-time visibility into cluster health, status, and resource usage.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Works across public cloud, private cloud, hybrid, and edge managed clusters.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "title_icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+                    "width": 3456,
+                    "height": 3456
+                  },
+                  "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?rect=0%2C0%2C3456%2C3456&w=20&h=20",
+                  "width": 20,
+                  "height": 20,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "respect",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "buttons",
+                {
+                  "__TYPE__": "RepeatableContent",
+                  "type": "Link",
+                  "value": [
+                    {
+                      "key": "f7351c11-e813-406f-b3c3-040097d9c6d5",
+                      "__TYPE__": "LinkContent",
+                      "value": {
+                        "__TYPE__": "ExternalLink",
+                        "url": "https://prismic.io",
+                        "text": "Book a demo",
+                        "variant": "Primary"
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Smarter, Safer Kubernetes Upgrades",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Plural takes the pain out of Kubernetes upgrades with smart version selection, automated API deprecation tracking, and comprehensive configuration validation.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Say goodbye to spreadsheets, changelogs, and trial-and-error — Plural handles the complexity for you with preflight checks, addon compatibility analysis, and upgrade-ready insights baked into your GitOps workflows.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "buttons",
+                {
+                  "__TYPE__": "RepeatableContent",
+                  "type": "Link",
+                  "value": [
+                    {
+                      "key": "171cd9b3-7e9f-4346-b7f9-32a70186f29e",
+                      "__TYPE__": "LinkContent",
+                      "value": {
+                        "__TYPE__": "ExternalLink",
+                        "url": "https://www.plural.sh/contact",
+                        "text": "Book a demo",
+                        "variant": "Primary"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+                    "width": 3500,
+                    "height": 2338
+                  },
+                  "url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea?rect=228%2C0%2C3044%2C2338&w=690&h=530",
+                  "width": 690,
+                  "height": 530,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 228,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "tall",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title_icon",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1740783525811-4d430caed80f?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxODIwOTc0fDA&ixlib=rb-4.1.0&q=85&rect=504,0,3072,3072&w=20&h=20",
+                  "alt": "Freshly sliced blood oranges in a bowl.",
+                  "origin": {
+                    "id": "e7wP4oxY0TU",
+                    "url": "https://images.unsplash.com/photo-1740783525811-4d430caed80f?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxODIwOTc0fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 4080,
+                    "height": 3072
+                  },
+                  "width": 20,
+                  "height": 20,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 504,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "From Insight to Action — with AI at the Core",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Identify, understand, and resolve complex issues across your environment with AI-powered diagnostics.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Analyze your terraform run state, cluster metadata, and the Kubernetes API live state to detect anomalies, predict potential service and IaC failures, and recommend precise solutions.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Save valuable time spent on root cause analysis and reduce the need for manual intervention.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "buttons",
+                {
+                  "__TYPE__": "RepeatableContent",
+                  "type": "Link",
+                  "value": [
+                    {
+                      "key": "82e07f16-06e9-4583-a90d-a8dca526ad96",
+                      "__TYPE__": "LinkContent",
+                      "value": {
+                        "__TYPE__": "ExternalLink",
+                        "url": "https://www.plural.sh/contact",
+                        "text": "Book a demo",
+                        "variant": "Primary"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+                    "width": 4000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04?rect=0%2C464%2C4000%2C3072&w=690&h=530",
+                  "width": 690,
+                  "height": 530,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 464
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "able",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title_icon",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTE4MjA5NzR8MA&ixlib=rb-4.1.0&q=85&rect=960,0,3840,3840&w=20&h=20",
+                  "alt": "sliced fruit on white surface",
+                  "origin": {
+                    "id": "YSA1IRkGAsg",
+                    "url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTE4MjA5NzR8MA&ixlib=rb-4.1.0&q=85",
+                    "width": 5760,
+                    "height": 3840
+                  },
+                  "width": 20,
+                  "height": 20,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 960,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Maintain compliance in even the most complex environments",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "buttons",
+                {
+                  "__TYPE__": "RepeatableContent",
+                  "type": "Link",
+                  "value": [
+                    {
+                      "key": "9e6163d4-c20c-4c2c-b262-587ad7ca860c",
+                      "__TYPE__": "LinkContent",
+                      "value": {
+                        "__TYPE__": "ExternalLink",
+                        "url": "https://www.plural.sh/contact",
+                        "variant": "Primary",
+                        "text": "Book a demo"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
+                    "width": 3648,
+                    "height": 4560
+                  },
+                  "url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?rect=0%2C879%2C3648%2C2802&w=690&h=530",
+                  "width": 690,
+                  "height": 530,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 879
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "perfectly",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Safeguard your environment with robust, secure, and scalable infrastructure management.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Ensure compliance with internal security standards and prevent misconfigurations with a security framework providing centralized SBOM management and scalable policy enforcement.",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "title_icon",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1623445535601-217ed68fe0d2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyOHx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxODIwOTc0fDA&ixlib=rb-4.1.0&q=85&rect=0,0,3000,3000&w=20&h=20",
+                  "alt": "a slice of lemon on a white background",
+                  "origin": {
+                    "id": "KBBDfpw_MFM",
+                    "url": "https://images.unsplash.com/photo-1623445535601-217ed68fe0d2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyOHx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUxODIwOTc0fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 3000,
+                    "height": 3000
+                  },
+                  "width": 20,
+                  "height": 20,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "table",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Why Plural Delivers For \nYour Whole Team",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "features_groups": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "leaders"
+                }
+              ],
+              [
+                "eyebrow",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Platform & DevOps"
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Leaders",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Engineers",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "engineers"
+                }
+              ],
+              [
+                "eyebrow",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Platform & DevOps"
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "features_list": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Accelerate developer velocity by eliminating infra bottlenecks",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "leaders"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+                    "width": 3212,
+                    "height": 3880
+                  },
+                  "url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+                  "width": 3212,
+                  "height": 3880,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "hang",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Strengthen security posture with automation and auditability",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "leaders"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+                    "width": 3456,
+                    "height": 3456
+                  },
+                  "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+                  "width": 3456,
+                  "height": 3456,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "rule",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Reduce infra waste and avoid costly rebuilds\ttraceability",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "leaders"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+                    "width": 3958,
+                    "height": 3958
+                  },
+                  "url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+                  "width": 3958,
+                  "height": 3958,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "also",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Align to AI/efficiency mandates with measurable results",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "leaders"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+                    "width": 4000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+                  "width": 4000,
+                  "height": 4000,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "divide",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "engineers"
+                }
+              ],
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Less manual toil: config fixes, upgrades, root cause — automated",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
+                    "width": 4000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
+                  "width": 4000,
+                  "height": 4000,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "know",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Operate with speed, confidence, and fewer support cycles",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "engineers"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
+                    "width": 4000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
+                  "width": 4000,
+                  "height": 4000,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "bit",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "AI-generated PRs with full \ntraceability",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "engineers"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                    "width": 5616,
+                    "height": 3744
+                  },
+                  "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                  "width": 5616,
+                  "height": 3744,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "social",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "text",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Stop maintaining tools you wish you’d \nbought instead",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "group_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "engineers"
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
+                    "width": 4016,
+                    "height": 6016
+                  },
+                  "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
+                  "width": 4016,
+                  "height": 6016,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "alike",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "resources",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Case Studies"
+      },
+      "resources": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                    "width": 5616,
+                    "height": 3744
+                  },
+                  "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?rect=0%2C0%2C5616%2C3744&w=300&h=200",
+                  "width": 300,
+                  "height": 200,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "trunk",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Mott MacDonald's transformation with Plural for Kubernetes fleet management",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Read more",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "a4b70adb-c182-4f8c-b5d6-01ce2dfb5fc9",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com"
+                  }
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Global Cyber Security Leader Uses Plural to Slash Kubernetes Upgrades From 3 Months to 1 Day",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "image",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTI2MTMzODl8MA&ixlib=rb-4.1.0&q=85&rect=0,0,5760,3840&w=300&h=200",
+                  "alt": "sliced fruit on white surface",
+                  "origin": {
+                    "id": "YSA1IRkGAsg",
+                    "url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTI2MTMzODl8MA&ixlib=rb-4.1.0&q=85",
+                    "width": 5760,
+                    "height": 3840
+                  },
+                  "width": 300,
+                  "height": 200,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Read more",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "43f704c7-b803-417b-92ee-150c398a3b90",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com"
+                  }
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "provider": "imgix",
+                  "url": "https://images.unsplash.com/photo-1655082291675-b919ca1c3419?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUyNjEzMzg5fDA&ixlib=rb-4.1.0&q=85&rect=0,0,6303,4202&w=300&h=200",
+                  "alt": "a tree with fruit growing on it",
+                  "origin": {
+                    "id": "jb-qL7RXkas",
+                    "url": "https://images.unsplash.com/photo-1655082291675-b919ca1c3419?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUyNjEzMzg5fDA&ixlib=rb-4.1.0&q=85",
+                    "width": 6303,
+                    "height": 4202
+                  },
+                  "width": 300,
+                  "height": 200,
+                  "edit": {
+                    "background": "transparent",
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    }
+                  },
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "How a Fortune 50 Financial Services Company Used Plural to Reduce Kubernetes",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Read more",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "43e7eb67-8ce8-4284-b1ab-5538fcd8e6e1",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "view_all_button": {
+        "key": "1f5410ae-98fc-4180-8584-ac07d0415202",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "See more"
+        }
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "collapsible",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "value": "length",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Sound"
+            }
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Officia excepteur elit mollit. Deserunt voluptate cupidatat eiusmod cupidatat irure officia dolor non id."
+            }
+          }
+        ]
+      },
+      "items": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading2",
+                      "content": {
+                        "text": "Spent"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Elit consequat et anim consectetur est nostrud proident exercitation. Voluptate enim proident ea ea ullamco consectetur reprehenderit veniam reprehenderit amet minim proident exercitation cillum est. Fugiat exercitation mollit exercitation incididunt."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e",
+                    "width": 4480,
+                    "height": 4480
+                  },
+                  "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e",
+                  "width": 4480,
+                  "height": 4480,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "send",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "smallIcon",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "value": "balance",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Second"
+            }
+          }
+        ]
+      },
+      "features": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                    "width": 5616,
+                    "height": 3744
+                  },
+                  "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?rect=0%2C0%2C5616%2C3744&w=300&h=200",
+                  "width": 300,
+                  "height": 200,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "harbor",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Smile"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Elit ipsum do nisi duis ad aliqua sunt excepteur ullamco."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

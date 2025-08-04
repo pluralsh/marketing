@@ -1,0 +1,36 @@
+.navigationItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  white-space: nowrap;
+
+  span {
+    color: var(--color-white);
+    opacity: 0.7;
+
+    &:hover:not(.navigationItemActive) span {
+      opacity: 0.9;
+    }
+  }
+}
+
+.navigationItemActive {
+  position: relative;
+
+  span {
+    color: var(--color-white);
+    opacity: 1;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 1px;
+    left: calc(-2.5rem - 0.5px);
+    top: 0;
+    background: var(--color-primary-600);
+    z-index: 1;
+  }
+}

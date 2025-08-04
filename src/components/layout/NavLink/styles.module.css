@@ -1,0 +1,65 @@
+/* Collapsible animations */
+.CollapsibleContent {
+  overflow: hidden;
+
+  &[data-state='open'] {
+    animation: slideDown 300ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: slideUp 300ms ease-out;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Popover animations */
+.PopoverContent {
+  transform-origin: var(--radix-popover-content-transform-origin);
+
+  &[data-state='open'] {
+    animation: scaleIn 200ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: scaleOut 200ms ease-in;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}

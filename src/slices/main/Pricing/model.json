@@ -1,0 +1,177 @@
+{
+  "id": "pricing",
+  "type": "SharedSlice",
+  "name": "Pricing",
+  "description": "Pricing",
+  "variations": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "repeat": true,
+            "fields": {
+              "emphasized": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Emphasized",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "paragraph"
+                }
+              },
+              "features": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Features",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "labels": ["icon:check", "icon:plus"],
+                  "single": "list-item"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": {
+            "label": "ID",
+            "placeholder": ""
+          }
+        },
+        "columns": {
+          "type": "Group",
+          "config": {
+            "label": "Columns",
+            "repeat": true,
+            "fields": {
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "ID",
+                  "placeholder": ""
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              },
+              "emphasized": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Emphasized",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        },
+        "row_keys": {
+          "type": "Group",
+          "config": {
+            "label": "Row Keys",
+            "repeat": true,
+            "fields": {
+              "key": {
+                "type": "Text",
+                "config": {
+                  "label": "Key",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "column_values": {
+          "type": "Group",
+          "config": {
+            "label": "Column Values",
+            "repeat": true,
+            "fields": {
+              "column_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Column ID",
+                  "placeholder": ""
+                }
+              },
+              "values": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Values",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "o-list-item",
+                  "labels": ["no", "yes"]
+                }
+              },
+              "button": {
+                "type": "Link",
+                "config": {
+                  "label": "Button",
+                  "placeholder": "Book a demo",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

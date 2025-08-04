@@ -1,9 +1,0 @@
-query FieldDefaults {
-  fields {
-    collection
-    field
-    schema {
-      default_value
-    }
-  }
-}

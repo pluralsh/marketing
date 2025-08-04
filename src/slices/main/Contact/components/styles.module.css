@@ -1,0 +1,113 @@
+@reference "../../../../app/globals.css";
+
+.hsFormContainer {
+  @apply flex w-full justify-center;
+
+  form {
+    @apply flex w-full flex-col gap-y-3 md:gap-y-6;
+
+    &:invalid input.primary {
+      @apply text-[#ff0000]/70;
+    }
+
+    fieldset {
+      @apply w-full !max-w-full;
+    }
+
+    label {
+      @apply text-caption;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    select,
+    textarea {
+      @apply mt-2 !w-full px-3 py-3;
+      @apply not-placeholder-shown:border-neutral-000/20 border-neutral-000/[0.08] hover:border-neutral-000/70 focus-visible:border-neutral-000/70 border transition;
+      appearance: none;
+      outline: none;
+      background-color: var(--color-neutral-800);
+      border-radius: 8px;
+      color: var(--color-neutral-000);
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+
+      &::placeholder {
+        @apply text-neutral-000/30;
+      }
+
+      &[class*='invalid'] {
+        @apply border-[#ff0000]/50;
+      }
+    }
+
+    input[type='submit'] {
+      @apply relative box-border inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm font-medium whitespace-nowrap transition disabled:pointer-events-none disabled:opacity-50;
+      @apply text-body-medium mt-4 h-12 px-8 py-3 md:mt-6;
+      @apply bg-primary-600 !text-neutral-000 hover:bg-neutral-000 shadow-primary transition hover:!text-neutral-800;
+    }
+
+    [class*='hs-error-msg'] {
+      @apply text-[#ff0000]/70;
+    }
+
+    li[class*='hs-form-booleancheckbox'] {
+      @apply text-body-small;
+
+      > label {
+        @apply grid items-center gap-x-3;
+        grid-template-columns: 1em auto;
+
+        > input[type='checkbox'] {
+          @apply text-neutral-000 m-0 appearance-none bg-neutral-900 transition;
+          width: 1.15em;
+          height: 1.15em;
+          border: 1px solid --alpha(var(--color-neutral-000) / 24%);
+          border-radius: 0.2em;
+          display: grid;
+          place-items: center;
+          position: relative;
+
+          &::before {
+            @apply transition;
+            content: '';
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='9' viewBox='0 0 11 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.6027 1.61775L3.72055 8.49994L0 4.77939L1.11781 3.66158L3.72055 6.26432L9.48493 0.499939L10.6027 1.61775Z' fill='white'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            inset: 0;
+            transform: scale(0.8);
+            opacity: 0;
+          }
+
+          &:checked {
+            border-color: var(--color-primary-600);
+            background-color: var(--color-primary-600);
+
+            &::before {
+              opacity: 1;
+            }
+          }
+        }
+
+        > span {
+          @apply !ml-0;
+        }
+      }
+    }
+
+    fieldset[class*='form-columns-2'] {
+      @apply grid grid-cols-1 gap-2 md:grid-cols-2;
+
+      & > * {
+        @apply !w-full;
+      }
+    }
+
+    div[class*='input'] {
+      @apply !mr-0;
+    }
+  }
+}

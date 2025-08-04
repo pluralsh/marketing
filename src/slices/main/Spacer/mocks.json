@@ -1,0 +1,41 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "removeSpace",
+    "primary": {
+      "direction": {
+        "__TYPE__": "FieldContent",
+        "value": "Both",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "replaceSpace",
+    "primary": {
+      "height_desktop": {
+        "__TYPE__": "FieldContent",
+        "value": "48",
+        "type": "Number"
+      },
+      "height_mobile": {
+        "__TYPE__": "FieldContent",
+        "value": "38",
+        "type": "Number"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

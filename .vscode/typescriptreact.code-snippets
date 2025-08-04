@@ -1,0 +1,71 @@
+{
+  "Prismic Slice Default": {
+    "prefix": "prsl",
+    "body": [
+      "import type { Content } from \"@prismicio/client\";",
+      "import type { SliceComponentProps } from \"@prismicio/react\";",
+      "",
+      "import SliceContainer from \"@/components/SliceContainer\";",
+      "",
+      "export type ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Props = SliceComponentProps<Content.${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Slice>;",
+      "",
+      "export default function ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}({ slice }: ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Props) {",
+      "  return (",
+      "    <SliceContainer slice={slice}>",
+      "      $1",
+      "    </SliceContainer>",
+      "  );",
+      "}",
+      ""
+    ],
+    "description": "Creates a default Prismic slice component structure. Used for slices with only one default variation."
+  },
+  "Prismic Slice Variation": {
+    "prefix": "prslvar",
+    "body": [
+      "import type { Content } from \"@prismicio/client\";",
+      "",
+      "import type { SliceVariationProps } from \"@/types/prismicio\";",
+      "",
+      "import SliceContainer from \"@/components/SliceContainer\";",
+      "",
+      "export type ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}${1:Default}Props = SliceVariationProps<Content.${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Slice, \"${1/(.*)/${1:/camelcase}/}\">;",
+      "",
+      "export default function ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}${1:Default}({ slice }: ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}${1:Default}Props) {",
+      "  return (",
+      "    <SliceContainer slice={slice}>",
+      "      $2",
+      "    </SliceContainer>",
+      "  );",
+      "}",
+      ""
+    ],
+    "description": "Creates a Prismic slice variation component structure. Used for slices with multiple variations."
+  },
+  "Prismic Slice with Variations": {
+    "prefix": "prslvars",
+    "body": [
+      "import type { Content } from \"@prismicio/client\";",
+      "import type { SliceComponentProps } from \"@prismicio/react\";",
+      "",
+      "import dynamic from \"next/dynamic\";",
+      "",
+      "import SliceVariations from \"@/components/SliceVariations\";",
+      "",
+      "export type ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Props = SliceComponentProps<Content.${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Slice>;",
+      "",
+      "export default function ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}({ slice }: ${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Props) {",
+      "  return (",
+      "    <SliceVariations",
+      "      slice={slice}",
+      "      variations={{",
+      "        // default: dynamic(() => import(\"./${TM_DIRECTORY/.*[\\/\\\\](\\w+)$/$1/}Default\")),$1",
+      "      }}",
+      "    />",
+      "  );",
+      "}",
+      ""
+    ],
+    "description": "Creates a Prismic slice index component for grouping variations."
+  }
+}

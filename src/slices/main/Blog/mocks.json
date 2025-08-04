@@ -1,0 +1,102 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Additional Resources"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "blog_posts": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
+                    "width": 3648,
+                    "height": 4560
+                  },
+                  "url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?rect=0%2C1152%2C3648%2C2256&w=485&h=300",
+                  "width": 485,
+                  "height": 300,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 1152
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "over",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Remove"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Est laboris consectetur ad aliquip sit."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "e3a6146e-69fa-4cdb-8cbd-4a36b30e9e19",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://prismic.io"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

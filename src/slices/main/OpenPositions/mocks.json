@@ -1,0 +1,278 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Chain"
+            }
+          }
+        ]
+      },
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "value": "constantly",
+        "type": "Text"
+      },
+      "bottom_title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading5",
+            "content": {
+              "text": "Serve"
+            }
+          }
+        ]
+      },
+      "bottom_description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Est consequat cupidatat exercitation. Adipisicing nisi officia consequat reprehenderit. Laboris occaecat nulla deserunt commodo incididunt ullamco."
+            }
+          }
+        ]
+      },
+      "hire_link": {
+        "key": "b5259237-f83c-433a-bee7-44e0ecdc05d9",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "job"
+        }
+      },
+      "job_offers": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading4",
+                      "content": {
+                        "text": "Brush"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "location",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Aliquip dolor esse amet aute ad ut. Irure ullamco Lorem excepteur qui adipisicing sit amet fugiat eu non aute Lorem nostrud mollit minim. Exercitation culpa dolore velit ipsum ex ad aute nostrud."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "job_offer_category",
+                {
+                  "key": "0c2411be-600b-4965-9245-f8d3f25f68ba",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "DocumentLink",
+                    "id": "mock_document_id"
+                  }
+                }
+              ],
+              [
+                "job_offer_link",
+                {
+                  "key": "78c2dd27-6fa8-406d-8647-f8119793590c",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://slicemachine.dev"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "singlePosition",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Current"
+            }
+          }
+        ]
+      },
+      "bottom_title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading5",
+            "content": {
+              "text": "Higher"
+            }
+          }
+        ]
+      },
+      "bottom_description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Anim reprehenderit cupidatat aliqua nulla."
+            }
+          }
+        ]
+      },
+      "hire_link": {
+        "key": "080e64fa-97bd-4436-84b1-57e1bd7d5c36",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "future"
+        }
+      },
+      "location": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading6",
+            "content": {
+              "text": "Deeply"
+            }
+          }
+        ]
+      },
+      "bottom_icons": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055",
+                    "width": 3277,
+                    "height": 4092
+                  },
+                  "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055",
+                  "width": 3277,
+                  "height": 4092,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "cage",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "equality_description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Enim ut consequat ipsum eu aliqua aliquip ullamco exercitation consequat voluptate Lorem veniam incididunt."
+            }
+          }
+        ]
+      },
+      "content_sections": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "section",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Enim in incididunt sit non id qui irure."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                    "width": 4752,
+                    "height": 3168
+                  },
+                  "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                  "width": 4752,
+                  "height": 3168,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "addition",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

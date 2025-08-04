@@ -1,0 +1,37 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Enterprise Kubernetes\nmanagement, accelerated.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "key": "781925bb-76fd-4509-8396-cedd1239878d",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "Book a demo",
+          "variant": "Primary"
+        }
+      },
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Label"
+      }
+    },
+    "items": []
+  }
+]

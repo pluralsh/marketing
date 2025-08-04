@@ -1,0 +1,79 @@
+{
+  "id": "contact",
+  "type": "SharedSlice",
+  "name": "Contact",
+  "description": "Contact",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false,
+            "variants": ["Primary", "Secondary"]
+          }
+        },
+        "hubspot_form": {
+          "type": "Group",
+          "config": {
+            "label": "HubSpot Form",
+            "repeat": false,
+            "fields": {
+              "region": {
+                "type": "Text",
+                "config": {
+                  "label": "Region",
+                  "placeholder": ""
+                }
+              },
+              "portal_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Portal ID",
+                  "placeholder": ""
+                }
+              },
+              "form_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Form ID",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

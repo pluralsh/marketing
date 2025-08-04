@@ -1,0 +1,36 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "textScrollReveal",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Why You Care"
+      },
+      "content": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Supporting and troubleshooting Kubernetes applications is a complex challenge that often creates bottlenecks for both platform teams and developers. SRE, DevOps, and platform engineers spend significant time diagnosing issues and supporting application teams, while developers are blocked waiting for expert assistance. Plural's AI-powered platform transforms this experience by providing intelligent insights and self-service capabilities that accelerate issue resolution and reduce the support burden on platform teams.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "align_left": {
+        "__TYPE__": "BooleanContent",
+        "value": false
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

@@ -4,41 +4,30 @@ WORKDIR /app
 
 RUN apk add --no-cache git
 
-RUN corepack enable
-
-COPY package.json yarn.lock ./
-COPY .yarnrc.yml ./
-COPY .yarn/ ./.yarn/
-RUN yarn install --immutable
+COPY package.json package-lock.json ./
+RUN npm ci
 
 COPY . .
 
-ARG NEXT_PUBLIC_ROOT_URL
-ARG DIRECTUS_ACCESS_TOKEN
-ARG HUBSPOT_API_SECRET
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_PRISMIC_ENVIRONMENT
 ARG NEXT_PUBLIC_GA_ID
 ARG NEXT_PUBLIC_SITE_RECAPTCHA_KEY
-ARG SITE_RECAPTCHA_SECRET
 
-ENV NEXT_PUBLIC_ROOT_URL=$NEXT_PUBLIC_ROOT_URL
-ENV DIRECTUS_ACCESS_TOKEN=$DIRECTUS_ACCESS_TOKEN
-ENV HUBSPOT_API_SECRET=$HUBSPOT_API_SECRET
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_PRISMIC_ENVIRONMENT=$NEXT_PUBLIC_PRISMIC_ENVIRONMENT
 ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
 ENV NEXT_PUBLIC_SITE_RECAPTCHA_KEY=$NEXT_PUBLIC_SITE_RECAPTCHA_KEY
-ENV SITE_RECAPTCHA_SECRET=$SITE_RECAPTCHA_SECRET
 
-RUN yarn build
+RUN npm run build
 
 FROM node:22-alpine AS production
 WORKDIR /app
 
-COPY --from=base /app/package.json /app/yarn.lock /app/.yarnrc.yml ./
+COPY --from=base /app/package.json /app/package-lock.json ./
 COPY --from=base /app/node_modules/ ./node_modules/
-COPY --from=base /app/.yarn/ ./.yarn/
 COPY --from=base /app/.next/ ./.next/
-COPY --from=base /app/public/ ./public/
-COPY --from=base /app/pages/ ./pages/
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]
