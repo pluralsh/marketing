@@ -1,303 +1,307 @@
 [
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "exclusive",
-    "primary": {
-      "eyebrow": {
-        "key": "1872b924-84ee-49b2-b9fe-85c91e3bb2a9",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev",
-          "text": "Announcing our $6M seed"
-        }
-      },
-      "title": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading1",
-            "content": {
-              "text": "Enterprise Kubernetes management, accelerated",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "cta": {
-        "key": "c1d07c92-782c-4735-805b-b2c1ec222418",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "https://prismic.io",
-          "text": "Book a demo",
-          "variant": "Primary"
-        }
-      },
-      "full_bleed_image": {
-        "provider": "imgix",
-        "url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85&rect=0,0,5392,3032&w=1067&h=600",
-        "alt": "a plane flying in the sky at sunset",
-        "origin": {
-          "id": "u1edt5V0ruU",
-          "url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85",
-          "width": 5392,
-          "height": 3033
-        },
-        "width": 1067,
-        "height": 600,
-        "edit": {
-          "background": "transparent",
-          "zoom": 1,
-          "crop": {
-            "x": 0,
-            "y": 0
-          }
-        },
-        "credits": null,
-        "__TYPE__": "ImageContent",
-        "thumbnails": {}
-      },
-      "eyebrow_emphasized": {
-        "__TYPE__": "BooleanContent",
-        "value": false
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
-  },
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "video",
-    "primary": {
-      "title": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading1",
-            "content": {
-              "text": "The Kubernetes Management Platform that puts AI to work",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Monitor, act, and troubleshoot your K8s environment, all from a single pane of glass.",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "cta": {
-        "key": "199632b1-6512-41cc-9d25-75ce3e3e5639",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "http://google.com",
-          "text": "Book a demo",
-          "variant": "Primary"
-        }
-      },
-      "youtube_embed": {
-        "embed_url": "https://www.youtube.com/watch?v=W8KCaiZRV3M",
-        "type": "video",
-        "version": "1.0",
-        "title": "Plural Fleet management April 2024",
-        "author_name": "Plural",
-        "author_url": "https://www.youtube.com/@pluralsh",
-        "provider_name": "YouTube",
-        "provider_url": "https://www.youtube.com/",
-        "thumbnail_url": "https://i.ytimg.com/vi/W8KCaiZRV3M/hqdefault.jpg",
-        "thumbnail_width": 480,
-        "thumbnail_height": 360,
-        "html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/W8KCaiZRV3M?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Plural Fleet management April 2024\"></iframe>",
-        "__TYPE__": "EmbedContent",
-        "all": {
-          "embed_url": "https://www.youtube.com/watch?v=W8KCaiZRV3M",
-          "type": "video",
-          "version": "1.0",
-          "title": "Plural Fleet management April 2024",
-          "author_name": "Plural",
-          "author_url": "https://www.youtube.com/@pluralsh",
-          "provider_name": "YouTube",
-          "provider_url": "https://www.youtube.com/",
-          "thumbnail_url": "https://i.ytimg.com/vi/W8KCaiZRV3M/hqdefault.jpg",
-          "thumbnail_width": 480,
-          "thumbnail_height": 360,
-          "html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/W8KCaiZRV3M?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Plural Fleet management April 2024\"></iframe>",
-          "height": 113,
-          "width": 200
-        }
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
-  },
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "default",
-    "primary": {
-      "eyebrow": {
-        "key": "48967be8-67bc-47e6-be28-2f38c77f15e4",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "http://google.com",
-          "text": "Announcing our $6M seed"
-        }
-      },
-      "title": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading1",
-            "content": {
-              "text": "Resource Center",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Explore Plural's Resource Center for in-depth guides, case studies, videos, and best practices to help you optimize Kubernetes management and scale with confidence.",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "cta": {
-        "key": "d69ef044-7dfb-4c65-83b9-081ef85c0458",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev",
-          "text": "Book a demo",
-          "variant": "Secondary"
-        }
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
-  },
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "image",
-    "primary": {
-      "eyebrow": {
-        "key": "7752b047-42f1-4914-bb73-af5e277839eb",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "AnyLink",
-          "kind": "any",
-          "text": ""
-        }
-      },
-      "title": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading1",
-            "content": {
-              "text": "AI-Powered Platform Intelligence",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Leverage Plural's unique real-time telemetry to automate diagnostics, receive precise fix recommendations, and keep your team informed with instant insights across all clusters.",
-              "spans": []
-            },
-            "direction": "ltr"
-          }
-        ]
-      },
-      "cta": {
-        "key": "f92183d6-e9a7-49ef-82f8-d57119bc68d7",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev",
-          "text": "Book a demo",
-          "variant": "Primary"
-        }
-      },
-      "image": {
-        "origin": {
-          "id": "main",
-          "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
-          "width": 5616,
-          "height": 3744
-        },
-        "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?rect=0%2C0%2C5616%2C3744&w=795&h=530",
-        "width": 795,
-        "height": 530,
-        "edit": {
-          "zoom": 1,
-          "crop": {
-            "x": 0,
-            "y": 0
-          },
-          "background": "transparent"
-        },
-        "alt": "quite",
-        "credits": null,
-        "__TYPE__": "ImageContent",
-        "thumbnails": {}
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
-  }
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "exclusive",
+		"primary": {
+			"eyebrow": {
+				"key": "1872b924-84ee-49b2-b9fe-85c91e3bb2a9",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "Announcing our $6M seed"
+				}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Enterprise Kubernetes management, accelerated",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"cta": {
+				"key": "c1d07c92-782c-4735-805b-b2c1ec222418",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "Book a demo",
+					"variant": "Primary"
+				}
+			},
+			"full_bleed_image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85&rect=0,0,5392,3032&w=1067&h=600",
+				"alt": "a plane flying in the sky at sunset",
+				"origin": {
+					"id": "u1edt5V0ruU",
+					"url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85",
+					"width": 5392,
+					"height": 3033
+				},
+				"width": 1067,
+				"height": 600,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"eyebrow_emphasized": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"is_short_image": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "video",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "The Kubernetes Management Platform that puts AI to work",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Monitor, act, and troubleshoot your K8s environment, all from a single pane of glass.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"cta": {
+				"key": "199632b1-6512-41cc-9d25-75ce3e3e5639",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "Book a demo",
+					"variant": "Primary"
+				}
+			},
+			"youtube_embed": {
+				"embed_url": "https://www.youtube.com/watch?v=W8KCaiZRV3M",
+				"type": "video",
+				"version": "1.0",
+				"title": "Plural Fleet management April 2024",
+				"author_name": "Plural",
+				"author_url": "https://www.youtube.com/@pluralsh",
+				"provider_name": "YouTube",
+				"provider_url": "https://www.youtube.com/",
+				"thumbnail_url": "https://i.ytimg.com/vi/W8KCaiZRV3M/hqdefault.jpg",
+				"thumbnail_width": 480,
+				"thumbnail_height": 360,
+				"html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/W8KCaiZRV3M?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Plural Fleet management April 2024\"></iframe>",
+				"__TYPE__": "EmbedContent",
+				"all": {
+					"embed_url": "https://www.youtube.com/watch?v=W8KCaiZRV3M",
+					"type": "video",
+					"version": "1.0",
+					"title": "Plural Fleet management April 2024",
+					"author_name": "Plural",
+					"author_url": "https://www.youtube.com/@pluralsh",
+					"provider_name": "YouTube",
+					"provider_url": "https://www.youtube.com/",
+					"thumbnail_url": "https://i.ytimg.com/vi/W8KCaiZRV3M/hqdefault.jpg",
+					"thumbnail_width": 480,
+					"thumbnail_height": 360,
+					"html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/W8KCaiZRV3M?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Plural Fleet management April 2024\"></iframe>",
+					"height": 113,
+					"width": 200
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"eyebrow": {
+				"key": "48967be8-67bc-47e6-be28-2f38c77f15e4",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "Announcing our $6M seed"
+				}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Resource Center",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Explore Plural's Resource Center for in-depth guides, case studies, videos, and best practices to help you optimize Kubernetes management and scale with confidence.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"cta": {
+				"key": "d69ef044-7dfb-4c65-83b9-081ef85c0458",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "Book a demo",
+					"variant": "Secondary"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "image",
+		"primary": {
+			"eyebrow": {
+				"key": "7752b047-42f1-4914-bb73-af5e277839eb",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "AnyLink",
+					"kind": "any",
+					"text": ""
+				}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "AI-Powered Platform Intelligence",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Leverage Plural's unique real-time telemetry to automate diagnostics, receive precise fix recommendations, and keep your team informed with instant insights across all clusters.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"cta": {
+				"key": "f92183d6-e9a7-49ef-82f8-d57119bc68d7",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "Book a demo",
+					"variant": "Primary"
+				}
+			},
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+					"width": 5616,
+					"height": 3744
+				},
+				"url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?rect=0%2C0%2C5616%2C3744&w=795&h=530",
+				"width": 795,
+				"height": 530,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "quite",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
 ]

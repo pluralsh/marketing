@@ -154,7 +154,10 @@
                   "allowTargetBlank": true,
                   "allowText": true,
                   "repeat": true,
-                  "variants": ["Primary", "Secondary"]
+                  "variants": [
+                    "Primary",
+                    "Secondary"
+                  ]
                 }
               },
               "image": {
@@ -463,6 +466,86 @@
                   "placeholder": "",
                   "allowTargetBlank": false,
                   "single": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "events": {
+          "type": "Group",
+          "config": {
+            "label": "Events",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "heading3"
+                }
+              },
+              "date": {
+                "type": "Text",
+                "config": {
+                  "label": "Date",
+                  "placeholder": ""
+                }
+              },
+              "time": {
+                "type": "Text",
+                "config": {
+                  "label": "Time",
+                  "placeholder": ""
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {
+                    "height": 200
+                  },
+                  "thumbnails": []
+                }
+              },
+              "event_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Event Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": false,
+                  "repeat": false
                 }
               }
             }

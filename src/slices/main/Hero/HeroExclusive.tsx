@@ -8,6 +8,7 @@ import type { SliceVariationProps } from '@/types/prismicio'
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
 import Eyebrow from '@/components/ui/Eyebrow'
+import { cn } from '@/utils/cn'
 
 export type HeroExclusiveProps = SliceVariationProps<
   Content.HeroSlice,
@@ -22,6 +23,7 @@ export default function HeroExclusive({ slice }: HeroExclusiveProps) {
     description,
     cta,
     full_bleed_image,
+    is_short_image,
   } = slice.primary
 
   return (
@@ -65,7 +67,14 @@ export default function HeroExclusive({ slice }: HeroExclusiveProps) {
       <div>
         <PrismicNextImage
           field={full_bleed_image}
-          className="my-3 h-[200px] w-full rounded-xl object-cover sm:h-[400px] md:h-[600px]"
+          className={cn(
+            'my-3 h-[200px] w-full rounded-xl object-cover sm:h-[400px] md:h-[600px]',
+            {
+              'h-[200px]': is_short_image,
+              'sm:h-[300px]': is_short_image,
+              'md:h-[300px]': is_short_image,
+            }
+          )}
           priority
           fallbackAlt=""
         />
