@@ -1701,6 +1701,31 @@ export interface FeaturesSliceEventsPrimaryEventsItem {
 }
 
 /**
+ * Item in *Features → Social → Primary → Social Links*
+ */
+export interface FeaturesSliceSocialPrimarySocialLinksItem {
+  /**
+   * Icon field in *Features → Social → Primary → Social Links*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.social.primary.social_links[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>
+
+  /**
+   * Link field in *Features → Social → Primary → Social Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.social.primary.social_links[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+}
+
+/**
  * Primary content in *Features → Default → Primary*
  */
 export interface FeaturesSliceDefaultPrimary {
@@ -2085,6 +2110,56 @@ export type FeaturesSliceEvents = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Features → Social → Primary*
+ */
+export interface FeaturesSliceSocialPrimary {
+  /**
+   * Eyebrow field in *Features → Social → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.social.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
+   * Title field in *Features → Social → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.social.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Social Links field in *Features → Social → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.social.primary.social_links[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  social_links: prismic.GroupField<
+    Simplify<FeaturesSliceSocialPrimarySocialLinksItem>
+  >
+}
+
+/**
+ * Social variation for Features Slice
+ *
+ * - **API ID**: `social`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturesSliceSocial = prismic.SharedSliceVariation<
+  'social',
+  Simplify<FeaturesSliceSocialPrimary>,
+  never
+>
+
+/**
  * Slice variation for *Features*
  */
 type FeaturesSliceVariation =
@@ -2095,6 +2170,7 @@ type FeaturesSliceVariation =
   | FeaturesSliceCollapsible
   | FeaturesSliceSmallIcon
   | FeaturesSliceEvents
+  | FeaturesSliceSocial
 
 /**
  * Features Shared Slice
@@ -4087,6 +4163,8 @@ declare module '@prismicio/client' {
       FeaturesSliceSmallIconPrimary,
       FeaturesSliceEventsPrimaryEventsItem,
       FeaturesSliceEventsPrimary,
+      FeaturesSliceSocialPrimarySocialLinksItem,
+      FeaturesSliceSocialPrimary,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
       FeaturesSliceImageRight,
@@ -4095,6 +4173,7 @@ declare module '@prismicio/client' {
       FeaturesSliceCollapsible,
       FeaturesSliceSmallIcon,
       FeaturesSliceEvents,
+      FeaturesSliceSocial,
       HeroSlice,
       HeroSliceExclusivePrimary,
       HeroSliceVideoPrimary,

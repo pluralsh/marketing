@@ -38,7 +38,7 @@ export default function FeaturesEvents({ slice }: FeaturesEventsProps) {
           />
         </div>
       </div>
-      <div className="2xl:content mt-10 mb-8 grid grid-cols-1 gap-4 md:mt-20 md:mb-16 md:grid-cols-2">
+      <div className="2xl:content mt-10 mb-8 grid grid-cols-1 gap-4 md:mt-20 md:mb-16 md:mb-30 md:grid-cols-2">
         {events.map(({ title, date, time, image, event_link }, i) => (
           <PrismicNextLink
             key={`${title}-${i}`}
