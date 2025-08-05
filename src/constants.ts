@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/['"]|\/$/g, '') ||
   'http://localhost:3000'
 
 export const REQUIRED_PAGE_UID = {
