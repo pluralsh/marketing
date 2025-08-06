@@ -20,4 +20,5 @@ export const components = {
   team: dynamic(() => import('./Team')),
   testimonials: dynamic(() => import('./Testimonials')),
   text_media: dynamic(() => import('./TextMedia')),
+  tilted_paragraphs: dynamic(() => import('./TiltedParagraphs')),
 }
