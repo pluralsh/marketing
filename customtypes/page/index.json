@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "tilted_paragraphs": {
+              "type": "SharedSlice"
+            },
             "open_positions": {
               "type": "SharedSlice"
             },
