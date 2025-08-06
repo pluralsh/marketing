@@ -1,0 +1,149 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Series"
+						}
+					}
+				]
+			},
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "origin",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Nisi enim laborum consequat ex consequat amet pariatur consectetur ea eu nulla nulla id. Laborum cillum voluptate ex."
+						}
+					}
+				]
+			},
+			"footer_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Cillum sit in adipisicing."
+						}
+					}
+				]
+			},
+			"section_id": {
+				"__TYPE__": "FieldContent",
+				"value": "torn",
+				"type": "Text"
+			},
+			"columns": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"value",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "there",
+									"type": "Text"
+								}
+							],
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "opportunity",
+									"type": "Text"
+								}
+							],
+							[
+								"emphasized",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": false
+								}
+							]
+						]
+					}
+				]
+			},
+			"row_keys": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"key",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "know",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"column_values": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"column_id",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "ring",
+									"type": "Text"
+								}
+							],
+							[
+								"values",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Consectetur pariatur consectetur quis in nisi. Sint occaecat labore aliqua esse et do exercitation anim sit commodo nostrud tempor."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"button": {
+				"key": "6459c82c-5608-4cf7-9a12-9672bb4ae142",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "tune"
+				}
+			},
+			"row_keys_label": {
+				"__TYPE__": "FieldContent",
+				"value": "headed",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

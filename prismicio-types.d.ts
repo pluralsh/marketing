@@ -247,6 +247,7 @@ export type JobOfferCategoryDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | TableSlice
   | TiltedParagraphsSlice
   | OpenPositionsSlice
   | ContactSlice
@@ -3876,6 +3877,216 @@ type StatsSliceVariation = StatsSliceDefault
 export type StatsSlice = prismic.SharedSlice<'stats', StatsSliceVariation>
 
 /**
+ * Item in *Table → Default → Primary → Columns*
+ */
+export interface TableSliceDefaultPrimaryColumnsItem {
+  /**
+   * Value field in *Table → Default → Primary → Columns*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.columns[].value
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  value: prismic.KeyTextField
+
+  /**
+   * Label field in *Table → Default → Primary → Columns*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.columns[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Emphasized field in *Table → Default → Primary → Columns*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: table.default.primary.columns[].emphasized
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  emphasized: prismic.BooleanField
+}
+
+/**
+ * Item in *Table → Default → Primary → Row Keys*
+ */
+export interface TableSliceDefaultPrimaryRowKeysItem {
+  /**
+   * Key field in *Table → Default → Primary → Row Keys*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.row_keys[].key
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  key: prismic.KeyTextField
+}
+
+/**
+ * Item in *Table → Default → Primary → Column Values*
+ */
+export interface TableSliceDefaultPrimaryColumnValuesItem {
+  /**
+   * Column ID field in *Table → Default → Primary → Column Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.column_values[].column_id
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  column_id: prismic.KeyTextField
+
+  /**
+   * Values field in *Table → Default → Primary → Column Values*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.column_values[].values
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  values: prismic.RichTextField
+}
+
+/**
+ * Primary content in *Table → Default → Primary*
+ */
+export interface TableSliceDefaultPrimary {
+  /**
+   * ID field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.section_id
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  section_id: prismic.KeyTextField
+
+  /**
+   * Eyebrow field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
+   * Title field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Footer Description field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.footer_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  footer_description: prismic.RichTextField
+
+  /**
+   * Columns field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.columns[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  columns: prismic.GroupField<Simplify<TableSliceDefaultPrimaryColumnsItem>>
+
+  /**
+   * Row Keys Label field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.row_keys_label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  row_keys_label: prismic.KeyTextField
+
+  /**
+   * Row Keys field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.row_keys[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  row_keys: prismic.GroupField<Simplify<TableSliceDefaultPrimaryRowKeysItem>>
+
+  /**
+   * Column Values field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.column_values[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  column_values: prismic.GroupField<
+    Simplify<TableSliceDefaultPrimaryColumnValuesItem>
+  >
+
+  /**
+   * Button field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Book a demo
+   * - **API ID Path**: table.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+}
+
+/**
+ * Default variation for Table Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TableSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<TableSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *Table*
+ */
+type TableSliceVariation = TableSliceDefault
+
+/**
+ * Table Shared Slice
+ *
+ * - **API ID**: `table`
+ * - **Description**: Table
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TableSlice = prismic.SharedSlice<'table', TableSliceVariation>
+
+/**
  * Item in *Team → Default → Primary → People*
  */
 export interface TeamSliceDefaultPrimaryPeopleItem {
@@ -4619,6 +4830,13 @@ declare module '@prismicio/client' {
       StatsSliceDefaultPrimary,
       StatsSliceVariation,
       StatsSliceDefault,
+      TableSlice,
+      TableSliceDefaultPrimaryColumnsItem,
+      TableSliceDefaultPrimaryRowKeysItem,
+      TableSliceDefaultPrimaryColumnValuesItem,
+      TableSliceDefaultPrimary,
+      TableSliceVariation,
+      TableSliceDefault,
       TeamSlice,
       TeamSliceDefaultPrimaryPeopleItem,
       TeamSliceDefaultPrimary,

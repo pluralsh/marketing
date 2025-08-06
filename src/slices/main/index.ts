@@ -17,6 +17,7 @@ export const components = {
   separator: dynamic(() => import('./Separator')),
   spacer: dynamic(() => import('./Spacer')),
   stats: dynamic(() => import('./Stats')),
+  table: dynamic(() => import('./Table')),
   team: dynamic(() => import('./Team')),
   testimonials: dynamic(() => import('./Testimonials')),
   text_media: dynamic(() => import('./TextMedia')),
