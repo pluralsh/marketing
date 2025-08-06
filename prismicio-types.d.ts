@@ -247,6 +247,7 @@ export type JobOfferCategoryDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | TableSlice
   | TiltedParagraphsSlice
   | OpenPositionsSlice
   | ContactSlice
