@@ -20,6 +20,9 @@ export default function Features({ slice }: FeaturesProps) {
         smallIcon: dynamic(() => import('./FeaturesSmallIcon')),
         events: dynamic(() => import('./FeaturesEvents')),
         social: dynamic(() => import('./FeaturesSocial')),
+        horizontallyScrollable: dynamic(
+          () => import('./FeaturesHorizontallyScrollable')
+        ),
       }}
     />
   )

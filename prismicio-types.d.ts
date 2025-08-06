@@ -247,6 +247,7 @@ export type JobOfferCategoryDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | TiltedParagraphsSlice
   | OpenPositionsSlice
   | ContactSlice
   | TeamSlice
@@ -1726,6 +1727,72 @@ export interface FeaturesSliceSocialPrimarySocialLinksItem {
 }
 
 /**
+ * Item in *Features → Horizontally Scrollable → Primary → Features*
+ */
+export interface FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem {
+  /**
+   * Title field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Background Image field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].background_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background_image: prismic.ImageField<never>
+
+  /**
+   * Icon field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>
+
+  /**
+   * Highlighted field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].highlighted
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  highlighted: prismic.BooleanField
+
+  /**
+   * Eyebrow field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+}
+
+/**
  * Primary content in *Features → Default → Primary*
  */
 export interface FeaturesSliceDefaultPrimary {
@@ -2160,6 +2227,46 @@ export type FeaturesSliceSocial = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Features → Horizontally Scrollable → Primary*
+ */
+export interface FeaturesSliceHorizontallyScrollablePrimary {
+  /**
+   * Title field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Features field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  features: prismic.GroupField<
+    Simplify<FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem>
+  >
+}
+
+/**
+ * Horizontally Scrollable variation for Features Slice
+ *
+ * - **API ID**: `horizontallyScrollable`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturesSliceHorizontallyScrollable = prismic.SharedSliceVariation<
+  'horizontallyScrollable',
+  Simplify<FeaturesSliceHorizontallyScrollablePrimary>,
+  never
+>
+
+/**
  * Slice variation for *Features*
  */
 type FeaturesSliceVariation =
@@ -2171,6 +2278,7 @@ type FeaturesSliceVariation =
   | FeaturesSliceSmallIcon
   | FeaturesSliceEvents
   | FeaturesSliceSocial
+  | FeaturesSliceHorizontallyScrollable
 
 /**
  * Features Shared Slice
@@ -4086,6 +4194,271 @@ export type TextMediaSlice = prismic.SharedSlice<
   TextMediaSliceVariation
 >
 
+/**
+ * Item in *TiltedParagraphs → Default → Primary → Items*
+ */
+export interface TiltedParagraphsSliceDefaultPrimaryItemsItem {
+  /**
+   * icon field in *TiltedParagraphs → Default → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.default.primary.items[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>
+
+  /**
+   * Text field in *TiltedParagraphs → Default → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.default.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField
+}
+
+/**
+ * Item in *TiltedParagraphs → With Image → Primary → Items*
+ */
+export interface TiltedParagraphsSliceWithImagePrimaryItemsItem {
+  /**
+   * icon field in *TiltedParagraphs → With Image → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.items[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>
+
+  /**
+   * Text field in *TiltedParagraphs → With Image → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField
+}
+
+/**
+ * Item in *TiltedParagraphs → With Text → Primary → Items*
+ */
+export interface TiltedParagraphsSliceWithTextPrimaryItemsItem {
+  /**
+   * icon field in *TiltedParagraphs → With Text → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.items[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>
+
+  /**
+   * Text field in *TiltedParagraphs → With Text → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.items[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField
+}
+
+/**
+ * Primary content in *TiltedParagraphs → Default → Primary*
+ */
+export interface TiltedParagraphsSliceDefaultPrimary {
+  /**
+   * Eyebrow field in *TiltedParagraphs → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
+   * Title field in *TiltedParagraphs → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Items field in *TiltedParagraphs → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<
+    Simplify<TiltedParagraphsSliceDefaultPrimaryItemsItem>
+  >
+}
+
+/**
+ * Default variation for TiltedParagraphs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TiltedParagraphsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<TiltedParagraphsSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Primary content in *TiltedParagraphs → With Image → Primary*
+ */
+export interface TiltedParagraphsSliceWithImagePrimary {
+  /**
+   * Eyebrow field in *TiltedParagraphs → With Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
+   * Title field in *TiltedParagraphs → With Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Items field in *TiltedParagraphs → With Image → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<
+    Simplify<TiltedParagraphsSliceWithImagePrimaryItemsItem>
+  >
+
+  /**
+   * Image field in *TiltedParagraphs → With Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withImage.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
+ * With Image variation for TiltedParagraphs Slice
+ *
+ * - **API ID**: `withImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TiltedParagraphsSliceWithImage = prismic.SharedSliceVariation<
+  'withImage',
+  Simplify<TiltedParagraphsSliceWithImagePrimary>,
+  never
+>
+
+/**
+ * Primary content in *TiltedParagraphs → With Text → Primary*
+ */
+export interface TiltedParagraphsSliceWithTextPrimary {
+  /**
+   * Eyebrow field in *TiltedParagraphs → With Text → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
+   * Title field in *TiltedParagraphs → With Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Items field in *TiltedParagraphs → With Text → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<
+    Simplify<TiltedParagraphsSliceWithTextPrimaryItemsItem>
+  >
+
+  /**
+   * Text field in *TiltedParagraphs → With Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_paragraphs.withText.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField
+}
+
+/**
+ * With Text variation for TiltedParagraphs Slice
+ *
+ * - **API ID**: `withText`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TiltedParagraphsSliceWithText = prismic.SharedSliceVariation<
+  'withText',
+  Simplify<TiltedParagraphsSliceWithTextPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *TiltedParagraphs*
+ */
+type TiltedParagraphsSliceVariation =
+  | TiltedParagraphsSliceDefault
+  | TiltedParagraphsSliceWithImage
+  | TiltedParagraphsSliceWithText
+
+/**
+ * TiltedParagraphs Shared Slice
+ *
+ * - **API ID**: `tilted_paragraphs`
+ * - **Description**: TiltedParagraphs
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TiltedParagraphsSlice = prismic.SharedSlice<
+  'tilted_paragraphs',
+  TiltedParagraphsSliceVariation
+>
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -4165,6 +4538,8 @@ declare module '@prismicio/client' {
       FeaturesSliceEventsPrimary,
       FeaturesSliceSocialPrimarySocialLinksItem,
       FeaturesSliceSocialPrimary,
+      FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem,
+      FeaturesSliceHorizontallyScrollablePrimary,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
       FeaturesSliceImageRight,
@@ -4174,6 +4549,7 @@ declare module '@prismicio/client' {
       FeaturesSliceSmallIcon,
       FeaturesSliceEvents,
       FeaturesSliceSocial,
+      FeaturesSliceHorizontallyScrollable,
       HeroSlice,
       HeroSliceExclusivePrimary,
       HeroSliceVideoPrimary,
@@ -4259,6 +4635,17 @@ declare module '@prismicio/client' {
       TextMediaSliceTextScrollRevealPrimary,
       TextMediaSliceVariation,
       TextMediaSliceTextScrollReveal,
+      TiltedParagraphsSlice,
+      TiltedParagraphsSliceDefaultPrimaryItemsItem,
+      TiltedParagraphsSliceDefaultPrimary,
+      TiltedParagraphsSliceWithImagePrimaryItemsItem,
+      TiltedParagraphsSliceWithImagePrimary,
+      TiltedParagraphsSliceWithTextPrimaryItemsItem,
+      TiltedParagraphsSliceWithTextPrimary,
+      TiltedParagraphsSliceVariation,
+      TiltedParagraphsSliceDefault,
+      TiltedParagraphsSliceWithImage,
+      TiltedParagraphsSliceWithText,
     }
   }
 }
