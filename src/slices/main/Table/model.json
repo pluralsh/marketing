@@ -128,21 +128,24 @@
                   "placeholder": "",
                   "allowTargetBlank": false,
                   "single": "o-list-item",
-                  "labels": ["no", "yes"]
+                  "labels": [
+                    "no",
+                    "yes"
+                  ]
+                }
+              },
+              "button": {
+                "type": "Link",
+                "config": {
+                  "label": "Button",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
                 }
               }
             }
-          }
-        },
-        "button": {
-          "type": "Link",
-          "config": {
-            "label": "Button",
-            "placeholder": "Book a demo",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
           }
         }
       },

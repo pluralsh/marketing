@@ -3950,6 +3950,16 @@ export interface TableSliceDefaultPrimaryColumnValuesItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   values: prismic.RichTextField
+
+  /**
+   * Button field in *Table → Default → Primary → Column Values*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.column_values[].button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -4047,16 +4057,6 @@ export interface TableSliceDefaultPrimary {
   column_values: prismic.GroupField<
     Simplify<TableSliceDefaultPrimaryColumnValuesItem>
   >
-
-  /**
-   * Button field in *Table → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Book a demo
-   * - **API ID Path**: table.default.primary.button
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**

@@ -124,19 +124,22 @@
 										}
 									]
 								}
+							],
+							[
+								"button",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "6fb58dff-ff03-4fb7-815c-4c27988ab04b",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "leaving"
+									}
+								}
 							]
 						]
 					}
 				]
-			},
-			"button": {
-				"key": "6459c82c-5608-4cf7-9a12-9672bb4ae142",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "tune"
-				}
 			},
 			"row_keys_label": {
 				"__TYPE__": "FieldContent",
