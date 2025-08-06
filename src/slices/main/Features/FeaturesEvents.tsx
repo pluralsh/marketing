@@ -38,13 +38,13 @@ export default function FeaturesEvents({ slice }: FeaturesEventsProps) {
           />
         </div>
       </div>
-      <div className="2xl:content mt-10 mb-8 grid grid-cols-1 gap-4 md:mt-20 md:mb-16 md:mb-30 md:grid-cols-2">
+      <div className="2xl:content mt-10 mb-14 grid grid-cols-1 gap-10 md:mt-20 md:mb-30 md:grid-cols-2 md:gap-4">
         {events.map(({ title, date, time, image, event_link }, i) => (
           <PrismicNextLink
             key={`${title}-${i}`}
             field={event_link}
           >
-            <div className="border-neutral-000/10 group hover:border-neutral-000/24 transition md:rounded-2xl md:border md:p-6">
+            <div className="border-neutral-000/10 group hover:border-neutral-000/24 rounded-2xl border p-4 transition md:p-6">
               <div className="flex h-full flex-col items-start md:rounded-xl">
                 <div className="flex flex-col">
                   <PrismicRichText
@@ -60,10 +60,10 @@ export default function FeaturesEvents({ slice }: FeaturesEventsProps) {
                   <p className="text-body-small mb-1 text-white">{date}</p>
                   <p className="text-body-small mb-6 text-white/70">{time}</p>
                 </div>
-                <div className="overflow-hidden rounded-xl">
+                <div className="w-full overflow-hidden rounded-xl">
                   <PrismicNextImage
                     field={image}
-                    className="h-[180px] w-auto object-cover object-left md:h-[200px]"
+                    className="h-[180px] w-full object-cover object-left md:h-[200px] md:w-auto"
                     fallbackAlt=""
                   />
                 </div>
