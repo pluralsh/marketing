@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "concurrently \"npm:dev:next\" \"npm:dev:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
-    "dev:next": "next dev",
+    "dev:next": "next dev -p 3004",
     "dev:slicemachine": "start-slicemachine",
     "build": "next build",
     "start": "next start",

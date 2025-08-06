@@ -50,7 +50,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "full_bleed_image": {
@@ -70,6 +73,15 @@
             "placeholder_false": "false",
             "placeholder_true": "true",
             "default_value": true
+          }
+        },
+        "is_short_image": {
+          "type": "Boolean",
+          "config": {
+            "label": "Is Short Image",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
           }
         }
       },
@@ -121,7 +133,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "youtube_embed": {
@@ -180,7 +195,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         }
       },
@@ -232,7 +250,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "image": {
