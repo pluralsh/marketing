@@ -1,24 +1,24 @@
 'use client'
 
-import { type Content, type RichTextField } from '@prismicio/client'
-
-import { asText } from '@prismicio/client'
+import { asText, type Content, type RichTextField } from '@prismicio/client'
 
 import type { SliceVariationProps } from '@/types/prismicio'
 import SliceContainer from '@/components/SliceContainer'
 import { Fragment } from 'react'
 import { motion } from 'motion/react'
 import Eyebrow from '@/components/ui/Eyebrow'
+import { PrismicRichText } from '@prismicio/react'
+import TiltedParagraphs from '@/components/TiltedParagraphs/TiltedParagraphs'
 
 export type TiltedParagraphsWithTextProps = SliceVariationProps<
   Content.TiltedParagraphsSlice,
   'withText'
 >
 
-export default function TiltedParagraphs({
+export default function TiltedParagraphsWithText({
   slice,
 }: TiltedParagraphsWithTextProps) {
-  const { eyebrow, text } = slice.primary
+  const { eyebrow, title, items, text } = slice.primary
 
   return (
     <SliceContainer
@@ -30,7 +30,18 @@ export default function TiltedParagraphs({
           field={eyebrow}
           className="mb-6"
         />
-        <div className="text-title-large text-center">
+        <PrismicRichText
+          field={title}
+          components={{
+            heading3: ({ children }) => (
+              <h3 className="text-heading-small mb-12">{children}</h3>
+            ),
+          }}
+        />
+        <div className="mb-17 flex flex-col items-center gap-6 md:mb-14">
+          <TiltedParagraphs items={items} />
+        </div>
+        <div className="text-title-large max-w-[696px] text-center">
           {splitText(text).map((word, index, array) => (
             <Fragment key={index}>
               <motion.span
