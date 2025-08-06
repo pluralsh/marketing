@@ -1,0 +1,155 @@
+{
+  "id": "table",
+  "type": "SharedSlice",
+  "name": "Table",
+  "description": "Table",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": {
+            "label": "ID",
+            "placeholder": ""
+          }
+        },
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "footer_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Footer Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        },
+        "columns": {
+          "type": "Group",
+          "config": {
+            "label": "Columns",
+            "repeat": true,
+            "fields": {
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "ID",
+                  "placeholder": ""
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              },
+              "emphasized": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Emphasized",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        },
+        "row_keys_label": {
+          "type": "Text",
+          "config": {
+            "label": "Row Keys Label",
+            "placeholder": ""
+          }
+        },
+        "row_keys": {
+          "type": "Group",
+          "config": {
+            "label": "Row Keys",
+            "repeat": true,
+            "fields": {
+              "key": {
+                "type": "Text",
+                "config": {
+                  "label": "Key",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "column_values": {
+          "type": "Group",
+          "config": {
+            "label": "Column Values",
+            "repeat": true,
+            "fields": {
+              "column_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Column ID",
+                  "placeholder": ""
+                }
+              },
+              "values": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Values",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "o-list-item",
+                  "labels": [
+                    "no",
+                    "yes"
+                  ]
+                }
+              },
+              "button": {
+                "type": "Link",
+                "config": {
+                  "label": "Button",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
