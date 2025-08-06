@@ -3881,7 +3881,7 @@ export type StatsSlice = prismic.SharedSlice<'stats', StatsSliceVariation>
  */
 export interface TableSliceDefaultPrimaryColumnsItem {
   /**
-   * Value field in *Table → Default → Primary → Columns*
+   * ID field in *Table → Default → Primary → Columns*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*

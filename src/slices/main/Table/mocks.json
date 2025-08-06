@@ -56,7 +56,7 @@
 								"value",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "there",
+									"value": "tie",
 									"type": "Text"
 								}
 							],
@@ -128,8 +128,8 @@
 							[
 								"button",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "6fb58dff-ff03-4fb7-815c-4c27988ab04b",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "https://prismic.io",

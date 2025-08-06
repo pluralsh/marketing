@@ -62,7 +62,7 @@
               "value": {
                 "type": "Text",
                 "config": {
-                  "label": "Value",
+                  "label": "ID",
                   "placeholder": ""
                 }
               },
