@@ -18,6 +18,8 @@ export default function Features({ slice }: FeaturesProps) {
         resources: dynamic(() => import('./FeaturesResources')),
         collapsible: dynamic(() => import('./FeaturesCollapsible')),
         smallIcon: dynamic(() => import('./FeaturesSmallIcon')),
+        events: dynamic(() => import('./FeaturesEvents')),
+        social: dynamic(() => import('./FeaturesSocial')),
       }}
     />
   )
