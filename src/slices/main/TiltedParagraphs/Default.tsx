@@ -38,6 +38,7 @@ export default function TiltedParagraphsDefault({
           <TiltedParagraphs items={items} />
         </div>
       </div>
+      <div className="separator" />
     </SliceContainer>
   )
 }

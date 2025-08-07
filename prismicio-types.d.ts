@@ -3963,6 +3963,67 @@ export interface TableSliceDefaultPrimaryColumnValuesItem {
 }
 
 /**
+ * Item in *Table → Two Columns → Primary → Columns*
+ */
+export interface TableSliceTwoColumnsPrimaryColumnsItem {
+  /**
+   * ID field in *Table → Two Columns → Primary → Columns*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.columns[].value
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  value: prismic.KeyTextField
+
+  /**
+   * Label field in *Table → Two Columns → Primary → Columns*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.columns[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Emphasized field in *Table → Two Columns → Primary → Columns*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: table.twoColumns.primary.columns[].emphasized
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  emphasized: prismic.BooleanField
+}
+
+/**
+ * Item in *Table → Two Columns → Primary → Column Values*
+ */
+export interface TableSliceTwoColumnsPrimaryColumnValuesItem {
+  /**
+   * Column ID field in *Table → Two Columns → Primary → Column Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.column_values[].column_id
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  column_id: prismic.KeyTextField
+
+  /**
+   * Values field in *Table → Two Columns → Primary → Column Values*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.column_values[].values
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  values: prismic.RichTextField
+}
+
+/**
  * Primary content in *Table → Default → Primary*
  */
 export interface TableSliceDefaultPrimary {
@@ -4073,9 +4134,69 @@ export type TableSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Table → Two Columns → Primary*
+ */
+export interface TableSliceTwoColumnsPrimary {
+  /**
+   * Title field in *Table → Two Columns → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Table → Two Columns → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Columns field in *Table → Two Columns → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.columns[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  columns: prismic.GroupField<Simplify<TableSliceTwoColumnsPrimaryColumnsItem>>
+
+  /**
+   * Column Values field in *Table → Two Columns → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.twoColumns.primary.column_values[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  column_values: prismic.GroupField<
+    Simplify<TableSliceTwoColumnsPrimaryColumnValuesItem>
+  >
+}
+
+/**
+ * Two Columns variation for Table Slice
+ *
+ * - **API ID**: `twoColumns`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TableSliceTwoColumns = prismic.SharedSliceVariation<
+  'twoColumns',
+  Simplify<TableSliceTwoColumnsPrimary>,
+  never
+>
+
+/**
  * Slice variation for *Table*
  */
-type TableSliceVariation = TableSliceDefault
+type TableSliceVariation = TableSliceDefault | TableSliceTwoColumns
 
 /**
  * Table Shared Slice
@@ -4835,8 +4956,12 @@ declare module '@prismicio/client' {
       TableSliceDefaultPrimaryRowKeysItem,
       TableSliceDefaultPrimaryColumnValuesItem,
       TableSliceDefaultPrimary,
+      TableSliceTwoColumnsPrimaryColumnsItem,
+      TableSliceTwoColumnsPrimaryColumnValuesItem,
+      TableSliceTwoColumnsPrimary,
       TableSliceVariation,
       TableSliceDefault,
+      TableSliceTwoColumns,
       TeamSlice,
       TeamSliceDefaultPrimaryPeopleItem,
       TeamSliceDefaultPrimary,
