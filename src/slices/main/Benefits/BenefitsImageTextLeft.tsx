@@ -1,3 +1,5 @@
+'use client'
+
 import type { Content } from '@prismicio/client'
 
 import { isFilled } from '@prismicio/client'
@@ -8,6 +10,8 @@ import type { SliceVariationProps } from '@/types/prismicio'
 
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
+
+import { motion } from 'motion/react'
 
 export type BenefitsImageTextLeftProps = SliceVariationProps<
   Content.BenefitsSlice,
@@ -68,11 +72,18 @@ export default function BenefitsImageTextLeft({
             )}
           </div>
         </div>
-        <PrismicNextImage
-          field={image}
-          className="aspect-[684/527] h-auto w-full overflow-clip rounded-xl object-cover"
-          fallbackAlt=""
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <PrismicNextImage
+            field={image}
+            className="aspect-[684/527] h-auto w-full overflow-clip rounded-xl object-cover"
+            fallbackAlt=""
+          />
+        </motion.div>
       </div>
     </SliceContainer>
   )
