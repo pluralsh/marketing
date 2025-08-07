@@ -1,4 +1,5 @@
 import { isFilled, type Content, type RTOListItemNode } from '@prismicio/client'
+import React from 'react'
 
 import type { SliceVariationProps } from '@/types/prismicio'
 
@@ -39,6 +40,8 @@ export default function TableDefault({ slice }: TableDefaultProps) {
 
   const buttons = column_values.map(({ button }) => button)
 
+  const numberOfColumns = columns.length
+
   return (
     <SliceContainer
       slice={slice}
@@ -73,7 +76,14 @@ export default function TableDefault({ slice }: TableDefaultProps) {
           </div>
         </div>
       </div>
-      <div className="content-full-bleed md:content-full-width xl:content mt-12 max-md:overflow-x-auto max-md:px-4 max-md:pb-3 md:mt-20">
+      <div
+        className={cn(
+          'content-full-bleed md:content-full-width xl:content mt-12 max-md:px-4 max-md:pb-3 md:mt-20',
+          numberOfColumns > 2
+            ? 'max-lg:overflow-x-auto'
+            : 'max-md:overflow-x-auto'
+        )}
+      >
         <table
           className="w-full border-collapse max-md:min-w-xl"
           cellSpacing={0}
@@ -160,7 +170,6 @@ export default function TableDefault({ slice }: TableDefaultProps) {
                     )}
                   />
                   <div
-                    //className="relative z-10 p-4 md:p-6"
                     className={cn(
                       'relative z-10 p-4 md:p-6',
                       !isFilled.link(button) && '!p-3'
@@ -203,27 +212,56 @@ export default function TableDefault({ slice }: TableDefaultProps) {
 
 function TableValue({ item }: { item: RTOListItemNode | null }) {
   if (item === null) return null
-  if (isYes(item)) return <SvgCheckCircle className="text-accent-400 mt-0.5" />
-  if (isNo(item)) return <SvgXCircle className="text-neutral-000/60 mt-0.5" />
-  return <div>{item.text}</div>
-}
 
-function isYes(item: RTOListItemNode) {
-  const span = item.spans?.[0]
-  if (!span || span.type !== 'label') return false
-  return (
-    span.data.label === 'yes' &&
-    span.start === 0 &&
-    span.end === item.text.length
-  )
-}
+  if (!item.spans || item.spans.length === 0) {
+    return <span>{item.text}</span>
+  }
 
-function isNo(item: RTOListItemNode) {
-  const span = item.spans?.[0]
-  if (!span || span.type !== 'label') return false
-  return (
-    span.data.label === 'no' &&
-    span.start === 0 &&
-    span.end === item.text.length
-  )
+  const sortedSpans = [...item.spans].sort((a, b) => a.start - b.start)
+
+  const elements: React.ReactElement[] = []
+  let currentPos = 0
+
+  for (const span of sortedSpans) {
+    if (span.start > currentPos) {
+      const textBefore = item.text.slice(currentPos, span.start)
+      if (textBefore) {
+        elements.push(<span key={`text-${currentPos}`}>{textBefore}</span>)
+      }
+    }
+
+    const spanText = item.text.slice(span.start, span.end)
+    if (span.type === 'label') {
+      if (span.data.label === 'yes') {
+        elements.push(
+          <SvgCheckCircle
+            key={`span-${span.start}`}
+            className="text-accent-400 mt-1 inline"
+          />
+        )
+      } else if (span.data.label === 'no') {
+        elements.push(
+          <SvgXCircle
+            key={`span-${span.start}`}
+            className="text-neutral-000/60 mt-1 inline"
+          />
+        )
+      } else {
+        elements.push(<span key={`span-${span.start}`}>{spanText}</span>)
+      }
+    } else {
+      elements.push(<span key={`span-${span.start}`}>{spanText}</span>)
+    }
+
+    currentPos = span.end
+  }
+
+  if (currentPos < item.text.length) {
+    const remainingText = item.text.slice(currentPos)
+    if (remainingText) {
+      elements.push(<span key={`text-${currentPos}`}>{remainingText}</span>)
+    }
+  }
+
+  return <span className="inline-flex items-start gap-2">{elements}</span>
 }
