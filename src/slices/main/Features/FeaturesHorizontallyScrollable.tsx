@@ -82,7 +82,7 @@ export default function FeaturesHorizontallyScrollable({
           field={title}
           components={{
             heading3: ({ children }) => (
-              <h3 className="text-heading-small sticky mb-4 max-w-[596px] xl:mb-16 xl:text-center">
+              <h3 className="text-heading-small sticky mb-14 max-w-[596px] xl:mb-16 xl:text-center">
                 {children}
               </h3>
             ),
