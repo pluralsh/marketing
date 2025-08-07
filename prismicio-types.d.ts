@@ -896,6 +896,16 @@ export interface BenefitsSliceImageTextLeftPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>
+
+  /**
+   * Eyebrow field in *Benefits → Image Text Left → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.imageTextLeft.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
 }
 
 /**
@@ -972,6 +982,16 @@ export interface BenefitsSliceImageTextRightPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>
+
+  /**
+   * Eyebrow field in *Benefits → Image Text Right → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.imageTextRight.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
 }
 
 /**

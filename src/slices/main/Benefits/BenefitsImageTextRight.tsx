@@ -1,13 +1,17 @@
+'use client'
+
 import type { Content } from '@prismicio/client'
 
 import { isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@prismicio/react'
+import { motion } from 'motion/react'
 
 import type { SliceVariationProps } from '@/types/prismicio'
 
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export type BenefitsImageTextRightProps = SliceVariationProps<
   Content.BenefitsSlice,
@@ -17,7 +21,8 @@ export type BenefitsImageTextRightProps = SliceVariationProps<
 export default function BenefitsImageTextRight({
   slice,
 }: BenefitsImageTextRightProps) {
-  const { title, title_icon, description, buttons, image } = slice.primary
+  const { title, title_icon, description, buttons, image, eyebrow } =
+    slice.primary
 
   return (
     <SliceContainer
@@ -25,22 +30,35 @@ export default function BenefitsImageTextRight({
       className="grid-container"
     >
       <div className="2xl:content my-12 grid grid-cols-1 items-center gap-x-4 gap-y-10 md:my-30 md:grid-cols-2">
-        <PrismicNextImage
-          field={image}
-          className="aspect-[684/527] h-auto w-full overflow-clip rounded-xl object-cover max-md:row-start-2"
-          fallbackAlt=""
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-200px' }}
+        >
+          <PrismicNextImage
+            field={image}
+            className="aspect-[684/527] h-auto w-full overflow-clip rounded-xl object-cover max-md:row-start-2"
+            fallbackAlt=""
+          />
+        </motion.div>
         <div className="flex max-w-lg items-start gap-x-6 gap-y-4 max-md:flex-col md:justify-self-end md:px-4">
-          <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
-            <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
-              <PrismicNextImage
-                field={title_icon}
-                className="h-4 w-4"
-                fallbackAlt=""
-              />
+          {isFilled.image(title_icon) && (
+            <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
+              <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
+                <PrismicNextImage
+                  field={title_icon}
+                  className="h-4 w-4"
+                  fallbackAlt=""
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div>
+            <Eyebrow
+              field={eyebrow}
+              className="mb-8"
+            />
             <PrismicRichText
               field={title}
               components={{
