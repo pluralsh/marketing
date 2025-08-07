@@ -53,12 +53,12 @@ export default function TableTwoColumns({ slice }: TableTwoColumnsProps) {
       slice={slice}
       className="grid-container"
     >
-      <div className="content relative my-14 flex flex-col items-center overflow-hidden md:mt-26">
+      <div className="content relative my-14 mb-28 flex flex-col items-center overflow-hidden lg:my-30">
         <PrismicRichText
           field={title}
           components={{
             heading2: ({ children }) => (
-              <h2 className="text-heading-small max-w-[596px] text-center">
+              <h2 className="text-heading-small max-w-[596px] lg:text-center">
                 {children}
               </h2>
             ),
@@ -68,7 +68,7 @@ export default function TableTwoColumns({ slice }: TableTwoColumnsProps) {
           field={description}
           components={{
             paragraph: ({ children }) => (
-              <p className="text-body-medium mt-6 mb-28 max-w-[446px] md:mx-auto md:mb-16 md:text-center lg:mb-12">
+              <p className="text-body-medium mt-6 mb-12 max-w-[446px] md:mx-auto md:mb-16 md:text-center lg:mb-16">
                 {children}
               </p>
             ),
@@ -81,7 +81,7 @@ export default function TableTwoColumns({ slice }: TableTwoColumnsProps) {
               className="flex flex-col"
             >
               <div className="mb-6 flex items-center gap-x-14">
-                <h2 className="text-caption">{column_id}</h2>
+                <h2 className="text-caption text-white">{column_id}</h2>
                 <SvgArrowDown />
               </div>
               <div
