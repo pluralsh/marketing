@@ -39,7 +39,7 @@ export default function TableDefault({ slice }: TableDefaultProps) {
   })
 
   const buttons = column_values.map(({ button }) => button)
-
+  //number of columns
   const numberOfColumns = columns.length
 
   return (
