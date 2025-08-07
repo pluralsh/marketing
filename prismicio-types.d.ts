@@ -2268,6 +2268,86 @@ export type FeaturesSliceHorizontallyScrollable = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Features → Horizontally Scrollable → Primary*
+ */
+export interface FeaturesSliceHorizontallyScrollablePrimary {
+  /**
+   * Title field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Features field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  features: prismic.GroupField<
+    Simplify<FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem>
+  >
+}
+
+/**
+ * Horizontally Scrollable variation for Features Slice
+ *
+ * - **API ID**: `horizontallyScrollable`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturesSliceHorizontallyScrollable = prismic.SharedSliceVariation<
+  'horizontallyScrollable',
+  Simplify<FeaturesSliceHorizontallyScrollablePrimary>,
+  never
+>
+
+/**
+ * Primary content in *Features → Horizontally Scrollable → Primary*
+ */
+export interface FeaturesSliceHorizontallyScrollablePrimary {
+  /**
+   * Title field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Features field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  features: prismic.GroupField<
+    Simplify<FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem>
+  >
+}
+
+/**
+ * Horizontally Scrollable variation for Features Slice
+ *
+ * - **API ID**: `horizontallyScrollable`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturesSliceHorizontallyScrollable = prismic.SharedSliceVariation<
+  'horizontallyScrollable',
+  Simplify<FeaturesSliceHorizontallyScrollablePrimary>,
+  never
+>
+
+/**
  * Slice variation for *Features*
  */
 type FeaturesSliceVariation =
