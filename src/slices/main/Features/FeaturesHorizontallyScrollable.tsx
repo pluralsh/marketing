@@ -77,12 +77,12 @@ export default function FeaturesHorizontallyScrollable({
       slice={slice}
       className="grid-container"
     >
-      <div className="content relative my-14 flex flex-col items-center overflow-hidden md:my-26 md:mb-30">
+      <div className="content relative my-14 flex flex-col overflow-hidden md:my-26 md:mb-30 xl:items-center">
         <PrismicRichText
           field={title}
           components={{
             heading3: ({ children }) => (
-              <h3 className="text-heading-small sticky mb-12 max-w-[596px] md:mb-16 xl:text-center">
+              <h3 className="text-heading-small sticky mb-4 max-w-[596px] xl:mb-16 xl:text-center">
                 {children}
               </h3>
             ),
@@ -93,10 +93,10 @@ export default function FeaturesHorizontallyScrollable({
             className="embla__viewport"
             ref={emblaRef}
           >
-            <div className="embla__container pan-y flex flex-col xl:flex-row">
+            <div className="embla__container pan-y flex flex-col gap-10 xl:flex-row xl:gap-0">
               {slides.map((items, idx) => (
                 <div
-                  className="embla__slide mt-10 min-w-0 shrink-0 grow-0 basis-full justify-center select-none xl:mt-0 xl:grid"
+                  className="embla__slide min-w-0 shrink-0 grow-0 basis-full justify-center select-none xl:mt-0 xl:grid"
                   key={idx}
                 >
                   <div className="flex flex-col gap-6 xl:items-center">
@@ -106,7 +106,7 @@ export default function FeaturesHorizontallyScrollable({
                         className="w-fit"
                       />
                     )}
-                    <div className="grid w-full grid-cols-[1fr] gap-6 xl:grid-cols-[3fr_4fr]">
+                    <div className="grid w-full grid-cols-[1fr] gap-4 xl:grid-cols-[3fr_4fr] xl:gap-6">
                       {items.map(
                         (
                           {
@@ -121,7 +121,7 @@ export default function FeaturesHorizontallyScrollable({
                           <div
                             key={idx}
                             className={cn(
-                              'relative min-h-[320px] rounded-xl border-white/10 xl:border xl:p-4',
+                              'min-h-203px] relative rounded-xl border-white/10 xl:min-h-[320px] xl:border xl:p-4',
                               {
                                 'xl:col-span-2': highlighted,
                               }

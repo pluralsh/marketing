@@ -53,7 +53,7 @@ export default function TableTwoColumns({ slice }: TableTwoColumnsProps) {
       slice={slice}
       className="grid-container"
     >
-      <div className="content relative my-14 mb-28 flex flex-col items-center overflow-hidden lg:my-30">
+      <div className="content relative my-14 mb-28 flex flex-col overflow-hidden lg:my-30 lg:items-center">
         <PrismicRichText
           field={title}
           components={{
