@@ -8,6 +8,7 @@ import { useState } from 'react'
 import PrismicButton from '@/components/PrismicButton'
 
 import type { FeaturesImageRightProps } from '../FeaturesImageRight'
+import { isFilled } from '@prismicio/client'
 
 type ScrollImageRightProps = {
   features: FeaturesImageRightProps['slice']['primary']['features']
@@ -63,15 +64,17 @@ export default function ScrollImageRight({ features }: ScrollImageRightProps) {
             onViewportEnter={() => handleViewportEnter(idx)}
             onViewportLeave={() => handleViewportLeave(idx)}
           >
-            <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
-              <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
-                <PrismicNextImage
-                  field={feature.title_icon}
-                  className="h-4 w-4"
-                  fallbackAlt=""
-                />
+            {isFilled.image(feature.title_icon) && (
+              <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
+                <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
+                  <PrismicNextImage
+                    field={feature.title_icon}
+                    className="h-4 w-4"
+                    fallbackAlt=""
+                  />
+                </div>
               </div>
-            </div>
+            )}
             <div>
               <PrismicRichText
                 field={feature.title}

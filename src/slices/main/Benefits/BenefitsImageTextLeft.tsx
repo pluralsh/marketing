@@ -12,6 +12,7 @@ import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
 
 import { motion } from 'motion/react'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 export type BenefitsImageTextLeftProps = SliceVariationProps<
   Content.BenefitsSlice,
@@ -21,7 +22,8 @@ export type BenefitsImageTextLeftProps = SliceVariationProps<
 export default function BenefitsImageTextLeft({
   slice,
 }: BenefitsImageTextLeftProps) {
-  const { title, title_icon, description, buttons, image } = slice.primary
+  const { title, title_icon, description, buttons, image, eyebrow } =
+    slice.primary
 
   return (
     <SliceContainer
@@ -30,16 +32,22 @@ export default function BenefitsImageTextLeft({
     >
       <div className="2xl:content my-12 grid grid-cols-1 items-center gap-x-3 gap-y-10 md:my-30 md:grid-cols-2">
         <div className="flex max-w-lg items-start gap-x-6 gap-y-4 max-md:flex-col md:ps-4">
-          <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
-            <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
-              <PrismicNextImage
-                field={title_icon}
-                className="h-4 w-4"
-                fallbackAlt=""
-              />
+          {isFilled.image(title_icon) && (
+            <div className="border-neutral-000/10 grid size-10 shrink-0 place-items-center rounded-full border">
+              <div className="bg-primary-600 grid size-6.5 place-items-center rounded-full">
+                <PrismicNextImage
+                  field={title_icon}
+                  className="h-4 w-4"
+                  fallbackAlt=""
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div>
+            <Eyebrow
+              field={eyebrow}
+              className="mb-8"
+            />
             <PrismicRichText
               field={title}
               components={{

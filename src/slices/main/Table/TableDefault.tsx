@@ -80,7 +80,7 @@ export default function TableDefault({ slice }: TableDefaultProps) {
         className={cn(
           'content-full-bleed md:content-full-width xl:content mt-12 max-md:px-4 max-md:pb-3 md:mt-20',
           numberOfColumns > 2
-            ? 'max-lg:overflow-x-auto'
+            ? 'max-xl:overflow-x-auto'
             : 'max-md:overflow-x-auto'
         )}
       >
@@ -92,7 +92,7 @@ export default function TableDefault({ slice }: TableDefaultProps) {
           <thead>
             <tr>
               <th>
-                <div className="flex items-center gap-x-14 pb-6">
+                <div className="flex items-center gap-x-14 pb-6 max-md:min-w-[212px]">
                   <h2 className="text-caption">{row_keys_label}</h2>
                 </div>
               </th>
@@ -101,7 +101,7 @@ export default function TableDefault({ slice }: TableDefaultProps) {
                   key={idx}
                   className="ps-3 md:ps-6"
                 >
-                  <div className="flex items-center gap-x-14 pb-6">
+                  <div className="flex items-center gap-x-14 pb-6 max-md:min-w-[282px]">
                     <h2 className="text-caption">{label}</h2>
                     <SvgArrowDown />
                   </div>
@@ -115,7 +115,7 @@ export default function TableDefault({ slice }: TableDefaultProps) {
                 <td className="align-top">
                   <div
                     className={cn(
-                      'py-3 whitespace-nowrap',
+                      'py-3',
                       rowIdx === 0 && 'rounded-tl-xl rounded-tr-xl pt-6'
                     )}
                   >

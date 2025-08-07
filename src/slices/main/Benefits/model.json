@@ -50,7 +50,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": true,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "image": {
@@ -62,6 +65,13 @@
               "width": 690
             },
             "thumbnails": []
+          }
+        },
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
           }
         }
       },
@@ -113,7 +123,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": true,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "image": {
@@ -125,6 +138,13 @@
               "width": 690
             },
             "thumbnails": []
+          }
+        },
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
           }
         }
       },
