@@ -13,6 +13,7 @@ export default function Table({ slice }: TableProps) {
       slice={slice}
       variations={{
         default: dynamic(() => import('./TableDefault')),
+        twoColumns: dynamic(() => import('./TableTwoColumns')),
       }}
     />
   )

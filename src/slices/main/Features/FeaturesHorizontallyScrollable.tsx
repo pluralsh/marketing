@@ -77,7 +77,7 @@ export default function FeaturesHorizontallyScrollable({
       slice={slice}
       className="grid-container"
     >
-      <div className="content relative my-14 flex flex-col items-center overflow-hidden md:mt-26">
+      <div className="content relative my-14 flex flex-col items-center overflow-hidden md:my-26 md:mb-30">
         <PrismicRichText
           field={title}
           components={{
@@ -197,6 +197,7 @@ export default function FeaturesHorizontallyScrollable({
           </div>
         </div>
       </div>
+      <div className="separator" />
     </SliceContainer>
   )
 }

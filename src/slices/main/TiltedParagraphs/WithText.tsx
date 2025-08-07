@@ -63,6 +63,7 @@ export default function TiltedParagraphsWithText({
           ))}
         </div>
       </div>
+      <div className="separator" />
     </SliceContainer>
   )
 }

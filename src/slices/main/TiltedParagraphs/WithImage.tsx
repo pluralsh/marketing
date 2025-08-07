@@ -47,6 +47,7 @@ export default function TiltedParagraphsWithImage({
           fallbackAlt=""
         />
       </div>
+      <div className="separator" />
     </SliceContainer>
   )
 }
