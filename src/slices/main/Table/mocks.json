@@ -148,5 +148,104 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "twoColumns",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Damage"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Non anim deserunt est enim. Sint reprehenderit laborum eu cillum cupidatat minim sunt veniam sint exercitation commodo non eiusmod. Do ipsum pariatur aliqua occaecat amet ullamco esse."
+						}
+					}
+				]
+			},
+			"columns": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"value",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "sky",
+									"type": "Text"
+								}
+							],
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "being",
+									"type": "Text"
+								}
+							],
+							[
+								"emphasized",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": false
+								}
+							]
+						]
+					}
+				]
+			},
+			"column_values": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"column_id",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "built",
+									"type": "Text"
+								}
+							],
+							[
+								"values",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Minim duis commodo culpa ut dolor deserunt nostrud laboris commodo veniam do magna tempor. Dolore sint aliquip et adipisicing sint sit ex. Ut sunt tempor ex laborum fugiat est officia qui quis est ea."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

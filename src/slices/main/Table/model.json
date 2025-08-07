@@ -150,6 +150,96 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "twoColumns",
+      "name": "Two Columns",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "columns": {
+          "type": "Group",
+          "config": {
+            "label": "Columns",
+            "repeat": true,
+            "fields": {
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "ID",
+                  "placeholder": ""
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              },
+              "emphasized": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Emphasized",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        },
+        "column_values": {
+          "type": "Group",
+          "config": {
+            "label": "Column Values",
+            "repeat": true,
+            "fields": {
+              "column_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Column ID",
+                  "placeholder": ""
+                }
+              },
+              "values": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Values",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "o-list-item,paragraph",
+                  "labels": [
+                    "no",
+                    "yes"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }
