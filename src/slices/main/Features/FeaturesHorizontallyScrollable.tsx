@@ -133,6 +133,7 @@ export default function FeaturesHorizontallyScrollable({
                                   <PrismicNextImage
                                     className="h-full w-full rounded-xl object-cover"
                                     field={background_image}
+                                    fallbackAlt=""
                                   />
                                 </div>
                               )}
