@@ -27,7 +27,7 @@ export default function FeaturesHorizontallyScrollable({
   slice,
 }: FeaturesHorizontallyScrollableProps) {
   const breakpointXl = getBreakpoint('xl')
-  const { title, features } = slice.primary
+  const { title, features, description } = slice.primary
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'center',
@@ -45,8 +45,12 @@ export default function FeaturesHorizontallyScrollable({
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi)
 
-  const eyebrowOrder = useMemo(
-    () => [...new Set(features.map(({ eyebrow }) => eyebrow))],
+  const sectionsOrder = useMemo(
+    () => [
+      ...new Set(
+        features.map(({ eyebrow, section_id }) => eyebrow || section_id)
+      ),
+    ],
     [features]
   )
 
@@ -55,22 +59,25 @@ export default function FeaturesHorizontallyScrollable({
       Object.values(
         features.reduce(
           (acc, feature) => {
-            if (!feature.eyebrow) return acc
-            const featureList = acc[feature.eyebrow] || []
-            acc[feature.eyebrow] = [...featureList, feature]
+            const key = feature.eyebrow || feature.section_id
+            if (!key) return acc
+            const featureList = acc[key] || []
+            acc[key] = [...featureList, feature]
             return acc
           },
           {} as Record<string, typeof features>
         )
       ).sort((a, b) => {
-        const aEyebrow = a[0]?.eyebrow
-        const bEyebrow = b[0]?.eyebrow
-        const aIndex = eyebrowOrder.indexOf(aEyebrow as KeyTextField)
-        const bIndex = eyebrowOrder.indexOf(bEyebrow as KeyTextField)
+        const aEyebrow = a[0]?.eyebrow || a[0]?.section_id
+        const bEyebrow = b[0]?.eyebrow || b[0]?.section_id
+        const aIndex = sectionsOrder.indexOf(aEyebrow as KeyTextField)
+        const bIndex = sectionsOrder.indexOf(bEyebrow as KeyTextField)
         return aIndex - bIndex
       }),
-    [features, eyebrowOrder]
+    [features, sectionsOrder]
   )
+
+  const hasNavButtons = sectionsOrder.length > 1
 
   return (
     <SliceContainer
@@ -82,12 +89,32 @@ export default function FeaturesHorizontallyScrollable({
           field={title}
           components={{
             heading3: ({ children }) => (
-              <h3 className="text-heading-small sticky mb-14 max-w-[596px] xl:mb-16 xl:text-center">
+              <h3
+                className={cn(
+                  'text-heading-small sticky max-w-[596px] xl:text-center',
+                  {
+                    'mb-14 xl:mb-16': !description,
+                    'mb-6': description,
+                  }
+                )}
+              >
                 {children}
               </h3>
             ),
           }}
         />
+        {description && (
+          <PrismicRichText
+            field={description}
+            components={{
+              paragraph: ({ children }) => (
+                <p className="text-body-medium mb-8 text-white/70 xl:mb-16">
+                  {children}
+                </p>
+              ),
+            }}
+          />
+        )}
         <div className="embla w-full overflow-visible">
           <div
             className="embla__viewport"
@@ -100,7 +127,7 @@ export default function FeaturesHorizontallyScrollable({
                   key={idx}
                 >
                   <div className="flex flex-col gap-6 xl:items-center">
-                    {items[0] && (
+                    {items[0] && !description && (
                       <Eyebrow
                         field={items[0].eyebrow}
                         className="w-fit"
@@ -184,18 +211,20 @@ export default function FeaturesHorizontallyScrollable({
             </div>
           </div>
 
-          <div className="embla__controls mt-8 hidden justify-center md:mt-16 xl:flex">
-            <div className="embla__buttons flex items-center gap-x-1">
-              <PrevButton
-                onClick={onPrevButtonClick}
-                disabled={prevBtnDisabled}
-              />
-              <NextButton
-                onClick={onNextButtonClick}
-                disabled={nextBtnDisabled}
-              />
+          {hasNavButtons && (
+            <div className="embla__controls mt-8 hidden justify-center md:mt-16 xl:flex">
+              <div className="embla__buttons flex items-center gap-x-1">
+                <PrevButton
+                  onClick={onPrevButtonClick}
+                  disabled={prevBtnDisabled}
+                />
+                <NextButton
+                  onClick={onNextButtonClick}
+                  disabled={nextBtnDisabled}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="separator" />

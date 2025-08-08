@@ -2123,8 +2123,27 @@
 									"value": "wool",
 									"type": "Text"
 								}
+							],
+							[
+								"section_id",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "entirely",
+									"type": "Text"
+								}
 							]
 						]
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex est mollit ullamco commodo laboris Lorem nisi aute nostrud Lorem irure quis eu. Anim aute enim eu non reprehenderit anim aliquip sunt cupidatat minim adipisicing ullamco aliquip excepteur. Veniam ullamco aliqua est dolore do magna."
+						}
 					}
 				]
 			}

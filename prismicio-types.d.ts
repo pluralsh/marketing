@@ -1811,6 +1811,16 @@ export interface FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   eyebrow: prismic.KeyTextField
+
+  /**
+   * Section Id field in *Features → Horizontally Scrollable → Primary → Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.features[].section_id
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  section_id: prismic.KeyTextField
 }
 
 /**
@@ -2272,6 +2282,16 @@ export interface FeaturesSliceHorizontallyScrollablePrimary {
   features: prismic.GroupField<
     Simplify<FeaturesSliceHorizontallyScrollablePrimaryFeaturesItem>
   >
+
+  /**
+   * Description field in *Features → Horizontally Scrollable → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.horizontallyScrollable.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
 }
 
 /**
