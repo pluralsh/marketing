@@ -681,8 +681,24 @@
                   "label": "Eyebrow",
                   "placeholder": ""
                 }
+              },
+              "section_id": {
+                "type": "Text",
+                "config": {
+                  "label": "Section Id",
+                  "placeholder": ""
+                }
               }
             }
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
           }
         }
       },
