@@ -78,6 +78,7 @@ export default function FeaturesHorizontallyScrollable({
   )
 
   const hasNavButtons = sectionsOrder.length > 1
+  const hasDescription = description?.length > 0
 
   return (
     <SliceContainer
@@ -93,8 +94,8 @@ export default function FeaturesHorizontallyScrollable({
                 className={cn(
                   'text-heading-small sticky max-w-[596px] xl:text-center',
                   {
-                    'mb-14 xl:mb-16': !description,
-                    'mb-6': description,
+                    'mb-14 xl:mb-16': !hasDescription,
+                    'mb-6': hasDescription,
                   }
                 )}
               >
@@ -103,7 +104,7 @@ export default function FeaturesHorizontallyScrollable({
             ),
           }}
         />
-        {description && (
+        {hasDescription && (
           <PrismicRichText
             field={description}
             components={{
@@ -127,7 +128,7 @@ export default function FeaturesHorizontallyScrollable({
                   key={idx}
                 >
                   <div className="flex flex-col gap-6 xl:items-center">
-                    {items[0] && !description && (
+                    {items[0] && !hasDescription && (
                       <Eyebrow
                         field={items[0].eyebrow}
                         className="w-fit"
