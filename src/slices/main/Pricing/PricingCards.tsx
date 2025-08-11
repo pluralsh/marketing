@@ -35,7 +35,7 @@ export default function PricingCards({ slice }: PricingCardsProps) {
                   >
                     <div
                       className={cn(
-                        'border-neutral-000/10 row-span-4 grid h-full grid-rows-subgrid justify-items-start rounded-xl border p-4 md:p-6',
+                        'border-neutral-000/10 row-span-4 grid h-full grid-rows-subgrid justify-items-start rounded-xl border p-6',
                         emphasized && 'border-0 bg-neutral-800'
                       )}
                     >
@@ -46,11 +46,11 @@ export default function PricingCards({ slice }: PricingCardsProps) {
                         field={description}
                         components={{
                           paragraph: ({ children }) => (
-                            <p className="row-span-1 mt-4">{children}</p>
+                            <p className="row-span-1 mt-1">{children}</p>
                           ),
                         }}
                       />
-                      <div className="row-span-1 mt-6">
+                      <div className="row-span-1 mt-5 md:mt-6">
                         <PrismicRichText
                           field={features}
                           components={{
@@ -61,15 +61,15 @@ export default function PricingCards({ slice }: PricingCardsProps) {
                               switch (node.data.label) {
                                 case 'icon:plus':
                                   return (
-                                    <div className="text-neutral-000/60 flex items-center gap-x-3">
+                                    <div className="text-neutral-000/60 flex items-center gap-x-3 max-md:max-w-[242px]">
                                       <SvgPlus className="shrink-0" />
                                       <span>{children}</span>
                                     </div>
                                   )
                                 case 'icon:check':
                                   return (
-                                    <div className="flex items-center gap-x-3">
-                                      <SvgCheckCircle className="text-accent-400 shrink-0" />
+                                    <div className="flex items-center gap-x-3 max-md:max-w-[242px]">
+                                      <SvgCheckCircle className="text-accent-600 shrink-0" />
                                       <span className="text-neutral-000">
                                         {children}
                                       </span>
@@ -89,7 +89,7 @@ export default function PricingCards({ slice }: PricingCardsProps) {
                       <div className="row-span-1 mt-auto">
                         <PrismicButton
                           field={link}
-                          className="mt-8 h-auto text-center whitespace-normal md:mt-16"
+                          className="text-neutral-000 mt-7 h-auto text-center whitespace-normal md:mt-16"
                           size="large"
                           variant={emphasized ? 'primary' : 'secondary'}
                         />

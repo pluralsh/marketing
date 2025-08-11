@@ -1303,6 +1303,16 @@ export interface ContactSliceDefaultPrimaryHubspotFormItem {
  */
 export interface ContactSliceDefaultPrimary {
   /**
+   * Eyebrow field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField
+
+  /**
    * Title field in *Contact → Default → Primary*
    *
    * - **Field Type**: Rich Text

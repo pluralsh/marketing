@@ -82,7 +82,7 @@ export default function CardsCarousel({ slides }: CardsCarouselProps) {
                             case 'icon:check':
                               return (
                                 <div className="flex items-center gap-x-3">
-                                  <SvgCheckCircle className="text-accent-400 shrink-0" />
+                                  <SvgCheckCircle className="text-accent-600 shrink-0" />
                                   <span className="text-neutral-000">
                                     {children}
                                   </span>

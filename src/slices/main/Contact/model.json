@@ -12,6 +12,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
         "title": {
           "type": "StructuredText",
           "config": {
@@ -39,7 +46,10 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false,
-            "variants": ["Primary", "Secondary"]
+            "variants": [
+              "Primary",
+              "Secondary"
+            ]
           }
         },
         "hubspot_form": {

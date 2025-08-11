@@ -133,22 +133,26 @@
 @utility separator-vertical {
   position: relative;
   border-left: 1px solid var(--color-inverse-stroke);
+  height: 100%;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
 
   &::before,
   &::after {
     content: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6H12' stroke='white'/%3E%3Cpath d='M6 0L6 12' stroke='white'/%3E%3C/svg%3E");
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &::before {
-    transform: translate(calc(-50% - 0.5px), calc(-50% - 0.5px));
     top: 0;
-    left: 0;
+    transform: translateX(-50%) translateY(-50%);
   }
 
   &::after {
-    transform: translate(calc(50% - 0.5px), calc(-50% + 0.5px));
-    right: 100%;
-    top: 100%;
+    bottom: 0;
+    transform: translateX(-50%) translateY(50%);
   }
 }

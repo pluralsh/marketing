@@ -236,7 +236,7 @@ function TableValue({ item }: { item: RTOListItemNode | null }) {
         elements.push(
           <SvgCheckCircle
             key={`span-${span.start}`}
-            className="text-accent-400 mt-1 inline"
+            className="text-accent-600 mt-1 inline"
           />
         )
       } else if (span.data.label === 'no') {

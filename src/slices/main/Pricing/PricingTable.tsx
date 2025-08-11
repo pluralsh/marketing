@@ -71,14 +71,14 @@ export default function PricingTable({ slice }: PricingTableProps) {
                 {values.map((value, valIdx) => (
                   <td
                     key={1e3 + valIdx}
-                    className="text-neutral-000 relative isolate ps-3 align-top md:ps-6"
+                    className="text-neutral-000 relative isolate ps-6 align-top"
                   >
                     <div
                       className={cn(
                         columns[valIdx].emphasized && 'bg-neutral-800',
                         !columns[valIdx].emphasized &&
                           'border-neutral-000/10 border-r border-l',
-                        'absolute inset-0 left-3 z-0 md:left-6',
+                        'absolute inset-0 left-6 z-0',
                         rowIdx === 0 && 'rounded-tl-xl rounded-tr-xl',
                         !columns[valIdx].emphasized &&
                           rowIdx === 0 &&
@@ -87,7 +87,7 @@ export default function PricingTable({ slice }: PricingTableProps) {
                     />
                     <div
                       className={cn(
-                        'relative z-10 px-4 py-3 md:px-6',
+                        'relative z-10 px-6 py-3 max-md:whitespace-nowrap',
                         rowIdx === 0 && 'pt-6'
                       )}
                     >
@@ -104,14 +104,14 @@ export default function PricingTable({ slice }: PricingTableProps) {
               {buttons.map((button, idx) => (
                 <td
                   key={idx}
-                  className="text-neutral-000 relative isolate ps-3 align-top md:ps-6"
+                  className="text-neutral-000 relative isolate ps-6 align-top"
                 >
                   <div
                     className={cn(
                       columns[idx].emphasized && 'bg-neutral-800',
                       !columns[idx].emphasized &&
                         'border-neutral-000/10 border-r border-b border-l',
-                      'absolute inset-0 left-3 z-0 md:left-6',
+                      'absolute inset-0 left-6 z-0',
                       'rounded-br-xl rounded-bl-xl'
                     )}
                   />
@@ -136,7 +136,7 @@ export default function PricingTable({ slice }: PricingTableProps) {
 
 function TableValue({ item }: { item: RTOListItemNode | null }) {
   if (item === null) return null
-  if (isYes(item)) return <SvgCheckCircle className="text-accent-400 mt-0.5" />
+  if (isYes(item)) return <SvgCheckCircle className="text-accent-600 mt-0.5" />
   if (isNo(item)) return <SvgXCircle className="text-neutral-000/60 mt-0.5" />
   return <div>{item.text}</div>
 }
