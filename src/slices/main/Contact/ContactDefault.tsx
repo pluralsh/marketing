@@ -58,7 +58,7 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
             <PrismicButton
               field={cta}
               size="small"
-              className="mt-10"
+              className="mt-6 md:mt-10"
             />
             <div className="separator mt-10 mb-5 md:hidden" />
           </div>
