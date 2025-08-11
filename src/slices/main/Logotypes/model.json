@@ -30,7 +30,7 @@
                 "config": {
                   "label": "Logo",
                   "constraint": {
-                    "height": 24
+                    "height": null
                   },
                   "thumbnails": []
                 }
