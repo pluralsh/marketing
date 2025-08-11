@@ -60,6 +60,7 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
               size="small"
               className="mt-10"
             />
+            <div className="separator mt-10 mb-5 md:hidden" />
           </div>
           <div className="w-full md:mx-auto md:max-w-[476px]">
             <HubSpotForm
@@ -69,7 +70,7 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
             />
           </div>
 
-          <div className="separator-vertical absolute top-0 bottom-0 left-[50%] max-xl:hidden" />
+          <div className="separator-vertical absolute top-0 bottom-0 left-[50%] max-md:hidden" />
         </div>
       </div>
     </SliceContainer>
