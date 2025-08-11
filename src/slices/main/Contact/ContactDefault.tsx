@@ -6,6 +6,7 @@ import type { SliceVariationProps } from '@/types/prismicio'
 
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
+import Eyebrow from '@/components/ui/Eyebrow'
 
 import HubSpotForm from './components/HubSpotForm'
 
@@ -15,7 +16,7 @@ export type ContactDefaultProps = SliceVariationProps<
 >
 
 export default function ContactDefault({ slice }: ContactDefaultProps) {
-  const { title, description, cta, hubspot_form } = slice.primary
+  const { title, description, cta, hubspot_form, eyebrow } = slice.primary
 
   if (!hubspot_form?.[0]) {
     return null
@@ -30,7 +31,11 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
     >
       <div className="content">
         <div className="my-12 grid grid-cols-1 justify-start gap-x-9 gap-y-6 md:my-20 md:grid-cols-2">
-          <div className="md:pt-20">
+          <div className="md:max-w-[440px] md:pt-20">
+            <Eyebrow
+              field={eyebrow}
+              className="mb-6"
+            />
             <PrismicRichText
               field={title}
               components={{
@@ -56,13 +61,15 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
               className="mt-10"
             />
           </div>
-          <div>
+          <div className="w-full md:mx-auto md:max-w-[476px]">
             <HubSpotForm
               region={region}
               portalId={portal_id}
               formId={form_id}
             />
           </div>
+
+          <div className="separator-vertical absolute top-0 bottom-0 left-[50%] max-xl:hidden" />
         </div>
       </div>
     </SliceContainer>
