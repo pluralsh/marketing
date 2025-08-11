@@ -40,7 +40,7 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
   return (
     <RadixAccordion.Item
       className={cn(
-        'overflow-hidden rounded-xl bg-neutral-800 p-5 not-last-of-type:mb-2 lg:px-8 lg:py-7',
+        'overflow-hidden rounded-xl bg-neutral-800 p-5 not-last-of-type:mb-2 lg:px-8 lg:pt-7 lg:pb-8',
         className
       )}
       {...props}

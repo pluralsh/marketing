@@ -43,7 +43,7 @@ export default function TeamDefault({ slice }: TeamDefaultProps) {
       slice={slice}
       className="grid-container"
     >
-      <div className="2xl:content my-8 md:mx-4 md:my-16">
+      <div className="2xl:content my-8 md:mx-4 md:mt-16 md:mb-40">
         <div className="grid grid-cols-1 justify-start gap-x-9 gap-y-6 md:grid-cols-2">
           <div className="md:col-span-2">
             <Eyebrow field={eyebrow} />
@@ -82,7 +82,7 @@ export default function TeamDefault({ slice }: TeamDefaultProps) {
                 >
                   <PrismicNextImage
                     field={image}
-                    className="h-full max-h-[208px] w-full rounded-sm object-cover sm:max-h-none"
+                    className="h-full max-h-[208px] w-full rounded-sm object-cover sm:aspect-[65/84] sm:max-h-none"
                     fallbackAlt=""
                   />
                   <div className="text-body-medium md:text-title-medium mt-4 text-white">

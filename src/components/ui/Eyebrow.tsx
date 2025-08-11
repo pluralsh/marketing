@@ -30,7 +30,7 @@ export default function Eyebrow<T extends LinkField | KeyTextField>({
       <div
         className={cn(
           'inline-flex rounded-lg px-3 py-2',
-          'border-neutral-000/10 text-caption text-neutral-000 group border transition',
+          'border-neutral-000/10 text-neutral-000 group border text-[13px] leading-[16px] transition',
           className
         )}
         {...(props as React.ComponentProps<'div'>)}

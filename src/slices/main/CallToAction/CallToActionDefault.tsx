@@ -32,7 +32,7 @@ export default function CallToActionDefault({
               field={title}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="text-heading-small mt-6">{children}</h2>
+                  <h2 className="text-heading-medium mt-6">{children}</h2>
                 ),
               }}
             />
