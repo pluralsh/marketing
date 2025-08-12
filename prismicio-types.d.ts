@@ -2424,6 +2424,16 @@ export interface HeroSliceExclusivePrimary {
    * - **Documentation**: https://prismic.io/docs/fields/boolean
    */
   is_short_image: prismic.BooleanField
+
+  /**
+   * Image Mobile field in *Hero → Exclusive → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusive.primary.image_mobile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_mobile: prismic.ImageField<never>
 }
 
 /**

@@ -83,6 +83,14 @@
             "placeholder_true": "true",
             "default_value": false
           }
+        },
+        "image_mobile": {
+          "type": "Image",
+          "config": {
+            "label": "Image Mobile",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

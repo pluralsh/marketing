@@ -1,4 +1,4 @@
-import type { Content } from '@prismicio/client'
+import { isFilled, type Content } from '@prismicio/client'
 
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@prismicio/react'
@@ -24,6 +24,7 @@ export default function HeroExclusive({ slice }: HeroExclusiveProps) {
     cta,
     full_bleed_image,
     is_short_image,
+    image_mobile,
   } = slice.primary
 
   return (
@@ -73,6 +74,21 @@ export default function HeroExclusive({ slice }: HeroExclusiveProps) {
               'h-[200px]': is_short_image,
               'sm:h-[300px]': is_short_image,
               'md:h-[300px]': is_short_image,
+              'max-md:hidden': isFilled.image(image_mobile),
+            }
+          )}
+          priority
+          fallbackAlt=""
+        />
+        <PrismicNextImage
+          field={image_mobile}
+          className={cn(
+            'my-3 h-[200px] w-full rounded-xl object-cover sm:h-[400px] md:h-[600px]',
+            {
+              'h-[200px]': is_short_image,
+              'sm:h-[300px]': is_short_image,
+              'md:h-[300px]': is_short_image,
+              'md:hidden': isFilled.image(full_bleed_image),
             }
           )}
           priority
