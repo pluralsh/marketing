@@ -49,25 +49,24 @@
 				}
 			},
 			"full_bleed_image": {
-				"provider": "imgix",
-				"url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85&rect=0,0,5392,3032&w=1067&h=600",
-				"alt": "a plane flying in the sky at sunset",
 				"origin": {
-					"id": "u1edt5V0ruU",
-					"url": "https://images.unsplash.com/photo-1623345109565-270bd49cd033?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMXx8YWJzdHJhY3QlMjBob3Jpem9udGFsfGVufDB8fHx8MTc1MTU1MDE1MHww&ixlib=rb-4.1.0&q=85",
-					"width": 5392,
-					"height": 3033
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1493119508027-2b584f234d6c",
+					"width": 3424,
+					"height": 3424
 				},
-				"width": 1067,
+				"url": "https://images.unsplash.com/photo-1493119508027-2b584f234d6c?rect=0%2C0%2C3424%2C3424&w=600&h=600",
+				"width": 600,
 				"height": 600,
 				"edit": {
-					"background": "transparent",
 					"zoom": 1,
 					"crop": {
 						"x": 0,
 						"y": 0
-					}
+					},
+					"background": "transparent"
 				},
+				"alt": "chain",
 				"credits": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
@@ -79,6 +78,28 @@
 			"is_short_image": {
 				"__TYPE__": "BooleanContent",
 				"value": true
+			},
+			"image_mobile": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+					"width": 3168,
+					"height": 4752
+				},
+				"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+				"width": 3168,
+				"height": 4752,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "court",
+				"thumbnails": {}
 			}
 		},
 		"items": [
