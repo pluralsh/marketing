@@ -33,14 +33,14 @@ export default function LogotypeCarousel({ logotypes }: LogotypeCarouselProps) {
         className="embla__viewport"
         ref={emblaRef}
       >
-        <div className="embla__container pan-y flex touch-pinch-zoom max-md:-ml-12">
+        <div className="embla__container pan-y flex touch-pinch-zoom max-md:px-4">
           {[...logotypes, ...logotypes].map(({ logo }, idx) => (
             <div
               key={idx}
               className={cn(
-                'embla__slide translate-3d select-none md:grid md:place-items-center',
-                'max-h-[230px] min-w-0 max-md:my-12 max-md:pl-12 md:aspect-square md:p-4',
-                'max-md:shrink-0 max-md:grow-0 md:basis-(--embla-slide-basis)',
+                'embla__slide translate-3d select-none',
+                'min-w-0 max-md:flex max-md:h-[230px] max-md:shrink-0 max-md:items-center max-md:justify-center max-md:px-4',
+                'md:grid md:aspect-square md:basis-(--embla-slide-basis) md:place-items-center md:p-4',
                 'border-neutral-000/10 md:border-r md:first:border-l',
                 {
                   'md:hidden': idx > logotypes.length - 1,
@@ -55,6 +55,7 @@ export default function LogotypeCarousel({ logotypes }: LogotypeCarouselProps) {
               <PrismicNextImage
                 field={logo}
                 fallbackAlt=""
+                className="max-md:max-h-full max-md:max-w-full max-md:object-contain"
               />
             </div>
           ))}

@@ -4,6 +4,6 @@
   "libraries": [
     "./src/slices/main"
   ],
-  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
+  "localSliceSimulatorURL": "http://localhost:3004/slice-simulator",
   "apiEndpoint": ""
 }
