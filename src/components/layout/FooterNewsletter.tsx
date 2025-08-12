@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useActionState, useEffect, useRef, useState } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 import type { NewsletterResponse } from '@/app/actions'
@@ -23,17 +23,13 @@ export default function FooterNewsletter({
 }: FooterNewsletterProps) {
   const t = useTranslations('Newsletter')
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+
   const [state, formAction, pending] = useActionState(
     subscribeToNewsletter,
     initialState
   )
-
   useEffect(() => {
-    if (!pending) {
-      recaptchaRef.current?.reset()
-      setRecaptchaValue(null)
-    }
+    if (!pending) recaptchaRef.current?.reset()
   }, [pending])
 
   return (
@@ -66,17 +62,11 @@ export default function FooterNewsletter({
             <SvgArrowRight />
           </button>
         </div>
-        <input
-          type="hidden"
-          name="g-recaptcha-response"
-          value={recaptchaValue || ''}
-        />
         <ReCAPTCHA
           ref={recaptchaRef}
           className="mt-2"
           theme="dark"
           sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY || 'none'}
-          onChange={(val) => setRecaptchaValue(val)}
         />
         <p
           aria-live="polite"
