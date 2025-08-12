@@ -1,0 +1,135 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Our Impact"
+      },
+      "statistics": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "88%"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Reduction in operationalcosts",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "95%"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Reduction in day-2 operations",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "50%"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Increased bandwidth for your engineers",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "ROI over 3 years",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "50%"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

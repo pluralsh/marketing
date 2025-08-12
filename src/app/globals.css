@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+@import '../styles/typography.css';
+@import '../styles/layout.css';
+
+@theme {
+  --spacing-header: var(--header-height);
+  --spacing-screen-minus-header: calc(100vh - var(--header-height));
+  --spacing-5\.5: --spacing(5.5);
+  --spacing-6\.5: --spacing(6.5);
+  --spacing-7\.5: --spacing(7.5);
+  --spacing-12\.5: --spacing(12.5);
+  --spacing-15: --spacing(15);
+  --spacing-18: --spacing(18);
+  --spacing-25: --spacing(25);
+  --spacing-30: --spacing(30);
+
+  --color-primary-600: #7b28ff;
+  --color-accent-600: #7FFAC1;
+  --color-accent-500: #004af8;
+  --color-accent-400: #14d9d1;
+  --color-accent-300: #e9ace6;
+  --color-accent-200: #f5c28d;
+  --color-accent-100: #b485ff;
+  --color-neutral-900: #0e1015;
+  --color-neutral-800: #1d1f25;
+  --color-neutral-000: #ffffff;
+  --color-stroke: --alpha(var(--color-neutral-900) / 10%);
+  --color-inverse-stroke: --alpha(var(--color-neutral-000) / 10%);
+  --color-text-heading: var(--color-neutral-000);
+  --color-text-body: --alpha(var(--color-neutral-000) / 70%);
+
+  --shadow-primary:
+    0px 0px 1px 0px #752fff1a, 0px 2px 2px 0px #752fff17,
+    0px 4px 2px 0px #752fff0d, 0px 7px 3px 0px #752fff03,
+    0px 11px 3px 0px #752fff00;
+
+  --default-transition-duration: 300ms;
+  --default-transition-timing-function: ease-out;
+
+  --z-header: 30;
+  --z-dialog-backdrop: 39;
+  --z-dialog: 40;
+  --z-popover: 50;
+}
+
+@theme static {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+@layer base {
+  :root {
+    --header-height: 3.75rem;
+    --sticky-header-visible: 0;
+  }
+
+  @media (min-width: theme('breakpoint.md')) {
+    :root {
+      --header-height: 5rem;
+    }
+  }
+
+  body {
+    @apply text-text-body text-body-medium bg-neutral-900;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text-heading);
+  }
+
+  /* Popover */
+  [data-radix-popper-content-wrapper] {
+    z-index: var(--z-popover);
+  }
+
+  /* Dialog */
+  [id^='radix'][role='dialog'] {
+    z-index: var(--z-dialog);
+  }
+
+  /* Dialog backdrop */
+  div + :has([id^='radix'][role='dialog']) {
+    z-index: var(--z-dialog-backdrop);
+  }
+}
+
+@utility container {
+  @apply mx-auto px-4;
+}

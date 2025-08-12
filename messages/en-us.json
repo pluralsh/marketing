@@ -1,0 +1,21 @@
+{
+  "Generic": {
+    "navigationTitle": "Navigation"
+  },
+  "404": {
+    "pageNotFound": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "returnHome": "Return home"
+  },
+  "Newsletter": {
+    "newsletter": "Newsletter",
+    "description": "Be the first to know when we drop something new.",
+    "emailPlaceholder": "Email address",
+    "subscriptionSuccess": "You have successfully subscribed to our newsletter!",
+    "subscriptionFailed": "Something went wrong while subscribing to our newsletter.",
+    "invalidEmail": "The email address is invalid.",
+    "captchaFailed": "Invalid captcha.",
+    "hubspotFailed": "Could not create contact.",
+    "missingData": "Please provide both name and email"
+  }
+}

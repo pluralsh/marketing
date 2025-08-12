@@ -1,0 +1,316 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "link": {
+        "key": "e221368e-857a-4b94-99f1-e4f25f713e8b",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "account"
+        }
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "dropdownDetailed",
+    "primary": {
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "upon",
+        "type": "Text"
+      },
+      "featured_resource": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1587905069134-008460d7a636",
+                    "width": 3935,
+                    "height": 5894
+                  },
+                  "url": "https://images.unsplash.com/photo-1587905069134-008460d7a636?rect=0%2C1570%2C3935%2C2755&w=200&h=140",
+                  "width": 200,
+                  "height": 140,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 1570
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "loud",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "b0e98e2d-2e47-4832-abad-e40d4f3e5dd3",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://prismic.io",
+                    "text": "electricity"
+                  }
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Aliqua laboris ea exercitation labore. Dolore eu mollit dolor veniam quis laboris deserunt proident ad amet Lorem id do anim adipisicing."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "links": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "link",
+                {
+                  "key": "3b66700c-8aa9-4995-96e0-84d5fa3e6288",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://google.com",
+                    "text": "worker"
+                  }
+                }
+              ],
+              [
+                "icon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e",
+                    "width": 4480,
+                    "height": 4480
+                  },
+                  "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e?rect=0%2C0%2C4480%2C4480&w=16&h=16",
+                  "width": 16,
+                  "height": 16,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "unless",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Ex ut ut magna culpa esse. Est reprehenderit incididunt culpa tempor incididunt non adipisicing enim. Eu enim adipisicing voluptate nulla exercitation ex."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "links_label": {
+        "__TYPE__": "FieldContent",
+        "value": "farther",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "dropdownColumns",
+    "primary": {
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "song",
+        "type": "Text"
+      },
+      "link_columns": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "links",
+                {
+                  "__TYPE__": "RepeatableContent",
+                  "type": "Link",
+                  "value": [
+                    {
+                      "key": "be7b5c0b-552d-4974-a441-77c87a1d9988",
+                      "__TYPE__": "LinkContent",
+                      "value": {
+                        "__TYPE__": "ExternalLink",
+                        "url": "http://twitter.com",
+                        "text": "instead"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "column_label",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "society",
+                  "type": "Text"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "dropdownSimple",
+    "primary": {
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "ball",
+        "type": "Text"
+      },
+      "links_label": {
+        "__TYPE__": "FieldContent",
+        "value": "market",
+        "type": "Text"
+      },
+      "links": {
+        "__TYPE__": "RepeatableContent",
+        "type": "Link",
+        "value": [
+          {
+            "key": "a70265c5-745b-4434-b62d-95c0ecde3f1e",
+            "__TYPE__": "LinkContent",
+            "value": {
+              "__TYPE__": "ExternalLink",
+              "url": "https://slicemachine.dev",
+              "text": "pencil"
+            }
+          }
+        ]
+      },
+      "resources": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1544731612-de7f96afe55f",
+                    "width": 6000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1544731612-de7f96afe55f?rect=143%2C0%2C5714%2C4000&w=200&h=140",
+                  "width": 200,
+                  "height": 140,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 143,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "shadow",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "a01efc9a-4386-4d7e-b403-73504e85135a",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://prismic.io",
+                    "text": "bee"
+                  }
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Occaecat minim ad nisi tempor exercitation mollit sint incididunt enim consequat irure esse incididunt fugiat duis. Eu velit qui nisi."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

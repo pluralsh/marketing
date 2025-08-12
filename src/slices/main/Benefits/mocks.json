@@ -1,0 +1,309 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "imageTextLeft",
+		"primary": {
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Give developers the tools they need to diagnose and fix issues independently while maintaining security and compliance controls.\n\nDeveloper portal with role-based access to relevant clusters and services",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "AI-assisted troubleshooting that explains issues in developer-friendly terms",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Automated PR generation that helps developers implement fixes without deep Kubernetes expertise",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Built-in governance ensuring changes follow security and compliance policies",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1610040855959-27944b04f12d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw4fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTIzOTk5ODl8MA&ixlib=rb-4.1.0&q=85&rect=0,82,5143,3950&w=690&h=530",
+				"alt": "orange fruit on brown wooden table",
+				"origin": {
+					"id": "agP9RgnWZAY",
+					"url": "https://images.unsplash.com/photo-1610040855959-27944b04f12d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw4fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTIzOTk5ODl8MA&ixlib=rb-4.1.0&q=85",
+					"width": 5143,
+					"height": 4114
+				},
+				"width": 690,
+				"height": 530,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 82
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title_icon": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1612267174385-23fbfe6fde59?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUyMzk5OTg5fDA&ixlib=rb-4.1.0&q=85&rect=0,0,5504,5504&w=20&h=20",
+				"alt": "sliced lemon fruit on white background",
+				"origin": {
+					"id": "hspehWjV4Yo",
+					"url": "https://images.unsplash.com/photo-1612267174385-23fbfe6fde59?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzUyMzk5OTg5fDA&ixlib=rb-4.1.0&q=85",
+					"width": 5504,
+					"height": 5504
+				},
+				"width": 20,
+				"height": 20,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Enable developer self-service",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "collect",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "imageTextRight",
+		"primary": {
+			"title_icon": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+					"width": 4000,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04?rect=0%2C0%2C4000%2C4000&w=20&h=20",
+				"width": 20,
+				"height": 20,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "composition",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Instant Root Cause Detection",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Provide platform teams with comprehensive visibility and control across the entire Kubernetes fleet through a single interface.\n\nCentralized logging with intelligent search and filtering",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Real-time monitoring of cluster health and resource usage",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Integrated cost optimization recommendations",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Built-in CVE, policy management and compliance reporting",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Full audit trail of all changes and actions including Kubernetes API access",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"buttons": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "711157a0-0b7d-4877-9043-4cd297b557c5",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "AnyLink",
+							"kind": "any",
+							"text": "",
+							"variant": "Secondary"
+						}
+					}
+				]
+			},
+			"image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTIzOTk5ODl8MA&ixlib=rb-4.1.0&q=85&rect=376,0,4937,3792&w=690&h=530",
+				"alt": "orange fruits under blue sky during daytime",
+				"origin": {
+					"id": "eaOjEz8746k",
+					"url": "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3NTIzOTk5ODl8MA&ixlib=rb-4.1.0&q=85",
+					"width": 5688,
+					"height": 3792
+				},
+				"width": 690,
+				"height": 530,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 376,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "cat",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "textLargeImage",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "A single platform to manage your entire Kubernetes fleet",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Our Platform"
+			},
+			"full_bleed_image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMHx8bGFuZHNjYXBlfGVufDB8fHx8MTc1MjQ4NTEwNnww&ixlib=rb-4.1.0&q=85&rect=0,0,4442,2961&w=900&h=600",
+				"alt": "landscape photography mountain range with snow",
+				"origin": {
+					"id": "Gg7uKdHFb_c",
+					"url": "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyMHx8bGFuZHNjYXBlfGVufDB8fHx8MTc1MjQ4NTEwNnww&ixlib=rb-4.1.0&q=85",
+					"width": 4442,
+					"height": 2961
+				},
+				"width": 900,
+				"height": 600,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

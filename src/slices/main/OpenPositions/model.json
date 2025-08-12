@@ -1,0 +1,226 @@
+{
+  "id": "open_positions",
+  "type": "SharedSlice",
+  "name": "OpenPositions",
+  "description": "OpenPositions",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading3"
+          }
+        },
+        "bottom_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Bottom Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading5"
+          }
+        },
+        "bottom_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Bottom Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        },
+        "hire_link": {
+          "type": "Link",
+          "config": {
+            "label": "Hire Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "job_offers": {
+          "type": "Group",
+          "config": {
+            "label": "Job Offers",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "heading4"
+                }
+              },
+              "location": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Location",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "paragraph"
+                }
+              },
+              "job_offer_category": {
+                "type": "Link",
+                "config": {
+                  "label": "Job Offer Category",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "job_offer_category",
+                      "fields": ["name"]
+                    }
+                  ]
+                }
+              },
+              "job_offer_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Job Offer Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": false,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "singlePosition",
+      "name": "Single Position",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading3"
+          }
+        },
+        "location": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Location",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading6"
+          }
+        },
+        "content_sections": {
+          "type": "Group",
+          "config": {
+            "label": "Content Sections",
+            "repeat": true,
+            "fields": {
+              "section": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "section",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "paragraph,heading3,list-item"
+                }
+              },
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "bottom_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Bottom Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading5"
+          }
+        },
+        "bottom_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Bottom Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        },
+        "hire_link": {
+          "type": "Link",
+          "config": {
+            "label": "Hire Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "bottom_icons": {
+          "type": "Group",
+          "config": {
+            "label": "Bottom Icons",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "equality_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Equality Description",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.PopoverContent {
+  &[data-state='open'] {
+    animation: animateIn var(--default-transition-duration)
+      var(--default-transition-timing-function);
+  }
+  &[data-state='closed'] {
+    animation: animateOut var(--default-transition-duration)
+      var(--default-transition-timing-function);
+  }
+}

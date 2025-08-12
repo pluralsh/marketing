@@ -1,0 +1,160 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "value": "clothing",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Fifteen"
+            }
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Veniam eu dolor voluptate sunt fugiat nisi consequat Lorem quis laborum est duis magna. Quis aliquip nisi eiusmod consectetur eu ut deserunt sint veniam irure ipsum Lorem."
+            }
+          }
+        ]
+      },
+      "people": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "pitch",
+                  "type": "Text"
+                }
+              ],
+              [
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "tie",
+                  "type": "Text"
+                }
+              ],
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+                    "width": 4000,
+                    "height": 4000
+                  },
+                  "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+                  "width": 4000,
+                  "height": 4000,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "exclaimed",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "team",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Partners",
+                  "type": "Select"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "carousel",
+    "primary": {
+      "eyebrow": {
+        "__TYPE__": "FieldContent",
+        "value": "plastic",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Purple"
+            }
+          }
+        ]
+      },
+      "images": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                    "width": 5616,
+                    "height": 3744
+                  },
+                  "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
+                  "width": 5616,
+                  "height": 3744,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "row",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

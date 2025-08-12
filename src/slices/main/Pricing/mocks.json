@@ -1,0 +1,769 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "cards",
+    "primary": {
+      "cards": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "emphasized",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": false
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Sandbox"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Free",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "features",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Test drive Plural with access to all essential platform components",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 66,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Trial the Plural platform for 14 days",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 37,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Upgrade at any time",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 19,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "2cc2fc59-bbd3-4485-9d0a-c72ab8dcf3ca",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://twitter.com",
+                    "text": "Get started for free"
+                  }
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "emphasized",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": false
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Pro Plan"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Starting at $450/mo for 1 cluster +$250/mo per additional cluster",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "features",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "30 day free trial",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 17,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Up to 10 clusters",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 17,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Plural cloud hosting",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 20,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "For agile teams",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 15,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Pay monthly",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 11,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "No commitment",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 13,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "6fa42149-7ef6-436c-b111-77cf36383245",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://twitter.com",
+                    "text": "Book a demo"
+                  }
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "emphasized",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": true
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Enterprise"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Pricing based on number of clusters and support requirements",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "features",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Pro plan perks",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 14,
+                            "data": "icon:plus"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Unlimited clusters",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 18,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Flexible hosting options",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 24,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "1 hour SLA",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 10,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Customized training",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 19,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "Dedicated success team",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 22,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "list-item",
+                      "content": {
+                        "text": "For teams with strict deployment requirements",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 45,
+                            "data": "icon:check"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "3e7d2796-73a1-463c-92fd-f3ab390b197e",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://twitter.com",
+                    "text": "Contact Sales"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "table",
+    "primary": {
+      "row_keys": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Clusters"
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Hosting"
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "SLA"
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "SLA Response"
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Communication"
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "key",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Success Team"
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "columns": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "value",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "pro"
+                }
+              ],
+              [
+                "label",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Pro"
+                }
+              ],
+              [
+                "emphasized",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": false
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "emphasized",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": true
+                }
+              ],
+              [
+                "label",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Enterprise"
+                }
+              ],
+              [
+                "value",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "enterprise"
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "column_values": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "column_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "pro"
+                }
+              ],
+              [
+                "values",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Up to 10",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Plural shared infrastructure",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "99.9% uptime",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "1 business day response",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Email support",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "No",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 2,
+                            "data": "no"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "button",
+                {
+                  "key": "4a3e3bb4-700a-4860-a7f0-9a16bdcc7d12",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://www.plural.sh/contact",
+                    "text": "Book a demo"
+                  }
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "column_id",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "enterprise"
+                }
+              ],
+              [
+                "values",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Unlimited",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Shared, dedicated, or on-prem infrastructure",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "99.9% uptime",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "1 hour guaranteed response",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Dedicated Slack or\nTeamsOn-demand Calls",
+                        "spans": []
+                      },
+                      "direction": "ltr"
+                    },
+                    {
+                      "type": "o-list-item",
+                      "content": {
+                        "text": "Yes",
+                        "spans": [
+                          {
+                            "type": "label",
+                            "start": 0,
+                            "end": 3,
+                            "data": "yes"
+                          }
+                        ]
+                      },
+                      "direction": "ltr"
+                    }
+                  ]
+                }
+              ],
+              [
+                "button",
+                {
+                  "key": "f9f83015-3bfc-4c6c-8f54-dc6c3a62bc10",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://www.plural.sh/contact",
+                    "text": "Contact sales"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "section_id": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "plan-comparison"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

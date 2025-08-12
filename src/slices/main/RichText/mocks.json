@@ -1,0 +1,120 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "content": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Curabitur ultricies nibh id condimentum commodo",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Pellentesque nec semper diam. Nulla gravida, ex id vestibulum lacinia, nulla nulla maximus metus, a hendrerit nulla nisi euismod orci. Cras viverra euismod commodo. Nullam tempus et augue sed lobortis. In hac habitasse platea dictumst. Quisque non ornare neque. Aliquam pulvinar quam ut gravida consequat.",
+              "spans": [
+                {
+                  "type": "em",
+                  "start": 236,
+                  "end": 260
+                },
+                {
+                  "type": "hyperlink",
+                  "start": 135,
+                  "end": 163,
+                  "data": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://google.com",
+                    "target": "_self"
+                  }
+                },
+                {
+                  "type": "strong",
+                  "start": 165,
+                  "end": 178
+                }
+              ]
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Fusce imperdiet gravida risus, ac sodales tellus scelerisque a.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Quisque sodales urna dolor, id tincidunt neque commodo at.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Ut in sagittis nisi, ut imperdiet tellus.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "In sed maximus massa. In laoreet urna auctor ornare pharetra.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas erat eget malesuada hendrerit.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Sed scelerisque sem libero, eget finibus turpis rhoncus non.",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Etiam scelerisque arcu porttitor",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas tempor bibendum molestie.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

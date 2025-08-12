@@ -1,0 +1,44 @@
+{
+  "id": "text_media",
+  "type": "SharedSlice",
+  "name": "TextMedia",
+  "description": "TextMedia",
+  "variations": [
+    {
+      "id": "textScrollReveal",
+      "name": "Text Scroll Reveal",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "align_left": {
+          "type": "Boolean",
+          "config": {
+            "label": "Align Left",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
