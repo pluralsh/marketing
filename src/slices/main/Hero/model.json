@@ -153,6 +153,14 @@
             "label": "YouTube Embed",
             "placeholder": ""
           }
+        },
+        "video_thumbnail": {
+          "type": "Image",
+          "config": {
+            "label": "Video Thumbnail",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

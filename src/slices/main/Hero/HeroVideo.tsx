@@ -17,7 +17,8 @@ import { getYouTubeId } from '@/utils/strings'
 export type HeroVideoProps = SliceVariationProps<Content.HeroSlice, 'video'>
 
 export default function HeroVideo({ slice }: HeroVideoProps) {
-  const { eyebrow, title, description, cta, youtube_embed } = slice.primary
+  const { eyebrow, title, description, cta, youtube_embed, video_thumbnail } =
+    slice.primary
   const youtubeId = getYouTubeId(youtube_embed?.embed_url || '')
 
   return (
@@ -65,6 +66,7 @@ export default function HeroVideo({ slice }: HeroVideoProps) {
               id={youtubeId}
               title={youtube_embed.title || ''}
               poster="maxresdefault"
+              thumbnail={video_thumbnail?.url ?? undefined}
             />
           </div>
         )}

@@ -2508,6 +2508,16 @@ export interface HeroSliceVideoPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/embed
    */
   youtube_embed: prismic.EmbedField
+
+  /**
+   * Video Thumbnail field in *Hero → Video → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.video.primary.video_thumbnail
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  video_thumbnail: prismic.ImageField<never>
 }
 
 /**
@@ -4309,7 +4319,14 @@ export interface TeamSliceDefaultPrimaryPeopleItem {
    * - **API ID Path**: team.default.primary.people[].team
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  team: prismic.SelectField<'Management' | 'Product' | 'Partners'>
+  team: prismic.SelectField<
+    | 'Management'
+    | 'Product'
+    | 'Partners'
+    | 'GTM'
+    | 'Operations'
+    | 'Customer Success'
+  >
 }
 
 /**
