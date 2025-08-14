@@ -29,5 +29,5 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   // Skip all these paths when matching. Add all paths that are siblings to [locale] folder.
-  matcher: ['/((?!_next|_vercel|slice-library|slice-simulator|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|_vercel|slice-library|slice-simulator|.*\\..*).*)'],
 }
