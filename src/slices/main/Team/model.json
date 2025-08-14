@@ -70,7 +70,14 @@
                 "config": {
                   "label": "Team",
                   "placeholder": "",
-                  "options": ["Management", "Product", "Partners"]
+                  "options": [
+                    "Management",
+                    "Product",
+                    "Partners",
+                    "GTM",
+                    "Operations",
+                    "Customer Success"
+                  ]
                 }
               }
             }

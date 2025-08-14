@@ -4319,7 +4319,14 @@ export interface TeamSliceDefaultPrimaryPeopleItem {
    * - **API ID Path**: team.default.primary.people[].team
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  team: prismic.SelectField<'Management' | 'Product' | 'Partners'>
+  team: prismic.SelectField<
+    | 'Management'
+    | 'Product'
+    | 'Partners'
+    | 'GTM'
+    | 'Operations'
+    | 'Customer Success'
+  >
 }
 
 /**
