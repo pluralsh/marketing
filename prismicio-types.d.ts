@@ -2672,6 +2672,112 @@ export type HeroSliceImage = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Hero → Exclusive Animated → Primary*
+ */
+export interface HeroSliceExclusiveAnimatedPrimary {
+  /**
+   * Eyebrow field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  eyebrow: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * Title field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    'Primary' | 'Secondary'
+  >
+
+  /**
+   * Full Bleed Image field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.full_bleed_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  full_bleed_image: prismic.ImageField<never>
+
+  /**
+   * Eyebrow Emphasized field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: hero.exclusiveAnimated.primary.eyebrow_emphasized
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  eyebrow_emphasized: prismic.BooleanField
+
+  /**
+   * Is Short Image field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero.exclusiveAnimated.primary.is_short_image
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_short_image: prismic.BooleanField
+
+  /**
+   * Image Mobile field in *Hero → Exclusive Animated → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveAnimated.primary.image_mobile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_mobile: prismic.ImageField<never>
+}
+
+/**
+ * Exclusive Animated variation for Hero Slice
+ *
+ * - **API ID**: `exclusiveAnimated`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceExclusiveAnimated = prismic.SharedSliceVariation<
+  'exclusiveAnimated',
+  Simplify<HeroSliceExclusiveAnimatedPrimary>,
+  never
+>
+
+/**
  * Slice variation for *Hero*
  */
 type HeroSliceVariation =
@@ -2679,6 +2785,7 @@ type HeroSliceVariation =
   | HeroSliceVideo
   | HeroSliceDefault
   | HeroSliceImage
+  | HeroSliceExclusiveAnimated
 
 /**
  * Hero Shared Slice
@@ -4964,11 +5071,13 @@ declare module '@prismicio/client' {
       HeroSliceVideoPrimary,
       HeroSliceDefaultPrimary,
       HeroSliceImagePrimary,
+      HeroSliceExclusiveAnimatedPrimary,
       HeroSliceVariation,
       HeroSliceExclusive,
       HeroSliceVideo,
       HeroSliceDefault,
       HeroSliceImage,
+      HeroSliceExclusiveAnimated,
       LogotypesSlice,
       LogotypesSliceDefaultPrimaryLogotypesItem,
       LogotypesSliceDefaultPrimary,

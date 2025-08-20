@@ -182,7 +182,6 @@
 				}
 			},
 			"video_thumbnail": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1493119508027-2b584f234d6c",
@@ -201,6 +200,8 @@
 					"background": "transparent"
 				},
 				"alt": "shout",
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			}
 		},
@@ -336,6 +337,113 @@
 					"background": "transparent"
 				},
 				"alt": "quite",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "exclusiveAnimated",
+		"primary": {
+			"eyebrow": {
+				"key": "4de42c3f-bbed-45d8-ac07-c93bb5fac093",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "outline"
+				}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Cheese"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Cillum ea reprehenderit minim qui officia elit tempor nulla officia in ut. Est in anim nulla minim deserunt occaecat et in nisi consequat eiusmod."
+						}
+					}
+				]
+			},
+			"cta": {
+				"key": "65df6aee-758f-40f1-97a3-4a6fb612555f",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "first",
+					"variant": "Primary"
+				}
+			},
+			"full_bleed_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
+					"width": 3199,
+					"height": 3199
+				},
+				"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869?rect=0%2C0%2C3199%2C3199&w=600&h=600",
+				"width": 600,
+				"height": 600,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "sail",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"eyebrow_emphasized": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"is_short_image": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"image_mobile": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+					"width": 3212,
+					"height": 3880
+				},
+				"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+				"width": 3212,
+				"height": 3880,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "grass",
 				"credits": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
