@@ -16,6 +16,7 @@ export default function Hero({ slice }: HeroProps) {
         exclusive: dynamic(() => import('./HeroExclusive')),
         image: dynamic(() => import('./HeroImage')),
         video: dynamic(() => import('./HeroVideo')),
+        exclusiveAnimated: dynamic(() => import('./HeroExclusiveAnimated')),
       }}
     />
   )
