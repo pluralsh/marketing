@@ -23,8 +23,11 @@ export default async function middleware(request: NextRequest) {
   )
     return NextResponse.redirect(new URL('/not-found', request.url))
 
-  // skip i18n middleware for API routes and Next internal files/static assets
-  if (I18N_SKIP_LIST.some((route) => pathname.startsWith(route)))
+  // skip i18n middleware for API routes and Next internal files/static files (like robots.txt)
+  if (
+    I18N_SKIP_LIST.some((route) => pathname.startsWith(route)) ||
+    pathname.includes('.')
+  )
     return NextResponse.next()
 
   const [locales, defaultLocale] = await Promise.all([
