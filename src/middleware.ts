@@ -50,6 +50,7 @@ export default async function middleware(request: NextRequest) {
 const isMainProdSite = (request: NextRequest) => {
   const requestOrigin = cleanUrl(request.headers.get('host'))
   const prodOrigin = cleanUrl(process.env.NEXT_PUBLIC_SITE_URL)
+  console.log({ requestOrigin, prodOrigin })
   return !!requestOrigin && !!prodOrigin && requestOrigin === prodOrigin
 }
 
