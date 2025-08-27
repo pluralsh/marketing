@@ -59,7 +59,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            NEXT_PUBLIC_SITE_URL="https://www.plural.sh"
+            NEXT_PUBLIC_SITE_URL=https://marketing-pr-172.plural.sh/
             NEXT_PUBLIC_PRISMIC_ENVIRONMENT=${{ vars.NEXT_PUBLIC_PRISMIC_ENVIRONMENT }}
             NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}
             NEXT_PUBLIC_SITE_RECAPTCHA_KEY=${{ vars.NEXT_PUBLIC_SITE_RECAPTCHA_KEY }}

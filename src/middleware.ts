@@ -54,5 +54,5 @@ const isMainProdSite = (request: NextRequest) => {
   return !!requestOrigin && !!prodOrigin && requestOrigin === prodOrigin
 }
 
-const cleanUrl = (url: string | null | undefined) =>
-  url ? url.replace(/\/+$/, '') : undefined
+const cleanUrl = (url: string | null | undefined): string | undefined =>
+  url ? url.replace(/^https?:\/\//, '').replace(/\/+$/, '') : undefined
