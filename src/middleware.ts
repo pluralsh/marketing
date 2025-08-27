@@ -18,7 +18,7 @@ export default async function middleware(request: NextRequest) {
 
   // block prismic-related stuff on main prod site
   if (
-    isMainProdSite(request) &&
+    process.env.NEXT_PUBLIC_ENVIRONMENT === 'prod' &&
     PROD_BLOCK_LIST.some((route) => pathname.startsWith(route))
   )
     return NextResponse.redirect(new URL('/not-found', request.url))
@@ -46,12 +46,3 @@ export default async function middleware(request: NextRequest) {
 
   return response
 }
-
-const isMainProdSite = (request: NextRequest) => {
-  const requestOrigin = cleanUrl(request.headers.get('host'))
-  const prodOrigin = cleanUrl(process.env.NEXT_PUBLIC_SITE_URL)
-  return !!requestOrigin && !!prodOrigin && requestOrigin === prodOrigin
-}
-
-const cleanUrl = (url: string | null | undefined): string | undefined =>
-  url ? url.replace(/^https?:\/\//, '').replace(/\/+$/, '') : undefined
