@@ -46,7 +46,7 @@ export default function Eyebrow<T extends LinkField | KeyTextField>({
       <PrismicNextLink
         field={field}
         className={cn(
-          'inline-flex items-center gap-x-3 rounded-lg px-3 py-2 whitespace-nowrap',
+          'inline-flex items-center gap-x-3 rounded-lg px-3 py-2',
           'text-caption group border transition',
           emphasized &&
             'bg-accent-100/5 border-accent-100/10 hover:border-accent-100/[24%] text-accent-100',
