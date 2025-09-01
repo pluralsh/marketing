@@ -1,21 +1,15 @@
 import { getRequestConfig } from 'next-intl/server'
-
 import {
-  getPrismicDefaultLanguage,
-  getPrismicLanguages,
-} from '@/utils/prismicio'
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  type SupportedLocale,
+} from '@/i18n/locales'
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  const languages = await getPrismicLanguages()
-  const defaultLanguage = await getPrismicDefaultLanguage()
-
-  // This typically corresponds to the `[locale]` segment
   let locale = await requestLocale
 
-  // Ensure that a valid locale is used
-  if (!locale || !languages.includes(locale)) {
-    locale = defaultLanguage
-  }
+  if (!locale || !SUPPORTED_LOCALES.includes(locale as SupportedLocale))
+    locale = DEFAULT_LOCALE
 
   return {
     locale,
