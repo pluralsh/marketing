@@ -2,11 +2,7 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 import createMiddleware from 'next-intl/middleware'
-
-import {
-  getPrismicDefaultLanguage,
-  getPrismicLanguages,
-} from '@/utils/prismicio'
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/i18n/locales'
 
 import { HEADERS } from './constants'
 
@@ -16,7 +12,7 @@ const I18N_SKIP_LIST = ['/api', '/slice-library', '/slice-simulator', '/_next']
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // block prismic-related stuff on main prod site
+  // block prismic dev related stuff on main prod site
   if (
     process.env.NEXT_PUBLIC_ENVIRONMENT === 'prod' &&
     PROD_BLOCK_LIST.some((route) => pathname.startsWith(route))
@@ -30,19 +26,14 @@ export default async function middleware(request: NextRequest) {
   )
     return NextResponse.next()
 
-  const [locales, defaultLocale] = await Promise.all([
-    getPrismicLanguages(),
-    getPrismicDefaultLanguage(),
-  ])
-
   const handleI18nRouting = createMiddleware({
-    locales,
-    defaultLocale,
+    locales: SUPPORTED_LOCALES,
+    defaultLocale: DEFAULT_LOCALE,
     localeDetection: false,
     localePrefix: 'as-needed',
   })
   const response = handleI18nRouting(request)
-  response.headers.set(HEADERS.DEFAULT_LOCALE, defaultLocale)
+  response.headers.set(HEADERS.DEFAULT_LOCALE, DEFAULT_LOCALE)
 
   return response
 }
