@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
         destination: 'https://docs.plural.sh/',
         permanent: true,
       },
+      {
+        source: '/contact-sales',
+        destination: 'https://www.plural.sh/contact',
+        permanent: true,
+      },
     ]
   },
 }
