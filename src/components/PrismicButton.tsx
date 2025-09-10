@@ -18,6 +18,7 @@ export default function PrismicButton({
     {
       Primary: 'primary',
       Secondary: 'secondary',
+      Alt: 'alt',
     } as const
   )[field?.variant || '']
 

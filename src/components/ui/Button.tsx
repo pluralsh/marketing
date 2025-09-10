@@ -16,6 +16,7 @@ const button = tv({
         'bg-primary-600 !text-neutral-000 hover:bg-neutral-000 hover:!text-neutral-800 shadow-primary',
       secondary:
         'border border-neutral-000/10 text-text-body hover:border-neutral-000/20 hover:text-neutral-000',
+      alt: 'bg-neutral-700 border border-neutral-600 text-neutral-300 shadow-secondary hover:bg-neutral-500 hover:border-neutral-400',
     },
     size: {
       xs: {

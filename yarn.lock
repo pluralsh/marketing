@@ -2766,13 +2766,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slicemachine/adapter-next@npm:0.3.82":
-  version: 0.3.82
-  resolution: "@slicemachine/adapter-next@npm:0.3.82"
+"@slicemachine/adapter-next@npm:0.3.83":
+  version: 0.3.83
+  resolution: "@slicemachine/adapter-next@npm:0.3.83"
   dependencies:
     "@prismicio/simulator": ^0.1.4
     "@prismicio/types-internal": 3.11.2
-    "@slicemachine/plugin-kit": 0.4.80
+    "@slicemachine/plugin-kit": 0.4.81
     common-tags: ^1.8.2
     fp-ts: ^2.13.1
     io-ts: ^2.2.20
@@ -2784,13 +2784,13 @@ __metadata:
   peerDependencies:
     next: ^11 || ^12 || ^13 || ^14 || ^15.0.0-rc.0
     react: ^17 || ^18 || ^19.0.0-rc.0
-  checksum: f287d5a87de669badf2e4f1f0b354ad845c7916f3d16e094c0c9990b1b400d870d6ba509862e491c7b34cef6dc6a75bdbfc9bdd0b643c114a5f0eb2311eaa591
+  checksum: fcf81037338414b1aaa8e33939ea36edbe617c0d31a0407bedefd3736d9796f3f8c9d6f2d4a4f47a25b5ebe4d7cf0c0001dc08560eed302af8ea85cd3b6a7cbf
   languageName: node
   linkType: hard
 
-"@slicemachine/manager@npm:0.25.2":
-  version: 0.25.2
-  resolution: "@slicemachine/manager@npm:0.25.2"
+"@slicemachine/manager@npm:0.25.3":
+  version: 0.25.3
+  resolution: "@slicemachine/manager@npm:0.25.3"
   dependencies:
     "@antfu/ni": ^0.20.0
     "@prismicio/client": 7.17.0
@@ -2798,7 +2798,7 @@ __metadata:
     "@prismicio/mocks": 2.14.0
     "@prismicio/types-internal": 3.11.2
     "@segment/analytics-node": ^2.1.2
-    "@slicemachine/plugin-kit": 0.4.80
+    "@slicemachine/plugin-kit": 0.4.81
     cookie: ^1.0.1
     cors: ^2.8.5
     execa: ^7.1.1
@@ -2823,13 +2823,13 @@ __metadata:
   peerDependenciesMeta:
     msw:
       optional: true
-  checksum: 9a37021a0db05d4906f75081a25431aa1b8229b650bf0e578449a055fe084a6cf86b84ef7b2bc916083961084f62103b7690200abe9fcc9ff73c4245b1916252
+  checksum: 35b18bb12f3cf1018d5a1b1b8b3b6189c7f14b5fb3cdff90fad8e46dab9b6916919dbb9fde0f94d144f96a79122ad590c501dbf83c36668cb12423e9079386a7
   languageName: node
   linkType: hard
 
-"@slicemachine/plugin-kit@npm:0.4.80":
-  version: 0.4.80
-  resolution: "@slicemachine/plugin-kit@npm:0.4.80"
+"@slicemachine/plugin-kit@npm:0.4.81":
+  version: 0.4.81
+  resolution: "@slicemachine/plugin-kit@npm:0.4.81"
   dependencies:
     "@prismicio/client": 7.17.0
     common-tags: ^1.8.2
@@ -2842,7 +2842,7 @@ __metadata:
     p-limit: ^4.0.0
     prettier: ^3.0.3
     prismic-ts-codegen: 0.1.27
-  checksum: fdaa5057f2c8f7f84cb314b45bb4c739dd7c2331fe1b76dd797f70d2efcd1775bd25c3485f14a9ce55bf66c0327b7f4a3101f3b64a8fd9b590a0e8a6c07d3fb2
+  checksum: 6a0becb0ea67d79881da02c65765652edff4a9c3347c07e49b3b60a36397b6ba3d325e7ea0fca0543f072452e699c213a9f0f47483618dbefb7e691ae8468130
   languageName: node
   linkType: hard
 
@@ -7770,7 +7770,7 @@ __metadata:
     "@prismicio/client": 7.18.0
     "@prismicio/next": 1.7.2
     "@prismicio/react": 3.2.1
-    "@slicemachine/adapter-next": 0.3.82
+    "@slicemachine/adapter-next": 0.3.83
     "@tailwindcss/postcss": 4.1.7
     "@types/node": 22.15.19
     "@types/open-graph-scraper": 5.2.3
@@ -7806,7 +7806,7 @@ __metadata:
     react-google-recaptcha: 3.1.0
     react-icons: 5.4.0
     react-lite-youtube-embed: 2.5.1
-    slice-machine-ui: 2.18.0
+    slice-machine-ui: 2.18.1
     tailwind-merge: 3.3.0
     tailwind-variants: 1.0.0
     tailwindcss: 4.1.7
@@ -8810,15 +8810,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"slice-machine-ui@npm:2.18.0":
-  version: 2.18.0
-  resolution: "slice-machine-ui@npm:2.18.0"
+"slice-machine-ui@npm:2.18.1":
+  version: 2.18.1
+  resolution: "slice-machine-ui@npm:2.18.1"
   dependencies:
-    "@slicemachine/manager": 0.25.2
-    start-slicemachine: 0.12.60
+    "@slicemachine/manager": 0.25.3
+    start-slicemachine: 0.12.61
   bin:
     start-slicemachine: ./bin/start-slicemachine.cjs
-  checksum: 88e24d6d3e3f04f2357ca50137be774ce7f0c1bf0d50db2ebe8de34ff71e8f8eb3f6a34c6edcd6e3ee6e982120aaacd53a002a33978c2912e711e8dab1d187c3
+  checksum: 72cda574ba3a71620aca90555f6a99d9804561739224e47bf708e9d030466a36ccd13e5cd0b3e095a7d9c225751a532f34d00f2931f2552b59789f1ab443ae9b
   languageName: node
   linkType: hard
 
@@ -8877,13 +8877,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"start-slicemachine@npm:0.12.60":
-  version: 0.12.60
-  resolution: "start-slicemachine@npm:0.12.60"
+"start-slicemachine@npm:0.12.61":
+  version: 0.12.61
+  resolution: "start-slicemachine@npm:0.12.61"
   dependencies:
     "@prismicio/mocks": 2.14.0
     "@prismicio/types-internal": 3.11.2
-    "@slicemachine/manager": 0.25.2
+    "@slicemachine/manager": 0.25.3
     body-parser: ^1.20.3
     chalk: ^4.1.2
     cors: ^2.8.5
@@ -8900,7 +8900,7 @@ __metadata:
     serve-static: ^1.15.0
   bin:
     start-slicemachine: ./bin/start-slicemachine.js
-  checksum: e5450bbfcdc9d8582b1ad54c3cba8a79de9b98d0d3a650f3d93c79ae37ca882280fbeefbc58b51a47cd2f429329f26f6638bbbc84aac5cc8fe50d187f33df062
+  checksum: 845f8c474fee4ea8656a0b22b0ce87330eecc5fe76d11d879a4d712c08d6f2079578b4e13b161bcabea55dec8cc0fcc859ff638ba4ee8b4e3a32e482be7205a7
   languageName: node
   linkType: hard
 

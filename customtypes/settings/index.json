@@ -75,7 +75,7 @@
           "allowTargetBlank": true,
           "allowText": true,
           "repeat": true,
-          "variants": ["Primary", "Secondary"]
+          "variants": ["Primary", "Secondary", "Alt"]
         }
       },
       "slices2": {
