@@ -16,7 +16,7 @@
   --spacing-30: --spacing(30);
 
   --color-primary-600: #7b28ff;
-  --color-accent-600: #7FFAC1;
+  --color-accent-600: #7ffac1;
   --color-accent-500: #004af8;
   --color-accent-400: #14d9d1;
   --color-accent-300: #e9ace6;
@@ -24,6 +24,12 @@
   --color-accent-100: #b485ff;
   --color-neutral-900: #0e1015;
   --color-neutral-800: #1d1f25;
+  --color-neutral-700: #2a2e37;
+  --color-neutral-600: #454954;
+  --color-neutral-500: #343841;
+  --color-neutral-400: #4f535c;
+  --color-neutral-300: #c5c9d2;
+  --color-neutral-200: #e5e7eb;
   --color-neutral-000: #ffffff;
   --color-stroke: --alpha(var(--color-neutral-900) / 10%);
   --color-inverse-stroke: --alpha(var(--color-neutral-000) / 10%);
@@ -34,6 +40,9 @@
     0px 0px 1px 0px #752fff1a, 0px 2px 2px 0px #752fff17,
     0px 4px 2px 0px #752fff0d, 0px 7px 3px 0px #752fff03,
     0px 11px 3px 0px #752fff00;
+  --shadow-secondary:
+    rgba(14, 16, 21, 0.18) 0px 2px 7px 0px,
+    rgba(14, 16, 21, 0.14) 0px 2px 4px 0px;
 
   --default-transition-duration: 300ms;
   --default-transition-timing-function: ease-out;

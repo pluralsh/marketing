@@ -537,7 +537,7 @@ interface SettingsDocumentData {
       string,
       unknown,
       prismic.FieldState,
-      'Primary' | 'Secondary'
+      'Primary' | 'Secondary' | 'Alt'
     >
   >
 
