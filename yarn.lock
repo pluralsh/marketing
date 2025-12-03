@@ -1007,10 +1007,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:15.3.5":
-  version: 15.3.5
-  resolution: "@next/env@npm:15.3.5"
-  checksum: d0b9e3ae076ffdf72ea702ceb7253ea196c2bf64602b98f518c1d3b351ae7e912c124ebe48a3d2a7825d9129ab35a68708ef1ea8cba7552c1977562293069a01
+"@next/env@npm:15.3.6":
+  version: 15.3.6
+  resolution: "@next/env@npm:15.3.6"
+  checksum: ae0d5119164e1c9bbc853cedd1f84219bbc884df79ba558bafe0a673676d17fc498ce714ab90357c873b93f716bd56cf5f8a65f8593c50d1cc037f081724f1cf
   languageName: node
   linkType: hard
 
@@ -7261,11 +7261,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:15.3.5":
-  version: 15.3.5
-  resolution: "next@npm:15.3.5"
+"next@npm:15.3.6":
+  version: 15.3.6
+  resolution: "next@npm:15.3.6"
   dependencies:
-    "@next/env": 15.3.5
+    "@next/env": 15.3.6
     "@next/swc-darwin-arm64": 15.3.5
     "@next/swc-darwin-x64": 15.3.5
     "@next/swc-linux-arm64-gnu": 15.3.5
@@ -7318,7 +7318,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 7c99894b2eebf0f7c9c29d47037435a9747a9a767badf8de3d4cdb45b09a0defe9ab47874787ca2a0a44c07b5c1ede311571c4777f8e61dbe7d5bcb7108c8ae8
+  checksum: 8cf15ad0c09016b4f4fceb587e71d01110e0c2175b7a6d042e5441f9e4c17e53a492566af8e72a6d7a290b86a7c72d707cbce0f429b8e1fe8b85426282bc5672
   languageName: node
   linkType: hard
 
@@ -7794,15 +7794,15 @@ __metadata:
     husky: 9.1.7
     lint-staged: 16.1.4
     motion: 12.23.0
-    next: 15.3.5
+    next: 15.3.6
     next-intl: 4.1.0
     postcss: 8.5.3
     prettier: 3.6.2
     prettier-plugin-tailwindcss: 0.6.14
     query-string: 9.2.2
     radix-ui: 1.4.2
-    react: 19.1.0
-    react-dom: 19.1.0
+    react: 19.2.1
+    react-dom: 19.2.1
     react-google-recaptcha: 3.1.0
     react-icons: 5.4.0
     react-lite-youtube-embed: 2.5.1
@@ -8160,14 +8160,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react-dom@npm:19.1.0"
+"react-dom@npm:19.2.1":
+  version: 19.2.1
+  resolution: "react-dom@npm:19.2.1"
   dependencies:
-    scheduler: ^0.26.0
+    scheduler: ^0.27.0
   peerDependencies:
-    react: ^19.1.0
-  checksum: 1d154b6543467095ac269e61ca59db546f34ef76bcdeb90f2dad41d682cd210aae492e70c85010ed5d0a2caea225e9a55139ebc1a615ee85bf197d7f99678cdf
+    react: ^19.2.1
+  checksum: 45a7c57696b6fcc9f018a1626a0c5f6da7085510bcebb9ab585414ea1b73061df1139d57b4384ece47c0a53d46045c28b93fe85e249771eca8cfac8d3e613833
   languageName: node
   linkType: hard
 
@@ -8260,10 +8260,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react@npm:19.1.0"
-  checksum: c0905f8cfb878b0543a5522727e5ed79c67c8111dc16ceee135b7fe19dce77b2c1c19293513061a8934e721292bfc1517e0487e262d1906f306bdf95fa54d02f
+"react@npm:19.2.1":
+  version: 19.2.1
+  resolution: "react@npm:19.2.1"
+  checksum: 9b32ace5c532ed78bc5a907bfec77d966c8f117049d9bf06b627c4cebe5ef2c899f18ed283f8ed5b85346176b5ccc5328ab6fae0b389f2936a87575ce0e47670
   languageName: node
   linkType: hard
 
@@ -8522,10 +8522,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.26.0":
-  version: 0.26.0
-  resolution: "scheduler@npm:0.26.0"
-  checksum: c63a9f1c0e5089b537231cff6c11f75455b5c8625ae09535c1d7cd0a1b0c77ceecdd9f1074e5e063da5d8dc11e73e8033dcac3361791088be08a6e60c0283ed9
+"scheduler@npm:^0.27.0":
+  version: 0.27.0
+  resolution: "scheduler@npm:0.27.0"
+  checksum: 92644ead0a9443e20f9d24132fe93675b156209b9eeb35ea245f8a86768d0cc0fcca56f341eeef21d9b6dd8e72d6d5e260eb5a41d34b05cd605dd45a29f572ef
   languageName: node
   linkType: hard
 
