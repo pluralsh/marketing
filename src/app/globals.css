@@ -107,6 +107,13 @@
       transform: scale(0.8) translate(-60%, -45%) !important;
     }
   }
+
+  /* Hide Cookiebot Swift banner branding */
+  #CybotCookiebotDialogPoweredbyCybot,
+  #CybotCookiebotDialogPoweredByText,
+  #CookiebotWidget .CookiebotWidget-body .CookiebotWidget-main-logo {
+    display: none !important;
+  }
 }
 
 @utility container {

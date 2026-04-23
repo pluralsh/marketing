@@ -48,8 +48,8 @@ export default async function RootLayout({
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
-          data-cbid={process.env.NEXT_PUBLIC_COOKIEBOT_ID}
-          data-blockingmode="manual"
+          data-cbid={process.env.NEXT_PUBLIC_COOKIEBOT_ID?.trim()}
+          data-blockingmode="auto"
           data-widget-position="bottom-right"
           strategy="beforeInteractive"
         />
