@@ -9,7 +9,7 @@
     "dev:next": "next dev -p 3004",
     "dev:slicemachine": "start-slicemachine",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3005",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prepare": "husky"

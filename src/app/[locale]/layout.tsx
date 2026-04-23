@@ -2,6 +2,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
@@ -44,6 +45,14 @@ export default async function RootLayout({
       className="scroll-smooth"
     >
       <body className={cn('antialiased', Articulat.className)}>
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid={process.env.NEXT_PUBLIC_COOKIEBOT_ID}
+          data-blockingmode="manual"
+          data-widget-position="bottom-right"
+          strategy="beforeInteractive"
+        />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <>{children}</>
