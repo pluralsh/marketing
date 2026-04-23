@@ -108,6 +108,10 @@
     }
   }
 
+  div#CybotCookiebotDialog {
+    scale: 65%;
+  }
+
   /* Hide Cookiebot Swift banner branding */
   #CybotCookiebotDialogPoweredbyCybot,
   #CybotCookiebotDialogPoweredByText,
