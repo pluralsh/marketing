@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
     branches:
       - main
   pull_request:
@@ -11,16 +11,16 @@ on:
       - main
 
 env:
-  DOCKER_METADATA_PR_HEAD_SHA: 'true'
+  DOCKER_METADATA_PR_HEAD_SHA: "true"
 
 jobs:
   publish-docker:
     name: Build and Push to GHCR
     runs-on: ubuntu-latest
     permissions:
-      contents: 'read'
-      id-token: 'write'
-      packages: 'write'
+      contents: "read"
+      id-token: "write"
+      packages: "write"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,8 +50,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: '.'
-          file: './Dockerfile.publish'
+          context: "."
+          file: "./Dockerfile.publish"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -63,3 +63,4 @@ jobs:
             NEXT_PUBLIC_PRISMIC_ENVIRONMENT=${{ vars.NEXT_PUBLIC_PRISMIC_ENVIRONMENT }}
             NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}
             NEXT_PUBLIC_SITE_RECAPTCHA_KEY=${{ vars.NEXT_PUBLIC_SITE_RECAPTCHA_KEY }}
+            NEXT_PUBLIC_COOKIEBOT_ID=${{ vars.NEXT_PUBLIC_COOKIEBOT_ID }}
