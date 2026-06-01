@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plural Console — Workbench demo</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  html, body, #root { height: 100%; margin: 0; }
+  @keyframes pc-spin { to { transform: rotate(360deg); } }
+  @keyframes cc-fadeup { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .cc-fade { animation: cc-fadeup 0.3s ease-out forwards; }
+  textarea::placeholder { color: var(--text-xlight); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--grey-800); border-radius: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script src="tour-config.js"></script>
+<script type="text/babel" src="demo-tour.jsx"></script>
+<script type="text/babel" src="demo-hints.jsx"></script>
+<script type="text/babel" src="ds-icons.jsx"></script>
+<script type="text/babel" src="ds-brand-icons.jsx"></script>
+<script type="text/babel" src="ds-viz.jsx"></script>
+<script type="text/babel" src="ds-trace.jsx"></script>
+<script type="text/babel" src="cc-shell.jsx"></script>
+<script type="text/babel" src="cc-home-sections.jsx"></script>
+<script type="text/babel" src="cc-home-shared.jsx"></script>
+<script type="text/babel" src="cc-home.jsx"></script>
+<script type="text/babel" src="cc-prompt.jsx"></script>
+<script type="text/babel" src="cc-workbench.jsx"></script>
+<script type="text/babel" src="cc-job.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

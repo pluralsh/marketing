@@ -112,6 +112,67 @@
 	},
 	{
 		"__TYPE__": "SharedSliceContent",
+		"variation": "exclusiveDemo",
+		"primary": {
+			"eyebrow": {
+				"key": "1872b924-84ee-49b2-b9fe-85c91e3bb2a9",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "Announcing our $6M seed"
+				}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Enterprise Kubernetes management, accelerated",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"cta": {
+				"key": "c1d07c92-782c-4735-805b-b2c1ec222418",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "Book a demo",
+					"variant": "Primary"
+				}
+			},
+			"eyebrow_emphasized": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
 		"variation": "video",
 		"primary": {
 			"title": {

@@ -2450,6 +2450,81 @@ export type HeroSliceExclusive = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Hero → Exclusive (interactive demo) → Primary*
+ */
+export interface HeroSliceExclusiveDemoPrimary {
+  /**
+   * Eyebrow field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  eyebrow: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * Title field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    'Primary' | 'Secondary'
+  >
+
+  /**
+   * Eyebrow Emphasized field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: hero.exclusiveDemo.primary.eyebrow_emphasized
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  eyebrow_emphasized: prismic.BooleanField
+}
+
+/**
+ * Exclusive (interactive demo) variation for Hero Slice
+ *
+ * - **API ID**: `exclusiveDemo`
+ * - **Description**: Homepage hero with embedded workbench walkthrough
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceExclusiveDemo = prismic.SharedSliceVariation<
+  'exclusiveDemo',
+  Simplify<HeroSliceExclusiveDemoPrimary>,
+  never
+>
+
+/**
  * Primary content in *Hero → Video → Primary*
  */
 export interface HeroSliceVideoPrimary {
@@ -2782,6 +2857,7 @@ export type HeroSliceExclusiveAnimated = prismic.SharedSliceVariation<
  */
 type HeroSliceVariation =
   | HeroSliceExclusive
+  | HeroSliceExclusiveDemo
   | HeroSliceVideo
   | HeroSliceDefault
   | HeroSliceImage
@@ -5068,12 +5144,14 @@ declare module '@prismicio/client' {
       FeaturesSliceHorizontallyScrollable,
       HeroSlice,
       HeroSliceExclusivePrimary,
+      HeroSliceExclusiveDemoPrimary,
       HeroSliceVideoPrimary,
       HeroSliceDefaultPrimary,
       HeroSliceImagePrimary,
       HeroSliceExclusiveAnimatedPrimary,
       HeroSliceVariation,
       HeroSliceExclusive,
+      HeroSliceExclusiveDemo,
       HeroSliceVideo,
       HeroSliceDefault,
       HeroSliceImage,
