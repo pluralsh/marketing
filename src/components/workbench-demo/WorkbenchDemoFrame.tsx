@@ -275,7 +275,7 @@ export default function WorkbenchDemoFrame({
       >
         <PrevButton
           type="button"
-          disabled={onFirstStep}
+          disabled={!loaded || onFirstStep}
           onClick={() => goToStep(step - 1)}
           aria-label="Previous step"
         />
@@ -291,6 +291,7 @@ export default function WorkbenchDemoFrame({
               <button
                 key={title}
                 type="button"
+                disabled={!loaded}
                 onClick={() => goToStep(i)}
                 aria-label={`Go to step ${i + 1} of ${total}: ${title}`}
                 aria-current={isCurrent ? 'step' : undefined}
@@ -305,12 +306,14 @@ export default function WorkbenchDemoFrame({
         {onLastStep ? (
           <TourRefreshButton
             type="button"
+            disabled={!loaded}
             onClick={resetDemo}
             aria-label="Restart demo"
           />
         ) : (
           <NextButton
             type="button"
+            disabled={!loaded}
             onClick={handleNext}
             aria-label="Next step"
           />
