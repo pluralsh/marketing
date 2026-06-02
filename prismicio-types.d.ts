@@ -2509,6 +2509,37 @@ export interface HeroSliceExclusiveDemoPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/boolean
    */
   eyebrow_emphasized: prismic.BooleanField
+
+  /**
+   * Full Bleed Image field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.full_bleed_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  full_bleed_image: prismic.ImageField<never>
+
+  /**
+   * Is Short Image field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero.exclusiveDemo.primary.is_short_image
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_short_image: prismic.BooleanField
+
+  /**
+   * Image Mobile field in *Hero → Exclusive (interactive demo) → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveDemo.primary.image_mobile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_mobile: prismic.ImageField<never>
 }
 
 /**

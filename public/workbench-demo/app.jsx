@@ -130,7 +130,7 @@ const App = () => {
         <window.CCRail active={3} onHome={goHome} />
         {screen === 'home' && (
           <div className="pc-main">
-            <window.CCHome onComposePrompt={openPrompt} onOpenWorkbench={openWorkbench} />
+            <window.CCHome onComposePrompt={openPrompt} />
           </div>
         )}
         {screen === 'prompt' && (
@@ -138,7 +138,6 @@ const App = () => {
             <window.CCPrompt
               key={promptKey}
               onSend={openWorkbench}
-              onOpenWorkbench={openWorkbench}
               onPromptReady={handlePromptReady}
             />
           </div>

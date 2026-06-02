@@ -7,7 +7,12 @@ const TYPE_MS = 14;
 
 const SendButton = ({ onSend, ready }) => (
   <window.TourTarget id="send-job" className="pc-tour-target--fit">
-    <window.DemoHint tourId="send-job" ringOnly className="pc-demo-hint--pill">
+    <window.DemoHint
+      tourId="send-job"
+      ringOnly
+      placement="below"
+      className="pc-demo-hint--pill"
+    >
       <button
         type="button"
         onClick={() => ready && onSend()}
@@ -33,7 +38,7 @@ const SendButton = ({ onSend, ready }) => (
   </window.TourTarget>
 );
 
-const CCPrompt = ({ onSend, onOpenWorkbench, onPromptReady }) => {
+const CCPrompt = ({ onSend, onPromptReady }) => {
   const [text, setText] = React.useState('');
   const [ready, setReady] = React.useState(false);
   const onPromptReadyRef = React.useRef(onPromptReady);
@@ -69,10 +74,6 @@ const CCPrompt = ({ onSend, onOpenWorkbench, onPromptReady }) => {
     return () => window.clearInterval(id);
   }, []);
 
-  const previewPrompt = (v) => () => {
-    if (v) onSend();
-  };
-
   return (
     <div style={{ flex: 1, overflow: 'auto', background: 'var(--grey-950)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px var(--sp-large) 80px' }}>
@@ -92,15 +93,14 @@ const CCPrompt = ({ onSend, onOpenWorkbench, onPromptReady }) => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-end',
             }}
           >
-            <window.WorkbenchPillButton label="demo-workbench" />
             <SendButton onSend={onSend} ready={ready} />
           </div>
         </div>
 
-        <window.CCHomeSections onPreviewPrompt={previewPrompt} onOpenWorkbench={onOpenWorkbench} />
+        <window.CCHomeSections static selectedIndex={0} />
       </div>
     </div>
   );

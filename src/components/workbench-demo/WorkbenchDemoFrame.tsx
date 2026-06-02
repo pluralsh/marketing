@@ -2,17 +2,23 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 
-import { Button } from '@/components/ui/Button'
+import {
+  NextButton,
+  PrevButton,
+} from '@/slices/main/Testimonials/components/CarouselArrowButtons'
 import { cn } from '@/utils/cn'
 
 import { activateHeroBookDemoCta } from './bookDemoTarget'
+import styles from './WorkbenchDemoFrame.module.css'
 import {
-  WORKBENCH_DEMO_TOUR_STEPS,
   WORKBENCH_DEMO_TOUR_TOTAL,
   getWorkbenchDemoTourBar,
   getWorkbenchDemoTourSrCaption,
   getWorkbenchDemoTourTitle,
 } from './workbenchDemoTour'
+
+const DEMO_VIEWPORT_HEIGHT = 624
+const CONSOLE_DEMO_URL = 'https://console.plural.sh/workbenches'
 
 type TourStepMessage = {
   step: number
@@ -27,6 +33,75 @@ type WorkbenchDemoFrameProps = {
   className?: string
 }
 
+function RefreshIcon(props: React.ComponentProps<'svg'>) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+      {...props}
+    >
+      <path
+        d="M10.5 2.5V5H8M1.5 9.5V7H4M10.1 5C9.55 3.35 7.95 2.25 6 2.25C3.65 2.25 1.75 4.15 1.75 6.5C1.75 8.85 3.65 10.75 6 10.75C7.6 10.75 9 9.75 9.7 8.25M1.9 7C2.45 8.65 4.05 9.75 6 9.75C8.35 9.75 10.25 7.85 10.25 5.5C10.25 3.15 8.35 1.25 6 1.25C4.4 1.25 3 2.25 2.3 3.75"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function TourRefreshButton(props: React.ComponentProps<'button'>) {
+  return (
+    <button
+      type="button"
+      className={cn(
+        'grid h-7.5 w-7.5 cursor-pointer place-items-center rounded-md',
+        'border-neutral-000/10 hover:border-neutral-000/24 text-neutral-000 border transition',
+        'focus-visible:outline-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
+      )}
+      {...props}
+    >
+      <RefreshIcon />
+    </button>
+  )
+}
+
+function BrowserChrome() {
+  return (
+    <div className="flex items-center gap-3 px-3 py-2.5">
+      <div
+        className="flex shrink-0 items-center gap-1.5"
+        aria-hidden
+      >
+        <span className="size-2.5 rounded-full bg-[#FF5F57]" />
+        <span className="size-2.5 rounded-full bg-[#FEBC2E]" />
+        <span className="size-2.5 rounded-full bg-[#28C840]" />
+      </div>
+      <div className="flex min-w-0 flex-1 items-center gap-2 rounded-md border border-white/10 bg-[#0e1015]/80 px-3 py-1.5">
+        <svg
+          className="size-3.5 shrink-0 text-neutral-500"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden
+        >
+          <path
+            d="M8 1a5 5 0 0 0-5 5v2H2.5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5H13V6a5 5 0 0 0-5-5Zm-4 7V6a4 4 0 1 1 8 0v2H4Z"
+            fill="currentColor"
+          />
+        </svg>
+        <span className="text-caption truncate text-neutral-400">
+          {CONSOLE_DEMO_URL}
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export default function WorkbenchDemoFrame({
   className,
 }: WorkbenchDemoFrameProps) {
@@ -35,7 +110,6 @@ export default function WorkbenchDemoFrame({
   const [total, setTotal] = useState(WORKBENCH_DEMO_TOUR_TOTAL)
   const [loaded, setLoaded] = useState(false)
   const [fromIframe, setFromIframe] = useState<TourStepMessage | null>(null)
-  const progressId = useId()
   const statusId = useId()
 
   const iframeMatchesStep = fromIframe?.step === step
@@ -84,14 +158,6 @@ export default function WorkbenchDemoFrame({
     goToStep(step + 1)
   }, [goToStep, step])
 
-  const handleBack = useCallback(() => {
-    goToStep(step - 1)
-  }, [goToStep, step])
-
-  const handleBookDemo = useCallback(() => {
-    activateHeroBookDemoCta()
-  }, [])
-
   const resetDemo = useCallback(() => {
     const iframe = iframeRef.current
     if (!iframe) return
@@ -99,11 +165,18 @@ export default function WorkbenchDemoFrame({
     setStep(0)
     setTotal(WORKBENCH_DEMO_TOUR_TOTAL)
     setFromIframe(null)
+    setLoaded(false)
   }, [])
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== window.location.origin) return
+
+      if (event.data?.type === 'workbench-demo-book-demo') {
+        activateHeroBookDemoCta()
+        return
+      }
+
       if (event.data?.type !== 'workbench-demo-step') return
 
       const next = Number(event.data.step)
@@ -142,31 +215,20 @@ export default function WorkbenchDemoFrame({
   }, [])
 
   return (
-    <div
-      className={cn(
-        'relative my-3 flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_24px_80px_rgba(0,0,0,0.45)]',
-        className
-      )}
-      role="region"
+    <section
+      className={cn(className)}
       aria-label="Interactive workbench walkthrough"
     >
-      <div className="flex items-center justify-between gap-4 border-b border-white/10 bg-neutral-800/80 px-4 py-2.5">
+      <div
+        className={styles.tourCaption}
+        role="region"
+        aria-labelledby={statusId}
+      >
         <p
           id={statusId}
-          className="text-body-small min-w-0 flex-1 leading-snug text-neutral-300"
+          className="text-body-small text-neutral-000 mx-auto max-w-3xl leading-snug"
         >
-          <span className="font-medium text-neutral-400 tabular-nums">
-            Step {step + 1} of {total}
-          </span>
-          <span
-            className="text-neutral-500"
-            aria-hidden
-          >
-            {' '}
-            ·{' '}
-          </span>
-          <strong className="text-neutral-000 font-semibold">{barVerb}</strong>
-          <span> {barRest}</span>
+          Step {step + 1} of {total} · {barVerb} {barRest}
         </p>
         <p
           className="sr-only"
@@ -175,29 +237,59 @@ export default function WorkbenchDemoFrame({
         >
           {stepTitle}. {srCaption}
         </p>
+      </div>
+
+      <div className={styles.showcaseFrame}>
+        <div className={styles.browser}>
+          <div className={styles.browserBar}>
+            <BrowserChrome />
+          </div>
+          <div className={styles.browserViewport}>
+            {!loaded && (
+              <div
+                className="absolute inset-0 z-10 flex items-center justify-center bg-[#171a21] text-neutral-300"
+                style={{ height: DEMO_VIEWPORT_HEIGHT }}
+                aria-live="polite"
+              >
+                Loading demo…
+              </div>
+            )}
+            <iframe
+              ref={iframeRef}
+              src="/workbench-demo/index.html"
+              title="Plural workbench interactive demo"
+              style={{
+                height: DEMO_VIEWPORT_HEIGHT,
+                maxHeight: 'min(68vh, 676px)',
+              }}
+              loading="lazy"
+              onLoad={() => setLoaded(true)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <nav
+        className={styles.tourNav}
+        aria-label={`Walkthrough controls, step ${step + 1} of ${total}`}
+      >
+        <PrevButton
+          type="button"
+          disabled={onFirstStep}
+          onClick={() => goToStep(step - 1)}
+          aria-label="Previous step"
+        />
         <div
-          id={progressId}
-          className="flex shrink-0 items-center gap-2"
+          className={styles.tourDots}
           role="group"
-          aria-label={`Walkthrough progress, step ${step + 1} of ${total}`}
+          aria-label={`Progress, step ${step + 1} of ${total}`}
         >
-          {!onFirstStep ? (
-            <Button
-              type="button"
-              variant="alt"
-              size="small"
-              onClick={handleBack}
-              className="shrink-0"
-            >
-              Back
-            </Button>
-          ) : null}
           {Array.from({ length: total }, (_, i) => {
-            const title = WORKBENCH_DEMO_TOUR_STEPS[i]?.title ?? `Step ${i + 1}`
+            const title = getWorkbenchDemoTourTitle(i)
             const isCurrent = i === step
             return (
               <button
-                key={i}
+                key={title}
                 type="button"
                 onClick={() => goToStep(i)}
                 aria-label={`Go to step ${i + 1} of ${total}: ${title}`}
@@ -209,57 +301,21 @@ export default function WorkbenchDemoFrame({
               />
             )
           })}
-          {onLastStep ? (
-            <Button
-              type="button"
-              variant="alt"
-              size="small"
-              onClick={handleBookDemo}
-              className="shrink-0"
-            >
-              Book a demo
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              variant="alt"
-              size="small"
-              onClick={handleNext}
-              className="shrink-0"
-            >
-              Next
-            </Button>
-          )}
-          <Button
-            type="button"
-            variant="alt"
-            size="small"
-            onClick={resetDemo}
-          >
-            Restart
-          </Button>
         </div>
-      </div>
-
-      <div className="relative">
-        {!loaded && (
-          <div
-            className="absolute inset-0 z-10 flex items-center justify-center bg-neutral-900 text-neutral-300"
-            aria-live="polite"
-          >
-            Loading demo…
-          </div>
+        {onLastStep ? (
+          <TourRefreshButton
+            type="button"
+            onClick={resetDemo}
+            aria-label="Restart demo"
+          />
+        ) : (
+          <NextButton
+            type="button"
+            onClick={handleNext}
+            aria-label="Next step"
+          />
         )}
-        <iframe
-          ref={iframeRef}
-          src="/workbench-demo/index.html"
-          title="Plural workbench interactive demo"
-          className="block w-full border-0"
-          style={{ height: 'min(72vh, 680px)', minHeight: 520 }}
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-        />
-      </div>
-    </div>
+      </nav>
+    </section>
   )
 }

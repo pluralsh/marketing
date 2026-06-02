@@ -7,8 +7,9 @@ import type { SliceVariationProps } from '@/types/prismicio'
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
 import { HERO_BOOK_DEMO_CTA_ATTR } from '@/components/workbench-demo/bookDemoTarget'
-import WorkbenchDemoFrame from '@/components/workbench-demo/WorkbenchDemoFrame'
 import Eyebrow from '@/components/ui/Eyebrow'
+
+import HeroExclusiveDemoMedia from './HeroExclusiveDemoMedia'
 
 export type HeroExclusiveDemoProps = SliceVariationProps<
   Content.HeroSlice,
@@ -17,7 +18,16 @@ export type HeroExclusiveDemoProps = SliceVariationProps<
 
 /** Homepage hero with embedded workbench walkthrough (use only on `home` in Prismic). */
 export default function HeroExclusiveDemo({ slice }: HeroExclusiveDemoProps) {
-  const { eyebrow, eyebrow_emphasized, title, description, cta } = slice.primary
+  const {
+    eyebrow,
+    eyebrow_emphasized,
+    title,
+    description,
+    cta,
+    full_bleed_image,
+    is_short_image,
+    image_mobile,
+  } = slice.primary
 
   return (
     <SliceContainer
@@ -58,7 +68,13 @@ export default function HeroExclusiveDemo({ slice }: HeroExclusiveDemoProps) {
         </div>
       </div>
       <div className="separator" />
-      <WorkbenchDemoFrame />
+      <div className="content-full-bleed">
+        <HeroExclusiveDemoMedia
+          fullBleedImage={full_bleed_image}
+          imageMobile={image_mobile}
+          isShortImage={is_short_image}
+        />
+      </div>
     </SliceContainer>
   )
 }

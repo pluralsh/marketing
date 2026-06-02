@@ -1,4 +1,4 @@
-/* demo-hints.jsx — pulsing callouts on the active tour target. */
+/* demo-hints.jsx — pulsing highlight ring on the active tour target. */
 
 const DemoHint = ({
   label,
@@ -19,11 +19,16 @@ const DemoHint = ({
   const hintLabel = label ?? meta?.label;
   const hintDescription = description ?? meta?.description ?? hintLabel;
   const descId = tourId ? `pc-tour-hint-desc-${tourId}` : undefined;
-  const showLabel = !ringOnly && hintLabel;
 
   const Tag = block ? 'div' : 'span';
   const placeClass =
-    placement === 'below' ? ' pc-demo-hint--below' : placement === 'left' ? ' pc-demo-hint--left' : '';
+    ringOnly || block
+      ? ''
+      : placement === 'below'
+        ? ' pc-demo-hint--below'
+        : placement === 'left'
+          ? ' pc-demo-hint--left'
+          : '';
 
   return (
     <Tag
@@ -40,14 +45,11 @@ const DemoHint = ({
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child) || !descId) return child;
         return React.cloneElement(child, {
-          'aria-describedby': [child.props['aria-describedby'], descId].filter(Boolean).join(' ') || undefined,
+          'aria-describedby':
+            [child.props['aria-describedby'], descId].filter(Boolean).join(' ') ||
+            undefined,
         });
       })}
-      {showLabel ? (
-        <span className="pc-demo-hint__label" id={descId ? `${descId}-label` : undefined}>
-          {hintLabel}
-        </span>
-      ) : null}
       {hintDescription ? (
         <span id={descId} className="pc-sr-only">
           {hintDescription}

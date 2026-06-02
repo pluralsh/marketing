@@ -47,12 +47,10 @@ function getTourState(screen, promptReady, jobPhase) {
       title: s.title,
       target: ready ? 'send-job' : 'prompt-card',
       passive: false,
-      caption: ready
-        ? s.srCaption
-        : 'Step 2 of 5. demo-workbench is selected. Watch the investigation prompt fill in, then send it.',
-      barVerb: ready ? s.barVerb : 'Watch',
-      barRest: ready ? s.barRest : 'the prompt fill in — then send it.',
-      hints: ready ? s.hints : stepMeta(0).hints,
+      caption: s.srCaption,
+      barVerb: s.barVerb,
+      barRest: s.barRest,
+      hints: ready ? s.hints : {},
       dimSections: true,
     };
   }
@@ -152,6 +150,7 @@ const TourProvider = ({ tour, children }) => {
       >
         <p ref={announceRef} className="pc-sr-only" aria-live="polite" aria-atomic="true" />
         {children}
+        <window.DemoPointerHint tourId="view-job" />
       </div>
     </TourContext.Provider>
   );

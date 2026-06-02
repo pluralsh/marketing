@@ -127,15 +127,8 @@ const ALERT_TAGS = [
   ['status', '5xx'],
 ];
 
-const AlertLink = ({ href, children }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noreferrer"
-    className="pc-alert-detail__link"
-  >
-    {children}
-  </a>
+const AlertUrlText = ({ children }) => (
+  <span className="pc-alert-detail__link pc-alert-detail__link--static">{children}</span>
 );
 
 const AlertDetailBody = () => (
@@ -166,11 +159,11 @@ const AlertDetailBody = () => (
     <p className="pc-alert-detail__line">
       <strong>Plural Service:</strong> flow-test &nbsp; <strong>Plural Cluster:</strong> demo-prod &nbsp;
       <strong>Source:</strong>{' '}
-      <AlertLink href={ALERT_GRAFANA_VIEW}>{ALERT_GRAFANA_VIEW}</AlertLink>
+      <AlertUrlText>{ALERT_GRAFANA_VIEW}</AlertUrlText>
     </p>
     <p className="pc-alert-detail__line">
       <strong>Silence:</strong>{' '}
-      <AlertLink href={ALERT_GRAFANA_SILENCE}>{ALERT_GRAFANA_SILENCE}</AlertLink>
+      <AlertUrlText>{ALERT_GRAFANA_SILENCE}</AlertUrlText>
     </p>
     <div className="pc-alert-detail__meta">
       <div className="pc-alert-detail__meta-col">
@@ -248,14 +241,14 @@ const AlertRow = ({ onViewJob }) => {
           <div className="pc-alert-row__title">[FIRING:1] Flow 500s test (demo-prod st…</div>
           <div className="pc-alert-row__time">6/1/2026 7:45am</div>
           {!open ? (
-            <AlertLink href={ALERT_GRAFANA_VIEW}>
+            <AlertUrlText>
               <span className="pc-alert-row__url">{ALERT_GRAFANA_VIEW}</span>
               <window.ArrowUpIcon
                 size={12}
                 color="var(--text-primary-accent)"
                 style={{ transform: 'rotate(45deg)', flexShrink: 0 }}
               />
-            </AlertLink>
+            </AlertUrlText>
           ) : null}
         </div>
         <span className="pc-chip pc-chip--danger pc-alert-row__chip">
@@ -264,7 +257,12 @@ const AlertRow = ({ onViewJob }) => {
         </span>
         <span className="pc-chip pc-chip--danger pc-alert-row__chip">Critical</span>
         <window.TourTarget id="view-job" className="pc-tour-target--fit">
-          <window.DemoHint tourId="view-job" ringOnly className="pc-demo-hint--pill">
+          <window.DemoHint
+            tourId="view-job"
+            ringOnly
+            placement="below"
+            className="pc-demo-hint--pill"
+          >
             <ViewJobChip onViewJob={onViewJob} />
           </window.DemoHint>
         </window.TourTarget>

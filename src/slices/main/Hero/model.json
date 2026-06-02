@@ -155,6 +155,33 @@
             "placeholder_true": "true",
             "default_value": true
           }
+        },
+        "full_bleed_image": {
+          "type": "Image",
+          "config": {
+            "label": "Full Bleed Image",
+            "constraint": {
+              "height": 600
+            },
+            "thumbnails": []
+          }
+        },
+        "is_short_image": {
+          "type": "Boolean",
+          "config": {
+            "label": "Is Short Image",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
+        "image_mobile": {
+          "type": "Image",
+          "config": {
+            "label": "Image Mobile",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

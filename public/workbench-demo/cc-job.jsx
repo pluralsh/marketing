@@ -297,8 +297,65 @@ const PR_DIFF = [
   { t: 'ctx', text: '    return {"status": "ok"}' },
 ];
 
-const RemediationPRCard = () => (
-  <div className="pc-card pc-remediation-pr">
+const BookDemoModal = ({ open, onClose, onBook }) => {
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div className="pc-demo-modal-backdrop" onClick={onClose} role="presentation">
+      <div
+        className="pc-demo-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pc-book-demo-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 id="pc-book-demo-modal-title" className="pc-demo-modal__title">
+          Want to see what it can do for you?
+        </h2>
+        <p className="pc-demo-modal__body t-body2">
+          {"Let's chat — we'll show you what's possible on your stack."}
+        </p>
+        <div className="pc-demo-modal__actions">
+          <button type="button" className="pc-btn pc-btn--secondary" onClick={onClose}>
+            Not now
+          </button>
+          <button type="button" className="pc-btn pc-btn--primary" onClick={onBook}>
+            Book a demo
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RemediationPRCard = ({ onActivate }) => (
+  <div
+    className={
+      'pc-card pc-remediation-pr' + (onActivate ? ' pc-remediation-pr--clickable' : '')
+    }
+    role={onActivate ? 'button' : undefined}
+    tabIndex={onActivate ? 0 : undefined}
+    onClick={onActivate}
+    onKeyDown={
+      onActivate
+        ? (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onActivate();
+            }
+          }
+        : undefined
+    }
+  >
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--sp-medium)', marginBottom: 'var(--sp-small)' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--sp-small)', minWidth: 0 }}>
         <span style={{ width: 32, height: 32, borderRadius: 'var(--r-medium)', background: 'var(--fill-two)', border: '1px solid var(--border-input)', display: 'inline-grid', placeItems: 'center', color: 'var(--icon-light)', flexShrink: 0 }}><window.GitPullIcon size={14} /></span>
@@ -336,7 +393,7 @@ const RemediationPRCard = () => (
   </div>
 );
 
-const PRView = () => (
+const PRView = ({ onPrAreaClick }) => (
   <section className="pc-pr-conclusion" aria-labelledby="pc-pr-conclusion-title">
     <h2 id="pc-pr-conclusion-title" className="pc-pr-conclusion__title">Conclusion</h2>
     <p className="pc-pr-conclusion__lead">
@@ -344,7 +401,7 @@ const PRView = () => (
     </p>
     <window.TourTarget id="remediation-pr">
       <window.DemoHint tourId="remediation-pr" block className="pc-demo-hint--block pc-demo-hint--conclusion">
-        <RemediationPRCard />
+        <RemediationPRCard onActivate={onPrAreaClick} />
       </window.DemoHint>
     </window.TourTarget>
   </section>
@@ -388,7 +445,7 @@ const RESULT_TABS = [
   { label: 'Eval', I: 'AiSparkleIcon' },
 ];
 
-const ResultsPanel = ({ tab, setTab, loading, onClose, runStep, jobDone }) => {
+const ResultsPanel = ({ tab, setTab, loading, onClose, runStep, jobDone, onPrAreaClick }) => {
   const tour = window.useTour ? window.useTour() : null;
   const highlightPrs = jobDone && tour?.target === 'remediation-pr';
 
@@ -423,7 +480,7 @@ const ResultsPanel = ({ tab, setTab, loading, onClose, runStep, jobDone }) => {
           : tab === 'Conclusion' ? <RootCauseBody full />
             : tab === 'Dashboard' ? <DashboardView />
               : tab === 'Topology' ? <div style={{ height: 600, display: 'flex' }}><window.ServiceGraph /></div>
-                : tab === 'PRs' ? <PRView />
+                : tab === 'PRs' ? <PRView onPrAreaClick={jobDone ? onPrAreaClick : undefined} />
                   : <EvalView />}
       </div>
     </aside>
@@ -439,6 +496,7 @@ const CCJob = ({ onBack, onPhaseChange, startPhase = 'running' }) => {
   const [tab, setTab] = React.useState('Conclusion');
   const [thinkingOpen, setThinkingOpen] = React.useState(false);
   const [openActs, setOpenActs] = React.useState({});
+  const [bookModalOpen, setBookModalOpen] = React.useState(false);
   const dots = useThinkingDots();
   const { jobTools, activities, active } = useRunProgress(n);
 
@@ -473,8 +531,25 @@ const CCJob = ({ onBack, onPhaseChange, startPhase = 'running' }) => {
   const jobPendingTool = lastStep?.t === 'jobTool' ? lastStep.name : null;
   const whimsey = WHIMSEYS[Math.floor(n / 3) % WHIMSEYS.length];
 
+  const openBookDemoModal = () => setBookModalOpen(true);
+  const closeBookDemoModal = () => setBookModalOpen(false);
+  const confirmBookDemo = () => {
+    try {
+      window.parent.postMessage(
+        { type: 'workbench-demo-book-demo' },
+        window.location.origin
+      );
+    } catch (_) {}
+    setBookModalOpen(false);
+  };
+
   return (
     <div className="pc-main" style={{ padding: 0 }}>
+      <BookDemoModal
+        open={bookModalOpen}
+        onClose={closeBookDemoModal}
+        onBook={confirmBookDemo}
+      />
       <div style={{ flex: 1, display: 'flex', minWidth: 0, minHeight: 0 }}>
         {/* LEFT — thread */}
         <div style={{ flex: '1 1 0', minWidth: 340, display: 'flex', flexDirection: 'column', background: 'var(--grey-950)' }}>
@@ -602,7 +677,15 @@ const CCJob = ({ onBack, onPhaseChange, startPhase = 'running' }) => {
         </div>
 
         {/* RIGHT — results */}
-        <ResultsPanel tab={tab} setTab={setTab} loading={running} onClose={onBack} runStep={n} jobDone={!running} />
+        <ResultsPanel
+          tab={tab}
+          setTab={setTab}
+          loading={running}
+          onClose={onBack}
+          runStep={n}
+          jobDone={!running}
+          onPrAreaClick={openBookDemoModal}
+        />
       </div>
     </div>
   );

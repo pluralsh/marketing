@@ -124,6 +124,13 @@ button { font-family: inherit; }
 
 .t-body1 { font-family: var(--font-sans); font-size: 16px; line-height: 24px; letter-spacing: 0.5px; font-weight: 400; }
 .t-body2 { font-family: var(--font-sans); font-size: 14px; line-height: 20px; letter-spacing: 0.5px; font-weight: 400; }
+.t-body2-bold {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  font-weight: 600;
+}
 .t-caption  { font-family: var(--font-sans); font-size: 12px; line-height: 16px; letter-spacing: 0.5px; font-weight: 400; }
 .t-overline { font-family: var(--font-semi); font-size: 12px; line-height: 16px; letter-spacing: 1.25px; font-weight: 400; text-transform: uppercase; }
 .t-title1   { font-family: var(--font-semi); font-size: 30px; line-height: 40px; letter-spacing: -0.25px; font-weight: 500; }
@@ -764,6 +771,10 @@ button { font-family: inherit; }
   text-decoration-color: rgba(153, 218, 255, 0.4);
   word-break: break-all;
 }
+.pc-alert-detail__link--static {
+  cursor: default;
+  pointer-events: none;
+}
 .pc-alert-row__chip {
   padding: 3px 10px;
   flex-shrink: 0;
@@ -877,6 +888,9 @@ button { font-family: inherit; }
 .pc-tour-root--dim-sections .pc-rail__item:not(.pc-rail__item--active) {
   opacity: 0.65;
 }
+.pc-tour-root {
+  position: relative;
+}
 
 /* ─────────────────────────  Tour targets  ─────────────────────────── */
 .pc-tour-target--fit {
@@ -884,10 +898,100 @@ button { font-family: inherit; }
   flex: 0 0 auto;
   width: fit-content;
   max-width: max-content;
+  height: fit-content;
+  max-height: max-content;
+  align-self: center;
   vertical-align: middle;
+}
+.pc-alert-row__header .pc-tour-target--fit,
+.pc-prompt-card > div:last-child .pc-tour-target--fit {
+  align-self: center;
+}
+.pc-prompt-card--interactive {
+  cursor: pointer;
+}
+.pc-prompt-card--interactive textarea {
+  pointer-events: none;
 }
 .pc-tour-target--active[data-tour-id="prompt-card"] > .pc-prompt-card,
 .pc-prompt-card:has([data-tour-id="prompt-card"].pc-tour-target--active) {
+  border-color: var(--action-primary);
+  animation: pc-tour-overlay-pulse 1.8s ease-in-out infinite;
+}
+/* Saved prompt cards — Figma Featured Card Component (18578:96804) */
+.pc-saved-prompts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-medium);
+}
+.pc-saved-prompt-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-small);
+  width: 100%;
+  min-width: 0;
+  padding: var(--sp-medium);
+  border: 1px solid var(--border);
+  border-radius: var(--r-large);
+  background: var(--fill-one);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+.pc-saved-prompt-card:hover:not(.pc-saved-prompt-card--static) {
+  border-color: var(--border-fill-one);
+}
+.pc-saved-prompt-card--static {
+  cursor: default;
+}
+.pc-saved-prompt-card--selected {
+  border-color: var(--border-fill-one);
+}
+.pc-saved-prompt-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-small);
+  width: 100%;
+  min-height: 36px;
+}
+.pc-saved-prompt-card__title {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-right: var(--sp-large);
+  margin: 0;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pc-saved-prompt-card__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: var(--sp-xxsmall);
+  border-radius: 999px;
+  background: var(--fill-two);
+  display: grid;
+  place-items: center;
+  color: var(--icon-light);
+}
+.pc-saved-prompt-card__description {
+  margin: 0;
+  width: 100%;
+  min-height: 40px;
+  max-height: 40px;
+  color: var(--text-light);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-word;
+}
+.pc-tour-target--active[data-tour-id="prompt-card"] .pc-saved-prompt-card,
+.pc-saved-prompt-card:has([data-tour-id="prompt-card"].pc-tour-target--active) {
   border-color: var(--action-primary);
   animation: pc-tour-overlay-pulse 1.8s ease-in-out infinite;
 }
@@ -915,46 +1019,39 @@ button { font-family: inherit; }
 .pc-demo-hint--pill::after {
   border-radius: 999px;
 }
-.pc-demo-hint--pill .pc-demo-hint__label {
-  white-space: nowrap;
-}
-.pc-demo-hint--ring-only.pc-demo-hint--pill {
+.pc-demo-hint--ring-only {
   display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  max-width: max-content;
+  max-height: max-content;
+  flex: 0 0 auto;
+  align-self: center;
   vertical-align: middle;
 }
-.pc-demo-hint--ring-only.pc-demo-hint--below {
-  padding-bottom: 0;
-}
-.pc-demo-hint--below {
-  padding-bottom: 38px;
-}
-.pc-demo-hint--below .pc-demo-hint__label {
-  top: auto;
-  bottom: 0;
-  right: 0;
-  left: auto;
-  transform: translate(0, calc(100% + 8px));
-}
-.pc-demo-hint--left .pc-demo-hint__label {
-  top: 50%;
-  right: auto;
-  left: 0;
-  transform: translate(calc(-100% - 10px), -50%);
+.pc-demo-hint--ring-only.pc-demo-hint--pill {
+  align-items: center;
+  justify-content: center;
 }
 .pc-demo-hint--pill > button,
-.pc-demo-hint--pill > *:not(.pc-demo-hint__label) {
+.pc-demo-hint--pill > *:not(.pc-sr-only) {
   border-radius: 999px !important;
 }
-/* Tabs live in overflow-x rows — keep ring inside bounds, label below */
+.pc-demo-hint--ring-only.pc-demo-hint--active::after {
+  display: none;
+}
+.pc-demo-hint--ring-only.pc-demo-hint--active > :is(button, .pc-chip):not(.pc-sr-only) {
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 0 2px var(--purple-300),
+    0 0 0 5px rgba(74, 81, 242, 0.22),
+    0 0 22px rgba(116, 122, 246, 0.38);
+  animation: pc-tour-ring-pulse 1.8s ease-in-out infinite;
+}
+/* Tabs live in overflow-x rows — keep ring inside bounds, card below */
 .pc-demo-hint--tab::after {
   inset: 0;
-}
-.pc-demo-hint--tab .pc-demo-hint__label {
-  top: auto;
-  bottom: 0;
-  left: 50%;
-  right: auto;
-  transform: translate(-50%, calc(100% + 8px));
 }
 .pc-results-tabs {
   display: flex;
@@ -1011,17 +1108,55 @@ button { font-family: inherit; }
 .pc-demo-hint--conclusion.pc-demo-hint--active {
   margin-top: 0;
 }
-.pc-demo-hint--conclusion .pc-demo-hint__label {
-  top: 0;
-  right: 0;
-  transform: translate(0, calc(-100% - 6px));
-}
 .pc-demo-hint--conclusion.pc-demo-hint--active::after {
   inset: -2px;
 }
 .pc-remediation-pr {
   background: var(--fill-one);
   padding: 12px var(--sp-medium);
+}
+.pc-remediation-pr--clickable {
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.pc-remediation-pr--clickable:hover {
+  border-color: var(--border-fill-one);
+}
+.pc-demo-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-medium);
+  background: rgba(14, 16, 21, 0.78);
+}
+.pc-demo-modal {
+  width: min(100%, 420px);
+  padding: var(--sp-large);
+  border: 1px solid var(--border);
+  border-radius: var(--r-large);
+  background: var(--fill-one);
+  box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.85);
+}
+.pc-demo-modal__title {
+  margin: 0 0 var(--sp-small);
+  font-family: var(--font-semi);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.25px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.pc-demo-modal__body {
+  margin: 0 0 var(--sp-large);
+  color: var(--text-light);
+}
+.pc-demo-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-small);
 }
 .pc-demo-hint--active::after {
   content: '';
@@ -1036,8 +1171,22 @@ button { font-family: inherit; }
   animation: pc-demo-hint-pulse 1.8s ease-in-out infinite;
   z-index: 3;
 }
-.pc-demo-hint--pill.pc-demo-hint--active::after {
+.pc-demo-hint--pill:not(.pc-demo-hint--ring-only).pc-demo-hint--active::after {
   inset: -3px;
+}
+@keyframes pc-tour-ring-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px var(--purple-300),
+      0 0 0 5px rgba(74, 81, 242, 0.22),
+      0 0 20px rgba(116, 122, 246, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--action-primary),
+      0 0 0 5px rgba(74, 81, 242, 0.3),
+      0 0 28px rgba(116, 122, 246, 0.48);
+  }
 }
 @keyframes pc-tour-overlay-pulse {
   0%, 100% {
@@ -1051,34 +1200,39 @@ button { font-family: inherit; }
     border-color: var(--purple-300);
   }
 }
-.pc-demo-hint__label {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(6px, calc(-100% - 10px));
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--purple-400);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 4;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-.pc-demo-hint--block .pc-demo-hint__label {
-  transform: translate(0, calc(-100% - 10px));
-}
 @keyframes pc-demo-hint-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.01); }
 }
-@keyframes pc-demo-caret {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+/* Pointer finger cue (workbench → View job) */
+.pc-demo-pointer-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  overflow: visible;
+}
+.pc-demo-pointer {
+  position: absolute;
+  pointer-events: none;
+  margin: 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+  transform: translate(35px, 26px) rotate(-22deg);
+  transform-origin: 8px 5px;
+  animation: pc-demo-pointer-approach 1.75s ease-in-out infinite;
+}
+.pc-demo-pointer--static {
+  animation: none;
+  transform: translate(8px, 5px) rotate(-22deg);
+}
+@keyframes pc-demo-pointer-approach {
+  0%, 100% {
+    transform: translate(35px, 26px) rotate(-22deg);
+  }
+  55% {
+    transform: translate(6px, 3px) rotate(-22deg);
+  }
 }
 
 /* ─────────────────────────  Misc utilities  ────────────────────────── */
@@ -1099,6 +1253,7 @@ button { font-family: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .pc-demo-hint--active::after,
   .pc-demo-hint--active,
+  .pc-demo-hint--ring-only.pc-demo-hint--active > :is(button, .pc-chip):not(.pc-sr-only),
   .pc-text-shimmer,
   .pc-spinner-alt,
   .pc-loader-pulse,
@@ -1112,6 +1267,14 @@ button { font-family: inherit; }
   .pc-demo-hint--active::after {
     opacity: 1;
     transform: none;
+  }
+  .pc-demo-hint--ring-only.pc-demo-hint--active > :is(button, .pc-chip):not(.pc-sr-only) {
+    box-shadow:
+      0 0 0 2px var(--purple-300),
+      0 0 0 5px rgba(74, 81, 242, 0.22);
+  }
+  .pc-demo-pointer {
+    animation: none !important;
   }
   .pc-tour-target--active[data-tour-id="prompt-card"] > .pc-prompt-card,
   .pc-prompt-card:has([data-tour-id="prompt-card"].pc-tour-target--active),

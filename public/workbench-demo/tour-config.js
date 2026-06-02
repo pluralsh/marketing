@@ -4,26 +4,26 @@ window.WORKBENCH_DEMO_TOUR = {
   "total": 5,
   "steps": [
     {
-      "title": "Choose workbench",
-      "barVerb": "Pick",
-      "barRest": "demo-workbench so the job uses your observability and GitHub integrations.",
-      "srCaption": "Step 1 of 5. A Flow 500s alert just fired. Pick demo-workbench so the job runs against your real observability and GitHub integrations.",
+      "title": "Start the investigation",
+      "barVerb": "Click",
+      "barRest": "Investigate Flow 500s — Plural agents help you investigate and respond to any alerts from your stack.",
+      "srCaption": "Step 1 of 5. Plural agents can help you investigate and respond to any alerts from your stack. Click Investigate Flow 500s to start with a Flow 500s example.",
       "hints": {
         "prompt-card": {
-          "label": "Pick demo-workbench",
-          "description": "A Flow 500s alert just fired. Select demo-workbench so the investigation can use your Prometheus, Elastic, and GitHub integrations."
+          "label": "Investigate Flow 500s",
+          "description": "Plural agents help you investigate and respond to any alerts from your stack. Click to open this Flow 500s investigation."
         }
       }
     },
     {
       "title": "Send the job",
       "barVerb": "Send",
-      "barRest": "the prompt to kick off the investigation.",
-      "srCaption": "Step 2 of 5. The prompt tells the agent to find why /ping is failing and open a fix PR. Send it to kick off the investigation.",
+      "barRest": "the prompt — it traces Flow 500s on GET /ping, investigates with metrics and logs, and opens a fix PR.",
+      "srCaption": "Step 2 of 5. Send the prompt to kick off the investigation. The agent will find why flow-test-stateless is returning sustained 5xx, pull live observability data, and draft a minimal fix PR.",
       "hints": {
         "send-job": {
-          "label": "Send it",
-          "description": "Send the prompt to start the agent job against the Flow 500s alert."
+          "label": "Send the prompt",
+          "description": "Kicks off the agent to investigate the Flow 500s alert on demo-prod, identify root cause, and propose a code fix."
         }
       }
     },
@@ -42,19 +42,19 @@ window.WORKBENCH_DEMO_TOUR = {
     {
       "title": "Watch the agent",
       "barVerb": "Watch",
-      "barRest": "metrics, logs, and theory assemble on the right.",
-      "srCaption": "Step 4 of 5. The agent is pulling metrics and logs, calling tools, and assembling a theory on the right as it goes.",
+      "barRest": "as Plural dispatches subagents in parallel against logs, metrics, traces, cluster state, and recent deployments.",
+      "srCaption": "Step 4 of 5. Plural dispatches subagents in parallel against logs, metrics, traces, cluster state, and recent deployments. Watch the job thread and results panel assemble a working theory on the right.",
       "hints": {}
     },
     {
       "title": "Review the outcome",
-      "barVerb": "Review",
-      "barRest": "what the agent concluded, then open the fix PR — nothing ships without you.",
-      "srCaption": "Step 5 of 5. Investigation complete. Review what the agent concluded and why, then open the fix PR it drafted. Nothing ships without you.",
+      "barVerb": "Then open",
+      "barRest": "the draft PR that's been created — nothing ships without you.",
+      "srCaption": "Step 5 of 5. Investigation complete. Open the draft PR that's been created — nothing ships without you.",
       "hints": {
         "remediation-pr": {
-          "label": "You approve before it merges",
-          "description": "Review the fix the agent proposed and open the PR to see the code change. Nothing ships until you approve it."
+          "label": "Open the draft PR",
+          "description": "The agent opened a draft PR with the proposed fix. Nothing ships until you review and approve it."
         }
       }
     }
