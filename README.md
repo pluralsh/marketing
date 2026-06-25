@@ -92,3 +92,9 @@ For more info on the approach taken with i18n, see [the documentation][next-intl
 [nextjs]: https://nextjs.org/
 [live-demo]: https://nextjs-starter-prismic-minimal.vercel.app/
 [next-intl-docs]: https://next-intl.dev/docs/getting-started
+```shell
+yarn # build the environment
+yarn dev # run site locally
+```
+
+(ignore me)
