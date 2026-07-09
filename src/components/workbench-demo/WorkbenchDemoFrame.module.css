@@ -1,0 +1,60 @@
+/* Outer frame — rounded card + drop shadow (Plural Homepage showcase) */
+.showcaseFrame {
+  max-width: 1320px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--color-inverse-stroke);
+  background: var(--color-neutral-800);
+  padding: 4px;
+  box-shadow:
+    0 40px 120px -50px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(123, 40, 255, 0.04);
+}
+
+/* Inner browser window */
+.browser {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-inverse-stroke);
+  background: #171a21;
+  display: flex;
+  flex-direction: column;
+}
+
+.browserBar {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-inverse-stroke);
+}
+
+.browserViewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #171a21;
+}
+
+.browserViewport iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.tourCaption {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.tourNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.tourDots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

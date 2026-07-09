@@ -8,6 +8,8 @@ import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
 import Eyebrow from '@/components/ui/Eyebrow'
 
+import { BOOK_DEMO_FORM_ID } from '@/components/workbench-demo/bookDemoTarget'
+
 import HubSpotForm from './components/HubSpotForm'
 
 export type ContactDefaultProps = SliceVariationProps<
@@ -27,7 +29,9 @@ export default function ContactDefault({ slice }: ContactDefaultProps) {
   return (
     <SliceContainer
       slice={slice}
-      className="grid-container lg:grid-container-gutter-content-14"
+      id={BOOK_DEMO_FORM_ID}
+      tabIndex={-1}
+      className="grid-container lg:grid-container-gutter-content-14 scroll-mt-24 outline-none"
     >
       <div className="content">
         <div className="my-12 grid grid-cols-1 justify-start gap-x-9 gap-y-6 md:my-20 md:grid-cols-2">
