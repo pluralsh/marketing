@@ -1,13 +1,13 @@
 'use client'
 
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useState } from 'react'
 
 import { cn } from '@/utils/cn'
 
 import styles from './VideoDemoFrame.module.css'
 import {
-  VIDEO_DEMO_AUTOPLAY_MS,
   VIDEO_DEMO_TABS,
+  getTabDurationMs,
   type VideoDemoTab,
 } from './videoDemoTabs'
 
@@ -139,50 +139,40 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
   )
   const [activeIndex, setActiveIndex] = useState(initialIndex)
   const [progressKey, setProgressKey] = useState(0)
-  const [autoplay, setAutoplay] = useState(true)
   // Keep visited embeds mounted so tab switches don't tear down iframes
   // (Supademo can mutate the DOM and trigger removeChild errors on unmount).
   const [mountedTabs, setMountedTabs] = useState(() => new Set([initialIndex]))
-  const reduceMotionRef = useRef(false)
 
-  const goToTab = useCallback((index: number, fromUser = false) => {
+  const activeTab = VIDEO_DEMO_TABS[activeIndex]
+  const tabDurationMs = getTabDurationMs(activeTab)
+
+  const goToTab = useCallback((index: number) => {
     setActiveIndex(index)
+    setProgressKey((key) => key + 1)
     setMountedTabs((prev) => {
       if (prev.has(index)) return prev
       const next = new Set(prev)
       next.add(index)
       return next
     })
-    setProgressKey((key) => key + 1)
-    if (fromUser) setAutoplay(true)
   }, [])
 
+  // Railway-style: fill matches Supademo autoplay length, then advance.
+  // Timer (not animationend) so advance is reliable across browsers.
   useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    reduceMotionRef.current = query.matches
-    const onChange = () => {
-      reduceMotionRef.current = query.matches
-    }
-    query.addEventListener('change', onChange)
-    return () => query.removeEventListener('change', onChange)
-  }, [])
-
-  useEffect(() => {
-    if (!autoplay || reduceMotionRef.current) return
-
     const timeout = window.setTimeout(() => {
       goToTab((activeIndex + 1) % VIDEO_DEMO_TABS.length)
-    }, VIDEO_DEMO_AUTOPLAY_MS)
+    }, tabDurationMs)
 
     return () => window.clearTimeout(timeout)
-  }, [activeIndex, autoplay, goToTab, progressKey])
+  }, [activeIndex, progressKey, goToTab, tabDurationMs])
 
   return (
     <div
       className={cn(styles.showcaseFrame, className)}
       style={
         {
-          '--video-demo-autoplay-ms': `${VIDEO_DEMO_AUTOPLAY_MS}ms`,
+          '--video-demo-tab-ms': `${tabDurationMs}ms`,
           // 1 = natural size; >1 zooms the Supademo UI (crops edges)
           '--demo-scale': 1.05,
         } as React.CSSProperties
@@ -254,26 +244,18 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
                 styles.tabButton,
                 isActive && styles.tabButtonActive
               )}
-              onClick={() => goToTab(index, true)}
+              onClick={() => goToTab(index)}
             >
-              <span
-                className={styles.tabProgressTrack}
-                aria-hidden={!isActive}
-              >
+              {isActive ? (
                 <span
-                  key={isActive ? progressKey : `${tab.id}-idle`}
-                  className={cn(
-                    styles.tabProgressFill,
-                    isActive && autoplay && styles.tabProgressFillActive
-                  )}
-                  role={isActive ? 'progressbar' : undefined}
-                  aria-valuemin={isActive ? 0 : undefined}
-                  aria-valuemax={isActive ? 100 : undefined}
-                  aria-label={
-                    isActive ? `${tab.label} autoplay progress` : undefined
-                  }
+                  key={progressKey}
+                  className={styles.tabProgressFill}
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${tab.label} demo progress`}
                 />
-              </span>
+              ) : null}
               <span className={styles.tabLabel}>
                 {Icon ? (
                   <span className={styles.tabIcon}>
