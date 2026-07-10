@@ -10,9 +10,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return getMetadata('page', REQUIRED_PAGE_UID.HOME)
 }
 
-// Dev-only: preview the interactive workbench demo on the homepage without
+// Dev-only: preview the tabbed Supademo video demo on the homepage without
 // editing Prismic. The live `exclusive` hero already carries every field the
-// `exclusiveDemo` variation renders, so we just swap the variation. For
+// `exclusiveVideoDemo` variation renders, so we just swap the variation. For
 // production, set the variation in the Prismic Page Builder instead.
 const PREVIEW_HERO_DEMO = process.env.NODE_ENV !== 'production'
 
@@ -22,7 +22,7 @@ function withHeroDemoPreview(
   if (!PREVIEW_HERO_DEMO) return slices
   return slices.map((slice) =>
     slice.slice_type === 'hero'
-      ? { ...slice, variation: 'exclusiveDemo' }
+      ? { ...slice, variation: 'exclusiveVideoDemo' }
       : slice
   ) as typeof slices
 }

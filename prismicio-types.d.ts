@@ -2556,6 +2556,112 @@ export type HeroSliceExclusiveDemo = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *Hero → Exclusive (video demo) → Primary*
+ */
+export interface HeroSliceExclusiveVideoDemoPrimary {
+  /**
+   * Eyebrow field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  eyebrow: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * Title field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Description field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * CTA field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    'Primary' | 'Secondary'
+  >
+
+  /**
+   * Eyebrow Emphasized field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.eyebrow_emphasized
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  eyebrow_emphasized: prismic.BooleanField
+
+  /**
+   * Full Bleed Image field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.full_bleed_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  full_bleed_image: prismic.ImageField<never>
+
+  /**
+   * Is Short Image field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.is_short_image
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_short_image: prismic.BooleanField
+
+  /**
+   * Image Mobile field in *Hero → Exclusive (video demo) → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.exclusiveVideoDemo.primary.image_mobile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_mobile: prismic.ImageField<never>
+}
+
+/**
+ * Exclusive (video demo) variation for Hero Slice
+ *
+ * - **API ID**: `exclusiveVideoDemo`
+ * - **Description**: Homepage hero with tabbed Supademo walkthroughs
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceExclusiveVideoDemo = prismic.SharedSliceVariation<
+  'exclusiveVideoDemo',
+  Simplify<HeroSliceExclusiveVideoDemoPrimary>,
+  never
+>
+
+/**
  * Primary content in *Hero → Video → Primary*
  */
 export interface HeroSliceVideoPrimary {
@@ -2889,6 +2995,7 @@ export type HeroSliceExclusiveAnimated = prismic.SharedSliceVariation<
 type HeroSliceVariation =
   | HeroSliceExclusive
   | HeroSliceExclusiveDemo
+  | HeroSliceExclusiveVideoDemo
   | HeroSliceVideo
   | HeroSliceDefault
   | HeroSliceImage
@@ -5176,6 +5283,7 @@ declare module '@prismicio/client' {
       HeroSlice,
       HeroSliceExclusivePrimary,
       HeroSliceExclusiveDemoPrimary,
+      HeroSliceExclusiveVideoDemoPrimary,
       HeroSliceVideoPrimary,
       HeroSliceDefaultPrimary,
       HeroSliceImagePrimary,
@@ -5183,6 +5291,7 @@ declare module '@prismicio/client' {
       HeroSliceVariation,
       HeroSliceExclusive,
       HeroSliceExclusiveDemo,
+      HeroSliceExclusiveVideoDemo,
       HeroSliceVideo,
       HeroSliceDefault,
       HeroSliceImage,
