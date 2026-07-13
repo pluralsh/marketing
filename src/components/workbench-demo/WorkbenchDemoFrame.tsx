@@ -131,7 +131,7 @@ export default function WorkbenchDemoFrame({
       ? fromIframe.srCaption
       : getWorkbenchDemoTourSrCaption(step)
   const onFirstStep = step <= 0
-  const onLastStep = step >= WORKBENCH_DEMO_TOUR_TOTAL - 1
+  const onLastStep = step >= total - 1
 
   const postAdvance = useCallback((nextStep: number) => {
     const win = iframeRef.current?.contentWindow
@@ -144,14 +144,11 @@ export default function WorkbenchDemoFrame({
 
   const goToStep = useCallback(
     (nextStep: number) => {
-      const clamped = Math.max(
-        0,
-        Math.min(nextStep, WORKBENCH_DEMO_TOUR_TOTAL - 1)
-      )
+      const clamped = Math.max(0, Math.min(nextStep, total - 1))
       setStep(clamped)
       postAdvance(clamped)
     },
-    [postAdvance]
+    [postAdvance, total]
   )
 
   const handleNext = useCallback(() => {
@@ -181,11 +178,11 @@ export default function WorkbenchDemoFrame({
 
       const next = Number(event.data.step)
       const nextTotal = Number(event.data.total)
-      if (
-        Number.isFinite(next) &&
-        next >= 0 &&
-        next < WORKBENCH_DEMO_TOUR_TOTAL
-      ) {
+      const maxTotal =
+        Number.isFinite(nextTotal) && nextTotal > 0
+          ? nextTotal
+          : WORKBENCH_DEMO_TOUR_TOTAL
+      if (Number.isFinite(next) && next >= 0 && next < maxTotal) {
         setStep(next)
       }
       if (Number.isFinite(nextTotal) && nextTotal > 0) {

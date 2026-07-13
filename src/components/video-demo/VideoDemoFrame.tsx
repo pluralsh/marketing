@@ -92,7 +92,7 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
                 !isActive && styles.demoPanelHidden
               )}
               role="tabpanel"
-              id={isActive ? `${labelId}-panel` : undefined}
+              id={`${labelId}-panel-${tab.id}`}
               aria-labelledby={`${labelId}-tab-${tab.id}`}
               aria-hidden={!isActive}
               inert={!isActive ? true : undefined}
@@ -138,7 +138,7 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
               role="tab"
               id={`${labelId}-tab-${tab.id}`}
               aria-selected={isActive}
-              aria-controls={`${labelId}-panel`}
+              aria-controls={`${labelId}-panel-${tab.id}`}
               tabIndex={isActive ? 0 : -1}
               className={cn(
                 styles.tabButton,
