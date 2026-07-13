@@ -6,8 +6,9 @@ import type { SliceVariationProps } from '@/types/prismicio'
 
 import PrismicButton from '@/components/PrismicButton'
 import SliceContainer from '@/components/SliceContainer'
-import VideoDemoFrame from '@/components/video-demo/VideoDemoFrame'
 import Eyebrow from '@/components/ui/Eyebrow'
+
+import HeroExclusiveVideoDemoMedia from './HeroExclusiveVideoDemoMedia'
 
 export type HeroExclusiveVideoDemoProps = SliceVariationProps<
   Content.HeroSlice,
@@ -18,7 +19,16 @@ export type HeroExclusiveVideoDemoProps = SliceVariationProps<
 export default function HeroExclusiveVideoDemo({
   slice,
 }: HeroExclusiveVideoDemoProps) {
-  const { eyebrow, eyebrow_emphasized, title, description, cta } = slice.primary
+  const {
+    eyebrow,
+    eyebrow_emphasized,
+    title,
+    description,
+    cta,
+    full_bleed_image,
+    is_short_image,
+    image_mobile,
+  } = slice.primary
 
   return (
     <SliceContainer
@@ -59,11 +69,11 @@ export default function HeroExclusiveVideoDemo({
       </div>
       <div className="separator" />
       <div className="content-full-bleed">
-        <div className="my-3 flex w-full justify-center px-4 md:px-0">
-          <div className="w-full max-w-[1080px] md:w-[72%]">
-            <VideoDemoFrame />
-          </div>
-        </div>
+        <HeroExclusiveVideoDemoMedia
+          fullBleedImage={full_bleed_image}
+          imageMobile={image_mobile}
+          isShortImage={is_short_image}
+        />
       </div>
     </SliceContainer>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useId, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 
 import { cn } from '@/utils/cn'
 
@@ -39,14 +39,27 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
   )
   const [activeIndex, setActiveIndex] = useState(initialIndex)
   const [progressKey, setProgressKey] = useState(0)
+  // Bump per-tab to remount Supademo when revisiting (no embed restart API).
+  const [tabPlaybackKeys, setTabPlaybackKeys] = useState<
+    Record<string, number>
+  >({})
   // Keep visited embeds mounted so tab switches don't tear down iframes
   // (Supademo can mutate the DOM and trigger removeChild errors on unmount).
   const [mountedTabs, setMountedTabs] = useState(() => new Set([initialIndex]))
+  const mountedTabsRef = useRef(mountedTabs)
+  mountedTabsRef.current = mountedTabs
 
   const activeTab = VIDEO_DEMO_TABS[activeIndex]
   const tabDurationMs = getTabDurationMs(activeTab)
 
   const goToTab = useCallback((index: number) => {
+    const tab = VIDEO_DEMO_TABS[index]
+    if (mountedTabsRef.current.has(index)) {
+      setTabPlaybackKeys((keys) => ({
+        ...keys,
+        [tab.id]: (keys[tab.id] ?? 0) + 1,
+      }))
+    }
     setActiveIndex(index)
     setProgressKey((key) => key + 1)
     setMountedTabs((prev) => {
@@ -99,6 +112,7 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
             >
               {tab.embedUrl ? (
                 <iframe
+                  key={`${tab.id}-${tabPlaybackKeys[tab.id] ?? 0}`}
                   src={tab.embedUrl}
                   title={tab.title}
                   loading="lazy"
