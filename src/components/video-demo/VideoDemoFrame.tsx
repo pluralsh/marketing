@@ -4,6 +4,12 @@ import { useCallback, useEffect, useId, useState } from 'react'
 
 import { cn } from '@/utils/cn'
 
+import {
+  CostManagementIcon,
+  TicketIcon,
+  WarningIcon,
+  WarningShieldIcon,
+} from './consoleIcons'
 import styles from './VideoDemoFrame.module.css'
 import {
   VIDEO_DEMO_TABS,
@@ -15,120 +21,14 @@ type VideoDemoFrameProps = {
   className?: string
 }
 
-function IncidentIcon(props: React.ComponentProps<'svg'>) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      {...props}
-    >
-      <path
-        d="M8 1.75 14.25 13.5H1.75L8 1.75Z"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8 6.5v3.25M8 11.5h.01"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
-function CveIcon(props: React.ComponentProps<'svg'>) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      {...props}
-    >
-      <path
-        d="M8 1.75c2.2 1.1 3.75 1.35 5.25 1.35v4.4c0 3.05-2.05 5.2-5.25 6.25-3.2-1.05-5.25-3.2-5.25-6.25v-4.4C4.25 3.1 5.8 2.85 8 1.75Z"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5.75 8.1 7.2 9.55 10.35 6.4"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function TicketIcon(props: React.ComponentProps<'svg'>) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      {...props}
-    >
-      <path
-        d="M2.5 5.25A1.75 1.75 0 0 1 4.25 3.5h7.5A1.75 1.75 0 0 1 13.5 5.25v1.1a1.35 1.35 0 0 0 0 2.3v1.1A1.75 1.75 0 0 1 11.75 11.5h-7.5A1.75 1.75 0 0 1 2.5 9.75v-1.1a1.35 1.35 0 0 0 0-2.3v-1.1Z"
-        stroke="currentColor"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M6 6.25h4M6 9.75h4"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
-function SpendIcon(props: React.ComponentProps<'svg'>) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden
-      {...props}
-    >
-      <path
-        d="M3.25 11.5 6.5 8.25l2.25 2.25 4-4"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10.25 6.5h2.5v2.5"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 const TAB_ICONS: Record<
   VideoDemoTab['id'],
   (props: React.ComponentProps<'svg'>) => React.ReactElement
 > = {
-  'incident-response': IncidentIcon,
-  'cve-remediation': CveIcon,
+  'incident-response': WarningIcon,
+  'cve-remediation': WarningShieldIcon,
   'ticket-integration': TicketIcon,
-  'optimize-spend': SpendIcon,
+  'optimize-spend': CostManagementIcon,
 }
 
 export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
