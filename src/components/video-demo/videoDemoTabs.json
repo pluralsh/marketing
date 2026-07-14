@@ -1,0 +1,35 @@
+{
+  "stepDurationMs": 2000,
+  "transitionDelayMs": 1000,
+  "tabs": [
+    {
+      "id": "incident-response",
+      "label": "Incident response",
+      "title": "Resolve Critical Incidents in Minutes with Automated Root Cause Analysis",
+      "embedUrl": "https://app.supademo.com/embed/cmrf6ycal07v8qmb20vxtrv62?embed_v=2&utm_source=embed",
+      "slideCount": 4
+    },
+    {
+      "id": "cve-remediation",
+      "label": "CVE remediation",
+      "title": "CVE Remediation. Before you're on the call.",
+      "embedUrl": "https://app.supademo.com/embed/cmrf7u1cd08p8qmb2dsmcqyuf?embed_v=2&utm_source=embed",
+      "slideCount": 5
+    },
+    {
+      "id": "ticket-integration",
+      "label": "Ticket integration",
+      "title": "Turn tickets into Pull Requests with Plural",
+      "embedUrl": "https://app.supademo.com/embed/cmrdzztb200leqmo45h4dqndv?embed_v=2&utm_source=embed",
+      "slideCount": 5
+    },
+    {
+      "id": "optimize-spend",
+      "label": "FinOps",
+      "title": "FinOps that pays for itself",
+      "embedUrl": "https://app.supademo.com/embed/cmrdspqkq3tw1qmo57so8739b?embed_v=2&utm_source=embed",
+      "slideCount": 4,
+      "lastSlideDurationMs": 10000
+    }
+  ]
+}

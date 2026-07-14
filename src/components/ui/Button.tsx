@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn'
 
 const button = tv({
   slots: {
-    base: 'box-border relative inline-flex items-center justify-center gap-2 rounded-sm whitespace-nowrap font-medium disabled:pointer-events-none disabled:opacity-50 transition',
+    base: 'box-border relative inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm whitespace-nowrap font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 transition',
   },
   variants: {
     variant: {

@@ -6,12 +6,13 @@
   },
   "scripts": {
     "dev": "concurrently \"npm:dev:next\" \"npm:dev:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
-    "dev:next": "next dev -p 3004",
+    "dev:next": "npm run sync:workbench-tour && next dev -p 3004",
     "dev:slicemachine": "start-slicemachine",
-    "build": "next build",
+    "build": "npm run sync:workbench-tour && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "sync:workbench-tour": "node scripts/sync-workbench-tour-config.mjs",
     "prepare": "husky"
   },
   "dependencies": {

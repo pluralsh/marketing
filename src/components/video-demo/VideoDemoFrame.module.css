@@ -1,0 +1,216 @@
+/* Compact frame sized to fit under the hero like Railway */
+.showcaseFrame {
+  position: relative;
+  width: min(100%, calc(min(520px, 55svh) * 1.6));
+  margin: 0 auto;
+  /* Room for the tab bar hanging off the bottom edge */
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #0e1015;
+  overflow: visible;
+  box-shadow: 0 24px 80px -40px rgba(0, 0, 0, 0.75);
+}
+
+.demoViewport {
+  position: relative;
+  width: 100%;
+  height: min(520px, 55svh);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #0e1015;
+}
+
+.demoViewport iframe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Optional zoom: scale the embed up inside the clipped viewport */
+.demoPanel iframe {
+  width: calc(100% / var(--demo-scale, 1));
+  height: calc(100% / var(--demo-scale, 1));
+  transform: scale(var(--demo-scale, 1));
+  transform-origin: top left;
+}
+
+.demoPanel {
+  position: absolute;
+  inset: 0;
+}
+
+.demoPanelHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(123, 40, 255, 0.12),
+      transparent 55%
+    ),
+    #0e1015;
+}
+
+/* Hangs off the bottom edge — compact Railway-sized tabs (~32px) */
+.tabNav {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.2rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(14, 16, 21, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transform: translate(-50%, 50%);
+}
+
+.tabButton {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 1;
+  min-width: 0;
+  height: 32px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.tabButton:hover {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.tabButton:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+/*
+ * Railway-style: muted purple base + slightly stronger fill.
+ * Same hue, small opacity delta.
+ */
+.tabButtonActive {
+  color: #ffffff;
+  background: rgba(123, 40, 255, 0.34);
+  border-color: rgba(180, 133, 255, 0.22);
+  box-shadow: 0 0 14px -6px rgba(123, 40, 255, 0.28);
+}
+
+.tabProgressFill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: rgba(123, 40, 255, 0.5);
+  pointer-events: none;
+  animation: tabProgressFill var(--video-demo-tab-ms, 11000ms) linear forwards;
+}
+
+.tabLabel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 0 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tabIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  opacity: 0.75;
+}
+
+.tabIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tabButtonActive .tabIcon {
+  opacity: 1;
+  color: #ffffff;
+}
+
+@keyframes tabProgressFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabProgressFill {
+    animation-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 720px) {
+  .showcaseFrame {
+    width: min(100%, calc(min(360px, 50svh) * 1.6));
+    margin-bottom: 1.75rem;
+  }
+
+  .demoViewport {
+    height: min(360px, 50svh);
+  }
+
+  .tabNav {
+    gap: 0.1rem;
+    padding: 0.15rem;
+    max-width: calc(100% - 0.75rem);
+  }
+
+  .tabButton {
+    height: 28px;
+  }
+
+  .tabLabel {
+    padding: 0 0.45rem;
+    font-size: 0.6875rem;
+  }
+
+  .tabIcon {
+    display: none;
+  }
+}
