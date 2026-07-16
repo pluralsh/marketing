@@ -6,10 +6,11 @@
   --demo-fit-scale-y: 1.01;
 
   position: relative;
+  /* Explicit width + height (not aspect-ratio): with the current caps the
+     width clamp always wins, so a declared ratio would be dead CSS. These
+     match the visually tuned frame: 910px wide, 690px/68svh tall. */
+  width: min(100%, var(--video-demo-max-width));
   height: min(var(--video-demo-max-height), var(--video-demo-max-height-svh));
-  width: auto;
-  max-width: min(100%, var(--video-demo-max-width));
-  aspect-ratio: 12 / 5;
   margin: 0 auto;
   /* Tab bar hangs 50% below the frame — leave room so it isn't clipped. */
   margin-bottom: 3rem;
@@ -38,14 +39,11 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: calc(100% / var(--demo-fit-scale-x, var(--demo-fit-scale, 1)));
-  height: calc(100% / var(--demo-fit-scale-y, var(--demo-fit-scale, 1)));
+  width: calc(100% / var(--demo-fit-scale-x, 1));
+  height: calc(100% / var(--demo-fit-scale-y, 1));
   border: 0;
   transform: translate(-50%, -50%)
-    scale(
-      var(--demo-fit-scale-x, var(--demo-fit-scale, 1)),
-      var(--demo-fit-scale-y, var(--demo-fit-scale, 1))
-    );
+    scale(var(--demo-fit-scale-x, 1), var(--demo-fit-scale-y, 1));
   transform-origin: center center;
 }
 
