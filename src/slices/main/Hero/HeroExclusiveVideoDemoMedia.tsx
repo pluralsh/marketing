@@ -42,10 +42,8 @@ export default function HeroExclusiveVideoDemoMedia({
 
   if (showDemo) {
     return (
-      <div className="my-3 flex w-full justify-center px-4 md:px-0">
-        <div className="w-full max-w-[1080px] md:w-[72%]">
-          <VideoDemoFrame />
-        </div>
+      <div className="flex w-full justify-center px-4 md:px-6">
+        <VideoDemoFrame />
       </div>
     )
   }
