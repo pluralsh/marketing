@@ -1,10 +1,19 @@
-/* Compact frame sized to fit under the hero like Railway */
 .showcaseFrame {
+  --video-demo-max-width: 910px;
+  --video-demo-max-height: 690px;
+  --video-demo-max-height-svh: 68svh;
+  --demo-fit-scale-x: 1;
+  --demo-fit-scale-y: 1.01;
+
   position: relative;
-  width: min(100%, calc(min(520px, 55svh) * 1.6));
+  /* Explicit width + height (not aspect-ratio): with the current caps the
+     width clamp always wins, so a declared ratio would be dead CSS. These
+     match the visually tuned frame: 910px wide, 690px/68svh tall. */
+  width: min(100%, var(--video-demo-max-width));
+  height: min(var(--video-demo-max-height), var(--video-demo-max-height-svh));
   margin: 0 auto;
-  /* Room for the tab bar hanging off the bottom edge */
-  margin-bottom: 2rem;
+  /* Tab bar hangs 50% below the frame — leave room so it isn't clipped. */
+  margin-bottom: 3rem;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: #0e1015;
@@ -15,32 +24,27 @@
 .demoViewport {
   position: relative;
   width: 100%;
-  height: min(520px, 55svh);
+  height: 100%;
   overflow: hidden;
   border-radius: 12px;
   background: #0e1015;
 }
 
-.demoViewport iframe {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Optional zoom: scale the embed up inside the clipped viewport */
-.demoPanel iframe {
-  width: calc(100% / var(--demo-scale, 1));
-  height: calc(100% / var(--demo-scale, 1));
-  transform: scale(var(--demo-scale, 1));
-  transform-origin: top left;
-}
-
 .demoPanel {
   position: absolute;
   inset: 0;
+}
+
+.demoPanel iframe {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% / var(--demo-fit-scale-x, 1));
+  height: calc(100% / var(--demo-fit-scale-y, 1));
+  border: 0;
+  transform: translate(-50%, -50%)
+    scale(var(--demo-fit-scale-x, 1), var(--demo-fit-scale-y, 1));
+  transform-origin: center center;
 }
 
 .demoPanelHidden {
@@ -187,12 +191,7 @@
 
 @media (max-width: 720px) {
   .showcaseFrame {
-    width: min(100%, calc(min(360px, 50svh) * 1.6));
     margin-bottom: 1.75rem;
-  }
-
-  .demoViewport {
-    height: min(360px, 50svh);
   }
 
   .tabNav {

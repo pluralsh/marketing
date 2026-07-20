@@ -86,8 +86,6 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
       style={
         {
           '--video-demo-tab-ms': `${tabDurationMs}ms`,
-          // 1 = natural size; >1 zooms the Supademo UI (crops edges)
-          '--demo-scale': 1.05,
         } as React.CSSProperties
       }
     >
