@@ -9,7 +9,7 @@ import { HEADERS } from './constants'
 const PROD_BLOCK_LIST = ['/api/preview', '/slice-library', '/slice-simulator']
 const I18N_SKIP_LIST = ['/api', '/slice-library', '/slice-simulator', '/_next']
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // block prismic dev related stuff on main prod site
