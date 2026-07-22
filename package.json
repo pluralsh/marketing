@@ -11,7 +11,7 @@
     "build": "npm run sync:workbench-tour && next build",
     "start": "next start",
     "lint": "eslint src",
-    "lint:fix": "eslint lint --fix",
+    "lint:fix": "eslint src --fix",
     "sync:workbench-tour": "node scripts/sync-workbench-tour-config.mjs",
     "prepare": "husky"
   },
