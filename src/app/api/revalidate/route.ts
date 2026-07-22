@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       throw new Error('Invalid secret key')
     }
 
-    revalidateTag('prismic')
+    revalidateTag('prismic', { expire: 0 })
 
     return NextResponse.json({ revalidated: true, now: Date.now() })
   } catch (e) {

@@ -1,0 +1,26 @@
+# Git and CI/CD related files
+.git
+.github
+.husky
+
+# Development environment configuration files
+.vscode
+
+# Dependencies
+node_modules
+
+# Next.js output directory
+.next
+
+# Misc Config and Documentation
+LICENSE
+README.md
+
+# Environment files
+.env.*
+
+# Configuration and settings files
+renovate.json
+.prettierrc.yaml
+eslint.config.mjs
+.prettierignore
