@@ -1,4 +1,4 @@
-FROM node:24-alpine AS base
+FROM node:26-alpine3.24 AS base
 
 WORKDIR /app
 
@@ -23,7 +23,7 @@ ENV NEXT_PUBLIC_COOKIEBOT_ID=$NEXT_PUBLIC_COOKIEBOT_ID
 
 RUN npm run build
 
-FROM node:24-alpine AS production
+FROM node:26-alpine3.24 AS production
 WORKDIR /app
 
 COPY --from=base /app/package.json /app/package-lock.json ./
