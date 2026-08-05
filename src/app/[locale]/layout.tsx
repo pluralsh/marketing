@@ -6,6 +6,7 @@ import Script from 'next/script'
 
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import { OpenAIPixelPageView } from '@/components/OpenAIPixelPageView'
 import { cn } from '@/utils/cn'
 import { GoogleTagManager } from '@next/third-parties/google'
 
@@ -53,8 +54,24 @@ export default async function RootLayout({
           data-widget-position="bottom-right"
           strategy="beforeInteractive"
         />
+        <Script
+          id="openai-pixel-bootstrap"
+          strategy="beforeInteractive"
+        >
+          {`window.oaiq = window.oaiq || function () {
+  (window.oaiq.q = window.oaiq.q || []).push(arguments);
+};
+oaiq("init", { pixelId: "2kfiGLmQAM27GnVGNpy5UL" });`}
+        </Script>
+        <Script
+          id="openai-pixel-sdk"
+          async
+          src="https://bzrcdn.openai.com/sdk/oaiq.min.js"
+          strategy="afterInteractive"
+        />
         <NextIntlClientProvider messages={messages}>
           <Header />
+          <OpenAIPixelPageView />
           <>{children}</>
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
           <Footer />
