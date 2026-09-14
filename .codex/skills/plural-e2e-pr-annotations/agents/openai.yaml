@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plural E2E PR Annotations"
+  short_description: "Add Plural preview annotations to E2E PRs"
+  default_prompt: "Use $plural-e2e-pr-annotations to prepare an E2E-tested marketing PR."
