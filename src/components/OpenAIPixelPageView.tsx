@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 
 declare global {
   interface Window {
-    oaiq: (
+    oaiq?: (
       command: 'measure',
       event: 'page_viewed',
       properties: { type: 'contents' }
@@ -23,6 +23,10 @@ export function OpenAIPixelPageView() {
     }
 
     lastMeasuredPathname.current = pathname
+    if (typeof window.oaiq !== 'function') {
+      return
+    }
+
     window.oaiq('measure', 'page_viewed', { type: 'contents' })
   }, [pathname])
 
