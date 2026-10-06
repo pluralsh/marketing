@@ -104,25 +104,6 @@ function HeaderClient({
         logo={nav_logo}
         logoHref={logo_href}
       />
-      <style
-        global
-        jsx
-      >
-        {`
-          [data-slice-screen] {
-            display: none;
-          }
-
-          ${nav_link_slices.reduce(
-            (acc, { id }) => `${acc}
-            [data-active-slice-id="${id}"] [data-slice-screen][data-slice-id="${id}"] {
-              display: block;
-            }
-          `,
-            ``
-          )}
-        `}
-      </style>
     </MobileNavContext>
   )
 }
