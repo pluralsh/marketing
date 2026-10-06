@@ -31,6 +31,7 @@ type MobileNavProps = {
 function MobileNav({ links, buttons, logo, logoHref }: MobileNavProps) {
   const t = useTranslations('Generic')
   const { open, setOpen, activeLink, setActiveLink } = useMobileNav()
+  const activeScreens = links.filter((link) => link.id === activeLink)
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     watchDrag: false,
@@ -121,7 +122,6 @@ function MobileNav({ links, buttons, logo, logoHref }: MobileNavProps) {
               <div className="embla min-h-full overflow-x-visible">
                 <div
                   className="embla__viewport h-full"
-                  data-active-slice-id={activeLink}
                   ref={emblaRef}
                 >
                   <div className="embla__container pan-y -ml-16 flex h-full touch-pinch-zoom">
@@ -155,7 +155,7 @@ function MobileNav({ links, buttons, logo, logoHref }: MobileNavProps) {
                     {/* Screen 2 */}
                     <div className="embla__slide min-w-0 shrink-0 grow-0 basis-full translate-3d overflow-y-auto pl-16">
                       <SliceZone
-                        slices={links}
+                        slices={activeScreens}
                         components={{
                           navigation_item: MobileScreens,
                         }}

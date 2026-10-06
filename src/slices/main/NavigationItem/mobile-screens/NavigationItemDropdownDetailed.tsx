@@ -18,11 +18,7 @@ export default function MobileDropdownDetailedScreen({
   const featuredResource = featured_resource?.[0]
 
   return (
-    <div
-      className="pb-6"
-      data-slice-screen
-      data-slice-id={slice.id}
-    >
+    <div className="pb-6">
       <Button
         className="group mt-6 cursor-pointer"
         variant="secondary"
@@ -76,17 +72,9 @@ export default function MobileDropdownDetailedScreen({
         <Dialog.Close asChild>
           <PrismicNextLink
             field={featuredResource.link}
-            className="group mt-10 block"
+            className="group mt-6 block"
           >
-            <div className="group aspect-[5/3] overflow-hidden rounded-lg">
-              <PrismicNextImage
-                field={featuredResource.image}
-                className="size-full object-cover transition group-hover:scale-105"
-                fallbackAlt=""
-                priority
-              />
-            </div>
-            <div className="mt-3 flex items-center justify-between gap-x-3">
+            <div className="flex items-center justify-between gap-x-3">
               <span
                 className="text-neutral-000 min-w-0 shrink grow overflow-hidden font-medium overflow-ellipsis whitespace-nowrap"
                 title={featuredResource.link.text || undefined}
@@ -101,17 +89,17 @@ export default function MobileDropdownDetailedScreen({
               >
                 <SvgArrowRight className="size-2" />
               </div>
-              <PrismicRichText
-                field={featuredResource.description}
-                components={{
-                  paragraph: ({ children }) => (
-                    <p className="text-caption text-neutral-000/70 mt-2">
-                      {children}
-                    </p>
-                  ),
-                }}
-              />
             </div>
+            <PrismicRichText
+              field={featuredResource.description}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className="text-caption text-neutral-000/70 mt-2">
+                    {children}
+                  </p>
+                ),
+              }}
+            />
           </PrismicNextLink>
         </Dialog.Close>
       )}

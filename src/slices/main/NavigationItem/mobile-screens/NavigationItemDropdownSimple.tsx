@@ -1,4 +1,4 @@
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
+import { PrismicNextLink } from '@prismicio/next'
 import { PrismicRichText } from '@prismicio/react'
 import { Dialog } from 'radix-ui'
 
@@ -17,11 +17,7 @@ export default function MobileDropdownSimpleScreen({
   const { links_label, links, resources } = slice.primary
 
   return (
-    <div
-      className="pb-6"
-      data-slice-screen
-      data-slice-id={slice.id}
-    >
+    <div className="pb-6">
       <Button
         className="group mt-6 cursor-pointer"
         variant="secondary"
@@ -47,7 +43,7 @@ export default function MobileDropdownSimpleScreen({
         </ul>
         {resources.length > 0 && (
           <div className="mt-6 flex flex-col gap-y-9">
-            {resources.map(({ link, image, description }, idx) => (
+            {resources.map(({ link, description }, idx) => (
               <Dialog.Close
                 key={idx}
                 asChild
@@ -56,15 +52,7 @@ export default function MobileDropdownSimpleScreen({
                   field={link}
                   className="group"
                 >
-                  <div className="group aspect-[5/3] overflow-hidden rounded-lg">
-                    <PrismicNextImage
-                      field={image}
-                      className="size-full object-cover transition group-hover:scale-105"
-                      fallbackAlt=""
-                      priority
-                    />
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-x-3">
+                  <div className="flex items-center justify-between gap-x-3">
                     <span
                       className="text-neutral-000 min-w-0 shrink grow overflow-hidden font-medium overflow-ellipsis whitespace-nowrap"
                       title={link.text || undefined}
