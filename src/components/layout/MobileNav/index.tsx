@@ -122,7 +122,6 @@ function MobileNav({ links, buttons, logo, logoHref }: MobileNavProps) {
               <div className="embla min-h-full overflow-x-visible">
                 <div
                   className="embla__viewport h-full"
-                  data-active-slice-id={activeLink}
                   ref={emblaRef}
                 >
                   <div className="embla__container pan-y -ml-16 flex h-full touch-pinch-zoom">

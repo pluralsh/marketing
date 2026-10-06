@@ -17,11 +17,7 @@ export default function MobileDropdownSimpleScreen({
   const { links_label, links, resources } = slice.primary
 
   return (
-    <div
-      className="pb-6"
-      data-slice-screen
-      data-slice-id={slice.id}
-    >
+    <div className="pb-6">
       <Button
         className="group mt-6 cursor-pointer"
         variant="secondary"

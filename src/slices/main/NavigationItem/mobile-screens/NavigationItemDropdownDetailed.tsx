@@ -18,11 +18,7 @@ export default function MobileDropdownDetailedScreen({
   const featuredResource = featured_resource?.[0]
 
   return (
-    <div
-      className="pb-6"
-      data-slice-screen
-      data-slice-id={slice.id}
-    >
+    <div className="pb-6">
       <Button
         className="group mt-6 cursor-pointer"
         variant="secondary"
