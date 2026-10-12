@@ -12,6 +12,7 @@ import {
   simulatorClass,
   simulatorRootClass,
 } from '@prismicio/simulator/kit'
+import DOMPurify from 'isomorphic-dompurify'
 import { compressToEncodedURIComponent } from 'lz-string'
 
 const STATE_PARAMS_KEY = 'state'
@@ -84,7 +85,9 @@ export default function SliceSimulatorClient({
       }}
     >
       {message ? (
-        <article dangerouslySetInnerHTML={{ __html: message }} />
+        <article
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }}
+        />
       ) : hasSlices ? (
         <div
           id="root"

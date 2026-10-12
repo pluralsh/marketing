@@ -7,9 +7,19 @@ const secretKey = process.env.PRISMIC_WEBHOOK_SECRET
 
 export async function POST(request: Request) {
   try {
+    if (!secretKey) {
+      return NextResponse.json(
+        { revalidated: false, error: 'Webhook secret not configured' },
+        { status: 500 }
+      )
+    }
+
     const data = (await request.json()) as PrismicWebhookData
-    if (secretKey && data.secret !== secretKey) {
-      throw new Error('Invalid secret key')
+    if (data.secret !== secretKey) {
+      return NextResponse.json(
+        { revalidated: false, error: 'Unauthorized' },
+        { status: 401 }
+      )
     }
 
     revalidateTag('prismic', { expire: 0 })
@@ -17,6 +27,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ revalidated: true, now: Date.now() })
   } catch (e) {
     console.error('Revalidation failed:', e)
-    return NextResponse.json({ revalidated: false, now: Date.now() })
+    return NextResponse.json({ revalidated: false, now: Date.now() }, { status: 400 })
   }
 }

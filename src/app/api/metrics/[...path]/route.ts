@@ -6,12 +6,39 @@ export const dynamic = 'force-dynamic'
 
 const ORIGIN = process.env.GTM_SERVER_CONTAINER_URL || ''
 
-function targetUrl(req: NextRequest, parts: string[] = []) {
-  const src = new URL(req.url)
-  const base = ORIGIN.endsWith('/') ? ORIGIN.slice(0, -1) : ORIGIN
-  const suffix = parts.length ? `/${parts.join('/')}` : ''
-  const url = new URL(`${base}${suffix}`)
-  url.search = src.search
+function targetUrl(req: NextRequest, parts: string[] = []): URL | null {
+  if (!ORIGIN) return null
+
+  let origin: URL
+  try {
+    origin = new URL(ORIGIN)
+  } catch {
+    return null
+  }
+
+  // Reject path segments that could escape the configured origin (SSRF).
+  if (
+    parts.some(
+      (part) =>
+        part === '' ||
+        part === '.' ||
+        part === '..' ||
+        part.includes('\\') ||
+        part.includes(':') ||
+        part.includes('/')
+    )
+  ) {
+    return null
+  }
+
+  const url = new URL(origin.href)
+  if (parts.length) {
+    const basePath = origin.pathname.replace(/\/$/, '')
+    url.pathname = `${basePath}/${parts.map(encodeURIComponent).join('/')}`
+  }
+  url.search = new URL(req.url).search
+
+  if (url.origin !== origin.origin) return null
   return url
 }
 
@@ -21,12 +48,15 @@ async function forward(
   parts: string[] = []
 ) {
   const url = targetUrl(req, parts)
-  const headers = new Headers(req.headers)
+  if (!url) return new Response('Bad request', { status: 400 })
+
+  const headers = new Headers()
   headers.set('X-Forwarded-For', req.headers.get('x-forwarded-for') || '')
   headers.set('User-Agent', req.headers.get('user-agent') || '')
   headers.set('Accept-Language', req.headers.get('accept-language') || '')
   headers.set('Referer', req.headers.get('referer') || '')
-  headers.delete('host')
+  const contentType = req.headers.get('content-type')
+  if (contentType) headers.set('Content-Type', contentType)
 
   const init: RequestInit = {
     method,
