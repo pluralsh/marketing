@@ -1,7 +1,11 @@
 import type { NavItem } from '@/content/site'
 
 import { Icon } from '@/components/ui/Icon'
-import { SmartLink, type SmartLinkProps } from '@/components/ui/SmartLink'
+import {
+  isHttpHref,
+  SmartLink,
+  type SmartLinkProps,
+} from '@/components/ui/SmartLink'
 import { cn } from '@/utils/cn'
 
 // Extra anchor props and the ref come from Radix `NavigationMenu.Link asChild`
@@ -41,6 +45,12 @@ export function NavMenuItem({
         <span className="font-medium">{item.title}</span>
         <span className="text-muted text-sm">{item.description}</span>
       </span>
+      {isHttpHref(item.href) && (
+        <span className="text-muted ml-auto shrink-0 self-center">
+          <Icon path="M7 17L17 7 M8 7h9v9" />
+          <span className="sr-only">(opens in a new tab)</span>
+        </span>
+      )}
     </SmartLink>
   )
 }
