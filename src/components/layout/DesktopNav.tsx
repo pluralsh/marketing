@@ -102,7 +102,7 @@ export function DesktopNav() {
               {menu.label}
               <Icon
                 path={CARET_DOWN}
-                size={24}
+                size={16}
                 className="text-muted transition-transform group-data-[state=open]:rotate-180"
               />
             </NavigationMenu.Trigger>

@@ -52,8 +52,8 @@ function TelemetryWindow() {
     >
       <div className="text-code-muted border-code-line hidden grid-cols-[1.2fr_1.6fr_1fr] gap-4 border-b px-4 py-2.5 text-[11px] sm:grid">
         <span>STORE</span>
-        <span>SPEAKS</span>
-        <span className="text-right">MEDIAN QUERY · PEER → OURS</span>
+        <span>COMPATIBLE WITH</span>
+        <span className="text-right">P90 QUERY LATENCY · PEER → OURS</span>
       </div>
       {telemetryStores.map((store) => (
         <div
@@ -66,16 +66,18 @@ function TelemetryWindow() {
               replaces {store.peer}
             </span>
           </span>
-          <span className="flex flex-col">
+          <span className="grid grid-cols-[48px_1fr] gap-x-2 text-[12px]">
+            <span className="text-code-muted">query</span>
             <span className="text-syntax-violet">{store.query}</span>
-            <span className="text-code-dim text-[11px]">{store.ingest}</span>
+            <span className="text-code-muted">ingest</span>
+            <span className="text-code-dim">{store.ingest}</span>
           </span>
           <span className="sm:text-right">
             <span className="text-code-muted line-through">
-              {ms(store.p50.peer)}
+              {ms(store.p90.peer)}
             </span>{' '}
             <span className="text-code-muted">→</span>{' '}
-            <span className="text-syntax-green">{ms(store.p50.ours)}</span>
+            <span className="text-syntax-green">{ms(store.p90.ours)}</span>
           </span>
         </div>
       ))}
@@ -193,15 +195,15 @@ export default function ObservabilityPage() {
         <SectionHeading
           size="lg"
           title="Query latency from the published runs"
-          description="Median and tail latency for each store against its peer, both on an S3 backend:"
+          description="p90 and p99 latency for each store against its peer, both on an S3 backend:"
         />
         <ComparisonTable
           caption="Query latency, peer versus Plural Telemetry"
           rowLabel="Store"
           columns={[
             { label: 'Peer' },
-            { label: 'Peer p50' },
-            { label: 'Plural p50', emphasized: true },
+            { label: 'Peer p90' },
+            { label: 'Plural p90', emphasized: true },
             { label: 'Peer p99' },
             { label: 'Plural p99', emphasized: true },
           ]}
@@ -209,16 +211,16 @@ export default function ObservabilityPage() {
             label: store.name,
             values: [
               store.signal === 'metrics' ? 'Mimir' : store.peer,
-              ms(store.p50.peer),
-              ms(store.p50.ours),
+              ms(store.p90.peer),
+              ms(store.p90.ours),
               ms(store.p99.peer),
               ms(store.p99.ours),
             ],
           }))}
         />
         <p className="text-muted m-0 text-[13px]">
-          Prometheus serving small queries from local disk is faster at the
-          median; its tail latency is similar to ours.
+          Prometheus serving small queries from local disk is faster at p90; its
+          p99 is similar to ours.
         </p>
       </Section>
 

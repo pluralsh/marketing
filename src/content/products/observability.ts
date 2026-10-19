@@ -30,7 +30,7 @@ export const observabilityAnchors = [
   },
 ]
 
-/** Median query latency in ms, peer first, from differential fuzzing on S3. */
+/** Query latency in ms, peer first, from differential fuzzing on S3. */
 export const telemetryStores = [
   {
     signal: 'logs',
@@ -38,7 +38,7 @@ export const telemetryStores = [
     peer: 'Loki',
     ingest: 'Loki push · OTLP · Elasticsearch _bulk',
     query: 'LogQL',
-    p50: { peer: 9.2, ours: 6.1 },
+    p90: { peer: 70.7, ours: 44.8 },
     p99: { peer: 497.6, ours: 216.4 },
   },
   {
@@ -47,7 +47,7 @@ export const telemetryStores = [
     peer: 'Prometheus / Mimir',
     ingest: 'Prometheus remote write · OTLP',
     query: 'PromQL',
-    p50: { peer: 4.6, ours: 1.8 },
+    p90: { peer: 16.8, ours: 4.5 },
     p99: { peer: 81.4, ours: 22.1 },
   },
   {
@@ -56,7 +56,7 @@ export const telemetryStores = [
     peer: 'Tempo',
     ingest: 'OTLP · Zipkin',
     query: 'TraceQL',
-    p50: { peer: 20.9, ours: 3.9 },
+    p90: { peer: 61.3, ours: 22.2 },
     p99: { peer: 159.8, ours: 66.6 },
   },
 ]
@@ -89,7 +89,7 @@ export const simplicityStats: Stat[] = [
     value: '~50%',
     label: 'lower query latency on average vs Loki, Mimir, and Tempo',
   },
-  { value: '5×', label: 'faster median trace query than Tempo' },
+  { value: '3.7×', label: 'faster p90 metrics query than Mimir' },
   { value: '1/18', label: 'of Mimir’s CPU for the same workload' },
   { value: '0', label: 'replicated disks, hash rings, or ZooKeeper to run' },
 ]

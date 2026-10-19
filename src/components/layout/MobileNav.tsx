@@ -98,7 +98,7 @@ export function MobileNav({ theme }: { theme: Theme }) {
                     {menu.label}
                     <Icon
                       path={CARET_DOWN}
-                      size={24}
+                      size={16}
                       className="text-muted transition-transform group-open:rotate-180"
                     />
                   </summary>
