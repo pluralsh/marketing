@@ -93,7 +93,7 @@ export default function CareersPage() {
           size="lg"
           action={<ArrowLink href="/about">Our values and team</ArrowLink>}
         />
-        <div className="grid auto-rows-[220px] grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="grid grid-flow-dense auto-rows-[220px] grid-cols-2 gap-3 md:grid-cols-4">
           {teamPhotos.map((photo, i) => (
             <Image
               key={photo.src}

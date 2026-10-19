@@ -129,6 +129,19 @@ export const teamPhotos = [
     width: 1200,
     height: 900,
   },
+  {
+    src: '/images/team/team-game-night.jpg',
+    alt: 'The team at a pool and ping-pong game night',
+    width: 640,
+    height: 508,
+  },
 ]
+
+export const aboutHeroPhoto = {
+  src: '/images/team/kubecon-eu-booth.jpg',
+  alt: 'The Plural team at the Plural conference booth',
+  width: 655,
+  height: 491,
+}
 
 export const hiringEmail = 'hiring@plural.sh'

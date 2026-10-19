@@ -8,7 +8,12 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Accent, Section } from '@/components/sections/Section'
 import { SectionHeading } from '@/components/sections/SectionHeading'
 import { ArrowLink, ButtonLink } from '@/components/ui/Button'
-import { investors, team, teamPhotos, values } from '@/content/company'
+import {
+  aboutHeroPhoto as heroPhoto,
+  investors,
+  team,
+  values,
+} from '@/content/company'
 import { jobs } from '@/content/jobs'
 import { pageMetadata } from '@/utils/metadata'
 
@@ -17,8 +22,6 @@ export const metadata: Metadata = pageMetadata('/about', {
   description:
     'Our mission is to make elite DevOps available to every team by removing tooling complexity.',
 })
-
-const heroPhoto = teamPhotos.find((photo) => photo.src.includes('kcd'))!
 
 export default function AboutPage() {
   return (
