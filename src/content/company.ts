@@ -175,11 +175,12 @@ export const teamPhotos: TeamPhoto[] = [
     span: 'tall',
   },
   {
-    src: '/images/team/team-game-night.jpg',
+    src: '/images/team/billiards-night.jpg',
     alt: 'The team at a pool and ping-pong game night',
     width: 1024,
     height: 420,
     span: 'wide',
+    position: 'center top',
   },
   {
     src: '/images/team/kubecon-eu-booth-waving.jpg',
@@ -220,7 +221,7 @@ export const teamPhotos: TeamPhoto[] = [
 ]
 
 export const aboutHeroPhoto = {
-  src: '/images/team/kubecon-eu-booth.jpg',
+  src: '/images/team/kubecon-eu-team.jpg',
   alt: 'The Plural team at the Plural conference booth',
   width: 2400,
   height: 1800,
