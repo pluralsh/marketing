@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { notFound } from 'next/navigation'
 
+import { Certificates } from '@/components/layout/Certificates'
 import { ContentSections } from '@/components/sections/ContentSections'
 import { contentPages } from '@/content/pages'
 import { SUPPORTED_LOCALES } from '@/i18n/locales'
@@ -51,5 +52,10 @@ export default async function ContentPage({
 
   if (!page) notFound()
 
-  return <ContentSections sections={page.sections} />
+  return (
+    <>
+      <ContentSections sections={page.sections} />
+      {page.meta.certificates && <Certificates />}
+    </>
+  )
 }

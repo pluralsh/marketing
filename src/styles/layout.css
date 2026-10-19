@@ -1,3 +1,13 @@
+/* Mobile logo strip: scroll one full set of marks, then loop. */
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Page shell: themed canvas with a subtle film grain behind the content. */
 @utility site-shell {
   position: relative;

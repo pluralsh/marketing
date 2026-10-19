@@ -17,7 +17,7 @@ const unifyHybridCloud = {
         'Streamline Kubernetes management across on-prem, multi-cloud, and hybrid environments',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/financial-services-f1d12f.svg',
@@ -197,7 +197,7 @@ const unifyHybridCloud = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

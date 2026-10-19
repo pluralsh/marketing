@@ -5,6 +5,7 @@ import { useSyncExternalStore } from 'react'
 import type { CommunityEvent } from '@/content/community'
 
 import { button } from '@/components/ui/Button'
+import { SmartLink } from '@/components/ui/SmartLink'
 import { cn } from '@/utils/cn'
 
 const DAY_MS = 86_400_000
@@ -46,49 +47,59 @@ export function EventList({ events }: { events: CommunityEvent[] }) {
           <li
             key={event.name}
             className={cn(
-              'bg-surface flex flex-wrap items-center gap-5 rounded-sm border p-4',
+              'bg-surface flex flex-col gap-4 rounded-sm border p-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5',
               meetup ? 'border-accent' : 'border-line'
             )}
           >
-            <div
+            <div className="flex items-center gap-4 sm:contents">
+              <div
+                className={cn(
+                  'flex w-24 shrink-0 flex-col items-center rounded-sm px-2 py-3 text-center',
+                  meetup ? 'bg-accent text-on-accent' : 'bg-surface-muted'
+                )}
+              >
+                <span className="font-mono text-[11px]">
+                  {event.dateLabel.month}
+                </span>
+                <span className="font-serif text-2xl">
+                  {event.dateLabel.days}
+                </span>
+              </div>
+              <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+                <div className="flex flex-wrap items-center gap-2 text-sm">
+                  <span
+                    className={cn(
+                      'rounded px-2 py-0.5 font-mono text-xs',
+                      meetup
+                        ? 'bg-accent-tint text-accent-ink'
+                        : 'bg-surface-muted'
+                    )}
+                  >
+                    {event.type}
+                  </span>
+                  <span className="text-muted">{event.where}</span>
+                  {when && (
+                    <span className={when.className}>· {when.label}</span>
+                  )}
+                </div>
+                <span className="hidden text-xl font-medium sm:inline">
+                  {event.name}
+                </span>
+              </div>
+            </div>
+            <span className="text-xl font-medium sm:hidden">{event.name}</span>
+            <SmartLink
+              href={event.href}
               className={cn(
-                'flex w-24 shrink-0 flex-col items-center rounded-sm px-2 py-3 text-center',
-                meetup ? 'bg-accent text-on-accent' : 'bg-surface-muted'
+                button({
+                  variant: meetup ? 'primary' : 'secondary',
+                  size: 'md',
+                }),
+                'w-full sm:w-auto'
               )}
             >
-              <span className="font-mono text-[11px]">
-                {event.dateLabel.month}
-              </span>
-              <span className="font-serif text-2xl">
-                {event.dateLabel.days}
-              </span>
-            </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-              <div className="flex flex-wrap items-center gap-2 text-sm">
-                <span
-                  className={cn(
-                    'rounded px-2 py-0.5 font-mono text-xs',
-                    meetup
-                      ? 'bg-accent-tint text-accent-ink'
-                      : 'bg-surface-muted'
-                  )}
-                >
-                  {event.type}
-                </span>
-                <span className="text-muted">{event.where}</span>
-                {when && <span className={when.className}>· {when.label}</span>}
-              </div>
-              <span className="text-xl font-medium">{event.name}</span>
-            </div>
-            <a
-              href={event.href}
-              className={button({
-                variant: meetup ? 'primary' : 'secondary',
-                size: 'md',
-              })}
-            >
               {event.cta ?? 'Event site ↗'}
-            </a>
+            </SmartLink>
           </li>
         )
       })}

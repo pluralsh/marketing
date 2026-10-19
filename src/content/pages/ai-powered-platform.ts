@@ -17,7 +17,7 @@ const aiPoweredPlatform = {
         'Plural’s AI agents query, diagnose, and remediate across Kubernetes and Terraform — generating manifests, PRs, and workflows that keep your platform running smoothly.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       video: {
         youtubeId: 'u2S6EIQ2fLE',
@@ -307,7 +307,7 @@ const aiPoweredPlatform = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

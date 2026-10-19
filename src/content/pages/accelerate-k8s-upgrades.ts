@@ -17,7 +17,7 @@ const accelerateK8SUpgrades = {
         'Upgrade faster, stay secure, and reduce engineering overhead',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/solutions-visual-e4842f.svg',
@@ -199,7 +199,7 @@ const accelerateK8SUpgrades = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -375,7 +375,7 @@ const accelerateK8SUpgrades = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

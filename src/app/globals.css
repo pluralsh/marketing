@@ -23,6 +23,7 @@
   --color-accent-ink: var(--accent-ink);
   --color-accent-tint: var(--accent-tint);
   --color-on-accent: var(--on-accent);
+  --color-logo-mark: var(--logo-mark);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
@@ -89,6 +90,7 @@
     --accent-ink: var(--color-plural-blue);
     --accent-tint: color-mix(in srgb, var(--accent) 8%, white);
     --on-accent: #ffffff;
+    --logo-mark: var(--color-plural-blue);
     --success: #067647;
     --warning: #b54708;
     --danger: #b42318;
@@ -110,10 +112,11 @@
     --accent-ink: #9ea3ff;
     --accent-tint: rgb(74 81 242 / 0.16);
     --on-accent: #ffffff;
+    --logo-mark: var(--ink);
     --success: #7ee2b8;
     --warning: #f5c97a;
     --danger: #f2a7a7;
-    --grain-opacity: 0.06;
+    --grain-opacity: 0.1;
   }
 
   html {

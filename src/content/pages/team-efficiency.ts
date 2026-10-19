@@ -17,7 +17,7 @@ const teamEfficiency = {
         'Plural eliminates repetitive work, automates critical workflows, and turns your existing team into a force multiplier.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/plural-git-stack-console-ui-47fa1e.svg',
@@ -205,7 +205,7 @@ const teamEfficiency = {
       title: 'Free Your Team From the Platform Treadmill. Ready to learn more?',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

@@ -97,7 +97,7 @@ export default function ObservabilityPage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo

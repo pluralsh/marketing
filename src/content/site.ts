@@ -13,7 +13,10 @@ export const URLS = {
   linkedin: 'https://www.linkedin.com/company/pluralsh',
   youtube: 'https://www.youtube.com/@pluralsh',
   x: 'https://x.com/plural_sh',
+  trustCenter: 'https://app.secureframe.com/ext/trust-center/plural/',
   contact: '/contact',
+  /** Scrolls to the demo form; useful when the form stacks below the fold. */
+  bookDemo: '/contact#book-demo',
   workbenchesAnnouncement:
     'https://www.plural.sh/blog/introducing-plural-workbenches-build-your-own-agents-for-devops/',
 } as const
@@ -243,6 +246,11 @@ export const navigation: NavMenu[] = [
         description: 'What shipped, on GitHub',
         href: URLS.releases,
       },
+      {
+        title: 'Trust center',
+        description: 'Security, compliance, and policies',
+        href: URLS.trustCenter,
+      },
     ],
   },
   {
@@ -262,7 +270,7 @@ export const navigation: NavMenu[] = [
       {
         title: 'Contact sales',
         description: 'Book a demo or ask a question',
-        href: '/contact',
+        href: URLS.bookDemo,
       },
     ],
   },
@@ -290,7 +298,7 @@ export const footer: { heading: string; links: Link[] }[] = [
       { label: 'About', href: '/about' },
       { label: 'Careers', href: '/careers' },
       { label: 'Customers', href: '/customers' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Contact', href: URLS.bookDemo },
     ],
   },
   {
@@ -300,6 +308,7 @@ export const footer: { heading: string; links: Link[] }[] = [
       { label: 'Blog', href: URLS.blog },
       { label: 'Community', href: '/community' },
       { label: 'Resource center', href: '/resources' },
+      { label: 'Trust center', href: URLS.trustCenter },
     ],
   },
   {

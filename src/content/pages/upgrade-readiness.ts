@@ -14,7 +14,7 @@ const upgradeReadiness = {
         'Plural automates Kubernetes upgrades with validation, compatibility checks, and safe rollouts — reducing risk and saving engineering time.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/eu-plan-2-d6b98d.svg',
@@ -141,7 +141,7 @@ const upgradeReadiness = {
       title: 'Your Upgrade Playbook — \nAutomated. Ready to learn more?',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

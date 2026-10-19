@@ -17,7 +17,7 @@ const fleetManagement = {
         'Centralized control for simplified and scalable Kubernetes operations',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/cluster-overview-f41ab8.svg',
@@ -56,7 +56,7 @@ const fleetManagement = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -240,7 +240,7 @@ const fleetManagement = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

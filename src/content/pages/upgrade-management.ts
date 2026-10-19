@@ -16,7 +16,7 @@ const upgradeManagement = {
         'Take the complexity out of Kubernetes upgrades with automated compatibility checks, dependency management, and safe rollout procedures. Save weeks of manual research and testing, even when using managed services like EKS, AKS, and GKE.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/upgarde-assistant-f2e3eb.jpg',
@@ -260,7 +260,7 @@ const upgradeManagement = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

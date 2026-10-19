@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { BacklogGraph } from '@/components/interactive/backlog/BacklogGraph'
 import { UseCaseTabs } from '@/components/interactive/UseCaseTabs'
+import { Certificates } from '@/components/layout/Certificates'
 import { CellGrid } from '@/components/sections/CellGrid'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { FeatureCells } from '@/components/sections/FeatureCells'
@@ -45,7 +46,7 @@ export default function HomePage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo
@@ -140,7 +141,7 @@ export default function HomePage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo
@@ -155,6 +156,8 @@ export default function HomePage() {
           </>
         }
       />
+
+      <Certificates />
     </>
   )
 }

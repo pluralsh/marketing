@@ -56,9 +56,10 @@ export default function ContactPage() {
             className="[&_ul]:gap-x-8 [&_ul]:text-lg"
           />
         </div>
+        {/* First on narrow screens so menu/footer #book-demo links land on the form. */}
         <div
           id="book-demo"
-          className="border-line-strong bg-surface shadow-menu scroll-mt-24 self-start rounded-sm border p-[clamp(20px,3vw,32px)]"
+          className="border-line-strong bg-surface shadow-menu scroll-mt-24 self-start rounded-sm border p-[clamp(20px,3vw,32px)] max-lg:order-first"
         >
           <h2 className="m-0 text-2xl font-medium">Tell us about your setup</h2>
           <p className="text-muted mt-1.5 mb-6 text-sm">

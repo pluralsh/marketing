@@ -16,7 +16,7 @@ const continuousDeployment = {
         'Get code to cluster with ease. Stop stitching together Argo, Flux, and custom scripts. Plural gives you a single deployment system that scales to any number of clusters, unifies infra and app delivery, and bakes in governance from day one.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/clusters-65a868.svg',
@@ -184,7 +184,7 @@ const continuousDeployment = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

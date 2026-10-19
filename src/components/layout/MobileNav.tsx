@@ -5,12 +5,16 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { ButtonLink } from '@/components/ui/Button'
+import { Icon } from '@/components/ui/Icon'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { navigation, URLS } from '@/content/site'
 
 import { NavFeatureCard, NavMenuItem } from './NavMenuItem'
 
 import type { Theme } from './SiteShell'
+
+/** Console CaretDownIcon, remapped onto the site's 24×24 icon grid. */
+const CARET_DOWN = 'M6 9l6 6 6-6'
 
 export function MobileNav({ theme }: { theme: Theme }) {
   const [open, setOpen] = useState(false)
@@ -46,6 +50,11 @@ export function MobileNav({ theme }: { theme: Theme }) {
           // Portals render outside the themed shell; carry the theme along.
           data-theme={theme}
           aria-describedby={undefined}
+          // Close as soon as a link is tapped, rather than waiting for the
+          // route to change (which never happens for same-page or hash links).
+          onClick={(e) => {
+            if ((e.target as Element).closest('a')) setOpen(false)
+          }}
           className="bg-canvas text-ink fixed inset-y-0 right-0 z-(--z-dialog) flex w-full max-w-md flex-col overflow-y-auto"
         >
           <div className="border-line flex items-center justify-between border-b px-5 py-3">
@@ -87,12 +96,11 @@ export function MobileNav({ theme }: { theme: Theme }) {
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between px-2 py-4 text-lg [&::-webkit-details-marker]:hidden">
                     {menu.label}
-                    <span
-                      aria-hidden="true"
-                      className="text-muted text-xs transition-transform group-open:rotate-180"
-                    >
-                      ▾
-                    </span>
+                    <Icon
+                      path={CARET_DOWN}
+                      size={24}
+                      className="text-muted transition-transform group-open:rotate-180"
+                    />
                   </summary>
                   <div className="flex flex-col gap-1 pb-3">
                     {menu.kind === 'list'
@@ -129,7 +137,7 @@ export function MobileNav({ theme }: { theme: Theme }) {
           </nav>
           <div className="mt-auto flex flex-col gap-2 p-5">
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               size="md"
             >
               Book a demo

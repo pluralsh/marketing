@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { isExternalHref } from './SmartLink'
+import { isExternalHref, isHttpHref } from './SmartLink'
 
 // One document listener serves every shortcut on the page. The same key can be
 // rendered in several places (header and hero both show "B"), so registrations
@@ -39,7 +39,9 @@ export function Shortcut({ keyName, href }: { keyName: string; href: string }) {
     const existing = registry.get(key)
 
     navigate = (target) => {
-      if (isExternalHref(target)) window.location.assign(target)
+      if (isHttpHref(target))
+        window.open(target, '_blank', 'noopener,noreferrer')
+      else if (isExternalHref(target)) window.location.assign(target)
       else if (target.startsWith('#'))
         document.getElementById(target.slice(1))?.scrollIntoView()
       else router.push(target)

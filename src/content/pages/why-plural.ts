@@ -14,7 +14,7 @@ const whyPlural = {
         'Skip the endless tooling decisions, half-built internal platforms, and long DevOps backlogs. Plural is the AI-native control plane that helps you move faster, stay secure, and operate infrastructure with confidence. Plural gives you the speed of automation, the leverage of AI, and the peace of mind of years of battle-tested infrastructure intelligence – all in one platform.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/platform-foundations-225e29.svg',
@@ -227,7 +227,7 @@ const whyPlural = {
         'Stop maintaining internal tooling.\nStart delivering platform outcomes.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

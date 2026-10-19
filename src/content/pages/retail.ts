@@ -4,6 +4,7 @@ import type { ContentPage } from '@/content/types'
 const retail = {
   path: '/retail',
   meta: {
+    certificates: true,
     title: 'Plural for Retail',
     description:
       'Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.',
@@ -17,7 +18,7 @@ const retail = {
         'Power applications with a platform that simplifies Kubernetes management, ensuring uptime, scalability, and secure customer experiences.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/solutions-visual-e4842f.svg',
@@ -227,7 +228,7 @@ const retail = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

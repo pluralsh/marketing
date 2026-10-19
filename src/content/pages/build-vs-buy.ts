@@ -17,7 +17,7 @@ const buildVsBuy = {
         'You could build your own platform — but the time, cost, and capability trade-offs are rarely worth it. Plural gives you battle-tested infrastructure automation, AI-powered operations, and continuous innovation out of the box.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/platform-cloud-integration-architecture-1606b9.svg',
@@ -193,7 +193,7 @@ const buildVsBuy = {
       title: 'Start Solving Platform Problems \nToday. Not next quarter.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

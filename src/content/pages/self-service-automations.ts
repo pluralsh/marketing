@@ -17,7 +17,7 @@ const selfServiceAutomations = {
         'Empower engineers with repeatable, auditable workflows while platform teams focus on higher-value enablement instead of ad-hoc requests.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/product-ai-powered-visual-4d512b.svg',
@@ -213,7 +213,7 @@ const selfServiceAutomations = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

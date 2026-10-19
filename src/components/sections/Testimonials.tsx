@@ -32,9 +32,19 @@ export function Quote({ testimonial, size = 'md', className }: QuoteProps) {
   )
 }
 
-export function TestimonialGrid({ items }: { items: Testimonial[] }) {
+export function TestimonialGrid({
+  items,
+  ruled = true,
+}: {
+  items: Testimonial[]
+  /** Pass false when a preceding heading already rules the section. */
+  ruled?: boolean
+}) {
   return (
-    <CellGrid minColumn="300px">
+    <CellGrid
+      minColumn="300px"
+      ruled={ruled}
+    >
       {items.map((t) => (
         <Quote
           key={t.quote}

@@ -22,7 +22,7 @@ const resources = {
         "Explore Plural's Resource Center for in-depth guides, case studies, videos, and best practices to help you optimize Kubernetes management and scale with confidence.",
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
     {
@@ -117,7 +117,7 @@ const resources = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

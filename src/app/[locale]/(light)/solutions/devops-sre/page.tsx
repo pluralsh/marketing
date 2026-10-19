@@ -124,7 +124,7 @@ export default function DevOpsSolutionPage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo

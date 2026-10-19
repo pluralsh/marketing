@@ -8,7 +8,12 @@ import { PageHero } from '@/components/sections/PageHero'
 import { Accent, Section } from '@/components/sections/Section'
 import { SectionHeading } from '@/components/sections/SectionHeading'
 import { ArrowLink, ButtonLink } from '@/components/ui/Button'
-import { investors, team, teamPhotos, values } from '@/content/company'
+import {
+  aboutHeroPhoto as heroPhoto,
+  investors,
+  team,
+  values,
+} from '@/content/company'
 import { jobs } from '@/content/jobs'
 import { pageMetadata } from '@/utils/metadata'
 
@@ -17,8 +22,6 @@ export const metadata: Metadata = pageMetadata('/about', {
   description:
     'Our mission is to make elite DevOps available to every team by removing tooling complexity.',
 })
-
-const heroPhoto = teamPhotos.find((photo) => photo.src.includes('kcd'))!
 
 export default function AboutPage() {
   return (
@@ -56,7 +59,7 @@ export default function AboutPage() {
           width={heroPhoto.width}
           height={heroPhoto.height}
           sizes="(min-width: 1200px) 1150px, 100vw"
-          className="aspect-[21/9] w-full rounded-sm object-cover"
+          className="aspect-[21/9] w-full rounded-sm object-cover object-[center_35%]"
           priority
         />
       </div>
@@ -121,10 +124,21 @@ export default function AboutPage() {
           {investors.map((investor) => (
             <div
               key={investor.name}
-              className="px-gutter flex flex-col gap-1 py-8 lg:px-8"
+              className="px-gutter flex items-center gap-4 py-8 lg:px-8"
             >
-              <span className="text-xl font-medium">{investor.name}</span>
-              <span className="text-muted text-sm">{investor.contact}</span>
+              {investor.photo && (
+                <Image
+                  src={investor.photo}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="size-12 shrink-0 rounded-xs object-cover"
+                />
+              )}
+              <div className="flex flex-col gap-1">
+                <span className="text-xl font-medium">{investor.name}</span>
+                <span className="text-muted text-sm">{investor.contact}</span>
+              </div>
             </div>
           ))}
         </CellGrid>

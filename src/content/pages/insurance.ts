@@ -4,6 +4,7 @@ import type { ContentPage } from '@/content/types'
 const insurance = {
   path: '/insurance',
   meta: {
+    certificates: true,
     title: 'Plural for Insurance',
     description:
       'Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.',
@@ -17,7 +18,7 @@ const insurance = {
         'Streamline multi-cluster Kubernetes operations with a platform built to support insurance workloads, ensure compliance, and maintain high availability.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/insurance-8911f1.svg',
@@ -55,7 +56,7 @@ const insurance = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -239,7 +240,7 @@ const insurance = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

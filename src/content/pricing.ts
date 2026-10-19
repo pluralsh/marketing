@@ -24,7 +24,7 @@ export const plans: Plan[] = [
     priceNote: 'for 14 days',
     summary: 'Test drive the platform with all essential components.',
     features: ['All essential platform components', 'Upgrade at any time'],
-    cta: { label: 'Start free', href: URLS.contact, shortcut: 'S' },
+    cta: { label: 'Start free', href: URLS.app, shortcut: 'S' },
   },
   {
     name: 'Pro',
@@ -52,7 +52,7 @@ export const plans: Plan[] = [
       'Shared, dedicated, or on-prem hosting',
       '1-hour guaranteed response',
     ],
-    cta: { label: 'Contact sales', href: URLS.contact, shortcut: 'C' },
+    cta: { label: 'Contact sales', href: URLS.bookDemo, shortcut: 'C' },
   },
 ]
 

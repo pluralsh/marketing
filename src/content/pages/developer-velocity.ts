@@ -18,7 +18,7 @@ const developerVelocity = {
         'When your DevOps team stops being the bottleneck, your developers start shipping faster.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-deployment-status-ui-d4a19f.svg',
@@ -188,7 +188,7 @@ const developerVelocity = {
       title: 'Start Solving Platform Problems \nToday. Not next quarter.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

@@ -9,6 +9,7 @@ on:
   pull_request:
     branches:
       - main
+      - feat/zed-style-redesign
 
 env:
   DOCKER_METADATA_PR_HEAD_SHA: "true"

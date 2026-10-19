@@ -74,7 +74,7 @@ export function NavFeatureCard({
         aria-hidden="true"
         className="border-line-strong bg-surface group-hover:border-accent group-hover:text-accent-ink flex size-10 items-center justify-center rounded-xs border transition-colors"
       >
-        →
+        <Icon path="M5 12h14 M13 6l6 6-6 6" />
       </span>
     </SmartLink>
   )

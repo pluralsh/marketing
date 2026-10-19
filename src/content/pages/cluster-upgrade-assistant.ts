@@ -14,7 +14,7 @@ const clusterUpgradeAssistant = {
         "Explore a demo of Plural's upgrade assistant, including key features such as API Deprecation Detection, Add-On Compatibility Checking, Automated Add-On Upgrades (via PRs and Plural global services), and Automated Terraform Upgrade PR Generation.",
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       video: {
         youtubeId: 'fJmTrELoAKU',
@@ -26,7 +26,7 @@ const clusterUpgradeAssistant = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book now',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

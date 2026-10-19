@@ -8,10 +8,6 @@ export const contentPages: Record<
 > = {
   '/accelerate-k8s-upgrades': () => import('./accelerate-k8s-upgrades'),
   '/ai-for-platform-teams': () => import('./ai-for-platform-teams'),
-  '/customers/enterprise-cybersecurity': () =>
-    import('./enterprise-cybersecurity'),
-  '/customers/large-enterprise-financial-services': () =>
-    import('./large-enterprise-financial-services'),
   '/democratize-kubernetes-expertise': () =>
     import('./democratize-kubernetes-expertise'),
   '/financial-services': () => import('./financial-services'),
