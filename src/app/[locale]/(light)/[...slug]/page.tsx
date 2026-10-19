@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { ContentSections } from '@/components/sections/ContentSections'
 import { contentPages } from '@/content/pages'
 import { SUPPORTED_LOCALES } from '@/i18n/locales'
-
+import { pageMetadata } from '@/utils/metadata'
 type Params = { locale: string; slug: string[] }
 
 // Only the pages registered in src/content/pages exist; anything else 404s.
@@ -31,14 +31,15 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>
 }): Promise<Metadata> {
-  const page = await loadPage((await params).slug)
+  const { slug } = await params
+  const page = await loadPage(slug)
   const hero = page?.sections.find((section) => section.type === 'hero')
 
-  return {
+  return pageMetadata(`/${slug.join('/')}`, {
     title: page?.meta.title ?? (hero ? `${hero.title} | Plural` : undefined),
     description: page?.meta.description ?? hero?.description,
-    robots: page?.meta.noindex ? { index: false } : undefined,
-  }
+    noindex: page?.meta.noindex,
+  })
 }
 
 export default async function ContentPage({

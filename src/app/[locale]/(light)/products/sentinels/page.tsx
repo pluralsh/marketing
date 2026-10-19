@@ -24,12 +24,13 @@ import {
 } from '@/content/products/sentinels'
 import { URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/products/sentinels', {
   title: 'Sentinels | Plural',
   description:
     'Automated, auditable infrastructure validation for Kubernetes. Sentinels combine AI-assisted analysis with deep integration tests across any set of clusters.',
-}
+})
 
 function SentinelRunWindow() {
   return (

@@ -9,13 +9,14 @@ import { ButtonLink } from '@/components/ui/Button'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { mottMacDonald } from '@/content/customers'
 import { testimonials, URLS } from '@/content/site'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/customers/mott-macdonald', {
   title: 'Mott MacDonald case study | Plural',
   description:
     'How Mott MacDonald made Plural the foundation of Digital Workspaces, its internal developer platform.',
-  robots: { index: false },
-}
+  noindex: true,
+})
 
 const toc = [
   { id: 'challenge', label: 'The challenge' },

@@ -8,12 +8,13 @@ import { Quote } from '@/components/sections/Testimonials'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { demoAgenda, demoForm, demoQuotes, otherWays } from '@/content/contact'
 import { customerWordmarks } from '@/content/site'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/contact', {
   title: 'Book a demo | Plural',
   description:
     'See how Plural agents clear upgrades, incidents, CVEs, and tickets across your clusters.',
-}
+})
 
 export default function ContactPage() {
   return (

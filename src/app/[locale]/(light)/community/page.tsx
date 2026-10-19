@@ -14,13 +14,14 @@ import {
   MEETUP_CALENDAR,
   SPEAKER_FORM,
 } from '@/content/community'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/community', {
   title: 'Community & events | Plural',
   description:
     'Join the monthly Plural x Kubernetes meetup, and find us at KubeCon, Ignite, and re:Invent.',
-  robots: { index: false },
-}
+  noindex: true,
+})
 
 export default function CommunityPage() {
   return (

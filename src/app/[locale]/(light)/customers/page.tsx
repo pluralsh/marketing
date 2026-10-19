@@ -9,12 +9,13 @@ import { TestimonialGrid } from '@/components/sections/Testimonials'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { customerStories } from '@/content/customers'
 import { testimonials } from '@/content/site'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/customers', {
   title: 'Customers | Plural',
   description:
     'How platform teams run Kubernetes fleets and infra agents on Plural.',
-}
+})
 
 export default function CustomersPage() {
   return (

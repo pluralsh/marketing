@@ -11,12 +11,13 @@ import { ArrowLink, ButtonLink } from '@/components/ui/Button'
 import { benefits, hiringEmail, teamPhotos } from '@/content/company'
 import { jobs } from '@/content/jobs'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/careers', {
   title: 'Careers | Plural',
   description:
     'Join a small team building how every company will manage its infrastructure.',
-}
+})
 
 export default function CareersPage() {
   return (

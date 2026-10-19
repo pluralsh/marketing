@@ -26,12 +26,13 @@ import {
 } from '@/content/products/flows'
 import { URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/products/flows', {
   title: 'Flows | Plural',
   description:
     'A developer-facing command center for microservices: services, pipelines, PRs, alerts, and AI troubleshooting, scoped to the team that owns them.',
-}
+})
 
 function FlowWindow() {
   return (

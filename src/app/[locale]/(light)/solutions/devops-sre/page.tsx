@@ -17,12 +17,13 @@ import { Quote } from '@/components/sections/Testimonials'
 import { ArrowLink, ButtonLink } from '@/components/ui/Button'
 import { testimonials, URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/solutions/devops-sre', {
   title: 'DevOps & SRE | Plural',
   description:
     'Plural takes the toil out of day-2: version upgrades, add-on compatibility, safe workload drains, and incident triage, all through PRs your team reviews.',
-}
+})
 
 const painPoints = [
   {

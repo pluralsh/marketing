@@ -26,12 +26,13 @@ import {
 } from '@/content/products/fleet-scale-gitops'
 import { testimonials, URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/products/fleet-scale-gitops', {
   title: 'Fleet Scale GitOps | Plural',
   description:
     'Implement GitOps across IaC and Kubernetes, even at thousand-cluster scale. A pull-based architecture deploys Terraform, Helm, and manifests to any cloud, datacenter, or edge site.',
-}
+})
 
 function TerraformToHelmWindow() {
   return (

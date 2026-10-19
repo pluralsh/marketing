@@ -59,7 +59,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            NEXT_PUBLIC_SITE_URL=https://www.plural.sh/
+            NEXT_PUBLIC_SITE_URL=${{ github.event_name == 'pull_request' && format('https://marketing-pr-{0}.plural.sh/', github.event.number) || 'https://www.plural.sh/' }}
             NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}
             NEXT_PUBLIC_SITE_RECAPTCHA_KEY=${{ vars.NEXT_PUBLIC_SITE_RECAPTCHA_KEY }}
             NEXT_PUBLIC_COOKIEBOT_ID=${{ vars.NEXT_PUBLIC_COOKIEBOT_ID }}

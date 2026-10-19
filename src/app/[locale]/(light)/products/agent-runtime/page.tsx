@@ -24,12 +24,13 @@ import {
 } from '@/content/products/agent-runtime'
 import { URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/products/agent-runtime', {
   title: 'Agent Runtime | Plural',
   description:
     'Run coding agents on the Kubernetes clusters you already have. Sandboxed in your perimeter, verified with real builds and tests, and delivered as pull requests.',
-}
+})
 
 function AgentRunWindow() {
   return (

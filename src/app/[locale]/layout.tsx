@@ -6,9 +6,12 @@ import Script from 'next/script'
 
 import { OpenAIPixelPageView } from '@/components/OpenAIPixelPageView'
 import { cn } from '@/utils/cn'
+import { baseMetadata } from '@/utils/metadata'
 import { GoogleTagManager } from '@next/third-parties/google'
 
 import '../globals.css'
+
+export const metadata = baseMetadata
 
 const articulat = localFont({
   variable: '--font-articulat',

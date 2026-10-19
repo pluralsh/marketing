@@ -263,6 +263,16 @@ export function ContentSections({ sections }: { sections: ContentSection[] }) {
           <CtaBand
             key={i}
             title={section.title}
+            actions={
+              section.cta && (
+                <ButtonLink
+                  href={section.cta.href}
+                  shortcut="B"
+                >
+                  {section.cta.label}
+                </ButtonLink>
+              )
+            }
           />
         )
     }

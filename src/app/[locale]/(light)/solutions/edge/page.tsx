@@ -12,12 +12,13 @@ import { SectionHeading } from '@/components/sections/SectionHeading'
 import { ButtonLink } from '@/components/ui/Button'
 import { URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/solutions/edge', {
   title: 'Edge Kubernetes | Plural',
   description:
     'Run AI and ML workloads in fields, factories, and vehicles. Plural provisions, registers, and updates edge clusters, even through intermittent connectivity.',
-}
+})
 
 const industryExamples = [
   {

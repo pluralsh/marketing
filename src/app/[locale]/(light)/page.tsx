@@ -22,12 +22,13 @@ import {
   agentUseCases,
 } from '@/content/home'
 import { impactStats, testimonials, URLS } from '@/content/site'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/', {
   title: 'Plural | AI for infrastructure',
   description:
     'Clear upgrades, incidents, CVEs, and tickets with infra agents grounded in your live infrastructure. They run in your environment, and every change lands as a PR you review.',
-}
+})
 
 export default function HomePage() {
   return (

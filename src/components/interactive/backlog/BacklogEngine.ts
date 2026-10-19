@@ -55,7 +55,11 @@ export class BacklogEngine {
   }
   private sweep: { col: number } | null = null
   private raf = 0
+  private visible = true
   private observer: ResizeObserver | null = null
+  private visibility: IntersectionObserver | null = null
+  private labelFont = '11px monospace'
+  private monthLabels: { text: string; x: number }[] = []
   private reduced: boolean
   private dpr = 1
   private w = 0
@@ -79,13 +83,19 @@ export class BacklogEngine {
     canvas.addEventListener('pointercancel', this.onLeave)
     this.observer = new ResizeObserver(() => this.layout())
     this.observer.observe(canvas)
+    this.visibility = new IntersectionObserver(([entry]) => {
+      this.visible = entry.isIntersecting
+      if (this.visible) this.wake()
+    })
+    this.visibility.observe(canvas)
     this.layout(true)
-    this.raf = requestAnimationFrame(this.tick)
   }
 
   destroy() {
     cancelAnimationFrame(this.raf)
+    this.raf = 0
     this.observer?.disconnect()
+    this.visibility?.disconnect()
     this.canvas.removeEventListener('pointermove', this.onMove)
     this.canvas.removeEventListener('pointerdown', this.onMove)
     this.canvas.removeEventListener('pointerleave', this.onLeave)
@@ -96,11 +106,31 @@ export class BacklogEngine {
   runAgents() {
     if (!this.cells.some((c) => c.alive)) this.fill()
     this.sweep = { col: -2 }
+    this.wake()
   }
 
   reset() {
     this.sweep = null
     this.fill()
+    this.wake()
+  }
+
+  /** Restart the frame loop; it stops itself once the graph is idle. */
+  private wake() {
+    if (!this.raf && this.visible) this.raf = requestAnimationFrame(this.tick)
+  }
+
+  private isIdle() {
+    return (
+      !this.ptr.inside &&
+      !this.sweep &&
+      this.pieces.length === 0 &&
+      this.cells.every(
+        (c) =>
+          !c.alive ||
+          (c.appear >= 1 && Math.abs(c.ox) < 0.05 && Math.abs(c.oy) < 0.05)
+      )
+    )
   }
 
   /** Legend swatches, lightest to darkest. */
@@ -120,6 +150,7 @@ export class BacklogEngine {
     this.palette = BacklogEngine.paletteFor(accent, empty)
     this.labelColor =
       styles.getPropertyValue('--muted').trim() || this.labelColor
+    this.labelFont = `11px ${styles.getPropertyValue('--font-mono') || 'monospace'}`
   }
 
   private onMove = (e: PointerEvent) => {
@@ -137,6 +168,7 @@ export class BacklogEngine {
     t.x = x
     t.y = y
     t.inside = true
+    this.wake()
   }
 
   private onLeave = () => {
@@ -147,6 +179,7 @@ export class BacklogEngine {
       y: -999,
       py: -999,
     })
+    this.wake()
   }
 
   private layout(force = false) {
@@ -170,6 +203,37 @@ export class BacklogEngine {
       this.cols = cols
       this.fill()
     }
+    this.layoutLabels()
+    this.wake()
+  }
+
+  /**
+   * The graph covers the last twelve months whatever its width, so each month
+   * sits at its share of the columns. Placed newest-first so the right edge
+   * always shows the current month and crowded older labels are dropped.
+   */
+  private layoutLabels() {
+    const { ctx } = this
+    const now = new Date()
+    const labels: { text: string; x: number }[] = []
+    let limit = this.w
+
+    ctx.font = this.labelFont
+    for (let i = 11; i >= 0; i--) {
+      const text = new Date(
+        now.getFullYear(),
+        now.getMonth() - 11 + i
+      ).toLocaleString('en-US', { month: 'short' })
+      const width = ctx.measureText(text).width
+      const col = Math.round((i * this.cols) / 12)
+      let x = this.ox + col * this.step
+
+      if (i === 11) x = Math.min(x, limit - width)
+      else if (x + width > limit) continue
+      labels.unshift({ text, x })
+      limit = x - 8
+    }
+    this.monthLabels = labels
   }
 
   private fill() {
@@ -282,8 +346,8 @@ export class BacklogEngine {
   }
 
   private tick = () => {
-    this.raf = requestAnimationFrame(this.tick)
-    if (!this.w) return
+    this.raf = 0
+    if (!this.w || !this.visible) return
 
     const { ctx, ptr: t } = this
     const R = this.w < 520 ? 18 : 22
@@ -394,27 +458,17 @@ export class BacklogEngine {
       ctx.arc(t.x, t.y, R, 0, Math.PI * 2)
       ctx.stroke()
     }
+
+    if (!this.isIdle()) this.wake()
   }
 
   private drawLabels(half: number) {
     const { ctx } = this
-    // The graph covers the last twelve months, ending with the current one.
-    const now = new Date()
-    const months = Array.from({ length: 12 }, (_, i) =>
-      new Date(now.getFullYear(), now.getMonth() - 11 + i).toLocaleString(
-        'en-US',
-        {
-          month: 'short',
-        }
-      )
-    )
-    const every = Math.max(4, Math.round(this.cols / 12))
 
-    ctx.font = `11px ${getComputedStyle(this.canvas).getPropertyValue('--font-mono') || 'monospace'}`
+    ctx.font = this.labelFont
     ctx.fillStyle = this.labelColor
     ctx.textBaseline = 'middle'
-    for (let col = 0, m = 0; col < this.cols - 2; col += every, m++)
-      ctx.fillText(months[m % 12], this.ox + col * this.step, 9)
+    for (const { text, x } of this.monthLabels) ctx.fillText(text, x, 9)
     DAY_LABELS.forEach((d, i) =>
       ctx.fillText(d, 0, TOP + (1 + i * 2) * this.step + half)
     )

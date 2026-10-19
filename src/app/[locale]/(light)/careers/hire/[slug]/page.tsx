@@ -9,7 +9,7 @@ import { SmartLink } from '@/components/ui/SmartLink'
 import { hiringEmail } from '@/content/company'
 import { getJob, jobs } from '@/content/jobs'
 import { SUPPORTED_LOCALES } from '@/i18n/locales'
-
+import { pageMetadata } from '@/utils/metadata'
 type Params = { locale: string; slug: string }
 
 export const dynamicParams = false
@@ -25,12 +25,13 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>
 }): Promise<Metadata> {
-  const job = getJob((await params).slug)
+  const { slug } = await params
+  const job = getJob(slug)
 
-  return {
+  return pageMetadata(`/careers/hire/${slug}`, {
     title: `${job?.title} | Careers at Plural`,
     description: job?.meta.description,
-  }
+  })
 }
 
 export default async function JobPage({ params }: { params: Promise<Params> }) {

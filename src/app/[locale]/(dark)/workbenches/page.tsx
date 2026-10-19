@@ -24,12 +24,13 @@ import {
   workbenchFaq,
 } from '@/content/workbenches'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/workbenches', {
   title: 'Workbenches | Plural',
   description:
     'Workbenches are always-on agents that investigate alerts, fix environment issues, and close tickets, so lean platform teams can focus on the roadmap.',
-}
+})
 
 function WorkbenchConfigWindow() {
   const config = [

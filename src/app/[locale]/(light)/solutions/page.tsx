@@ -8,12 +8,13 @@ import { SectionHeading } from '@/components/sections/SectionHeading'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { navigation } from '@/content/site'
 import { moreIndustries, problemLinks } from '@/content/solutions'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/solutions', {
   title: 'Solutions | Plural',
   description:
     'One platform for every team and environment that runs Kubernetes.',
-}
+})
 
 const solutionsMenu = navigation.find((menu) => menu.kind === 'solutions')!
 

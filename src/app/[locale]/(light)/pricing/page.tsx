@@ -17,12 +17,13 @@ import {
   pricingFaq,
 } from '@/content/pricing'
 import { cn } from '@/utils/cn'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/pricing', {
   title: 'Pricing | Plural',
   description:
     'You pay for the clusters Plural deploys and manages. Pro and Enterprise run the same platform.',
-}
+})
 
 export default function PricingPage() {
   return (

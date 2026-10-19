@@ -10,12 +10,13 @@ import { SectionHeading } from '@/components/sections/SectionHeading'
 import { ArrowLink, ButtonLink } from '@/components/ui/Button'
 import { investors, team, teamPhotos, values } from '@/content/company'
 import { jobs } from '@/content/jobs'
+import { pageMetadata } from '@/utils/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/about', {
   title: 'About | Plural',
   description:
     'Our mission is to make elite DevOps available to every team by removing tooling complexity.',
-}
+})
 
 const heroPhoto = teamPhotos.find((photo) => photo.src.includes('kcd'))!
 
