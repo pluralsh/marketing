@@ -31,7 +31,6 @@ export const contentPages: Record<
   '/products/ai-powered-platform': () => import('./ai-powered-platform'),
   '/products/continuous-deployment': () => import('./continuous-deployment'),
   '/products/iac-management': () => import('./iac-management'),
-  '/products/operations-console': () => import('./operations-console'),
   '/products/platform-foundations': () => import('./platform-foundations'),
   '/products/self-service-automations': () =>
     import('./self-service-automations'),

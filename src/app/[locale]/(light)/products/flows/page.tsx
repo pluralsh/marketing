@@ -13,16 +13,19 @@ import { YouTubeEmbed } from '@/components/sections/YouTubeEmbed'
 import { ArrowLink, ButtonLink } from '@/components/ui/Button'
 import {
   flowAnchors,
-  flowDemoVideo,
   flowFaq,
   flowLinks,
   flowPipeline,
+  flowPreviews,
   flowPrs,
   flowServices,
   flowYaml,
   insightCells,
-  mcpCalls,
-  troubleshootSteps,
+  previewBenefits,
+  previewDemoVideo,
+  previewGuardrails,
+  previewPrBody,
+  previewTemplateYaml,
 } from '@/content/products/flows'
 import { URLS } from '@/content/site'
 import { cn } from '@/utils/cn'
@@ -31,7 +34,7 @@ import { pageMetadata } from '@/utils/metadata'
 export const metadata: Metadata = pageMetadata('/products/flows', {
   title: 'Flows | Plural',
   description:
-    'A developer-facing command center for microservices: services, pipelines, PRs, alerts, and AI troubleshooting, scoped to the team that owns them.',
+    'A developer-facing command center for microservices: services, pipelines, PRs, alerts, and a preview environment for every pull request, scoped to the team that owns them.',
 })
 
 function FlowWindow() {
@@ -39,7 +42,7 @@ function FlowWindow() {
     <CodeWindow
       dots
       title="Flows · payments"
-      status="● 1 alert firing"
+      status={`● ${flowPreviews.length} previews live`}
       footer={['4 services', '1 pipeline', 'payments-engineers: write'].map(
         (item) => (
           <span key={item}>{item}</span>
@@ -105,26 +108,44 @@ function FlowWindow() {
             <span className="text-code-muted">alert ·</span> payments-api 5xx
             rate 4.2% on /v1/settle
           </div>
-          <div className="text-code-muted text-[11px]">FLOW CHAT</div>
-          <div className="font-sans text-sm">Why is settle failing?</div>
-          <div className="bg-code-panel rounded-md px-3.5 py-3 font-sans text-sm leading-normal">
-            Errors started 9 minutes after{' '}
-            <span className="text-syntax-violet font-mono text-[12.5px]">
-              PR #{flowPrs[0].number}
-            </span>{' '}
-            deployed. Commit{' '}
-            <span className="text-syntax-teal font-mono text-[12.5px]">
-              a41c9e2
-            </span>{' '}
-            wraps the webhook handler in a retry that re-reads a closed request
-            body (<span className="font-mono text-[12.5px]">settle.go:88</span>
-            ). Buffer the body before retrying.
+          <div className="text-code-muted text-[11px]">
+            PREVIEW ENVIRONMENTS
           </div>
-          <div className="mt-auto flex flex-wrap items-center gap-2">
-            <span className="text-code-muted">Suggested fix ready</span>
-            <span className="bg-accent inline-flex min-h-8 items-center rounded-[4px] px-3 text-white">
-              Open fix PR
+          {flowPreviews.map((preview) => (
+            <div
+              key={preview.pr}
+              className="border-code-line flex flex-wrap items-center justify-between gap-2 rounded-md border px-3 py-2.5"
+            >
+              <span className="flex min-w-0 flex-col">
+                <span>
+                  <span className="text-syntax-violet">PR #{preview.pr}</span>{' '}
+                  <span className="text-code-muted">·</span>{' '}
+                  <span className="text-syntax-teal">sha-{preview.sha}</span>
+                </span>
+                <span className="text-code-dim truncate">{preview.host}</span>
+              </span>
+              <span
+                className={
+                  preview.status === 'ready'
+                    ? 'text-syntax-green'
+                    : 'text-syntax-amber'
+                }
+              >
+                ● {preview.status}
+              </span>
+            </div>
+          ))}
+          <div className="bg-code-panel rounded-md px-3.5 py-3 font-sans text-sm leading-normal">
+            <span className="text-code-muted font-mono text-[11px]">
+              plural · commented on PR #{flowPreviews[0].pr}
             </span>
+            <div className="mt-1">
+              Preview environment is ready at{' '}
+              <span className="text-syntax-teal font-mono text-[12.5px]">
+                {flowPreviews[0].host}
+              </span>
+              . It updates on every push and is torn down when the PR closes.
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +163,7 @@ export default function FlowsPage() {
             A command center for your <Accent>microservices</Accent>
           </>
         }
-        description="Kubernetes is too much surface area for most developers, who mostly care about a handful of services. A Flow groups related microservices with their pipelines, pull requests, and alerts, with AI troubleshooting scoped to exactly that boundary."
+        description="Kubernetes is too much surface area for most developers, who mostly care about a handful of services. A Flow groups related microservices with their pipelines, pull requests, and alerts, and spins up a preview environment for every pull request."
         actions={
           <>
             <ButtonLink
@@ -245,76 +266,92 @@ export default function FlowsPage() {
             service and pipeline registered with the Flow.
           </p>
           <p className="m-0">
-            The same boundary governs the AI, so it only searches what the
-            viewer is allowed to see.
+            The same boundary covers every preview environment the Flow creates.
           </p>
           <ArrowLink href={flowLinks.docs}>Create a Flow</ArrowLink>
         </FeatureRow>
+      </Section>
+
+      <section
+        id="previews"
+        className="rule-top scroll-mt-20"
+      >
+        <SectionHeading
+          eyebrow="Preview environments"
+          title={
+            <>
+              A full environment for <Accent>every pull request</Accent>
+            </>
+          }
+          description="For the life of a pull request, Flows run a near clone of your dev environment with that branch’s code. Reviewers click a link instead of pulling a branch, and the shared dev environment stays stable."
+          className="px-gutter pt-section pb-10"
+        />
+        <FeatureCells
+          items={previewBenefits}
+          minColumn="260px"
+        />
+      </section>
+
+      <Section className="flex flex-col gap-[clamp(48px,6vw,80px)]">
+        <FeatureRow
+          title="One custom resource, one line in the PR"
+          media={
+            <CodeWindow title="flows/payments-preview.yaml">
+              <Yaml source={previewTemplateYaml} />
+            </CodeWindow>
+          }
+        >
+          <p className="m-0">
+            A <code>PreviewEnvironmentTemplate</code> names the dev service to
+            clone and what to override: the namespace, the image tag built for
+            the commit, and a unique hostname for the PR.
+          </p>
+          <p className="m-0">
+            Opt a pull request in by adding the Flow and template names to its
+            description:
+          </p>
+          <CodeWindow>
+            <div className="px-4 py-3 whitespace-pre">{previewPrBody}</div>
+          </CodeWindow>
+          <ArrowLink href={flowLinks.previews}>
+            Set up preview environments
+          </ArrowLink>
+        </FeatureRow>
         <FeatureRow
           reverse
-          title="MCP integrations with enterprise controls"
+          title="Feedback on the PR, guardrails on the cluster"
           media={
             <Panel className="p-0">
               <div className="border-line flex justify-between border-b px-5 py-3">
-                <span>MCP tool calls · audit log</span>
-                <span className="text-muted">today</span>
+                <span>Guardrails</span>
+                <span className="text-muted">enforced by Plural</span>
               </div>
-              {mcpCalls.map((call) => (
+              {previewGuardrails.map((rule) => (
                 <div
-                  key={call.tool}
-                  className="border-line flex flex-wrap items-center justify-between gap-2 border-b px-5 py-3 last:border-b-0"
+                  key={rule}
+                  className="border-line flex gap-3 border-b px-5 py-3 last:border-b-0"
                 >
-                  <span className="flex flex-col">
-                    <span className="text-ink">{call.tool}</span>
-                    <span className="text-muted text-xs">{call.target}</span>
-                  </span>
-                  {call.approval ? (
-                    <span className="bg-accent text-on-accent rounded px-2.5 py-1 text-xs">
-                      Review & confirm
-                    </span>
-                  ) : (
-                    <span className="text-success">✓ ran</span>
-                  )}
+                  <span className="text-success">✓</span>
+                  <span className="text-ink">{rule}</span>
                 </div>
               ))}
             </Panel>
           }
         >
           <p className="m-0">
-            Connect third-party MCP servers to handle routine operations, from
-            database tasks to Slack notifications, without building custom admin
-            tools.
+            Plural already receives pull request webhooks and holds your GitHub
+            or GitLab credentials, so it redeploys the preview on every push and
+            comments on the PR with its status and URL. When the PR closes, the
+            preview and its namespace are deleted.
           </p>
           <p className="m-0">
-            Every call is logged, permissions are granular, and sensitive
-            operations show a preview and wait for explicit confirmation.
+            Previews are GitOps services like any other, with guardrails that
+            keep them from leaving their tenant or overwriting the service they
+            clone.
           </p>
-          <ArrowLink href={flowLinks.mcp}>MCP in Flows</ArrowLink>
         </FeatureRow>
-      </Section>
-
-      <Section
-        id="troubleshoot"
-        className="flex flex-col gap-8"
-      >
-        <SectionHeading
-          eyebrow="Automated troubleshooting"
-          title="From alert to the line of code that caused it"
-          description="Developers ship changes constantly, and regressions follow. When an alert fires, Flows automatically traces it back to the responsible change, all within the Flow’s permission boundary."
-        />
-        <ol className="border-line m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(220px,1fr))] border-t p-0">
-          {troubleshootSteps.map((step, i) => (
-            <li
-              key={step}
-              className="border-line flex flex-col gap-2 border-b py-5 pr-6"
-            >
-              <span className="text-label">0{i + 1}</span>
-              <span className="text-[17px]">{step}</span>
-            </li>
-          ))}
-        </ol>
         <div className="mx-auto w-full max-w-[880px]">
-          <YouTubeEmbed {...flowDemoVideo} />
+          <YouTubeEmbed {...previewDemoVideo} />
         </div>
       </Section>
 

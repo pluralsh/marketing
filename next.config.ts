@@ -38,7 +38,10 @@ const nextConfig: NextConfig = {
           : [
               ...sharedSecurityHeaders,
               { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-              { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
+              {
+                key: 'Content-Security-Policy',
+                value: "frame-ancestors 'self'",
+              },
             ],
       },
     ]
@@ -52,7 +55,16 @@ const nextConfig: NextConfig = {
       },
       // Superseded by the redesign's homepage and edge solution page.
       { source: '/home-animated', destination: '/', permanent: true },
-      { source: '/edge-kubernetes', destination: '/solutions/edge', permanent: true },
+      {
+        source: '/edge-kubernetes',
+        destination: '/solutions/edge',
+        permanent: true,
+      },
+      {
+        source: '/products/operations-console',
+        destination: '/products/observability',
+        permanent: true,
+      },
       {
         source: '/contact-sales',
         destination: 'https://www.plural.sh/contact',

@@ -69,6 +69,12 @@ export const navigation: NavMenu[] = [
             href: '/products/agent-runtime',
           },
           {
+            title: 'Agent-Ready Observability',
+            description: 'Low-cost logs, metrics, and traces on S3',
+            icon: 'M3 12h4l3-8 4 16 3-8h4',
+            href: '/products/observability',
+          },
+          {
             title: 'Fleet Scale GitOps',
             description:
               'Implement GitOps across IaC and K8s, even at thousand-cluster scale',
@@ -80,12 +86,6 @@ export const navigation: NavMenu[] = [
             description: 'Automated infrastructure validation',
             icon: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z M9 12l2 2 4-4',
             href: '/products/sentinels',
-          },
-          {
-            title: 'Operations Console',
-            description: 'One interface for your entire fleet',
-            icon: 'M3 4h18v12H3z M8 20h8 M12 16v4',
-            href: '/products/operations-console',
           },
           {
             title: 'Flows',
@@ -275,6 +275,7 @@ export const footer: { heading: string; links: Link[] }[] = [
       { label: 'Log in', href: URLS.login },
       { label: 'Workbenches', href: '/workbenches' },
       { label: 'Agent Runtime', href: '/products/agent-runtime' },
+      { label: 'Observability', href: '/products/observability' },
       { label: 'Fleet Scale GitOps', href: '/products/fleet-scale-gitops' },
       { label: 'Sentinels', href: '/products/sentinels' },
       { label: 'Flows', href: '/products/flows' },

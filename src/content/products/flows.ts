@@ -2,13 +2,15 @@ import { URLS } from '@/content/site'
 
 export const flowLinks = {
   docs: `${URLS.docs}plural-features/flows`,
-  mcp: `${URLS.docs}plural-features/flows/mcp`,
   previews: `${URLS.docs}plural-features/flows/preview-environments`,
   announcement:
     'https://www.plural.sh/blog/introducing-flows-your-teams-microservice-command-center/',
 }
 
-export const flowDemoVideo = { id: '1OX8OXEilyg', title: 'Plural Flows demo' }
+export const previewDemoVideo = {
+  id: '9hoiQnkgnzQ',
+  title: 'Plural Flows preview environments demo',
+}
 
 export const flowAnchors = [
   {
@@ -25,9 +27,9 @@ export const flowAnchors = [
   },
   {
     eyebrow: '03',
-    title: 'AI scoped to your services',
-    body: 'Flow Chat and automated troubleshooting only search inside the Flow’s boundary.',
-    href: '#troubleshoot',
+    title: 'A preview for every PR',
+    body: 'Each pull request gets its own near clone of dev, torn down when the PR closes.',
+    href: '#previews',
   },
 ]
 
@@ -49,11 +51,69 @@ export const flowPrs = [
   { number: 915, title: 'Bump stripe-go to v79', state: 'open' },
 ]
 
-export const troubleshootSteps = [
-  'Analyzes the alert and its associated logs',
-  'Cross-references recent pull requests from GitHub or GitLab',
-  'Identifies the change causing the issue, down to the commit SHA and line',
-  'Generates a targeted fix recommendation',
+export const flowPreviews = [
+  {
+    pr: 915,
+    host: 'payments-pr-915.dev.acme.io',
+    sha: 'c7e1f04',
+    status: 'ready',
+  },
+  {
+    pr: 918,
+    host: 'payments-pr-918.dev.acme.io',
+    sha: '3b9d2aa',
+    status: 'deploying',
+  },
+] as const
+
+export const previewBenefits = [
+  {
+    icon: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z',
+    title: 'A stable dev environment',
+    body: 'In-flight branches stop trampling the shared dev environment, a common failure in large organizations.',
+  },
+  {
+    icon: 'M4 5h16v14H4z M4 9h16 M9 9v10',
+    title: 'Test changes in isolation',
+    body: 'Each preview runs only the code in its branch, so a failure points at that change and nothing else.',
+  },
+  {
+    icon: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6 M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3',
+    title: 'Safe schema migrations',
+    body: 'Add a database fork to the preview to test migrations without corrupting shared dev data.',
+  },
+]
+
+export const previewTemplateYaml = `apiVersion: deployments.plural.sh/v1alpha1
+kind: PreviewEnvironmentTemplate
+metadata:
+  name: payments
+spec:
+  flowRef:
+    name: payments
+  referenceServiceRef: # the dev service to clone
+    name: payments-api-dev
+    namespace: payments
+  template:
+    namespace: "payments-pr-{{ pr.number }}"
+    name: "payments-pr-{{ pr.number }}"
+    syncConfig:
+      deleteNamespace: true # clean up when the PR closes
+    helm:
+      values:
+        image:
+          tag: "sha-{{ commitSha | slice: 0, 7 }}"
+        ingress:
+          hosts:
+            - host: payments-pr-{{ pr.number }}.dev.acme.io`
+
+export const previewPrBody = `Plural Flow: payments
+Plural Preview: payments`
+
+export const previewGuardrails = [
+  'Previews only deploy to the same cluster as the service they clone.',
+  'Namespaces must be prefixed by the source service’s namespace, so a preview can’t jump tenants.',
+  'The Flow’s permission bindings apply to every preview it creates.',
 ]
 
 export const flowYaml = `apiVersion: deployments.plural.sh/v1alpha1
@@ -67,12 +127,6 @@ spec:
       - groupName: payments-readers # mapped from your IdP
     write:
       - groupName: payments-engineers`
-
-export const mcpCalls = [
-  { tool: 'postgres.run_query', target: 'ledger-replica', approval: false },
-  { tool: 'slack.post_message', target: '#payments-oncall', approval: false },
-  { tool: 'postgres.run_migration', target: 'ledger-primary', approval: true },
-]
 
 export const insightCells = [
   {
@@ -90,11 +144,6 @@ export const insightCells = [
     title: 'Scoped access',
     body: 'Every view respects the Flow’s permission boundary.',
   },
-  {
-    icon: 'M4 5h16v14H4z M4 9h16 M9 9v10',
-    title: 'Preview environments',
-    body: 'Spin up a near clone of dev for every pull request, with feedback posted back to the PR.',
-  },
 ]
 
 export const flowFaq = [
@@ -109,8 +158,13 @@ export const flowFaq = [
       'With a Kubernetes custom resource. Define the Flow with a description and permission bindings, then register services and pipelines with a flowRef.',
   },
   {
-    question: 'What can the AI see?',
+    question: 'How do I turn on preview environments?',
     answer:
-      'Only what’s inside the Flow’s boundary: its services, logs, pull requests, and alerts, filtered by the viewer’s permissions. That keeps answers accurate and prevents exposure across teams.',
+      'Register a PreviewEnvironmentTemplate that points at the dev service to clone, then add the Plural Flow and Plural Preview annotations to a pull request’s description. Plural deploys the preview, updates it on every push, and deletes it when the PR closes.',
+  },
+  {
+    question: 'Where do preview environments run?',
+    answer:
+      'On the same cluster as the service they clone, in a namespace prefixed by that service’s namespace. That keeps previews inside their tenant while preventing them from overwriting the original service.',
   },
 ]

@@ -14,6 +14,7 @@ const STATIC_PATHS = [
   '/products/agent-runtime',
   '/products/fleet-scale-gitops',
   '/products/flows',
+  '/products/observability',
   '/products/sentinels',
   '/solutions',
   '/solutions/devops-sre',

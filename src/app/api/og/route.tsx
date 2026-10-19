@@ -62,8 +62,8 @@ export function GET() {
             AI for infrastructure
           </div>
           <div style={{ fontSize: 32, color: '#9ea3ff', maxWidth: 900 }}>
-            Infra agents grounded in your live infrastructure. Every change
-            lands as a PR you review.
+            Infra agents grounded in production. Every change lands as a PR you
+            review.
           </div>
         </div>
       </div>

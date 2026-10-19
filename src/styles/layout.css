@@ -55,6 +55,44 @@
  * A grid whose cells are separated by hairlines, however many columns fit.
  * Each cell draws its right and bottom edge; the container clips the outer ones.
  */
+/* Hairline-track slider with a small square thumb, for interactive figures. */
+@utility range-hairline {
+  appearance: none;
+  height: 16px;
+  background: linear-gradient(var(--line-strong), var(--line-strong)) center /
+    100% 1px no-repeat;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    background: var(--surface);
+    box-shadow: inset 0 -2px 0 0 var(--line);
+  }
+
+  &::-moz-range-thumb {
+    width: 12px;
+    height: 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    background: var(--surface);
+    box-shadow: inset 0 -2px 0 0 var(--line);
+  }
+
+  &:hover::-webkit-slider-thumb,
+  &:focus-visible::-webkit-slider-thumb {
+    border-color: var(--accent);
+  }
+
+  &:hover::-moz-range-thumb,
+  &:focus-visible::-moz-range-thumb {
+    border-color: var(--accent);
+  }
+}
+
 @utility ruled-grid {
   display: grid;
   overflow: hidden;

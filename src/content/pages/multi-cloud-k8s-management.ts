@@ -55,8 +55,8 @@ const multiCloudK8SManagement = {
       ],
       links: [
         {
-          label: 'Operations Console',
-          href: '/products/operations-console',
+          label: 'Learn more',
+          href: '/contact',
         },
       ],
       image: {
