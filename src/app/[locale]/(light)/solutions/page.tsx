@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Certificates } from '@/components/layout/Certificates'
 import { NavMenuItem } from '@/components/layout/NavMenuItem'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { PageHero } from '@/components/sections/PageHero'
@@ -77,6 +78,7 @@ export default function SolutionsPage() {
         </ul>
       </Section>
       <CtaBand title="See Plural on your infrastructure" />
+      <Certificates />
     </>
   )
 }

@@ -45,7 +45,7 @@ function Hero({ section }: { section: HeroSection }) {
         actions={
           <>
             <ButtonLink
-              href={section.cta?.href ?? URLS.contact}
+              href={section.cta?.href ?? URLS.bookDemo}
               shortcut="B"
             >
               {section.cta?.label ?? 'Book a demo'}

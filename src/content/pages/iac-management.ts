@@ -16,7 +16,7 @@ const iacManagement = {
         'Implement a GitOps strategy around your Terraform workflow. Use our API’s to create a reusable Terraform, Pulumi or Ansible stack from any git repository in which the code might live, and we’ll handle the rest to ensure it’s deployed on any commit.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-list-29d30a.svg',
@@ -250,7 +250,7 @@ const iacManagement = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

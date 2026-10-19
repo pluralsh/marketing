@@ -316,7 +316,7 @@ const aiAdvantage = {
         'This Is What AI Infrastructure Should \nLook Like. See how we can help.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

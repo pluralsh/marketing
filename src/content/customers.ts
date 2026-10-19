@@ -38,6 +38,7 @@ export const customerStories = [
 ]
 
 export const mottMacDonald = {
+  company: 'Mott MacDonald',
   facts: [
     {
       term: 'Industry',
@@ -79,5 +80,93 @@ export const mottMacDonald = {
   speaker: {
     name: 'Simon Bell',
     title: 'Head of Platform Services, Mott MacDonald',
+  },
+  image: {
+    src: '/images/customers/mott-macdonald.jpg',
+    alt: 'Mott MacDonald case study',
+    width: 1600,
+    height: 1000,
+  },
+}
+
+export const enterpriseCybersecurity = {
+  company: 'Global cybersecurity leader',
+  facts: [
+    { term: 'Industry', detail: 'Cybersecurity' },
+    { term: 'Footprint', detail: 'Global' },
+    {
+      term: 'Compliance',
+      detail: 'SOC 2 and FedRAMP',
+    },
+    {
+      term: 'Challenge',
+      detail: 'Fleet-wide Kubernetes upgrades taking up to 3 months',
+    },
+  ],
+  usesPlural: [
+    'Automated upgrades',
+    'Policy & compliance',
+    'Fleet lifecycle management',
+  ],
+  atAGlance: [
+    {
+      title: '3 months → 1 day',
+      body: 'Cluster upgrades that used to take a quarter now finish in a day.',
+    },
+    {
+      title: 'Senior time freed',
+      body: 'Routine maintenance shifted from staff engineers to mid-level engineers.',
+    },
+    {
+      title: 'FedRAMP ready',
+      body: 'Automated 30-day patching keeps clusters inside compliance windows.',
+    },
+  ],
+  image: {
+    src: '/images/content/cyber-case-study-48b74a.jpg',
+    alt: 'Cybersecurity case study',
+    width: 848,
+    height: 530,
+  },
+}
+
+export const largeEnterpriseFinancialServices = {
+  company: 'Fortune 50 financial services company',
+  facts: [
+    { term: 'Industry', detail: 'Financial services' },
+    { term: 'Footprint', detail: 'Multi-cloud and on-premises' },
+    {
+      term: 'Scale',
+      detail: 'Hundreds of Kubernetes clusters',
+    },
+    {
+      term: 'Compliance',
+      detail: 'PCI and SOC 2',
+    },
+  ],
+  usesPlural: [
+    'Self-service provisioning',
+    'GitOps workflows',
+    'AI-powered troubleshooting',
+  ],
+  atAGlance: [
+    {
+      title: '95% less maintenance',
+      body: 'Routine Kubernetes tasks automated across the estate.',
+    },
+    {
+      title: '88% lower overhead',
+      body: 'Centralized control cut day-to-day management cost.',
+    },
+    {
+      title: '~30x ROI',
+      body: '$2M in annual savings over three years.',
+    },
+  ],
+  image: {
+    src: '/images/content/plural-fs-701915.jpg',
+    alt: 'Financial services case study',
+    width: 848,
+    height: 530,
   },
 }

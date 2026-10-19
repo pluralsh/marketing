@@ -1,5 +1,4 @@
 import { AnnouncementBar } from './AnnouncementBar'
-import { Certificates } from './Certificates'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
@@ -9,7 +8,8 @@ type SiteShellProps = React.PropsWithChildren<{ theme?: Theme }>
 
 /**
  * Chrome shared by every page: announcement, header, the railed content
- * column, certificates, and footer. `theme` swaps the palette for the subtree.
+ * column, and footer. `theme` swaps the palette for the subtree.
+ * Certificates are opted into per page (home, solutions, industries).
  */
 export function SiteShell({ theme = 'light', children }: SiteShellProps) {
   return (
@@ -21,7 +21,6 @@ export function SiteShell({ theme = 'light', children }: SiteShellProps) {
       <Header theme={theme} />
       <div className="rails">
         <main>{children}</main>
-        <Certificates />
         <Footer theme={theme} />
       </div>
     </div>

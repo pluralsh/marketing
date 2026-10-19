@@ -17,7 +17,7 @@ const simplifyKubernetesComplexity = {
         'Effortlessly simplify the complexities of Kubernetes management with a platform designed to enhance efficiency, reduce operational challenges, and empower your teams to focus on innovation.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/financial-services-f1d12f.svg',
@@ -122,7 +122,7 @@ const simplifyKubernetesComplexity = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -234,7 +234,7 @@ const simplifyKubernetesComplexity = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

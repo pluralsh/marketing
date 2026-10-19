@@ -14,6 +14,8 @@ export const URLS = {
   youtube: 'https://www.youtube.com/@pluralsh',
   x: 'https://x.com/plural_sh',
   contact: '/contact',
+  /** Scrolls to the demo form; useful when the form stacks below the fold. */
+  bookDemo: '/contact#book-demo',
   workbenchesAnnouncement:
     'https://www.plural.sh/blog/introducing-plural-workbenches-build-your-own-agents-for-devops/',
 } as const
@@ -262,7 +264,7 @@ export const navigation: NavMenu[] = [
       {
         title: 'Contact sales',
         description: 'Book a demo or ask a question',
-        href: '/contact',
+        href: URLS.bookDemo,
       },
     ],
   },
@@ -290,7 +292,7 @@ export const footer: { heading: string; links: Link[] }[] = [
       { label: 'About', href: '/about' },
       { label: 'Careers', href: '/careers' },
       { label: 'Customers', href: '/customers' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Contact', href: URLS.bookDemo },
     ],
   },
   {

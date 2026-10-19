@@ -17,7 +17,7 @@ const multiCloudK8SManagement = {
         'Manage all your cloud environments from a single unified interface',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/platform-foundations-225e29.svg',
@@ -56,7 +56,7 @@ const multiCloudK8SManagement = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -210,7 +210,7 @@ const multiCloudK8SManagement = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

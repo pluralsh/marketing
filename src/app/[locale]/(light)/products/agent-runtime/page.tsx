@@ -105,7 +105,7 @@ export default function AgentRuntimePage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo

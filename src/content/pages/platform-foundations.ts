@@ -16,7 +16,7 @@ const platformFoundations = {
         'Plural offers unmatched flexibility and adaptability, allowing organizations to deploy Kubernetes solutions seamlessly across any infrastructure setup. Whether you prefer a SaaS model or a self-hosted environment, Plural’s architecture empowers you to maintain full control over your deployments while optimizing for your specific cloud needs.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/platform-foundations-225e29.svg',
@@ -150,7 +150,7 @@ const platformFoundations = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

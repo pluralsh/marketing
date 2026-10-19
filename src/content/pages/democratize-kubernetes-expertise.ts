@@ -17,7 +17,7 @@ const democratizeKubernetesExpertise = {
         'Empower teams of all skill levels to confidently manage Kubernetes',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/financial-services-f1d12f.svg',
@@ -121,7 +121,7 @@ const democratizeKubernetesExpertise = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -203,7 +203,7 @@ const democratizeKubernetesExpertise = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

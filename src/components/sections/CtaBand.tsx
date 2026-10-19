@@ -23,7 +23,7 @@ export function CtaBand({ title, description, actions }: CtaBandProps) {
       <div className="flex flex-wrap justify-center gap-3">
         {actions ?? (
           <ButtonLink
-            href={URLS.contact}
+            href={URLS.bookDemo}
             shortcut="B"
           >
             Book a demo

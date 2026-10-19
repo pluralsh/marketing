@@ -14,7 +14,7 @@ const lpDemo = {
         'Monitor your clusters, simplify upgrades, troubleshoot issues, and manage compliance - all from a single pane of glass.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/homepageherobg-ab8e02.svg',
@@ -40,7 +40,7 @@ const lpDemo = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -64,7 +64,7 @@ const lpDemo = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -88,7 +88,7 @@ const lpDemo = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -112,7 +112,7 @@ const lpDemo = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -160,7 +160,7 @@ const lpDemo = {
       title: 'Ready to see Plural in action?',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

@@ -16,7 +16,7 @@ const kubernetesMigration = {
         'Let Plural handle all the usual migration challenges so you don’t have to. Plural’s tailored upgrade packages help you seamlessly transition to K8s—sans the headaches',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/financial-services-f1d12f.svg',
@@ -218,7 +218,7 @@ const kubernetesMigration = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

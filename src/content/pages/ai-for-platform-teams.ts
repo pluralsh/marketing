@@ -17,7 +17,7 @@ const aiForPlatformTeams = {
         'Faster troubleshooting. Smarter decisions. Less manual toil.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/ai-insights-3a6db8.svg',
@@ -214,7 +214,7 @@ const aiForPlatformTeams = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -296,7 +296,7 @@ const aiForPlatformTeams = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

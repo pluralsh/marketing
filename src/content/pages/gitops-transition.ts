@@ -16,7 +16,7 @@ const gitopsTransition = {
       description: 'GitOps made easy for faster, more reliable deployments',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/fix-instance-type-from-aae9b2.svg',
@@ -226,7 +226,7 @@ const gitopsTransition = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

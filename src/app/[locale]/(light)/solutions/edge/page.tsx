@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { EdgeFleetDemo } from '@/components/interactive/EdgeFleetDemo'
+import { Certificates } from '@/components/layout/Certificates'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { FeatureCells } from '@/components/sections/FeatureCells'
 import { FeatureRow } from '@/components/sections/FeatureRow'
@@ -230,7 +231,7 @@ export default function EdgeSolutionPage() {
         actions={
           <>
             <ButtonLink
-              href={URLS.contact}
+              href={URLS.bookDemo}
               shortcut="B"
             >
               Book a demo
@@ -305,6 +306,7 @@ export default function EdgeSolutionPage() {
           </>
         }
       />
+      <Certificates />
     </>
   )
 }

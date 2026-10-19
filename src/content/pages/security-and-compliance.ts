@@ -16,7 +16,7 @@ const securityAndCompliance = {
       description: 'Protect sensitive data while meeting regulatory demands',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-list-29d30a.svg',
@@ -196,7 +196,7 @@ const securityAndCompliance = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

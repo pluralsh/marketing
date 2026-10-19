@@ -4,11 +4,15 @@ import { NavigationMenu } from 'radix-ui'
 
 import type { NavMenu } from '@/content/site'
 
+import { Icon } from '@/components/ui/Icon'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { navigation } from '@/content/site'
 import { cn } from '@/utils/cn'
 
 import { NavFeatureCard, NavMenuItem } from './NavMenuItem'
+
+/** Console CaretDownIcon, remapped onto the site's 24×24 icon grid. */
+const CARET_DOWN = 'M6 9l6 6 6-6'
 
 const triggerClass =
   'text-ink hover:bg-surface-hover data-[state=open]:bg-surface-hover inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-xs px-3 text-[15px] no-underline'
@@ -96,12 +100,11 @@ export function DesktopNav() {
           const trigger = (
             <NavigationMenu.Trigger className={cn(triggerClass, 'group')}>
               {menu.label}
-              <span
-                aria-hidden="true"
-                className="text-muted text-[10px] transition-transform group-data-[state=open]:rotate-180"
-              >
-                ▾
-              </span>
+              <Icon
+                path={CARET_DOWN}
+                size={24}
+                className="text-muted transition-transform group-data-[state=open]:rotate-180"
+              />
             </NavigationMenu.Trigger>
           )
 

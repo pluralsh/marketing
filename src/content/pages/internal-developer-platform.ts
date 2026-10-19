@@ -17,7 +17,7 @@ const internalDeveloperPlatform = {
         'Empower developers to build consistent, secure, and scalable apps with Kubernetes',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-4a6394.svg',
@@ -227,7 +227,7 @@ const internalDeveloperPlatform = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

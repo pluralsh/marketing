@@ -4,6 +4,7 @@ import type { ContentPage } from '@/content/types'
 const hospitality = {
   path: '/hospitality',
   meta: {
+    certificates: true,
     title: 'Enterprise Kubernetes management, accelerated.',
     description:
       'Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.',
@@ -17,7 +18,7 @@ const hospitality = {
         'Deliver exceptional guest experiences with a platform that simplifies Kubernetes operations, ensuring reliable, scalable, and secure systems across all your services.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-list-29d30a.svg',
@@ -55,7 +56,7 @@ const hospitality = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -233,7 +234,7 @@ const hospitality = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

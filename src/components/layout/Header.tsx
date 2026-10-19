@@ -35,7 +35,7 @@ export function Header({ theme }: { theme: Theme }) {
             Log in
           </ButtonLink>
           <ButtonLink
-            href={URLS.contact}
+            href={URLS.bookDemo}
             size="md"
             shortcut="B"
             className="max-sm:hidden"

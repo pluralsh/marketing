@@ -4,6 +4,7 @@ import type { ContentPage } from '@/content/types'
 const healthcare = {
   path: '/healthcare',
   meta: {
+    certificates: true,
     title: 'Enterprise Kubernetes management, accelerated.',
     description:
       'Use Plural to simplify upgrades, manage compliance, improve visibility, and streamline troubleshooting for your Kubernetes environment.',
@@ -17,7 +18,7 @@ const healthcare = {
         'Simplify Kubernetes operations to ensure secure, compliant, and reliable systems for healthcare workloads like EHR, telehealth, and medical data applications.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/terraform-stack-4a6394.svg',
@@ -237,7 +238,7 @@ const healthcare = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

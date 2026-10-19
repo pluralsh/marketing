@@ -89,7 +89,7 @@ export function UseCaseTabs({ items }: { items: UseCase[] }) {
           <h3 className="text-heading-md m-0">{current.title}</h3>
           <p className="text-body m-0">{current.body}</p>
           <ArrowLink
-            href={URLS.contact}
+            href={URLS.bookDemo}
             className="mt-2 self-start"
           >
             See it in a demo

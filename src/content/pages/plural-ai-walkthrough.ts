@@ -14,7 +14,7 @@ const pluralAiWalkthrough = {
         'Take a deep dive into Plural with this 15-minute walkthrough. Explore how its features simplify Kubernetes management, from automated upgrades to compliance enforcement, and see Plural in action managing multi-cluster environments with ease.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       video: {
         youtubeId: 'ef9AuG78W_A',
@@ -26,7 +26,7 @@ const pluralAiWalkthrough = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book now',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

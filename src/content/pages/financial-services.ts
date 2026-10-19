@@ -4,6 +4,7 @@ import type { ContentPage } from '@/content/types'
 const financialServices = {
   path: '/financial-services',
   meta: {
+    certificates: true,
     title: 'Plural for Financial Services',
     description: 'Plural for Financial Services',
     noindex: false,
@@ -16,7 +17,7 @@ const financialServices = {
         'Achieve reliable, compliant, and efficient Kubernetes operations with Plural’s purpose-built solutions for complex financial environments.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/financial-services-f1d12f.svg',
@@ -228,7 +229,7 @@ const financialServices = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

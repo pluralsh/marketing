@@ -14,7 +14,7 @@ const flows = {
         'Explore Flows, a holistic application developer experience, integrating GitOps, log aggregation, timeseries metrics, and the full Plural AI suite for automated troubleshooting and remediation.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       video: {
         youtubeId: '1OX8OXEilyg',
@@ -26,7 +26,7 @@ const flows = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book now',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

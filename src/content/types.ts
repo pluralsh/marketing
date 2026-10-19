@@ -27,6 +27,8 @@ export type PageMeta = {
   title?: string
   description?: string
   noindex?: boolean
+  /** Show the certificates strip (home, solutions, industries). */
+  certificates?: boolean
 }
 
 export type Testimonial = {

@@ -17,7 +17,7 @@ const reducedSupport = {
         'Empower platform teams and developers with AI-powered insights and self-service capabilities for faster issue resolution',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/solutions-visual-e4842f.svg',
@@ -200,7 +200,7 @@ const reducedSupport = {
       links: [
         {
           label: 'Book a demo',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -282,7 +282,7 @@ const reducedSupport = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],

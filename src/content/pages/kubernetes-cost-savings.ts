@@ -17,7 +17,7 @@ const kubernetesCostSavings = {
         'Reduce Kubernetes overhead with smarter, more efficient management',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
       image: {
         src: '/images/content/solutions-visual-e4842f.svg',
@@ -122,7 +122,7 @@ const kubernetesCostSavings = {
       links: [
         {
           label: 'Learn more',
-          href: '/contact',
+          href: '/contact#book-demo',
         },
       ],
       image: {
@@ -240,7 +240,7 @@ const kubernetesCostSavings = {
       title: 'Enterprise Kubernetes\nmanagement, accelerated.',
       cta: {
         label: 'Book a demo',
-        href: '/contact',
+        href: '/contact#book-demo',
       },
     },
   ],
