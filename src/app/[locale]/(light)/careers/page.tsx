@@ -94,7 +94,7 @@ export default function CareersPage() {
           action={<ArrowLink href="/about">Our values and team</ArrowLink>}
         />
         <div className="grid grid-flow-dense auto-rows-[220px] grid-cols-2 gap-3 md:grid-cols-4">
-          {teamPhotos.map((photo, i) => (
+          {teamPhotos.map((photo) => (
             <Image
               key={photo.src}
               src={photo.src}
@@ -102,10 +102,11 @@ export default function CareersPage() {
               width={photo.width}
               height={photo.height}
               sizes="(min-width: 768px) 50vw, 100vw"
+              style={{ objectPosition: photo.position }}
               className={cn(
                 'size-full rounded-sm object-cover',
-                i === 0 && 'row-span-2',
-                i === 4 && 'col-span-2'
+                photo.span === 'tall' && 'row-span-2',
+                photo.span === 'wide' && 'col-span-2'
               )}
             />
           ))}

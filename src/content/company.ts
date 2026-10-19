@@ -98,18 +98,41 @@ export const benefits = [
   },
 ]
 
-export const teamPhotos = [
+export type TeamPhoto = {
+  src: string
+  alt: string
+  width: number
+  height: number
+  /** Gallery tile shape; defaults to a single cell. */
+  span?: 'tall' | 'wide'
+  /** CSS object-position, to keep faces in frame when the tile crops. */
+  position?: string
+}
+
+// Order matters: with dense packing this fills a 4×3 desktop grid (tall tiles
+// on the outer columns) and a 2-column mobile grid without gaps.
+export const teamPhotos: TeamPhoto[] = [
   {
     src: '/images/team/kubecon-booth.jpg',
     alt: 'Presenting at the Plural KubeCon booth',
     width: 1200,
     height: 1754,
+    span: 'tall',
   },
   {
     src: '/images/team/team-dinner.jpg',
     alt: 'The team out to dinner',
     width: 1200,
     height: 900,
+    span: 'wide',
+  },
+  {
+    src: '/images/team/kubecon-eu-booth-waving.jpg',
+    alt: 'Teammates working the Plural conference booth',
+    width: 768,
+    height: 1024,
+    span: 'tall',
+    position: '60% center',
   },
   {
     src: '/images/team/pizza-party.jpg',
@@ -128,20 +151,23 @@ export const teamPhotos = [
     alt: 'The team at KCD',
     width: 1200,
     height: 900,
+    span: 'wide',
+    position: 'center 20%',
   },
   {
     src: '/images/team/team-game-night.jpg',
     alt: 'The team at a pool and ping-pong game night',
-    width: 640,
-    height: 508,
+    width: 1024,
+    height: 420,
+    span: 'wide',
   },
 ]
 
 export const aboutHeroPhoto = {
   src: '/images/team/kubecon-eu-booth.jpg',
   alt: 'The Plural team at the Plural conference booth',
-  width: 655,
-  height: 491,
+  width: 1024,
+  height: 768,
 }
 
 export const hiringEmail = 'hiring@plural.sh'
