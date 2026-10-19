@@ -109,8 +109,9 @@ export type TeamPhoto = {
   position?: string
 }
 
-// Order matters: with dense packing this fills a 4×3 desktop grid (tall tiles
-// on the outer columns) and a 2-column mobile grid without gaps.
+// Order matters: with dense packing this fills a 4×3 desktop grid and a
+// 2-column mobile grid without gaps. Portrait shots are tall so faces and
+// subjects at the bottom of the frame both stay visible.
 export const teamPhotos: TeamPhoto[] = [
   {
     src: '/images/team/kubecon-booth.jpg',
@@ -120,10 +121,10 @@ export const teamPhotos: TeamPhoto[] = [
     span: 'tall',
   },
   {
-    src: '/images/team/team-dinner.jpg',
-    alt: 'The team out to dinner',
-    width: 1200,
-    height: 900,
+    src: '/images/team/team-game-night.jpg',
+    alt: 'The team at a pool and ping-pong game night',
+    width: 1024,
+    height: 420,
     span: 'wide',
   },
   {
@@ -135,16 +136,18 @@ export const teamPhotos: TeamPhoto[] = [
     position: '60% center',
   },
   {
-    src: '/images/team/pizza-party.jpg',
-    alt: 'Pizza party at the office',
+    src: '/images/team/team-dinner.jpg',
+    alt: 'The team out to dinner',
     width: 1200,
-    height: 943,
+    height: 900,
   },
   {
     src: '/images/team/robot-dog.jpg',
     alt: 'Two teammates looking at a robot dog',
     width: 1200,
     height: 1600,
+    span: 'tall',
+    position: '40% center',
   },
   {
     src: '/images/team/kcd-conference.jpg',
@@ -155,11 +158,10 @@ export const teamPhotos: TeamPhoto[] = [
     position: 'center 20%',
   },
   {
-    src: '/images/team/team-game-night.jpg',
-    alt: 'The team at a pool and ping-pong game night',
-    width: 1024,
-    height: 420,
-    span: 'wide',
+    src: '/images/team/pizza-party.jpg',
+    alt: 'Pizza party at the office',
+    width: 1200,
+    height: 943,
   },
 ]
 
