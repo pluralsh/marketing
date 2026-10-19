@@ -47,25 +47,28 @@ export function TeamGrid({ members, openRoles, heading }: TeamGridProps) {
           onChange={setFilter}
         />
       </div>
-      <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 p-0">
+      {/* Mobile: stacked rows with a small avatar beside the name. md+: tiles
+          with a square portrait above the name and title. */}
+      <ul className="m-0 grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
         {visible.map((member) => (
           <li
             key={member.name}
-            className="border-line bg-surface flex items-center gap-3.5 rounded-sm border p-3"
+            className="border-line bg-surface flex items-center gap-3.5 rounded-sm border p-3 md:flex-col md:items-stretch md:gap-3"
           >
             {member.photo ? (
               <Image
                 src={member.photo}
                 alt=""
-                width={48}
-                height={48}
-                className="size-12 shrink-0 rounded-xs object-cover"
+                width={480}
+                height={480}
+                sizes="(min-width: 768px) 280px, 48px"
+                className="size-12 shrink-0 rounded-xs object-cover md:aspect-square md:size-auto md:w-full"
               />
             ) : (
               <div
                 aria-hidden="true"
                 className={cn(
-                  'flex size-12 shrink-0 items-center justify-center rounded-xs font-serif text-lg',
+                  'flex size-12 shrink-0 items-center justify-center rounded-xs font-serif text-lg md:aspect-square md:size-auto md:w-full md:text-5xl',
                   avatarStyles[members.indexOf(member) % avatarStyles.length]
                 )}
               >
