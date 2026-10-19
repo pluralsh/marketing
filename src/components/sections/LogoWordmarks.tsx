@@ -50,17 +50,14 @@ export function LogoWordmarks({
       {/* Mobile: single-row auto-scrolling marquee at a uniform height. */}
       <div
         className={cn(
-          'text-muted -mx-gutter relative overflow-hidden md:hidden',
+          'text-muted -mx-gutter relative overflow-hidden motion-reduce:hidden md:hidden',
           '[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]'
         )}
       >
+        {/* Trailing padding equals the gap so -50% lands exactly on the second copy. */}
         <ul
           aria-hidden="true"
-          className={cn(
-            'm-0 flex w-max list-none items-center gap-x-10 p-0 text-[18px]',
-            'animate-[logo-marquee_28s_linear_infinite]',
-            'motion-reduce:animate-none'
-          )}
+          className="m-0 flex w-max animate-[logo-marquee_28s_linear_infinite] list-none items-center gap-x-10 py-0 pr-10 pl-0 text-[18px]"
         >
           {[...logos, ...logos].map((logo, i) => (
             <LogoMark
@@ -70,7 +67,6 @@ export function LogoWordmarks({
             />
           ))}
         </ul>
-        {/* Accessible, non-animated list for screen readers / reduced motion. */}
         <ul className="sr-only">
           {logos.map((logo) => (
             <li key={logo.name}>{logo.name}</li>
@@ -78,8 +74,8 @@ export function LogoWordmarks({
         </ul>
       </div>
 
-      {/* Desktop: wrapped row, original per-logo sizes. */}
-      <ul className="text-muted m-0 hidden list-none flex-wrap items-center gap-x-12 gap-y-4 p-0 text-[22px] md:flex">
+      {/* Desktop (and reduced motion): wrapped row, original per-logo sizes. */}
+      <ul className="text-muted m-0 hidden list-none flex-wrap items-center gap-x-12 gap-y-4 p-0 text-[22px] motion-reduce:flex md:flex">
         {logos.map((logo) => (
           <LogoMark
             key={logo.name}
