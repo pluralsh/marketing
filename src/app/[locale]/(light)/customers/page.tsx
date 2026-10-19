@@ -34,7 +34,7 @@ export default function CustomersPage() {
           <SmartLink
             key={story.href}
             href={story.href}
-            className="border-line bg-surface text-ink hover:border-accent group flex flex-col overflow-hidden rounded-xl border no-underline transition-colors"
+            className="border-line bg-surface text-ink hover:border-accent group flex flex-col overflow-hidden rounded-sm border no-underline transition-colors"
           >
             <Image
               src={story.image.src}

@@ -46,13 +46,13 @@ export function EventList({ events }: { events: CommunityEvent[] }) {
           <li
             key={event.name}
             className={cn(
-              'bg-surface flex flex-wrap items-center gap-5 rounded-xl border p-4',
+              'bg-surface flex flex-wrap items-center gap-5 rounded-sm border p-4',
               meetup ? 'border-accent' : 'border-line'
             )}
           >
             <div
               className={cn(
-                'flex w-24 shrink-0 flex-col items-center rounded-lg px-2 py-3 text-center',
+                'flex w-24 shrink-0 flex-col items-center rounded-sm px-2 py-3 text-center',
                 meetup ? 'bg-accent text-on-accent' : 'bg-surface-muted'
               )}
             >

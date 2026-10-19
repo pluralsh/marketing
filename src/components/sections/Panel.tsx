@@ -5,7 +5,7 @@ export function Panel({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'border-line-strong bg-surface rounded-xl border p-5 font-mono text-[13px] leading-relaxed',
+        'border-line-strong bg-surface rounded-sm border p-5 font-mono text-[13px] leading-relaxed',
         className
       )}
       {...props}
@@ -35,7 +35,7 @@ type VisualCardProps = {
 /** Card with a dotted "canvas" holding a small visual above its caption. */
 export function VisualCard({ visual, title, body }: VisualCardProps) {
   return (
-    <div className="border-line-strong bg-surface flex flex-col overflow-hidden rounded-[14px] border">
+    <div className="border-line-strong bg-surface flex flex-col overflow-hidden rounded-sm border">
       <div className="border-line bg-canvas flex min-h-40 items-center border-b bg-[radial-gradient(var(--line-strong)_1px,transparent_1px)] bg-size-[14px_14px] p-5">
         {visual}
       </div>

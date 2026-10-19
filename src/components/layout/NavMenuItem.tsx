@@ -23,14 +23,14 @@ export function NavMenuItem({
       {...props}
       href={item.href}
       className={cn(
-        'text-ink hover:bg-surface-hover flex items-start gap-3.5 rounded-lg p-3 no-underline',
+        'text-ink hover:bg-surface-hover flex items-start gap-3.5 rounded-xs p-3 no-underline',
         className
       )}
     >
       {item.icon && (
         <span
           className={cn(
-            'text-accent-ink flex size-9 shrink-0 items-center justify-center rounded-lg',
+            'text-accent-ink flex size-9 shrink-0 items-center justify-center rounded-xs',
             tile && 'bg-accent-tint'
           )}
         >
@@ -61,7 +61,7 @@ export function NavFeatureCard({
     <SmartLink
       {...props}
       className={cn(
-        'border-line bg-canvas text-ink group flex flex-wrap items-center justify-between gap-4 rounded-[10px] border px-5 py-4.5 no-underline',
+        'border-line bg-canvas text-ink group flex flex-wrap items-center justify-between gap-4 rounded-sm border px-5 py-4.5 no-underline',
         'bg-[radial-gradient(var(--line-strong)_1px,transparent_1px)] bg-size-[12px_12px]',
         className
       )}
@@ -72,7 +72,7 @@ export function NavFeatureCard({
       </span>
       <span
         aria-hidden="true"
-        className="border-line-strong bg-surface group-hover:border-accent group-hover:text-accent-ink flex size-10 items-center justify-center rounded-md border transition-colors"
+        className="border-line-strong bg-surface group-hover:border-accent group-hover:text-accent-ink flex size-10 items-center justify-center rounded-xs border transition-colors"
       >
         →
       </span>

@@ -75,7 +75,7 @@ export default function MottMacDonaldPage() {
           width={1600}
           height={1000}
           sizes="(min-width: 1200px) 1150px, 100vw"
-          className="aspect-[21/9] w-full rounded-xl object-cover"
+          className="aspect-[21/9] w-full rounded-sm object-cover"
           priority
         />
       </div>
@@ -128,7 +128,7 @@ export default function MottMacDonaldPage() {
           </ButtonLink>
         </aside>
         <article className="border-line text-body px-gutter flex max-w-[760px] flex-col gap-10 py-10 text-[17px] leading-relaxed max-lg:border-t lg:border-l lg:py-14">
-          <div className="border-line bg-surface rounded-xl border p-6">
+          <div className="border-line bg-surface rounded-sm border p-6">
             <span className="text-label">At a glance</span>
             <div className="mt-4 grid gap-5 sm:grid-cols-3">
               {atAGlance.map((item) => (

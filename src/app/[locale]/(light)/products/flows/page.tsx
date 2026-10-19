@@ -103,7 +103,7 @@ function FlowWindow() {
           </div>
         </div>
         <div className="flex min-w-0 flex-[2_1_380px] flex-col gap-3 p-4">
-          <div className="border-code-line bg-code-panel rounded-md border px-3 py-2.5">
+          <div className="border-code-line bg-code-panel rounded-xs border px-3 py-2.5">
             <span className="text-syntax-amber">grafana</span>{' '}
             <span className="text-code-muted">alert ·</span> payments-api 5xx
             rate 4.2% on /v1/settle
@@ -114,7 +114,7 @@ function FlowWindow() {
           {flowPreviews.map((preview) => (
             <div
               key={preview.pr}
-              className="border-code-line flex flex-wrap items-center justify-between gap-2 rounded-md border px-3 py-2.5"
+              className="border-code-line flex flex-wrap items-center justify-between gap-2 rounded-xs border px-3 py-2.5"
             >
               <span className="flex min-w-0 flex-col">
                 <span>
@@ -135,7 +135,7 @@ function FlowWindow() {
               </span>
             </div>
           ))}
-          <div className="bg-code-panel rounded-md px-3.5 py-3 font-sans text-sm leading-normal">
+          <div className="bg-code-panel rounded-xs px-3.5 py-3 font-sans text-sm leading-normal">
             <span className="text-code-muted font-mono text-[11px]">
               plural · commented on PR #{flowPreviews[0].pr}
             </span>

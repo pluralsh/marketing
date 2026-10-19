@@ -24,7 +24,7 @@ export function CodeWindow({
   return (
     <div
       className={cn(
-        'bg-code text-code-text border-code-line shadow-window overflow-hidden rounded-xl border font-mono text-[12.5px] leading-[1.55]',
+        'bg-code text-code-text border-code-line shadow-window overflow-hidden rounded-sm border font-mono text-[12.5px] leading-[1.55]',
         className
       )}
     >

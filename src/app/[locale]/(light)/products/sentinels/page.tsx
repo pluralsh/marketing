@@ -81,7 +81,7 @@ function SentinelRunWindow() {
             <span className="text-syntax-pink">dev-euw1</span>{' '}
             <span className="text-code-muted">›</span> PVCs bind and mount
           </div>
-          <div className="bg-code-panel rounded-md px-3.5 py-3 font-sans text-sm leading-normal">
+          <div className="bg-code-panel rounded-xs px-3.5 py-3 font-sans text-sm leading-normal">
             <strong className="font-medium text-white">Likely cause:</strong>{' '}
             the EBS CSI driver add-on is still on a version incompatible with
             1.31, so volumes never attach. Upgrade aws-ebs-csi-driver to v1.35
@@ -277,7 +277,7 @@ export default function SentinelsPage() {
             {triggers.map((trigger) => (
               <div
                 key={trigger.title}
-                className="border-line-strong bg-surface flex flex-col gap-1 rounded-lg border p-4"
+                className="border-line-strong bg-surface flex flex-col gap-1 rounded-sm border p-4"
               >
                 <span className="text-ink font-medium">{trigger.title}</span>
                 <span className="text-muted text-sm">{trigger.body}</span>

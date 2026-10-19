@@ -138,12 +138,12 @@ export function DrainSimulator() {
   const availability = Math.round((100 * (total - down)) / total)
 
   return (
-    <div className="border-line-strong bg-surface overflow-hidden rounded-xl border">
+    <div className="border-line-strong bg-surface overflow-hidden rounded-sm border">
       <div className="border-line flex flex-wrap items-center justify-between gap-3 border-b p-3">
         <div
           role="tablist"
           aria-label="Drain mode"
-          className="bg-canvas flex gap-1 rounded-lg p-1"
+          className="bg-canvas flex gap-1 rounded-sm p-1"
         >
           {modes.map((m) => (
             <button
@@ -153,7 +153,7 @@ export function DrainSimulator() {
               aria-selected={mode === m.value}
               onClick={() => reset(m.value)}
               className={cn(
-                'min-h-9 cursor-pointer rounded-md px-3 text-sm transition-colors',
+                'min-h-9 cursor-pointer rounded-xs px-3 text-sm transition-colors',
                 mode === m.value
                   ? 'bg-surface text-ink shadow-sm'
                   : 'text-muted hover:text-ink'
@@ -190,7 +190,7 @@ export function DrainSimulator() {
               <li
                 key={pod.name}
                 className={cn(
-                  'flex flex-col gap-0.5 rounded-lg border px-3 py-2.5 font-mono text-xs transition-colors',
+                  'flex flex-col gap-0.5 rounded-sm border px-3 py-2.5 font-mono text-xs transition-colors',
                   style.className
                 )}
               >

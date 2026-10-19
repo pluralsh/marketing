@@ -56,7 +56,7 @@ export default function AboutPage() {
           width={heroPhoto.width}
           height={heroPhoto.height}
           sizes="(min-width: 1200px) 1150px, 100vw"
-          className="aspect-[21/9] w-full rounded-xl object-cover"
+          className="aspect-[21/9] w-full rounded-sm object-cover"
           priority
         />
       </div>

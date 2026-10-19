@@ -84,7 +84,7 @@ function PipelinePanel() {
           >
             <div
               className={cn(
-                'flex flex-1 flex-col gap-1 rounded-lg border px-3.5 py-3',
+                'flex flex-1 flex-col gap-1 rounded-sm border px-3.5 py-3',
                 stage.done
                   ? 'border-line-strong'
                   : 'border-accent bg-accent-tint'

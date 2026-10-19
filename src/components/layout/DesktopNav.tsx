@@ -11,10 +11,10 @@ import { cn } from '@/utils/cn'
 import { NavFeatureCard, NavMenuItem } from './NavMenuItem'
 
 const triggerClass =
-  'text-ink hover:bg-surface-hover data-[state=open]:bg-surface-hover inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-md px-3 text-[15px] no-underline'
+  'text-ink hover:bg-surface-hover data-[state=open]:bg-surface-hover inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-xs px-3 text-[15px] no-underline'
 
 const panelClass =
-  'border-line-strong bg-surface shadow-menu absolute top-full z-(--z-popover) mt-2.5 overflow-hidden rounded-xl border'
+  'border-line-strong bg-surface shadow-menu absolute top-full z-(--z-popover) overflow-hidden rounded-sm border'
 
 function MegaMenu({ menu }: { menu: Extract<NavMenu, { columns: unknown }> }) {
   const columns = (
@@ -50,7 +50,8 @@ function MegaMenu({ menu }: { menu: Extract<NavMenu, { columns: unknown }> }) {
   )
 
   return (
-    <NavigationMenu.Content className={cn(panelClass, 'inset-x-3 p-4')}>
+    // Anchored to the header row, whose bottom padding already separates it from the trigger.
+    <NavigationMenu.Content className={cn(panelClass, 'inset-x-3 -mt-2.5 p-4')}>
       {/* Product leads with its capabilities; Solutions leads with the overview. */}
       {menu.kind === 'product' ? (
         <>
@@ -112,7 +113,7 @@ export function DesktopNav() {
               >
                 {trigger}
                 <NavigationMenu.Content
-                  className={cn(panelClass, 'left-0 w-105 p-3')}
+                  className={cn(panelClass, 'left-0 mt-2 w-105 p-3')}
                 >
                   {menu.items.map((item) => (
                     <NavigationMenu.Link

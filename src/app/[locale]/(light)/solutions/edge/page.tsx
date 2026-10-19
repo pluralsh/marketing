@@ -135,7 +135,7 @@ function RegistrationVisual() {
   return (
     <Panel>
       <PanelLabel>Clusters · pending approval</PanelLabel>
-      <div className="border-line flex flex-wrap items-center justify-between gap-4 rounded-lg border p-4">
+      <div className="border-line flex flex-wrap items-center justify-between gap-4 rounded-sm border p-4">
         <span className="flex flex-col">
           <span className="text-ink">raspberry-pi · 10.0.4.17</span>
           <span className="text-muted text-xs">

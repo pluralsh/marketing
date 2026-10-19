@@ -103,7 +103,7 @@ function Stage({
   className?: string
 }) {
   return (
-    <span className="border-line-strong bg-surface flex flex-col gap-0.5 rounded-lg border px-4 py-3">
+    <span className="border-line-strong bg-surface flex flex-col gap-0.5 rounded-sm border px-4 py-3">
       <span className="text-ink">{name}</span>
       <span className={cn('text-xs', className)}>{status}</span>
     </span>

@@ -18,7 +18,7 @@ export function MediaFrame({
   return (
     <div
       className={cn(
-        'bg-code border-code-line overflow-hidden rounded-xl border p-[clamp(12px,2vw,24px)]',
+        'bg-code border-code-line overflow-hidden rounded-sm border p-[clamp(12px,2vw,24px)]',
         className
       )}
     >
@@ -48,7 +48,7 @@ export function PhotoPlaceholder({
       role="img"
       aria-label={label}
       className={cn(
-        'border-line bg-surface-muted flex items-end rounded-xl border bg-[repeating-linear-gradient(135deg,transparent_0_12px,var(--line)_12px_13px)] p-4',
+        'border-line bg-surface-muted flex items-end rounded-sm border bg-[repeating-linear-gradient(135deg,transparent_0_12px,var(--line)_12px_13px)] p-4',
         className
       )}
     >

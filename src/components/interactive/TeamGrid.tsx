@@ -50,12 +50,12 @@ export function TeamGrid({ members, openRoles, heading }: TeamGridProps) {
         {visible.map((member) => (
           <li
             key={member.name}
-            className="border-line bg-surface flex items-center gap-3.5 rounded-lg border p-3"
+            className="border-line bg-surface flex items-center gap-3.5 rounded-sm border p-3"
           >
             <div
               aria-hidden="true"
               className={cn(
-                'flex size-12 shrink-0 items-center justify-center rounded-md font-serif text-lg',
+                'flex size-12 shrink-0 items-center justify-center rounded-xs font-serif text-lg',
                 avatarStyles[members.indexOf(member) % avatarStyles.length]
               )}
             >
@@ -70,7 +70,7 @@ export function TeamGrid({ members, openRoles, heading }: TeamGridProps) {
         <li>
           <SmartLink
             href="/careers"
-            className="border-line-strong text-ink hover:border-accent flex h-full flex-col justify-center gap-0.5 rounded-lg border border-dashed p-3 no-underline"
+            className="border-line-strong text-ink hover:border-accent flex h-full flex-col justify-center gap-0.5 rounded-sm border border-dashed p-3 no-underline"
           >
             <span className="font-serif text-lg">You?</span>
             <span className="text-accent-ink text-sm">

@@ -68,7 +68,7 @@ function WorkbenchConfigWindow() {
           </AgentStep>
           <AgentStep agent="infra">recent changes to payments-api</AgentStep>
           <AgentStep agent="code">diff Helm values v42 → v43</AgentStep>
-          <div className="bg-code-panel mt-2 rounded-md px-3 py-2.5 font-sans text-sm">
+          <div className="bg-code-panel mt-2 rounded-xs px-3 py-2.5 font-sans text-sm">
             Root cause: memory limit lowered to 256Mi in v43. Opening a PR to
             restore 512Mi.
           </div>
@@ -188,9 +188,9 @@ export default function WorkbenchesPage() {
         eyebrow={
           <SmartLink
             href={URLS.workbenchesAnnouncement}
-            className="border-line-strong bg-surface text-ink hover:border-accent inline-flex items-center gap-2.5 rounded-full border py-1.5 pr-3.5 pl-1.5 no-underline"
+            className="border-line-strong bg-surface text-ink hover:border-accent inline-flex items-center gap-2.5 rounded-sm border py-1.5 pr-3.5 pl-1.5 no-underline"
           >
-            <span className="bg-accent-tint text-accent-ink rounded-full px-2.5 py-0.5">
+            <span className="bg-accent-tint text-accent-ink rounded-xs px-2.5 py-0.5">
               Workbenches
             </span>
             <span className="text-muted">Read the announcement →</span>
@@ -282,7 +282,7 @@ export default function WorkbenchesPage() {
               {subagents.map((agent) => (
                 <div
                   key={agent.name}
-                  className="border-line flex flex-wrap items-center justify-between gap-2 rounded-lg border px-3.5 py-3"
+                  className="border-line flex flex-wrap items-center justify-between gap-2 rounded-sm border px-3.5 py-3"
                 >
                   <span className="text-ink">{agent.name}</span>
                   <span className="text-muted">{agent.scope}</span>
@@ -342,7 +342,7 @@ export default function WorkbenchesPage() {
           {triggers.map((trigger) => (
             <div
               key={trigger.title}
-              className="border-line-strong bg-surface flex flex-col gap-1 rounded-lg border p-4"
+              className="border-line-strong bg-surface flex flex-col gap-1 rounded-sm border p-4"
             >
               <span className="font-medium">{trigger.title}</span>
               <span className="text-muted text-sm">{trigger.body}</span>
@@ -434,7 +434,7 @@ export default function WorkbenchesPage() {
                 {['Anthropic', 'OpenAI', 'Bedrock', 'Azure'].map((provider) => (
                   <span
                     key={provider}
-                    className="border-line-strong bg-surface rounded-md border px-3 py-1.5 font-mono text-xs"
+                    className="border-line-strong bg-surface rounded-xs border px-3 py-1.5 font-mono text-xs"
                   >
                     {provider}
                   </span>
@@ -447,11 +447,11 @@ export default function WorkbenchesPage() {
             body="Agents run server-side next to your infrastructure. No credentials on laptops."
             visual={
               <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
-                <span className="border-line-strong bg-surface rounded-md border px-3 py-1.5">
+                <span className="border-line-strong bg-surface rounded-xs border px-3 py-1.5">
                   your cluster
                 </span>
                 <span className="text-accent-ink">←</span>
-                <span className="bg-accent-tint text-accent-ink rounded-md px-3 py-1.5">
+                <span className="bg-accent-tint text-accent-ink rounded-xs px-3 py-1.5">
                   workbench agent
                 </span>
               </div>

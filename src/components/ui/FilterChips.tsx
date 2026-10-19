@@ -34,7 +34,7 @@ export function FilterChips<T extends string>({
             aria-pressed={pressed}
             onClick={() => onChange(option.value)}
             className={cn(
-              'flex min-h-9 cursor-pointer items-center gap-2 rounded-full border px-3.5 text-sm transition-colors',
+              'flex min-h-9 cursor-pointer items-center gap-2 rounded-sm border px-3.5 text-sm transition-colors',
               pressed
                 ? 'border-ink bg-ink text-canvas'
                 : 'border-line-strong bg-surface text-ink hover:border-ink/40'

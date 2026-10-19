@@ -58,7 +58,7 @@ export default function ContactPage() {
         </div>
         <div
           id="book-demo"
-          className="border-line-strong bg-surface shadow-menu scroll-mt-24 self-start rounded-xl border p-[clamp(20px,3vw,32px)]"
+          className="border-line-strong bg-surface shadow-menu scroll-mt-24 self-start rounded-sm border p-[clamp(20px,3vw,32px)]"
         >
           <h2 className="m-0 text-2xl font-medium">Tell us about your setup</h2>
           <p className="text-muted mt-1.5 mb-6 text-sm">

@@ -110,7 +110,7 @@ export function PullArchitecture({ className }: { className?: string }) {
         <span
           role="group"
           aria-label="Deployment model"
-          className="border-code-line inline-flex rounded-md border p-0.5"
+          className="border-code-line inline-flex rounded-xs border p-0.5"
         >
           {(['pull', 'push'] as const).map((option) => (
             <button
@@ -189,7 +189,7 @@ export function PullArchitecture({ className }: { className?: string }) {
                 y={GROUP_Y}
                 width={GROUP_WIDTH}
                 height={176}
-                rx="10"
+                rx="4"
                 strokeDasharray={isPull ? undefined : '5 4'}
                 className={cn(
                   'fill-code/80 transition-colors',
@@ -220,7 +220,7 @@ export function PullArchitecture({ className }: { className?: string }) {
                       y={CARD_Y}
                       width={CARD_WIDTH}
                       height={CARD_HEIGHT}
-                      rx="7"
+                      rx="3"
                       className="fill-code-panel stroke-code-line"
                     />
                     <text
@@ -242,7 +242,7 @@ export function PullArchitecture({ className }: { className?: string }) {
                       y={CARD_Y + 74}
                       width={CARD_WIDTH - 16}
                       height={24}
-                      rx="5"
+                      rx="2"
                       className={
                         isPull
                           ? 'fill-syntax-teal/10 stroke-syntax-teal/40'
@@ -278,7 +278,7 @@ export function PullArchitecture({ className }: { className?: string }) {
             y="250"
             width="500"
             height="26"
-            rx="13"
+            rx="4"
             className="fill-code stroke-code-line"
           />
           <text
@@ -297,7 +297,7 @@ export function PullArchitecture({ className }: { className?: string }) {
             y={PLANE.y}
             width={PLANE.width}
             height={PLANE.height}
-            rx="12"
+            rx="4"
             className={cn(
               'fill-code-panel',
               isPull ? 'stroke-accent' : 'stroke-syntax-pink/60'
@@ -350,7 +350,7 @@ export function PullArchitecture({ className }: { className?: string }) {
                   y={PLANE.y + 56}
                   width="129"
                   height="90"
-                  rx="8"
+                  rx="3"
                   className="fill-code stroke-code-line"
                 />
                 <text
@@ -385,7 +385,7 @@ export function PullArchitecture({ className }: { className?: string }) {
             y="540"
             width="340"
             height="44"
-            rx="8"
+            rx="3"
             className="fill-code-panel stroke-code-line"
           />
           <text

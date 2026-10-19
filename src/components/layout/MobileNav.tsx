@@ -25,7 +25,7 @@ export function MobileNav({ theme }: { theme: Theme }) {
       onOpenChange={setOpen}
     >
       <Dialog.Trigger
-        className="text-ink hover:bg-surface-hover flex size-11 cursor-pointer items-center justify-center rounded-md"
+        className="text-ink hover:bg-surface-hover flex size-11 cursor-pointer items-center justify-center rounded-xs"
         aria-label="Open menu"
       >
         <svg
@@ -51,7 +51,7 @@ export function MobileNav({ theme }: { theme: Theme }) {
           <div className="border-line flex items-center justify-between border-b px-5 py-3">
             <Dialog.Title className="text-label">Menu</Dialog.Title>
             <Dialog.Close
-              className="hover:bg-surface-hover flex size-11 cursor-pointer items-center justify-center rounded-md"
+              className="hover:bg-surface-hover flex size-11 cursor-pointer items-center justify-center rounded-xs"
               aria-label="Close menu"
             >
               <svg

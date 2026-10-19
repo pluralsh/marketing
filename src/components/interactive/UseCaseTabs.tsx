@@ -95,7 +95,7 @@ export function UseCaseTabs({ items }: { items: UseCase[] }) {
             See it in a demo
           </ArrowLink>
         </div>
-        <div className="bg-code text-code-text flex min-h-60 flex-col gap-2 rounded-xl p-5 font-mono text-[13px] leading-relaxed">
+        <div className="bg-code text-code-text flex min-h-60 flex-col gap-2 rounded-sm p-5 font-mono text-[13px] leading-relaxed">
           <div className="text-code-muted text-[11px]">{current.agent}</div>
           {current.steps.map((step) => (
             <div

@@ -103,7 +103,7 @@ export default function CareersPage() {
               height={photo.height}
               sizes="(min-width: 768px) 50vw, 100vw"
               className={cn(
-                'size-full rounded-lg object-cover',
+                'size-full rounded-sm object-cover',
                 i === 0 && 'row-span-2',
                 i === 4 && 'col-span-2'
               )}

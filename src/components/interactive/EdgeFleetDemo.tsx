@@ -86,12 +86,12 @@ export function EdgeFleetDemo() {
   }
 
   return (
-    <div className="border-line-strong bg-surface overflow-hidden rounded-xl border">
+    <div className="border-line-strong bg-surface overflow-hidden rounded-sm border">
       <div className="border-line flex flex-wrap items-center justify-between gap-3 border-b p-3">
         <div
           role="tablist"
           aria-label="View"
-          className="bg-canvas flex gap-1 rounded-lg p-1"
+          className="bg-canvas flex gap-1 rounded-sm p-1"
         >
           {(
             [
@@ -106,7 +106,7 @@ export function EdgeFleetDemo() {
               aria-selected={view === value}
               onClick={() => setView(value)}
               className={cn(
-                'min-h-9 cursor-pointer rounded-md px-3 text-sm transition-colors',
+                'min-h-9 cursor-pointer rounded-xs px-3 text-sm transition-colors',
                 view === value
                   ? 'bg-surface text-ink shadow-sm'
                   : 'text-muted hover:text-ink'
@@ -243,7 +243,7 @@ export function EdgeFleetDemo() {
           {setupSteps.map((s, i) => (
             <li
               key={s.title}
-              className="border-line flex flex-col gap-1.5 rounded-lg border p-4"
+              className="border-line flex flex-col gap-1.5 rounded-sm border p-4"
             >
               <span className="text-accent-ink font-mono text-xs">
                 {String(i + 1).padStart(2, '0')}

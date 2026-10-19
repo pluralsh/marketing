@@ -16,7 +16,7 @@ export function ComparisonTable({
   const hasRowLabels = rows.some((row) => row.label)
 
   return (
-    <div className="border-line bg-surface overflow-x-auto rounded-xl border">
+    <div className="border-line bg-surface overflow-x-auto rounded-sm border">
       <table className="w-full min-w-[560px] border-collapse text-left text-[15px]">
         {caption && <caption className="sr-only">{caption}</caption>}
         <thead>

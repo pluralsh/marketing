@@ -69,7 +69,7 @@ export default async function JobPage({ params }: { params: Promise<Params> }) {
       </section>
       <Section className="grid gap-12 lg:grid-cols-[1fr_280px]">
         <RichText content={job.body} />
-        <aside className="border-line bg-surface flex flex-col gap-3 self-start rounded-xl border p-6 lg:sticky lg:top-28">
+        <aside className="border-line bg-surface flex flex-col gap-3 self-start rounded-sm border p-6 lg:sticky lg:top-28">
           <h2 className="m-0 text-lg font-medium">To apply</h2>
           <p className="text-body m-0 text-sm">
             Reach out at{' '}

@@ -40,7 +40,7 @@ export function BacklogGraph() {
   const isZero = remaining === 0
 
   return (
-    <div className="border-line-strong bg-surface mt-3 flex flex-col gap-2 rounded-xl border px-[clamp(12px,2vw,20px)] pt-4 pb-3.5">
+    <div className="border-line-strong bg-surface mt-3 flex flex-col gap-2 rounded-sm border px-[clamp(12px,2vw,20px)] pt-4 pb-3.5">
       <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[13px]">
         <span aria-live="polite">
           <span className="font-medium">

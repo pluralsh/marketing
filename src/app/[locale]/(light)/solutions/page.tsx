@@ -47,7 +47,7 @@ export default function SolutionsPage() {
                     <SmartLink
                       key={link.href}
                       href={link.href}
-                      className="text-ink hover:bg-surface-hover rounded-lg p-3 pl-[62px] font-medium no-underline"
+                      className="text-ink hover:bg-surface-hover rounded-sm p-3 pl-[62px] font-medium no-underline"
                     >
                       {link.label}
                     </SmartLink>

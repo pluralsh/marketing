@@ -18,7 +18,7 @@ export function ClusterEstimator() {
   const price = PRO_BASE_PRICE + PRO_CLUSTER_PRICE * (clusters - 1)
 
   return (
-    <div className="border-line bg-canvas flex flex-col gap-3 rounded-lg border p-4">
+    <div className="border-line bg-canvas flex flex-col gap-3 rounded-sm border p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="text-label">Estimate</span>
         <div

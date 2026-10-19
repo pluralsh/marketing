@@ -82,7 +82,7 @@ export function WorkbenchMock({ className }: { className?: string }) {
           ))}
         </div>
         <div className="border-code-line flex min-w-0 flex-[2_1_380px] flex-col gap-3.5 border-r px-5 py-4">
-          <div className="border-code-line bg-code-panel rounded-md border px-3 py-2.5">
+          <div className="border-code-line bg-code-panel rounded-xs border px-3 py-2.5">
             <span className="text-syntax-amber">alertmanager</span>{' '}
             <span className="text-code-muted">webhook ·</span>{' '}
             KubePodCrashLooping · payments-api
@@ -100,7 +100,7 @@ export function WorkbenchMock({ className }: { className?: string }) {
             </AgentStep>
             <AgentStep agent="code">Diff Helm values v42 → v43</AgentStep>
           </div>
-          <div className="bg-code-panel rounded-md px-3.5 py-3 font-sans text-sm leading-normal">
+          <div className="bg-code-panel rounded-xs px-3.5 py-3 font-sans text-sm leading-normal">
             <strong className="font-medium text-white">Root cause:</strong>{' '}
             memory limit lowered to 256Mi in v43. Pods are OOMKilled on startup.
             Opening a PR to restore 512Mi.

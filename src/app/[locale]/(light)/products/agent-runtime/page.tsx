@@ -46,7 +46,7 @@ function AgentRunWindow() {
     >
       <div className="flex flex-wrap">
         <div className="border-code-line flex min-w-0 flex-[3_1_420px] flex-col gap-2 border-r p-4">
-          <div className="border-code-line bg-code-panel rounded-md border px-3 py-2.5 font-sans text-sm">
+          <div className="border-code-line bg-code-panel rounded-xs border px-3 py-2.5 font-sans text-sm">
             <span className="text-code-muted">prompt · </span>
             Fix CVE-2026-21427 in acme/payments-api and make sure tests pass.
           </div>
@@ -177,7 +177,7 @@ export default function AgentRuntimePage() {
                 {agents.map((agent) => (
                   <span
                     key={agent}
-                    className="border-line-strong bg-canvas rounded-md border px-3 py-1.5"
+                    className="border-line-strong bg-canvas rounded-xs border px-3 py-1.5"
                   >
                     {agent}
                   </span>
@@ -253,7 +253,7 @@ export default function AgentRuntimePage() {
                 <span className="text-muted">{mode.detail}</span>
               </div>
               <p className="text-body m-0 font-sans text-[15px]">{mode.body}</p>
-              <div className="bg-accent-tint text-accent-ink mt-auto rounded-md px-3 py-2">
+              <div className="bg-accent-tint text-accent-ink mt-auto rounded-xs px-3 py-2">
                 → {mode.output}
               </div>
             </Panel>
