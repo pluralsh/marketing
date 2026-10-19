@@ -7,7 +7,7 @@ import { Accent } from '@/components/sections/Section'
 import { Quote } from '@/components/sections/Testimonials'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { demoAgenda, demoForm, demoQuotes, otherWays } from '@/content/contact'
-import { customerWordmarks } from '@/content/site'
+import { customerLogos } from '@/content/site'
 import { pageMetadata } from '@/utils/metadata'
 
 export const metadata: Metadata = pageMetadata('/contact', {
@@ -52,7 +52,7 @@ export default function ContactPage() {
             ))}
           </div>
           <LogoWordmarks
-            names={customerWordmarks.filter((name) => name !== 'Justos')}
+            logos={customerLogos.filter(({ name }) => name !== 'Justos')}
             className="[&_ul]:gap-x-8 [&_ul]:text-lg"
           />
         </div>

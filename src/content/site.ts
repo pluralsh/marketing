@@ -335,13 +335,52 @@ export const certificates = [
   },
 ]
 
-export const customerWordmarks = [
-  'Fortune',
-  'Capital One',
-  'Solo.io',
-  'Alloy',
-  'Justos',
-  'Mott MacDonald',
+export type CustomerLogo = {
+  name: string
+  src: string
+  /** Display size in px at the default 22px logo-row font size. */
+  width: number
+  height: number
+}
+
+// Single-color artwork; rendered as a mask so it takes the surrounding text color.
+export const customerLogos: CustomerLogo[] = [
+  {
+    name: 'Fortune 100 Cybersecurity Company',
+    src: '/images/logos/fortune.svg',
+    width: 136,
+    height: 42,
+  },
+  {
+    name: 'Capital One Ventures',
+    src: '/images/logos/capitalone.svg',
+    width: 136,
+    height: 42,
+  },
+  {
+    name: 'Solo.io',
+    src: '/images/logos/solo-io.svg',
+    width: 124,
+    height: 28,
+  },
+  {
+    name: 'Alloy',
+    src: '/images/logos/alloy.svg',
+    width: 136,
+    height: 42,
+  },
+  {
+    name: 'Justos',
+    src: '/images/logos/justos.svg',
+    width: 100,
+    height: 31,
+  },
+  {
+    name: 'Mott MacDonald',
+    src: '/images/logos/mott-macdonald.png',
+    width: 81,
+    height: 69,
+  },
 ]
 
 export const testimonials = {
