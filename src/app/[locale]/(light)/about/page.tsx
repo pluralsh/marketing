@@ -124,10 +124,21 @@ export default function AboutPage() {
           {investors.map((investor) => (
             <div
               key={investor.name}
-              className="px-gutter flex flex-col gap-1 py-8 lg:px-8"
+              className="px-gutter flex items-center gap-4 py-8 lg:px-8"
             >
-              <span className="text-xl font-medium">{investor.name}</span>
-              <span className="text-muted text-sm">{investor.contact}</span>
+              {investor.photo && (
+                <Image
+                  src={investor.photo}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="size-12 shrink-0 rounded-xs object-cover"
+                />
+              )}
+              <div className="flex flex-col gap-1">
+                <span className="text-xl font-medium">{investor.name}</span>
+                <span className="text-muted text-sm">{investor.contact}</span>
+              </div>
             </div>
           ))}
         </CellGrid>

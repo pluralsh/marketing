@@ -1,15 +1,16 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 
-import type { team as teamData } from '@/content/company'
+import type { TeamMember } from '@/content/company'
 
 import { FilterChips, filterOptions } from '@/components/ui/FilterChips'
 import { SmartLink } from '@/components/ui/SmartLink'
 import { cn } from '@/utils/cn'
 
 type TeamGridProps = {
-  members: typeof teamData
+  members: TeamMember[]
   openRoles: number
   /** Heading block rendered beside the filters. */
   heading: React.ReactNode
@@ -52,15 +53,25 @@ export function TeamGrid({ members, openRoles, heading }: TeamGridProps) {
             key={member.name}
             className="border-line bg-surface flex items-center gap-3.5 rounded-sm border p-3"
           >
-            <div
-              aria-hidden="true"
-              className={cn(
-                'flex size-12 shrink-0 items-center justify-center rounded-xs font-serif text-lg',
-                avatarStyles[members.indexOf(member) % avatarStyles.length]
-              )}
-            >
-              {initials(member.name)}
-            </div>
+            {member.photo ? (
+              <Image
+                src={member.photo}
+                alt=""
+                width={48}
+                height={48}
+                className="size-12 shrink-0 rounded-xs object-cover"
+              />
+            ) : (
+              <div
+                aria-hidden="true"
+                className={cn(
+                  'flex size-12 shrink-0 items-center justify-center rounded-xs font-serif text-lg',
+                  avatarStyles[members.indexOf(member) % avatarStyles.length]
+                )}
+              >
+                {initials(member.name)}
+              </div>
+            )}
             <div className="min-w-0">
               <div className="font-medium">{member.name}</div>
               <div className="text-muted text-sm">{member.role}</div>

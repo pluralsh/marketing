@@ -23,63 +23,117 @@ export const values = [
 
 export type TeamGroup = 'Leadership' | 'Engineering & product' | 'Go-to-market'
 
-export const team: { name: string; role: string; group: TeamGroup }[] = [
-  { name: 'Sam Weaver', role: 'CEO & Co-founder', group: 'Leadership' },
-  { name: 'Michael Guarino', role: 'CTO & Co-founder', group: 'Leadership' },
-  { name: 'Aaron Smallberg', role: 'Chief of Staff', group: 'Leadership' },
+export type TeamMember = {
+  name: string
+  role: string
+  group: TeamGroup
+  /** Square headshot in /public; falls back to initials when missing. */
+  photo?: string
+}
+
+export const team: TeamMember[] = [
+  {
+    name: 'Sam Weaver',
+    role: 'CEO & Co-founder',
+    group: 'Leadership',
+    photo: '/images/people/sam-weaver.jpg',
+  },
+  {
+    name: 'Michael Guarino',
+    role: 'CTO & Co-founder',
+    group: 'Leadership',
+    photo: '/images/people/michael-guarino.jpg',
+  },
+  {
+    name: 'Aaron Smallberg',
+    role: 'Chief of Staff',
+    group: 'Leadership',
+    photo: '/images/people/aaron-smallberg.jpg',
+  },
   {
     name: 'Marcin Maciszczyk',
     role: 'Fullstack Engineer',
     group: 'Engineering & product',
+    photo: '/images/people/marcin-maciszczyk.jpg',
   },
   {
     name: 'Sebastian Florek',
     role: 'Fullstack Engineer',
     group: 'Engineering & product',
+    photo: '/images/people/sebastian-florek.jpg',
   },
   {
     name: 'Lukasz Zajaczkowski',
     role: 'Software Engineer',
     group: 'Engineering & product',
+    photo: '/images/people/lukasz-zajaczkowski.jpg',
   },
   {
     name: 'Kinjal Haldar',
     role: 'Software Engineer',
     group: 'Engineering & product',
+    photo: '/images/people/kinjal-haldar.jpg',
   },
   {
     name: 'Anna Nguyen',
     role: 'Senior Product Designer',
     group: 'Engineering & product',
+    photo: '/images/people/anna-nguyen.jpg',
   },
-  { name: 'John Blackwell', role: 'Sales Engineer', group: 'Go-to-market' },
+  {
+    name: 'John Blackwell',
+    role: 'Sales Engineer',
+    group: 'Go-to-market',
+    photo: '/images/people/john-blackwell.jpg',
+  },
   {
     name: 'Christopher Akinrinade',
     role: 'Sales Engineer',
     group: 'Go-to-market',
+    photo: '/images/people/christopher-akinrinade.jpg',
   },
-  { name: 'Paul Ciolino', role: 'Account Executive', group: 'Go-to-market' },
+  {
+    name: 'Paul Ciolino',
+    role: 'Account Executive',
+    group: 'Go-to-market',
+    photo: '/images/people/paul-ciolino.jpg',
+  },
   {
     name: 'Connor Murphy',
     role: 'Sales Development Representative',
     group: 'Go-to-market',
+    photo: '/images/people/connor-murphy.jpg',
   },
   {
     name: 'Alex Jacoboski',
     role: 'Sales Development Representative',
     group: 'Go-to-market',
+    photo: '/images/people/alex-jacoboski.jpg',
   },
   {
     name: 'David Greeley',
     role: 'Sales Development Representative',
     group: 'Go-to-market',
+    photo: '/images/people/david-greeley.jpg',
   },
 ]
 
-export const investors = [
-  { name: 'Primary Ventures', contact: 'Brian Schecter, Partner' },
-  { name: 'SignalFire', contact: 'Oana Olteanu, Partner' },
-  { name: 'Capital One Ventures', contact: 'Sean Leach, Partner' },
+export const investors: { name: string; contact: string; photo?: string }[] = [
+  {
+    name: 'Primary Ventures',
+    contact: 'Brian Schecter, Partner',
+    photo: '/images/people/brian-schecter.jpg',
+  },
+  {
+    name: 'SignalFire',
+    contact: 'Oana Olteanu, Partner',
+    photo: '/images/people/oana-olteanu.jpg',
+  },
+  {
+    name: 'Capital One Ventures',
+    contact: 'Sean Leach, Partner',
+    photo: '/images/people/sean-leach.jpg',
+  },
   { name: 'Venture Guides', contact: 'Investor' },
 ]
 
