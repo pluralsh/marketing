@@ -84,7 +84,7 @@ export function TeamGrid({ members, openRoles, heading }: TeamGridProps) {
         <li>
           <SmartLink
             href="/careers"
-            className="border-line-strong text-ink hover:border-accent flex h-full flex-col justify-center gap-0.5 rounded-sm border border-dashed p-3 no-underline"
+            className="border-line-strong text-ink hover:border-accent flex h-full flex-col items-center justify-center gap-1 rounded-sm border border-dashed p-6 text-center no-underline"
           >
             <span className="font-serif text-lg">You?</span>
             <span className="text-accent-ink text-sm">
