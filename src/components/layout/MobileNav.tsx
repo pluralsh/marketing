@@ -50,6 +50,11 @@ export function MobileNav({ theme }: { theme: Theme }) {
           // Portals render outside the themed shell; carry the theme along.
           data-theme={theme}
           aria-describedby={undefined}
+          // Close as soon as a link is tapped, rather than waiting for the
+          // route to change (which never happens for same-page or hash links).
+          onClick={(e) => {
+            if ((e.target as Element).closest('a')) setOpen(false)
+          }}
           className="bg-canvas text-ink fixed inset-y-0 right-0 z-(--z-dialog) flex w-full max-w-md flex-col overflow-y-auto"
         >
           <div className="border-line flex items-center justify-between border-b px-5 py-3">
