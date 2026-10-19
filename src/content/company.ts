@@ -166,8 +166,8 @@ export const teamPhotos: TeamPhoto[] = [
 export const aboutHeroPhoto = {
   src: '/images/team/kubecon-eu-booth.jpg',
   alt: 'The Plural team at the Plural conference booth',
-  width: 1024,
-  height: 768,
+  width: 2400,
+  height: 1800,
 }
 
 export const hiringEmail = 'hiring@plural.sh'
