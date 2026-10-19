@@ -1,109 +1,43 @@
-import type {
-  AbortSignalLike,
-  BuildQueryURLArgs,
-  Content,
-  RequestInitLike,
-} from '@prismicio/client'
 import type { MetadataRoute } from 'next'
 
-import { filter } from '@prismicio/client'
+import { SITE_URL } from '@/constants'
+import { jobs } from '@/content/jobs'
+import { contentPages } from '@/content/pages'
 
-import type { PrismicMetadata } from '@/types/prismicio'
-
-import { REQUIRED_PAGE_UID, SITE_URL } from '@/constants'
-import { createClient, getMetadataAlternateLanguages } from '@/utils/prismicio'
-
-async function getSitemapFileFromDocument<
-  TDocumentType extends
-    Content.AllDocumentTypes['type'] = Content.AllDocumentTypes['type'],
->(
-  documentType: TDocumentType,
-  uid: string,
-  sitemapFile?: Partial<MetadataRoute.Sitemap[number]>,
-  params?: Partial<Omit<BuildQueryURLArgs, 'lang'>> & {
-    fetchOptions?: RequestInitLike
-    signal?: AbortSignalLike
-  }
-): Promise<MetadataRoute.Sitemap[number] | null> {
-  const client = createClient()
-
-  const document = await client
-    .getByUID(documentType, uid, {
-      fetch: `${documentType}.__nonexistent-field__`,
-      ...params,
-    })
-    .catch(() => null)
-
-  if (!document) {
-    return null
-  }
-
-  return {
-    url: `${SITE_URL}${document.url}`,
-    lastModified: document.last_publication_date,
-    ...(document.alternate_languages.length > 0 && {
-      alternates: {
-        languages: await getMetadataAlternateLanguages(document),
-      },
-    }),
-    ...sitemapFile,
-  }
-}
-
-async function getSitemapFilesFromDocuments<
-  TDocumentType extends
-    Content.AllDocumentTypes['type'] = Content.AllDocumentTypes['type'],
->(
-  documentType: TDocumentType,
-  sitemapFile?: Partial<MetadataRoute.Sitemap[number]>,
-  params?: Partial<Omit<BuildQueryURLArgs, 'lang'>> & {
-    fetchOptions?: RequestInitLike
-    signal?: AbortSignalLike
-  }
-): Promise<MetadataRoute.Sitemap> {
-  const client = createClient()
-
-  const documents = await client
-    .getAllByType(documentType, {
-      fetch: `${documentType}.meta_noindex`,
-      ...params,
-    })
-    .then((docs) =>
-      docs.filter((doc) => !(doc.data as PrismicMetadata).meta_noindex)
-    )
-
-  return await Promise.all(
-    documents.map(async (doc) => ({
-      url: `${SITE_URL}${doc.url}`,
-      lastModified: doc.last_publication_date,
-      ...(doc.alternate_languages.length > 0 && {
-        alternates: {
-          languages: await getMetadataAlternateLanguages(doc),
-        },
-      }),
-      ...sitemapFile,
-    }))
-  )
-}
+// Hand-built routes under src/app/[locale]/(light|dark). Noindexed pages are omitted.
+const STATIC_PATHS = [
+  '/about',
+  '/careers',
+  '/contact',
+  '/customers',
+  '/pricing',
+  '/products/agent-runtime',
+  '/products/fleet-scale-gitops',
+  '/products/flows',
+  '/products/sentinels',
+  '/solutions',
+  '/solutions/devops-sre',
+  '/solutions/edge',
+  '/workbenches',
+]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const contentPaths = await Promise.all(
+    Object.entries(contentPages).map(async ([path, load]) =>
+      (await load()).default.meta.noindex ? null : path
+    )
+  )
+
   return [
-    await getSitemapFileFromDocument('page', REQUIRED_PAGE_UID.HOME, {
-      changeFrequency: 'weekly',
-      priority: 1,
-    }),
-    ...(await getSitemapFilesFromDocuments(
-      'page',
-      {
-        changeFrequency: 'monthly',
-        priority: 0.7,
-      },
-      {
-        filters: [
-          filter.not('my.page.uid', REQUIRED_PAGE_UID.HOME),
-          filter.not('my.page.meta_noindex', true),
-        ],
-      }
-    )),
-  ].filter(Boolean) as MetadataRoute.Sitemap
+    { url: SITE_URL, changeFrequency: 'weekly', priority: 1 },
+    ...[
+      ...STATIC_PATHS,
+      ...contentPaths.filter((path): path is string => path !== null),
+      ...jobs.map((job) => `/careers/hire/${job.slug}`),
+    ].map((path) => ({
+      url: `${SITE_URL}${path}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
 }

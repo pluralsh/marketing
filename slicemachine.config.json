@@ -1,9 +1,0 @@
-{
-  "repositoryName": "plural-repo",
-  "adapter": "@slicemachine/adapter-next",
-  "libraries": [
-    "./src/slices/main"
-  ],
-  "localSliceSimulatorURL": "http://localhost:3004/slice-simulator",
-  "apiEndpoint": ""
-}

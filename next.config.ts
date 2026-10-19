@@ -17,18 +17,13 @@ const nextConfig: NextConfig = {
 
     return [
       {
-        // Exclude the workbench demo (always) and, in development, the Slice
-        // Machine simulator route so they can be embedded in an iframe.
-        // Otherwise this rule's deny headers get combined onto those routes,
+        // Exclude the workbench demo so it can be embedded in an iframe.
+        // Otherwise this rule's deny headers get combined onto that route,
         // leaving a stray X-Frame-Options: DENY that blocks framing.
-        source: isDev
-          ? '/((?!workbench-demo|slice-simulator).*)'
-          : '/((?!workbench-demo).*)',
+        source: '/((?!workbench-demo).*)',
         headers: [...sharedSecurityHeaders, ...frameDenyHeaders],
       },
       // Allow embedding the interactive workbench demo on our own pages.
-      // In dev, also allow the Slice Machine UI (other localhost port) so the
-      // demo iframe loads inside the nested simulator frames.
       {
         source: '/workbench-demo/:path*',
         headers: isDev
@@ -46,21 +41,6 @@ const nextConfig: NextConfig = {
               { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
             ],
       },
-      // Dev-only: let the Slice Machine UI iframe the simulator.
-      ...(isDev
-        ? [
-            {
-              source: '/slice-simulator',
-              headers: [
-                ...sharedSecurityHeaders,
-                {
-                  key: 'Content-Security-Policy',
-                  value: 'frame-ancestors http://localhost:* http://127.0.0.1:*',
-                },
-              ],
-            },
-          ]
-        : []),
     ]
   },
   async redirects() {
@@ -70,6 +50,9 @@ const nextConfig: NextConfig = {
         destination: 'https://docs.plural.sh/',
         permanent: true,
       },
+      // Superseded by the redesign's homepage and edge solution page.
+      { source: '/home-animated', destination: '/', permanent: true },
+      { source: '/edge-kubernetes', destination: '/solutions/edge', permanent: true },
       {
         source: '/contact-sales',
         destination: 'https://www.plural.sh/contact',

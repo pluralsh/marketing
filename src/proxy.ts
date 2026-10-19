@@ -6,18 +6,10 @@ import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/i18n/locales'
 
 import { HEADERS } from './constants'
 
-const PROD_BLOCK_LIST = ['/api/preview', '/slice-library', '/slice-simulator']
-const I18N_SKIP_LIST = ['/api', '/slice-library', '/slice-simulator', '/_next']
+const I18N_SKIP_LIST = ['/api', '/_next']
 
 export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
-
-  // block prismic dev related stuff on main prod site
-  if (
-    process.env.NEXT_PUBLIC_ENVIRONMENT === 'prod' &&
-    PROD_BLOCK_LIST.some((route) => pathname.startsWith(route))
-  )
-    return NextResponse.redirect(new URL('/not-found', request.url))
 
   // skip i18n middleware for API routes and Next internal files/static files (like robots.txt)
   if (

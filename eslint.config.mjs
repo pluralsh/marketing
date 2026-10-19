@@ -18,7 +18,7 @@ export default [
     },
   },
   {
-    ignores: ['next-env.d.ts', 'prismicio-types.d.ts'],
+    ignores: ['next-env.d.ts'],
   },
   {
     plugins: {

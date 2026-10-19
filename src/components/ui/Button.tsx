@@ -2,66 +2,105 @@ import type { VariantProps } from 'tailwind-variants'
 
 import { tv } from 'tailwind-variants'
 
-import type { PolymorphicPropsWithRef } from '@/types/polymorphic'
-
 import { cn } from '@/utils/cn'
 
-const button = tv({
-  slots: {
-    base: 'box-border relative inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm whitespace-nowrap font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 transition',
-  },
+import { Kbd } from './Kbd'
+import { Shortcut } from './Shortcut'
+import { SmartLink } from './SmartLink'
+
+export const button = tv({
+  base: 'inline-flex shrink-0 cursor-pointer items-center justify-center gap-2.5 rounded-[4px] font-medium whitespace-nowrap no-underline transition-colors disabled:pointer-events-none disabled:opacity-50',
   variants: {
     variant: {
-      primary:
-        'bg-primary-600 !text-neutral-000 hover:bg-neutral-000 hover:!text-neutral-800 shadow-primary',
+      primary: 'bg-accent text-on-accent hover:bg-accent/90',
       secondary:
-        'border border-neutral-000/10 text-text-body hover:border-neutral-000/20 hover:text-neutral-000',
-      alt: 'bg-neutral-700 border border-neutral-600 text-neutral-300 shadow-secondary hover:bg-neutral-500 hover:border-neutral-400',
+        'border-line-strong bg-surface text-ink hover:border-ink/30 border',
+      dark: 'bg-ink text-canvas hover:bg-ink/85',
+      ghost: 'text-ink hover:bg-surface-hover',
     },
     size: {
-      xs: {
-        base: 'px-2 py-2 h-8 text-caption',
-      },
-      small: {
-        base: 'px-4 py-1.5 h-9 text-body-small',
-      },
-      large: {
-        base: 'px-8 py-3 h-12 text-body-medium',
-      },
+      sm: 'min-h-9 px-3 text-sm',
+      md: 'min-h-11 px-3.5 text-[15px] font-normal',
+      lg: 'min-h-12 px-5 text-base',
     },
   },
   defaultVariants: {
     variant: 'primary',
-    size: 'small',
+    size: 'lg',
   },
 })
 
-export type ButtonProps<T extends React.ElementType = 'button'> =
-  PolymorphicPropsWithRef<
-    VariantProps<typeof button> & {
-      as?: T
-      className?: string
-    },
-    T
-  >
+type ButtonVariants = VariantProps<typeof button>
 
-export function Button<T extends React.ElementType = 'button'>({
-  as,
-  className,
+type ButtonLinkProps = ButtonVariants &
+  Omit<React.ComponentProps<typeof SmartLink>, 'children'> & {
+    children: React.ReactNode
+    /** Single-key keyboard shortcut that triggers this link, shown as a hint. */
+    shortcut?: string
+  }
+
+export function ButtonLink({
   variant,
   size,
+  shortcut,
+  className,
   children,
+  href,
   ...props
-}: ButtonProps<T>) {
-  const { base } = button({ variant, size })
-  const Component = as || 'button'
-
+}: ButtonLinkProps) {
   return (
-    <Component
-      className={cn(base(), className)}
+    <SmartLink
+      href={href}
+      className={cn(button({ variant, size }), className)}
       {...props}
     >
       {children}
-    </Component>
+      {shortcut && (
+        <>
+          <Kbd aria-hidden="true">{shortcut}</Kbd>
+          <Shortcut
+            keyName={shortcut}
+            href={href}
+          />
+        </>
+      )}
+    </SmartLink>
+  )
+}
+
+type ButtonProps = ButtonVariants & React.ComponentProps<'button'>
+
+export function Button({
+  variant,
+  size,
+  className,
+  type = 'button',
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
+      className={cn(button({ variant, size }), className)}
+      {...props}
+    />
+  )
+}
+
+/** Inline "Read more →" style text link. */
+export function ArrowLink({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof SmartLink>) {
+  return (
+    <SmartLink
+      className={cn(
+        'text-ink hover:text-accent-ink font-medium underline underline-offset-4',
+        className
+      )}
+      {...props}
+    >
+      {children} <span aria-hidden="true">→</span>
+    </SmartLink>
   )
 }

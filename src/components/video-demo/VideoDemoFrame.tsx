@@ -31,7 +31,17 @@ const TAB_ICONS: Record<
   'optimize-spend': CostManagementIcon,
 }
 
-export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
+/** Empty frame at the demo's exact size, to hold its space before mount. */
+export function VideoDemoPlaceholder({ className }: VideoDemoFrameProps) {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(styles.showcaseFrame, className)}
+    />
+  )
+}
+
+export function VideoDemoFrame({ className }: VideoDemoFrameProps) {
   const labelId = useId()
   const initialIndex = Math.max(
     0,
@@ -120,10 +130,10 @@ export default function VideoDemoFrame({ className }: VideoDemoFrameProps) {
               ) : (
                 <div className={styles.placeholder}>
                   <div>
-                    <p className="text-neutral-000 text-lg font-medium">
+                    <p className="m-0 text-lg font-medium text-white">
                       {tab.label}
                     </p>
-                    <p className="text-neutral-000/60 mt-2 text-sm">
+                    <p className="text-code-muted m-0 mt-2 text-sm">
                       Supademo embed coming soon
                     </p>
                   </div>

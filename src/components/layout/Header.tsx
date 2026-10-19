@@ -1,33 +1,52 @@
-import { asLink } from '@prismicio/client'
+import Link from 'next/link'
 
-import { REQUIRED_PAGE_UID } from '@/constants'
-import { getHomepage, getSettings } from '@/utils/prismicio'
+import { ButtonLink } from '@/components/ui/Button'
+import { Logo } from '@/components/ui/Logo'
+import { URLS } from '@/content/site'
 
-import HeaderClient from './Header.client'
+import { DesktopNav } from './DesktopNav'
+import { MobileNav } from './MobileNav'
 
-type HeaderProps = React.ComponentPropsWithRef<'header'>
+import type { Theme } from './SiteShell'
 
-export default async function Header({ className, ...props }: HeaderProps) {
-  const {
-    data: {
-      nav_logo,
-      nav_logo_redirect,
-      slices2: nav_link_slices,
-      nav_buttons,
-    },
-  } = await getSettings()
-
-  let logoHref = asLink(nav_logo_redirect) || asLink(await getHomepage()) || ''
-  logoHref = logoHref === `/${REQUIRED_PAGE_UID.HOME}` ? '/' : logoHref
-
+export function Header({ theme }: { theme: Theme }) {
   return (
-    <HeaderClient
-      nav_logo={nav_logo}
-      nav_link_slices={nav_link_slices}
-      nav_buttons={nav_buttons}
-      logo_href={logoHref}
-      className={className}
-      {...props}
-    />
+    <header className="border-line bg-canvas/85 sticky top-0 z-(--z-header) border-b backdrop-blur-md">
+      <div className="rails px-gutter relative flex items-center justify-between gap-4 py-3 lg:py-4">
+        <div className="flex items-center gap-6 xl:gap-8">
+          <Link
+            href="/"
+            className="text-ink flex items-center"
+          >
+            <Logo className="h-6 w-auto" />
+          </Link>
+          <div className="max-lg:hidden">
+            <DesktopNav />
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <ButtonLink
+            href={URLS.login}
+            variant="secondary"
+            size="md"
+            shortcut="L"
+            className="max-sm:hidden"
+          >
+            Log in
+          </ButtonLink>
+          <ButtonLink
+            href={URLS.contact}
+            size="md"
+            shortcut="B"
+            className="max-sm:hidden"
+          >
+            Book a demo
+          </ButtonLink>
+          <div className="lg:hidden">
+            <MobileNav theme={theme} />
+          </div>
+        </div>
+      </div>
+    </header>
   )
 }

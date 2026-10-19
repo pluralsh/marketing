@@ -1,20 +1,16 @@
-import { PrismicPreview } from '@prismicio/next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
+import { JetBrains_Mono, Newsreader } from 'next/font/google'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 
-import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/Header'
 import { OpenAIPixelPageView } from '@/components/OpenAIPixelPageView'
 import { cn } from '@/utils/cn'
 import { GoogleTagManager } from '@next/third-parties/google'
 
 import '../globals.css'
 
-import { repositoryName } from '@/utils/prismicio'
-
-export const Articulat = localFont({
+const articulat = localFont({
   variable: '--font-articulat',
   src: [
     {
@@ -35,6 +31,19 @@ export const Articulat = localFont({
   ],
 })
 
+const newsreader = Newsreader({
+  variable: '--font-newsreader',
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  weight: '400',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
+})
+
 export default async function RootLayout({
   children,
 }: React.PropsWithChildren) {
@@ -43,9 +52,14 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className="scroll-smooth"
+      className={cn(
+        'scroll-smooth',
+        articulat.variable,
+        newsreader.variable,
+        jetbrainsMono.variable
+      )}
     >
-      <body className={cn('antialiased', Articulat.className)}>
+      <body className="antialiased">
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
@@ -70,14 +84,11 @@ oaiq("init", { pixelId: "2kfiGLmQAM27GnVGNpy5UL" });`}
           strategy="afterInteractive"
         />
         <NextIntlClientProvider messages={messages}>
-          <Header />
           <OpenAIPixelPageView />
-          <>{children}</>
+          {children}
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
-          <Footer />
         </NextIntlClientProvider>
       </body>
-      <PrismicPreview repositoryName={repositoryName} />
     </html>
   )
 }
