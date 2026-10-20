@@ -18,7 +18,9 @@ export type InlineNode =
   | { text: string; bold?: boolean; italic?: boolean; href?: string }
 
 export type RichTextBlock =
-  | { type: 'p' | 'h2' | 'h3' | 'h4' | 'pre'; content: InlineNode[] }
+  | { type: 'p' | 'pre'; content: InlineNode[] }
+  /** h2s get an anchor slugified from their text unless `id` is set. */
+  | { type: 'h2' | 'h3' | 'h4'; content: InlineNode[]; id?: string }
   | { type: 'ul' | 'ol'; items: InlineNode[][] }
 
 export type RichText = RichTextBlock[]
@@ -48,6 +50,8 @@ export type HeroSection = {
   title: string
   description?: string
   cta?: Link
+  /** Drop the "Book a demo" / "Read the docs" buttons (e.g. legal pages). */
+  hideActions?: boolean
   image?: Image
   video?: { youtubeId: string; title: string }
 }
@@ -108,6 +112,8 @@ export type TableSection = {
 export type RichTextSection = {
   type: 'richText'
   content: RichText
+  /** Show an "On this page" sidebar linking to each h2. */
+  toc?: boolean
 }
 
 export type PostsSection = {

@@ -1,7 +1,35 @@
-import type { InlineNode, RichText as RichTextContent } from '@/content/types'
+import type {
+  InlineNode,
+  RichTextBlock,
+  RichText as RichTextContent,
+} from '@/content/types'
 
 import { SmartLink } from '@/components/ui/SmartLink'
 import { cn } from '@/utils/cn'
+import { slugify } from '@/utils/strings'
+
+function plainText(nodes: InlineNode[]) {
+  return nodes
+    .map((node) => (typeof node === 'string' ? node : node.text))
+    .join('')
+}
+
+function headingId(block: RichTextBlock) {
+  if (block.type !== 'h2' && block.type !== 'h3' && block.type !== 'h4') return
+  return (
+    block.id ??
+    (block.type === 'h2' ? slugify(plainText(block.content)) : undefined)
+  )
+}
+
+/** One entry per h2, matching the anchors `RichText` renders. */
+export function richTextToc(content: RichTextContent) {
+  return content.flatMap((block) =>
+    block.type === 'h2'
+      ? [{ id: headingId(block)!, label: plainText(block.content) }]
+      : []
+  )
+}
 
 function Inline({ nodes }: { nodes: InlineNode[] }) {
   return nodes.map((node, i) => {
@@ -46,7 +74,10 @@ export function RichText({ content, className }: RichTextProps) {
             const Tag = block.type
 
             return (
-              <Tag key={i}>
+              <Tag
+                key={i}
+                id={headingId(block)}
+              >
                 <Inline nodes={block.content} />
               </Tag>
             )

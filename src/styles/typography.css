@@ -90,6 +90,8 @@
     font-weight: 500;
     line-height: 1.3;
     margin-top: 1.8em;
+    /* Clear the sticky header when jumping to an anchor. */
+    scroll-margin-top: 96px;
   }
 
   & h2 {
