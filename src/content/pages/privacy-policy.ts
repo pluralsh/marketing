@@ -11,9 +11,11 @@ const privacyPolicy = {
       type: 'hero',
       title: 'Privacy policy',
       description: 'The steps we take to ensure your privacy',
+      hideActions: true,
     },
     {
       type: 'richText',
+      toc: true,
       content: [
         {
           type: 'h2',
@@ -68,36 +70,6 @@ const privacyPolicy = {
           type: 'h2',
           content: [
             {
-              text: 'Privacy Policy Table of Contents',
-              bold: true,
-            },
-          ],
-        },
-        {
-          type: 'ul',
-          items: [
-            ['What this Privacy Policy Covers'],
-            ['Personal Data'],
-            ['Categories of Personal Data We Collect'],
-            ['Categories of Sources of Personal Data'],
-            [
-              'Our Commercial or Business Purposes for Collecting Personal Data',
-            ],
-            ['How We Share Your Personal Data'],
-            ['Tracking Tools and Opt-Out'],
-            ['Data Security and Retention'],
-            ['Personal Data of Children'],
-            ['California Resident Rights'],
-            ['Other State Law Privacy Rights'],
-            ['European Union Data Subject Rights'],
-            ['Changes to this Privacy Policy'],
-            ['Contact Information'],
-          ],
-        },
-        {
-          type: 'h2',
-          content: [
-            {
               text: 'What this Privacy Policy Covers',
               bold: true,
             },
@@ -111,6 +83,7 @@ const privacyPolicy = {
         },
         {
           type: 'h2',
+          id: 'categories-of-data',
           content: [
             {
               text: 'Personal Data',
@@ -474,6 +447,7 @@ const privacyPolicy = {
         },
         {
           type: 'h2',
+          id: 'our-purposes',
           content: [
             {
               text: 'Our Commercial or Business Purposes for Collecting Personal Data',
@@ -580,6 +554,7 @@ const privacyPolicy = {
         },
         {
           type: 'h2',
+          id: 'how-we-share',
           content: [
             {
               text: 'How We Share Your Personal Data',
@@ -792,7 +767,7 @@ const privacyPolicy = {
           type: 'h2',
           content: [
             {
-              text: 'State Law Privacy Rights ##',
+              text: 'State Law Privacy Rights',
               bold: true,
             },
           ],

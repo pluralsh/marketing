@@ -2,6 +2,7 @@ import type {
   ContentSection,
   FeatureRowSection,
   HeroSection,
+  RichTextSection,
 } from '@/content/types'
 
 import { ButtonLink } from '@/components/ui/Button'
@@ -15,7 +16,7 @@ import { FeatureRow } from './FeatureRow'
 import { MediaFrame } from './MediaFrame'
 import { PageHero } from './PageHero'
 import { PostGrid } from './PostGrid'
-import { RichText } from './RichText'
+import { RichText, richTextToc } from './RichText'
 import { Section } from './Section'
 import { SectionHeading } from './SectionHeading'
 import { StatGrid } from './StatGrid'
@@ -43,21 +44,23 @@ function Hero({ section }: { section: HeroSection }) {
         title={section.title}
         description={section.description}
         actions={
-          <>
-            <ButtonLink
-              href={section.cta?.href ?? URLS.bookDemo}
-              shortcut="B"
-            >
-              {section.cta?.label ?? 'Book a demo'}
-            </ButtonLink>
-            <ButtonLink
-              href={URLS.docs}
-              variant="secondary"
-              shortcut="D"
-            >
-              Read the docs
-            </ButtonLink>
-          </>
+          !section.hideActions && (
+            <>
+              <ButtonLink
+                href={section.cta?.href ?? URLS.bookDemo}
+                shortcut="B"
+              >
+                {section.cta?.label ?? 'Book a demo'}
+              </ButtonLink>
+              <ButtonLink
+                href={URLS.docs}
+                variant="secondary"
+                shortcut="D"
+              >
+                Read the docs
+              </ButtonLink>
+            </>
+          )
         }
       />
       {section.video ? (
@@ -113,6 +116,38 @@ function FeatureRows({ rows }: { rows: FeatureRowSection[] }) {
         </FeatureRow>
       ))}
     </Section>
+  )
+}
+
+function RichTextWithToc({ section }: { section: RichTextSection }) {
+  const toc = richTextToc(section.content)
+
+  return (
+    <section className="rule-top grid lg:grid-cols-[280px_1fr]">
+      <aside className="px-gutter py-8 lg:sticky lg:top-20 lg:max-h-[calc(100vh-5rem)] lg:self-start lg:overflow-y-auto lg:py-14">
+        <nav
+          aria-label="On this page"
+          className="flex flex-col gap-2.5"
+        >
+          <span className="text-label">On this page</span>
+          {toc.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="text-body hover:text-accent-ink text-sm leading-snug no-underline"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </aside>
+      <div className="border-line px-gutter py-section max-lg:border-t lg:border-l">
+        <RichText
+          content={section.content}
+          className="max-w-[72ch] [&>:first-child]:mt-0"
+        />
+      </div>
+    </section>
   )
 }
 
@@ -242,6 +277,15 @@ export function ContentSections({ sections }: { sections: ContentSection[] }) {
           </Section>
         )
       case 'richText':
+        if (section.toc) {
+          return (
+            <RichTextWithToc
+              key={i}
+              section={section}
+            />
+          )
+        }
+
         return (
           <Section key={i}>
             <RichText
