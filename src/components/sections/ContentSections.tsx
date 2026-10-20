@@ -119,47 +119,26 @@ function FeatureRows({ rows }: { rows: FeatureRowSection[] }) {
   )
 }
 
-function TocLinks({ items }: { items: { id: string; label: string }[] }) {
-  return items.map((item) => (
-    <a
-      key={item.id}
-      href={`#${item.id}`}
-      className="text-body hover:text-accent-ink text-sm leading-snug no-underline"
-    >
-      {item.label}
-    </a>
-  ))
-}
-
 function RichTextWithToc({ section }: { section: RichTextSection }) {
   const toc = richTextToc(section.content)
 
   return (
     <section className="rule-top grid lg:grid-cols-[280px_1fr]">
       <aside className="px-gutter py-8 lg:sticky lg:top-20 lg:max-h-[calc(100vh-5rem)] lg:self-start lg:overflow-y-auto lg:py-14">
-        <details className="group lg:hidden">
-          <summary className="text-label cursor-pointer list-none">
-            On this page{' '}
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform group-open:rotate-90"
-            >
-              →
-            </span>
-          </summary>
-          <nav
-            aria-label="On this page"
-            className="mt-4 flex flex-col gap-2.5"
-          >
-            <TocLinks items={toc} />
-          </nav>
-        </details>
         <nav
           aria-label="On this page"
-          className="flex flex-col gap-2.5 max-lg:hidden"
+          className="flex flex-col gap-2.5"
         >
           <span className="text-label">On this page</span>
-          <TocLinks items={toc} />
+          {toc.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="text-body hover:text-accent-ink text-sm leading-snug no-underline"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
       </aside>
       <div className="border-line px-gutter py-section max-lg:border-t lg:border-l">
