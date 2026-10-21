@@ -1,24 +1,22 @@
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
 
-import { Button } from '@/components/ui/Button'
+import { SiteShell } from '@/components/layout/SiteShell'
+import { PageHero } from '@/components/sections/PageHero'
+import { ButtonLink } from '@/components/ui/Button'
 
+// Rendered in place of the route-group layouts, so it brings its own shell.
 export default async function NotFound() {
   const t = await getTranslations('404')
 
   return (
-    <main className="min-h-screen-minus-header container flex flex-col items-center justify-center gap-2">
-      <h1 className="text-heading-large">404</h1>
-      <h2 className="text-title-large">{t('pageNotFound')}</h2>
-      <p className="text-body-medium mb-8">{t('description')}</p>
-      <Button
-        as={Link}
-        variant="primary"
-        size="small"
-        href="/"
-      >
-        {t('returnHome')}
-      </Button>
-    </main>
+    <SiteShell>
+      <PageHero
+        eyebrow="404"
+        title={t('pageNotFound')}
+        description={t('description')}
+        actions={<ButtonLink href="/">{t('returnHome')}</ButtonLink>}
+        className="pb-[clamp(64px,9vw,120px)]"
+      />
+    </SiteShell>
   )
 }

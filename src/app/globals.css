@@ -3,48 +3,60 @@
 @import '../styles/typography.css';
 @import '../styles/layout.css';
 
+/*
+ * Theme tokens are runtime CSS variables so a subtree can switch palettes with
+ * `data-theme="dark"`. Tailwind utilities (bg-canvas, text-ink, border-line…)
+ * read through them via `@theme inline`.
+ */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-hover: var(--surface-hover);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-tint: var(--accent-tint);
+  --color-on-accent: var(--on-accent);
+  --color-logo-mark: var(--logo-mark);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-articulat), 'Inter', system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, Menlo, monospace;
+}
+
 @theme {
-  --spacing-header: var(--header-height);
-  --spacing-screen-minus-header: calc(100vh - var(--header-height));
-  --spacing-5\.5: --spacing(5.5);
-  --spacing-6\.5: --spacing(6.5);
-  --spacing-7\.5: --spacing(7.5);
-  --spacing-12\.5: --spacing(12.5);
-  --spacing-15: --spacing(15);
-  --spacing-18: --spacing(18);
-  --spacing-25: --spacing(25);
-  --spacing-30: --spacing(30);
+  --color-plural-blue: #4a51f2;
 
-  --color-primary-600: #7b28ff;
-  --color-accent-600: #7ffac1;
-  --color-accent-500: #004af8;
-  --color-accent-400: #14d9d1;
-  --color-accent-300: #e9ace6;
-  --color-accent-200: #f5c28d;
-  --color-accent-100: #b485ff;
-  --color-neutral-900: #0e1015;
-  --color-neutral-800: #1d1f25;
-  --color-neutral-700: #2a2e37;
-  --color-neutral-600: #454954;
-  --color-neutral-500: #343841;
-  --color-neutral-400: #4f535c;
-  --color-neutral-300: #c5c9d2;
-  --color-neutral-200: #e5e7eb;
-  --color-neutral-000: #ffffff;
-  --color-stroke: --alpha(var(--color-neutral-900) / 10%);
-  --color-inverse-stroke: --alpha(var(--color-neutral-000) / 10%);
-  --color-text-heading: var(--color-neutral-000);
-  --color-text-body: --alpha(var(--color-neutral-000) / 70%);
+  /* Code / product mock surfaces are always dark, regardless of page theme. */
+  --color-code: #0e1015;
+  --color-code-panel: #1d1f25;
+  --color-code-line: #2a2e37;
+  --color-code-text: #e5e7eb;
+  --color-code-dim: #c5c9d2;
+  --color-code-muted: #8a8f99;
+  --color-syntax-teal: #14d9d1;
+  --color-syntax-violet: #b4b8ff;
+  --color-syntax-pink: #e9ace6;
+  --color-syntax-amber: #f5c28d;
+  --color-syntax-green: #7ffac1;
 
-  --shadow-primary:
-    0px 0px 1px 0px #752fff1a, 0px 2px 2px 0px #752fff17,
-    0px 4px 2px 0px #752fff0d, 0px 7px 3px 0px #752fff03,
-    0px 11px 3px 0px #752fff00;
-  --shadow-secondary:
-    rgba(14, 16, 21, 0.18) 0px 2px 7px 0px,
-    rgba(14, 16, 21, 0.14) 0px 2px 4px 0px;
+  --spacing-gutter: clamp(20px, 4vw, 40px);
+  --spacing-section: clamp(56px, 7vw, 88px);
+  --container-rails: 1200px;
 
-  --default-transition-duration: 300ms;
+  --shadow-window: 0 30px 60px -30px rgba(14, 16, 21, 0.45);
+  --shadow-menu: 0 30px 60px -30px rgba(14, 16, 21, 0.3);
+
+  --default-transition-duration: 200ms;
   --default-transition-timing-function: ease-out;
 
   --z-header: 30;
@@ -62,43 +74,78 @@
 }
 
 @layer base {
-  :root {
-    --header-height: 3.75rem;
-    --sticky-header-visible: 0;
+  :root,
+  [data-theme='light'] {
+    --canvas: #fafafa;
+    --surface: #ffffff;
+    --surface-muted: #f4f5f7;
+    --surface-hover: #f2f3fb;
+    --ink: #0e1015;
+    --body: rgb(14 16 21 / 0.72);
+    --muted: #4f535c;
+    --subtle: #8a8f99;
+    --line: rgb(14 16 21 / 0.1);
+    --line-strong: rgb(14 16 21 / 0.16);
+    --accent: var(--color-plural-blue);
+    --accent-ink: var(--color-plural-blue);
+    --accent-tint: color-mix(in srgb, var(--accent) 8%, white);
+    --on-accent: #ffffff;
+    --logo-mark: var(--color-plural-blue);
+    --success: #067647;
+    --warning: #b54708;
+    --danger: #b42318;
+    --grain-opacity: 0.13;
   }
 
-  @media (min-width: theme('breakpoint.md')) {
-    :root {
-      --header-height: 5rem;
-    }
+  [data-theme='dark'] {
+    --canvas: #12131b;
+    --surface: #191a25;
+    --surface-muted: #1e2030;
+    --surface-hover: #232538;
+    --ink: #ecedf7;
+    --body: rgb(236 237 247 / 0.74);
+    --muted: #a3a6bd;
+    --subtle: #6d7088;
+    --line: rgb(190 195 255 / 0.1);
+    --line-strong: rgb(190 195 255 / 0.18);
+    --accent: var(--color-plural-blue);
+    --accent-ink: #9ea3ff;
+    --accent-tint: rgb(74 81 242 / 0.16);
+    --on-accent: #ffffff;
+    --logo-mark: var(--ink);
+    --success: #7ee2b8;
+    --warning: #f5c97a;
+    --danger: #f2a7a7;
+    --grain-opacity: 0.1;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
   }
 
   body {
-    @apply text-text-body text-body-medium bg-neutral-900;
+    @apply bg-canvas text-ink font-sans text-base leading-normal tracking-[0.01em];
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--color-text-heading);
+  a {
+    @apply transition-colors;
+  }
+
+  :focus-visible {
+    @apply outline-accent outline-2 outline-offset-2;
+  }
+
+  kbd {
+    @apply font-mono;
   }
 
   /* Popover */
   [data-radix-popper-content-wrapper] {
     z-index: var(--z-popover);
-  }
-
-  /* Dialog */
-  [id^='radix'][role='dialog'] {
-    z-index: var(--z-dialog);
-  }
-
-  /* Dialog backdrop */
-  div + :has([id^='radix'][role='dialog']) {
-    z-index: var(--z-dialog-backdrop);
   }
 
   /* Cookiebot overrides */
@@ -114,14 +161,16 @@
     }
   }
   /* Hide Cookiebot Swift banner branding */
-  /* Branding on the banner */
   a#CybotCookiebotDialogPoweredbyCybot,
   div#CybotCookiebotDialogPoweredByText,
   #CookiebotWidget .CookiebotWidget-body .CookiebotWidget-main-logo,
   #CybotCookiebotDialogHeader {
     display: none !important;
   }
-}
-@utility container {
-  @apply mx-auto px-4;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
 }

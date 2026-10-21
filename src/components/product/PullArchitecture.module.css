@@ -1,0 +1,38 @@
+.packets {
+  stroke-dasharray: 3 15;
+  animation: flow 1.6s linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+.pulse {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packets,
+  .pulse {
+    animation: none;
+  }
+}

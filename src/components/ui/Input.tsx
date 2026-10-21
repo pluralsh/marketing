@@ -1,16 +1,11 @@
 import { cn } from '@/utils/cn'
 
-type InputProps = React.ComponentProps<'input'>
-
-export default function Input({ className, type, ...props }: InputProps) {
+export function Input({ className, ...props }: React.ComponentProps<'input'>) {
   return (
     <input
-      type={type}
-      data-slot="input"
       className={cn(
-        'flex h-12.5 w-full min-w-0 rounded-lg bg-transparent px-3 py-1 transition outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
-        'not-placeholder-shown:border-neutral-000/20 border-neutral-000/[0.12] hover:border-neutral-000/70 focus-visible:border-neutral-000/70 border aria-invalid:border-[#ff0000]/50',
-        'placeholder:text-neutral-000/60 text-neutral-000 text-base leading-normal tracking-[0.01em]',
+        'border-line-strong bg-surface text-ink placeholder:text-subtle min-h-11 rounded-[4px] border px-3 text-sm outline-none',
+        'hover:border-ink/30 focus-visible:border-accent aria-invalid:border-danger transition-colors disabled:opacity-50',
         className
       )}
       {...props}

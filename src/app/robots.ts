@@ -1,27 +1,11 @@
 import type { MetadataRoute } from 'next'
 
-import { filter } from '@prismicio/client'
-
 import { SITE_URL } from '@/constants'
-import { createClient } from '@/utils/prismicio'
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const client = createClient()
-
-  const pages = await client
-    .getAllByType('page', {
-      filters: [filter.at('my.page.meta_noindex', true)],
-      lang: '*',
-    })
-    .then((pages) => pages.map((page) => `${page.url!}/`))
-
-  const disallowedURLs = [...pages]
-
+// Noindexed pages opt out with per-page `robots` metadata instead of disallow rules.
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      disallow: disallowedURLs,
-    },
+    rules: { userAgent: '*' },
     sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

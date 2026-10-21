@@ -1,0 +1,73 @@
+@reference "../../../app/globals.css";
+
+/* HubSpot injects its own markup; style it to match the site's inputs. */
+.form {
+  min-height: 420px;
+
+  form {
+    @apply flex w-full flex-col gap-4;
+  }
+
+  fieldset {
+    @apply w-full max-w-full!;
+  }
+
+  fieldset[class*='form-columns-2'] {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2;
+
+    & > * {
+      @apply w-full!;
+    }
+  }
+
+  div[class*='input'] {
+    @apply mr-0!;
+  }
+
+  label {
+    @apply text-ink text-sm font-medium;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  select,
+  textarea {
+    @apply border-line-strong bg-surface text-ink mt-1.5 min-h-11 w-full! rounded-[4px] border px-3 py-2 text-[15px] outline-none;
+    @apply hover:border-ink/30 focus-visible:border-accent transition-colors;
+    appearance: none;
+
+    &::placeholder {
+      @apply text-subtle;
+    }
+
+    &[class*='invalid'] {
+      @apply border-danger;
+    }
+  }
+
+  input[type='submit'] {
+    @apply bg-accent text-on-accent hover:bg-accent/90 mt-2 min-h-12 w-full cursor-pointer rounded-[4px] px-5 text-base font-medium transition-colors;
+  }
+
+  [class*='hs-error-msg'] {
+    @apply text-danger text-sm font-normal;
+  }
+
+  [class*='legal-consent'],
+  [class*='hs-richtext'] {
+    @apply text-muted text-xs;
+  }
+
+  ul {
+    @apply m-0 list-none p-0;
+  }
+
+  li[class*='hs-form-booleancheckbox'] > label {
+    @apply flex items-start gap-2.5 font-normal;
+
+    > input[type='checkbox'] {
+      @apply accent-accent mt-1 size-4;
+    }
+  }
+}
