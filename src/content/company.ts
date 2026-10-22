@@ -121,9 +121,11 @@ export const team: TeamMember[] = [
 export const investors: { name: string; contact: string; photo?: string }[] = [
   {
     name: 'Primary Ventures',
-    contact: 'Brian Schecter, Partner',
+    contact: 'Brian Schechter, Partner',
     photo: '/images/people/brian-schecter.jpg',
   },
+  { name: 'Venture Guides', 
+    contact: 'Mo Garad, General Partner' },
   {
     name: 'SignalFire',
     contact: 'Oana Olteanu, Partner',
@@ -134,7 +136,6 @@ export const investors: { name: string; contact: string; photo?: string }[] = [
     contact: 'Sean Leach, Partner',
     photo: '/images/people/sean-leach.jpg',
   },
-  { name: 'Venture Guides', contact: 'Investor' },
 ]
 
 export const benefits = [

@@ -334,7 +334,7 @@ export const certificates = [
     src: '/images/certificates/cncf.svg',
   },
   {
-    label: 'SOC 2 compliant',
+    label: 'SOC 2 Type 2 compliant',
     alt: 'AICPA SOC',
     src: '/images/certificates/soc2.svg',
   },
