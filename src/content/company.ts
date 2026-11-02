@@ -124,8 +124,7 @@ export const investors: { name: string; contact: string; photo?: string }[] = [
     contact: 'Brian Schechter, Partner',
     photo: '/images/people/brian-schecter.jpg',
   },
-  { name: 'Venture Guides', 
-    contact: 'Mo Garad, General Partner' },
+  { name: 'Venture Guides', contact: 'Mo Garad, General Partner' },
   {
     name: 'SignalFire',
     contact: 'Oana Olteanu, Partner',
