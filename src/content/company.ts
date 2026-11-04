@@ -99,7 +99,7 @@ export const team: TeamMember[] = [
     photo: '/images/people/john-blackwell.jpg',
   },
   {
-    name: 'Christopher Akinrinade',
+    name: 'Chris Akinrinade',
     role: 'Sales Engineer',
     group: 'Go-to-market',
     photo: '/images/people/christopher-akinrinade.jpg',
