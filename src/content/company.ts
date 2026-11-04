@@ -51,10 +51,10 @@ export const team: TeamMember[] = [
     photo: '/images/people/aaron-smallberg.jpg',
   },
   {
-    name: 'Marcin Maciszczyk',
+    name: 'Marcin Maciaszczyk',
     role: 'Fullstack Engineer',
     group: 'Engineering & product',
-    photo: '/images/people/marcin-maciszczyk.jpg',
+    photo: '/images/people/marcin-maciaszczyk.jpg',
   },
   {
     name: 'Sebastian Florek',
@@ -79,6 +79,18 @@ export const team: TeamMember[] = [
     role: 'Senior Product Designer',
     group: 'Engineering & product',
     photo: '/images/people/anna-nguyen.jpg',
+  },
+  {
+    name: 'Jennifer Zorza',
+    role: 'Director of Customer Success',
+    group: 'Go-to-market',
+    photo: '/images/people/jennifer-zorza.jpg',
+  },
+  {
+    name: 'Yiwen Xu',
+    role: 'Product Marketing Manager',
+    group: 'Go-to-market',
+    photo: '/images/people/yiwen-xu.jpg',
   },
   {
     name: 'John Blackwell',
