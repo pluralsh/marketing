@@ -227,6 +227,11 @@ export const navigation: NavMenu[] = [
       },
       { title: 'Docs', description: 'Set up and run Plural', href: URLS.docs },
       {
+        title: 'Reports & guides',
+        description: 'Free guides and frameworks for platform teams',
+        href: '/resources/reports-and-guides',
+      },
+      {
         title: 'Customers',
         description: 'How teams run their platforms on Plural',
         href: '/customers',
@@ -308,6 +313,7 @@ export const footer: { heading: string; links: Link[] }[] = [
       { label: 'Blog', href: URLS.blog },
       { label: 'Community', href: '/community' },
       { label: 'Resource center', href: '/resources' },
+      { label: 'Reports & guides', href: '/resources/reports-and-guides' },
       { label: 'Trust center', href: URLS.trustCenter },
     ],
   },

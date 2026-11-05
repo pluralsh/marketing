@@ -11,6 +11,7 @@ const STATIC_PATHS = [
   '/contact',
   '/customers',
   '/pricing',
+  '/resources/reports-and-guides',
   '/products/agent-runtime',
   '/products/fleet-scale-gitops',
   '/products/flows',
